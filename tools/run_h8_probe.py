@@ -37,6 +37,10 @@ def summarize_trace(lines):
             sample_passes[int(match.group(1))] = int(match.group(2))
     if sample_passes:
         result["dsp_sample_passes"] = [sample_passes.get(chip, 0) for chip in range(2)]
+    midi_rx = [int(match.group(1)) for line in lines if (match := re.search(
+        r"YAMANIX MIDI_RX transitions=(\d+) hardware_validated=0", line))]
+    if midi_rx:
+        result["midi_rx_transitions"] = midi_rx[-1]
     summaries = [match for line in lines if (match := re.search(
         r"LCD_SUMMARY tick=(\d+) busy_reads=(\d+) ready_reads=(\d+) commands=(\d+) data=(\d+)", line))]
     if summaries:
@@ -51,8 +55,10 @@ def main():
     parser.add_argument("--mame", type=Path, required=True)
     parser.add_argument("--rom", type=Path, required=True)
     parser.add_argument("--member")
+    parser.add_argument("--midi-file", type=Path,
+                        help="Optional local .mid or .syx image for the emulated MIDI IN port")
     parser.add_argument("--work", type=Path, required=True)
-    parser.add_argument("--seconds", type=int, default=1, choices=range(1, 11))
+    parser.add_argument("--seconds", type=int, default=1, choices=range(1, 31))
     parser.add_argument("--dsp-profile", choices=("passive", "firmware-contract"), default="passive",
                         help="firmware-contract is experimental, not hardware-validated")
     parser.add_argument("--dms-board", choices=("absent", "installed"), default="absent",
@@ -67,6 +73,11 @@ def main():
     try:
         binary = args.mame.resolve(strict=True)
         bridge = args.bridge.resolve(strict=True) if args.bridge else None
+        midi_file = args.midi_file.resolve(strict=True) if args.midi_file else None
+        if midi_file and midi_file.suffix.lower() not in (".mid", ".syx"):
+            raise ValueError("--midi-file must use the .mid or .syx extension")
+        if midi_file and args.seconds <= 10:
+            raise ValueError("MAME starts MIDI file playback after 10 seconds; use --seconds 11 or greater")
         if bridge and args.dsp_profile != "firmware-contract":
             raise ValueError("The live bridge requires --dsp-profile firmware-contract")
         if args.eg_readback != "zero" and not bridge:
@@ -89,6 +100,8 @@ def main():
                    "-rompath", str(roms), "-nonvram_save", "-log", "-noplugins",
                    "-keyboardprovider", "none", "-mouseprovider", "none",
                    "-lightgunprovider", "none", "-joystickprovider", "none"]
+        if midi_file:
+            command.extend(["-midiin", str(midi_file)])
         environment = os.environ.copy()
         environment["YAMANIX_DSP_PROFILE"] = args.dsp_profile
         environment["YAMANIX_DMS_BOARD"] = args.dms_board
@@ -109,6 +122,9 @@ def main():
         bridge_completed = (bool(bridge) and (work / "live-vop3-state.bin").is_file()
                             and sum("YAMANIX BRIDGE_END" in line for line in trace) == 2)
         manifest = {"rom_identity": identity, "command": command, "returncode": result.returncode,
+                    "midi_input": ({"filename": midi_file.name, "bytes": midi_file.stat().st_size,
+                                    "sha256": hashlib.sha256(midi_file.read_bytes()).hexdigest()}
+                                   if midi_file else None),
                     "dsp_profile": args.dsp_profile, "dsp_hardware_validated": False,
                     "dms_board": args.dms_board, "vop3_bridge": str(bridge) if bridge else None,
                     "dsp_sample_execution": args.dsp_sample_clock != "disabled",
