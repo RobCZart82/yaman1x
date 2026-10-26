@@ -27,18 +27,18 @@
 +    space.install_read_tap(0xffffb0, 0xffffb5, "yamanix_sci0_read",
 +        [this](offs_t address, u16 &data, u16 mask) {
 +            if (machine().side_effects_disabled()) return;
-+            if (address == 0xffffb5) {
++            if (address == 0xffffb4 && (mask & 0x00ff)) {
 +                ++m_sci0_rdr_reads;
 +                if (m_sci0_rdr_reads <= 128)
 +                    logerror("YAMANIX SCI0_RDR read=%llu data=%02x pc=%06x\n",
-+                        (unsigned long long)m_sci0_rdr_reads, data, m_maincpu->pc());
++                        (unsigned long long)m_sci0_rdr_reads, data & 0xff, m_maincpu->pc());
 +            }
 +        });
 +    space.install_write_tap(0xffffb0, 0xffffb5, "yamanix_sci0_write",
 +        [this](offs_t address, u16 &data, u16 mask) {
 +            if (machine().side_effects_disabled()) return;
-+            if (address == 0xffffb2)
-+                logerror("YAMANIX SCI0_SCR write=%02x pc=%06x\n", data, m_maincpu->pc());
++            if (address == 0xffffb2 && (mask & 0xff00))
++                logerror("YAMANIX SCI0_SCR write=%02x pc=%06x\n", (data >> 8) & 0xff, m_maincpu->pc());
 +        });
      auto *timer = timer_alloc(FUNC(an1x_state::trace_tick), this);
      timer->adjust(attotime::zero, 0, attotime::from_msec(10));
