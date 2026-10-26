@@ -51,12 +51,16 @@ the checkout or in ignored `roms/` and `private_runs/` folders. These inputs sta
 ```sh
 python3 tools/rom_inspect.py /path/to/local-firmware.zip
 python3 tools/bank_inspect.py /path/to/local-bank.syx
+python3 tools/an1x_table_rom_audit.py /path/to/local-firmware.bin /path/to/VOP3-main.zip \
+  --table-rom-member VOP3-main/docs/vop3_an1x/maskrom.bin
 ```
 
-These tools do not change their input files. The separate macOS MAME research
-build needs a compatible local MAME source snapshot and separately obtained
-local firmware. See [research instructions](research/README.md). It is not
-linked into this core, and is not part of the default build.
+These tools do not change their input files. The table-ROM audit compares known
+table regions with the CPU-ROM copy; it does not verify DSP address scaling or
+hardware fidelity. The separate macOS MAME research build needs a compatible
+local MAME source snapshot and separately obtained local firmware. See
+[research instructions](research/README.md). It is not linked into this core,
+and is not part of the default build.
 
 ## Source provenance and licensing
 

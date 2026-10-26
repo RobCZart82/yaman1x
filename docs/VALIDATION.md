@@ -43,3 +43,10 @@ groups. These checks use no Yamaha ROMs or patch banks. The workflow's exact
 job names are required by the active default-branch ruleset. This validates
 these source-build environments only; it does not establish AN1x hardware
 fidelity, audio output or VST3/AU host compatibility.
+
+The read-only table-ROM audit also compares an external 128 KiB table image
+with the table copy embedded in a local AN1x 1.04 firmware image. It verifies
+the shipped-voice exponential, duplicated powers-of-two, decay, sine and
+clipper regions byte for byte. This is a content comparison, not proof of the
+external image's provenance, the DMS ROM's identity, table-index scaling or
+hardware behavior. Neither input is included in the repository.

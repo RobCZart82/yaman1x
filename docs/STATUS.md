@@ -30,8 +30,13 @@ No VST3, AU, GUI or AN1x audio output is available yet.
   gives 0x7FBF after 50 ms instead of the target's 0x2000. This is a
   code/description discrepancy; physical hardware behavior remains unverified.
 - The library's 48 kHz model is not verification of the AN1x clock. Table-ROM
-  scaling/addressing, inter-chip audio, MEG effects and MIDI/PKS handling remain
-  incomplete. The original PKS ROM is still unavailable in the checked sources.
+  index scaling, inter-chip audio, MEG effects and MIDI/PKS handling remain
+  incomplete. A 128 KiB AN1x VOP3 mask-ROM image is present in the downloaded
+  VOP3 research archive and its shipped-voice tables match the main firmware's
+  table copy; this does not establish that both board ROMs match or verify
+  address scaling; see [AN1x clock and table-ROM findings](an1x-clock-and-table-rom.md).
+  The original PKS ROM is still unavailable in the checked
+  sources.
 
 The original downloaded files and the upstream VOP3 snapshot were not modified.
 Older reports in this repository are historical observations, not claims that
