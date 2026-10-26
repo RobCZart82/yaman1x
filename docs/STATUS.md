@@ -19,6 +19,11 @@ No VST3, AU, GUI or AN1x audio output is available yet.
   experimental; rounding, saturation and physical level mapping are unverified.
 - The integer sample clock and actual VOP3 execution agree across different
   call partitions; the synthetic timing probe runs 2400 samples per chip.
+- The timed 5-second firmware trace now passes the live bridge audit: all 25,310
+  bus events parse, and the loaded DSP state agrees with independent Python
+  reconstruction. Each chip produced 28 complete 16-channel EG scans; all
+  values were zero, so the separate channel-14 `0xC000` firmware comparison
+  still fails under the experimental profile. No MIDI note or audio was driven.
 
 ## Material limitations
 
