@@ -34,6 +34,23 @@ nevét, a használt 48 kHz-es modellfrekvenciát és mindkét chip `sample_passe
 számlálóját. Nulla számlálóval vagy hiányzó bridge-visszajelzéssel a futás
 hibának minősül.
 
+## Időzített firmware-trace audit
+
+A trace parser és az élő bridge auditor külön kezeli a timed kísérlet órajel-
+és bridge-fejlécsorait a DSP-regiszter-eseményektől. Az auditor ellenőrzi a
+kifejezett `assumed-48k` profilt, a két chip mintaszámlálóját, a teljes
+regisztertrace-t és az élő feltöltési állapot független rekonstrukcióját. A
+számlálókat nem tekinti hardveres órajelbizonyítéknak.
+
+Az öt másodperces timed futás újraelemzése 25 310 regisztereseményt adott; a
+feltöltött állapot egyezett a Python rekonstrukcióval. Mindkét chipen 28 teljes
+16 csatornás 0x22-es pásztázás volt (448 olvasás), tartományhibát nem jelzett a
+firmware. Az összes pásztázott érték nulla volt, a külön 14. csatornás olvasás
+pedig nem egyezett a firmware által várt 0xC000-rel. A 48 kHz-es kísérleti
+futtatás tehát javítja a vizsgálatot, de nem bizonyítja az EG-visszaolvasási
+modell helyességét; nincs MIDI-note indítás, hangkimenet vagy hardveres
+összehasonlítás.
+
 ## Korlátok
 
 48 kHz a vendorizált VOP3-modell értéke, nem az AN1x VOP3 chipjének bizonyított
