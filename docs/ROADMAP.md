@@ -3,12 +3,17 @@
 These tasks follow the first private source snapshot. No GUI work is planned
 before the engine has a validated signal path.
 
-1. **EG target/hold behavior.** Reproduce the source/description discrepancy,
-   determine the hardware-relevant arming/holding rule, and add a regression
-   check before changing the upstream model or a clearly isolated adapter.
-2. **AN1x sample clock and table-ROM scale.** Establish the actual clock and
-   table representation from primary hardware/firmware evidence. Record
-   assumptions separately from measured facts; preserve original input files.
+1. **EG target/hold behavior.** The source/description discrepancy is
+   reproduced synthetically. Determine the hardware-relevant arming/holding
+   rule from an AN1x reference capture before changing the upstream model or an
+   isolated adapter; keep the current characterization explicitly non-hardware
+   validated.
+2. **AN1x sample clock and table-ROM access.** A 128 KiB VOP3 mask-ROM image
+   has been identified in an external research archive and the shipped-voice
+   table regions match the CPU-ROM copy. The DMS image identity, VOP3 address
+   index scale and actual sample rate remain unverified. Trace the clock path
+   from the service schematic and primary chip evidence; preserve original
+   input files.
 3. **Timed H8–VOP3 execution.** Connect sample stepping to periodic execution
    and MMIO, define upload/run and same-time access ordering, and audit evolving
    readback values against the firmware's checks. Keep experimental profiles
