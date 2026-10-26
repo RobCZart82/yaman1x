@@ -9,21 +9,46 @@
  #include "cpu/h8/h83002.h"
  #include "cpu/m6805/hd6305.h"
  #include "video/lc7985.h"
-@@ -86,6 +86,9 @@
+@@ -86,6 +86,10 @@
      unsigned m_lcd_commands = 0, m_lcd_data = 0;
      unsigned m_lcd_busy_reads = 0, m_lcd_ready_reads = 0;
      void lcd_control_w(u8 data);
 +	void midi_rx_w(int state);
 +	u64 m_midi_rx_edges = 0;
++	u64 m_sci0_rdr_reads = 0;
 +	int m_midi_rx_level = -1;
  	void mem_map(address_map &map) ATTR_COLD;
  
  	required_device<h83002_device> m_maincpu;
-@@ -201,8 +204,17 @@
+@@ -160,6 +164,22 @@
+             if (m_writes.size() < 512 && m_writes.insert(address).second)
+                 logerror("YAMANIX WRITE pc=%06x address=%06x data=%04x mask=%04x\n", m_maincpu->pc(), address, data, mask);
+         });
++    space.install_read_tap(0xffffb0, 0xffffb5, "yamanix_sci0_read",
++        [this](offs_t address, u16 &data, u16 mask) {
++            if (machine().side_effects_disabled()) return;
++            if (address == 0xffffb4 && (mask & 0x00ff)) {
++                ++m_sci0_rdr_reads;
++                if (m_sci0_rdr_reads <= 128)
++                    logerror("YAMANIX SCI0_RDR read=%llu data=%02x pc=%06x\n",
++                        (unsigned long long)m_sci0_rdr_reads, data & 0xff, m_maincpu->pc());
++            }
++        });
++    space.install_write_tap(0xffffb0, 0xffffb5, "yamanix_sci0_write",
++        [this](offs_t address, u16 &data, u16 mask) {
++            if (machine().side_effects_disabled()) return;
++            if (address == 0xffffb2 && (mask & 0xff00))
++                logerror("YAMANIX SCI0_SCR write=%02x pc=%06x\n", (data >> 8) & 0xff, m_maincpu->pc());
++        });
+     auto *timer = timer_alloc(FUNC(an1x_state::trace_tick), this);
+     timer->adjust(attotime::zero, 0, attotime::from_msec(10));
+     logerror("YAMANIX research harness: H8 active; LC7985 connected; VOP3/MEG integration incomplete\n");
+@@ -201,8 +221,18 @@
  
  void an1x_state::dsp_trace_end()
  {
 +    logerror("YAMANIX MIDI_RX transitions=%llu hardware_validated=0\n", (unsigned long long)m_midi_rx_edges);
++    logerror("YAMANIX SCI0_RDR reads=%llu hardware_validated=0\n", (unsigned long long)m_sci0_rdr_reads);
      end_bridge();
      logerror("YAMANIX DSP_END events=%llu dropped=%llu\n", (unsigned long long)m_dsp_events, (unsigned long long)m_dsp_dropped);
 +}
@@ -37,7 +62,7 @@
  }
  
  // macOS research target only; ABI and core are separate from the MAME executable.
-@@ -341,6 +353,8 @@
+@@ -341,6 +371,8 @@
  
  	MEG(config, m_meg, 11.2896_MHz_XTAL);
  

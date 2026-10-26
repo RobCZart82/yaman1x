@@ -115,7 +115,8 @@ MAME `midiin` portját az H8 RXD0 / SCI0 bemenetére köti. A `run_h8_probe.py`
 fájl nem másolódik be a futásmappába. A MAME a fájlból legalább 10 másodperc
 után kezd adatot küldeni, ezért a próbához `--seconds 11` vagy több szükséges.
 
-Egy generált note-on/note-off MIDI-fájl 12 másodperces futása 21 RXD0
-vonalátmenetet adott. Ez csak a soros bemeneti vonal aktivitását igazolja, nem
-az SCI bájt-vételét, a firmware eseményfeldolgozását vagy a hangkimenetet; a
-részletek: [MIDI IN mérföldkő](../docs/midi-input-milestone.md).
+Egy generált note-on/note-off MIDI-fájl javított bájtsávfigyelőkkel végzett
+30 másodperces futása 21 RXD0-vonalátmenetet adott. Az SCI0 SCR egyetlen megfigyelt írása `0x00` volt,
+az RDR-t pedig a firmware nem olvasta. Ez a bekötést és a soros vonal aktivitását
+igazolja; a UART-bájt-vételt, a firmware eseményfeldolgozását és a hangot nem.
+Részletek: [MIDI IN mérföldkő](../docs/midi-input-milestone.md).
