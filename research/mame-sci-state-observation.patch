@@ -1,0 +1,74 @@
+--- a/src/mame/yamaha/yman1x.cpp
++++ b/src/mame/yamaha/yman1x.cpp
+@@ -58,6 +58,7 @@
+ private:
+     void machine_start() override ATTR_COLD;
+     TIMER_CALLBACK_MEMBER(trace_tick);
++    void sci_state(unsigned tick);
+     memory_passthrough_handler m_read_trace, m_write_trace, m_dms_flag_trace;
+     std::set<offs_t> m_reads, m_writes;
+     unsigned m_ticks = 0;
+@@ -89,6 +90,7 @@
+ 	void midi_rx_w(int state);
+ 	u64 m_midi_rx_edges = 0;
+ 	u64 m_sci0_rdr_reads = 0;
++    u64 m_sci1_tdr_writes = 0, m_sci1_rdr_reads = 0;
+ 	int m_midi_rx_level = -1;
+ 	void mem_map(address_map &map) ATTR_COLD;
+ 
+@@ -181,12 +183,28 @@
+                 logerror("YAMANIX SCI0_SCR write=%02x pc=%06x\n", (data >> 8) & 0xff, m_maincpu->pc());
+         });
+     auto *timer = timer_alloc(FUNC(an1x_state::trace_tick), this);
++    space.install_write_tap(0xffffb8, 0xffffbd, "yamanix_sci1_write",
++        [this](offs_t address, u16 &data, u16 mask) {
++            if (machine().side_effects_disabled()) return;
++            if (address == 0xffffba && (mask & 0x00ff)) {
++                ++m_sci1_tdr_writes;
++                if (m_sci1_tdr_writes <= 128)
++                    logerror("YAMANIX SCI1_TDR write=%llu data=%02x pc=%06x\n",
++                        (unsigned long long)m_sci1_tdr_writes, data & 0xff, m_maincpu->pc());
++            }
++        });
++    space.install_read_tap(0xffffb8, 0xffffbd, "yamanix_sci1_read",
++        [this](offs_t address, u16 &data, u16 mask) {
++            if (machine().side_effects_disabled()) return;
++            if (address == 0xffffbc && (mask & 0x00ff)) ++m_sci1_rdr_reads;
++        });
+     timer->adjust(attotime::zero, 0, attotime::from_msec(10));
+     logerror("YAMANIX research harness: H8 active; LC7985 connected; VOP3/MEG integration incomplete\n");
+ }
+ 
+ TIMER_CALLBACK_MEMBER(an1x_state::trace_tick)
+ {
++    if ((m_ticks % 100) == 0) sci_state(m_ticks);
+     if (m_ticks < 101 || (m_ticks <= 1000 && (m_ticks % 100) == 0))
+         logerror("YAMANIX PC tick=%u pc=%06x\n", m_ticks, m_maincpu->pc());
+     if (m_ticks && (m_ticks % 100) == 0 && m_ticks <= 1000)
+@@ -196,6 +214,17 @@
+             m_ticks, m_contract_enabled ? "firmware-contract" : "passive", m_upload_control[0].status(),
+             m_upload_control[1].status(), m_maincpu->space(AS_PROGRAM).read_byte(0x23cbc3));
+     ++m_ticks;
++}
++
++void an1x_state::sci_state(unsigned tick)
++{
++    auto const suppressor = machine().disable_side_effects();
++    for (unsigned channel = 0; channel < 2; ++channel) {
++        auto *sci = m_maincpu->subdevice<h8_sci_device>(channel ? "sci1" : "sci0");
++        if (!sci) fatalerror("Missing H8 SCI subdevice");
++        logerror("YAMANIX SCI_STATE tick=%u channel=%u smr=%02x brr=%02x scr=%02x ssr=%02x hardware_validated=0\n",
++            tick, channel, sci->smr_r(), sci->brr_r(), sci->scr_r(), sci->ssr_r());
++    }
+ }
+ 
+ void an1x_state::dsp_event(char op, offs_t address, u16 data, u16 mask)
+@@ -223,6 +252,8 @@
+ {
+     logerror("YAMANIX MIDI_RX transitions=%llu hardware_validated=0\n", (unsigned long long)m_midi_rx_edges);
+     logerror("YAMANIX SCI0_RDR reads=%llu hardware_validated=0\n", (unsigned long long)m_sci0_rdr_reads);
++    logerror("YAMANIX SCI1_END tdr_writes=%llu rdr_reads=%llu hardware_validated=0\n",
++        (unsigned long long)m_sci1_tdr_writes, (unsigned long long)m_sci1_rdr_reads);
+     end_bridge();
+     logerror("YAMANIX DSP_END events=%llu dropped=%llu\n", (unsigned long long)m_dsp_events, (unsigned long long)m_dsp_dropped);
+ }

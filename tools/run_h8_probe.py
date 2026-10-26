@@ -12,6 +12,7 @@ from pathlib import Path
 import subprocess
 import zipfile
 from rom_inspect import read_input, identify
+from sci_trace import parse_sci_observation
 
 
 def summarize_trace(lines):
@@ -21,6 +22,9 @@ def summarize_trace(lines):
             "h8_cpu_progress_observed": len(set(pcs) - {0}) > 1,
             "read_addresses_observed": sum("YAMANIX READ" in line for line in lines),
             "write_addresses_observed": sum("YAMANIX WRITE" in line for line in lines)}
+    sci_observation = parse_sci_observation(lines)
+    if sci_observation is not None:
+        result["sci_observation"] = sci_observation
     dsp = set()
     for line in lines:
         match = re.search(r"YAMANIX (?:READ|WRITE).*address=([0-9a-fA-F]+)", line)

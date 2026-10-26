@@ -25,6 +25,10 @@ before the engine has a validated signal path.
    transitions. Verify that firmware consumes note events and establish a
    documented dry output path, then compare with a reference instrument. Full
    PKS-ROM emulation, chip routing and MEG effects remain separate tasks.
+   Direct SCI snapshots and keyboard-port traffic are now observable; both
+   passive and DSP-experiment runs leave SCI0 disabled at sampled instants
+   while SCI1 has 30 TDR writes and no RDR reads. Trace the PKS setup and MIDI
+   enable control flow before implementing any assumed keyboard replies.
 5. **VST3/AU host layer.** Wrap the validated engine, check real-time behavior,
    sample-rate conversion and state serialization, then begin product UI work.
 
