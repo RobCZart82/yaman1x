@@ -19,13 +19,14 @@ scheduled no earlier than ten seconds after machine start, so the probe's
 `--midi-file` option requires `--seconds` greater than ten. The run manifest
 records the supplied file's name, size and SHA-256, not its contents.
 
-A locally generated MIDI file with one note-on and one note-off was played in a
-12-second run. The H8 RXD0 pin showed 21 line transitions and MAME exited
-successfully. The run used the unchanged AN1x 1.04 firmware. This establishes
-that MIDI serial activity reaches the modeled RXD0 input. It does not prove
-SCI0 receives valid bytes, that firmware accepts or acts on the note, or that
-either VOP3 produces audio. The PKS, synth output routing, table-ROM access and
-MEG paths remain incomplete.
+A locally generated MIDI file with one note-on and one note-off was played in
+12- and 30-second runs. Each showed 21 line transitions on H8 RXD0 and MAME
+exited successfully. The tap also observed one SCI0 SCR write (`0x00`) and no
+reads from the SCI0 receive-data register (RDR). In the observed driver state,
+the H8 SCI receiver is disabled; the run therefore verifies the serial line
+connection only, not UART byte reception. It does not prove that firmware
+accepts or acts on a note, or that either VOP3 produces audio. The PKS, synth
+output routing, table-ROM access and MEG paths remain incomplete.
 
 ## Reproduction
 
