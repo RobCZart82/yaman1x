@@ -19,12 +19,13 @@ the following baseline on the default branch, currently `main`:
 
 - Changes must arrive through pull requests. Topic branches remain available
   for contributors with write access.
-- One approving review is required, and review discussions must be resolved.
-- New reviewable commits dismiss existing approvals.
+- No approving review is required for now, so the sole maintainer can merge
+  their own PRs. Review discussions must still be resolved.
+- New commits dismiss existing approvals if any have been given.
 - Branch deletion and non-fast-forward pushes are blocked.
-- Repository administrators can bypass review requirements only through a PR;
-  the template does not grant them direct-push bypass. This keeps solo-owner
-  maintenance possible while preserving a PR record.
+- The administrator bypass mode is PR-only, so administrators still cannot
+  push directly to the default branch. This preserves a PR record while
+  allowing solo-owner maintenance.
 
 The administrator role is GitHub's built-in RepositoryRole ID 5. Ordinary write
 or maintain roles and GitHub Apps are not on the bypass list. No collaborator
@@ -40,7 +41,8 @@ profile.
 
 For another eligible repository, open **Settings → Rules → Rulesets →
 New ruleset → Import a ruleset**, select the JSON, and review the target,
-admin PR-only bypass, approvals and enforcement status before saving.
+admin PR-only bypass, zero required approvals and enforcement status before
+saving.
 
 Before API creation, list the repository's existing rulesets and reuse/update
 a matching one rather than creating a duplicate. After saving, read the
