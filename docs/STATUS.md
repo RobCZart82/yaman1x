@@ -22,8 +22,10 @@ No VST3, AU, GUI or AN1x audio output is available yet.
 
 ## Material limitations
 
-- The H8 harness currently performs register operations only. No VOP3 sample
-  clock is connected to firmware MMIO or periodic execution yet.
+- The H8 harness remains register-only by default. A separate, opt-in research
+  patch now advances both VOP3 models from MAME simulation time at the core's
+  assumed 48 kHz rate before DSP MMIO. The AN1x clock is not established, and
+  this optional MAME patch has not yet been compiled or run against firmware.
 - Upload acknowledgements, their latency and other status bits are experimental.
 - Upstream `Vop3::run()` continues towards aim after crossing target, while its
   description says the segment stops at target. The synthetic reproduction
