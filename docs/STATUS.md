@@ -27,9 +27,10 @@ No VST3, AU, GUI or AN1x audio output is available yet.
   MIDI note and rendered no audio.
 - The service manual pin table identifies H8 RXD0 as MIDI IN and RXD1 as
   keyboard data. An opt-in MAME patch wires its MIDI input image to SCI0/RXD0.
-  A generated note-on/off MIDI file produced 21 RXD0 line transitions in a
-  12-second MAME run. This confirms serial line delivery only; firmware event
-  handling and sound output are not yet established.
+  Generated note-on/off MIDI files produced 21 RXD0 line transitions in both
+  12- and 30-second MAME runs. SCI0 received-data register reads remained zero;
+  the only observed SCR write was `0x00` (receiver disabled). This confirms the
+  serial pin route, not UART byte reception, firmware event handling or sound.
 
 ## Material limitations
 
