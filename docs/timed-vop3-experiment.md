@@ -42,12 +42,15 @@ tölt be táblaromot, nem vezeti át a VOP3 soros kimenetét a másik chipen vag
 MEG-en, nem hoz létre audiofájlt, és nem módosítja a firmware-olvasásokat.
 Az EG/readback és upload státuszprofil továbbra is kísérleti.
 
-A patch sikeresen alkalmazható a helyi, hash-azonosítóval rögzített MAME
-forrásra. MAME-fordítása és dinamikus firmware-futtatása ezen a mérföldkövön
-még nincs elvégezve; a CI csak a ROM-mentes saját CMake projektet építi.
+A nyolc patchből felépített helyi MAME-target lefordult. A `run_h8_probe.py`
+eszköz 1 és 5 MAME-másodperces firmware-próbát futtatott, mindkettő 0 kilépési
+kóddal. A két chip számlálója rendre 48 799 és 240 799 volt; a két futás
+közötti pontos 192 000 növekmény négy modellmásodpercnek felel meg. A 799-es
+többlet a MAME frame-határig futtatásából adódik, nem AN1x-órajelmérés. A trace
+mindkét chipnél regiszterforgalmat mutat, de a teljes AN1x boot továbbra sincs
+igazolva. A ROM-mentes CI nem fordítja ezt a külön MAME-kutatási targetet.
 
-Következő mérés: a helyi MAME-kutatási target lefordítása és futtatása az
-explicit 48 kHz-es profillal; ellenőrizni kell a két chip nemnulla és idővel
-arányosan növekvő mintaszámlálóját, az állapotot, valamint a futás költségét.
-Ezután külön AN1x hardvermérés kell az órajel, a mintahatár és a regiszterek
-sorrendjének igazolásához.
+Következő lépés: auditálni a futó magok által visszaadott értékeket a firmware
+elvárásaival, majd táblaromot és soros audioútvonalat kapcsolni be külön,
+explicit kísérleti profilban. Külön AN1x hardvermérés kell az órajel, a
+mintahatár és a regiszterek sorrendjének igazolásához.
