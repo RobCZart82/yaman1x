@@ -1,19 +1,21 @@
-# Default-branch ruleset: prepared, not active
+# Default-branch ruleset: active
 
-On 2026-10-26, GitHub returned HTTP 403 for both the repository rulesets and
-classic branch-protection endpoints, with the message:
+The repository became public on 2026-10-26. GitHub accepted and activated
+ruleset **25910947**, and the active-rules endpoint confirms that it applies
+to `main`. [View the server-side ruleset](https://github.com/RobCZart82/yaman1x/rules/25910947).
 
-> Upgrade to GitHub Pro or make this repository public to enable this feature.
+Before publication, GitHub returned HTTP 403 for rulesets and classic branch
+protection because this private repository was not eligible under the account
+plan. No subscription change was made. Public repository availability removed
+that limitation.
 
-The repository remains private. No subscription or visibility change has been
-made. This file and the JSON configuration do not enable GitHub enforcement.
-The ruleset has not been accepted or validated by the server.
+The JSON file remains the reusable baseline; the actual protection is the
+active server-side ruleset, read back and verified after creation.
 
-## Prepared baseline
+## Active baseline
 
-Import `.github/rulesets/main-protection.json` once this private repository is
-eligible for rulesets. It is intended to activate the following behavior on
-the default branch, currently `main`:
+The configuration in `.github/rulesets/main-protection.json` now enforces
+the following baseline on the default branch, currently `main`:
 
 - Changes must arrive through pull requests. Topic branches remain available
   for contributors with write access.
@@ -34,9 +36,9 @@ and verified, add its exact check names to a separate ruleset update. CODEOWNERS
 reviews, commit signing and deployment requirements are not part of this basic
 profile.
 
-## Activation
+## Reusing the configuration
 
-After the repository becomes eligible, open **Settings → Rules → Rulesets →
+For another eligible repository, open **Settings → Rules → Rulesets →
 New ruleset → Import a ruleset**, select the JSON, and review the target,
 admin PR-only bypass, approvals and enforcement status before saving.
 

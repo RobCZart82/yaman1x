@@ -3,7 +3,7 @@
 Firmware-based Yamaha AN1x emulator research, preparing a future **VST3/AU**
 plugin. Repository name: **yaman1x**.
 
-First public research snapshot: **2026-10-26**. This is a development foundation. It does not yet produce AN1x audio,
+First public research snapshot: **2026-10-26** — [v0.1.0-research](https://github.com/RobCZart82/yaman1x/releases/tag/v0.1.0-research). This is a development foundation. It does not yet produce AN1x audio,
 complete a validated hardware-equivalent boot, or provide a plugin or GUI.
 
 ## Build and test — no ROM required
@@ -72,3 +72,5 @@ Product spelling is **YamAN1x**. Existing internal `yamanix` identifiers and the
 `YAMANIX` trace protocol are retained for reproducibility. Older local reports
 use the previous working name YamANIx; historical context is explained in
 [research history](docs/HISTORY.md).
+
+The default branch uses an [active PR-based protection ruleset](docs/BRANCH_PROTECTION.md).
