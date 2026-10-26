@@ -34,6 +34,13 @@ No VST3, AU, GUI or AN1x audio output is available yet.
 
 ## Material limitations
 
+- Direct, side-effect-suppressed SCI snapshots now independently observe both
+  H8 serial devices. Paired 12-second passive and DSP-experiment runs first show
+  SCI1 SCR=0x70 at six seconds, with 30 TDR writes and no RDR reads. SCI0 remains
+  disabled at all recorded instants. This motivates PKS protocol research;
+  a causal link to MIDI startup has not been established. See
+  [serial-state observations](sci-state-milestone.md).
+
 - The H8 harness remains register-only by default. A separate, opt-in research
   patch now advances both VOP3 models from MAME simulation time at the core's
   assumed 48 kHz rate before DSP MMIO. It compiled and ran against the local

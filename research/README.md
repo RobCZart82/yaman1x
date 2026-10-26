@@ -16,6 +16,7 @@ patch -p1 < /absolute/path/to/mame-live-register-bridge.patch
 patch -p1 < /absolute/path/to/mame-eg-readback-experiment.patch
 patch -p1 < /absolute/path/to/mame-timed-vop3-experiment.patch
 patch -p1 < /absolute/path/to/mame-midi-input.patch
+patch -p1 < /absolute/path/to/mame-sci-state-observation.patch
 make SUBTARGET=yamanix SOURCES=src/mame/yamaha/yman1x.cpp OSD=mac NO_USE_MIDI=1 NO_USE_PORTAUDIO=1 USE_QTDEBUG=0 USE_TAPTUN=0 USE_PCAP=0 REGENIE=1 -j4
 ```
 
@@ -120,3 +121,13 @@ Egy generált note-on/note-off MIDI-fájl javított bájtsávfigyelőkkel végze
 az RDR-t pedig a firmware nem olvasta. Ez a bekötést és a soros vonal aktivitását
 igazolja; a UART-bájt-vételt, a firmware eseményfeldolgozását és a hangot nem.
 Részletek: [MIDI IN mérföldkő](../docs/midi-input-milestone.md).
+
+## SCI-eszközállapot és billentyűzet-port
+
+A tizedik patch másodpercenként közvetlen, mellékhatások nélküli állapotmintát
+vesz mindkét SCI-modellből, és számlálja az SCI1 TDR-írásokat, RDR-olvasásokat.
+A `tools/sci_trace.py` ellenőrzi a teljes megfigyelési rekordot; az új próba
+manifestje `sci_observation` alatt is megőrzi az eredményt. A párosított helyi
+futások SCI1-en bekapcsolt vevőt és adót, de nulla RDR-olvasást mutatnak;
+SCI0 a mintavételi pontokon kikapcsolt. A protokoll és a boot okozati függése
+még nyitott kérdés: [SCI-megfigyelések](../docs/sci-state-milestone.md).
