@@ -1,0 +1,48 @@
+--- a/src/mame/yamaha/yman1x.cpp
++++ b/src/mame/yamaha/yman1x.cpp
+@@ -11,7 +11,7 @@
+ *******************************************************************************/
+ 
+ #include "emu.h"
+-//#include "bus/midi/midi.h"
++#include "bus/midi/midi.h"
+ #include "cpu/h8/h83002.h"
+ #include "cpu/m6805/hd6305.h"
+ #include "video/lc7985.h"
+@@ -86,6 +86,9 @@
+     unsigned m_lcd_commands = 0, m_lcd_data = 0;
+     unsigned m_lcd_busy_reads = 0, m_lcd_ready_reads = 0;
+     void lcd_control_w(u8 data);
++	void midi_rx_w(int state);
++	u64 m_midi_rx_edges = 0;
++	int m_midi_rx_level = -1;
+ 	void mem_map(address_map &map) ATTR_COLD;
+ 
+ 	required_device<h83002_device> m_maincpu;
+@@ -201,8 +204,17 @@
+ 
+ void an1x_state::dsp_trace_end()
+ {
++    logerror("YAMANIX MIDI_RX transitions=%llu hardware_validated=0\n", (unsigned long long)m_midi_rx_edges);
+     end_bridge();
+     logerror("YAMANIX DSP_END events=%llu dropped=%llu\n", (unsigned long long)m_dsp_events, (unsigned long long)m_dsp_dropped);
++}
++
++void an1x_state::midi_rx_w(int state)
++{
++	if (m_midi_rx_level >= 0 && state != m_midi_rx_level)
++		++m_midi_rx_edges;
++	m_midi_rx_level = state;
++	m_maincpu->sci_rx_w<0>(state);
+ }
+ 
+ // macOS research target only; ABI and core are separate from the MAME executable.
+@@ -341,6 +353,8 @@
+ 
+ 	MEG(config, m_meg, 11.2896_MHz_XTAL);
+ 
++	// Service manual identifies H8 RXD0 as MIDI IN; RXD1 is keyboard data.
++	MIDI_PORT(config, "mdin", midiin_slot, "midiin").rxd_handler().set(FUNC(an1x_state::midi_rx_w));
+ }
+ 
+ ROM_START(an1x)

@@ -15,6 +15,7 @@ patch -p1 < /absolute/path/to/mame-upload-control-experiment.patch
 patch -p1 < /absolute/path/to/mame-live-register-bridge.patch
 patch -p1 < /absolute/path/to/mame-eg-readback-experiment.patch
 patch -p1 < /absolute/path/to/mame-timed-vop3-experiment.patch
+patch -p1 < /absolute/path/to/mame-midi-input.patch
 make SUBTARGET=yamanix SOURCES=src/mame/yamaha/yman1x.cpp OSD=mac NO_USE_MIDI=1 NO_USE_PORTAUDIO=1 USE_QTDEBUG=0 USE_TAPTUN=0 USE_PCAP=0 REGENIE=1 -j4
 ```
 
@@ -105,3 +106,16 @@ python3 tools/run_h8_probe.py --mame /absolute/path/to/yamanix --rom '/absolute/
 ```
 
 A futás manifesztje elmenti a kiválasztott profilt, modellfrekvenciát és mindkét chip mintaszámlálóját. A profil bekapcsolása nem aktiválódhat örökölt környezeti változótól. A teljes MAME-kutatási target lefordult, az 1 és 5 másodperces firmware-próba sikeresen befejeződött, és mindkét chip számlálója 48 799, illetve 240 799 volt. Az öt másodperces mintaszám a MAME frame-végéig futásából adódó 799-es többletet tartalmaz; ez nem hardverórajel-mérés. Nincs táblarom-bekötés, soros hangút vagy AN1x-hardveres validálás; lásd [az időzített kísérlet feljegyzését](../docs/timed-vop3-experiment.md).
+
+## Kísérleti MIDI IN soros bemenet
+
+A kilencedik, `mame-midi-input.patch` a szervizkönyv pin-táblája alapján a
+MAME `midiin` portját az H8 RXD0 / SCI0 bemenetére köti. A `run_h8_probe.py`
+`--midi-file` kapcsolóval külső `.mid` vagy `.syx` fájlt ad át a MAME-nek; a
+fájl nem másolódik be a futásmappába. A MAME a fájlból legalább 10 másodperc
+után kezd adatot küldeni, ezért a próbához `--seconds 11` vagy több szükséges.
+
+Egy generált note-on/note-off MIDI-fájl 12 másodperces futása 21 RXD0
+vonalátmenetet adott. Ez csak a soros bemeneti vonal aktivitását igazolja, nem
+az SCI bájt-vételét, a firmware eseményfeldolgozását vagy a hangkimenetet; a
+részletek: [MIDI IN mérföldkő](../docs/midi-input-milestone.md).

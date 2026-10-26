@@ -20,10 +20,11 @@ before the engine has a validated signal path.
    rate is unverified for AN1x, and this is not a complete boot. Audit evolving
    firmware readbacks and establish the hardware clock before treating timing
    as device behavior. Keep experimental profiles explicit and opt-in.
-4. **MIDI and one dry reference voice.** Provide the required MIDI/peripheral
-   behavior, establish a documented first signal path and compare it with a
-   reference instrument. Full PKS-ROM emulation, chip routing and MEG effects
-   remain separate tasks.
+4. **MIDI and one dry reference voice.** A separate MAME patch now connects
+   MIDI IN through H8 RXD0 / SCI0; a local MIDI-file smoke run shows line
+   transitions. Verify that firmware consumes note events and establish a
+   documented dry output path, then compare with a reference instrument. Full
+   PKS-ROM emulation, chip routing and MEG effects remain separate tasks.
 5. **VST3/AU host layer.** Wrap the validated engine, check real-time behavior,
    sample-rate conversion and state serialization, then begin product UI work.
 
