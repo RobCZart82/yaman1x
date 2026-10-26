@@ -23,7 +23,13 @@ No VST3, AU, GUI or AN1x audio output is available yet.
   bus events parse, and the loaded DSP state agrees with independent Python
   reconstruction. Each chip produced 28 complete 16-channel EG scans; all
   values were zero, so the separate channel-14 `0xC000` firmware comparison
-  still fails under the experimental profile. No MIDI note or audio was driven.
+  still fails under the experimental profile. That timed audit run sent no
+  MIDI note and rendered no audio.
+- The service manual pin table identifies H8 RXD0 as MIDI IN and RXD1 as
+  keyboard data. An opt-in MAME patch wires its MIDI input image to SCI0/RXD0.
+  A generated note-on/off MIDI file produced 21 RXD0 line transitions in a
+  12-second MAME run. This confirms serial line delivery only; firmware event
+  handling and sound output are not yet established.
 
 ## Material limitations
 
