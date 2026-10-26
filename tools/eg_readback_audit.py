@@ -42,6 +42,7 @@ def characterize(events):
         chips.append(dict(chip=chip, diagnostic_scans=len(scans[chip])//16,
                           indexed_scan_reads=len(scans[chip]),
                           scan_indices=dict(Counter(e['index'] for e in scans[chip])),
+                          scan_value_counts=dict(Counter(e['value'] for e in scans[chip])),
                           range_error_decisions=sum(e['would_report_range_error'] for e in scans[chip]),
                           special_channel_reads=special[chip]))
     return dict(chips=chips, other_reads=others, hardware_validated=False,
