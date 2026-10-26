@@ -1,0 +1,104 @@
+--- a/src/mame/yamaha/yman1x.cpp
++++ b/src/mame/yamaha/yman1x.cpp
+@@ -66,6 +66,8 @@
+     bool m_contract_enabled = false;
+     bool m_dms_installed = false;
+     bool m_eg_level_experiment = false;
++    bool m_sample_clock_enabled = false;
++    u64 m_bridge_origin_ns = 0, m_bridge_time_ns = 0;
+     void *m_bridge_library = nullptr;
+     yamanix_vop3 *m_bridge = nullptr;
+     decltype(&yamanix_vop3_destroy) m_bridge_destroy = nullptr;
+@@ -73,7 +75,9 @@
+     decltype(&yamanix_vop3_read) m_bridge_read = nullptr;
+     decltype(&yamanix_vop3_snapshot) m_bridge_snapshot = nullptr;
+     decltype(&yamanix_vop3_get_metrics) m_bridge_metrics = nullptr;
++    decltype(&yamanix_vop3_advance) m_bridge_advance = nullptr;
+     void start_bridge();
++    void advance_bridge();
+     void end_bridge();
+     yamanix::UploadControlContract m_upload_control[2];
+     void dsp_event(char op, offs_t address, u16 data, u16 mask);
+@@ -127,6 +131,8 @@
+     m_read_trace = space.install_read_tap(0x300000, 0xffffff, "yamanix_read",
+         [this](offs_t address, u16 &data, u16 mask) {
+             if (machine().side_effects_disabled()) return;
++            if (m_bridge && ((address >= 0x440000 && address < 0x440100) || (address >= 0x480000 && address < 0x480100)))
++                advance_bridge();
+             if (m_contract_enabled && (address == 0x440002 || address == 0x480002)) {
+                 if (mask != 0xffff) fatalerror("Unsupported partial DSP status read");
+                 data = m_upload_control[address == 0x480002].status();
+@@ -145,9 +151,11 @@
+             if (m_contract_enabled && (address == 0x440002 || address == 0x480002))
+                 if (!m_upload_control[address == 0x480002].write(data, mask))
+                     fatalerror("Unsupported experimental DSP control write %04x/%04x", data, mask);
+-            if (m_bridge && ((address >= 0x440000 && address < 0x440100) || (address >= 0x480000 && address < 0x480100)))
++            if (m_bridge && ((address >= 0x440000 && address < 0x440100) || (address >= 0x480000 && address < 0x480100))) {
++                advance_bridge();
+                 if (m_bridge_write(m_bridge, address >= 0x480000, (address & 0xff) / 2, data, mask))
+                     fatalerror("VOP3 bridge write rejected");
++            }
+             dsp_event('W', address, data, mask);
+             if (m_writes.size() < 512 && m_writes.insert(address).second)
+                 logerror("YAMANIX WRITE pc=%06x address=%06x data=%04x mask=%04x\n", m_maincpu->pc(), address, data, mask);
+@@ -200,6 +208,10 @@
+ // macOS research target only; ABI and core are separate from the MAME executable.
+ void an1x_state::start_bridge()
+ {
++    const char *sample_clock = std::getenv("YAMANIX_DSP_SAMPLE_CLOCK");
++    if (sample_clock && std::strcmp(sample_clock, "assumed-48k"))
++        fatalerror("Unknown YamANIx DSP sample-clock profile");
++    m_sample_clock_enabled = sample_clock != nullptr;
+     const char *eg = std::getenv("YAMANIX_EG_READBACK");
+     if (eg && std::strcmp(eg, "zero") && std::strcmp(eg, "an1x-level-experiment"))
+         fatalerror("Unknown YamANIx EG readback profile");
+@@ -207,6 +219,7 @@
+     const char *path = std::getenv("YAMANIX_VOP3_BRIDGE");
+     if (!path || !*path) {
+         if (m_eg_level_experiment) fatalerror("Experimental EG readback requires bridge");
++        if (m_sample_clock_enabled) fatalerror("DSP sample-clock experiment requires bridge");
+         logerror("YAMANIX BRIDGE state=disabled\n"); return;
+     }
+     if (!m_contract_enabled) fatalerror("Live register bridge requires explicit firmware-contract profile");
+@@ -225,17 +238,40 @@
+     m_bridge_read = reinterpret_cast<decltype(m_bridge_read)>(symbol("yamanix_vop3_read"));
+     m_bridge_snapshot = reinterpret_cast<decltype(m_bridge_snapshot)>(symbol("yamanix_vop3_snapshot"));
+     m_bridge_metrics = reinterpret_cast<decltype(m_bridge_metrics)>(symbol("yamanix_vop3_get_metrics"));
++    m_bridge_advance = reinterpret_cast<decltype(m_bridge_advance)>(symbol("yamanix_vop3_advance"));
+     m_bridge = create();
+     if (!m_bridge) fatalerror("Cannot create YamANIx VOP3 pair");
+     auto set_eg = reinterpret_cast<decltype(&yamanix_vop3_set_eg_readback)>(symbol("yamanix_vop3_set_eg_readback"));
+     if (set_eg(m_bridge, m_eg_level_experiment ? 1 : 0)) fatalerror("EG readback profile rejected");
++    m_bridge_origin_ns = machine().time().as_ticks(1000000000);
++    m_bridge_time_ns = 0;
+     logerror("YAMANIX EG_READBACK profile=%s scale=64 hardware_validated=0\n", m_eg_level_experiment ? "an1x-level-experiment" : "zero");
+-    logerror("YAMANIX BRIDGE state=live-register-only abi=2 dsp_samples=0 hardware_validated=0\n");
++    logerror("YAMANIX DSP_SAMPLE_CLOCK profile=%s rate_hz=%u hardware_validated=0\n",
++        m_sample_clock_enabled ? "assumed-48k" : "disabled", m_sample_clock_enabled ? 48000 : 0);
++    logerror("YAMANIX BRIDGE state=%s abi=2 hardware_validated=0\n",
++        m_sample_clock_enabled ? "timed-model-clock" : "live-register-only");
+ }
+ 
++void an1x_state::advance_bridge()
++{
++    if (!m_bridge || !m_sample_clock_enabled) return;
++    const u64 now_ns = machine().time().as_ticks(1000000000);
++    if (now_ns < m_bridge_origin_ns) fatalerror("MAME time moved before VOP3 bridge origin");
++    const u64 target_ns = now_ns - m_bridge_origin_ns;
++    while (m_bridge_time_ns < target_ns) {
++        u64 next_ns = target_ns;
++        if (next_ns - m_bridge_time_ns > 80000000)
++            next_ns = m_bridge_time_ns + 80000000;
++        if (m_bridge_advance(m_bridge, next_ns))
++            fatalerror("VOP3 sample-clock advance rejected");
++        m_bridge_time_ns = next_ns;
++    }
++}
++
+ void an1x_state::end_bridge()
+ {
+     if (!m_bridge) return;
++    advance_bridge();
+     std::array<uint8_t, 14340> bytes;
+     yamanix_vop3_metrics metrics{};
+     if (m_bridge_snapshot(m_bridge, bytes.data(), bytes.size()) || m_bridge_metrics(m_bridge, &metrics))

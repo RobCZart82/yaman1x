@@ -19,11 +19,20 @@ No VST3, AU, GUI or AN1x audio output is available yet.
   experimental; rounding, saturation and physical level mapping are unverified.
 - The integer sample clock and actual VOP3 execution agree across different
   call partitions; the synthetic timing probe runs 2400 samples per chip.
+- The timed 5-second firmware trace now passes the live bridge audit: all 25,310
+  bus events parse, and the loaded DSP state agrees with independent Python
+  reconstruction. Each chip produced 28 complete 16-channel EG scans; all
+  values were zero, so the separate channel-14 `0xC000` firmware comparison
+  still fails under the experimental profile. No MIDI note or audio was driven.
 
 ## Material limitations
 
-- The H8 harness currently performs register operations only. No VOP3 sample
-  clock is connected to firmware MMIO or periodic execution yet.
+- The H8 harness remains register-only by default. A separate, opt-in research
+  patch now advances both VOP3 models from MAME simulation time at the core's
+  assumed 48 kHz rate before DSP MMIO. It compiled and ran against the local
+  firmware for 1 and 5 MAME seconds, advancing both chips 48,799 and 240,799
+  samples respectively. The 799-sample excess is MAME's frame-granularity
+  overshoot; the AN1x clock remains unverified. This is not a complete boot.
 - Upload acknowledgements, their latency and other status bits are experimental.
 - Upstream `Vop3::run()` continues towards aim after crossing target, while its
   description says the segment stops at target. The synthetic reproduction

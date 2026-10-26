@@ -21,8 +21,11 @@ Both runs passed all **nine CTest groups**:
 
 The audit verifies 201 unchanged upstream source/license/debugger-description
 files against the included manifest. The original seven MAME patches and the
-project's core source files match the local research versions. Vendored source
-and patch bytes are preserved with explicit Git attributes.
+project's core source files match the local research versions. An additional
+opt-in timed VOP3 patch also compiled in the local MAME research target and
+completed 1- and 5-second firmware runs. It remains outside the CMake CI and
+uses the unverified 48 kHz model assumption. Vendored source and patch bytes
+are preserved with explicit Git attributes.
 
 No Yamaha data is needed to reproduce these default checks. Full upstream
 tests requiring Yamaha images remain outside this source snapshot. This
