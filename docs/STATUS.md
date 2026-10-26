@@ -1,6 +1,6 @@
 # Development status
 
-Recorded: 2026-10-26. Product: YamAN1x. Intended repository: `yaman1x`.
+Recorded: 2026-10-26. Product: YamAN1x. Repository: `yaman1x`. First public research snapshot: 2026-10-26.
 
 The first GitHub snapshot contains a ROM-free C++/Python development foundation.
 No VST3, AU, GUI or AN1x audio output is available yet.

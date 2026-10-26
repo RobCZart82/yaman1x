@@ -3,7 +3,7 @@
 Firmware-based Yamaha AN1x emulator research, preparing a future **VST3/AU**
 plugin. Repository name: **yaman1x**.
 
-This is a private development foundation. It does not yet produce AN1x audio,
+First public research snapshot: **2026-10-26**. This is a development foundation. It does not yet produce AN1x audio,
 complete a validated hardware-equivalent boot, or provide a plugin or GUI.
 
 ## Build and test — no ROM required
@@ -45,8 +45,7 @@ AN1x clock and table-ROM scaling remain unresolved. These are recorded in
 
 No Yamaha firmware, program/table-ROM image, bank, service manual, raw capture,
 compiled emulator or plugin is included. Keep local inputs and captures outside
-the checkout or in ignored `roms/` and `private_runs/` folders. A private
-repository is still a repository upload: these inputs stay local.
+the checkout or in ignored `roms/` and `private_runs/` folders. These inputs stay local and are not published with this repository.
 
 ```sh
 python3 tools/rom_inspect.py /path/to/local-firmware.zip
