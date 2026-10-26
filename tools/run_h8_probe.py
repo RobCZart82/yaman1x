@@ -41,6 +41,17 @@ def summarize_trace(lines):
         r"YAMANIX MIDI_RX transitions=(\d+) hardware_validated=0", line))]
     if midi_rx:
         result["midi_rx_transitions"] = midi_rx[-1]
+    sci0_scr = [match.group(1) for line in lines if (match := re.search(
+        r"YAMANIX SCI0_SCR write=([0-9a-fA-F]{2}) pc=", line))]
+    sci0_rdr_counts = [int(match.group(1)) for line in lines if (match := re.search(
+        r"YAMANIX SCI0_RDR reads=(\d+) hardware_validated=0", line))]
+    sci0_rdr = [dict(read=int(match.group(1)), data=int(match.group(2), 16),
+                     pc=int(match.group(3), 16)) for line in lines if (match := re.search(
+        r"YAMANIX SCI0_RDR read=(\d+) data=([0-9a-fA-F]{2,4}) pc=([0-9a-fA-F]+)", line))]
+    if sci0_scr or sci0_rdr_counts:
+        result["sci0"] = {"scr_writes": sci0_scr,
+                          "rdr_reads": sci0_rdr_counts[-1] if sci0_rdr_counts else len(sci0_rdr),
+                          "rdr_samples": sci0_rdr}
     summaries = [match for line in lines if (match := re.search(
         r"LCD_SUMMARY tick=(\d+) busy_reads=(\d+) ready_reads=(\d+) commands=(\d+) data=(\d+)", line))]
     if summaries:
