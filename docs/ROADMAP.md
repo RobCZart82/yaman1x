@@ -14,10 +14,11 @@ before the engine has a validated signal path.
    index scale and actual sample rate remain unverified. Trace the clock path
    from the service schematic and primary chip evidence; preserve original
    input files.
-3. **Timed H8–VOP3 execution.** Connect sample stepping to periodic execution
-   and MMIO, define upload/run and same-time access ordering, and audit evolving
-   readback values against the firmware's checks. Keep experimental profiles
-   explicit and opt-in.
+3. **Timed H8–VOP3 execution.** An opt-in research patch now connects sample
+   stepping to MAME time and orders due samples before DSP MMIO. Its assumed
+   48 kHz rate is unverified for AN1x. Build and run the patch, audit evolving
+   readbacks, and establish the hardware clock before treating timing as
+   device behavior. Keep experimental profiles explicit and opt-in.
 4. **MIDI and one dry reference voice.** Provide the required MIDI/peripheral
    behavior, establish a documented first signal path and compare it with a
    reference instrument. Full PKS-ROM emulation, chip routing and MEG effects
