@@ -1,6 +1,6 @@
-"""Validate a complete passive MAME DSP trace and reconstruct host-upload state.
+"""Validate a complete MAME DSP trace and reconstruct host-upload state.
 
-This models uploaded words, not chip execution, timing or firmware boot success.
+This models uploaded words, not audio, hardware timing or complete firmware boot.
 """
 import argparse
 from collections import Counter
@@ -33,7 +33,11 @@ def parse_capture(lines):
     began = ended = False
     last_time = 0
     for line in lines:
-        if "YAMANIX DSP" not in line:
+        # The timed MAME experiment also emits DSP_SAMPLE_CLOCK and other
+        # diagnostic lines. Only the capture framing and register-event lines
+        # belong to this parser.
+        if not any(marker in line for marker in
+                   ("YAMANIX DSP_BEGIN", "YAMANIX DSP_END", "YAMANIX DSP seq=")):
             continue
         body = line.split("YAMANIX ", 1)[1].strip()
         if body == "DSP_BEGIN version=1 clock_hz=1000000000 limit=200000":
