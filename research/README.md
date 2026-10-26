@@ -14,6 +14,7 @@ patch -p1 < /absolute/path/to/mame-dsp-capture.patch
 patch -p1 < /absolute/path/to/mame-upload-control-experiment.patch
 patch -p1 < /absolute/path/to/mame-live-register-bridge.patch
 patch -p1 < /absolute/path/to/mame-eg-readback-experiment.patch
+patch -p1 < /absolute/path/to/mame-timed-vop3-experiment.patch
 make SUBTARGET=yamanix SOURCES=src/mame/yamaha/yman1x.cpp OSD=mac NO_USE_MIDI=1 NO_USE_PORTAUDIO=1 USE_QTDEBUG=0 USE_TAPTUN=0 USE_PCAP=0 REGENIE=1 -j4
 ```
 
@@ -94,3 +95,13 @@ ctest --test-dir /absolute/path/to/own-build --output-on-failure
 A library új `yamanix_vop3_advance(handle, absolute_ns)` függvényét ebben a mérföldkőben kizárólag a saját szintetikus teszt hívja. Mindkét chip valódi `run()` függvényét lépteti, legfeljebb 4096 mintával/hívás a core modelljének 48 kHz-én. Az AN1x hardverórajele ezzel nincs igazolva. A MAME-driver nem hívja az időléptetőt: az élő firmware-próba továbbra is regiszterkezelést mér, nulla mintafuttatással. A 14. csatorna firmware-beli 0xC000 feltétele a jelenlegi, nullás modellállapottal nem teljesül.
 
 Az új teszt a külső EG-modellben eltérést mutat a célszinten megállást állító leíráshoz képest: a cél keresztezése után is közelít az aim felé. A sikertelen célon tartást a `docs/eg-readback-milestone/model-finding.json` rögzíti; a sikeres tesztek nem jelentik ennek a viselkedésnek a hardveres validálását. A VOP3 forrása változatlan. Az eredmények és a következő motorfeladatok: `docs/eg-readback-milestone.md`.
+
+## Kísérleti H8–VOP3 mintaléptetés
+
+A nyolcadik patch a bridge már létező `advance(absolute_ns)` függvényét köti a MAME szimulációs idejéhez. Alapértelmezetten kikapcsolva marad. Csak a `--dsp-sample-clock assumed-48k` és a kötelező élő bridge mellett fut; 48 kHz a külső VOP3-modell beállítása, **nem igazolt AN1x-órajel**. A DSP-MMIO esemény előtt a MAME-idő szerint esedékes minták futnak le, így a mintahatárral egybeeső tick megelőzi az olvasást/írást. A legfeljebb 80 ms-os lépések tartják a bridge 4096-mintás hívási korlátját.
+
+```sh
+python3 tools/run_h8_probe.py --mame /absolute/path/to/yamanix --rom '/absolute/path/to/YAMAHA AN1x 1.04.zip' --work /absolute/path/to/new-timed-run --seconds 5 --dsp-profile firmware-contract --dms-board installed --bridge /absolute/path/to/libyamanix_vop3_bridge.dylib --dsp-sample-clock assumed-48k
+```
+
+A futás manifesztje elmenti a kiválasztott profilt, modellfrekvenciát és mindkét chip mintaszámlálóját. A profil bekapcsolása nem aktiválódhat örökölt környezeti változótól. Ez továbbra is motorintegrációs kísérlet: nincs táblarom-bekötés, soros hangút vagy AN1x-hardveres órajelvalidálás. A patch a letöltött MAME-forrásra alkalmazható; MAME-fordítása és dinamikus firmware-futtatása külön ellenőrzendő.
