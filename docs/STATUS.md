@@ -39,6 +39,10 @@ all device responses or the complete synthesizer are hardware validated.
 
 ## Repository validation
 
+The ROM-free CMake/CTest suite also passes in GitHub Actions on Linux x64,
+macOS Apple Silicon and Windows x64. These builds do not validate AN1x audio,
+hardware timing or DAW/plugin-host behavior.
+
 Default tests need no Yamaha data. The eight existing project test groups are
 retained; a ninth repository audit verifies the source-only upload boundary
 and pinned upstream files. Two upstream ROM-dependent tests are excluded,

@@ -38,6 +38,27 @@
           "rebase"
         ]
       }
+    },
+    {
+      "type": "required_status_checks",
+      "parameters": {
+        "strict_required_status_checks_policy": true,
+        "do_not_enforce_on_create": false,
+        "required_status_checks": [
+          {
+            "context": "build-and-test (ubuntu-24.04)",
+            "integration_id": 15368
+          },
+          {
+            "context": "build-and-test (macos-14)",
+            "integration_id": 15368
+          },
+          {
+            "context": "build-and-test (windows-2025)",
+            "integration_id": 15368
+          }
+        ]
+      }
     }
   ]
 }

@@ -29,3 +29,17 @@ tests requiring Yamaha images remain outside this source snapshot. This
 validation does not establish complete boot, AN1x audio, hardware fidelity or
 support for untested platforms. Known EG behavior and other open engine work
 are recorded in STATUS.md and ROADMAP.md.
+
+## ROM-free cross-platform CI
+
+The first GitHub Actions matrix passed on 2026-10-26 for PR #9:
+
+- `ubuntu-24.04` (Linux x64)
+- `macos-14` (macOS Apple Silicon)
+- `windows-2025` (Windows x64)
+
+Each job configured and built the CMake project, then passed all nine CTest
+groups. These checks use no Yamaha ROMs or patch banks. The workflow's exact
+job names are required by the active default-branch ruleset. This validates
+these source-build environments only; it does not establish AN1x hardware
+fidelity, audio output or VST3/AU host compatibility.

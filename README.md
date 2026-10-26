@@ -21,8 +21,9 @@ python3 tools/repository_audit.py
 
 The source-only build runs **nine test groups**. Tests generate synthetic
 programs/banks in temporary directories. The two upstream tests that require
-Yamaha images are not part of this suite. Clean-checkout validation currently
-covers macOS on Apple Silicon; other platforms are not yet validated here.
+Yamaha images are not part of this suite. ROM-free GitHub Actions currently
+builds and passes this suite on Linux x64, macOS Apple Silicon and Windows x64.
+This checks the source build, not AN1x hardware fidelity or plugin-host support.
 
 ## Current state
 

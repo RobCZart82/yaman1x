@@ -31,18 +31,24 @@ The administrator role is GitHub's built-in RepositoryRole ID 5. Ordinary write
 or maintain roles and GitHub Apps are not on the bypass list. No collaborator
 access has been granted by this change.
 
-Required CI checks are deliberately absent because the repository currently
-has no GitHub Actions workflows or check contexts. Once real CI is installed
-and verified, add its exact check names to a separate ruleset update. CODEOWNERS
-reviews, commit signing and deployment requirements are not part of this basic
-profile.
+The verified ROM-free CI jobs are required before merging:
+
+- `build-and-test (ubuntu-24.04)`
+- `build-and-test (macos-14)`
+- `build-and-test (windows-2025)`
+
+They configure and build the CMake project, then run the nine ROM-free CTest
+groups. The GitHub Actions app is selected as the expected check source. The
+workflow and its first successful cross-platform results are recorded in
+`docs/VALIDATION.md`. CODEOWNERS reviews, commit signing and deployment
+requirements are not part of this basic profile.
 
 ## Reusing the configuration
 
 For another eligible repository, open **Settings → Rules → Rulesets →
 New ruleset → Import a ruleset**, select the JSON, and review the target,
-admin PR-only bypass, zero required approvals and enforcement status before
-saving.
+admin PR-only bypass, zero required approvals, required CI checks and
+enforcement status before saving.
 
 Before API creation, list the repository's existing rulesets and reuse/update
 a matching one rather than creating a duplicate. After saving, read the
