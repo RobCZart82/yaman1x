@@ -29,6 +29,14 @@ def summarize_trace(lines):
             if 0x440000 <= address < 0x440060 or 0x480000 <= address < 0x480060:
                 dsp.add(address)
     result["dsp_mmio_addresses_observed"] = sorted(dsp)
+    sample_passes = {}
+    for line in lines:
+        match = re.search(
+            r"YAMANIX BRIDGE_END chip=(\d+) .*sample_passes=(\d+)", line)
+        if match:
+            sample_passes[int(match.group(1))] = int(match.group(2))
+    if sample_passes:
+        result["dsp_sample_passes"] = [sample_passes.get(chip, 0) for chip in range(2)]
     summaries = [match for line in lines if (match := re.search(
         r"LCD_SUMMARY tick=(\d+) busy_reads=(\d+) ready_reads=(\d+) commands=(\d+) data=(\d+)", line))]
     if summaries:
@@ -53,6 +61,8 @@ def main():
                         help="Explicit local VOP3 register bridge library; requires firmware-contract")
     parser.add_argument("--eg-readback", choices=("zero", "an1x-level-experiment"), default="zero",
                         help="Experimental selected-channel EG level readback; requires --bridge")
+    parser.add_argument("--dsp-sample-clock", choices=("disabled", "assumed-48k"), default="disabled",
+                        help="Opt in to the core's unverified 48 kHz model clock; requires --bridge")
     args = parser.parse_args()
     try:
         binary = args.mame.resolve(strict=True)
@@ -61,6 +71,8 @@ def main():
             raise ValueError("The live bridge requires --dsp-profile firmware-contract")
         if args.eg_readback != "zero" and not bridge:
             raise ValueError("Experimental EG readback requires --bridge")
+        if args.dsp_sample_clock != "disabled" and not bridge:
+            raise ValueError("The experimental DSP sample clock requires --bridge")
         raw = read_input(args.rom, args.member)
         identity = identify(raw)
         if not identity["matches_known_an1x_104"]:
@@ -82,8 +94,11 @@ def main():
         environment["YAMANIX_DMS_BOARD"] = args.dms_board
         environment["YAMANIX_EG_READBACK"] = args.eg_readback
         environment.pop("YAMANIX_VOP3_BRIDGE", None)
+        environment.pop("YAMANIX_DSP_SAMPLE_CLOCK", None)
         if bridge:
             environment["YAMANIX_VOP3_BRIDGE"] = str(bridge)
+        if args.dsp_sample_clock != "disabled":
+            environment["YAMANIX_DSP_SAMPLE_CLOCK"] = args.dsp_sample_clock
         with (work / "console.log").open("w") as console:
             result = subprocess.run(command, cwd=work, stdout=console, stderr=subprocess.STDOUT,
                                     timeout=120, check=False, env=environment)
@@ -96,7 +111,10 @@ def main():
         manifest = {"rom_identity": identity, "command": command, "returncode": result.returncode,
                     "dsp_profile": args.dsp_profile, "dsp_hardware_validated": False,
                     "dms_board": args.dms_board, "vop3_bridge": str(bridge) if bridge else None,
-                    "dsp_sample_execution": False, "eg_readback": args.eg_readback,
+                    "dsp_sample_execution": args.dsp_sample_clock != "disabled",
+                    "dsp_sample_clock": args.dsp_sample_clock,
+                    "dsp_sample_rate_hz": 48000 if args.dsp_sample_clock == "assumed-48k" else None,
+                    "eg_readback": args.eg_readback,
                     "live_bridge_completed": bridge_completed,
                     "mame_sha256": hashlib.sha256(binary.read_bytes()).hexdigest(),
                     "bridge_sha256": hashlib.sha256(bridge.read_bytes()).hexdigest() if bridge else None,
@@ -108,6 +126,12 @@ def main():
             raise ValueError(f"Probe did not produce a valid run; inspect {work / 'console.log'}")
         if bridge and not bridge_completed:
             raise ValueError(f"Bridge did not complete; inspect {work / 'trace.log'}")
+        sample_passes = manifest.get("dsp_sample_passes")
+        if args.dsp_sample_clock != "disabled" and (
+                not isinstance(sample_passes, list) or len(sample_passes) != 2):
+            raise ValueError(f"Sample-pass counters are missing; inspect {work / 'trace.log'}")
+        if args.dsp_sample_clock != "disabled" and not all(sample_passes):
+            raise ValueError(f"DSP samples did not advance on both chips; inspect {work / 'trace.log'}")
         print(json.dumps(manifest, indent=2))
     except (OSError, ValueError, subprocess.TimeoutExpired, zipfile.BadZipFile) as error:
         parser.exit(2, f"H8 probe error: {error}\n")
