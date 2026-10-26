@@ -1,0 +1,11 @@
+{
+  "model_eg_target_word": 8192,
+  "observed_word_after_50ms": 32703,
+  "upstream_holds_target": false,
+  "hardware_validated": false,
+  "sample_passes_per_chip": 2400,
+  "elapsed_ns": 50000000,
+  "model_sample_rate": 48000,
+  "an1x_sample_clock_verified": false,
+  "interpretation": "Upstream run() continues approaching aim after crossing target; transport tests do not assert EG hardware fidelity."
+}

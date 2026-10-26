@@ -1,0 +1,19 @@
+{
+  "image_sha256": "041ca9414c563158e5f84928c159e1e23b4c46fa43a807bd9713b6bf7f8fffc7",
+  "synthetic_upload_events": 4480,
+  "audio_rendered": false,
+  "hardware_validated": false,
+  "chip": 0,
+  "matches": true,
+  "program_words": 2560,
+  "coefficients": 512,
+  "tags": 512,
+  "slots": 128,
+  "checkpoint_events": 10193,
+  "chip_snapshot_sha256": "20b036c5c234412a1501d0ad643bca1e9d1727dc86e9fdf32037143817facd0c",
+  "capture_profile": {
+    "name": "firmware-contract",
+    "experimental": true,
+    "hardware_validated": false
+  }
+}

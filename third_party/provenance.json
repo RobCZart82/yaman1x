@@ -1,0 +1,1013 @@
+{
+  "upstream": "https://github.com/musicastudio/VOP3",
+  "snapshot_archive_sha256": "26dacd7280118556ed50ce6fcc03c6835866d18e17a9ad61c3bc77557809e0c9",
+  "upstream_commit": null,
+  "note": "Code-only subset of the user-supplied archive; listed files unchanged. Custom CMake recipe is maintained separately. No Yamaha program images or upstream tests requiring them.",
+  "files": [
+    {
+      "path": "third_party/vop3/LICENSE",
+      "sha256": "0abe473189f33bc5bfa80877fab3cfce21a5036b2ec57b84e44b8ecedaea4be1",
+      "bytes": 1534
+    },
+    {
+      "path": "third_party/vop3/src/vop3.cpp",
+      "sha256": "e0c88d3bbfabe228e689b529eb5973ad7cb823deb32f7e53b28e53975320ab7f",
+      "bytes": 6164
+    },
+    {
+      "path": "third_party/vop3/src/vop3.h",
+      "sha256": "0d1536b947691ea635af7581bf43d2b94034454e10ea56a375bc125835e7f1ba",
+      "bytes": 2034
+    },
+    {
+      "path": "third_party/vop3/src/vop3_regs.h",
+      "sha256": "3cca5ac325f3080a1e7bbf0d8ef3e2ff69eab3830470d68e2495196120d499f4",
+      "bytes": 2133
+    },
+    {
+      "path": "third_party/vop3/src/yss236_core.h",
+      "sha256": "83de64a33c17f9334ebbf2b19e707e5a7027b4e1729146ce37150714166da76e",
+      "bytes": 19849
+    },
+    {
+      "path": "third_party/vop3/src/yss236_jit.cpp",
+      "sha256": "8b9297e891dd6e57194d760504c5f58476f7c85bf7be63b8c7ac56d11af74655",
+      "bytes": 25992
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/LICENSE.md",
+      "sha256": "13870bd53bce53fb9a9bd72e72dcceeffc547c84d9a00d3d4833737a79651828",
+      "bytes": 858
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/a64.h",
+      "sha256": "1e83bbd0602d9bd154d3c306e78b29b694667d680636ab0372b10f826a1dc1c8",
+      "bytes": 1926
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_arch_traits_p.h",
+      "sha256": "be9b674ff4915a4286885b640cbc5fe898eb990412ce9e2997daf81115c44804",
+      "bytes": 3060
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_assembler.cpp",
+      "sha256": "7cf6f4aa20e34b74638845975411a6127374270f9d126e7bcebb46c54e636eeb",
+      "bytes": 171576
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_assembler.h",
+      "sha256": "f66de78ce52e80dcdc608dcce2f3fcb9450ce32a6b645f3a0f55b22770b7573e",
+      "bytes": 1329
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_builder.cpp",
+      "sha256": "6169f7111719bf8df3c839815f3ae229d1cc4cc669aa7712a467c6c41c96e81d",
+      "bytes": 1415
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_builder.h",
+      "sha256": "f947b1824de7e7a019f0a850dadac3ecc6fcb1ed9ab22719d8c244d6eb274184",
+      "bytes": 1194
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_compiler.cpp",
+      "sha256": "e596abbc800d454070fde6c2f4b7e740ee51a3af755dcc3a6542dfa7d717e554",
+      "bytes": 1766
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_compiler.h",
+      "sha256": "2b6c97f02b4a1eb34bfa558bf59e9ddcee331aa14adbb0dede0848c4d0808a23",
+      "bytes": 18432
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_emit_helper.cpp",
+      "sha256": "caa9cf45781339b98be5363a438c0bc5aa07f9e487248e87b5d083fae68f06b1",
+      "bytes": 16116
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_emit_helper_p.h",
+      "sha256": "60fdf079b3e05b66627eca144c1dd4f1b0aa960d1a47916c928d8351b6568ac2",
+      "bytes": 1577
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_emitter.h",
+      "sha256": "14ac0adc3e5f7e3fa37c73ee907d382abb16145619522acec4b606a3cca09a64",
+      "bytes": 49065
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_formatter.cpp",
+      "sha256": "66619f2ab3a14063057c5af6bcd9b2efef46933e288963b18eeb5923245bd130",
+      "bytes": 1952
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_formatter_p.h",
+      "sha256": "ab904393b15585d61614201cbe90304f3570bf8d4b1d781e48bdcd26e467d04f",
+      "bytes": 993
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_func.cpp",
+      "sha256": "edf69bdf32c6933529447f3a42b223cb13af73b99c009b65a1119cc6904bcbf6",
+      "bytes": 7729
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_func_p.h",
+      "sha256": "67847a724722632d522202ec48f2d65bed104bb2a44710f77275fb06403e3094",
+      "bytes": 878
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_globals.h",
+      "sha256": "c44db647a7d08bcd79e1fa8b73252065fd5a69734e6a429245c74b60b33f1223",
+      "bytes": 130265
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_inst_api.cpp",
+      "sha256": "58b24d7c899fe8ce93bf75fef326863601682851222ecc65175db76f43c8bc63",
+      "bytes": 7520
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_inst_api_p.h",
+      "sha256": "60b08e3b287b64a00861e4b81240ddb6ac3fb550fdb12eb3857e9ea8621aee33",
+      "bytes": 1246
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_inst_db.cpp",
+      "sha256": "1759f7676e3883036dfde8943bf576a2ba62649a49306a01fef5ffea7da11f02",
+      "bytes": 236126
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_inst_db.h",
+      "sha256": "3b0dc822ac92a6e6066a3b84256153bfee4d7f6789cf4de447cd531462487617",
+      "bytes": 2046
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_inst_db_p.h",
+      "sha256": "8311c464aa35f2488d12317648f67bb7f8bc5e6fb167318c140ad51fd52535b7",
+      "bytes": 21829
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_inst_test.cpp",
+      "sha256": "73dc222308cc10bd286dcc8543971be9be28d7f034760926b804973c91dd9543",
+      "bytes": 495
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_operand.h",
+      "sha256": "12045567b133b8225cca609662980f89a8dc951b3481e21424fa92e4be6ed0c5",
+      "bytes": 47374
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_operand_test.cpp",
+      "sha256": "7a550337c49b35ba01182a0c2891a8cf4a7af5f2498b40ed0ed29c1374a38f05",
+      "bytes": 2682
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_ra_pass.cpp",
+      "sha256": "c80ea5dc58dc789effc3f20a4e8b16a0048535d4f639e363fbd4cfdda339cf74",
+      "bytes": 33921
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_ra_pass_p.h",
+      "sha256": "e7276131965b84b78a4dd98f58f4879e42d0d070583e94c722c9ff46d179c609",
+      "bytes": 2506
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/arm/arm_formatter.cpp",
+      "sha256": "3801d837b48e3ccb23ff068b76c288326975ea857e9b027381b051d112b85895",
+      "bytes": 13968
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/arm/arm_formatter_p.h",
+      "sha256": "cb0e3a0b3f0cb4501889b01c841a570f650d72e12c62005805593823f5f1d3e4",
+      "bytes": 1490
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/arm/arm_globals.h",
+      "sha256": "b35806ebe5f14f54ac3d8e03de8a446f55d62e43401e5c960c29987b87eea3c3",
+      "bytes": 477
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/arm/arm_utils.h",
+      "sha256": "830c7bf8273115eeedff8a23fe480d10a73ba3e99071c5ca4291479a960f04dc",
+      "bytes": 8851
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/arm.h",
+      "sha256": "2943ce74e8b38bbe0701c4bf5b687a2fc7eb9754455bc7beb5dcda26bf95e4a3",
+      "bytes": 2174
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/asmjit.h",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/asmjit.natvis",
+      "sha256": "e86be35f38808a36add036217286b4d6f71d0926277426c72f4aa276235cc7b2",
+      "bytes": 18086
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/axl/algorithm.h",
+      "sha256": "91f56ec5bc5d76d7b92dfe2075ccfcccecd46923140a12a5048f226407c9c683",
+      "bytes": 3976
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/axl/algorithm_test.cpp",
+      "sha256": "43e9d2a82323701ffb7448cac36ce39495b1c84b99e9b772c55abeac03cca7e8",
+      "bytes": 2895
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/axl/arena.cpp",
+      "sha256": "4ec336ed5ac1a37c6d67e6058cc9fc95f4f006a4d409318c035269e996c1bca6",
+      "bytes": 13860
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/axl/arena.h",
+      "sha256": "f74d70cee0711bf970f8546d93eb08b65b6afe2b65a64e1f6ec30d8fee42fa8e",
+      "bytes": 17938
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/axl/arena_bit_set.cpp",
+      "sha256": "142ce382a3d69d1e64f3f115eab910fa413914fbd87a22efee43111ef7117c69",
+      "bytes": 6338
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/axl/arena_bit_set_p.h",
+      "sha256": "d32b2ee25502a3789b00fa451be3297fe20469a84697ed6e848b946d5c1b81b3",
+      "bytes": 12015
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/axl/arena_bit_set_test.cpp",
+      "sha256": "e5c1339c2af6db30cfe20e71f42d47d5c001c3171beac52209964351ced24f03",
+      "bytes": 1559
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/axl/arena_hash.cpp",
+      "sha256": "d122581b7c12dc891bc84b73342e69a3ecb9a10414a84de7ad18d871dea28957",
+      "bytes": 13904
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/axl/arena_hash.h",
+      "sha256": "a1b7bc4bb7c95599dfef0b7dae5a9084b4b37acb7129ef1b55c94e0dbc0194ba",
+      "bytes": 5448
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/axl/arena_hash_test.cpp",
+      "sha256": "d7db927a57a07d9b9c548e9b9131b578dda084fb08be5bd958d9ca98e4516c7e",
+      "bytes": 1729
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/axl/arena_list.h",
+      "sha256": "0c29ca5ff4059b78d16fec366ed04c07f01fe6c076a725878aa89884c833f966",
+      "bytes": 5054
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/axl/arena_list_test.cpp",
+      "sha256": "9fbe092c182263bc2da5ed5721d4f2463d7de8ebe6e5697e7d40ecc535ddf168",
+      "bytes": 3672
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/axl/arena_pool.h",
+      "sha256": "b96419d71c80438379a75d8c3ce613ffacc45785d5dd704695508d6653e5c4c2",
+      "bytes": 1677
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/axl/arena_string.h",
+      "sha256": "378488cfe3852e8affcc2e17f464d4ba5b9bd01f7fae3b938b84ad10da3ccefc",
+      "bytes": 3379
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/axl/arena_test.cpp",
+      "sha256": "6c79dda6b43bec30243f61c29f62c5862e15b53fd38becbd7518ed1e542b4224",
+      "bytes": 2096
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/axl/arena_tree.h",
+      "sha256": "4e397ca6ead2c71a532f2190d1fca28818821d1f678585812baa06d00b405d2e",
+      "bytes": 11973
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/axl/arena_tree_test.cpp",
+      "sha256": "7e59e10928d843990132925942e38f539bb689bcf47e71911dd5572e632f7757",
+      "bytes": 2640
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/axl/arena_vector.cpp",
+      "sha256": "cb6db4a556ba70cbe8ab2ccf0d5355c739d6f12efd8ef5c35ef2f6f876c559c7",
+      "bytes": 9183
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/axl/arena_vector.h",
+      "sha256": "54d991b108056b3264add1fcee463f8462fdbb5bbe26c4b1b5fa408ba355c1e2",
+      "bytes": 18555
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/axl/arena_vector_test.cpp",
+      "sha256": "3de584880af72246a3498375c2fd9e857fcb7842cf4b713ee72995274b582a46",
+      "bytes": 2610
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/axl/bit_set_ops.h",
+      "sha256": "3c0f83898c9ce57131af87088a7ab8c2ec64f6c000b5e1a30c78050465f0fb28",
+      "bytes": 11484
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/axl/bit_set_ops_test.cpp",
+      "sha256": "ad5d57a3caf21859a80df224173c5beafff11d3b0e4a024322cfc74ae8de69f5",
+      "bytes": 12459
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/axl/build_integration.h",
+      "sha256": "ee5d42fdd103529dc493f39057db62a60d3f6c69fb331ff997b6fcc1371231fe",
+      "bytes": 941
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/axl/commons.h",
+      "sha256": "271e2e900f7a2fc466abfd6700e0e531bbb5853c0cdc7a134ca6c6b99444c4b1",
+      "bytes": 45738
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/axl/commons_test.cpp",
+      "sha256": "9ea74ae01873b0ecf283d44387c1997b1b333a1dcb37d5d61ef9d62c8fe9fa08",
+      "bytes": 58436
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/axl/inplace_array.h",
+      "sha256": "ac256f08b6c78bdb9e8fe56c785dd44fb8a9c340bf1e808927315c857ef17d13",
+      "bytes": 4240
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/axl/inplace_bit_set.h",
+      "sha256": "c313089be0640d817ce9288ba6ab7a796ce7b7fead0299f62f52e4798769aba4",
+      "bytes": 6856
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/axl/inplace_queue.h",
+      "sha256": "b2bd0d82e59f86ac906a7ece7aeb30aee92d9a6ec2000fcae79c543a842b3593",
+      "bytes": 1616
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/axl/inplace_stack.h",
+      "sha256": "f260f00e6de78def548c2dc93f60eea104727079319eeea099e4d4eca9dceaef",
+      "bytes": 1698
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/axl/inplace_storage.h",
+      "sha256": "a7160d273424db67eab1f53a71be276ed0f594668399e2d5f9033b43d9f2d180",
+      "bytes": 1118
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/axl/inplace_string.h",
+      "sha256": "83801593ebf18be5df8e38269d45a8f57264d9574e60c9024bee90acc9f8b845",
+      "bytes": 4930
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/axl/mem_ops.h",
+      "sha256": "1702c64ed4b1d731d68e00608df5faa838d4aedd00fa89bb29bdc68d1dce23e5",
+      "bytes": 18584
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/axl/mem_ops_test.cpp",
+      "sha256": "3a2c983d8a0ab488d8d8ac9619c8abce0ee53cb2a8ab8873ae17ae8a0b71e490",
+      "bytes": 2613
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/axl/span.h",
+      "sha256": "73a5a53c9f4c6886fa3187d16cf99c47f2d594479077accbcaf2057a82093e12",
+      "bytes": 13238
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/axl/string_index.h",
+      "sha256": "9a8789fb14468d23dd5138f280f1fd7e32e99391a6492c89fa8ab31dcb15c877",
+      "bytes": 894
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/axl/string_index_test.cpp",
+      "sha256": "c92db34bbf68e4e3373ce697a6360befebbdb346a95e9fffe21592d5cf6a7cd2",
+      "bytes": 952
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/axl/string_utils.h",
+      "sha256": "197897c420cb5be7b77ad7dcddd290e479ac3c5739e07af0c9811e342fbcca03",
+      "bytes": 3679
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/axl/string_utils_test.cpp",
+      "sha256": "270b78cb3f3e04d289fd1e8d7fe62e3413c542e20c995168e4c7036bf74935c1",
+      "bytes": 2707
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/axl/support_p.h",
+      "sha256": "56d0b06d9844384c985776ef0ccb3c3c443814ed1f5e106cd31927a74f422872",
+      "bytes": 4815
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/build_scope_begin.h",
+      "sha256": "e92a844eca648a427b25b340b5ea54642538015998aa22bedeb38587ecdcc1da",
+      "bytes": 325
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/build_scope_end.h",
+      "sha256": "3c17653656c17230ef53081789c70eb1de3958069856c5b8cce5d3470cb68e56",
+      "bytes": 247
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/arch_commons.h",
+      "sha256": "b588bd3fe03d433ba0701580016415774cbf86e2ae5ab4af3e8d26dcc66f1bb8",
+      "bytes": 9649
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/arch_traits.cpp",
+      "sha256": "f45c556ef8f9d26683e52914f59327d669966b2b4d0ac31d0db03dea27ac336c",
+      "bytes": 4134
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/arch_traits.h",
+      "sha256": "995877e8778414456ebbf1aa7f6bfd1b23ddee1b5cd9da91db6b85e9b1e62149",
+      "bytes": 10512
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/assembler.cpp",
+      "sha256": "318cb32d10bf08db4be6343f101ea30aac165fc6c5c77f1646ace60635555f43",
+      "bytes": 12150
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/assembler.h",
+      "sha256": "1d0b350be97a95a70b6492ece53c71ea95b0b1230bfc12b168234405bf036d3a",
+      "bytes": 4656
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/build_defs.h",
+      "sha256": "8fef6d2b0c7dc0e57889464c9b8cb4d6430a9dcc84ba253ed9b04ab0de1df72e",
+      "bytes": 24687
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/build_export_p.h",
+      "sha256": "2dba81d6b2053cd78cb77ab050164d296e6b19ce7e98591503ab0dbbd6c4aaef",
+      "bytes": 2012
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/builder.cpp",
+      "sha256": "0a3e43a82b9454ac21faf7ab837bf4fe259c3a483e2bc8c410946d62d753a309",
+      "bytes": 24224
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/builder.h",
+      "sha256": "fb95db42568b99ea028ae8e18e52f892dcbc53f0ee1229378fe14d1976ae57bd",
+      "bytes": 55337
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/builder_p.h",
+      "sha256": "fe54952aa79b0721734db69b3cad770004524ada53c5d5b5cfea2a117bb75f5a",
+      "bytes": 1074
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/code_buffer.h",
+      "sha256": "1436eff79e04eeeb1cdc0656a2c6efe678b3e281eae56dff87792d3b5ed7dfbf",
+      "bytes": 3622
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/code_holder.cpp",
+      "sha256": "8342c7f3df2bd4b7ef8a246b5d606fabdcfcf80e0f12414a4d8f2c31b931627f",
+      "bytes": 42480
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/code_holder.h",
+      "sha256": "a923d58a1a690ffb45560cf6d9709f2f0facf9c458da23d0c44d0acae1b4ad62",
+      "bytes": 54306
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/code_holder_test.cpp",
+      "sha256": "bc4b04c3397962167ed4d09555debc32e0b93807dc8399bc7901e390dfdf7e49",
+      "bytes": 3647
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/code_writer.cpp",
+      "sha256": "935b7c90ffb102915ef74406ad950a8739ef15ebd1dffe105efb9116e360e3d6",
+      "bytes": 8381
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/code_writer_p.h",
+      "sha256": "d53c65b8fa744b61a2d47f9bc1857f484600192ed8cfea0c1173a59b1a69054d",
+      "bytes": 4997
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/compiler.cpp",
+      "sha256": "31850ee7810424a0698b1b469c32137451255cfa58d2b0da46c5b5adbca3b0a4",
+      "bytes": 20043
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/compiler.h",
+      "sha256": "f34400e81dee37a0f65fa22cff0fa138291014d44caf136f006ab1c670c52859",
+      "bytes": 32011
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/compiler_defs.h",
+      "sha256": "72cbda9a797fdc880ebc42320dd195073612472b8ea58ba7a7b00abda303657a",
+      "bytes": 10389
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/const_pool.cpp",
+      "sha256": "0453872bd18474d7d074e6e761881d0f013d1cea599ef27b157c6450697014bd",
+      "bytes": 7379
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/const_pool.h",
+      "sha256": "85fb0ed41bd241f9b14e2fb8864291dbe3bb89189a47384d9f19a7ac6d4ae9c5",
+      "bytes": 6653
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/const_pool_test.cpp",
+      "sha256": "28bb0aba4c1d1b6a47fb7f9fe6d1f8a6179f7725bb427dca4c3d877e3470279c",
+      "bytes": 3596
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/cpu_info.cpp",
+      "sha256": "7f037f3ea5e9e24a9bc71c648132a492d0fd3d11426d943d9c288c45c660eff9",
+      "bytes": 93264
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/cpu_info.h",
+      "sha256": "6815a3ae7066ca0754c8011f271ad1cdc0bae9afae9ef2b414c5d425d2f11ae9",
+      "bytes": 74141
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/debug_utils.cpp",
+      "sha256": "d8f294a6ee1970b1743ec6ba78729b3efcf2857fc87337250a4e758d510333ce",
+      "bytes": 786
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/debug_utils.h",
+      "sha256": "322b81f0bf6b7296533d8e941482ef4f3bc21feab11987bed9d2c993368395d9",
+      "bytes": 2331
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/emit_helper.cpp",
+      "sha256": "50a925d9b25763c803ce5ea5ff9cc473bb85693758cf702d64b2a2aac705425e",
+      "bytes": 11605
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/emit_helper_p.h",
+      "sha256": "45775efcc8e069958c85c50dbc4f1275b1dbe1efe06c118a2b28ebef945b4bbc",
+      "bytes": 2025
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/emitter.cpp",
+      "sha256": "fc4190fdf8339e67980e5e2b9a3ec30e3eb37c12ab973134a16e7fd2b2a514e6",
+      "bytes": 12055
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/emitter.h",
+      "sha256": "63a3c69c267ba8fd4ac01d05c89e119c37894c6e3ac22ce258614edf4e8a1466",
+      "bytes": 40022
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/emitter_utils.cpp",
+      "sha256": "1948a3943bbe756e98e31abbf1f2b70106974d32b1276f6a79037dae9f3f838e",
+      "bytes": 4317
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/emitter_utils_p.h",
+      "sha256": "03061eaa29ca9e92d7024be16ec3033dff9552cd06f5caf833e33f68840b9091",
+      "bytes": 3077
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/environment.cpp",
+      "sha256": "49272694e979d4ff327ba8b58ae74382f54e364faa46617037f51f216b7c5381",
+      "bytes": 1249
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/environment.h",
+      "sha256": "63d4d8579c3626f7e9cbe3b23650d75e92943509016c9033885b88064b9ef9d4",
+      "bytes": 20602
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/error.cpp",
+      "sha256": "83a1c3d738937824e0cdc1a38c156aafcf18f3c60065d1a98f0ef0d823aa2e3c",
+      "bytes": 2865
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/error.h",
+      "sha256": "557486677be3ece6ebedbd9f58ad2d3f7edc054886894654f3f57d267f59288a",
+      "bytes": 8981
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/error_handler.cpp",
+      "sha256": "6b4e31128699e32ff350aa9ab20aaf04369900cf3f68af96a81d72e1847e4495",
+      "bytes": 548
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/error_handler.h",
+      "sha256": "92d37804db32b97642227fa09fdc8578193b4dd25037679bf0b57d2b30a0d70d",
+      "bytes": 7893
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/fixup.h",
+      "sha256": "1cc98d2ed4dd4599ebd0a6bcf7454b19fb84cc8736f705e9da3fbd9b1aaf4a91",
+      "bytes": 10723
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/formatter.cpp",
+      "sha256": "7b62c71ea30997087cf7257d9a393509e7f7c4d34cf95f67d6d1033878680b3f",
+      "bytes": 18036
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/formatter.h",
+      "sha256": "6dbfd0171fcf235e2444b2fda1475e6617daa839d0c3e197fc4f102923f423aa",
+      "bytes": 8549
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/formatter_p.h",
+      "sha256": "f6167bbbeb6c0844cea6d0b6d40e059083dd0166284d9526245daee345a99491",
+      "bytes": 1271
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/func.cpp",
+      "sha256": "4c3ef75b0fa6415c4040a7c6ee2415c546a0877ec8f1897eb10266c6e7bcca7d",
+      "bytes": 12832
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/func.h",
+      "sha256": "7f9b80ec96645685e6609cd35d9ba9ec2ca51f14ff29102246e514e7bc961fc8",
+      "bytes": 77078
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/func_args_context.cpp",
+      "sha256": "fc7a7bd9d4eb5fd35087c6f41635d058fbc3d311db637360e52c292791de626c",
+      "bytes": 10982
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/func_args_context_p.h",
+      "sha256": "b6ff1cefe616ae820f34d2510119945bb902ac2a3b58e087e4fcec3ed8de3124",
+      "bytes": 7809
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/func_test.cpp",
+      "sha256": "f3aa040a92c74913deab27468d81e43d897e22e21ca31fac9b960bf405f5ffdc",
+      "bytes": 579
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/globals.h",
+      "sha256": "1e455933e2f9cd687b58054b5fc7bd0f98d0216e49a93c370bd5cc2511f9942f",
+      "bytes": 3076
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/inst.cpp",
+      "sha256": "f3e924d0a8ec9f48ac4df14c4165fcb547c304691cdb81aee4d51991c748f011",
+      "bytes": 3625
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/inst.h",
+      "sha256": "d755cf3048d40e54164d5113306efc24479e1929756218c83265f73fdeb6e261",
+      "bytes": 34316
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/inst_db.cpp",
+      "sha256": "a0b7933cf47560a105c1dc45b5dc90d3b15f710efdd14a2e97588786256a4e40",
+      "bytes": 4221
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/inst_db_p.h",
+      "sha256": "52671dad236e2bb0049f42463004274ace9a7ee50429df0d2204131d46decb84",
+      "bytes": 1074
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/jit_allocator.cpp",
+      "sha256": "02a2bb1cd49e5540518e1ba6560d13e4ff6394c71b213ac584fe4e312250932b",
+      "bytes": 42484
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/jit_allocator.h",
+      "sha256": "c20a116daf292ab4b6284545a23f8495fc2fc027c067c6cd79afdfbdf6c7d1e7",
+      "bytes": 24643
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/jit_allocator_test.cpp",
+      "sha256": "ff4a5aefc07e3f0c2bf1961470c8b29ef6c43a25863779939ca381cebca2cef1",
+      "bytes": 14297
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/jit_runtime.cpp",
+      "sha256": "abbff9b54eddbe0bdac2a2413f07b54322256cdb89a1a97459da4ed5ddb8ca4e",
+      "bytes": 2740
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/jit_runtime.h",
+      "sha256": "7f8c50847ec73367013401a6dda0f17c1fdda4cff9255c719808f7bd83c4ef9c",
+      "bytes": 3665
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/logger.cpp",
+      "sha256": "ca0019d7dd12955fa991f0c8dffde789e10a472efc500aa07dbc080b47d78fbe",
+      "bytes": 1684
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/logger.h",
+      "sha256": "eb452198267874a5dbc8bdf5d7da3eb499a30a924b0b92ad82539073e6fa4e6f",
+      "bytes": 7470
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/misc_p.h",
+      "sha256": "986d4911b045a6091ac3540b1c9af82189467626d6c4aedb8226e4fad1dda7e1",
+      "bytes": 1472
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/operand.h",
+      "sha256": "0d70781362f5bc4eed004112fb64214af6993db4135b9c9cfa97d504cd463719",
+      "bytes": 118623
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/operand_test.cpp",
+      "sha256": "dfeeb288f9051752af973c0f58078f3a278dd272ac72288233b5365f480b4069",
+      "bytes": 3938
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/os_utils.cpp",
+      "sha256": "62d81891abe5ea8cea99b0c3d4cda63cae31c0dd1b59cae0124fd32940a2c3c7",
+      "bytes": 960
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/os_utils.h",
+      "sha256": "48971f7dfdf573de73cbde4e081e70aefa225843aeac48f13dff7c9badabc849",
+      "bytes": 1097
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/os_utils_p.h",
+      "sha256": "95bc799ba680870923c10e3322a49e5f758652ff3a7fe269116106d0524dd89f",
+      "bytes": 2531
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/pauth.cpp",
+      "sha256": "9fb3d118550e18be7d39c224f6dbd8206a0316d54d32297f35e20191e16a70d8",
+      "bytes": 539
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/pauth.h",
+      "sha256": "2d7fc939ceb574227b80d5fc2a2075c8159240bfac56acc4abe4928cc76f4c4a",
+      "bytes": 3977
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/pauth_utils_p.h",
+      "sha256": "c40b303b38ef924afd8028d892327dee6b66b52806250f3a20b3b97fee00046b",
+      "bytes": 950
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/ra_assignment_p.h",
+      "sha256": "4ba75643ec7106721c00ff1065665413dbdfce1c2b37872c0d87339dc578f887",
+      "bytes": 17068
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/ra_cfg_block_p.h",
+      "sha256": "f5452ec50e7b9c63df71176aea243e86f0e8af04c938e9f116a3d2f7931b5342",
+      "bytes": 13092
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/ra_cfg_builder_p.h",
+      "sha256": "5be9c7c5dedcb159bfc0ba115b3b30b974b140f214a6a00b87a1f81f70d7f941",
+      "bytes": 23106
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/ra_constraints_p.h",
+      "sha256": "04543685380e3db3060b459808ef2410b0660133747c4938543438ce28fb70ee",
+      "bytes": 1928
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/ra_defs_p.h",
+      "sha256": "fa3d3012d2da96375e5bd718e0e86c237b2fbfa5c6ce71f15917ff899788dfa6",
+      "bytes": 32851
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/ra_inst_p.h",
+      "sha256": "c76ed17c4bd35ee7160fa12b066f4c6bd1642fa6df915e876564589c438fac19",
+      "bytes": 13714
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/ra_local.cpp",
+      "sha256": "98e060d207c288b9f83f0b5eb53effb1d0f5006a2288111496bcdc40fa3145e1",
+      "bytes": 48622
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/ra_local_p.h",
+      "sha256": "96d6a42098e2c3c09e0837a78165c5e5d052fb8ea3d40327951dc9494f067ce9",
+      "bytes": 10439
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/ra_pass.cpp",
+      "sha256": "603e7cdee0778ee96d4b750fb6a7f1253fdbcfcc3eb13378fc777641a26f8acb",
+      "bytes": 75475
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/ra_pass_p.h",
+      "sha256": "f7de9000c1132a027b64edae89e1b025b000e4f67656f19ca34cdfdd1f85f534",
+      "bytes": 24060
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/ra_reg_p.h",
+      "sha256": "fe316d811e0ab9e3f9fdd85b9652bbb8205a35ac4d4f92c1a8c7111deedf33be",
+      "bytes": 13549
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/ra_stack.cpp",
+      "sha256": "459844d33e77d6e5de4d0f7e6440fc40099d80443f5c36ca1cc217d89692c509",
+      "bytes": 5716
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/ra_stack_p.h",
+      "sha256": "9fdc540e2827cd7accc360c67424c6e9a9c872099f826dbd1aa9e9f0541cdad3",
+      "bytes": 4770
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/string.cpp",
+      "sha256": "604c5a9deb957b662a88bcbcce0d0f9489c996faa370014f5d7f3ae58a09531e",
+      "bytes": 13042
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/string.h",
+      "sha256": "b8aeb629c6576f5e1a454b7fca9c0e258a6160c28a8b0077c9a39ac1e88944b8",
+      "bytes": 13274
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/string_test.cpp",
+      "sha256": "6a692d473a75a42c47b3262582cd34172cd6b4d742882f7ffaac7a7bf4b862dd",
+      "bytes": 3065
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/target.cpp",
+      "sha256": "6bc0c5df55fd51370d94a0d62568d00b5a89317e5e8fac8dab084bd9ddd9e134",
+      "bytes": 409
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/target.h",
+      "sha256": "dd0dd7043b02dbe3cc0435996ff57a5846f84534fd070f766cad03baf9b52f23",
+      "bytes": 1794
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/type.cpp",
+      "sha256": "b93e08533d0366636c34858ddf816ca5fa8647b036b0f15f46ebcc161519b15a",
+      "bytes": 2567
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/type.h",
+      "sha256": "f1c3674eeba2af8a1d20ccc33e34974899b9e51e5b7a23a853bebb107307f8b9",
+      "bytes": 18530
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/virt_mem.cpp",
+      "sha256": "c2a927e533ccf071916ebf22fe9c07b387174ee7c51bcc4f4e003d54770f747b",
+      "bytes": 41647
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/virt_mem.h",
+      "sha256": "f5d1fb9430e6af63aad31b4fe7571f408763e847fdecfdd84195af4b7ec0fb2e",
+      "bytes": 16872
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core/virt_mem_test.cpp",
+      "sha256": "c6d0de52758f815aece37d1ffcb5e86ca9ad475c1df880f0c75e700af7273c52",
+      "bytes": 1367
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/core.h",
+      "sha256": "6c543f4127f60b90af1269dd51abe0e5ede792dc72a6ceb5ffcd489a4dc463c2",
+      "bytes": 117325
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/host.h",
+      "sha256": "8b103ff39ec6b1552a52b55306bfc8eeebeaf58c1515f9f099b4f83c72b58a1d",
+      "bytes": 742
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_arch_traits_p.h",
+      "sha256": "38fa4bda55067ce991b7c9fb8b0958694c44889e5fe1d2b15989c19455d9c552",
+      "bytes": 7136
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_assembler.cpp",
+      "sha256": "64cafe1826f64869a0fc99b5f7c8ba10e0950830da18d6c7289b17c6db3941c6",
+      "bytes": 158121
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_assembler.h",
+      "sha256": "f28f3f3b84337418010efbc0cfd69cb8189194480e6dd724bc8b05396edfa4a0",
+      "bytes": 29630
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_builder.cpp",
+      "sha256": "9addbd55165db5169c83b1e2ad1dba8307748dac67842992b2962508300f53f3",
+      "bytes": 1460
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_builder.h",
+      "sha256": "3c1bdee64e3a4bf8c44f8ef507aff9a28c9b1b4f04b75b3bf72dd0059b977968",
+      "bytes": 14033
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_compiler.cpp",
+      "sha256": "eefd90dcf874ce5baba8c4fdc86e96e7c2921199a911504c9f1f4ff34dca7f6c",
+      "bytes": 1808
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_compiler.h",
+      "sha256": "0f727844f29566e3d1359e9468f87fb2f6cd8692e21d343ae399df5287262a3b",
+      "bytes": 38006
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_emit_helper.cpp",
+      "sha256": "c50db84f0b87744595526573f49c2a334ccd6e39a3d8338a0da39de5876d5d56",
+      "bytes": 21788
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_emit_helper_p.h",
+      "sha256": "0fd21f7e68fa87cc09ec39169751b115d50b4ac6f8ca135f57f5ea80f88a7e56",
+      "bytes": 5087
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_emitter.h",
+      "sha256": "9acca7d747ec8958a426e530608afc98a0cf33e0b089e36940e54d9e0c70b19c",
+      "bytes": 303632
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_formatter.cpp",
+      "sha256": "663a0992d57b879f344cee1f84b8e5f216b30e6083ee75e89b43ca33e07deafc",
+      "bytes": 30188
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_formatter_p.h",
+      "sha256": "bb56304407516b6b47a1b4f85b2fae5f80cc21bc0ac9c6aeb9c37b257820eee4",
+      "bytes": 1276
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_func.cpp",
+      "sha256": "68d015a0def1395972e36300b8086a87f8e19486cc1757af1cdb39aeb6492e08",
+      "bytes": 19391
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_func_p.h",
+      "sha256": "19dfda0ceecb73dd0c72a4d243dbf374d2d452cea7604901cc8ba48e4f28cdd0",
+      "bytes": 890
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_globals.h",
+      "sha256": "6efc34bcf0fec1a887f3ecb1737e07c1c59bb0c156c34ae778d14a80b336e3ed",
+      "bytes": 156185
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_inst_api.cpp",
+      "sha256": "7b72611309b1445da5806c4f796d74c8f1f36a85e1d5747aa8000d18dbf240c2",
+      "bytes": 66400
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_inst_api_p.h",
+      "sha256": "dad08cc5db27e8a586af60bf6a5caae42abda19e2bf1306af79b9251dca12b6c",
+      "bytes": 1413
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_inst_db.cpp",
+      "sha256": "807d3c3dcfa21dd48abb02fed8c1465387e0eb82b355cd47a18b76b5a4207d04",
+      "bytes": 507164
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_inst_db.h",
+      "sha256": "79acb60a843ba3843e64ceebd070a6179515f04bbeedbc04eec40a5c0b508f8b",
+      "bytes": 29076
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_inst_db_p.h",
+      "sha256": "24ad5e1f5a9d33153a20cb6c0fb40e57d922fc5e03c635200643ef4916dba4fe",
+      "bytes": 17206
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_inst_test.cpp",
+      "sha256": "996a58bd5e7590e0b0db5b0d90f77f035cf48ffd868e30c9a752912f361d8186",
+      "bytes": 8783
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_opcode_p.h",
+      "sha256": "8a4410cb567fed549ef7356a45d67e9e2db1b4b136f3b04e62112f691198850d",
+      "bytes": 20771
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_operand.h",
+      "sha256": "d1caa9544953422501ca9a068a142d940349e2ccb55082070f28c8cb27abaaea",
+      "bytes": 53427
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_operand_test.cpp",
+      "sha256": "27c0629ddb7d0134f55e22c8bae2e89776203c112372279dab2f2f0a76b4a8fa",
+      "bytes": 7436
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_ra_pass.cpp",
+      "sha256": "fa10a646f9b129e98a3098ee7eb72ea7a2f672ce234f23fc70cbf5345ee74107",
+      "bytes": 59098
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_ra_pass_p.h",
+      "sha256": "544de73ee02ffc9302d6de57068e6b2f0c31efe1475dad195acb680448e58497",
+      "bytes": 2533
+    },
+    {
+      "path": "third_party/vop3/third_party/asmjit/asmjit/x86.h",
+      "sha256": "d92f72b2ec0abb70a5541e5b17dec40beec3ed534f212101d35f22844fccf620",
+      "bytes": 3511
+    }
+  ]
+}

@@ -1,0 +1,168 @@
+--- a/src/mame/yamaha/yman1x.cpp
++++ b/src/mame/yamaha/yman1x.cpp
+@@ -14,13 +14,26 @@
+ //#include "bus/midi/midi.h"
+ #include "cpu/h8/h83002.h"
+ #include "cpu/m6805/hd6305.h"
+-#include "mulcd.h"
++#include "video/lc7985.h"
++#include "yamanix_lcd_bus.h"
+ #include "machine/nvram.h"
+ #include "sound/meg.h"
+ #include "speaker.h"
+ #include <set>
++#include <sstream>
+ 
+ namespace {
++
++class an1x_dasm_buffer : public util::disasm_interface::data_buffer {
++public:
++    an1x_dasm_buffer(address_space &space) : m_space(space) {}
++    u8 r8(offs_t pc) const override { return m_space.read_byte(pc); }
++    u16 r16(offs_t pc) const override { return m_space.read_word(pc); }
++    u32 r32(offs_t pc) const override { return m_space.read_dword(pc); }
++    u64 r64(offs_t pc) const override { return (u64(r32(pc)) << 32) | r32(pc + 4); }
++private:
++    address_space &m_space;
++};
+ 
+ class an1x_state : public driver_device
+ {
+@@ -30,6 +43,7 @@
+ 		, m_maincpu(*this, "maincpu")
+ 		, m_pks(*this, "pks")
+ 		, m_meg(*this, "meg")
++        , m_lcd(*this, "lcd")
+ 	{
+ 	}
+ 
+@@ -41,11 +55,16 @@
+     memory_passthrough_handler m_read_trace, m_write_trace;
+     std::set<offs_t> m_reads, m_writes;
+     unsigned m_ticks = 0;
++    yamanix::LcdBus m_lcd_bus;
++    unsigned m_lcd_commands = 0, m_lcd_data = 0;
++    unsigned m_lcd_busy_reads = 0, m_lcd_ready_reads = 0;
++    void lcd_control_w(u8 data);
+ 	void mem_map(address_map &map) ATTR_COLD;
+ 
+ 	required_device<h83002_device> m_maincpu;
+ 	required_device<cpu_device> m_pks;
+ 	required_device<meg_device> m_meg;
++    required_device<lc7985_device> m_lcd;
+ };
+ 
+ // YamANIx research instrumentation: observes accesses without supplying fake peripherals.
+@@ -53,6 +72,14 @@
+ {
+     auto &space = m_maincpu->space(AS_PROGRAM);
+     space.set_log_unmap(false);
++    an1x_dasm_buffer buffer(space);
++    for (offs_t pc = 0x3f650; pc < 0x3f6c0;) {
++        std::ostringstream line;
++        const offs_t length = m_maincpu->get_disassembler().disassemble(line, pc, buffer, buffer) & util::disasm_interface::LENGTHMASK;
++        logerror("YAMANIX DASM pc=%06x %s\n", pc, line.str());
++        if (!length) break;
++        pc += length;
++    }
+     m_read_trace = space.install_read_tap(0x300000, 0xffffff, "yamanix_read",
+         [this](offs_t address, u16 &data, u16 mask) {
+             if (machine().side_effects_disabled()) return;
+@@ -67,14 +94,35 @@
+         });
+     auto *timer = timer_alloc(FUNC(an1x_state::trace_tick), this);
+     timer->adjust(attotime::zero, 0, attotime::from_msec(10));
+-    logerror("YAMANIX research harness: H8 active; LCD omitted; VOP3/MEG integration incomplete\n");
++    logerror("YAMANIX research harness: H8 active; LC7985 connected; VOP3/MEG integration incomplete\n");
+ }
+ 
+ TIMER_CALLBACK_MEMBER(an1x_state::trace_tick)
+ {
+-    if (m_ticks < 101)
++    if (m_ticks < 101 || (m_ticks <= 1000 && (m_ticks % 100) == 0))
+         logerror("YAMANIX PC tick=%u pc=%06x\n", m_ticks, m_maincpu->pc());
++    if (m_ticks && (m_ticks % 100) == 0 && m_ticks <= 1000)
++        logerror("YAMANIX LCD_SUMMARY tick=%u busy_reads=%u ready_reads=%u commands=%u data=%u\n", m_ticks, m_lcd_busy_reads, m_lcd_ready_reads, m_lcd_commands, m_lcd_data);
+     ++m_ticks;
++}
++
++void an1x_state::lcd_control_w(u8 data)
++{
++    using E = yamanix::LcdBus::Event;
++    switch (m_lcd_bus.control(data)) {
++    case E::status_read:
++        m_lcd_bus.read_latch = m_lcd->status_r();
++        if (m_lcd_bus.read_latch & 0x80) ++m_lcd_busy_reads; else ++m_lcd_ready_reads;
++        break;
++    case E::data_read: m_lcd_bus.read_latch = m_lcd->dr_r(); break;
++    case E::instruction_write:
++        if (m_lcd_commands++ < 128) logerror("YAMANIX LCD command pc=%06x data=%02x\n", m_maincpu->pc(), m_lcd_bus.output_data());
++        m_lcd->ir_w(m_lcd_bus.output_data()); break;
++    case E::data_write:
++        if (m_lcd_data++ < 256) logerror("YAMANIX LCD data pc=%06x data=%02x\n", m_maincpu->pc(), m_lcd_bus.output_data());
++        m_lcd->dr_w(m_lcd_bus.output_data()); break;
++    case E::none: break;
++    }
+ }
+ 
+ void an1x_state::mem_map(address_map &map)
+@@ -95,7 +143,13 @@
+ 
+ 	HD6305V0(config, m_pks, 8_MHz_XTAL).set_disable(); // HD63B05V0E65F
+ 
+-	// YamANIx headless research: omit LCD and its unrelated font/SVG ROM requirements.
++	LC7985(config, m_lcd);
++    m_maincpu->read_porta().set([this]() { return m_lcd_bus.input_pa(); });
++    m_maincpu->write_porta().set([this](u8 data) { m_lcd_bus.pa = data; });
++    m_maincpu->read_portb().set([this]() { return m_lcd_bus.input_pb(); });
++    m_maincpu->write_portb().set([this](u8 data) { m_lcd_bus.pb = data; });
++    m_maincpu->read_port9().set([]() { return u8(0xff); }); // Same unconnected levels as upstream; outputs merged by H8.
++    m_maincpu->write_port9().set(FUNC(an1x_state::lcd_control_w));
+ 
+ 	SPEAKER(config, "speaker", 2).front();
+ 
+--- a/src/devices/video/lc7985.cpp
++++ b/src/devices/video/lc7985.cpp
+@@ -12,9 +12,9 @@
+ DEFINE_DEVICE_TYPE(LC7985, lc7985_device, "lc7985", "Sanyo LC7985NA/LC7985ND LCD controller")
+ 
+ 
++// YamANIx headless research: glyphs are not rendered. No substitute font is used for bus state.
+ ROM_START( lc7985 )
+-  ROM_REGION( 0x1000, "cgrom", 0 )
+-  ROM_LOAD( "lc7985.bin", 0x0000, 0x1000,  BAD_DUMP CRC(fdc64160) SHA1(8e6b54f8fb7c4c15aab2e65dd1a44729b97423b1)) // from page 12 of the LC7985D datasheet
++  ROM_REGION( 0x1000, "cgrom", ROMREGION_ERASE00 )
+ ROM_END
+ 
+ lc7985_device::lc7985_device(const machine_config &mconfig, const char *tag, device_t *owner, uint32_t clock)
+--- /dev/null
++++ b/src/mame/yamaha/yamanix_lcd_bus.h
+@@ -0,0 +1,28 @@
++#pragma once
++#include <cstdint>
++
++namespace yamanix {
++// AN1x schematic: PA0/PA2..5 = DB0/DB2..5; PB1/PB6/PB7 = DB1/DB6/DB7.
++// PB2 = RS, P90 = R/W, P95 = E. Unconnected inputs retain pull-up levels.
++struct LcdBus {
++    enum class Event { none, status_read, data_read, instruction_write, data_write };
++    uint8_t pa = 0xff, pb = 0xff, p9 = 0xff, read_latch = 0xff;
++
++    uint8_t output_data() const { return (pa & 0x3d) | (pb & 0xc2); }
++    bool reading() const { return (p9 & 0x21) == 0x21; }
++    uint8_t input_pa() const { return reading() ? (read_latch & 0x3d) | 0xc2 : 0xff; }
++    uint8_t input_pb() const { return reading() ? (read_latch & 0xc2) | 0x3d : 0xff; }
++
++    Event control(uint8_t value) {
++        const bool edge = ((p9 ^ value) & 0x20) != 0;
++        p9 = value;
++        if (!edge) return Event::none;
++        if (p9 & 0x20) {
++            if (!(p9 & 1)) return Event::none;
++            return (pb & 4) ? Event::data_read : Event::status_read;
++        }
++        if (p9 & 1) return Event::none;
++        return (pb & 4) ? Event::data_write : Event::instruction_write;
++    }
++};
++}

@@ -1,0 +1,84 @@
+--- a/src/osd/mac/main.mm
++++ b/src/osd/mac/main.mm
+@@ -12,31 +12,8 @@
+ 
+ extern int mac_run_emulator(int argc, char *argv[]);
+ 
+-int main(int argc, char * argv[])
++// YamANIx research target: no Cocoa application or desktop UI is initialized.
++int main(int argc, char *argv[])
+ {
+-	[NSApplication sharedApplication];
+-	[NSApp setDelegate: [MAMEAppDelegate new]];
+-	[NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
+-	[NSApp activateIgnoringOtherApps:YES];
+-	[NSApp finishLaunching];
+-	[[NSNotificationCenter defaultCenter]
+-		postNotificationName:NSApplicationWillFinishLaunchingNotification
+-		object:NSApp];
+-	[[NSNotificationCenter defaultCenter]
+-		postNotificationName:NSApplicationDidFinishLaunchingNotification
+-		object:NSApp];
+-	id quitMenuItem = [NSMenuItem new];
+-	[quitMenuItem
+-		initWithTitle:@"Quit"
+-		action:@selector(terminate:)
+-		keyEquivalent:@"q"];
+-	id appMenu = [NSMenu new];
+-	[appMenu addItem:quitMenuItem];
+-	id appMenuItem = [NSMenuItem new];
+-	[appMenuItem setSubmenu:appMenu];
+-	id menubar = [[NSMenu new] autorelease];
+-	[menubar addItem:appMenuItem];
+-	[NSApp setMainMenu:menubar];
+-
+-	return mac_run_emulator(argc, argv);
++    @autoreleasepool { return mac_run_emulator(argc, argv); }
+ }
+--- a/src/osd/mac/video.cpp
++++ b/src/osd/mac/video.cpp
+@@ -10,6 +10,7 @@
+ 
+ // MAME headers
+ #include "emu.h"
++#include "render.h"
+ #include "rendutil.h"
+ #include "ui/uimain.h"
+ #include "emuopts.h"
+@@ -53,6 +54,12 @@
+ 
+ bool mac_osd_interface::video_init()
+ {
++    if (headless()) {
++        auto *target = machine().render().target_alloc();
++        target->set_bounds(640, 480);
++        machine().render().set_ui_target(*target);
++        return true; // Memory-only target, no monitor or Cocoa window.
++    }
+ 	int index;
+ 
+ 	// extract data from the options
+@@ -94,6 +101,7 @@
+ 
+ void mac_osd_interface::video_exit()
+ {
++    if (headless()) return;
+ 	window_exit();
+ }
+ 
+@@ -129,6 +137,7 @@
+ 
+ void mac_osd_interface::input_update(bool relative_reset)
+ {
++    if (headless()) { poll_input_modules(relative_reset); return; }
+ 	// poll the joystick values here
+ 	process_events_buf();
+ 	MacPollInputs();
+@@ -141,6 +150,7 @@
+ 
+ void mac_osd_interface::check_osd_inputs()
+ {
++    if (headless()) return;
+ 	auto &inp = machine().ui_input();
+ 
+ 	// check for toggling fullscreen mode (don't do this in debug mode)

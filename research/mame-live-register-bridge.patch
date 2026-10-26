@@ -1,0 +1,193 @@
+--- a/src/mame/yamaha/yman1x.cpp
++++ b/src/mame/yamaha/yman1x.cpp
+@@ -17,6 +17,9 @@
+ #include "video/lc7985.h"
+ #include "yamanix_lcd_bus.h"
+ #include "yamanix_upload_control_contract.h"
++#include "yamanix_vop3_bridge.h"
++#include <dlfcn.h>
++#include <fstream>
+ #include <cstdlib>
+ #include <cstring>
+ #include "machine/nvram.h"
+@@ -55,12 +58,22 @@
+ private:
+     void machine_start() override ATTR_COLD;
+     TIMER_CALLBACK_MEMBER(trace_tick);
+-    memory_passthrough_handler m_read_trace, m_write_trace;
++    memory_passthrough_handler m_read_trace, m_write_trace, m_dms_flag_trace;
+     std::set<offs_t> m_reads, m_writes;
+     unsigned m_ticks = 0;
+     u64 m_dsp_events = 0, m_dsp_dropped = 0;
+     std::set<u64> m_poll_signatures;
+     bool m_contract_enabled = false;
++    bool m_dms_installed = false;
++    void *m_bridge_library = nullptr;
++    yamanix_vop3 *m_bridge = nullptr;
++    decltype(&yamanix_vop3_destroy) m_bridge_destroy = nullptr;
++    decltype(&yamanix_vop3_write) m_bridge_write = nullptr;
++    decltype(&yamanix_vop3_read) m_bridge_read = nullptr;
++    decltype(&yamanix_vop3_snapshot) m_bridge_snapshot = nullptr;
++    decltype(&yamanix_vop3_get_metrics) m_bridge_metrics = nullptr;
++    void start_bridge();
++    void end_bridge();
+     yamanix::UploadControlContract m_upload_control[2];
+     void dsp_event(char op, offs_t address, u16 data, u16 mask);
+     void dsp_trace_end();
+@@ -76,7 +89,7 @@
+     required_device<lc7985_device> m_lcd;
+ };
+ 
+-// YamANIx research instrumentation: observes accesses without supplying fake peripherals.
++// YamANIx research instrumentation; experimental responses require explicit profiles.
+ void an1x_state::machine_start()
+ {
+     const char *profile = std::getenv("YAMANIX_DSP_PROFILE");
+@@ -84,12 +97,19 @@
+         fatalerror("Unknown YamANIx DSP profile");
+     m_contract_enabled = profile && !std::strcmp(profile, "firmware-contract");
+     logerror("YAMANIX PROFILE dsp=%s hardware_validated=0\n", m_contract_enabled ? "firmware-contract" : "passive");
++    const char *board = std::getenv("YAMANIX_DMS_BOARD");
++    if (board && std::strcmp(board, "absent") && std::strcmp(board, "installed"))
++        fatalerror("Unknown YamANIx DMS board profile");
++    m_dms_installed = board && !std::strcmp(board, "installed");
++    logerror("YAMANIX DMS_BOARD state=%s port9_input=%02x hardware_validated=0\n",
++        m_dms_installed ? "installed" : "absent", m_dms_installed ? 0xfb : 0xff);
++    start_bridge();
+     auto &space = m_maincpu->space(AS_PROGRAM);
+     space.set_log_unmap(false);
+     logerror("YAMANIX DSP_BEGIN version=1 clock_hz=1000000000 limit=200000\n");
+     machine().add_notifier(MACHINE_NOTIFY_EXIT, machine_notify_delegate(&an1x_state::dsp_trace_end, this));
+     an1x_dasm_buffer buffer(space);
+-    const std::pair<offs_t, offs_t> spans[] = {{0x3f650, 0x3f68a}, {0x565dc, 0x565fc}, {0x56792, 0x567d8}, {0x565dc, 0x56d20}};
++    const std::pair<offs_t, offs_t> spans[] = {{0x3f650, 0x3f68a}, {0x565dc, 0x565fc}, {0x56792, 0x567d8}, {0x565dc, 0x56d20}, {0x6c532, 0x6c654}};
+     for (const auto &span : spans) for (offs_t pc = span.first; pc < span.second;) {
+         std::ostringstream line;
+         const offs_t length = m_maincpu->get_disassembler().disassemble(line, pc, buffer, buffer) & util::disasm_interface::LENGTHMASK;
+@@ -97,12 +117,22 @@
+         if (!length) break;
+         pc += length;
+     }
++    m_dms_flag_trace = space.install_write_tap(0x23cbc2, 0x23cbc3, "yamanix_dms_flag",
++        [this](offs_t address, u16 &data, u16 mask) {
++            if (!machine().side_effects_disabled())
++                logerror("YAMANIX DMS_FLAG pc=%06x address=%06x data=%04x mask=%04x source=%04x\n",
++                    m_maincpu->pc(), address, data, mask, m_maincpu->space(AS_PROGRAM).read_word(0x23c8de));
++        });
+     m_read_trace = space.install_read_tap(0x300000, 0xffffff, "yamanix_read",
+         [this](offs_t address, u16 &data, u16 mask) {
+             if (machine().side_effects_disabled()) return;
+             if (m_contract_enabled && (address == 0x440002 || address == 0x480002)) {
+                 if (mask != 0xffff) fatalerror("Unsupported partial DSP status read");
+                 data = m_upload_control[address == 0x480002].status();
++            }
++            else if (m_bridge && ((address >= 0x440000 && address < 0x440100) || (address >= 0x480000 && address < 0x480100))) {
++                if (m_bridge_read(m_bridge, address >= 0x480000, (address & 0xff) / 2, mask, &data))
++                    fatalerror("VOP3 bridge read rejected");
+             }
+             dsp_event('R', address, data, mask);
+             if (m_reads.size() < 512 && m_reads.insert(address).second)
+@@ -114,6 +144,9 @@
+             if (m_contract_enabled && (address == 0x440002 || address == 0x480002))
+                 if (!m_upload_control[address == 0x480002].write(data, mask))
+                     fatalerror("Unsupported experimental DSP control write %04x/%04x", data, mask);
++            if (m_bridge && ((address >= 0x440000 && address < 0x440100) || (address >= 0x480000 && address < 0x480100)))
++                if (m_bridge_write(m_bridge, address >= 0x480000, (address & 0xff) / 2, data, mask))
++                    fatalerror("VOP3 bridge write rejected");
+             dsp_event('W', address, data, mask);
+             if (m_writes.size() < 512 && m_writes.insert(address).second)
+                 logerror("YAMANIX WRITE pc=%06x address=%06x data=%04x mask=%04x\n", m_maincpu->pc(), address, data, mask);
+@@ -159,7 +192,55 @@
+ 
+ void an1x_state::dsp_trace_end()
+ {
++    end_bridge();
+     logerror("YAMANIX DSP_END events=%llu dropped=%llu\n", (unsigned long long)m_dsp_events, (unsigned long long)m_dsp_dropped);
++}
++
++// macOS research target only; ABI and core are separate from the MAME executable.
++void an1x_state::start_bridge()
++{
++    const char *path = std::getenv("YAMANIX_VOP3_BRIDGE");
++    if (!path || !*path) { logerror("YAMANIX BRIDGE state=disabled\n"); return; }
++    if (!m_contract_enabled) fatalerror("Live register bridge requires explicit firmware-contract profile");
++    m_bridge_library = dlopen(path, RTLD_NOW | RTLD_LOCAL);
++    if (!m_bridge_library) fatalerror("Cannot load YamANIx bridge: %s", dlerror());
++    auto symbol = [this](const char *name) {
++        auto ptr = dlsym(m_bridge_library, name);
++        if (!ptr) fatalerror("Missing YamANIx bridge symbol: %s", name);
++        return ptr;
++    };
++    auto version = reinterpret_cast<decltype(&yamanix_vop3_abi_version)>(symbol("yamanix_vop3_abi_version"));
++    if (version() != 1) fatalerror("Incompatible YamANIx bridge ABI");
++    auto create = reinterpret_cast<decltype(&yamanix_vop3_create)>(symbol("yamanix_vop3_create"));
++    m_bridge_destroy = reinterpret_cast<decltype(m_bridge_destroy)>(symbol("yamanix_vop3_destroy"));
++    m_bridge_write = reinterpret_cast<decltype(m_bridge_write)>(symbol("yamanix_vop3_write"));
++    m_bridge_read = reinterpret_cast<decltype(m_bridge_read)>(symbol("yamanix_vop3_read"));
++    m_bridge_snapshot = reinterpret_cast<decltype(m_bridge_snapshot)>(symbol("yamanix_vop3_snapshot"));
++    m_bridge_metrics = reinterpret_cast<decltype(m_bridge_metrics)>(symbol("yamanix_vop3_get_metrics"));
++    m_bridge = create();
++    if (!m_bridge) fatalerror("Cannot create YamANIx VOP3 pair");
++    logerror("YAMANIX BRIDGE state=live-register-only abi=1 dsp_samples=0 hardware_validated=0\n");
++}
++
++void an1x_state::end_bridge()
++{
++    if (!m_bridge) return;
++    std::array<uint8_t, 14340> bytes;
++    yamanix_vop3_metrics metrics{};
++    if (m_bridge_snapshot(m_bridge, bytes.data(), bytes.size()) || m_bridge_metrics(m_bridge, &metrics))
++        fatalerror("Cannot snapshot YamANIx bridge");
++    std::ofstream output("live-vop3-state.bin", std::ios::binary);
++    output.write(reinterpret_cast<const char *>(bytes.data()), bytes.size());
++    output.close();
++    if (!output) fatalerror("Cannot save YamANIx live state");
++    for (unsigned chip = 0; chip < 2; ++chip)
++        logerror("YAMANIX BRIDGE_END chip=%u writes=%llu reads=%llu unsupported_reads=%llu sample_passes=%llu\n", chip,
++            (unsigned long long)metrics.writes[chip], (unsigned long long)metrics.reads[chip],
++            (unsigned long long)metrics.unsupported_reads[chip], (unsigned long long)metrics.sample_passes[chip]);
++    m_bridge_destroy(m_bridge);
++    m_bridge = nullptr;
++    dlclose(m_bridge_library);
++    m_bridge_library = nullptr;
+ }
+ 
+ void an1x_state::lcd_control_w(u8 data)
+@@ -204,7 +285,9 @@
+     m_maincpu->write_porta().set([this](u8 data) { m_lcd_bus.pa = data; });
+     m_maincpu->read_portb().set([this]() { return m_lcd_bus.input_pb(); });
+     m_maincpu->write_portb().set([this](u8 data) { m_lcd_bus.pb = data; });
+-    m_maincpu->read_port9().set([]() { return u8(0xff); }); // Same unconnected levels as upstream; outputs merged by H8.
++    m_maincpu->read_port9().set([this]() { return u8(m_dms_installed ? 0xfb : 0xff); });
++    // P92: DM CN11 pin 1 -> DMS CN1 pin 1 -> DG (service schematic).
++    // Other input bits remain high; H8 merges configured outputs.
+     m_maincpu->write_port9().set(FUNC(an1x_state::lcd_control_w));
+ 
+ 	SPEAKER(config, "speaker", 2).front();
+--- /dev/null
++++ b/src/mame/yamaha/yamanix_vop3_bridge.h
+@@ -0,0 +1,24 @@
++#ifndef YAMANIX_VOP3_BRIDGE_H
++#define YAMANIX_VOP3_BRIDGE_H
++#include <stddef.h>
++#include <stdint.h>
++#ifdef __cplusplus
++extern "C" {
++#endif
++typedef struct yamanix_vop3 yamanix_vop3;
++typedef struct {
++    uint64_t writes[2], reads[2], unsupported_reads[2], sample_passes[2];
++} yamanix_vop3_metrics;
++uint32_t yamanix_vop3_abi_version(void);
++yamanix_vop3 *yamanix_vop3_create(void);
++void yamanix_vop3_destroy(yamanix_vop3 *handle);
++int yamanix_vop3_write(yamanix_vop3 *, uint32_t chip, uint32_t reg, uint16_t value, uint16_t mask);
++int yamanix_vop3_read(yamanix_vop3 *, uint32_t chip, uint32_t reg, uint16_t mask, uint16_t *value);
++int yamanix_vop3_snapshot(yamanix_vop3 *, uint8_t *output, size_t length);
++int yamanix_vop3_get_metrics(yamanix_vop3 *, yamanix_vop3_metrics *output);
++// ABI v1 is single-threaded and register-only: no samples, table ROM, clocks or audio routing.
++// Returns 0 on success; -1 invalid arguments, -2 unsupported mask, -3 internal failure.
++#ifdef __cplusplus
++}
++#endif
++#endif

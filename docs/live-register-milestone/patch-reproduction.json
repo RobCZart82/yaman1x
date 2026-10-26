@@ -1,0 +1,59 @@
+{
+  "patch_chain": [
+    {
+      "file": "mame-headless-trace.patch",
+      "sha256": "6c05f65fab373deb7300a92e143f8145982e2556501925260d4c2d824951757f"
+    },
+    {
+      "file": "mame-no-cocoa.patch",
+      "sha256": "99fae93e6304efa7b1c449117242a2fb5da818aa0fcf4d1a00eab711f52e7fc2"
+    },
+    {
+      "file": "mame-lcd-controller.patch",
+      "sha256": "3396db25776c701115192d720474e734af316985afd533239f82c57c670b04f8"
+    },
+    {
+      "file": "mame-dsp-capture.patch",
+      "sha256": "9df56a2b87a3ec0b690c0d8283f11c509dfd62c65cc0620e62831b0eb59b9421"
+    },
+    {
+      "file": "mame-upload-control-experiment.patch",
+      "sha256": "2611b1481e9a2d6aaf772618b3c534716f45c898004f66567188f185ab889797"
+    },
+    {
+      "file": "mame-live-register-bridge.patch",
+      "sha256": "7e2511b45e693cf77848610a0bef8320c81da1d093abf374cf212d39d4f6fc43"
+    }
+  ],
+  "reproduces_all_working_files": true,
+  "files": [
+    {
+      "file": "src/devices/video/lc7985.cpp",
+      "sha256": "c9792f6cc10f67865b1ab4cd9af62880a90bcc8e578fd9b89a74dc18d9099b9a"
+    },
+    {
+      "file": "src/mame/yamaha/yamanix_lcd_bus.h",
+      "sha256": "54f731bbc62008d6e2908d51a0832b561a05644e7ae1da7f18712fd486ad125a"
+    },
+    {
+      "file": "src/mame/yamaha/yamanix_upload_control_contract.h",
+      "sha256": "bd5442a4668044828d630a925302ed279f45dd8b0146b0dd08b9642784da3b04"
+    },
+    {
+      "file": "src/mame/yamaha/yamanix_vop3_bridge.h",
+      "sha256": "73c290c5b55d10857fbaf3a54505f4b352fa402f3279001cde14564438ad4d47"
+    },
+    {
+      "file": "src/mame/yamaha/yman1x.cpp",
+      "sha256": "1900c5e096869b0a162ed1b8ed187dd887cbc6ddddc0448c2a106cd7a0d817f9"
+    },
+    {
+      "file": "src/osd/mac/main.mm",
+      "sha256": "030b79f3ebee5ed20c8d15cef0c4bdbd1dcebe04af81bafa4c40eaa08ee7c492"
+    },
+    {
+      "file": "src/osd/mac/video.cpp",
+      "sha256": "5c0ae4b39eba9a235e0ea69e4c7714025190e3f2f7cc027c3fb7e7f7fed29d2f"
+    }
+  ]
+}

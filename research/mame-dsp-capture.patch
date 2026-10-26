@@ -1,0 +1,66 @@
+--- a/src/mame/yamaha/yman1x.cpp
++++ b/src/mame/yamaha/yman1x.cpp
+@@ -55,6 +55,9 @@
+     memory_passthrough_handler m_read_trace, m_write_trace;
+     std::set<offs_t> m_reads, m_writes;
+     unsigned m_ticks = 0;
++    u64 m_dsp_events = 0, m_dsp_dropped = 0;
++    void dsp_event(char op, offs_t address, u16 data, u16 mask);
++    void dsp_trace_end();
+     yamanix::LcdBus m_lcd_bus;
+     unsigned m_lcd_commands = 0, m_lcd_data = 0;
+     unsigned m_lcd_busy_reads = 0, m_lcd_ready_reads = 0;
+@@ -72,8 +75,11 @@
+ {
+     auto &space = m_maincpu->space(AS_PROGRAM);
+     space.set_log_unmap(false);
++    logerror("YAMANIX DSP_BEGIN version=1 clock_hz=1000000000 limit=200000\n");
++    machine().add_notifier(MACHINE_NOTIFY_EXIT, machine_notify_delegate(&an1x_state::dsp_trace_end, this));
+     an1x_dasm_buffer buffer(space);
+-    for (offs_t pc = 0x3f650; pc < 0x3f6c0;) {
++    const std::pair<offs_t, offs_t> spans[] = {{0x3f650, 0x3f68a}, {0x565dc, 0x565fc}, {0x56792, 0x567d8}, {0x56b98, 0x56d20}};
++    for (const auto &span : spans) for (offs_t pc = span.first; pc < span.second;) {
+         std::ostringstream line;
+         const offs_t length = m_maincpu->get_disassembler().disassemble(line, pc, buffer, buffer) & util::disasm_interface::LENGTHMASK;
+         logerror("YAMANIX DASM pc=%06x %s\n", pc, line.str());
+@@ -83,12 +89,14 @@
+     m_read_trace = space.install_read_tap(0x300000, 0xffffff, "yamanix_read",
+         [this](offs_t address, u16 &data, u16 mask) {
+             if (machine().side_effects_disabled()) return;
++            dsp_event('R', address, data, mask);
+             if (m_reads.size() < 512 && m_reads.insert(address).second)
+                 logerror("YAMANIX READ pc=%06x address=%06x data=%04x mask=%04x\n", m_maincpu->pc(), address, data, mask);
+         });
+     m_write_trace = space.install_write_tap(0x300000, 0xffffff, "yamanix_write",
+         [this](offs_t address, u16 &data, u16 mask) {
+             if (machine().side_effects_disabled()) return;
++            dsp_event('W', address, data, mask);
+             if (m_writes.size() < 512 && m_writes.insert(address).second)
+                 logerror("YAMANIX WRITE pc=%06x address=%06x data=%04x mask=%04x\n", m_maincpu->pc(), address, data, mask);
+         });
+@@ -104,6 +112,25 @@
+     if (m_ticks && (m_ticks % 100) == 0 && m_ticks <= 1000)
+         logerror("YAMANIX LCD_SUMMARY tick=%u busy_reads=%u ready_reads=%u commands=%u data=%u\n", m_ticks, m_lcd_busy_reads, m_lcd_ready_reads, m_lcd_commands, m_lcd_data);
+     ++m_ticks;
++}
++
++void an1x_state::dsp_event(char op, offs_t address, u16 data, u16 mask)
++{
++    int chip;
++    offs_t base;
++    if (address >= 0x440000 && address < 0x440100) { chip = 0; base = 0x440000; }
++    else if (address >= 0x480000 && address < 0x480100) { chip = 1; base = 0x480000; }
++    else return;
++    const u64 seq = m_dsp_events++;
++    if (seq >= 200000) { ++m_dsp_dropped; return; }
++    logerror("YAMANIX DSP seq=%llu time_ns=%llu op=%c chip=%d reg=%02x data=%04x mask=%04x pc=%06x\n",
++        (unsigned long long)seq, (unsigned long long)machine().time().as_ticks(1000000000),
++        op, chip, (address - base) / 2, data, mask, m_maincpu->pc());
++}
++
++void an1x_state::dsp_trace_end()
++{
++    logerror("YAMANIX DSP_END events=%llu dropped=%llu\n", (unsigned long long)m_dsp_events, (unsigned long long)m_dsp_dropped);
+ }
+ 
+ void an1x_state::lcd_control_w(u8 data)

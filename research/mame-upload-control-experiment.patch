@@ -1,0 +1,110 @@
+--- a/src/mame/yamaha/yman1x.cpp
++++ b/src/mame/yamaha/yman1x.cpp
+@@ -16,6 +16,9 @@
+ #include "cpu/m6805/hd6305.h"
+ #include "video/lc7985.h"
+ #include "yamanix_lcd_bus.h"
++#include "yamanix_upload_control_contract.h"
++#include <cstdlib>
++#include <cstring>
+ #include "machine/nvram.h"
+ #include "sound/meg.h"
+ #include "speaker.h"
+@@ -56,6 +59,9 @@
+     std::set<offs_t> m_reads, m_writes;
+     unsigned m_ticks = 0;
+     u64 m_dsp_events = 0, m_dsp_dropped = 0;
++    std::set<u64> m_poll_signatures;
++    bool m_contract_enabled = false;
++    yamanix::UploadControlContract m_upload_control[2];
+     void dsp_event(char op, offs_t address, u16 data, u16 mask);
+     void dsp_trace_end();
+     yamanix::LcdBus m_lcd_bus;
+@@ -73,12 +79,17 @@
+ // YamANIx research instrumentation: observes accesses without supplying fake peripherals.
+ void an1x_state::machine_start()
+ {
++    const char *profile = std::getenv("YAMANIX_DSP_PROFILE");
++    if (profile && std::strcmp(profile, "passive") && std::strcmp(profile, "firmware-contract"))
++        fatalerror("Unknown YamANIx DSP profile");
++    m_contract_enabled = profile && !std::strcmp(profile, "firmware-contract");
++    logerror("YAMANIX PROFILE dsp=%s hardware_validated=0\n", m_contract_enabled ? "firmware-contract" : "passive");
+     auto &space = m_maincpu->space(AS_PROGRAM);
+     space.set_log_unmap(false);
+     logerror("YAMANIX DSP_BEGIN version=1 clock_hz=1000000000 limit=200000\n");
+     machine().add_notifier(MACHINE_NOTIFY_EXIT, machine_notify_delegate(&an1x_state::dsp_trace_end, this));
+     an1x_dasm_buffer buffer(space);
+-    const std::pair<offs_t, offs_t> spans[] = {{0x3f650, 0x3f68a}, {0x565dc, 0x565fc}, {0x56792, 0x567d8}, {0x56b98, 0x56d20}};
++    const std::pair<offs_t, offs_t> spans[] = {{0x3f650, 0x3f68a}, {0x565dc, 0x565fc}, {0x56792, 0x567d8}, {0x565dc, 0x56d20}};
+     for (const auto &span : spans) for (offs_t pc = span.first; pc < span.second;) {
+         std::ostringstream line;
+         const offs_t length = m_maincpu->get_disassembler().disassemble(line, pc, buffer, buffer) & util::disasm_interface::LENGTHMASK;
+@@ -89,6 +100,10 @@
+     m_read_trace = space.install_read_tap(0x300000, 0xffffff, "yamanix_read",
+         [this](offs_t address, u16 &data, u16 mask) {
+             if (machine().side_effects_disabled()) return;
++            if (m_contract_enabled && (address == 0x440002 || address == 0x480002)) {
++                if (mask != 0xffff) fatalerror("Unsupported partial DSP status read");
++                data = m_upload_control[address == 0x480002].status();
++            }
+             dsp_event('R', address, data, mask);
+             if (m_reads.size() < 512 && m_reads.insert(address).second)
+                 logerror("YAMANIX READ pc=%06x address=%06x data=%04x mask=%04x\n", m_maincpu->pc(), address, data, mask);
+@@ -96,6 +111,9 @@
+     m_write_trace = space.install_write_tap(0x300000, 0xffffff, "yamanix_write",
+         [this](offs_t address, u16 &data, u16 mask) {
+             if (machine().side_effects_disabled()) return;
++            if (m_contract_enabled && (address == 0x440002 || address == 0x480002))
++                if (!m_upload_control[address == 0x480002].write(data, mask))
++                    fatalerror("Unsupported experimental DSP control write %04x/%04x", data, mask);
+             dsp_event('W', address, data, mask);
+             if (m_writes.size() < 512 && m_writes.insert(address).second)
+                 logerror("YAMANIX WRITE pc=%06x address=%06x data=%04x mask=%04x\n", m_maincpu->pc(), address, data, mask);
+@@ -111,6 +129,10 @@
+         logerror("YAMANIX PC tick=%u pc=%06x\n", m_ticks, m_maincpu->pc());
+     if (m_ticks && (m_ticks % 100) == 0 && m_ticks <= 1000)
+         logerror("YAMANIX LCD_SUMMARY tick=%u busy_reads=%u ready_reads=%u commands=%u data=%u\n", m_ticks, m_lcd_busy_reads, m_lcd_ready_reads, m_lcd_commands, m_lcd_data);
++    if (m_ticks && (m_ticks % 100) == 0 && m_ticks <= 1000)
++        logerror("YAMANIX CONTROL_SUMMARY tick=%u profile=%s status0=%04x status1=%04x dms_flag=%02x\n",
++            m_ticks, m_contract_enabled ? "firmware-contract" : "passive", m_upload_control[0].status(),
++            m_upload_control[1].status(), m_maincpu->space(AS_PROGRAM).read_byte(0x23cbc3));
+     ++m_ticks;
+ }
+ 
+@@ -121,6 +143,13 @@
+     if (address >= 0x440000 && address < 0x440100) { chip = 0; base = 0x440000; }
+     else if (address >= 0x480000 && address < 0x480100) { chip = 1; base = 0x480000; }
+     else return;
++    if (op == 'R' && (address - base) == 2 && m_maincpu->pc() == 0x567b8) {
++        const u16 expected_mask = m_maincpu->state_int(h8_device::H8_R4);
++        const u16 expected_value = m_maincpu->state_int(h8_device::H8_E4);
++        const u64 signature = (u64(chip) << 32) | (u64(expected_mask) << 16) | expected_value;
++        if (m_poll_signatures.insert(signature).second)
++            logerror("YAMANIX POLL chip=%d mask=%04x expected=%04x actual=%04x\n", chip, expected_mask, expected_value, data);
++    }
+     const u64 seq = m_dsp_events++;
+     if (seq >= 200000) { ++m_dsp_dropped; return; }
+     logerror("YAMANIX DSP seq=%llu time_ns=%llu op=%c chip=%d reg=%02x data=%04x mask=%04x pc=%06x\n",
+--- /dev/null
++++ b/src/mame/yamaha/yamanix_upload_control_contract.h
+@@ -0,0 +1,20 @@
++#pragma once
++#include <cstdint>
++
++namespace yamanix {
++// Experimental logical contract inferred from AN1x v1.04 host code, NOT measured YSS236 silicon.
++// command=1 requests a stopped/uploadable state and the host waits for status bit 15.
++// command=0 releases it and the host waits for bit 15 to clear.
++// Other status bits and acknowledgement timing are NOT established; zero bits are assumptions.
++class UploadControlContract {
++public:
++    bool write(uint16_t value, uint16_t mask) {
++        if (mask != 0xffff || value > 1) return false;
++        m_stopped = value != 0;
++        return true;
++    }
++    uint16_t status() const { return m_stopped ? 0x8000 : 0; }
++private:
++    bool m_stopped = false;
++};
++}

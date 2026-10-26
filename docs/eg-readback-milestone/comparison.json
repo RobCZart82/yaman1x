@@ -1,0 +1,9 @@
+{
+  "legacy_register_events_identical": true,
+  "register_events": 25310,
+  "repeated_live_capture_identical": true,
+  "passive_events_identical": true,
+  "passive_events": 6441,
+  "mismatched_readback_marker_rejected": true,
+  "legacy_abi1_audit_still_supported": true
+}

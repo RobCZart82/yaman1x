@@ -1,0 +1,39 @@
+# Local builds and generated output
+/build*/
+/out/
+/work/
+/private_runs/
+/roms/
+/vendor/
+**/__pycache__/
+*.py[cod]
+.DS_Store
+# Local firmware, banks, documents and captures
+*.bin
+*.rom
+*.ic[0-9]*
+*.syx
+*.an1
+*.mid
+*.midi
+*.zip
+*.7z
+*.pdf
+*.wav
+*.aif
+*.aiff
+*.png
+*.log
+# Compiled products and local configuration
+*.o
+*.a
+*.so
+*.dylib
+*.dll
+*.exe
+*.vst3/
+*.component/
+.env
+.env.*
+*.pem
+*.key

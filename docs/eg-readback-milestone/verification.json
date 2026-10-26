@@ -1,0 +1,12 @@
+{
+  "mame_sha256": "212543cb67655aaadde6ce25ef2c1c6f3c1dda7fb103a6f39b6993843bf66ee5",
+  "bridge_sha256": "e7bf49fab4ab366489fa04b3394b2550b4c536865676566f84235719199a0041",
+  "live_bridge_completed": true,
+  "dms_board": "installed",
+  "dsp_profile": "firmware-contract",
+  "dsp_sample_execution": false,
+  "eg_readback": "an1x-level-experiment",
+  "returncode": 0,
+  "downloaded_originals_unchanged": 27,
+  "vop3_original_files_verified_unchanged": 458
+}

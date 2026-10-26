@@ -1,0 +1,13 @@
+{
+  "archives": [
+    {
+      "file": "VOP3-main.zip",
+      "sha256": "26dacd7280118556ed50ce6fcc03c6835866d18e17a9ad61c3bc77557809e0c9"
+    },
+    {
+      "file": "mame-master.zip",
+      "sha256": "acffc3d3c4d8ffab148d07de5ab0416e54841a1ac99375cfdf641eec5eca7a6e"
+    }
+  ],
+  "note": "Archive hashes, not upstream commit identifiers. Sources and Yamaha binaries are external local inputs."
+}

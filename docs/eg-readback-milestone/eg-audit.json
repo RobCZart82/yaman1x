@@ -1,0 +1,71 @@
+{
+  "chips": [
+    {
+      "chip": 0,
+      "diagnostic_scans": 28,
+      "indexed_scan_reads": 448,
+      "scan_indices": {
+        "0": 28,
+        "1": 28,
+        "2": 28,
+        "3": 28,
+        "4": 28,
+        "5": 28,
+        "6": 28,
+        "7": 28,
+        "8": 28,
+        "9": 28,
+        "10": 28,
+        "11": 28,
+        "12": 28,
+        "13": 28,
+        "14": 28,
+        "15": 28
+      },
+      "range_error_decisions": 0,
+      "special_channel_reads": [
+        {
+          "index": 14,
+          "value": 0,
+          "matches_expected_c000": false
+        }
+      ]
+    },
+    {
+      "chip": 1,
+      "diagnostic_scans": 28,
+      "indexed_scan_reads": 448,
+      "scan_indices": {
+        "0": 28,
+        "1": 28,
+        "2": 28,
+        "3": 28,
+        "4": 28,
+        "5": 28,
+        "6": 28,
+        "7": 28,
+        "8": 28,
+        "9": 28,
+        "10": 28,
+        "11": 28,
+        "12": 28,
+        "13": 28,
+        "14": 28,
+        "15": 28
+      },
+      "range_error_decisions": 0,
+      "special_channel_reads": [
+        {
+          "index": 14,
+          "value": 0,
+          "matches_expected_c000": false
+        }
+      ]
+    }
+  ],
+  "other_reads": [],
+  "hardware_validated": false,
+  "firmware_contract": "Selected signed level; diagnostic bounds [-256,16384], channel 14 has no lower bound. Separate channel-14 comparison expects 0xc000.",
+  "level_scale_evidence": "Firmware 0x0514a6..0x0514c4 compares readback with a RAM level multiplied by 64; conversion details are still experimental.",
+  "eg_readback": "an1x-level-experiment"
+}

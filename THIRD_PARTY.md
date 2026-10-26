@@ -1,0 +1,34 @@
+# Third-party sources
+
+| Component | Included material | License / notices |
+|---|---|---|
+| [musicastudio/VOP3](https://github.com/musicastudio/VOP3) | Five unchanged C++ source/header files in `third_party/vop3/src` | BSD-3-Clause; `third_party/vop3/LICENSE`; copyright 2026 Wouter van Nifterick, Zhiyuan Wan, James Hansen |
+| AsmJit snapshot supplied with VOP3 | Unchanged source files under `third_party/vop3/third_party/asmjit/asmjit` | zlib; `third_party/vop3/third_party/asmjit/LICENSE.md`; copyright 2008–2025 Petr Kobalicek |
+| [MAME](https://github.com/mamedev/mame) | Seven research patch files only; no executable or full source tree | Specific upstream files listed below are BSD-3-Clause; full MAME distribution has GPL-2.0 terms. License texts and original distribution notice are under `licenses/`. |
+
+The VOP3 input archive has SHA-256
+`26dacd7280118556ed50ce6fcc03c6835866d18e17a9ad61c3bc77557809e0c9`.
+Its upstream commit was not recorded. We do not present this archive hash as a
+commit ID. `third_party/provenance.json` records every included upstream file's
+hash and size. The repository auditor checks them without network access.
+The source-only build recipe in `cmake/vop3/` is an explicitly adapted version
+of the upstream recipe: examples and upstream tests that need Yamaha images
+are omitted. The included VOP3 and AsmJit code files are unchanged.
+
+MAME patch context comes from:
+
+- `src/mame/yamaha/yman1x.cpp`: AJR, BSD-3-Clause.
+- `src/osd/mac/main.mm`: R. Belmont, BSD-3-Clause.
+- `src/osd/mac/video.cpp`: Olivier Galibert and R. Belmont, BSD-3-Clause.
+- `src/devices/video/lc7985.cpp`: Olivier Galibert, BSD-3-Clause.
+
+The original MAME archive identity is in `docs/source-lock.json`.
+New `yamanix_*.h` patch files reproduce the project's own bridge and bus
+interfaces. MAME research remains a separate program; this repository does
+not link MAME into the plugin core. A later distribution must account for
+all components actually used.
+
+Yamaha firmware, VOP3 program/table images and patch banks are separate local
+inputs, not part of these source licenses. None is vendored here. All default
+tests use project-generated synthetic data. The separately licensed upstream
+ROM-dependent tests remain outside this repository.

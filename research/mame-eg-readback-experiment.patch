@@ -1,0 +1,76 @@
+--- a/src/mame/yamaha/yman1x.cpp
++++ b/src/mame/yamaha/yman1x.cpp
+@@ -65,6 +65,7 @@
+     std::set<u64> m_poll_signatures;
+     bool m_contract_enabled = false;
+     bool m_dms_installed = false;
++    bool m_eg_level_experiment = false;
+     void *m_bridge_library = nullptr;
+     yamanix_vop3 *m_bridge = nullptr;
+     decltype(&yamanix_vop3_destroy) m_bridge_destroy = nullptr;
+@@ -109,7 +110,7 @@
+     logerror("YAMANIX DSP_BEGIN version=1 clock_hz=1000000000 limit=200000\n");
+     machine().add_notifier(MACHINE_NOTIFY_EXIT, machine_notify_delegate(&an1x_state::dsp_trace_end, this));
+     an1x_dasm_buffer buffer(space);
+-    const std::pair<offs_t, offs_t> spans[] = {{0x3f650, 0x3f68a}, {0x565dc, 0x565fc}, {0x56792, 0x567d8}, {0x565dc, 0x56d20}, {0x6c532, 0x6c654}};
++    const std::pair<offs_t, offs_t> spans[] = {{0x3f650, 0x3f68a}, {0x565dc, 0x565fc}, {0x56792, 0x567d8}, {0x565dc, 0x56d20}, {0x6c532, 0x6c654}, {0x545e8, 0x546e6}, {0x51400, 0x517c0}, {0x50cc0, 0x51100}};
+     for (const auto &span : spans) for (offs_t pc = span.first; pc < span.second;) {
+         std::ostringstream line;
+         const offs_t length = m_maincpu->get_disassembler().disassemble(line, pc, buffer, buffer) & util::disasm_interface::LENGTHMASK;
+@@ -199,8 +200,15 @@
+ // macOS research target only; ABI and core are separate from the MAME executable.
+ void an1x_state::start_bridge()
+ {
++    const char *eg = std::getenv("YAMANIX_EG_READBACK");
++    if (eg && std::strcmp(eg, "zero") && std::strcmp(eg, "an1x-level-experiment"))
++        fatalerror("Unknown YamANIx EG readback profile");
++    m_eg_level_experiment = eg && !std::strcmp(eg, "an1x-level-experiment");
+     const char *path = std::getenv("YAMANIX_VOP3_BRIDGE");
+-    if (!path || !*path) { logerror("YAMANIX BRIDGE state=disabled\n"); return; }
++    if (!path || !*path) {
++        if (m_eg_level_experiment) fatalerror("Experimental EG readback requires bridge");
++        logerror("YAMANIX BRIDGE state=disabled\n"); return;
++    }
+     if (!m_contract_enabled) fatalerror("Live register bridge requires explicit firmware-contract profile");
+     m_bridge_library = dlopen(path, RTLD_NOW | RTLD_LOCAL);
+     if (!m_bridge_library) fatalerror("Cannot load YamANIx bridge: %s", dlerror());
+@@ -210,7 +218,7 @@
+         return ptr;
+     };
+     auto version = reinterpret_cast<decltype(&yamanix_vop3_abi_version)>(symbol("yamanix_vop3_abi_version"));
+-    if (version() != 1) fatalerror("Incompatible YamANIx bridge ABI");
++    if (version() != 2) fatalerror("Incompatible YamANIx bridge ABI");
+     auto create = reinterpret_cast<decltype(&yamanix_vop3_create)>(symbol("yamanix_vop3_create"));
+     m_bridge_destroy = reinterpret_cast<decltype(m_bridge_destroy)>(symbol("yamanix_vop3_destroy"));
+     m_bridge_write = reinterpret_cast<decltype(m_bridge_write)>(symbol("yamanix_vop3_write"));
+@@ -219,7 +227,10 @@
+     m_bridge_metrics = reinterpret_cast<decltype(m_bridge_metrics)>(symbol("yamanix_vop3_get_metrics"));
+     m_bridge = create();
+     if (!m_bridge) fatalerror("Cannot create YamANIx VOP3 pair");
+-    logerror("YAMANIX BRIDGE state=live-register-only abi=1 dsp_samples=0 hardware_validated=0\n");
++    auto set_eg = reinterpret_cast<decltype(&yamanix_vop3_set_eg_readback)>(symbol("yamanix_vop3_set_eg_readback"));
++    if (set_eg(m_bridge, m_eg_level_experiment ? 1 : 0)) fatalerror("EG readback profile rejected");
++    logerror("YAMANIX EG_READBACK profile=%s scale=64 hardware_validated=0\n", m_eg_level_experiment ? "an1x-level-experiment" : "zero");
++    logerror("YAMANIX BRIDGE state=live-register-only abi=2 dsp_samples=0 hardware_validated=0\n");
+ }
+ 
+ void an1x_state::end_bridge()
+--- a/src/mame/yamaha/yamanix_vop3_bridge.h
++++ b/src/mame/yamaha/yamanix_vop3_bridge.h
+@@ -16,8 +16,14 @@
+ int yamanix_vop3_read(yamanix_vop3 *, uint32_t chip, uint32_t reg, uint16_t mask, uint16_t *value);
+ int yamanix_vop3_snapshot(yamanix_vop3 *, uint8_t *output, size_t length);
+ int yamanix_vop3_get_metrics(yamanix_vop3 *, yamanix_vop3_metrics *output);
+-// ABI v1 is single-threaded and register-only: no samples, table ROM, clocks or audio routing.
+-// Returns 0 on success; -1 invalid arguments, -2 unsupported mask, -3 internal failure.
++// ABI v2, single-threaded. Profile 0 preserves zero for unsupported reads.
++// Profile 1 is EXPERIMENTAL: selected EG level * 64, truncated and saturated to int16.
++// advance() steps both chips at the core model's 48 kHz; NOT a verified AN1x clock.
++// Each advance may run at most 4096 samples/chip. MMIO remains caller-ordered.
++// No table ROM loading or audio routing is provided.
++int yamanix_vop3_set_eg_readback(yamanix_vop3 *, uint32_t profile);
++int yamanix_vop3_advance(yamanix_vop3 *, uint64_t absolute_ns);
++// Returns 0 on success; -1 invalid arguments, -2 unsupported mask, -3 internal failure (discard handle), -4 unsupported index/time/budget.
+ #ifdef __cplusplus
+ }
+ #endif

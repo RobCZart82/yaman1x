@@ -1,0 +1,37 @@
+{
+  "events": 25310,
+  "dms_board": "installed",
+  "bridge_metrics": [
+    {
+      "chip": 0,
+      "writes": 12208,
+      "reads": 449,
+      "unsupported_reads": 0,
+      "sample_passes": 0
+    },
+    {
+      "chip": 1,
+      "writes": 12200,
+      "reads": 449,
+      "unsupported_reads": 0,
+      "sample_passes": 0
+    }
+  ],
+  "eg_readback": "an1x-level-experiment",
+  "experimental_eg_level_reads": 898,
+  "snapshot_bytes": 14340,
+  "snapshot_sha256": "62f2939a81db9b28b200033f59944e5a851eb20c891843d958f53389b739e598",
+  "live_matches_python": true,
+  "live_matches_native_replay": true,
+  "audited_fields": [
+    "select",
+    "program_words",
+    "coefficients",
+    "tags",
+    "slot_offsets"
+  ],
+  "hardware_validated": false,
+  "audio_rendered": false,
+  "complete_an1x_boot": false,
+  "note": "Register 0x01 uses the experimental contract; EG readback profile is explicit and not hardware-validated. Unsupported reads return zero. No DSP sample clock runs."
+}
