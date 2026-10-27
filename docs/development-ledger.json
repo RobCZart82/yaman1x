@@ -361,6 +361,8 @@
     "branch": "feat/sci-cycle-timeline",
     "status": "in_review",
     "summary": "Timestamped RX input plus two SCI clocks with bounded deterministic event ownership",
-    "validation": "Local macOS arm64 Release: 25/25 CTest groups, 60 Python cases and native ASan/UBSan PASS. 256 dual-channel duplex streams have identical whole/partitioned/resumed traces. Final PR-head CI pending."
+    "validation": "Local macOS arm64 Release: 25/25 CTest groups, 60 Python cases and native ASan/UBSan PASS. 256 dual-channel duplex streams have identical whole/partitioned/resumed traces. Final PR-head CI pending.",
+    "pr": 41,
+    "url": "https://github.com/RobCZart82/yaman1x/pull/41"
   }
 }

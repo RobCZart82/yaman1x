@@ -450,6 +450,6 @@ PR: [#39](https://github.com/RobCZart82/yaman1x/pull/39), ág: `feat/h8-sci-mmio
 
 ## 2026-10-27 — Közös kétcsatornás SCI-idővonal
 
-Ág: `feat/sci-cycle-timeline`, alap: beolvadt #40. [Komponensszerződés](sci-cycle-timeline.md): időbélyegzett RX-bemenet és két SCI-ciklusóra, korlátozott és folytatható eseményfeldolgozás. 256 kétcsatornás teljes duplex minta naplója azonos egyben, ciklusokra bontva és egyesével engedélyezett eseményekkel; 512 ismert RX-bájt ellenőrizve. Azonos ciklusban bemenetek forrássorrendben, majd SCI0/SCI1; szoftveres konvenció, nem hardveres bizonyíték. CPU/periféria-ütemezésből a CPU-rész és buszidőzítés továbbra is hiányzik; M0 részben teljesült.
+PR: [#41](https://github.com/RobCZart82/yaman1x/pull/41), ág: `feat/sci-cycle-timeline`, alap: beolvadt #40. [Komponensszerződés](sci-cycle-timeline.md): időbélyegzett RX-bemenet és két SCI-ciklusóra, korlátozott és folytatható eseményfeldolgozás. 256 kétcsatornás teljes duplex minta naplója azonos egyben, ciklusokra bontva és egyesével engedélyezett eseményekkel; 512 ismert RX-bájt ellenőrizve. Azonos ciklusban bemenetek forrássorrendben, majd SCI0/SCI1; szoftveres konvenció, nem hardveres bizonyíték. CPU/periféria-ütemezésből a CPU-rész és buszidőzítés továbbra is hiányzik; M0 részben teljesült.
 
 Helyi ellenőrzés: macOS arm64 Release, 25/25 CTest-csoport és 60 Python-eset PASS; az új natív teszt ASan/UBSan alatt is PASS. Végső platform-CI a kapcsolódó PR-headhez kötve ellenőrizendő.
