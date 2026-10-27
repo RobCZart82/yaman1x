@@ -5,7 +5,7 @@ Recorded: 2026-10-27. Product: YamAN1x. Repository: `yaman1x`. First public rese
 The repository contains a ROM-free C++/Python development foundation.
 No VST3, AU, GUI or AN1x audio output is available yet.
 
-Current baseline: merged PR #40, `76787a6ee5450fa29a7403b658fc861ef908a297`.
+Current baseline: merged PR #41, `259338dbffed8b5b10b606c5f8f907bd791b1b74`.
 The [first-sound plan](FIRST_REAPER_SOUND_PLAN.md) tracks M0 as partial, M1 as
 prepared and M2–M6 as research/planned. Completed helper components do not
 establish a complete CPU or firmware boot. Changes and their provenance are
@@ -110,3 +110,7 @@ The [bounded cycle dispatcher](cycle-dispatcher.md) provides monotonic, resumabl
 ## SCI event-owner increment
 
 The [two-channel SCI cycle timeline](sci-cycle-timeline.md) combines immutable timestamped RX input and both UART clocks with explicit budgets. Whole/partitioned/resumed traces match for 256 dual-channel duplex patterns. Wire-before-clock and SCI0-before-SCI1 tie ordering is a software convention. CPU instruction/bus integration remains open.
+
+## CPU host-boundary preparation
+
+The [H8 host-services report](h8-host-services-boundary.md) records reviewed token references across 30 candidate sources and four verified generated outputs. Two independent regenerations match byte-for-byte. Word-address alignment and execution-budget carry are documented requirements for the future host adapter. This is source evidence, not compiler/linker closure; no new CPU execution is claimed. The source-only suite remains 25 CTest groups and now includes 68 Python cases.
