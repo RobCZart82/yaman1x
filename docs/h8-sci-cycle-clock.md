@@ -1,5 +1,6 @@
 # H8 SCI internal cycle clock
 
+Implementation: [PR #28](https://github.com/RobCZart82/yaman1x/pull/28).
 Date: 2026-10-27. Local native tests and scheduling differential PASS.
 Serial byte state machine, CPU scheduler and firmware integration: NOT RUN.
 
