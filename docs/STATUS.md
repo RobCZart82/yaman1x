@@ -5,7 +5,7 @@ Recorded: 2026-10-27. Product: YamAN1x. Repository: `yaman1x`. First public rese
 The repository contains a ROM-free C++/Python development foundation.
 No VST3, AU, GUI or AN1x audio output is available yet.
 
-Current baseline: merged PR #41, `259338dbffed8b5b10b606c5f8f907bd791b1b74`.
+Current baseline: merged PR #42, `e3f71a89f6d967034a3c05926a7a86c595ab9a49`.
 The [first-sound plan](FIRST_REAPER_SOUND_PLAN.md) tracks M0 as partial, M1 as
 prepared and M2–M6 as research/planned. Completed helper components do not
 establish a complete CPU or firmware boot. Changes and their provenance are
@@ -13,7 +13,7 @@ indexed in the [development ledger](DEVELOPMENT_LOG.md).
 
 ## Current standalone engine increment
 
-The [H83002 SCI MMIO/IRQ adapter](h83002-sci-mmio-irq.md), PR #39, connects both asynchronous channels to the standalone interrupt controller. Byte/word lane, DMA priority, debugger side effects, reset and isolation tests pass locally; the ROM-free suite now has 25 groups. CPU scheduling and firmware integration remain open. See the dated entry in the [development plan](FIRST_REAPER_SOUND_PLAN.md).
+The [H83002 SCI MMIO/IRQ adapter](h83002-sci-mmio-irq.md), PR #39, connects both asynchronous channels to the standalone interrupt controller. Byte/word lane, DMA priority, debugger side effects, reset and isolation tests pass locally; the ROM-free suite now has 26 groups. CPU scheduling and firmware integration remain open. See the dated entry in the [development plan](FIRST_REAPER_SOUND_PLAN.md).
 
 ## Observed and tested
 
@@ -93,7 +93,7 @@ The ROM-free CMake/CTest suite also passes in GitHub Actions on Linux x64,
 macOS Apple Silicon and Windows x64. These builds do not validate AN1x audio,
 hardware timing or DAW/plugin-host behavior.
 
-The current CMake suite has **25 CTest groups**, including the Python unittest
+The current CMake suite has **26 CTest groups**, including the Python unittest
 group, license coverage, provenance and normal/optimized ABI checks. The audit
 of the baseline passed all 22 groups and 56 Python cases locally on macOS arm64;
 the merged bridge-auditor regression fix adds four Python cases in the same CTest group.
@@ -105,7 +105,7 @@ Fresh scope and evidence: [repository audit](REPOSITORY_AUDIT_2026-10-27.md).
 
 ## Current scheduling increment
 
-The [bounded cycle dispatcher](cycle-dispatcher.md) provides monotonic, resumable event processing with explicit budgets and callback-failure handling. It is now combined with merged SCI integration PR #39. This branch has 25 CTest groups and 60 Python cases. A two-channel SCI event owner is now implemented; CPU integration and hardware-validated tie ordering remain open.
+The [bounded cycle dispatcher](cycle-dispatcher.md) provides monotonic, resumable event processing with explicit budgets and callback-failure handling. It is now combined with merged SCI integration PR #39. This branch has 26 CTest groups and 60 Python cases. A two-channel SCI event owner is now implemented; CPU integration and hardware-validated tie ordering remain open.
 
 ## SCI event-owner increment
 
@@ -114,3 +114,7 @@ The [two-channel SCI cycle timeline](sci-cycle-timeline.md) combines immutable t
 ## CPU host-boundary preparation
 
 The [H8 host-services report](h8-host-services-boundary.md) records reviewed token references across 30 candidate sources and four verified generated outputs. Two independent regenerations match byte-for-byte. Word-address alignment and execution-budget carry are documented requirements for the future host adapter. This is source evidence, not compiler/linker closure; no new CPU execution is claimed. The source-only suite remains 25 CTest groups and now includes 68 Python cases.
+
+## H8H bus-access increment
+
+The [standalone bus helpers](h8h-bus-access.md) preserve two-cycle pre-access charging, separate instruction/data paths and aligned word access. Local comparison against five original pinned MAME method bodies: 200,000 mixed operations, zero differences. Native tests cover all 65,536 word values and failure/isolation contracts. The source-only suite now has 26 CTest groups and 72 Python cases. No full CPU or Yamaha firmware execution is established.

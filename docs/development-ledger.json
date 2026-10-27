@@ -3,7 +3,7 @@
   "recorded_date": "2026-10-27",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "259338dbffed8b5b10b606c5f8f907bd791b1b74",
+  "baseline_commit": "e3f71a89f6d967034a3c05926a7a86c595ab9a49",
   "entries": [
     {
       "pr": 6,
@@ -364,15 +364,25 @@
       "merge_commit": "259338dbffed8b5b10b606c5f8f907bd791b1b74",
       "reviewed_head": "387c5e64c0ee9759b3d41dfa58bcda1b35594731",
       "status": "merged"
+    },
+    {
+      "pr": 42,
+      "title": "Record H8 host-service boundary and source-derived CPU integration contracts",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/42",
+      "kind": "development-preparation",
+      "merged_at_utc": "2026-10-27T20:33:08Z",
+      "merge_commit": "e3f71a89f6d967034a3c05926a7a86c595ab9a49",
+      "reviewed_head": "a67b599f880f0981d68e04b276b0d904ea3f7d29",
+      "status": "merged"
     }
   ],
   "active_change": {
-    "id": "H8-HOST-2026-10-27",
-    "branch": "feat/h8-host-services-boundary",
+    "id": "H8H-BUS-2026-10-27",
+    "branch": "feat/h8h-bus-access",
     "status": "in_review",
-    "summary": "Reproducible host-service references and reviewed bus/cycle contracts before embedded CPU compilation",
-    "validation": "Local macOS arm64 Release 25/25 CTest groups and 68 Python cases PASS. Eight host-boundary regressions; 34-file report byte-identical across two independent verified generator runs. Source audit and notice coverage PASS. Final PR-head CI pending; CPU not compiled.",
-    "pr": 42,
-    "url": "https://github.com/RobCZart82/yaman1x/pull/42"
+    "summary": "H8H bus helpers preserving source-defined cycle charge, fetch/data routing and word alignment",
+    "validation": "Local macOS arm64 Release 26/26 CTest groups and 72 Python cases PASS; native ASan/UBSan PASS. Pinned original method bodies: 200000 operations, zero differences. Source/notice audits PASS; PR-head CI pending. CPU instructions not executed.",
+    "pr": 43,
+    "url": "https://github.com/RobCZart82/yaman1x/pull/43"
   }
 }

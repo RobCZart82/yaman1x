@@ -459,3 +459,9 @@ Helyi ellenőrzés: macOS arm64 Release, 25/25 CTest-csoport és 60 Python-eset 
 PR: [#42](https://github.com/RobCZart82/yaman1x/pull/42), ág: `feat/h8-host-services-boundary`, alap: beolvadt #41. [Részletes határ és végrehajtási sorrend](h8-host-services-boundary.md). Hash-ellenőrzött leltár 30 forrásból és négy kétszer generált kimenetből; két teljes futás bájtazonos. Memóriabusz, szóigazítás, ciklustartozás/részutasítás, IRQ/DMA, idő, életciklus, standby/mentés és diagnosztika követelményei rögzítve. Ez előkészítés: a CPU még nincs lefordítva vagy végrehajtva, M0 részben teljesült.
 
 Local validation / helyi ellenőrzés: macOS arm64 Release, 25/25 CTest groups and 68 Python cases PASS; source/notice audits PASS. Final PR-head platform CI pending.
+
+## 2026-10-27 — H8H CPU buszhozzáférési réteg
+
+PR: [#43](https://github.com/RobCZart82/yaman1x/pull/43), ág: `feat/h8h-bus-access`, alap: beolvadt #42. [Komponensszerződés](h8h-bus-access.md): öt H8H buszsegéd, utasítás/adat út, szóigazítás és hozzáférés előtti kétciklusos levonás. Eredeti upstream metódustörzsekkel 200000 vegyes művelet, 0 eltérés; minden 16 bites szóérték és hiba-/izolációs határ tesztelve. Ez nem CPU-utasításvégrehajtás: a részutasítás-/keretkezelés, valódi címtér és IRQ/SCI CPU-bekötés nyitott. M0 részben teljesült.
+
+Local validation / helyi ellenőrzés: macOS arm64 Release, 26/26 CTest groups and 72 Python cases PASS; new native ASan/UBSan PASS. Final PR-head platform CI remains separate evidence.
