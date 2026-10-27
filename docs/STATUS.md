@@ -5,7 +5,7 @@ Recorded: 2026-10-27. Product: YamAN1x. Repository: `yaman1x`. First public rese
 The repository contains a ROM-free C++/Python development foundation.
 No VST3, AU, GUI or AN1x audio output is available yet.
 
-Current baseline: merged PR #39, `6c1dd8a0c83eac1d593abd4e70c040f88908bb48`.
+Current baseline: merged PR #40, `76787a6ee5450fa29a7403b658fc861ef908a297`.
 The [first-sound plan](FIRST_REAPER_SOUND_PLAN.md) tracks M0 as partial, M1 as
 prepared and M2–M6 as research/planned. Completed helper components do not
 establish a complete CPU or firmware boot. Changes and their provenance are
@@ -13,7 +13,7 @@ indexed in the [development ledger](DEVELOPMENT_LOG.md).
 
 ## Current standalone engine increment
 
-The [H83002 SCI MMIO/IRQ adapter](h83002-sci-mmio-irq.md), PR #39, connects both asynchronous channels to the standalone interrupt controller. Byte/word lane, DMA priority, debugger side effects, reset and isolation tests pass locally; the ROM-free suite now has 24 groups. CPU scheduling and firmware integration remain open. See the dated entry in the [development plan](FIRST_REAPER_SOUND_PLAN.md).
+The [H83002 SCI MMIO/IRQ adapter](h83002-sci-mmio-irq.md), PR #39, connects both asynchronous channels to the standalone interrupt controller. Byte/word lane, DMA priority, debugger side effects, reset and isolation tests pass locally; the ROM-free suite now has 25 groups. CPU scheduling and firmware integration remain open. See the dated entry in the [development plan](FIRST_REAPER_SOUND_PLAN.md).
 
 ## Observed and tested
 
@@ -93,7 +93,7 @@ The ROM-free CMake/CTest suite also passes in GitHub Actions on Linux x64,
 macOS Apple Silicon and Windows x64. These builds do not validate AN1x audio,
 hardware timing or DAW/plugin-host behavior.
 
-The current CMake suite has **24 CTest groups**, including the Python unittest
+The current CMake suite has **25 CTest groups**, including the Python unittest
 group, license coverage, provenance and normal/optimized ABI checks. The audit
 of the baseline passed all 22 groups and 56 Python cases locally on macOS arm64;
 the merged bridge-auditor regression fix adds four Python cases in the same CTest group.
@@ -105,4 +105,8 @@ Fresh scope and evidence: [repository audit](REPOSITORY_AUDIT_2026-10-27.md).
 
 ## Current scheduling increment
 
-The [bounded cycle dispatcher](cycle-dispatcher.md) provides monotonic, resumable event processing with explicit budgets and callback-failure handling. It is now combined with merged SCI integration PR #39. This branch has 24 CTest groups and 60 Python cases. No CPU/peripheral owner or hardware tie ordering is implemented here.
+The [bounded cycle dispatcher](cycle-dispatcher.md) provides monotonic, resumable event processing with explicit budgets and callback-failure handling. It is now combined with merged SCI integration PR #39. This branch has 25 CTest groups and 60 Python cases. A two-channel SCI event owner is now implemented; CPU integration and hardware-validated tie ordering remain open.
+
+## SCI event-owner increment
+
+The [two-channel SCI cycle timeline](sci-cycle-timeline.md) combines immutable timestamped RX input and both UART clocks with explicit budgets. Whole/partitioned/resumed traces match for 256 dual-channel duplex patterns. Wire-before-clock and SCI0-before-SCI1 tie ordering is a software convention. CPU instruction/bus integration remains open.
