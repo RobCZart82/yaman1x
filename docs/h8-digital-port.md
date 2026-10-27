@@ -44,8 +44,15 @@ combinations), each at four external pin patterns. It additionally checks
 output levels/direction, data readback, suppression of unnecessary reads/writes,
 reset register retention, control-register masks and isolated instances.
 
-These are host-level semantics tests; no upstream differential binary or
-AN1x hardware trace was executed. The test is part of the standard CTest suite
+An additional local MSVC Release differential fixture used the verbatim bodies
+of eleven register/reset/update methods from the hash-locked upstream
+`h8_port.cpp`, with a minimal callback host instead of MAME device ownership.
+It compared 600000 deterministic mixed operations (xorshift32 seed `0x19a73`,
+four masks, three forced-input settings, 50000 operations per configuration)
+against the adapted model, including read/output callback counts, register and
+pin values. Result: **zero mismatches**. The temporary fixture remains outside
+Git; it is a register-method differential, not a full MAME device test.
+No AN1x hardware trace was executed. The standard test is part of CTest
 for [PR #24](https://github.com/RobCZart82/yaman1x/pull/24) Linux/macOS/Windows
 runs. Their final checks record platform validation; this development branch
 must not be merged before they pass.
