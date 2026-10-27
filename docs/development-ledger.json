@@ -391,6 +391,8 @@
     "branch": "feat/h8-execution-budget",
     "status": "in_review",
     "summary": "Execution-slice debt and peripheral boundary arithmetic, without opcode runner",
-    "validation": "Local macOS arm64 Release 27/27 CTest groups, 74 Python cases and new native ASan/UBSan PASS. Original-method comparison: 200000 no-event synthetic slices plus 200000 deadlines, zero differences. Source/notice audits PASS. Final PR-head CI pending; no CPU opcodes executed."
+    "validation": "Local macOS arm64 Release 27/27 CTest groups, 74 Python cases and new native ASan/UBSan PASS. Original-method comparison: 200000 no-event synthetic slices plus 200000 deadlines, zero differences. Source/notice audits PASS. Final PR-head CI pending; no CPU opcodes executed.",
+    "pr": 44,
+    "url": "https://github.com/RobCZart82/yaman1x/pull/44"
   }
 }

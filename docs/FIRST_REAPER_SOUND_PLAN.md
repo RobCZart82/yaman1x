@@ -468,6 +468,6 @@ Local validation / helyi ellenőrzés: macOS arm64 Release, 26/26 CTest groups a
 
 ## 2026-10-27 — H8 végrehajtási cikluskeret
 
-Ág: `feat/h8-execution-budget`, alap: beolvadt #43. [Komponensszerződés](h8-execution-budget.md): ciklustartozás továbbvitele, perifériahatáridő és explicit szeletfázisok. Eredeti execute_run módszerrel 200000 szintetikus, esemény nélküli szelet; recompute_bcount módszerrel 200000 határidő, 0 eltérés. Natív buszkapcsolat 1000 felosztási történettel. Ez számtani komponens; a valódi full/partial utasításkezelők, CPU-állapot és IRQ/SCI ütemezési kapcsolata még nyitott. M0 részben teljesült.
+PR: [#44](https://github.com/RobCZart82/yaman1x/pull/44), ág: `feat/h8-execution-budget`, alap: beolvadt #43. [Komponensszerződés](h8-execution-budget.md): ciklustartozás továbbvitele, perifériahatáridő és explicit szeletfázisok. Eredeti execute_run módszerrel 200000 szintetikus, esemény nélküli szelet; recompute_bcount módszerrel 200000 határidő, 0 eltérés. Natív buszkapcsolat 1000 felosztási történettel. Ez számtani komponens; a valódi full/partial utasításkezelők, CPU-állapot és IRQ/SCI ütemezési kapcsolata még nyitott. M0 részben teljesült.
 
 Local validation / helyi ellenőrzés: macOS arm64 Release, 27/27 CTest groups and 74 Python cases PASS; new native ASan/UBSan and source/notice audits PASS. Final PR-head CI pending.
