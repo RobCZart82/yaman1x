@@ -40,6 +40,7 @@ kerülhet a tervbe. A részletes mérési jegyzőkönyvekre hivatkozás mutasson
 
 | Dátum | Változás és állapot | Ellenőrzés / bizonyíték | Következő lépés |
 |---|---|---|---|
+| 2026-10-27 | **Architekturális követelmény:** cserélhető PKS HLE/firmware megvalósítás, közös időzített perifériafelület és verziózott mentett állapot; áttérési út az M1 alatt és ADR-0001-ben. | Dokumentációs döntés; nincs megvalósított backend vagy új dump, M0/M1 változatlan. | A bizonyított protokoll alapján interfész és szintetikus tesztek; dump esetén MCU-integráció és összehasonlító elfogadás. |
 | 2026-10-27 | **Ötletfeljegyzés:** PKS HLE, fokozatos protokollbizonyítás, dummy ROM korlátai és távlati hardveres helyettesítés lehetőségei rögzítve az M1 alatt. | Dokumentációs értékelés; új működési vagy hardveres bizonyíték nincs, M0/M1 állapota változatlan. | Firmware-elvárások és tényleges kommunikáció bizonyítása; csak utána döntés egy külön tesztelhető PKS-modellről. |
 | 2026-10-27 | [#29](https://github.com/RobCZart82/yaman1x/pull/29): **M0 részben teljesült:** önálló [SCI SSR státusz-latch](h8-sci-status.md), olvasás utáni törlés, debugger/DMA mellékhatások és upstream reset-viselkedés. A teljes UART még nincs bekötve. | Windows MSVC Release: 33 554 432 átmenet független bitenkénti orákulummal PASS; külön szekvenciatesztek PASS. A végső revízió és platformeredmények a kapcsolódó PR checkjeinél. Firmware/MIDI/hardver: NOT RUN. | SCI TX/RX bájtállapotgép, TDR/RDR és megszakítások; az SSR-write utáni tx_start/sync_rx_start tulajdonosi lépések és ciklusóra összekötése, majd CPU-bekötés. |
 | 2026-10-27 | [#16](https://github.com/RobCZart82/yaman1x/pull/16), beolvadt: Python `-O` mellett is aktív ABI-ellenőrzések, AsmJit tesztforrások kizárása, harmadik fél patch-darabszám javítása | `ac56d8c7144ef8cb478f3a714578203c440b841e`: Linux x64, macOS arm64, Windows x64 CI 11/11 tesztcsoport PASS; [futás](https://github.com/RobCZart82/yaman1x/actions/runs/40454166792). Helyi Windows: build PASS, CTest 10/11; egy meglévő symlinkteszt WinError 1314 miatt akadályozott. [Auditkövetés](AUDIT_FOLLOWUP_2026-10-27.md). | A VOP3 inicializálás/`memcmp` kockázat célzott vizsgálata; EG target-hold változtatás csak hardveres bizonyíték után. |
@@ -174,6 +175,31 @@ nem megvalósított funkciók és nem új elfogadási bizonyítékok.** M1 álla
   A szervizrajz önmagában nem tárja fel a program működését; a javasolt Hitachi
   változatok láb-, programozási és működési kompatibilitása nincs igazolva.
   Ez nem előfeltétele a jelenlegi szoftveres fejlesztésnek.
+
+**Továbbfejleszthetőségi követelmény — 2026-10-27.** Ha bizonyított HLE
+áthidalást vezetünk be, azt cserélhető PKS-megvalósításként kell tervezni.
+A későbbi eredeti dumpot futtató MCU-modell ugyanahhoz az időbélyeges
+perifériafelülethez kapcsolódjon; a plugin és a fő H8 firmware ne függjön a
+HLE belső megoldásaitól. Ez tervezési követelmény, nem elkészült funkció.
+Részletek: [ADR-0001: cserélhető PKS-megvalósítás](ADR-0001-engine-boundary.md#replaceable-pks-implementation-and-future-dump-integration).
+
+Tervezett áttérési út és elfogadási feltételek:
+
+1. Bizonyított protokoll alapján rögzíteni a közös bemenet/kimenet, reset és
+   időléptetés szerződését; szintetikus tesztekkel ellenőrizni az izolációt.
+2. A HLE-t külön azonosított kísérleti profilként megtartani. A mentett állapot
+   tartalmazza a megvalósítás/profil azonosítóját, sémaverzióját és a szükséges
+   ROM tartalmi azonosítóját; Yamaha bájtokat vagy helyi abszolút utat ne.
+3. Ha elérhető lesz a dump, ellenőrizni az eredetét/azonosítóját, a pontos MCU-t,
+   memóriatérképet és perifériákat; csak ezután készíteni firmware-t futtató
+   modellt. Az eredeti program megléte önmagában nem bizonyít hardverhűséget.
+4. Azonos időzített ingerekkel összevetni a HLE-t és az új modellt; indulás,
+   kezelőpanel, reset, firmware-es MIDI és audio elfogadását újrafuttatni.
+   A bizonyíték alapján tudatosan kijelölni az új alapértelmezett profilt.
+5. Váltáskor ellenőrzött újrainicializálást használni; futó audio közbeni csere
+   nem követelmény. Régi HLE-állapotot tilos észrevétlenül MCU-állapotként
+   betölteni. Hiányzó ROM/profil esetén egyértelmű jelzés szükséges; migráció
+   csak külön dokumentált és tesztelt támogatásként ígérhető.
 
 Korlátok: a jelenlegi LCD-buszmodell és SysEx-eszközök nem helyettesítik a
 PKS-kézfogást. A PKS HLE ötlete a külön VOP3 ROM-ok hiányát nem oldja meg.
