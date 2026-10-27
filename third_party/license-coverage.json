@@ -1,0 +1,1565 @@
+{
+  "schema_version": 1,
+  "scope": "Reviewed source attribution and notice coverage, not legal clearance or binary package acceptance.",
+  "components": [
+    {
+      "id": "vop3",
+      "license": "BSD-3-Clause",
+      "source": "https://github.com/musicastudio/VOP3/tree/a3c8182811c398efd41daadf78d6fabcf50af56a",
+      "files": [
+        {
+          "path": "third_party/vop3/LICENSE",
+          "required_notices": []
+        },
+        {
+          "path": "third_party/vop3/src/vop3.cpp",
+          "required_notices": [
+            "// license:BSD-3-Clause",
+            "// copyright-holders:Wouter van Nifterick"
+          ]
+        },
+        {
+          "path": "third_party/vop3/src/vop3.h",
+          "required_notices": [
+            "// license:BSD-3-Clause",
+            "// copyright-holders:Wouter van Nifterick"
+          ]
+        },
+        {
+          "path": "third_party/vop3/src/vop3_regs.h",
+          "required_notices": [
+            "// license:BSD-3-Clause",
+            "// copyright-holders:Wouter van Nifterick"
+          ]
+        },
+        {
+          "path": "third_party/vop3/src/yss236_core.h",
+          "required_notices": [
+            "// license:BSD-3-Clause",
+            "// copyright-holders:Wouter van Nifterick"
+          ]
+        },
+        {
+          "path": "third_party/vop3/src/yss236_jit.cpp",
+          "required_notices": [
+            "// license:BSD-3-Clause",
+            "// copyright-holders:James Hansen"
+          ]
+        },
+        {
+          "path": "cmake/vop3/CMakeLists.txt",
+          "required_notices": [
+            "adapted from the VOP3",
+            "BSD-3-Clause"
+          ]
+        },
+        {
+          "path": "third_party/patches/vop3-initial-decode.patch",
+          "required_notices": []
+        }
+      ],
+      "license_files": [
+        {
+          "path": "third_party/vop3/LICENSE",
+          "sha256": "0abe473189f33bc5bfa80877fab3cfce21a5036b2ec57b84e44b8ecedaea4be1"
+        }
+      ]
+    },
+    {
+      "id": "asmjit",
+      "license": "Zlib",
+      "source": "https://github.com/musicastudio/VOP3/tree/a3c8182811c398efd41daadf78d6fabcf50af56a",
+      "files": [
+        {
+          "path": "third_party/vop3/third_party/asmjit/LICENSE.md",
+          "required_notices": []
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/a64.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_arch_traits_p.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_assembler.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_assembler.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_builder.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_builder.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_compiler.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_compiler.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_emit_helper.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_emit_helper_p.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_emitter.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_formatter.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_formatter_p.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_func.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_func_p.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_globals.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_inst_api.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_inst_api_p.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_inst_db.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_inst_db.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_inst_db_p.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_inst_test.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_operand.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_operand_test.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_ra_pass.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/arm/a64_ra_pass_p.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/arm/arm_formatter.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/arm/arm_formatter_p.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/arm/arm_globals.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/arm/arm_utils.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/arm.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/asmjit.h",
+          "required_notices": []
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/asmjit.natvis",
+          "required_notices": []
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/axl/algorithm.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/axl/algorithm_test.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/axl/arena.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/axl/arena.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/axl/arena_bit_set.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/axl/arena_bit_set_p.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/axl/arena_bit_set_test.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/axl/arena_hash.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/axl/arena_hash.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/axl/arena_hash_test.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/axl/arena_list.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/axl/arena_list_test.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/axl/arena_pool.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/axl/arena_string.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/axl/arena_test.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/axl/arena_tree.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/axl/arena_tree_test.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/axl/arena_vector.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/axl/arena_vector.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/axl/arena_vector_test.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/axl/bit_set_ops.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/axl/bit_set_ops_test.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/axl/build_integration.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/axl/commons.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/axl/commons_test.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/axl/inplace_array.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/axl/inplace_bit_set.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/axl/inplace_queue.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/axl/inplace_stack.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/axl/inplace_storage.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/axl/inplace_string.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/axl/mem_ops.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/axl/mem_ops_test.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/axl/span.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/axl/string_index.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/axl/string_index_test.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/axl/string_utils.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/axl/string_utils_test.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/axl/support_p.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/build_scope_begin.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/build_scope_end.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/arch_commons.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/arch_traits.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/arch_traits.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/assembler.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/assembler.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/build_defs.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/build_export_p.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/builder.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/builder.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/builder_p.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/code_buffer.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/code_holder.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/code_holder.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/code_holder_test.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/code_writer.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/code_writer_p.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/compiler.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/compiler.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/compiler_defs.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/const_pool.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/const_pool.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/const_pool_test.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/cpu_info.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/cpu_info.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/debug_utils.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/debug_utils.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/emit_helper.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/emit_helper_p.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/emitter.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/emitter.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/emitter_utils.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/emitter_utils_p.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/environment.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/environment.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/error.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/error.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/error_handler.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/error_handler.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/fixup.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/formatter.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/formatter.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/formatter_p.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/func.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/func.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/func_args_context.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/func_args_context_p.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/func_test.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/globals.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/inst.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/inst.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/inst_db.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/inst_db_p.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/jit_allocator.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/jit_allocator.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/jit_allocator_test.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/jit_runtime.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/jit_runtime.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/logger.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/logger.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/misc_p.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/operand.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/operand_test.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/os_utils.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/os_utils.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/os_utils_p.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/pauth.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/pauth.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/pauth_utils_p.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/ra_assignment_p.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/ra_cfg_block_p.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/ra_cfg_builder_p.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/ra_constraints_p.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/ra_defs_p.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/ra_inst_p.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/ra_local.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/ra_local_p.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/ra_pass.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/ra_pass_p.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/ra_reg_p.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/ra_stack.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/ra_stack_p.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/string.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/string.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/string_test.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/target.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/target.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/type.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/type.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/virt_mem.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/virt_mem.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core/virt_mem_test.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/core.h",
+          "required_notices": [
+            "// SPDX-License-Identifier: Zlib",
+            "// Copyright (c) 2008-2025 The AsmJit Authors"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/host.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_arch_traits_p.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_assembler.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_assembler.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_builder.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_builder.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_compiler.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_compiler.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_emit_helper.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_emit_helper_p.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_emitter.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_formatter.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_formatter_p.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_func.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_func_p.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_globals.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_inst_api.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_inst_api_p.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_inst_db.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_inst_db.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_inst_db_p.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_inst_test.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_opcode_p.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_operand.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_operand_test.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_ra_pass.cpp",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/x86/x86_ra_pass_p.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        },
+        {
+          "path": "third_party/vop3/third_party/asmjit/asmjit/x86.h",
+          "required_notices": [
+            "// See <asmjit/core.h> or LICENSE.md for license and copyright information",
+            "// SPDX-License-Identifier: Zlib"
+          ]
+        }
+      ],
+      "license_files": [
+        {
+          "path": "third_party/vop3/third_party/asmjit/LICENSE.md",
+          "sha256": "13870bd53bce53fb9a9bd72e72dcceeffc547c84d9a00d3d4833737a79651828"
+        }
+      ]
+    },
+    {
+      "id": "mame-h8-adaptations",
+      "license": "BSD-3-Clause",
+      "source": "https://github.com/mamedev/mame/tree/706dbb73281320c54d7c2f16262c1c3786f2be01/src/devices/cpu/h8",
+      "files": [
+        {
+          "path": "src/h8_digital_port.h",
+          "required_notices": [
+            "// license:BSD-3-Clause",
+            "// copyright-holders:Olivier Galibert"
+          ]
+        },
+        {
+          "path": "src/h8h_internal_irqs.h",
+          "required_notices": [
+            "// license:BSD-3-Clause",
+            "// copyright-holders:Olivier Galibert"
+          ]
+        },
+        {
+          "path": "src/h8h_irq_controller.h",
+          "required_notices": [
+            "// license:BSD-3-Clause",
+            "// copyright-holders:Olivier Galibert"
+          ]
+        },
+        {
+          "path": "src/h8_sci_cycle_clock.h",
+          "required_notices": [
+            "// license:BSD-3-Clause",
+            "// copyright-holders:Olivier Galibert"
+          ]
+        },
+        {
+          "path": "src/h8_sci_status.h",
+          "required_notices": [
+            "// license:BSD-3-Clause",
+            "// copyright-holders:Olivier Galibert"
+          ]
+        }
+      ],
+      "license_files": [
+        {
+          "path": "licenses/MAME-BSD-3-Clause.txt",
+          "sha256": "a27554938d3dd6569931e5e18b93214a57f47bc1bb8b75fc32fdd18abe042a07"
+        }
+      ]
+    },
+    {
+      "id": "mame-research-patches",
+      "license": "BSD-3-Clause (listed upstream excerpts); full MAME research distribution separately GPL-2.0",
+      "source": "https://github.com/mamedev/mame/tree/706dbb73281320c54d7c2f16262c1c3786f2be01",
+      "files": [
+        {
+          "path": "research/mame-dsp-capture.patch",
+          "required_notices": []
+        },
+        {
+          "path": "research/mame-eg-readback-experiment.patch",
+          "required_notices": []
+        },
+        {
+          "path": "research/mame-headless-trace.patch",
+          "required_notices": []
+        },
+        {
+          "path": "research/mame-lcd-controller.patch",
+          "required_notices": []
+        },
+        {
+          "path": "research/mame-live-register-bridge.patch",
+          "required_notices": []
+        },
+        {
+          "path": "research/mame-midi-input.patch",
+          "required_notices": []
+        },
+        {
+          "path": "research/mame-no-cocoa.patch",
+          "required_notices": []
+        },
+        {
+          "path": "research/mame-sci-access-observation.patch",
+          "required_notices": []
+        },
+        {
+          "path": "research/mame-sci-state-observation.patch",
+          "required_notices": []
+        },
+        {
+          "path": "research/mame-timed-vop3-experiment.patch",
+          "required_notices": []
+        },
+        {
+          "path": "research/mame-upload-control-experiment.patch",
+          "required_notices": []
+        }
+      ],
+      "license_files": [
+        {
+          "path": "licenses/MAME-BSD-3-Clause.txt",
+          "sha256": "a27554938d3dd6569931e5e18b93214a57f47bc1bb8b75fc32fdd18abe042a07"
+        },
+        {
+          "path": "licenses/MAME-COPYING.txt",
+          "sha256": "9814ccb157fdb0a8f0fa049f858b6ac761320e90eb28f54e2972468d6d6ac0ca"
+        },
+        {
+          "path": "licenses/MAME-GPL-2.0.txt",
+          "sha256": "ba20c40872287b52eeca54d48e875879b33d841b98f8cedba3558b405467d5de"
+        }
+      ]
+    }
+  ],
+  "notice_documents": [
+    {
+      "path": "THIRD_PARTY.md",
+      "required_notices": [
+        "AJR",
+        "R. Belmont",
+        "Olivier Galibert",
+        "Wouter van Nifterick",
+        "Zhiyuan Wan",
+        "James Hansen",
+        "Petr Kobalicek"
+      ]
+    }
+  ]
+}
