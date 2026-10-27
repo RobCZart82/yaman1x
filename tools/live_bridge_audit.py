@@ -36,8 +36,17 @@ def audit(directory, replay=None):
                   for line in lines if 'YAMANIX DSP_SAMPLE_CLOCK' in line]
         if len(clocks) != 1 or not clocks[0]:
             raise ValueError('Missing or ambiguous experimental sample-clock marker')
-    elif len(starts) != 1 or not re.search(r'state=live-register-only abi=[12] dsp_samples=0 hardware_validated=0$', starts[0]):
+    elif len(starts) != 1 or not re.search(r'state=live-register-only abi=(?:1 dsp_samples=0|2(?: dsp_samples=0)?) hardware_validated=0$', starts[0]):
         raise ValueError('Missing or ambiguous live bridge marker')
+    if not timed:
+        clocks = [line for line in lines if 'YAMANIX DSP_SAMPLE_CLOCK' in line]
+        current_marker = bool(re.search(r'abi=2 hardware_validated=0$', starts[0]))
+        # Current MAME records the disabled clock separately. Older ABI 1/2
+        # captures instead carry dsp_samples=0 on the bridge marker itself.
+        if clocks or current_marker:
+            if len(clocks) != 1 or not re.search(
+                    r'YAMANIX DSP_SAMPLE_CLOCK profile=disabled rate_hz=0 hardware_validated=0$', clocks[0]):
+                raise ValueError('Missing or inconsistent disabled sample-clock marker')
     boards = [re.search(r'YAMANIX DMS_BOARD state=(absent|installed) port9_input=(ff|fb) hardware_validated=0$', line)
               for line in lines if 'YAMANIX DMS_BOARD' in line]
     if len(boards) != 1 or not boards[0]:
@@ -59,6 +68,8 @@ def audit(directory, replay=None):
     sample_passes = manifest.get('dsp_sample_passes', [0, 0])
     if not isinstance(sample_passes, list) or len(sample_passes) != 2 or any(not isinstance(x, int) or x < 0 for x in sample_passes):
         raise ValueError('Malformed per-chip DSP sample counters')
+    if not timed and any(sample_passes):
+        raise ValueError('Register-only manifest claims DSP sample execution')
     for line in lines:
         if 'YAMANIX BRIDGE_END' not in line:
             continue
