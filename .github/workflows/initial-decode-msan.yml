@@ -1,0 +1,31 @@
+name: ROM-free initial decode MSan
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: initial-decode-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  initial-decode-msan:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - name: Record compiler
+        run: clang++-18 --version
+      - name: Reproduce original read and verify candidate with MemorySanitizer
+        run: python tools/check_initial_decode_msan.py --work work/initial-decode-msan

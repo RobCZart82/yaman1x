@@ -8,4 +8,5 @@ CMakeLists.txt text eol=lf
 # Preserve the reviewed upstream snapshot byte-for-byte and patch context verbatim.
 /third_party/vop3/** -text -whitespace
 /research/*.patch -whitespace
+/third_party/patches/*.patch -whitespace
 /licenses/** -text -whitespace

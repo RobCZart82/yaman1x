@@ -72,7 +72,7 @@ hashes remain distinct from Git SHAs.
 
 | Component | Identity | Scope / terms |
 |---|---|---|
-| VOP3 | archive SHA-256 `26dacd7280118556ed50ce6fcc03c6835866d18e17a9ad61c3bc77557809e0c9`; file lock in `third_party/provenance.json` | Included source subset, BSD-3-Clause; unchanged |
+| VOP3 | archive SHA-256 `26dacd7280118556ed50ce6fcc03c6835866d18e17a9ad61c3bc77557809e0c9`; file lock in `third_party/provenance.json` | BSD-3-Clause; one reversible reviewed initialization adaptation |
 | AsmJit | `ASMJIT_LIBRARY_VERSION` 1.23.0; same archive and per-file lock | Included, zlib; unchanged |
 | MAME | archive SHA-256 `acffc3d3c4d8ffab148d07de5ab0416e54841a1ac99375cfdf641eec5eca7a6e` | External research source; full distribution GPL-2.0 terms and file-specific notices |
 | H8/3002 port candidate | Same MAME archive; `src/devices/cpu/h8/` | CPU/SCI source headers inspected as BSD-3-Clause; entire dependency closure not yet approved or imported |
@@ -114,6 +114,6 @@ test equal-time event order and MIDI queue overflow. Use generated instructions
 and bytes only. Preserve the existing research capture formats and experimental
 profile names. Do not change EG target hold without AN1x hardware evidence.
 
-Open VOP3 initialization risk: see [audit follow-up](AUDIT_FOLLOWUP_2026-10-27.md).
-Resolve it with a separately reviewed vendor patch and updated provenance before
-treating repeated construction/JIT execution as a production-ready foundation.
+The VOP3 first-decode initialization finding was reproduced with MSan and has a
+[reviewed reversible fix](vop3-initial-decode-fix.md). This addresses the
+constructor read; it does not establish full JIT cleanliness or real-time safety.

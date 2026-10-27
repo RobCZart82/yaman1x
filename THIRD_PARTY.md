@@ -2,7 +2,7 @@
 
 | Component | Included material | License / notices |
 |---|---|---|
-| [musicastudio/VOP3](https://github.com/musicastudio/VOP3) | Five unchanged C++ source/header files in `third_party/vop3/src` | BSD-3-Clause; `third_party/vop3/LICENSE`; copyright 2026 Wouter van Nifterick, Zhiyuan Wan, James Hansen |
+| [musicastudio/VOP3](https://github.com/musicastudio/VOP3) | Five C++ source/header files; one reviewed initialization adaptation in `third_party/vop3/src` | BSD-3-Clause; `third_party/vop3/LICENSE`; copyright 2026 Wouter van Nifterick, Zhiyuan Wan, James Hansen |
 | AsmJit snapshot supplied with VOP3 | Unchanged source files under `third_party/vop3/third_party/asmjit/asmjit` | zlib; `third_party/vop3/third_party/asmjit/LICENSE.md`; copyright 2008–2025 Petr Kobalicek |
 | [MAME](https://github.com/mamedev/mame) | Eleven research patch files only; no executable or full source tree | Specific upstream files listed below are BSD-3-Clause; full MAME distribution has GPL-2.0 terms. License texts and original distribution notice are under `licenses/`. |
 
@@ -14,7 +14,9 @@ hash remains distinct from the commit ID; see [identity evidence](docs/source-id
 hash and size. The repository auditor checks them without network access.
 The source-only build recipe in `cmake/vop3/` is an explicitly adapted version
 of the upstream recipe: examples and upstream tests that need Yamaha images
-are omitted. The included VOP3 and AsmJit code files are unchanged.
+are omitted. AsmJit and four VOP3 files are unchanged. One VOP3 header has an explicit
+[reversible initialization fix](docs/vop3-initial-decode-fix.md), recorded in
+the provenance manifest with its original upstream hash and exact patch.
 
 MAME patch context comes from:
 

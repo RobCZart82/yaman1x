@@ -2,7 +2,7 @@
   "upstream": "https://github.com/musicastudio/VOP3",
   "snapshot_archive_sha256": "26dacd7280118556ed50ce6fcc03c6835866d18e17a9ad61c3bc77557809e0c9",
   "upstream_commit": "a3c8182811c398efd41daadf78d6fabcf50af56a",
-  "note": "Code-only subset of the user-supplied archive; listed files unchanged. Custom CMake recipe is maintained separately. No Yamaha program images or upstream tests requiring them.",
+  "note": "Reviewed source subset of the user-supplied archive. All files unchanged except the explicitly reversible local edit recorded below; no Yamaha images or ROM-dependent tests.",
   "files": [
     {
       "path": "third_party/vop3/LICENSE",
@@ -26,8 +26,8 @@
     },
     {
       "path": "third_party/vop3/src/yss236_core.h",
-      "sha256": "83de64a33c17f9334ebbf2b19e707e5a7027b4e1729146ce37150714166da76e",
-      "bytes": 19849
+      "sha256": "be9d3a613eeeb6406e9cf1bb55ef05bb9d8c435c77e967fa08e29ae36586f3c9",
+      "bytes": 19851
     },
     {
       "path": "third_party/vop3/src/yss236_jit.cpp",
@@ -1011,5 +1011,16 @@
     }
   ],
   "upstream_git_tree": "89a324b2602b9f91af013483b7c6bdc09c80ee60",
-  "commit_identity_evidence": "ZIP comment and complete archive Git-tree match; see docs/source-identity-recovery.md"
+  "commit_identity_evidence": "ZIP comment and complete archive Git-tree match; see docs/source-identity-recovery.md",
+  "local_edits": [
+    {
+      "path": "third_party/vop3/src/yss236_core.h",
+      "upstream_sha256": "83de64a33c17f9334ebbf2b19e707e5a7027b4e1729146ce37150714166da76e",
+      "upstream_bytes": 19849,
+      "before": "\top ops[STEPS];",
+      "after": "\top ops[STEPS]{};",
+      "patch": "third_party/patches/vop3-initial-decode.patch",
+      "patch_sha256": "d6e74b6467337b2afefa89ebaf753b211952f8ab765aade1bcb0f539f056edd0"
+    }
+  ]
 }

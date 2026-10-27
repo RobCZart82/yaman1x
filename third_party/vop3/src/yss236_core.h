@@ -101,7 +101,7 @@ public:
 	uint16_t slot[SLOTS][2];      // registers 0x0D (bits 17-9) and 0x0E (bits 8-0); the AN boards' H8 drivers load the same pair
 
 	// Decoded program
-	op ops[STEPS];
+	op ops[STEPS]{};
 
 	// State
 	double r[128];
