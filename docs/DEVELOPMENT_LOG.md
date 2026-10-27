@@ -1,7 +1,7 @@
 # YamAN1x fejlesztési napló
 
 Frissítve: 2026-10-27. Időzóna: Europe/Budapest.
-Ellenőrzött alap: `e3f71a89f6d967034a3c05926a7a86c595ab9a49` (#42).
+Ellenőrzött alap: `f8b1f4fbd4a422eab33d633e2384f1c82c11623d` (#43).
 
 ## A nyilvántartás feladata
 
@@ -46,13 +46,14 @@ A hatregiszteres bájt/szó MMIO és a csatornánkénti ERI/RXI/TXI/TEI útvonal
 
 ## Beolvadt változások — a legutóbbi elöl
 
-A következő 37 bejegyzés GitHub PR-metaadatból és az aktuális `main` Git-előzményéből
-ellenőrzött visszamenőleges könyvelés (#6–#42). A beolvadás bizonyított; a
+A következő 38 bejegyzés GitHub PR-metaadatból és az aktuális `main` Git-előzményéből
+ellenőrzött visszamenőleges könyvelés (#6–#43). A beolvadás bizonyított; a
 felsorolás önmagában nem állít minden PR-re újrafuttatott hardveres vagy helyi
 validációt. A kezdeti importot a [történeti összefoglaló](HISTORY.md) őrzi.
 
 | Beolvasztás (Budapest) | PR | Fejlesztés / javítás | Merge commit |
 |---|---|---|---|
+| 2026-10-27 21:49:51 | [#43](https://github.com/RobCZart82/yaman1x/pull/43) | H8H buszsegédek és eredetimetódus-összevetés | `f8b1f4fbd4a422eab33d633e2384f1c82c11623d` |
 | 2026-10-27 21:33:08 | [#42](https://github.com/RobCZart82/yaman1x/pull/42) | H8 CPU gazdaszolgáltatás-határ és reprodukálható leltár | `e3f71a89f6d967034a3c05926a7a86c595ab9a49` |
 | 2026-10-27 20:47:56 | [#41](https://github.com/RobCZart82/yaman1x/pull/41) | Kétcsatornás SCI-idővonal | `259338dbffed8b5b10b606c5f8f907bd791b1b74` |
 | 2026-10-27 19:56:09 | [#40](https://github.com/RobCZart82/yaman1x/pull/40) | Korlátozott ciklus-eseményfuttató | `76787a6ee5450fa29a7403b658fc861ef908a297` |
@@ -128,3 +129,9 @@ Local validation / helyi ellenőrzés: macOS arm64 Release, 25/25 CTest groups a
 PR: [#43](https://github.com/RobCZart82/yaman1x/pull/43), ág: `feat/h8h-bus-access`, alap: beolvadt #42. [Szerződés és bizonyíték](h8h-bus-access.md). BSD-forráseredet rögzítve, licenclefedettség frissítve. Öt önálló buszsegéd; 200000 műveletes eredetimetódus-összevetés 0 eltéréssel, 65536 szóérték és hibahatárok. CPU-futtató, firmware és hang továbbra is nyitott.
 
 Local validation / helyi ellenőrzés: macOS arm64 Release, 26/26 CTest groups and 72 Python cases PASS; new native ASan/UBSan PASS. Final PR-head platform CI remains separate evidence.
+
+## H8-BUDGET-2026-10-27 — végrehajtási keret számtana
+
+Ág: `feat/h8-execution-budget`, alap: beolvadt #43. [Szerződés és bizonyíték](h8-execution-budget.md). Ciklustartozás, határidő és stabil CPU-counter a buszsegédhez; 1000 felosztási történet és 400000 eredetimetódus-összevetés 0 eltéréssel. Licenc- és eredetnyilvántartás frissítve. Teljes CPU-utasításvégrehajtás, firmware és hang nincs.
+
+Local validation / helyi ellenőrzés: macOS arm64 Release, 27/27 CTest groups and 74 Python cases PASS; new native ASan/UBSan and source/notice audits PASS. Final PR-head CI pending.

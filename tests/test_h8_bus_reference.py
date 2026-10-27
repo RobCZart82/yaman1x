@@ -43,3 +43,23 @@ class BusReferenceTests(unittest.TestCase):
         row = next(r for r in report['files'] if r['path']==SOURCE)
         self.assertEqual(lock['inputs'][SOURCE]['sha256'], row['sha256'])
         self.assertEqual(lock['inputs'][SOURCE]['bytes'], row['bytes'])
+
+
+class BudgetReferenceTests(unittest.TestCase):
+    def test_budget_archive_rejected_before_compile(self):
+        from check_h8_budget_reference import check as budget_check
+        with tempfile.TemporaryDirectory() as temp:
+            archive = Path(temp)/'wrong.zip'; archive.write_bytes(b'wrong source')
+            work = Path(temp)/'work'
+            with patch('check_h8_budget_reference.subprocess.run') as run:
+                with self.assertRaises(ValueError):
+                    budget_check(archive, work)
+                run.assert_not_called()
+                self.assertFalse(work.exists())
+
+    def test_budget_and_bus_share_exact_source_identity(self):
+        root = Path(__file__).resolve().parents[1]
+        bus = json.loads((root/'research/h8h-bus-provenance.json').read_text())
+        budget = json.loads((root/'research/h8-execution-budget-provenance.json').read_text())
+        self.assertEqual(bus['inputs'], budget['inputs'])
+        self.assertEqual(bus['upstream_commit'], budget['upstream_commit'])
