@@ -14,5 +14,6 @@
       "copyright_holder": "Olivier Galibert"
     }
   },
-  "adaptation": "src/h8_sci_async_tx.h; asynchronous TX state machine and TX-only register/clock/status owner. RX, synchronous/MP framing, external clocks, CPU and DMA-controller execution omitted. Original scheduling/status adapters composed, upstream TX parity convention retained."
+  "adaptation": "src/h8_sci_async_tx.h; asynchronous TX state machine and TX-only register/clock/status owner. RX, synchronous/MP framing, external clocks, CPU and DMA-controller execution omitted. Original scheduling/status adapters composed, upstream TX parity convention retained.",
+  "current_implementation": "src/h8_sci_async_tx.h now provides a compatibility facade over src/h8_sci_async_channel.h; original extraction evidence retained. See research/h8-sci-channel-provenance.json."
 }

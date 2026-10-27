@@ -1,5 +1,10 @@
 # H8 SCI asynchronous RX owner
 
+Current implementation note (2026-10-27): this API now forwards to the
+[shared asynchronous channel](h8-sci-async-channel.md). The extraction evidence
+below records the earlier standalone milestone; current integration gates are
+listed in the shared-channel document.
+
 Date: 2026-10-27. Baseline: main `389594251b9b4521286c94c232f5ce262b5de396`.
 Source: the pinned MAME `h8_sci.cpp` and header recorded in
 `research/h8-sci-rx-provenance.json`. BSD-3-Clause/Olivier Galibert notices and
@@ -52,10 +57,9 @@ cycle overflow can partially advance this compound owner; discard/reinitialize
 it. No save-state or real-time safety claim is made. Standby scheduling is not
 modeled; input writes here apply to an awake receiver.
 
-The TX-only and RX-only owners each contain their own clock/status/registers.
-They must not be wired in parallel as one complete SCI channel. A following
-integration step must put both state machines behind one common register,
-clock and interrupt boundary before CPU MMIO or firmware execution is claimed.
+The TX-only and RX-only facades each own an independent channel instance. Use
+`H8SciAsyncChannel` directly for one full-duplex channel; do not wire two facade
+instances as the two halves of one SCI. IRQ/CPU MMIO integration remains open.
 
 ## Verification
 
@@ -72,6 +76,6 @@ zero event/state mismatches. It is not a fully independent MAME/CPU run. Fixture
 and generated builds stay in ignored scratch storage. Final tested revision and
 platform results are attached to the associated PR checks.
 
-Next: shared TX/RX ownership and equal-time dispatch tests, then IRQ/CPU MMIO
-integration and actual firmware/MIDI acceptance. PKS protocol, audio and plugin
+Next: IRQ/CPU MMIO integration of the shared channel, followed by actual
+firmware/MIDI acceptance. PKS protocol, audio and plugin
 acceptance remain open. No Yamaha ROM/bank/private trace or EG target-hold change.
