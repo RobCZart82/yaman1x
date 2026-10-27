@@ -86,6 +86,10 @@ példányonként elkülöníthető, időléptetése külső audiofolyamhoz illes
 
 ### M1 — Indulási út, PKS és valódi MIDI-vétel
 
+Következő előfeltétel: [rögzített forrású teljes kutatási build](source-identity-recovery.md).
+Külön ROM-mentes CI készül a teljes MAME-targethez; ennek sikere sem
+helyettesíti a friss firmware-es SCI/MIDI-próbát.
+
 2026-10-27: **folyamatban**, első műszerezési lépés elkészült:
 [időbélyeges SCI-hozzáférések](m1-sci-access-milestone.md). A ROM-mentes
 tesztek a megfigyelőt és a naplóellenőrzést vizsgálják; a teljes új MAME-build

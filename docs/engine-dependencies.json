@@ -4,18 +4,22 @@
   "vop3_and_asmjit": {
     "state": "vendored unchanged",
     "archive_sha256": "26dacd7280118556ed50ce6fcc03c6835866d18e17a9ad61c3bc77557809e0c9",
-    "upstream_commit": null,
+    "upstream_commit": "a3c8182811c398efd41daadf78d6fabcf50af56a",
     "file_manifest": "third_party/provenance.json",
     "asmjit_version": "1.23.0",
-    "licenses": ["BSD-3-Clause", "Zlib"]
+    "licenses": [
+      "BSD-3-Clause",
+      "Zlib"
+    ]
   },
   "mame_h83002": {
     "state": "external research reference; port dependency closure pending",
     "archive_sha256": "acffc3d3c4d8ffab148d07de5ab0416e54841a1ac99375cfdf641eec5eca7a6e",
-    "upstream_commit": null,
+    "upstream_commit": "706dbb73281320c54d7c2f16262c1c3786f2be01",
     "cpu_source_directory": "src/devices/cpu/h8",
     "selected_file_license": "BSD-3-Clause",
-    "complete_port_license_review": false
+    "complete_port_license_review": false,
+    "research_source_lock": "research/mame-source-lock.json"
   },
   "vst3_sdk": {
     "state": "selected for future M5 adapter; not downloaded by build",

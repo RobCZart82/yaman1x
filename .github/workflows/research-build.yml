@@ -1,0 +1,57 @@
+name: ROM-free MAME research build
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'research/**'
+      - 'src/**'
+      - 'tools/prepare_mame_research.py'
+      - '.github/workflows/research-build.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'research/**'
+      - 'src/**'
+      - 'tools/prepare_mame_research.py'
+      - '.github/workflows/research-build.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: research-build-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  research-macos:
+    runs-on: macos-14
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@v7
+        with:
+          repository: mamedev/mame
+          ref: 706dbb73281320c54d7c2f16262c1c3786f2be01
+          path: work/mame
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+      - name: Verify source identity and apply all reviewed patches
+        run: python tools/prepare_mame_research.py --source work/mame
+      - name: Record research toolchain
+        run: |
+          xcodebuild -version
+          clang++ --version
+          python --version
+          make --version
+      - name: Build the full patched research target without Yamaha inputs
+        working-directory: work/mame
+        run: make SUBTARGET=yamanix SOURCES=src/mame/yamaha/yman1x.cpp OSD=mac NO_USE_MIDI=1 NO_USE_PORTAUDIO=1 USE_QTDEBUG=0 USE_TAPTUN=0 USE_PCAP=0 REGENIE=1 OPTIMIZE=0 SYMBOLS=0 -j3
+      - name: Confirm the research machine is registered without loading ROMs
+        working-directory: work/mame
+        run: ./yamanix -listfull an1x
