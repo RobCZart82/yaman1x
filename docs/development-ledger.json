@@ -381,6 +381,8 @@
     "branch": "feat/h8h-bus-access",
     "status": "in_review",
     "summary": "H8H bus helpers preserving source-defined cycle charge, fetch/data routing and word alignment",
-    "validation": "Local macOS arm64 Release 26/26 CTest groups and 72 Python cases PASS; native ASan/UBSan PASS. Pinned original method bodies: 200000 operations, zero differences. Source/notice audits PASS; PR-head CI pending. CPU instructions not executed."
+    "validation": "Local macOS arm64 Release 26/26 CTest groups and 72 Python cases PASS; native ASan/UBSan PASS. Pinned original method bodies: 200000 operations, zero differences. Source/notice audits PASS; PR-head CI pending. CPU instructions not executed.",
+    "pr": 43,
+    "url": "https://github.com/RobCZart82/yaman1x/pull/43"
   }
 }
