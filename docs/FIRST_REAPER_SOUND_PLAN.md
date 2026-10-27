@@ -30,6 +30,7 @@ kerülhet a tervbe. A részletes mérési jegyzőkönyvekre hivatkozás mutasson
 | 2026-10-27 | [#16](https://github.com/RobCZart82/yaman1x/pull/16), beolvadt: Python `-O` mellett is aktív ABI-ellenőrzések, AsmJit tesztforrások kizárása, harmadik fél patch-darabszám javítása | `ac56d8c7144ef8cb478f3a714578203c440b841e`: Linux x64, macOS arm64, Windows x64 CI 11/11 tesztcsoport PASS; [futás](https://github.com/RobCZart82/yaman1x/actions/runs/40454166792). Helyi Windows: build PASS, CTest 10/11; egy meglévő symlinkteszt WinError 1314 miatt akadályozott. [Auditkövetés](AUDIT_FOLLOWUP_2026-10-27.md). | A VOP3 inicializálás/`memcmp` kockázat célzott vizsgálata; EG target-hold változtatás csak hardveres bizonyíték után. |
 | 2026-10-27 | [#17](https://github.com/RobCZart82/yaman1x/pull/17), beolvadt: [ADR-0001](ADR-0001-engine-boundary.md), függőségazonosítók és [buildalap](BUILD_BASELINE.md). **M0 részben teljesült.** | `bd2262fd7c06c91f7e40ea2aaa3ea52dceecedc1`: mindhárom platform CI PASS; [futás](https://github.com/RobCZart82/yaman1x/actions/runs/40454539768). Helyi CMake-konfiguráció és forrásaudit PASS, 201 változatlan upstream fájl ellenőrizve. | H8-port függőség- és licenclezárása, példányizolációs/időléptetési próbák, teljes referencia-toolchain rögzítése; saját terjesztési licenc döntése. M1 a külön MAME-kutatási úton folytatható. |
 | 2026-10-27 | [#19](https://github.com/RobCZart82/yaman1x/pull/19): **M1 folyamatban:** időbélyeges SCI-hozzáférés-megfigyelő és naplóellenőrző elkészült; firmware-es elfogadás még nem futott. [Részletek](m1-sci-access-milestone.md). | Natív megfigyelő és célzott Python-tesztek Windows x64-en PASS. A teljes Python-csomag meglévő symlinktesztjét WinError 1314 akadályozza. Tizenegy patch alkalmazása a rögzített forrásra PASS; teljes új MAME-build és friss firmware-próba NOT RUN. | Külön macOS kutatási build, SCI-beállítások és rövid engedélyezési ablakok rögzítése, majd a PC-k követése privát disassemblyvel. PKS-válasz továbbra sem feltételezhető. |
+| 2026-10-27 | [#20](https://github.com/RobCZart82/yaman1x/pull/20): **M0/M1 folyamatban.** Upstream forrásazonosítók visszanyerése, ismételhető patch-előellenőrző és külön teljes macOS MAME-build CI. [Bizonyíték és határok](source-identity-recovery.md). | Helyi archívum-ellenőrzés: 11 patch, 8 kimeneti forrásfájl, 4 egyező projektfejléc PASS; új szintetikus előkészítési regressziók PASS. CI-eredmény és tesztelt revízió a PR checkjeinél. Firmware/SCI/MIDI-elfogadás NOT RUN. | A teljes kutatási build eredményének ellenőrzése; utána friss, helyi firmware-felvétel és a SCI-vezérlési út elemzése. H8-port és példányizoláció továbbra is nyitott. |
 
 ## A cél pontos meghatározása
 
@@ -85,6 +86,10 @@ buildutasítás. A kiválasztott motor CPU-, periféria-, DSP- és MIDI-állapot
 példányonként elkülöníthető, időléptetése külső audiofolyamhoz illeszthető.
 
 ### M1 — Indulási út, PKS és valódi MIDI-vétel
+
+Következő előfeltétel: [rögzített forrású teljes kutatási build](source-identity-recovery.md).
+Külön ROM-mentes CI készül a teljes MAME-targethez; ennek sikere sem
+helyettesíti a friss firmware-es SCI/MIDI-próbát.
 
 2026-10-27: **folyamatban**, első műszerezési lépés elkészült:
 [időbélyeges SCI-hozzáférések](m1-sci-access-milestone.md). A ROM-mentes

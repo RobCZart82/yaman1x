@@ -1,7 +1,7 @@
 {
   "upstream": "https://github.com/musicastudio/VOP3",
   "snapshot_archive_sha256": "26dacd7280118556ed50ce6fcc03c6835866d18e17a9ad61c3bc77557809e0c9",
-  "upstream_commit": null,
+  "upstream_commit": "a3c8182811c398efd41daadf78d6fabcf50af56a",
   "note": "Code-only subset of the user-supplied archive; listed files unchanged. Custom CMake recipe is maintained separately. No Yamaha program images or upstream tests requiring them.",
   "files": [
     {
@@ -1009,5 +1009,7 @@
       "sha256": "d92f72b2ec0abb70a5541e5b17dec40beec3ed534f212101d35f22844fccf620",
       "bytes": 3511
     }
-  ]
+  ],
+  "upstream_git_tree": "89a324b2602b9f91af013483b7c6bdc09c80ee60",
+  "commit_identity_evidence": "ZIP comment and complete archive Git-tree match; see docs/source-identity-recovery.md"
 }

@@ -8,8 +8,9 @@
 
 The VOP3 input archive has SHA-256
 `26dacd7280118556ed50ce6fcc03c6835866d18e17a9ad61c3bc77557809e0c9`.
-Its upstream commit was not recorded. We do not present this archive hash as a
-commit ID. `third_party/provenance.json` records every included upstream file's
+Its upstream commit is `a3c8182811c398efd41daadf78d6fabcf50af56a`, recovered
+from the ZIP comment and verified against its complete Git tree. The archive
+hash remains distinct from the commit ID; see [identity evidence](docs/source-identity-recovery.md). `third_party/provenance.json` records every included upstream file's
 hash and size. The repository auditor checks them without network access.
 The source-only build recipe in `cmake/vop3/` is an explicitly adapted version
 of the upstream recipe: examples and upstream tests that need Yamaha images

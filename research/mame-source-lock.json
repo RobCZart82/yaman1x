@@ -1,0 +1,32 @@
+{
+  "repository": "https://github.com/mamedev/mame",
+  "commit": "706dbb73281320c54d7c2f16262c1c3786f2be01",
+  "git_tree": "3b0ef97b99a8c9456912fe73a7b56af8bbdf54eb",
+  "archive_sha256": "acffc3d3c4d8ffab148d07de5ab0416e54841a1ac99375cfdf641eec5eca7a6e",
+  "identity_evidence": "Commit recovered from ZIP comment; all four original patch input files independently matched official files at this commit. Whole archive Git-tree equality is not claimed.",
+  "inputs": {
+    "src/devices/video/lc7985.cpp": "29370236ef63d52d5c4ba87873af401c84cf1766fa56d023d531aa06b280a8f0",
+    "src/mame/yamaha/yman1x.cpp": "beab3e6c2eb2a2dc46ef240bd59fb1f463e1875f80e7a3610ae8ea9d22192e14",
+    "src/osd/mac/main.mm": "7eaae4d3447a2341990b8de97e500e3622d94ef73d7e7f16226bf2d3604c8eed",
+    "src/osd/mac/video.cpp": "b65c090c4aabb06a898f18cc2ef2860d166bcb5a4e1e02a5f2d2c3a67034ab63"
+  },
+  "patches": [
+    "mame-headless-trace.patch",
+    "mame-no-cocoa.patch",
+    "mame-lcd-controller.patch",
+    "mame-dsp-capture.patch",
+    "mame-upload-control-experiment.patch",
+    "mame-live-register-bridge.patch",
+    "mame-eg-readback-experiment.patch",
+    "mame-timed-vop3-experiment.patch",
+    "mame-midi-input.patch",
+    "mame-sci-state-observation.patch",
+    "mame-sci-access-observation.patch"
+  ],
+  "generated_headers": {
+    "src/mame/yamaha/yamanix_lcd_bus.h": "src/lcd_bus.h",
+    "src/mame/yamaha/yamanix_upload_control_contract.h": "src/upload_control_contract.h",
+    "src/mame/yamaha/yamanix_vop3_bridge.h": "src/vop3_bridge.h",
+    "src/mame/yamaha/yamanix_sci_access_trace.h": "src/sci_access_trace.h"
+  }
+}

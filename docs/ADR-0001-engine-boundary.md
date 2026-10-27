@@ -66,7 +66,9 @@ file access, blocking IPC or unbounded diagnostics may remain in render.
 
 The source archives were verified against `docs/source-lock.json` from local
 inputs on 2026-10-27 without extracting Yamaha images. Their upstream commit
-identities remain unknown; archive hashes must not be relabeled as Git SHAs.
+identities were initially unknown. They have now been recovered with explicit
+evidence in [source identity recovery](source-identity-recovery.md); archive
+hashes remain distinct from Git SHAs.
 
 | Component | Identity | Scope / terms |
 |---|---|---|

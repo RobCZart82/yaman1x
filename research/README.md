@@ -1,5 +1,12 @@
 # H8 kutatási futtató
 
+2026-10-27: a forrásverzió és a patch-lánc megismételhető ellenőrzését a
+[`prepare_mame_research.py`](../tools/prepare_mame_research.py) végzi.
+Rögzített upstream commit, külön teljes MAME CI-build és az igazolás határai:
+[forrásazonosítás és build](../docs/source-identity-recovery.md).
+A segédprogrammal előkészített checkouton ne alkalmazzuk újra az alábbi
+patch-eket; a parancssor a kézi előkészítés alternatíváját mutatja.
+
 A `mame-headless-trace.patch` kizárólag a `docs/source-lock.json` MAME ZIP-jéből kibontott munkapéldányhoz készült. A Yamaha firmware tartalmát nem módosítja. Az upstream MAME-forrás változatlanul újra előállítható az eredeti archívumból.
 
 Az első patch elhagyja az upstream, még nem bekötött MULCD eszközt és annak font/SVG követelményeit. A harmadik, `mame-lcd-controller.patch` valódi LC7985 vezérlőmodellt köt a H8 portjaihoz; a két változat közötti különbség mérhető a naplókban. Az első négy patch megfigyelő tapjai nem írják át az olvasási/írási adatot; az ötödik és hatodik patch kísérleti válaszai külön kapcsolhatók be, lásd lent. Az első 512 különböző olvasási és 512 írási címet rögzítik a `0x300000–0xFFFFFF` tartományban; ez nem teljes utasítás- vagy busztrace. PC-mintavételezés az első másodpercben 10 ms-onként, utána másodpercenként történik a legfeljebb 10 másodperces próbához.
