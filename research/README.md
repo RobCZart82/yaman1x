@@ -17,6 +17,7 @@ patch -p1 < /absolute/path/to/mame-eg-readback-experiment.patch
 patch -p1 < /absolute/path/to/mame-timed-vop3-experiment.patch
 patch -p1 < /absolute/path/to/mame-midi-input.patch
 patch -p1 < /absolute/path/to/mame-sci-state-observation.patch
+patch -p1 < /absolute/path/to/mame-sci-access-observation.patch
 make SUBTARGET=yamanix SOURCES=src/mame/yamaha/yman1x.cpp OSD=mac NO_USE_MIDI=1 NO_USE_PORTAUDIO=1 USE_QTDEBUG=0 USE_TAPTUN=0 USE_PCAP=0 REGENIE=1 -j4
 ```
 
@@ -35,6 +36,12 @@ A `mame-lcd-controller.patch` új saját fejlécet is telepít a driver mellé; 
 A jelenlegi mérés friss processzusú hidegindításra készült. Save-state, visszatöltés és több egymást követő szoftveres reset működését még nem validáltuk.
 
 ## Teljes DSP-regiszternapló
+
+A tizenegyedik patch időbélyeges, PC-vel ellátott SCI-regiszterírásokat és
+RDR-olvasásokat figyel meg. A napló korlátos; veszteséges vagy befejezetlen
+felvételt az auditor elutasít. Ez nem PKS-emuláció és nem igazolt MIDI-vétel.
+Az új patch teljes MAME-buildje és firmware-próbája még nem futott;
+részletek és következő kísérlet: [M1 SCI-hozzáférések](../docs/m1-sci-access-milestone.md).
 
 A negyedik patch minden olvasást és írást rögzít a `0x440000–0x4400FF` és `0x480000–0x4800FF` tartományból, a korábbi címenkénti mintavétel mellett. A CPU által látott adatot és memóriamaszkot nem módosítja. Megmarad az eseménysorrend, a nanomásodpercben megadott gépidő és a programcím. A 200 000 eseményes korlát elérésekor a napló veszteségesnek minősül, és az ellenőrző elutasítja. A szabályos kilépéskor kiírt zárósor kötelező; összeomláskor megmaradt résznaplóból nem lesz elfogadott teljes felvétel.
 
