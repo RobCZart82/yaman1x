@@ -1,7 +1,7 @@
 # YamAN1x fejlesztési napló
 
 Frissítve: 2026-10-27. Időzóna: Europe/Budapest.
-Ellenőrzött alap: `276399870400bd81272c21889257984651c816ed` (#37).
+Ellenőrzött alap: `47950097b564f7ca48a1a2fd27a125066c3fc7a9` (#38).
 
 ## A nyilvántartás feladata
 
@@ -19,7 +19,7 @@ merge- és PR-head SHA-kat, valamint az eredeti UTC-időbélyegeket.
 
 ## AUD-2026-10-27 — repository-audit és javítások
 
-Állapot: [#38 PR](https://github.com/RobCZart82/yaman1x/pull/38), review alatt; beolvasztás és végső CI-lezárás még függőben.
+Állapot: [#38 PR](https://github.com/RobCZart82/yaman1x/pull/38) beolvadt; merge: `47950097b564f7ca48a1a2fd27a125066c3fc7a9`.
 
 A helyben tesztelt kódfa a `de892c3ea278611d1a60e68ccbad8991e174b768`
 GitHub-revízió fájlfájával azonos. A követő változás csak e napló metaadatait
@@ -41,13 +41,14 @@ rögzíti; a legutóbbi PR-head saját CI-je az irányadó.
 
 ## Beolvadt változások — a legutóbbi elöl
 
-A következő 32 bejegyzés GitHub PR-metaadatból és az aktuális `main` Git-előzményéből
-ellenőrzött visszamenőleges könyvelés (#6–#37). A beolvadás bizonyított; a
+A következő 33 bejegyzés GitHub PR-metaadatból és az aktuális `main` Git-előzményéből
+ellenőrzött visszamenőleges könyvelés (#6–#38). A beolvadás bizonyított; a
 felsorolás önmagában nem állít minden PR-re újrafuttatott hardveres vagy helyi
 validációt. A kezdeti importot a [történeti összefoglaló](HISTORY.md) őrzi.
 
 | Beolvasztás (Budapest) | PR | Fejlesztés / javítás | Merge commit |
 |---|---|---|---|
+| 2026-10-27 16:36:15 | [#38](https://github.com/RobCZart82/yaman1x/pull/38) | Repository-audit, bridge-kompatibilitás és napló | `47950097b564f7ca48a1a2fd27a125066c3fc7a9` |
 | 2026-10-27 13:32 | [#37](https://github.com/RobCZart82/yaman1x/pull/37) | Reconcile development plan with verified PR closures and historical snapshots | `276399870400` |
 | 2026-10-27 13:10 | [#36](https://github.com/RobCZart82/yaman1x/pull/36) | Unify asynchronous H8 SCI transmit and receive under one channel | `33dc7e97c174` |
 | 2026-10-27 12:22 | [#35](https://github.com/RobCZart82/yaman1x/pull/35) | Compose H8 asynchronous SCI receiver with sampled input and errors | `e7257ebe2bbc` |
@@ -92,3 +93,9 @@ beolvasztás utáni egyeztetéskor kerül be; ismeretlen adat maradjon függőbe
 A részletes vezetési szabály: [CONTRIBUTING](../CONTRIBUTING.md). A PR-sablon
 emlékeztet a frissítésre; ez nem automatikus naplózási szolgáltatás. A történeti
 adatokat megőrizzük, a téves következtetést új, indokolt korrekcióval javítjuk.
+
+## SCHED-2026-10-27 — korlátozott ciklus-eseményfuttató
+
+Ág: `feat/bounded-cycle-dispatcher`; [szerződés](cycle-dispatcher.md). Új, saját komponens, nem upstream átvétel. Költségkeret, folytatás, időmonotonitás, hibahatár és izoláció tesztelve; 1000 szintetikus eseménysor felosztásfüggetlen. Külön PR a #39-től; annak státuszát nem zárja le. A teljes CPU/periféria-ütemezés és M0 elfogadása nyitott.
+
+Helyi záróellenőrzés: macOS arm64 Release, 23/23 CTest-csoport és 60 Python-eset PASS; natív ASan/UBSan PASS. Végső platform-CI a PR-head checkjeiben.

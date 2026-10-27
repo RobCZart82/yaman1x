@@ -5,7 +5,7 @@ Recorded: 2026-10-27. Product: YamAN1x. Repository: `yaman1x`. First public rese
 The repository contains a ROM-free C++/Python development foundation.
 No VST3, AU, GUI or AN1x audio output is available yet.
 
-Current baseline: merged PR #37, `276399870400bd81272c21889257984651c816ed`.
+Current baseline: merged PR #38, `47950097b564f7ca48a1a2fd27a125066c3fc7a9`.
 The [first-sound plan](FIRST_REAPER_SOUND_PLAN.md) tracks M0 as partial, M1 as
 prepared and M2–M6 as research/planned. Completed helper components do not
 establish a complete CPU or firmware boot. Changes and their provenance are
@@ -89,7 +89,7 @@ The ROM-free CMake/CTest suite also passes in GitHub Actions on Linux x64,
 macOS Apple Silicon and Windows x64. These builds do not validate AN1x audio,
 hardware timing or DAW/plugin-host behavior.
 
-The current CMake suite has **22 CTest groups**, including the Python unittest
+The current CMake suite has **23 CTest groups**, including the Python unittest
 group, license coverage, provenance and normal/optimized ABI checks. The audit
 of the baseline passed all 22 groups and 56 Python cases locally on macOS arm64;
 the bridge-auditor regression fix adds four Python cases in the same CTest group.
@@ -97,3 +97,7 @@ Default checks use no Yamaha data. Two upstream ROM-dependent tests remain
 excluded, without substituting successful results for missing fixtures.
 
 Fresh scope and evidence: [repository audit](REPOSITORY_AUDIT_2026-10-27.md).
+
+## Current scheduling increment
+
+The [bounded cycle dispatcher](cycle-dispatcher.md) provides monotonic, resumable event processing with explicit budgets and callback-failure handling. It is independent of open SCI integration PR #39. This branch has 23 CTest groups and 60 Python cases; combining #39 later adds its separate group. No CPU/peripheral owner or hardware tie ordering is implemented here.

@@ -435,3 +435,7 @@ A legnagyobb bizonytalanság M1–M3: PKS-protokoll, DSP-modell, táblarom-címe
 és hangút. Ha ezekhez új hardveradat kell, annak pontos kérdését és beszerzési
 lépését rögzíteni kell. Naptári kiadási dátumot az offline referenciahang
 megszületése előtt nem vállalunk; M3 után a motor- és plugincsomagolás becsülhető.
+
+## 2026-10-27 — Korlátozott ciklus-eseményfuttató
+
+Ág: `feat/bounded-cycle-dispatcher`, alap: main #38; a nyitott #39-től független. [Komponensszerződés és tesztek](cycle-dispatcher.md): monoton ciklusidő, befoglaló határidő, folytatható lépéskeret, hibás tulajdonos elkülönítése. 1000 eseménysor blokk-/keretfüggetlensége és határesetei helyben PASS. Ez az ütemező alapja; CPU/periféria-tulajdonos, hardveres eseménysorrend és firmware-végrehajtás továbbra is nyitott. M0 részben teljesült.
