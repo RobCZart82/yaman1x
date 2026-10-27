@@ -94,7 +94,8 @@ helyettesíti a friss firmware-es SCI/MIDI-próbát.
 2026-10-27: **folyamatban**, első műszerezési lépés elkészült:
 [időbélyeges SCI-hozzáférések](m1-sci-access-milestone.md). A ROM-mentes
 tesztek a megfigyelőt és a naplóellenőrzést vizsgálják; a teljes új MAME-build
-és a friss firmware-es MIDI-próba még nem futott. M1 nem teljesült.
+azóta a #20 CI-jében sikeres. A friss firmware-es MIDI-próba még nem futott;
+M1 nem teljesült.
 
 - Visszakövetni a firmware SCI1/PKS-inicializálását és az SCI0 engedélyezését.
   A mostani megfigyelés alapján a PKS-válasz hiánya lehetséges akadály, de
