@@ -85,3 +85,7 @@ newline changes are rejected while generated newline differences are accepted,
 and changed generated content is rejected. This does not compile or execute
 the generated instruction handlers and is not a firmware test. Cross-platform
 CI results for this branch are recorded in [PR #24](https://github.com/RobCZart82/yaman1x/pull/24); local results above do not substitute for those checks.
+
+## Host-service evidence follow-up
+
+The [host-services boundary](h8-host-services-boundary.md) now records the reviewed framework categories and first CPU build sequence. A reproducible report scans the 30 candidate sources and four verified generated outputs. It is lexical evidence, not compiler closure or CPU execution.

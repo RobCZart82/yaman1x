@@ -1,7 +1,7 @@
 # YamAN1x fejlesztési napló
 
 Frissítve: 2026-10-27. Időzóna: Europe/Budapest.
-Ellenőrzött alap: `76787a6ee5450fa29a7403b658fc861ef908a297` (#40).
+Ellenőrzött alap: `259338dbffed8b5b10b606c5f8f907bd791b1b74` (#41).
 
 ## A nyilvántartás feladata
 
@@ -46,13 +46,14 @@ A hatregiszteres bájt/szó MMIO és a csatornánkénti ERI/RXI/TXI/TEI útvonal
 
 ## Beolvadt változások — a legutóbbi elöl
 
-A következő 35 bejegyzés GitHub PR-metaadatból és az aktuális `main` Git-előzményéből
-ellenőrzött visszamenőleges könyvelés (#6–#40). A beolvadás bizonyított; a
+A következő 36 bejegyzés GitHub PR-metaadatból és az aktuális `main` Git-előzményéből
+ellenőrzött visszamenőleges könyvelés (#6–#41). A beolvadás bizonyított; a
 felsorolás önmagában nem állít minden PR-re újrafuttatott hardveres vagy helyi
 validációt. A kezdeti importot a [történeti összefoglaló](HISTORY.md) őrzi.
 
 | Beolvasztás (Budapest) | PR | Fejlesztés / javítás | Merge commit |
 |---|---|---|---|
+| 2026-10-27 20:47:56 | [#41](https://github.com/RobCZart82/yaman1x/pull/41) | Kétcsatornás SCI-idővonal | `259338dbffed8b5b10b606c5f8f907bd791b1b74` |
 | 2026-10-27 19:56:09 | [#40](https://github.com/RobCZart82/yaman1x/pull/40) | Korlátozott ciklus-eseményfuttató | `76787a6ee5450fa29a7403b658fc861ef908a297` |
 | 2026-10-27 19:06:08 | [#39](https://github.com/RobCZart82/yaman1x/pull/39) | Két SCI-csatorna MMIO/IRQ-adaptere | `6c1dd8a0c83eac1d593abd4e70c040f88908bb48` |
 | 2026-10-27 16:36:15 | [#38](https://github.com/RobCZart82/yaman1x/pull/38) | Repository-audit, bridge-kompatibilitási javítás és fejlesztési napló | `47950097b564f7ca48a1a2fd27a125066c3fc7a9` |
@@ -114,3 +115,9 @@ Helyi záróellenőrzés: macOS arm64 Release, 23/23 CTest-csoport és 60 Python
 PR: [#41](https://github.com/RobCZart82/yaman1x/pull/41), ág: `feat/sci-cycle-timeline`, alap: beolvadt #40. Saját új komponens, új upstream átvétel nélkül. [Részletes szerződés és határok](sci-cycle-timeline.md). Időbélyegzett bemenet, két csatorna, eseményenkénti keret és determinisztikus sorrend; 256 teljes duplex minta három futtatási felosztása egyezik. CPU-végrehajtás és M0 lezárása nyitott.
 
 Helyi ellenőrzés: macOS arm64 Release, 25/25 CTest-csoport és 60 Python-eset PASS; az új natív teszt ASan/UBSan alatt is PASS. Végső platform-CI a kapcsolódó PR-headhez kötve ellenőrizendő.
+
+## H8-HOST-2026-10-27 — CPU gazdaszolgáltatás-határ
+
+Ág: `feat/h8-host-services-boundary`, alap: beolvadt #41. Új ROM-mentes elemző és [áttekintett integrációs szerződés](h8-host-services-boundary.md). 34 forrás-/generált fájl, hash-ek és tokenhelyek, két független bájtazonos regenerálás. Nyolc új Python-regresszió; CPU-fordítás/végrehajtás és függőségzár továbbra is nyitott.
+
+Local validation / helyi ellenőrzés: macOS arm64 Release, 25/25 CTest groups and 68 Python cases PASS; source/notice audits PASS. Final PR-head platform CI pending.

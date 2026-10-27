@@ -3,7 +3,7 @@
   "recorded_date": "2026-10-27",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "76787a6ee5450fa29a7403b658fc861ef908a297",
+  "baseline_commit": "259338dbffed8b5b10b606c5f8f907bd791b1b74",
   "entries": [
     {
       "pr": 6,
@@ -354,15 +354,23 @@
       "merge_commit": "76787a6ee5450fa29a7403b658fc861ef908a297",
       "reviewed_head": "34cec0074577a1add862772bcf3bc289de735b68",
       "status": "merged"
+    },
+    {
+      "pr": 41,
+      "title": "Schedule timestamped RX input and both SCI channels on one bounded timeline",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/41",
+      "kind": "development",
+      "merged_at_utc": "2026-10-27T19:47:56Z",
+      "merge_commit": "259338dbffed8b5b10b606c5f8f907bd791b1b74",
+      "reviewed_head": "387c5e64c0ee9759b3d41dfa58bcda1b35594731",
+      "status": "merged"
     }
   ],
   "active_change": {
-    "id": "SCI-TIMELINE-2026-10-27",
-    "branch": "feat/sci-cycle-timeline",
+    "id": "H8-HOST-2026-10-27",
+    "branch": "feat/h8-host-services-boundary",
     "status": "in_review",
-    "summary": "Timestamped RX input plus two SCI clocks with bounded deterministic event ownership",
-    "validation": "Local macOS arm64 Release: 25/25 CTest groups, 60 Python cases and native ASan/UBSan PASS. 256 dual-channel duplex streams have identical whole/partitioned/resumed traces. Final PR-head CI pending.",
-    "pr": 41,
-    "url": "https://github.com/RobCZart82/yaman1x/pull/41"
+    "summary": "Reproducible host-service references and reviewed bus/cycle contracts before embedded CPU compilation",
+    "validation": "Local macOS arm64 Release 25/25 CTest groups and 68 Python cases PASS. Eight host-boundary regressions; 34-file report byte-identical across two independent verified generator runs. Source audit and notice coverage PASS. Final PR-head CI pending; CPU not compiled."
   }
 }
