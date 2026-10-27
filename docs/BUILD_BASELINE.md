@@ -15,6 +15,9 @@ PR #16 CI run [40454166792](https://github.com/RobCZart82/yaman1x/actions/runs/4
 recorded GNU 13.3.0 with Python 3.13.16 on ubuntu-24.04 x64 and AppleClang
 15.0.0.15000309 with Python 3.13.15 on macos-14-arm64. These are observed
 versions for that revision, not persistent locks of hosted runner contents.
+Windows CI used MSVC 19.51.36260.0 and Python 3.13.16 on windows-2025 x64.
+All three CI jobs passed all eleven CTest groups, including the symlink test
+that could not execute on the local Windows account.
 The first plugin target is macOS arm64. Windows/Linux remain ROM-free build
 targets; a successful core build does not establish plugin compatibility.
 
