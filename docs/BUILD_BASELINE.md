@@ -1,5 +1,11 @@
 # ROM-free build baseline
 
+The separate complete MAME research target has a verified macOS arm64 baseline:
+Xcode 16.2 (16C5032a), AppleClang 16.0.0 (`clang-1600.0.26.6`), Python 3.13.15,
+GNU Make 3.81, `OPTIMIZE=0`, all eleven patches, architecture and registration
+smoke PASS. See [dated evidence](source-identity-recovery.md#verified-result).
+This is distinct from the core/helper build below and from firmware acceptance.
+
 Use C++20, CMake 3.20+ and Python 3.9+ for compatibility. These minimum versions
 are not an exact toolchain lock. No source or firmware download occurs during
 configuration. VOP3/AsmJit source hashes are checked by the repository auditor.

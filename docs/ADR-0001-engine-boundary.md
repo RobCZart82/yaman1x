@@ -99,9 +99,11 @@ Reproduce the ROM-free build with [BUILD_BASELINE](BUILD_BASELINE.md).
 CI runner labels are moving environments, not compiler version locks.
 
 M0 remains partial until the H8 dependency closure is pinned per file and its
-instance isolation and externally driven stepping pass synthetic tests; the
-macOS reference toolchain is fully recorded; and the eventual distribution
-license decision is resolved. This ADR establishes the boundary and SDK choice
+instance isolation and externally driven stepping pass synthetic tests; and the
+eventual distribution license decision is resolved. The complete MAME research
+build now has a recorded macOS arm64 toolchain and passing CI in
+[the source/build evidence](source-identity-recovery.md#verified-result).
+The future embedded product still needs its own reference build. This ADR establishes the boundary and SDK choice
 without claiming those tasks are implemented. M1 can continue in the separate
 MAME research harness while the port is prepared.
 

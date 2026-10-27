@@ -82,7 +82,25 @@ Validation status and the implementation PR's CI checks must distinguish:
 - complete research executable compilation and ROM-free registration smoke;
 - actual local firmware execution and SCI/MIDI observations.
 
-The third item remains **NOT RUN** for the new SCI access patch. M1 is still
+## Verified result
+
+[PR #20](https://github.com/RobCZart82/yaman1x/pull/20) was merged after all four
+checks passed at `31664c74f2726091eb9f403c1621ef949479ddbb`:
+
+| Check | Result | Evidence |
+|---|---|---|
+| Linux x64, macOS arm64 and Windows x64 core/helper suite | PASS, 12/12 CTest groups on each platform, including 40 Python unit tests | [Core CI 40457998062](https://github.com/RobCZart82/yaman1x/actions/runs/40457998062) |
+| Complete patched MAME research executable | PASS, all eleven patches and four injected helpers | [Research CI 40457998036](https://github.com/RobCZart82/yaman1x/actions/runs/40457998036) |
+| Linked architecture and `-listfull an1x` registration smoke | PASS, arm64; no firmware loaded | Same research run |
+| Fresh firmware/SCI/MIDI run with the new observer | NOT RUN | Requires separate local Yamaha inputs and macOS execution |
+
+The verified research toolchain was Xcode 16.2 (16C5032a), AppleClang 16.0.0
+(`clang-1600.0.26.6`), Python 3.13.15 and GNU Make 3.81. These identify this
+successful source build; `OPTIMIZE=0` results are not real-time performance
+evidence. The original failed Xcode 15.4 run and the Windows line-ending issue
+remain documented above rather than being hidden by the successful rerun.
+
+Fresh firmware execution remains **NOT RUN** for the new SCI access patch. M1 is still
 in progress, M0's H8 port/isolation work remains open, and EG target hold is
 unchanged. Follow [the M1 experiment](m1-sci-access-milestone.md) after a
 successful full build; successful machine registration does not prove boot.
