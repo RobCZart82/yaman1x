@@ -6,7 +6,8 @@ audible firmware-driven VST3 voice in REAPER:
 
 Changes/fixes are recorded in the [development ledger](DEVELOPMENT_LOG.md).
 The [repository audit](REPOSITORY_AUDIT_2026-10-27.md) identifies current gaps.
-Immediate M0 work is the SCI interrupt/MMIO adapter and shared CPU/peripheral
+The standalone SCI interrupt/MMIO adapter is implemented in PR #39.
+Immediate M0 work is shared CPU/peripheral
 scheduler, followed by actual H8 execution. M1 protocol research can proceed
 independently in the pinned MAME harness. Neither milestone is complete.
 

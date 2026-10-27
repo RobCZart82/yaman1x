@@ -10,7 +10,7 @@ nem jelent új motor-, firmware- vagy hardveres eredményt.
 
 | Mérföldkő | Aktuális állapot | Következő elfogadási feltétel |
 |---|---|---|
-| M0 | **Részben teljesült.** Architektúra, forrásazonosítók, generálási alap, önálló GPIO és IRQ-adapter megvan; az önálló SCI belső ciklusóra, közös aszinkron SCI TX/RX-csatorna rendelkezésre áll; a CPU-bekötés nyitott. | SCI IRQ-bekötés és MMIO-adapter; közös CPU/periféria-ütemező; tényleges H8 CPU-port fordítása és végrehajtási/izolációs tesztjei. A terjesztési licenc döntése nyitott. |
+| M0 | **Részben teljesült.** Architektúra, forrásazonosítók, generálási alap, önálló GPIO és IRQ-adapter megvan; az önálló SCI belső ciklusóra, közös aszinkron SCI TX/RX-csatorna rendelkezésre áll; a kétcsatornás SCI MMIO/IRQ-adapter elkészült; a CPU-bekötés nyitott. | Közös CPU/periféria-ütemező; tényleges H8 CPU-port fordítása és végrehajtási/izolációs tesztjei. A terjesztési licenc döntése nyitott. |
 | M1 | **Előkészítve, nem teljesült.** A külön macOS MAME-build és a párosított helyi futtató rendelkezésre áll. | Friss Mac-firmware-próba: SCI0 tényleges bájtfogadás és note-on/note-off feldolgozás bizonyítása; PKS-kézfogás feltárása. |
 | M2–M3 | **Kutatási feladatok nyitva.** Nincs igazolt referenciahang. | AN1x órajel, táblacímzés, EG és soros hangút bizonyítása, majd megismételhető offline hang. |
 | M4–M6 | **Tervezett.** Nincs elkészült beágyazható hangszer vagy REAPER-elfogadás. | Validált offline referencia után audio-blokkmotor, VST3 és helyi REAPER-próba. |
@@ -20,7 +20,7 @@ Az önálló komponens tesztje nem teljes CPU-/firmware-elfogadás. A jelenlegi
 az ellenőrzött végső PR-revíziókat és CI-futásokat rögzíti; a korabeli napló
 az akkori munkamenet állapotát őrzi.
 
-Legutóbbi motoreredmény: [#36](https://github.com/RobCZart82/yaman1x/pull/36),
+Legutóbbi lezárt platformeredmény: [#36](https://github.com/RobCZart82/yaman1x/pull/36),
 `6f3fbf6c22b9f3bfc28f78d0fc1bad55ed98ed8c`: Linux/macOS/Windows platformonként
 **22/22 tesztcsoport PASS**, MSan és teljes macOS MAME-build PASS. A konkrét
 futások a lezárási táblában vannak. Helyben Windows alatt 21 futtatható csoport
@@ -209,19 +209,19 @@ Részletek: [STATUS](STATUS.md), [SCI-megfigyelések](sci-state-milestone.md),
   ellenőrzése automatizált. A saját projektlicenc és a tényleges kiadási csomag
   megfelelőségének ellenőrzése továbbra is nyitott.
 
+A [kétcsatornás SCI MMIO/IRQ-adapter](h83002-sci-mmio-irq.md) szintén elkészült: bájt-/szóhozzáférés, DMA-elsőbbség és csatornánkénti vektorkiosztás.
+
 Nyitott feladatok, végrehajtási sorrendben:
 
-1. Az SCI négy megszakításkérését bekötni, hatregiszteres MMIO-adaptert készíteni,
-   és a két SCI-csatornát külön tesztelni.
-2. Kialakítani a közös CPU/periféria-ütemezőt és az azonos idejű külső események
+1. Kialakítani a közös CPU/periféria-ütemezőt és az azonos idejű külső események
    bizonyított sorrendjét; lezárni a tényleges H8-port keretrendszer- és
    generáltkód-függőségeit, majd lefordítani és végrehajtani a CPU-portot.
-3. A teljes gép CPU-/RAM-/periféria-/DSP-/MIDI-állapotának példányizolációját,
+2. A teljes gép CPU-/RAM-/periféria-/DSP-/MIDI-állapotának példányizolációját,
    resetjét és blokkfelosztástól független időléptetését igazolni.
-4. Az újonnan ténylegesen beépített függőségek licenceit lezárni; a saját kód
+3. Az újonnan ténylegesen beépített függőségek licenceit lezárni; a saját kód
    licencéről a bináris terjesztés előtt dönteni. A kiválasztott SDK tényleges
    integrációját és összekapcsolt részeit akkor ellenőrizni; az SDK még tervezett.
-5. Megőrizni a ROM-mentes alapbuildet és a külön kutatási utat; a beágyazott
+4. Megőrizni a ROM-mentes alapbuildet és a külön kutatási utat; a beágyazott
    motorhoz saját, revízióhoz kötött referencia-buildet rögzíteni.
 
 **Kész, ha:** van rövid architektúradöntés, függőséglista és megismételhető
@@ -439,3 +439,11 @@ megszületése előtt nem vállalunk; M3 után a motor- és plugincsomagolás be
 ## 2026-10-27 — Korlátozott ciklus-eseményfuttató
 
 PR: [#40](https://github.com/RobCZart82/yaman1x/pull/40), ág: `feat/bounded-cycle-dispatcher`, alap: main #38; a nyitott #39-től független. [Komponensszerződés és tesztek](cycle-dispatcher.md): monoton ciklusidő, befoglaló határidő, folytatható lépéskeret, hibás tulajdonos elkülönítése. 1000 eseménysor blokk-/keretfüggetlensége és határesetei helyben PASS. Ez az ütemező alapja; CPU/periféria-tulajdonos, hardveres eseménysorrend és firmware-végrehajtás továbbra is nyitott. M0 részben teljesült.
+
+## 2026-10-27 — SCI busz- és IRQ-integráció fejlesztési bejegyzés
+
+PR: [#39](https://github.com/RobCZart82/yaman1x/pull/39), ág: `feat/h8-sci-mmio-irq`, alap: main #37. Két SCI-csatorna hatregiszteres MMIO-ja és 52–59 IRQ-vektorai bekötve a különálló IRQ-vezérlőbe. Helyi macOS arm64 Release: 23/23 tesztcsoport PASS; 512 RX bájt/csatorna eset, TX, DMA, hibák, reset és izoláció. ASan/UBSan PASS. Részletes [komponensjegyzőkönyv](h83002-sci-mmio-irq.md). Platform-CI a kapcsolódó PR-ben ellenőrizendő. M0 részben teljesült; CPU-/firmware-/MIDI-/audioelfogadás nincs. Következő lépés: közös CPU/periféria-ütemező és tényleges CPU-port.
+
+### #40 szinkronizálása a beolvadt #39-cel
+
+2026-10-27: a közös build-/naplófájlok ütközése feloldva, mindkét komponens és tesztcsoport megtartva. Az egyesített csomag 24 CTest-csoportot és 60 Python-esetet tartalmaz. A korábbi 23-as eredmények történeti bejegyzések; új PR-head CI szükséges. A CPU/periféria-tulajdonos és M0 lezárása továbbra is nyitott.

@@ -19,7 +19,7 @@ ctest --test-dir build -C Release --output-on-failure
 python3 tools/repository_audit.py
 ```
 
-The source-only build runs **twenty-three test groups**. Tests generate synthetic
+The source-only build runs **twenty-four test groups**. Tests generate synthetic
 programs/banks in temporary directories. The two upstream tests that require
 Yamaha images are not part of this suite. ROM-free GitHub Actions currently
 builds and passes this suite on Linux x64, macOS Apple Silicon and Windows x64.
@@ -37,6 +37,9 @@ for the planned firmware, audio-engine and VST3 milestones and acceptance criter
 - AN1x bulk-SysEx structure/checksum validation and synthetic upload adapter.
 - Two VOP3 instances, C ABI 2, register replay and independent upload-state audit.
 - LCD bus model and a separate instrumented MAME research patch chain.
+- Two standalone H83002 SCI channels with byte/word MMIO and DMA-qualified
+  interrupt routing to the H8H controller; the CPU/scheduler integration remains
+  pending. See [SCI MMIO/IRQ evidence](docs/h83002-sci-mmio-irq.md).
 - Opt-in experimental upload-control and selected EG-level readback profiles.
 - Integer sample clock; synthetic tests run 2400 samples per chip with matching
   results under different call partitions.

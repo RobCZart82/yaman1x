@@ -1,0 +1,24 @@
+{
+  "upstream_commit": "706dbb73281320c54d7c2f16262c1c3786f2be01",
+  "inputs": {
+    "src/devices/cpu/h8/h83002.cpp": {
+      "sha256": "2b422dc4081700cccc27d3a6f62307ae5f138f4f601181015ff1d6605ecf1e92",
+      "bytes": 16657,
+      "license": "BSD-3-Clause",
+      "copyright_holder": "Olivier Galibert"
+    },
+    "src/devices/cpu/h8/h8_intc.cpp": {
+      "sha256": "60d55cf124ed5ece134ca952c2c26fe4f71821a0f0fcac7afb9cdb9ed01d7111",
+      "bytes": 11802,
+      "license": "BSD-3-Clause",
+      "copyright_holder": "Olivier Galibert"
+    },
+    "src/devices/cpu/h8/h8_sci.cpp": {
+      "sha256": "5e5bd1e0e268919d98a8983ce141bdbbbd8831dbb3c2446e46b728ee66bcb7ad",
+      "bytes": 21413,
+      "license": "BSD-3-Clause",
+      "copyright_holder": "Olivier Galibert"
+    }
+  },
+  "adaptation": "src/h83002_sci_mmio.h: compose two reviewed asynchronous SCI owners with the H83002 24-bit register map and ERI/RXI/TXI/TEI vectors 52..59. Preserve DMA qualification before IRQ publication. No full CPU, DMA controller, scheduler, standby, sync/MP or external-clock implementation."
+}

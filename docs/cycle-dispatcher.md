@@ -55,3 +55,9 @@ Next: define and test an owner for two SCI channels and timestamped external
 line events, explicitly record its tie convention, then integrate CPU stepping
 only after the H8 framework/generated-source dependencies are closed. M0 remains
 partial, and firmware, MIDI, audio and REAPER acceptance remain open.
+
+## Reconciliation with merged SCI adapter
+
+PR #39 subsequently merged into main. PR #40 now includes that baseline and retains both separate native test groups. The previous 23-group validation is historical; the combined suite has 24 CTest groups and 60 Python cases. Synchronization resolves build-registration and ledger conflicts without changing either component implementation. Full CPU/peripheral ownership remains pending.
+
+Combined-tree validation: local macOS arm64 Release 24/24 CTest groups and 60 Python cases PASS. Final synchronized PR-head CI remains separate evidence.
