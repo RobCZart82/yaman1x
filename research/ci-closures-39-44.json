@@ -1,0 +1,222 @@
+{
+  "recorded_date": "2026-10-27",
+  "scope": "Final PR-head checks, not firmware/hardware acceptance",
+  "closures": [
+    {
+      "pr": 39,
+      "head": "9459a805af0834c5ad66329f0f1b037a9354b08d",
+      "checks": [
+        {
+          "name": "research-macos",
+          "status": "completed",
+          "result": "success",
+          "url": "https://github.com/RobCZart82/yaman1x/actions/runs/40533549032/job/122370894035"
+        },
+        {
+          "name": "initial-decode-msan",
+          "status": "completed",
+          "result": "success",
+          "url": "https://github.com/RobCZart82/yaman1x/actions/runs/40533549567/job/122292568462"
+        },
+        {
+          "name": "build-and-test (macos-14)",
+          "status": "completed",
+          "result": "success",
+          "url": "https://github.com/RobCZart82/yaman1x/actions/runs/40533549011/job/122292566528"
+        },
+        {
+          "name": "build-and-test (ubuntu-24.04)",
+          "status": "completed",
+          "result": "success",
+          "url": "https://github.com/RobCZart82/yaman1x/actions/runs/40533549011/job/122292566377"
+        },
+        {
+          "name": "build-and-test (windows-2025)",
+          "status": "completed",
+          "result": "success",
+          "url": "https://github.com/RobCZart82/yaman1x/actions/runs/40533549011/job/122292565993"
+        }
+      ]
+    },
+    {
+      "pr": 40,
+      "head": "34cec0074577a1add862772bcf3bc289de735b68",
+      "checks": [
+        {
+          "name": "initial-decode-msan",
+          "status": "completed",
+          "result": "success",
+          "url": "https://github.com/RobCZart82/yaman1x/actions/runs/40557238091/job/122376454019"
+        },
+        {
+          "name": "build-and-test (macos-14)",
+          "status": "completed",
+          "result": "success",
+          "url": "https://github.com/RobCZart82/yaman1x/actions/runs/40557237913/job/122376453726"
+        },
+        {
+          "name": "research-macos",
+          "status": "completed",
+          "result": "success",
+          "url": "https://github.com/RobCZart82/yaman1x/actions/runs/40557237934/job/122376453689"
+        },
+        {
+          "name": "build-and-test (windows-2025)",
+          "status": "completed",
+          "result": "success",
+          "url": "https://github.com/RobCZart82/yaman1x/actions/runs/40557237913/job/122376453515"
+        },
+        {
+          "name": "build-and-test (ubuntu-24.04)",
+          "status": "completed",
+          "result": "success",
+          "url": "https://github.com/RobCZart82/yaman1x/actions/runs/40557237913/job/122376453074"
+        }
+      ]
+    },
+    {
+      "pr": 41,
+      "head": "387c5e64c0ee9759b3d41dfa58bcda1b35594731",
+      "checks": [
+        {
+          "name": "research-macos",
+          "status": "completed",
+          "result": "success",
+          "url": "https://github.com/RobCZart82/yaman1x/actions/runs/40566012882/job/122408084911"
+        },
+        {
+          "name": "build-and-test (windows-2025)",
+          "status": "completed",
+          "result": "success",
+          "url": "https://github.com/RobCZart82/yaman1x/actions/runs/40566011632/job/122407943754"
+        },
+        {
+          "name": "build-and-test (ubuntu-24.04)",
+          "status": "completed",
+          "result": "success",
+          "url": "https://github.com/RobCZart82/yaman1x/actions/runs/40566011632/job/122407943734"
+        },
+        {
+          "name": "build-and-test (macos-14)",
+          "status": "completed",
+          "result": "success",
+          "url": "https://github.com/RobCZart82/yaman1x/actions/runs/40566011632/job/122407943358"
+        },
+        {
+          "name": "initial-decode-msan",
+          "status": "completed",
+          "result": "success",
+          "url": "https://github.com/RobCZart82/yaman1x/actions/runs/40566011629/job/122407456482"
+        }
+      ]
+    },
+    {
+      "pr": 42,
+      "head": "a67b599f880f0981d68e04b276b0d904ea3f7d29",
+      "checks": [
+        {
+          "name": "build-and-test (ubuntu-24.04)",
+          "status": "completed",
+          "result": "success",
+          "url": "https://github.com/RobCZart82/yaman1x/actions/runs/40573072777/job/122432580997"
+        },
+        {
+          "name": "build-and-test (macos-14)",
+          "status": "completed",
+          "result": "success",
+          "url": "https://github.com/RobCZart82/yaman1x/actions/runs/40573072777/job/122432580920"
+        },
+        {
+          "name": "build-and-test (windows-2025)",
+          "status": "completed",
+          "result": "success",
+          "url": "https://github.com/RobCZart82/yaman1x/actions/runs/40573072777/job/122432580479"
+        },
+        {
+          "name": "initial-decode-msan",
+          "status": "completed",
+          "result": "success",
+          "url": "https://github.com/RobCZart82/yaman1x/actions/runs/40573072700/job/122432444681"
+        },
+        {
+          "name": "research-macos",
+          "status": "completed",
+          "result": "success",
+          "url": "https://github.com/RobCZart82/yaman1x/actions/runs/40573072611/job/122432149653"
+        }
+      ]
+    },
+    {
+      "pr": 43,
+      "head": "83caf332df3539037187888c60bc35ae422dc2a3",
+      "checks": [
+        {
+          "name": "research-macos",
+          "status": "completed",
+          "result": "success",
+          "url": "https://github.com/RobCZart82/yaman1x/actions/runs/40580107642/job/122457680585"
+        },
+        {
+          "name": "build-and-test (macos-14)",
+          "status": "completed",
+          "result": "success",
+          "url": "https://github.com/RobCZart82/yaman1x/actions/runs/40580107525/job/122457474477"
+        },
+        {
+          "name": "build-and-test (windows-2025)",
+          "status": "completed",
+          "result": "success",
+          "url": "https://github.com/RobCZart82/yaman1x/actions/runs/40580107525/job/122457474285"
+        },
+        {
+          "name": "build-and-test (ubuntu-24.04)",
+          "status": "completed",
+          "result": "success",
+          "url": "https://github.com/RobCZart82/yaman1x/actions/runs/40580107525/job/122457473798"
+        },
+        {
+          "name": "initial-decode-msan",
+          "status": "completed",
+          "result": "success",
+          "url": "https://github.com/RobCZart82/yaman1x/actions/runs/40580107561/job/122456981421"
+        }
+      ]
+    },
+    {
+      "pr": 44,
+      "head": "1bed694bdc066a66bcebb747ed74a052a4650c25",
+      "checks": [
+        {
+          "name": "build-and-test (windows-2025)",
+          "status": "completed",
+          "result": "success",
+          "url": "https://github.com/RobCZart82/yaman1x/actions/runs/40586879805/job/122481074723"
+        },
+        {
+          "name": "build-and-test (ubuntu-24.04)",
+          "status": "completed",
+          "result": "success",
+          "url": "https://github.com/RobCZart82/yaman1x/actions/runs/40586879805/job/122481074548"
+        },
+        {
+          "name": "build-and-test (macos-14)",
+          "status": "completed",
+          "result": "success",
+          "url": "https://github.com/RobCZart82/yaman1x/actions/runs/40586879805/job/122481074297"
+        },
+        {
+          "name": "initial-decode-msan",
+          "status": "completed",
+          "result": "success",
+          "url": "https://github.com/RobCZart82/yaman1x/actions/runs/40586879809/job/122480613181"
+        },
+        {
+          "name": "research-macos",
+          "status": "completed",
+          "result": "success",
+          "url": "https://github.com/RobCZart82/yaman1x/actions/runs/40586879880/job/122480584462"
+        }
+      ]
+    }
+  ]
+}

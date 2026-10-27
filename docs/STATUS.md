@@ -5,11 +5,13 @@ Recorded: 2026-10-27. Product: YamAN1x. Repository: `yaman1x`. First public rese
 The repository contains a ROM-free C++/Python development foundation.
 No VST3, AU, GUI or AN1x audio output is available yet.
 
-Current baseline: merged PR #43, `f8b1f4fbd4a422eab33d633e2384f1c82c11623d`.
+Current baseline: merged PR #44, `b644b6e1c471f8632ea086d75bd37d20b5ebbeb4`.
 The [first-sound plan](FIRST_REAPER_SOUND_PLAN.md) tracks M0 as partial, M1 as
 prepared and M2–M6 as research/planned. Completed helper components do not
 establish a complete CPU or firmware boot. Changes and their provenance are
 indexed in the [development ledger](DEVELOPMENT_LOG.md).
+
+Current verified suite: **27 CTest groups, 74 Python cases**. PRs #39–#44 are merged and each final head has five successful GitHub checks; see the [closure ledger](DEVELOPMENT_LOG.md). Earlier component counts and pending-CI notes describe their historical snapshots. Full CPU opcode execution, M0 closure and firmware/audio acceptance remain open.
 
 ## Current standalone engine increment
 
