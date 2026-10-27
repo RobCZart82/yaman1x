@@ -17,7 +17,7 @@ Ez nem elkészült H8-port és nem igazolt AN1x boot.
   Xcode 15.4 a rögzített MAME-forrással már elbukott; ne ezt használjuk vakon.
 
 A fizikai AN1x nem kell ehhez a szoftveres próbához. Az EG-, órajel- és
-hangzásazonosság igazolása továbbra is külön hardveres/refereciamérési feladat.
+hangzásazonosság igazolása továbbra is külön hardveres/referenciamérési feladat.
 ROM, bank és nyers napló nem kerülhet Gitbe vagy CI-be. A OneDrive tartalmát
 helyi bemenetként kell kezelni; újabb archívumra ne cseréljük észrevétlenül
 a [rögzített buildalapot](source-identity-recovery.md).
