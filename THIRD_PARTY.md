@@ -49,3 +49,5 @@ Yamaha firmware, VOP3 program/table images and patch banks are separate local
 inputs, not part of these source licenses. None is vendored here. All default
 tests use project-generated synthetic data. The separately licensed upstream
 ROM-dependent tests remain outside this repository.
+
+The standalone `src/h8_sci_status.h` adapts the pinned MAME H8 SCI SSR latch and qualified DMA flag rules (BSD-3-Clause, Olivier Galibert). Source identity and scope: `research/h8-sci-status-provenance.json`; ownership/integration requirements: `docs/h8-sci-status.md`.
