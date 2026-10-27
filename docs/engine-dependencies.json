@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "status": "M0 partial; planned components are not linked",
+  "vop3_and_asmjit": {
+    "state": "vendored unchanged",
+    "archive_sha256": "26dacd7280118556ed50ce6fcc03c6835866d18e17a9ad61c3bc77557809e0c9",
+    "upstream_commit": null,
+    "file_manifest": "third_party/provenance.json",
+    "asmjit_version": "1.23.0",
+    "licenses": ["BSD-3-Clause", "Zlib"]
+  },
+  "mame_h83002": {
+    "state": "external research reference; port dependency closure pending",
+    "archive_sha256": "acffc3d3c4d8ffab148d07de5ab0416e54841a1ac99375cfdf641eec5eca7a6e",
+    "upstream_commit": null,
+    "cpu_source_directory": "src/devices/cpu/h8",
+    "selected_file_license": "BSD-3-Clause",
+    "complete_port_license_review": false
+  },
+  "vst3_sdk": {
+    "state": "selected for future M5 adapter; not downloaded by build",
+    "repository": "https://github.com/steinbergmedia/vst3sdk",
+    "tag": "v3.8.0_build_66",
+    "commit": "9fad9770f2ae8542ab1a548a68c1ad1ac690abe0",
+    "reviewed_license": "MIT",
+    "selected_submodules": {
+      "base": "3d2e82f8e6bff59c1d8b7a27491a29c2286b5206",
+      "cmake": "de6e54eeaaab35b7145f5c32c279b5e892146e04",
+      "pluginterfaces": "31d6eeba6daaa3e2a8bfbe3e7a90ca0b7fbfbc1c",
+      "public.sdk": "a3911a4615dabbfdfd9d181ee26b05c70c289a95"
+    },
+    "optional_vstgui_selected": false
+  },
+  "project_distribution_license": "unselected; see LICENSE"
+}

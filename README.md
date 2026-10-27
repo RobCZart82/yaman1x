@@ -25,6 +25,9 @@ Yamaha images are not part of this suite. ROM-free GitHub Actions currently
 builds and passes this suite on Linux x64, macOS Apple Silicon and Windows x64.
 This checks the source build, not AN1x hardware fidelity or plugin-host support.
 
+See [engine architecture decision](docs/ADR-0001-engine-boundary.md) and
+[build baseline](docs/BUILD_BASELINE.md) for the M0 decisions and remaining gates.
+
 ## Current state
 
 See the [development plan through the first sound in REAPER (Hungarian)](docs/FIRST_REAPER_SOUND_PLAN.md)
