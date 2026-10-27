@@ -62,6 +62,38 @@ does **not** assert real-time safety. Before M4, move/prewarm compilation off
 the callback or choose a measured bounded interpreter path. No allocation,
 file access, blocking IPC or unbounded diagnostics may remain in render.
 
+## Replaceable PKS implementation and future dump integration
+
+Added 2026-10-27 at the user's request. This is a development requirement,
+not a claim that either PKS backend or the plugin is implemented.
+
+Any evidence-based PKS HLE must sit behind a machine-owned peripheral boundary.
+The future firmware-backed PKS implementation must use that same observable
+boundary: timestamped serial/pin inputs and outputs, reset, stepping and IRQ
+behavior where applicable. Keep CPU-internal registers, HLE shortcuts and
+backend-specific state behind the boundary; the host/plugin and main H8 firmware
+must not depend on fabricated RAM writes or a particular PKS implementation.
+The concrete interface is to be defined from the proven wiring/protocol.
+
+Keep backend/profile identity and a state-schema version explicit. Save states
+identify required ROMs by content identity, without embedding Yamaha bytes or
+absolute local paths. Select and validate the backend on the control thread;
+apply changes through a documented reset/reinitialization path. Live swapping
+while rendering is not required. Preserve HLE profiles for reproducing older
+experiments; do not silently reinterpret HLE snapshots as MCU execution state.
+If a required backend/ROM is unavailable, report it explicitly rather than
+silently substitute another model. Cross-backend state migration is a separate,
+versioned feature and must be tested before being offered.
+
+A future dump permits investigating a firmware-backed model; it does not itself
+prove accurate execution. Verify its identity, MCU variant, memory map, timing,
+peripherals and dependency/license closure. Compare both implementations under
+the same timestamped stimuli, including startup, panel events and reset, then
+repeat firmware/MIDI and audio acceptance. Record discrepancies and hardware
+evidence; promote the better validated profile deliberately, without claiming
+bit-identical sound or universal old-session compatibility. No dump is required
+or to be committed to implement the replaceable boundary and synthetic tests.
+
 ## Licenses and source identities
 
 The source archives were verified against `docs/source-lock.json` from local
