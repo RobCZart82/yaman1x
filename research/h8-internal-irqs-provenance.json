@@ -1,0 +1,18 @@
+{
+  "upstream_commit": "706dbb73281320c54d7c2f16262c1c3786f2be01",
+  "inputs": {
+    "src/devices/cpu/h8/h8_intc.cpp": {
+      "bytes": 11802,
+      "sha256": "60d55cf124ed5ece134ca952c2c26fe4f71821a0f0fcac7afb9cdb9ed01d7111",
+      "license": "BSD-3-Clause",
+      "copyright_holder": "Olivier Galibert"
+    },
+    "src/devices/cpu/h8/h8_intc.h": {
+      "bytes": 4659,
+      "sha256": "9ecdbd830bf4715e18e5b628649bc37cf96da2526acf0cfc42f9ad8a3e344545",
+      "license": "BSD-3-Clause",
+      "copyright_holder": "Olivier Galibert"
+    }
+  },
+  "adaptation": "src/h8h_internal_irqs.h; internal vectors 20..63 plus prequalified NMI latch only; no external pins, MMIO, device services, CPU callback or DMA implementation."
+}

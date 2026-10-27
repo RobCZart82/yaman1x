@@ -31,6 +31,10 @@ digital-port register logic by Olivier Galibert. Its source identities,
 omissions and validation are in [the peripheral record](docs/h8-digital-port.md)
 and `research/h8-digital-port-provenance.json`; the original terms remain in
 `licenses/MAME-BSD-3-Clause.txt`.
+`src/h8h_internal_irqs.h` also adapts a bounded subset of Olivier Galibert's
+BSD-3-Clause H8H interrupt-controller selection logic. Source hashes and
+omissions are in `research/h8-internal-irqs-provenance.json` and
+[the internal IRQ record](docs/h8-internal-irqs.md).
 New `yamanix_*.h` patch files reproduce the project's own bridge and bus
 interfaces. MAME research remains a separate program; this repository does
 not link MAME into the plugin core. A later distribution must account for
