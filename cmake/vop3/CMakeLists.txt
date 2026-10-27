@@ -6,6 +6,8 @@ file(GLOB ASMJIT CONFIGURE_DEPENDS
   "${YAMANIX_VOP3_SOURCE}/third_party/asmjit/asmjit/x86/*.cpp"
   "${YAMANIX_VOP3_SOURCE}/third_party/asmjit/asmjit/arm/*.cpp"
   "${YAMANIX_VOP3_SOURCE}/third_party/asmjit/asmjit/axl/*.cpp")
+# Upstream test translation units are not part of the runtime library.
+list(FILTER ASMJIT EXCLUDE REGEX "_test[.]cpp$")
 if(NOT ASMJIT)
   message(FATAL_ERROR "VOP3 source snapshot must include its reviewed AsmJit source")
 endif()
