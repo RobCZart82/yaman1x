@@ -19,7 +19,7 @@ ctest --test-dir build -C Release --output-on-failure
 python3 tools/repository_audit.py
 ```
 
-The source-only build runs **nine test groups**. Tests generate synthetic
+The source-only build runs **eleven test groups**. Tests generate synthetic
 programs/banks in temporary directories. The two upstream tests that require
 Yamaha images are not part of this suite. ROM-free GitHub Actions currently
 builds and passes this suite on Linux x64, macOS Apple Silicon and Windows x64.

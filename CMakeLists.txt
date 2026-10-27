@@ -48,3 +48,7 @@ add_test(NAME yamanix_dsp_upload COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_S
 add_test(NAME yamanix_rom_loader COMMAND ${Python3_EXECUTABLE} -m unittest discover -s tests -v)
 set_tests_properties(yamanix_rom_loader PROPERTIES WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}")
 add_test(NAME yaman1x_repository_audit COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tools/repository_audit.py --root ${CMAKE_CURRENT_SOURCE_DIR})
+
+# Exercise the ABI checks with assertions disabled as well.
+add_test(NAME yamanix_vop3_timing_optimized COMMAND ${Python3_EXECUTABLE} -O ${CMAKE_CURRENT_SOURCE_DIR}/tests/check_vop3_timing.py $<TARGET_FILE:yamanix_vop3_bridge>)
+add_test(NAME yamanix_live_bridge_optimized COMMAND ${Python3_EXECUTABLE} -O ${CMAKE_CURRENT_SOURCE_DIR}/tests/check_vop3_bridge.py $<TARGET_FILE:yamanix_vop3_bridge>)
