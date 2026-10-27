@@ -72,7 +72,7 @@ hashes remain distinct from Git SHAs.
 
 | Component | Identity | Scope / terms |
 |---|---|---|
-| VOP3 | archive SHA-256 `26dacd7280118556ed50ce6fcc03c6835866d18e17a9ad61c3bc77557809e0c9`; file lock in `third_party/provenance.json` | Included source subset, BSD-3-Clause; unchanged |
+| VOP3 | archive SHA-256 `26dacd7280118556ed50ce6fcc03c6835866d18e17a9ad61c3bc77557809e0c9`; file lock in `third_party/provenance.json` | BSD-3-Clause; one reversible reviewed initialization adaptation |
 | AsmJit | `ASMJIT_LIBRARY_VERSION` 1.23.0; same archive and per-file lock | Included, zlib; unchanged |
 | MAME | archive SHA-256 `acffc3d3c4d8ffab148d07de5ab0416e54841a1ac99375cfdf641eec5eca7a6e` | External research source; full distribution GPL-2.0 terms and file-specific notices |
 | H8/3002 port candidate | Same MAME archive; `src/devices/cpu/h8/` | CPU/SCI source headers inspected as BSD-3-Clause; entire dependency closure not yet approved or imported |
