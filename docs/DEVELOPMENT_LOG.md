@@ -1,7 +1,7 @@
 # YamAN1x fejlesztési napló
 
 Frissítve: 2026-10-27. Időzóna: Europe/Budapest.
-Ellenőrzött alap: `6c1dd8a0c83eac1d593abd4e70c040f88908bb48` (#39).
+Ellenőrzött alap: `76787a6ee5450fa29a7403b658fc861ef908a297` (#40).
 
 ## A nyilvántartás feladata
 
@@ -46,13 +46,14 @@ A hatregiszteres bájt/szó MMIO és a csatornánkénti ERI/RXI/TXI/TEI útvonal
 
 ## Beolvadt változások — a legutóbbi elöl
 
-A következő 34 bejegyzés GitHub PR-metaadatból és az aktuális `main` Git-előzményéből
-ellenőrzött visszamenőleges könyvelés (#6–#39). A beolvadás bizonyított; a
+A következő 35 bejegyzés GitHub PR-metaadatból és az aktuális `main` Git-előzményéből
+ellenőrzött visszamenőleges könyvelés (#6–#40). A beolvadás bizonyított; a
 felsorolás önmagában nem állít minden PR-re újrafuttatott hardveres vagy helyi
 validációt. A kezdeti importot a [történeti összefoglaló](HISTORY.md) őrzi.
 
 | Beolvasztás (Budapest) | PR | Fejlesztés / javítás | Merge commit |
 |---|---|---|---|
+| 2026-10-27 19:56:09 | [#40](https://github.com/RobCZart82/yaman1x/pull/40) | Korlátozott ciklus-eseményfuttató | `76787a6ee5450fa29a7403b658fc861ef908a297` |
 | 2026-10-27 19:06:08 | [#39](https://github.com/RobCZart82/yaman1x/pull/39) | Két SCI-csatorna MMIO/IRQ-adaptere | `6c1dd8a0c83eac1d593abd4e70c040f88908bb48` |
 | 2026-10-27 16:36:15 | [#38](https://github.com/RobCZart82/yaman1x/pull/38) | Repository-audit, bridge-kompatibilitási javítás és fejlesztési napló | `47950097b564f7ca48a1a2fd27a125066c3fc7a9` |
 | 2026-10-27 13:32 | [#37](https://github.com/RobCZart82/yaman1x/pull/37) | Reconcile development plan with verified PR closures and historical snapshots | `276399870400` |
@@ -107,3 +108,9 @@ PR: [#40](https://github.com/RobCZart82/yaman1x/pull/40), ág: `feat/bounded-cyc
 Helyi záróellenőrzés: macOS arm64 Release, 23/23 CTest-csoport és 60 Python-eset PASS; natív ASan/UBSan PASS. Végső platform-CI a PR-head checkjeiben.
 
 2026-10-27, #39 utáni szinkronizálás: a build- és naplóütközések feloldva, mindkét komponens megtartva. Az egyesített kódfa helyben 24/24 CTest-csoporttal és 60 Python-esettel PASS. Az előző 23-as eredmény a különálló ág történeti bizonyítéka. Új GitHub CI a szinkronizált #40-headen szükséges.
+
+## SCI-TIMELINE-2026-10-27 — közös SCI-eseménytulajdonos
+
+PR: [#41](https://github.com/RobCZart82/yaman1x/pull/41), ág: `feat/sci-cycle-timeline`, alap: beolvadt #40. Saját új komponens, új upstream átvétel nélkül. [Részletes szerződés és határok](sci-cycle-timeline.md). Időbélyegzett bemenet, két csatorna, eseményenkénti keret és determinisztikus sorrend; 256 teljes duplex minta három futtatási felosztása egyezik. CPU-végrehajtás és M0 lezárása nyitott.
+
+Helyi ellenőrzés: macOS arm64 Release, 25/25 CTest-csoport és 60 Python-eset PASS; az új natív teszt ASan/UBSan alatt is PASS. Végső platform-CI a kapcsolódó PR-headhez kötve ellenőrizendő.
