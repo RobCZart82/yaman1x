@@ -48,6 +48,14 @@ az aktuális állapotot az új bejegyzés és az érintett mérföldkő együtt 
 ROM, bank és privát trace helyett csak publikálható azonosító és összefoglaló
 kerülhet a tervbe. A részletes mérési jegyzőkönyvekre hivatkozás mutasson.
 
+Az új szerkezet vezetési szabálya: minden új fejlesztésnél az aktuális
+állapottáblát és az érintett részletes mérföldkövet együtt kell frissíteni.
+A munkanapló új sora kapjon dátumot, PR-hivatkozást és „Korabeli állapot” jelölést.
+A végső ellenőrzések lezárásakor a PR-lezárási táblába a valóban tesztelt
+PR-revízió és annak saját futásai kerüljenek; más revízió CI-je nem helyettesíti.
+A korabeli mérési számokat és korlátokat megőrizzük, a már teljesült előfeltételt
+pedig az aktuális feladatlistából átvezetjük az elkészült eredmények közé.
+
 ## Előrehaladási napló
 
 ### Dokumentációs egységesítés — 2026-10-27
