@@ -46,8 +46,9 @@ reset register retention, control-register masks and isolated instances.
 
 These are host-level semantics tests; no upstream differential binary or
 AN1x hardware trace was executed. The test is part of the standard CTest suite
-for the next PR's Linux/macOS/Windows runs. Until that PR exists, cross-platform
-results are NOT RUN and this development branch must not be merged unchecked.
+for [PR #24](https://github.com/RobCZart82/yaman1x/pull/24) Linux/macOS/Windows
+runs. Their final checks record platform validation; this development branch
+must not be merged before they pass.
 
 ## Framework boundary finding
 

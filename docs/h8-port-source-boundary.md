@@ -84,4 +84,4 @@ four outputs verified in two passes, PASS. Synthetic tests verify that source
 newline changes are rejected while generated newline differences are accepted,
 and changed generated content is rejected. This does not compile or execute
 the generated instruction handlers and is not a firmware test. Cross-platform
-CI for this branch remains NOT RUN until a PR is opened.
+CI results for this branch are recorded in [PR #24](https://github.com/RobCZart82/yaman1x/pull/24); local results above do not substitute for those checks.
