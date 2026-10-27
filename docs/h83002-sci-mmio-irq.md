@@ -84,3 +84,7 @@ Build the common CPU/peripheral scheduler and complete the CPU port's framework
 and generated-source boundary. Exercise instructions, interrupt taking and bus
 timing before claiming a CPU-connected port. M1 must prove firmware byte/note
 handling separately. The MAME patch chain and DSP/EG profiles are unchanged.
+
+## Main-branch reconciliation
+
+PR #38 merged while #39 was open. The STATUS documentation conflict was resolved preserving both the audit ledger and this component increment. The combined tree passes 23/23 CTest groups and 60 Python cases locally on macOS arm64. The merged audit adds four Python regressions; the original 56-case result above remains historical evidence. Final PR-head CI must rerun after synchronization.

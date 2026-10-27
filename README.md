@@ -43,13 +43,23 @@ for the planned firmware, audio-engine and VST3 milestones and acceptance criter
 - Opt-in experimental upload-control and selected EG-level readback profiles.
 - Integer sample clock; synthetic tests run 2400 samples per chip with matching
   results under different call partitions.
+- Standalone H8 GPIO, internal/external IRQ helpers and a shared asynchronous
+  SCI TX/RX channel, with synthetic timing, status and isolation checks. The
+  complete embedded H8 CPU and machine scheduler remain unimplemented.
 
 The local firmware research run loads both complete DSP programs under the
 experimental status profile. Its audited upload fields match Python
-reconstruction and native replay. The H8 harness still does not call the new
-sample-advance function. A known upstream EG target-hold discrepancy, the
+reconstruction and native replay. The H8 harness is register-only by default;
+an explicit `assumed-48k` profile advances both DSP models before MMIO. The
+complete eleven-patch research target also builds in separate macOS CI without
+Yamaha data. A known upstream EG target-hold discrepancy, the
 AN1x clock and table-ROM scaling remain unresolved. These are recorded in
 [development status](docs/STATUS.md) and the [roadmap](docs/ROADMAP.md).
+
+The [development ledger](docs/DEVELOPMENT_LOG.md) records merged changes and
+maintenance rules. The [repository audit](docs/REPOSITORY_AUDIT_2026-10-27.md)
+lists verified checks, fixes and outstanding work. Contribution requirements
+are in [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Local firmware research
 

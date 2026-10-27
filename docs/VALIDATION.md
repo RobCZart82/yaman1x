@@ -1,5 +1,10 @@
 # Initial source-snapshot validation
 
+This page preserves historical source-snapshot results. The current full
+review and fresh macOS validation are recorded in the
+[2026-10-27 repository audit](REPOSITORY_AUDIT_2026-10-27.md).
+Historical test counts below must not be used as the current suite count.
+
 Date: 2026-10-26. Platform actually tested: macOS, Apple Silicon, AppleClang 21.
 
 The source snapshot was configured, built and tested in two separate build

@@ -2,14 +2,29 @@
 
 Recorded: 2026-10-27. Product: YamAN1x. Repository: `yaman1x`. First public research snapshot: 2026-10-26.
 
-The first GitHub snapshot contains a ROM-free C++/Python development foundation.
+The repository contains a ROM-free C++/Python development foundation.
 No VST3, AU, GUI or AN1x audio output is available yet.
+
+Current baseline: merged PR #38, `47950097b564f7ca48a1a2fd27a125066c3fc7a9`.
+The [first-sound plan](FIRST_REAPER_SOUND_PLAN.md) tracks M0 as partial, M1 as
+prepared and M2–M6 as research/planned. Completed helper components do not
+establish a complete CPU or firmware boot. Changes and their provenance are
+indexed in the [development ledger](DEVELOPMENT_LOG.md).
 
 ## Current standalone engine increment
 
-The [H83002 SCI MMIO/IRQ adapter](h83002-sci-mmio-irq.md) connects both asynchronous channels to the standalone interrupt controller. Byte/word lane, DMA priority, debugger side effects, reset and isolation tests pass locally; the ROM-free suite now has 23 groups. CPU scheduling and firmware integration remain open. See the dated entry in the [development plan](FIRST_REAPER_SOUND_PLAN.md).
+The [H83002 SCI MMIO/IRQ adapter](h83002-sci-mmio-irq.md), PR #39, connects both asynchronous channels to the standalone interrupt controller. Byte/word lane, DMA priority, debugger side effects, reset and isolation tests pass locally; the ROM-free suite now has 23 groups. CPU scheduling and firmware integration remain open. See the dated entry in the [development plan](FIRST_REAPER_SOUND_PLAN.md).
 
 ## Observed and tested
+
+- Standalone H8 digital ports, internal IRQ arbitration and IRQ register/pin
+  adapters are tested. SCI now has one shared asynchronous TX/RX owner,
+  integer-cycle scheduling, an SSR latch and compatibility facades. Synthetic
+  byte/format, error, timing, partitioning and isolation tests pass. SCI MMIO and IRQ routing are implemented as a standalone adapter;
+  CPU integration and the full machine scheduler remain open.
+- The eleven-patch MAME research target has a pinned source identity and a
+  separate ROM-free macOS arm64 build/registration CI. This is distinct from
+  local Yamaha-firmware execution and from the future embedded H8 port.
 
 - Synthetic DSP serial loopback: interpreter/JIT equality, 4096 input samples.
 - Two-chip native register replay agrees with independent Python reconstruction.
@@ -65,7 +80,10 @@ The [H83002 SCI MMIO/IRQ adapter](h83002-sci-mmio-irq.md) connects both asynchro
   The original PKS ROM is still unavailable in the checked
   sources.
 
-The original downloaded files and the upstream VOP3 snapshot were not modified.
+Original downloaded inputs remain external. The vendored VOP3 header has one
+reviewed, reversible first-decode initialization fix (#22); provenance records
+both its original identity and the exact local edit. Other recorded upstream
+files retain their locked contents. The EG target-hold discrepancy is unchanged.
 Older reports in this repository are historical observations, not claims that
 all device responses or the complete synthesizer are hardware validated.
 
@@ -75,7 +93,12 @@ The ROM-free CMake/CTest suite also passes in GitHub Actions on Linux x64,
 macOS Apple Silicon and Windows x64. These builds do not validate AN1x audio,
 hardware timing or DAW/plugin-host behavior.
 
-Default tests need no Yamaha data. The eight existing project test groups are
-retained; a ninth repository audit verifies the source-only upload boundary
-and pinned upstream files. Two upstream ROM-dependent tests are excluded,
-without substituting success or skip results for their missing fixtures.
+The current CMake suite has **23 CTest groups**, including the Python unittest
+group, license coverage, provenance and normal/optimized ABI checks. The audit
+of the baseline passed all 22 groups and 56 Python cases locally on macOS arm64;
+the merged bridge-auditor regression fix adds four Python cases in the same CTest group.
+The combined PR #39 tree therefore contains 60 Python cases.
+Default checks use no Yamaha data. Two upstream ROM-dependent tests remain
+excluded, without substituting successful results for missing fixtures.
+
+Fresh scope and evidence: [repository audit](REPOSITORY_AUDIT_2026-10-27.md).
