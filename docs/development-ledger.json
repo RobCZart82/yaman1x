@@ -371,6 +371,8 @@
     "branch": "feat/h8-host-services-boundary",
     "status": "in_review",
     "summary": "Reproducible host-service references and reviewed bus/cycle contracts before embedded CPU compilation",
-    "validation": "Local macOS arm64 Release 25/25 CTest groups and 68 Python cases PASS. Eight host-boundary regressions; 34-file report byte-identical across two independent verified generator runs. Source audit and notice coverage PASS. Final PR-head CI pending; CPU not compiled."
+    "validation": "Local macOS arm64 Release 25/25 CTest groups and 68 Python cases PASS. Eight host-boundary regressions; 34-file report byte-identical across two independent verified generator runs. Source audit and notice coverage PASS. Final PR-head CI pending; CPU not compiled.",
+    "pr": 42,
+    "url": "https://github.com/RobCZart82/yaman1x/pull/42"
   }
 }
