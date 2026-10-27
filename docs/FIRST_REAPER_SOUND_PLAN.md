@@ -3,6 +3,33 @@
 Rögzítve: 2026-10-27. Kiindulópont: a #14 PR-ig beolvadt kutatási eredmények.
 Ez végrehajtási terv; az alábbi, még nyitott mérföldkövek nem kész funkciók.
 
+## A terv folyamatos vezetése
+
+Ez a dokumentum a fejlesztés során folyamatosan karbantartandó terv.
+Minden, a tervet érintő fejlesztési PR ugyanabban a változtatásban frissítse
+az érintett mérföldkövet és az alábbi előrehaladási naplót. Rögzíteni kell:
+
+- a dátumot, a konkrét eredményt és a kapcsolódó PR-t vagy commitot;
+- az állapotot: tervezett, folyamatban, részben teljesült vagy igazoltan kész;
+- a végrehajtott ellenőrzéseket és eredményüket, a platformot és a vizsgált
+  revíziót; a nem futtatott és környezeti okból akadályozott próbákat külön;
+- a megmaradó feltételeket, függőségeket és a következő konkrét lépést.
+
+A mérföldkő csak a saját elfogadási feltételeinek bizonyítása után jelölhető
+késznek. A ROM-mentes CI sikere nem helyettesíti a hardver-, firmware-, audio-
+vagy REAPER-próbát. Tervváltozásnál az indokot és az új sorrendet is rögzíteni
+kell. A történeti eredményeket megőrizzük dátumozott bizonyítékként;
+az aktuális állapotot az új bejegyzés és az érintett mérföldkő együtt mutatja.
+ROM, bank és privát trace helyett csak publikálható azonosító és összefoglaló
+kerülhet a tervbe. A részletes mérési jegyzőkönyvekre hivatkozás mutasson.
+
+## Előrehaladási napló
+
+| Dátum | Változás és állapot | Ellenőrzés / bizonyíték | Következő lépés |
+|---|---|---|---|
+| 2026-10-27 | [#16](https://github.com/RobCZart82/yaman1x/pull/16), beolvadt: Python `-O` mellett is aktív ABI-ellenőrzések, AsmJit tesztforrások kizárása, harmadik fél patch-darabszám javítása | `ac56d8c7144ef8cb478f3a714578203c440b841e`: Linux x64, macOS arm64, Windows x64 CI 11/11 tesztcsoport PASS; [futás](https://github.com/RobCZart82/yaman1x/actions/runs/40454166792). Helyi Windows: build PASS, CTest 10/11; egy meglévő symlinkteszt WinError 1314 miatt akadályozott. [Auditkövetés](AUDIT_FOLLOWUP_2026-10-27.md). | A VOP3 inicializálás/`memcmp` kockázat célzott vizsgálata; EG target-hold változtatás csak hardveres bizonyíték után. |
+| 2026-10-27 | [#17](https://github.com/RobCZart82/yaman1x/pull/17), beolvadt: [ADR-0001](ADR-0001-engine-boundary.md), függőségazonosítók és [buildalap](BUILD_BASELINE.md). **M0 részben teljesült.** | `bd2262fd7c06c91f7e40ea2aaa3ea52dceecedc1`: mindhárom platform CI PASS; [futás](https://github.com/RobCZart82/yaman1x/actions/runs/40454539768). Helyi CMake-konfiguráció és forrásaudit PASS, 201 változatlan upstream fájl ellenőrizve. | H8-port függőség- és licenclezárása, példányizolációs/időléptetési próbák, teljes referencia-toolchain rögzítése; saját terjesztési licenc döntése. M1 a külön MAME-kutatási úton folytatható. |
+
 ## A cél pontos meghatározása
 
 Az első cél egy macOS Apple Siliconon futó **VST3 hangszer**, amely REAPER-ben
