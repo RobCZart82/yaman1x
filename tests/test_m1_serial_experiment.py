@@ -19,9 +19,11 @@ def manifest(profile, midi_sha256):
                 mame_sha256='synthetic-executable', midi_input=dict(sha256=midi_sha256),
                 dsp_profile=profile, dms_board='absent', eg_readback='zero',
                 dsp_sample_clock='disabled', dsp_sample_execution=False, vop3_bridge=None,
-                sci_observation={'synthetic': True},
+                midi_rx_transitions=21, sci0={'rdr_reads': 1},
+                sci_observation={'keyboard_port': {'rdr_reads': 0, 'tdr_writes': 0}},
                 sci_access_observation=dict(complete=True, channels=[
-                    dict(channel=0, rdr_reads=1), dict(channel=1, rdr_reads=0)]))
+                    dict(channel=0, rdr_reads=1, tdr_writes=0),
+                    dict(channel=1, rdr_reads=0, tdr_writes=0)]))
 
 
 class M1SerialExperimentTests(unittest.TestCase):
@@ -46,7 +48,8 @@ class M1SerialExperimentTests(unittest.TestCase):
         for field, value in [('dms_board', 'installed'), ('eg_readback', 'an1x-level-experiment'),
                              ('dsp_sample_clock', 'assumed-48k'), ('vop3_bridge', 'unexpected'),
                              ('returncode', 1), ('sci_access_observation', None),
-                             ('mame_sha256', 'different-executable')]:
+                             ('mame_sha256', 'different-executable'),
+                             ('midi_rx_transitions', None), ('sci0', {'rdr_reads': 2})]:
             broken = copy.deepcopy(runs)
             broken['firmware-contract'][field] = value
             with self.subTest(field=field), self.assertRaises(ValueError):

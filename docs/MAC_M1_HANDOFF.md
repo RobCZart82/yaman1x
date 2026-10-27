@@ -91,6 +91,8 @@ firmware-, végrehajtható- és MIDI-azonosítókat, valamint a két SCI-csatorn
 megfigyeléseit. Hibánál a suite nem lesz sikeres; a már létrejött futások és
 indítási naplók megmaradnak helyben. Régi, SCI-hozzáférés-megfigyelő nélküli
 MAME-programmal a suite elutasítja a hiányzó bizonyítékot.
+Az eseményszámoknak egyezniük kell a külön SCI-zárószámlálókkal; a MIDI
+vonalátmenetek zárószámlálója is kötelező, de nulla érték is megfigyelési eredmény.
 
 `suite_complete=true` kizárólag a párosított megfigyelés befejezését jelenti.
 A `firmware_note_handling_verified`, `complete_an1x_boot`, `hardware_validated`

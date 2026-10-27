@@ -41,8 +41,16 @@ def summarize_pair(manifests, midi_sha256):
         channels = access['channels']
         if [entry['channel'] for entry in channels] != [0, 1]:
             raise ValueError('Both SCI channels required')
+        edges = run.get('midi_rx_transitions')
+        if not isinstance(edges, int) or isinstance(edges, bool) or edges < 0:
+            raise ValueError('MIDI transition completion counter required')
+        keyboard = run['sci_observation']['keyboard_port']
+        if (channels[0]['rdr_reads'] != run['sci0']['rdr_reads']
+                or channels[1]['rdr_reads'] != keyboard['rdr_reads']
+                or channels[1]['tdr_writes'] != keyboard['tdr_writes']):
+            raise ValueError('SCI access events disagree with independent completion counters')
         rows.append(dict(profile=profile, channels=channels,
-                         midi_rx_transitions=run.get('midi_rx_transitions'),
+                         midi_rx_transitions=edges,
                          sci0_rdr_reads=channels[0]['rdr_reads']))
     return dict(suite_complete=True, rows=rows, rom_sha256=reference[0],
                 mame_sha256=reference[1], midi_sha256=midi_sha256,
