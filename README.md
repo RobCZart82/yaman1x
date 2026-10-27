@@ -27,6 +27,9 @@ This checks the source build, not AN1x hardware fidelity or plugin-host support.
 
 ## Current state
 
+See the [development plan through the first sound in REAPER (Hungarian)](docs/FIRST_REAPER_SOUND_PLAN.md)
+for the planned firmware, audio-engine and VST3 milestones and acceptance criteria.
+
 - Read-only AN1x 1.04 ROM identification, byte view and reset-vector inspection.
 - AN1x bulk-SysEx structure/checksum validation and synthetic upload adapter.
 - Two VOP3 instances, C ABI 2, register replay and independent upload-state audit.

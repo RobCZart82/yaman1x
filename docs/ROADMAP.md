@@ -1,5 +1,9 @@
 # Development roadmap
 
+Detailed execution plan, with milestone acceptance criteria through the first
+audible firmware-driven VST3 voice in REAPER:
+[First REAPER sound plan (Hungarian)](FIRST_REAPER_SOUND_PLAN.md).
+
 These tasks follow the first private source snapshot. No GUI work is planned
 before the engine has a validated signal path.
 
