@@ -23,7 +23,10 @@ CRLF-to-LF normalization); full archive equality has **not** been established.
 The new build uses a clean checkout of the official commit, verifies all four
 patch inputs, and does not assume the ZIP comment proves the whole source tree.
 Archive hashes, commit identities and Git trees remain separately recorded.
-The vendored VOP3/AsmJit file contents and all 201 provenance hashes are unchanged.
+At the source-recovery revision in PR #20, all 201 vendored files were unchanged.
+A subsequent [reviewed initialization fix](vop3-initial-decode-fix.md) adapts
+one VOP3 header while preserving its original hash and exact reverse patch;
+the other 200 files remain unchanged.
 
 ## Repeatable patch preparation
 

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "status": "M0 partial; planned components are not linked",
   "vop3_and_asmjit": {
-    "state": "vendored unchanged",
+    "state": "vendored with one reversible reviewed initialization edit; see provenance local_edits",
     "archive_sha256": "26dacd7280118556ed50ce6fcc03c6835866d18e17a9ad61c3bc77557809e0c9",
     "upstream_commit": "a3c8182811c398efd41daadf78d6fabcf50af56a",
     "file_manifest": "third_party/provenance.json",

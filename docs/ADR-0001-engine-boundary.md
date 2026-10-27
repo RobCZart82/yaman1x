@@ -114,6 +114,6 @@ test equal-time event order and MIDI queue overflow. Use generated instructions
 and bytes only. Preserve the existing research capture formats and experimental
 profile names. Do not change EG target hold without AN1x hardware evidence.
 
-Open VOP3 initialization risk: see [audit follow-up](AUDIT_FOLLOWUP_2026-10-27.md).
-Resolve it with a separately reviewed vendor patch and updated provenance before
-treating repeated construction/JIT execution as a production-ready foundation.
+The VOP3 first-decode initialization finding was reproduced with MSan and has a
+[reviewed reversible fix](vop3-initial-decode-fix.md). This addresses the
+constructor read; it does not establish full JIT cleanliness or real-time safety.

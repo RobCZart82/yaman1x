@@ -27,12 +27,13 @@ def main():
     parser.add_argument("--work", type=Path, required=True)
     args = parser.parse_args()
     repo = Path(__file__).resolve().parents[1]
-    original = (repo / "third_party/vop3/src/yss236_core.h").read_bytes()
+    reviewed = (repo / "third_party/vop3/src/yss236_core.h").read_bytes()
+    original = reviewed.replace(b"\top ops[STEPS]{};", b"\top ops[STEPS];")
     if hashlib.sha256(original).hexdigest() != ORIGINAL_SHA256:
         raise RuntimeError("Expected the unchanged reviewed upstream header")
     candidate = original.replace(b"\top ops[STEPS];", b"\top ops[STEPS]{};")
-    if candidate == original:
-        raise RuntimeError("Candidate initialization edit did not apply")
+    if candidate == original or candidate != reviewed:
+        raise RuntimeError("Candidate must exactly match the reviewed repository header")
     args.work.mkdir(parents=True, exist_ok=False)
     results = {}
     for name, header in (("original", original), ("candidate", candidate)):

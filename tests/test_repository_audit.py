@@ -1,4 +1,5 @@
 import hashlib
+import difflib
 import json
 from pathlib import Path
 import subprocess
@@ -10,6 +11,39 @@ from repository_audit import audit
 
 
 class RepositoryAuditTests(unittest.TestCase):
+    def test_local_edit_must_reverse_to_the_recorded_upstream(self):
+        source = self.root/'third_party/vop3/src/core.cpp'
+        original = source.read_bytes()
+        reviewed = original.replace(b'synthetic', b'reviewed')
+        source.write_bytes(reviewed)
+        patch = self.root/'third_party/patches/core.patch'
+        patch.parent.mkdir()
+        patch.write_bytes(''.join(difflib.unified_diff(
+            original.decode().splitlines(True), reviewed.decode().splitlines(True),
+            fromfile='a/third_party/vop3/src/core.cpp',
+            tofile='b/third_party/vop3/src/core.cpp')).encode())
+        manifest = self.root/'third_party/provenance.json'
+        data = json.loads(manifest.read_text())
+        data['files'][0].update(bytes=len(reviewed), sha256=hashlib.sha256(reviewed).hexdigest())
+        edit = dict(path='third_party/vop3/src/core.cpp',
+                    before='synthetic', after='reviewed', upstream_bytes=len(original),
+                    upstream_sha256=hashlib.sha256(original).hexdigest(),
+                    patch='third_party/patches/core.patch',
+                    patch_sha256=hashlib.sha256(patch.read_bytes()).hexdigest())
+        data['local_edits'] = [edit]
+        manifest.write_text(json.dumps(data))
+        result = audit(self.root)
+        self.assertTrue(result['upload_check_passed'], result)
+        self.assertEqual(result['reviewed_local_edits_verified'], 1)
+        edit['upstream_sha256'] = '0'*64
+        manifest.write_text(json.dumps(data))
+        self.assertFalse(audit(self.root)['upload_check_passed'])
+        edit['upstream_sha256'] = hashlib.sha256(original).hexdigest()
+        patch.write_bytes(patch.read_bytes().replace(b'core.cpp', b'missing.cpp'))
+        edit['patch_sha256'] = hashlib.sha256(patch.read_bytes()).hexdigest()
+        manifest.write_text(json.dumps(data))
+        self.assertFalse(audit(self.root)['upload_check_passed'])
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
