@@ -1,6 +1,7 @@
 # M1: timestamped serial control-flow observation
 
 Date: 2026-10-27. Baseline `064ddbe56dd7931839bd2a45e73c2093240098b1`.
+Implementation: [PR #19](https://github.com/RobCZart82/yaman1x/pull/19).
 Status: observation tooling implemented; firmware/MIDI acceptance NOT RUN.
 
 The eleventh research patch adds passive SCI0/SCI1 bus-access events to the
