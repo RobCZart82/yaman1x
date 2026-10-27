@@ -19,7 +19,7 @@ ctest --test-dir build -C Release --output-on-failure
 python3 tools/repository_audit.py
 ```
 
-The source-only build runs **twenty-six test groups**. Tests generate synthetic
+The source-only build runs **twenty-seven test groups**. Tests generate synthetic
 programs/banks in temporary directories. The two upstream tests that require
 Yamaha images are not part of this suite. ROM-free GitHub Actions currently
 builds and passes this suite on Linux x64, macOS Apple Silicon and Windows x64.
@@ -106,3 +106,5 @@ The [two-channel SCI timeline](docs/sci-cycle-timeline.md) now combines timestam
 The [H8 host-services boundary](docs/h8-host-services-boundary.md) records source-derived bus/cycle requirements and the remaining work before embedded CPU compilation.
 
 The [H8H bus-access helpers](docs/h8h-bus-access.md) preserve source-defined word alignment, instruction/data routing and pre-access cycle charging. CPU instruction execution remains pending.
+
+The [H8 execution budget](docs/h8-execution-budget.md) preserves inter-slice cycle debt and peripheral-boundary arithmetic; generated instruction-handler integration remains pending.

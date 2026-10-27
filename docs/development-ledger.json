@@ -3,7 +3,7 @@
   "recorded_date": "2026-10-27",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "e3f71a89f6d967034a3c05926a7a86c595ab9a49",
+  "baseline_commit": "f8b1f4fbd4a422eab33d633e2384f1c82c11623d",
   "entries": [
     {
       "pr": 6,
@@ -374,15 +374,25 @@
       "merge_commit": "e3f71a89f6d967034a3c05926a7a86c595ab9a49",
       "reviewed_head": "a67b599f880f0981d68e04b276b0d904ea3f7d29",
       "status": "merged"
+    },
+    {
+      "pr": 43,
+      "title": "Adapt standalone H8H bus helpers with cycle charging and upstream comparison",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/43",
+      "kind": "development",
+      "merged_at_utc": "2026-10-27T20:49:51Z",
+      "merge_commit": "f8b1f4fbd4a422eab33d633e2384f1c82c11623d",
+      "reviewed_head": "83caf332df3539037187888c60bc35ae422dc2a3",
+      "status": "merged"
     }
   ],
   "active_change": {
-    "id": "H8H-BUS-2026-10-27",
-    "branch": "feat/h8h-bus-access",
+    "id": "H8-BUDGET-2026-10-27",
+    "branch": "feat/h8-execution-budget",
     "status": "in_review",
-    "summary": "H8H bus helpers preserving source-defined cycle charge, fetch/data routing and word alignment",
-    "validation": "Local macOS arm64 Release 26/26 CTest groups and 72 Python cases PASS; native ASan/UBSan PASS. Pinned original method bodies: 200000 operations, zero differences. Source/notice audits PASS; PR-head CI pending. CPU instructions not executed.",
-    "pr": 43,
-    "url": "https://github.com/RobCZart82/yaman1x/pull/43"
+    "summary": "Execution-slice debt and peripheral boundary arithmetic, without opcode runner",
+    "validation": "Local macOS arm64 Release 27/27 CTest groups, 74 Python cases and new native ASan/UBSan PASS. Original-method comparison: 200000 no-event synthetic slices plus 200000 deadlines, zero differences. Source/notice audits PASS. Final PR-head CI pending; no CPU opcodes executed.",
+    "pr": 44,
+    "url": "https://github.com/RobCZart82/yaman1x/pull/44"
   }
 }
