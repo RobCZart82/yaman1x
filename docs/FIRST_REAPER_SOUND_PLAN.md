@@ -2,6 +2,9 @@
 
 Rögzítve: 2026-10-27. Kiindulópont: a #14 PR-ig beolvadt kutatási eredmények.
 Ez végrehajtási terv; az alábbi, még nyitott mérföldkövek nem kész funkciók.
+Állapotellenőrzés: 2026-10-27, a #36 beolvasztása utáni kódbázison:
+`33dc7e97c174c7b4992ff838380b2ae9de01a579`. A jelen dokumentációs egységesítés
+nem jelent új motor-, firmware- vagy hardveres eredményt.
 
 ## Aktuális mérföldkő-állapot — 2026-10-27
 
@@ -12,9 +15,18 @@ Ez végrehajtási terv; az alábbi, még nyitott mérföldkövek nem kész funkc
 | M2–M3 | **Kutatási feladatok nyitva.** Nincs igazolt referenciahang. | AN1x órajel, táblacímzés, EG és soros hangút bizonyítása, majd megismételhető offline hang. |
 | M4–M6 | **Tervezett.** Nincs elkészült beágyazható hangszer vagy REAPER-elfogadás. | Validált offline referencia után audio-blokkmotor, VST3 és helyi REAPER-próba. |
 
-Az önálló komponens tesztje nem teljes CPU-/firmware-elfogadás. Az alábbi
-dátumozott napló őrzi a részletes bizonyítékot; a kapcsolódó PR checkjei
-rögzítik a végső tesztelt revíziót és platformfutásokat.
+Az önálló komponens tesztje nem teljes CPU-/firmware-elfogadás. A jelenlegi
+állapotot ez a táblázat és az M0/M1 részletes szakasza mutatja. A lezárási tábla
+az ellenőrzött végső PR-revíziókat és CI-futásokat rögzíti; a korabeli napló
+az akkori munkamenet állapotát őrzi.
+
+Legutóbbi motoreredmény: [#36](https://github.com/RobCZart82/yaman1x/pull/36),
+`6f3fbf6c22b9f3bfc28f78d0fc1bad55ed98ed8c`: Linux/macOS/Windows platformonként
+**22/22 tesztcsoport PASS**, MSan és teljes macOS MAME-build PASS. A konkrét
+futások a lezárási táblában vannak. Helyben Windows alatt 21 futtatható csoport
+PASS; a Python unittest-csoportot a korábban igazolt symlink-jogosultsági korlát
+miatt kizártuk a helyi futásból. A teljes csoport CI-ben sikeres. Ez nem teljes
+helyi tesztcsomag-PASS, és nem firmware-es MIDI-elfogadás.
 
 ## A terv folyamatos vezetése
 
@@ -36,31 +48,95 @@ az aktuális állapotot az új bejegyzés és az érintett mérföldkő együtt 
 ROM, bank és privát trace helyett csak publikálható azonosító és összefoglaló
 kerülhet a tervbe. A részletes mérési jegyzőkönyvekre hivatkozás mutasson.
 
+Az új szerkezet vezetési szabálya: minden új fejlesztésnél az aktuális
+állapottáblát és az érintett részletes mérföldkövet együtt kell frissíteni.
+A munkanapló új sora kapjon dátumot, PR-hivatkozást és „Korabeli állapot” jelölést.
+A végső ellenőrzések lezárásakor a PR-lezárási táblába a valóban tesztelt
+PR-revízió és annak saját futásai kerüljenek; más revízió CI-je nem helyettesíti.
+A korabeli mérési számokat és korlátokat megőrizzük, a már teljesült előfeltételt
+pedig az aktuális feladatlistából átvezetjük az elkészült eredmények közé.
+
 ## Előrehaladási napló
 
-| Dátum | Változás és állapot | Ellenőrzés / bizonyíték | Következő lépés |
+### Dokumentációs egységesítés — 2026-10-27
+
+[#37](https://github.com/RobCZart82/yaman1x/pull/37): az M0/M1 részletes állapota,
+a lezárt PR-ek bizonyítékai és a korabeli pillanatképek értelmezése egységesítve.
+Az ellenőrzés élő GitHub PR-/workflow-/jobadatokra és a fenti kódbázisra épült.
+A módosítás csak dokumentáció; M0/M1 készültségét és az elfogadási feltételeket
+nem változtatja meg. A dokumentációs PR saját CI-je a saját checkjeinél követhető.
+
+### Ellenőrzött PR-lezárások — legutóbbi elöl
+
+A #16–#36 PR-ek mind **beolvadtak**. Az alábbi SHA a végső tesztelt PR-head,
+nem a squash után keletkezett `main` commit; a beolvasztás a PR hivatkozásánál
+ellenőrizhető. Minden felsorolt alap-CI mindhárom platformjobja sikeres.
+`—`: az adott PR végső revízióján nem volt ilyen PR-triggerelt workflow-futás;
+nem FAIL és nem más revízió eredményének átvétele. A korábbi hibakereső vagy
+köztes reprodukciós revíziók a korabeli naplóban megmaradnak.
+
+| Beolvadt PR / eredmény | Végső tesztelt PR-revízió | Lezárt ROM-mentes ellenőrzések |
+|---|---|---|
+| [#36](https://github.com/RobCZart82/yaman1x/pull/36) — Közös aszinkron SCI-csatorna | `6f3fbf6c22b9f3bfc28f78d0fc1bad55ed98ed8c` | [Linux/macOS/Windows PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40500706565); [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40500706683); [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40500706500) |
+| [#35](https://github.com/RobCZart82/yaman1x/pull/35) — Aszinkron RX | `eeceb8282e920e163c5ff649068b90952d753671` | [Linux/macOS/Windows PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40494506274); [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40494506107); [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40494506093) |
+| [#34](https://github.com/RobCZart82/yaman1x/pull/34) — Aszinkron TX | `da5fcd3dd9301f06e68c489c879989661a3b3428` | [Linux/macOS/Windows PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40491811757); [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40491811799); [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40491811994) |
+| [#33](https://github.com/RobCZart82/yaman1x/pull/33) — LICENSE szövegtördelése; státusz változatlan | `22cb57c8f1a617b6a9ddca90bad6fc8962671327` | [Linux/macOS/Windows PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40489564815); [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40489564814); MAME: — |
+| [#32](https://github.com/RobCZart82/yaman1x/pull/32) — Licenclefedettség-ellenőrzés | `fc6f4ed47774ba2b1a17394255a1427e2e7249fb` | [Linux/macOS/Windows PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40488326442); [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40488326433); MAME: — |
+| [#31](https://github.com/RobCZart82/yaman1x/pull/31) — Cserélhető PKS-megvalósítás követelménye | `41ff1d08c834632417efb4c6bbdca2a5c3754c24` | [Linux/macOS/Windows PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40484817843); [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40484817846); MAME: — |
+| [#30](https://github.com/RobCZart82/yaman1x/pull/30) — PKS ötletfeljegyzés | `955dd73afd3760df1535de60a94503c016161925` | [Linux/macOS/Windows PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40484348640); [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40484348645); MAME: — |
+| [#29](https://github.com/RobCZart82/yaman1x/pull/29) — SCI SSR-latch | `b169bbe9b3e995328b75d6190f7458138c154722` | [Linux/macOS/Windows PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40482540061); [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40482540084); [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40482540083) |
+| [#28](https://github.com/RobCZart82/yaman1x/pull/28) — SCI ciklusóra | `747cd98fac4ae300216f0bd5021dbd0cc2eae6ea` | [Linux/macOS/Windows PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40477835302); [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40477835203); [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40477835254) |
+| [#27](https://github.com/RobCZart82/yaman1x/pull/27) — IRQ-regiszter/láb adapter | `d33a27bdef963ddc8b1385d87fa324878af51f89` | [Linux/macOS/Windows PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40474786571); [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40474786580); [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40474786569) |
+| [#26](https://github.com/RobCZart82/yaman1x/pull/26) — Belső IRQ-választó | `d5d80e49f4664ce00f5df33d2d3408e74c2aa64a` | [Linux/macOS/Windows PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40470767512); [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40470767565); [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40470767326) |
+| [#25](https://github.com/RobCZart82/yaman1x/pull/25) — H8 CI-bizonyíték dokumentálása | `a917c9779f64ce5afacae5fa2fc615d194c8abaa` | [Linux/macOS/Windows PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40469158573); [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40469158626); MAME: — |
+| [#24](https://github.com/RobCZart82/yaman1x/pull/24) — H8-leltár, generátor és GPIO | `896bd7882309bb03868c5c3816f4f9b7b068b858` | [Linux/macOS/Windows PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40468100477); [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40468100462); [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40468100442) |
+| [#23](https://github.com/RobCZart82/yaman1x/pull/23) — Mac párosított próba előkészítése | `e0ad4df4884af8d0926cd68e451ebcbc280ed4d0` | [Linux/macOS/Windows PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40463469779); [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40463469732); MAME: — |
+| [#22](https://github.com/RobCZart82/yaman1x/pull/22) — VOP3 konstruktorjavítás | `d363d6a530f03aef5e6167759357874d7b4650b0` | [Linux/macOS/Windows PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40461780030); [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40461779887); MAME: — |
+| [#21](https://github.com/RobCZart82/yaman1x/pull/21) — Kutatási buildbizonyíték dokumentálása | `cfb87b521f601daff01c15befb09af88066239e4` | [Linux/macOS/Windows PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40459057121); MSan: —; MAME: — |
+| [#20](https://github.com/RobCZart82/yaman1x/pull/20) — Rögzített kutatási forrás és build | `31664c74f2726091eb9f403c1621ef949479ddbb` | [Linux/macOS/Windows PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40457998062); MSan: —; [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40457998036) |
+| [#19](https://github.com/RobCZart82/yaman1x/pull/19) — SCI-hozzáférés-megfigyelő | `748d8495b1e75ed43bd69d456bfd519ffca85557` | [Linux/macOS/Windows PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40455618012); MSan: —; MAME: — |
+| [#18](https://github.com/RobCZart82/yaman1x/pull/18) — Tervvezetési szabályok | `e503321ad31b2d0a36e0ae419215034cbf82b74f` | [Linux/macOS/Windows PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40454887762); MSan: —; MAME: — |
+| [#17](https://github.com/RobCZart82/yaman1x/pull/17) — ADR és függőségalap | `bd2262fd7c06c91f7e40ea2aaa3ea52dceecedc1` | [Linux/macOS/Windows PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40454539768); MSan: —; MAME: — |
+| [#16](https://github.com/RobCZart82/yaman1x/pull/16) — Python -O / AsmJit javítások | `ac56d8c7144ef8cb478f3a714578203c440b841e` | [Linux/macOS/Windows PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40454166792); MSan: —; MAME: — |
+
+A zöld CI a forrás-/komponenstesztek és a jelzett kutatási build eredménye.
+Nem igazol teljes H8-portot, friss firmware-es MIDI-vételt, hardverazonosságot,
+audio- vagy REAPER-elfogadást, és nem jelent jogi/licenc- vagy bináris kiadási
+jóváhagyást. A csak dokumentációs PR-ek sem új működési bizonyítékok.
+
+### Korabeli munkanapló — PR-sorrendben
+
+Az alábbi sorok az adott fejlesztési lépés **akkori** állapotát és akkori
+következő feladatát rögzítik. A `NOT RUN`, „PR megnyitva”, „platform-CI a PR-ben”
+és a még külön TX/RX modellekre utaló mondatok itt történeti állapotok.
+Platformlezáráshoz a fenti táblát, jelenlegi feladathoz az aktuális M0/M1 részt
+kell olvasni. A firmware-/hardver-/audio-elfogadás hiányát nem írja felül az,
+hogy egy korábban még nem futott ROM-mentes platformteszt azóta sikeres lett.
+A helyi szintetikus és upstream-összehasonlító mérések eredeti számai megmaradnak.
+
+| Dátum | Korabeli változás és állapot | Akkori ellenőrzés / bizonyíték | Akkori következő lépés |
 |---|---|---|---|
-| 2026-10-27 | [#36](https://github.com/RobCZart82/yaman1x/pull/36): **M0 részben teljesült:** [közös aszinkron SCI-csatorna](h8-sci-async-channel.md), egy regiszter/óra/SSR-tulajdonos TX/RX állapotgépekkel. Régi felületek kompatibilitási rétegként megmaradtak, a bitlogika közös. | Windows MSVC Release: 4096 teljes duplex adat/keretezés kombináció és célzott sorrend-/státusz-/izolációs tesztek PASS; eredeti upstream óra/TX/RX metódusokkal 1153468 összehasonlítás, 804316 közös él, 0 eltérés. Végső revízió/platformok a kapcsolódó PR checkjeinél. CPU/firmware/hardver/audio NOT RUN. | Négy SCI IRQ-kérés útvonalazása és hatregiszteres MMIO-adapter, két SCI-csatorna tesztje; majd CPU/periféria-ütemező és friss firmware-es MIDI-elfogadás. |
-| 2026-10-27 | [#35](https://github.com/RobCZart82/yaman1x/pull/35): **M0 részben teljesült:** [aszinkron SCI RX](h8-sci-async-rx.md), vonalmintavétel, RDR és RXI/ERI kérések, túlcsordulás/paritás/keretezési hibák. Külön RX-tulajdonos; közös TX/RX és CPU még nincs bekötve. | Windows MSVC Release: 4096 adat/keretezés kombináció és célzott hibás szekvenciák PASS; eredeti upstream metódusokkal 896623 összehasonlítás, 663805 RX-tick, 0 eltérés. Végső revízió/platformok a kapcsolódó PR checkjeinél. Firmware/hardver/audio NOT RUN. | Közös TX/RX regiszter/óra/státusz és azonos idejű események; IRQ/CPU MMIO; utána friss firmware-es MIDI-elfogadás. A külön TX/RX osztályok együtt még nem teljes SCI-csatorna. |
-| 2026-10-27 | [#34](https://github.com/RobCZart82/yaman1x/pull/34): **M0 részben teljesült:** [aszinkron SCI TX](h8-sci-async-tx.md), TDR/puffer, SSR/ciklusóra összekötése, adási vonal és TXI/TEI események. RX/CPU még nincs bekötve. | Windows MSVC Release: 4096 adat/keretezés kombináció és célzott tulajdonosi szekvenciák PASS; eredeti upstream metódusokkal 200000 művelet, 82931 TX-tick, 0 eltérés. Végső revízió/platformok a kapcsolódó PR checkjeinél. Firmware/hardver/audio NOT RUN. | Aszinkron RX/RDR és hibák, közös TX/RX óra/státusz, IRQ/CPU MMIO; utána friss firmware-es MIDI-elfogadás. Paritás upstream szerint megőrizve, nem igazolt hardvertény. |
-| 2026-10-27 | [#32](https://github.com/RobCZart82/yaman1x/pull/32): **M0 licencnyilvántartás megerősítve:** javított harmadikfél-összesítő; 219 fájl, 5 licencszöveg nyilvántartása és CTest-ellenőrzése. [Hatókör és nyitott feltételek](../THIRD_PARTY.md#reviewed-sourcenotice-coverage). | Helyi Windows: 7 célzott pozitív/negatív teszt PASS; forrás-/értesítés-lefedettség PASS. A végső revízió és háromplatformos eredmények a kapcsolódó PR checkjeinél. Ez nem jogi vagy bináris kiadási jóváhagyás. | Új átvételnél kötelező nyilvántartás és licencvizsgálat; saját projektlicenc döntése, teljes H8/SDK függőségzár és tényleges kiadási csomag értesítéseinek ellenőrzése továbbra is nyitott. |
-| 2026-10-27 | **Architekturális követelmény:** cserélhető PKS HLE/firmware megvalósítás, közös időzített perifériafelület és verziózott mentett állapot; áttérési út az M1 alatt és ADR-0001-ben. | Dokumentációs döntés; nincs megvalósított backend vagy új dump, M0/M1 változatlan. | A bizonyított protokoll alapján interfész és szintetikus tesztek; dump esetén MCU-integráció és összehasonlító elfogadás. |
-| 2026-10-27 | **Ötletfeljegyzés:** PKS HLE, fokozatos protokollbizonyítás, dummy ROM korlátai és távlati hardveres helyettesítés lehetőségei rögzítve az M1 alatt. | Dokumentációs értékelés; új működési vagy hardveres bizonyíték nincs, M0/M1 állapota változatlan. | Firmware-elvárások és tényleges kommunikáció bizonyítása; csak utána döntés egy külön tesztelhető PKS-modellről. |
-| 2026-10-27 | [#29](https://github.com/RobCZart82/yaman1x/pull/29): **M0 részben teljesült:** önálló [SCI SSR státusz-latch](h8-sci-status.md), olvasás utáni törlés, debugger/DMA mellékhatások és upstream reset-viselkedés. A teljes UART még nincs bekötve. | Windows MSVC Release: 33 554 432 átmenet független bitenkénti orákulummal PASS; külön szekvenciatesztek PASS. A végső revízió és platformeredmények a kapcsolódó PR checkjeinél. Firmware/MIDI/hardver: NOT RUN. | SCI TX/RX bájtállapotgép, TDR/RDR és megszakítások; az SSR-write utáni tx_start/sync_rx_start tulajdonosi lépések és ciklusóra összekötése, majd CPU-bekötés. |
-| 2026-10-27 | [#16](https://github.com/RobCZart82/yaman1x/pull/16), beolvadt: Python `-O` mellett is aktív ABI-ellenőrzések, AsmJit tesztforrások kizárása, harmadik fél patch-darabszám javítása | `ac56d8c7144ef8cb478f3a714578203c440b841e`: Linux x64, macOS arm64, Windows x64 CI 11/11 tesztcsoport PASS; [futás](https://github.com/RobCZart82/yaman1x/actions/runs/40454166792). Helyi Windows: build PASS, CTest 10/11; egy meglévő symlinkteszt WinError 1314 miatt akadályozott. [Auditkövetés](AUDIT_FOLLOWUP_2026-10-27.md). | A VOP3 inicializálás/`memcmp` kockázat célzott vizsgálata; EG target-hold változtatás csak hardveres bizonyíték után. |
-| 2026-10-27 | [#17](https://github.com/RobCZart82/yaman1x/pull/17), beolvadt: [ADR-0001](ADR-0001-engine-boundary.md), függőségazonosítók és [buildalap](BUILD_BASELINE.md). **M0 részben teljesült.** | `bd2262fd7c06c91f7e40ea2aaa3ea52dceecedc1`: mindhárom platform CI PASS; [futás](https://github.com/RobCZart82/yaman1x/actions/runs/40454539768). Helyi CMake-konfiguráció és forrásaudit PASS, 201 változatlan upstream fájl ellenőrizve. | H8-port függőség- és licenclezárása, példányizolációs/időléptetési próbák, teljes referencia-toolchain rögzítése; saját terjesztési licenc döntése. M1 a külön MAME-kutatási úton folytatható. |
-| 2026-10-27 | [#19](https://github.com/RobCZart82/yaman1x/pull/19): **M1 folyamatban:** időbélyeges SCI-hozzáférés-megfigyelő és naplóellenőrző elkészült; firmware-es elfogadás még nem futott. [Részletek](m1-sci-access-milestone.md). | Natív megfigyelő és célzott Python-tesztek Windows x64-en PASS. A teljes Python-csomag meglévő symlinktesztjét WinError 1314 akadályozza. Tizenegy patch alkalmazása a rögzített forrásra PASS; teljes új MAME-build és friss firmware-próba NOT RUN. | Külön macOS kutatási build, SCI-beállítások és rövid engedélyezési ablakok rögzítése, majd a PC-k követése privát disassemblyvel. PKS-válasz továbbra sem feltételezhető. |
-| 2026-10-27 | [#20](https://github.com/RobCZart82/yaman1x/pull/20), beolvadt: **M0/M1 folyamatban.** Upstream forrásazonosítók visszanyerése, ismételhető patch-előellenőrző és teljes macOS MAME-build CI. [Bizonyíték és határok](source-identity-recovery.md#verified-result). | `31664c74f2726091eb9f403c1621ef949479ddbb`: [Linux/macOS/Windows alapcsomag](https://github.com/RobCZart82/yaman1x/actions/runs/40457998062) 12/12 csoport PASS platformonként; [teljes MAME-build és arm64/regisztrációs próba](https://github.com/RobCZart82/yaman1x/actions/runs/40457998036) PASS Xcode 16.2-vel. 11 patch, 4 egyező projektfejléc; firmware/SCI/MIDI-elfogadás NOT RUN. A kezdeti fordító- és Windows-sorvéghiba dokumentálva. | Friss, helyi firmware-felvétel és SCI-vezérlésiút-elemzés. A teljes kutatási build előfeltétele teljesült; H8-port és példányizoláció továbbra is nyitott. |
-| 2026-10-27 | [#22](https://github.com/RobCZart82/yaman1x/pull/22): **M0 alapstabilitás, bizonyított konstruktorhiba javítása.** VOP3 `ops` inicializálása az első dekódolás előtt; [bizonyíték és visszafordítható provenance](vop3-initial-decode-fix.md). | `44d5e8c8d2708e6736ce88e8cbe48be67a7b314c`: az eredeti fejléc inicializálatlan `memcmp` olvasását a [MemorySanitizer reprodukálta](https://github.com/RobCZart82/yaman1x/actions/runs/40461084899), az inicializált jelölt tiszta. Natív konstrukció/dekódolás és provenance-regressziók hozzáadva; végső platform- és sanitizer-eredmények a PR checkjeinél. | H8-port és friss helyi firmware/SCI/MIDI-elfogadás továbbra is nyitott. Az EG target-hold változatlan, hardveres bizonyíték szükséges. |
-| 2026-10-27 | [#23](https://github.com/RobCZart82/yaman1x/pull/23): **M1 Mac-folytatás előkészítve.** Generált két másodperces MIDI-hang és két friss, egyetlen státuszprofilban eltérő firmware-megfigyelés futtatója; [Mac M1 átadás](MAC_M1_HANDOFF.md). | Szintetikus MIDI-időzítés, párosítási és hibakezelési próbák helyben PASS; forrásaudit PASS. A végső platform- és sanitizer-eredmények a PR checkjeinél. Valódi firmware/SCI/MIDI-futás NOT RUN. | A Macen eszköz- és forrásellenőrzés, build, majd a helyi párosított próba. A befejezett suite nem jelent automatikusan igazolt MIDI-feldolgozást vagy bootot. |
-| 2026-10-27 | [#24](https://github.com/RobCZart82/yaman1x/pull/24): **M0 H8-port előkészítés:** 30 fájlos, hash-elt include/implementáció leltár és generált/keretrendszer-határok. [Részletek](h8-port-source-boundary.md). | A rögzített archívum read-only feldolgozása PASS; ciklus-, párosítás-, hiányzó forrás-, hash- és útvonal-regressziók PASS. Ez nem teljes fordítói függőségzárás vagy licenclezárás; beágyazott H8-build NOT RUN. | Generátor/lista/buildszabály rögzítése, framework-szolgáltatások feltárása és minimális hostadapter; a Macen külön friss firmware-próba. |
-| 2026-10-27 | [#24](https://github.com/RobCZart82/yaman1x/pull/24): **M0 H8-generátor előkészítés:** három buildbemenet és négy generált fájl hash-rögzítése; [ismételt generálási próba](h8-port-source-boundary.md#repeated-generation-experiment). | Windows Python 3.13.3: négy kimenet két független generálása PASS; bemenetazonosság- és kimenettartalom-regressziók PASS; forrásaudit PASS. Ág: `feat/h8-source-inventory`; PR megnyitva; végső platform-CI a #24 checkjeinél. | Keretrendszer-szolgáltatások és generált kód függőségeinek feltárása, minimális hostadapter és fordítás. CPU/firmware-végrehajtás nem történt. |
-| 2026-10-27 | [#24](https://github.com/RobCZart82/yaman1x/pull/24): **M0 első önálló H8-periféria:** MAME-független digitális portmodell; [forrásazonosság, határok és teszt](h8-digital-port.md). | MSVC 19.44 Release build és natív teszt PASS: 786432 DDR/adat/maszk/forced-input kombináció négy bemeneti mintával; értesítéssorrend, reset és példányizoláció PASS. Platform-CI, firmware-integráció és hardverpróba NOT RUN; ág: `feat/h8-source-inventory`. | PR és háromplatformos ellenőrzés; utána a SCI/IRQ/timer időzítési és hostszolgáltatás-határának kialakítása. A CPU-port még nincs kész. |
-| 2026-10-27 | [#24](https://github.com/RobCZart82/yaman1x/pull/24): digitális port helyi upstream összehasonlítása. | A rögzített MAME 11 eredeti regiszter/reset metódustörzsével 600000 determinisztikus művelet: **0 eltérés**, MSVC Release. [Próba határai](h8-digital-port.md#validation). | Végső platform-CI és teljes kutatási build ellenőrzése. Teljes MAME-eszköz-, CPU- és hardvervalidáció továbbra sem történt. |
-| 2026-10-27 | **#24 beolvadt, H8-periféria platformellenőrzés lezárva.** [Végső bizonyíték](h8-digital-port.md). | `896bd7882309bb03868c5c3816f4f9b7b068b858`: [Linux/macOS/Windows](https://github.com/RobCZart82/yaman1x/actions/runs/40468100477), [MSan](https://github.com/RobCZart82/yaman1x/actions/runs/40468100462) és [teljes kutatási MAME-build](https://github.com/RobCZart82/yaman1x/actions/runs/40468100442) PASS. A korábbi NOT RUN platformbejegyzések történeti állapotok. | SCI/IRQ/timer hostadapter és CPU-leválasztás. Az új GPIO firmware-integrációja és a friss Mac-firmware-próba továbbra is NOT RUN. M0/M1 még nem teljesült. |
-| 2026-10-27 | [#26](https://github.com/RobCZart82/yaman1x/pull/26): **M0 H8H belső IRQ-választó elkészült külön komponensként.** [Szemantika és hiányzó adapter](h8-internal-irqs.md). | Helyi MSVC Release build/teszt PASS: 11 prioritáscsoport és 44 belső vektor, 990 vektorpár, DMA-elfogyasztás, szűrők, NMI-latch, reset és izoláció. Platform-CI a külön PR-ben; CPU-/SCI-/firmware-integráció NOT RUN. | Teljes IRQ-adapter, külső lábak és CPU-szűrők bekötése; időzített SCI-modell és friss Mac-firmware-próba. Az NMI-élt és időfeltételt a tulajdonosnak kell igazolnia. |
-| 2026-10-27 | [#27](https://github.com/RobCZart82/yaman1x/pull/27): **M0 H8H IRQ-regiszter/láb adapter elkészült.** [Szemantika, ICR-kockázat és inbox-értékelés](h8h-irq-controller.md). | Helyi MSVC Release tesztek PASS; az eredeti upstream metódustörzsekkel 300000 determinisztikus művelet, **0 eltérés**. A PIN/NMI/IER/ISR/ISCR/ICR és publikációs határok megőrizve; CPU/SCI/firmware-bekötés NOT RUN. | Platform-CI és kutatási build; utána időzített SCI- és CPU-adapter. Az új PKS-HLE/dummy-ROM jegyzet nem tekinthető protokollbizonyítéknak; feltételezett választ nem vezetünk be. |
-| 2026-10-27 | [#28](https://github.com/RobCZart82/yaman1x/pull/28): **M0 SCI belső ciklusóra-adapter.** [Részletes szerződés, tesztek és következő lépés](h8-sci-cycle-clock.md). | Helyi MSVC Release próba: 1024 osztó, TX/RX ciklusnézet, blokkfelosztás, standby és hibahatárok PASS. Eredeti upstream ütemezési metódusokkal 200000 determinisztikus művelet, **0 eltérés**. Végső platform-CI a külön PR-ben; bájtállapotgép és CPU-/firmware-integráció NOT RUN. | SCI TX/RX és SSR/RDR mellékhatások, IRQ-kapcsolat, majd közös gépütemező és tényleges H8-végrehajtás. Külső SCI-órás módok még nem támogatottak. |
+| 2026-10-27 | **Korabeli állapot:** [#16](https://github.com/RobCZart82/yaman1x/pull/16), beolvadt: Python `-O` mellett is aktív ABI-ellenőrzések, AsmJit tesztforrások kizárása, harmadik fél patch-darabszám javítása | `ac56d8c7144ef8cb478f3a714578203c440b841e`: Linux x64, macOS arm64, Windows x64 CI 11/11 tesztcsoport PASS; [futás](https://github.com/RobCZart82/yaman1x/actions/runs/40454166792). Helyi Windows: build PASS, CTest 10/11; egy meglévő symlinkteszt WinError 1314 miatt akadályozott. [Auditkövetés](AUDIT_FOLLOWUP_2026-10-27.md). | A VOP3 inicializálás/`memcmp` kockázat célzott vizsgálata; EG target-hold változtatás csak hardveres bizonyíték után. |
+| 2026-10-27 | **Korabeli állapot:** [#17](https://github.com/RobCZart82/yaman1x/pull/17), beolvadt: [ADR-0001](ADR-0001-engine-boundary.md), függőségazonosítók és [buildalap](BUILD_BASELINE.md). **M0 részben teljesült.** | `bd2262fd7c06c91f7e40ea2aaa3ea52dceecedc1`: mindhárom platform CI PASS; [futás](https://github.com/RobCZart82/yaman1x/actions/runs/40454539768). Helyi CMake-konfiguráció és forrásaudit PASS, 201 változatlan upstream fájl ellenőrizve. | H8-port függőség- és licenclezárása, példányizolációs/időléptetési próbák, teljes referencia-toolchain rögzítése; saját terjesztési licenc döntése. M1 a külön MAME-kutatási úton folytatható. |
+| 2026-10-27 | **Korabeli állapot:** [#19](https://github.com/RobCZart82/yaman1x/pull/19): **M1 folyamatban:** időbélyeges SCI-hozzáférés-megfigyelő és naplóellenőrző elkészült; firmware-es elfogadás még nem futott. [Részletek](m1-sci-access-milestone.md). | Natív megfigyelő és célzott Python-tesztek Windows x64-en PASS. A teljes Python-csomag meglévő symlinktesztjét WinError 1314 akadályozza. Tizenegy patch alkalmazása a rögzített forrásra PASS; teljes új MAME-build és friss firmware-próba NOT RUN. | Külön macOS kutatási build, SCI-beállítások és rövid engedélyezési ablakok rögzítése, majd a PC-k követése privát disassemblyvel. PKS-válasz továbbra sem feltételezhető. |
+| 2026-10-27 | **Korabeli állapot:** [#20](https://github.com/RobCZart82/yaman1x/pull/20), beolvadt: **M0/M1 folyamatban.** Upstream forrásazonosítók visszanyerése, ismételhető patch-előellenőrző és teljes macOS MAME-build CI. [Bizonyíték és határok](source-identity-recovery.md#verified-result). | `31664c74f2726091eb9f403c1621ef949479ddbb`: [Linux/macOS/Windows alapcsomag](https://github.com/RobCZart82/yaman1x/actions/runs/40457998062) 12/12 csoport PASS platformonként; [teljes MAME-build és arm64/regisztrációs próba](https://github.com/RobCZart82/yaman1x/actions/runs/40457998036) PASS Xcode 16.2-vel. 11 patch, 4 egyező projektfejléc; firmware/SCI/MIDI-elfogadás NOT RUN. A kezdeti fordító- és Windows-sorvéghiba dokumentálva. | Friss, helyi firmware-felvétel és SCI-vezérlésiút-elemzés. A teljes kutatási build előfeltétele teljesült; H8-port és példányizoláció továbbra is nyitott. |
+| 2026-10-27 | **Korabeli állapot:** [#22](https://github.com/RobCZart82/yaman1x/pull/22): **M0 alapstabilitás, bizonyított konstruktorhiba javítása.** VOP3 `ops` inicializálása az első dekódolás előtt; [bizonyíték és visszafordítható provenance](vop3-initial-decode-fix.md). | `44d5e8c8d2708e6736ce88e8cbe48be67a7b314c`: az eredeti fejléc inicializálatlan `memcmp` olvasását a [MemorySanitizer reprodukálta](https://github.com/RobCZart82/yaman1x/actions/runs/40461084899), az inicializált jelölt tiszta. Natív konstrukció/dekódolás és provenance-regressziók hozzáadva; végső platform- és sanitizer-eredmények a PR checkjeinél. | H8-port és friss helyi firmware/SCI/MIDI-elfogadás továbbra is nyitott. Az EG target-hold változatlan, hardveres bizonyíték szükséges. |
+| 2026-10-27 | **Korabeli állapot:** [#23](https://github.com/RobCZart82/yaman1x/pull/23): **M1 Mac-folytatás előkészítve.** Generált két másodperces MIDI-hang és két friss, egyetlen státuszprofilban eltérő firmware-megfigyelés futtatója; [Mac M1 átadás](MAC_M1_HANDOFF.md). | Szintetikus MIDI-időzítés, párosítási és hibakezelési próbák helyben PASS; forrásaudit PASS. A végső platform- és sanitizer-eredmények a PR checkjeinél. Valódi firmware/SCI/MIDI-futás NOT RUN. | A Macen eszköz- és forrásellenőrzés, build, majd a helyi párosított próba. A befejezett suite nem jelent automatikusan igazolt MIDI-feldolgozást vagy bootot. |
+| 2026-10-27 | **Korabeli állapot:** [#24](https://github.com/RobCZart82/yaman1x/pull/24): **M0 H8-port előkészítés:** 30 fájlos, hash-elt include/implementáció leltár és generált/keretrendszer-határok. [Részletek](h8-port-source-boundary.md). | A rögzített archívum read-only feldolgozása PASS; ciklus-, párosítás-, hiányzó forrás-, hash- és útvonal-regressziók PASS. Ez nem teljes fordítói függőségzárás vagy licenclezárás; beágyazott H8-build NOT RUN. | Generátor/lista/buildszabály rögzítése, framework-szolgáltatások feltárása és minimális hostadapter; a Macen külön friss firmware-próba. |
+| 2026-10-27 | **Korabeli állapot:** [#24](https://github.com/RobCZart82/yaman1x/pull/24): **M0 H8-generátor előkészítés:** három buildbemenet és négy generált fájl hash-rögzítése; [ismételt generálási próba](h8-port-source-boundary.md#repeated-generation-experiment). | Windows Python 3.13.3: négy kimenet két független generálása PASS; bemenetazonosság- és kimenettartalom-regressziók PASS; forrásaudit PASS. Ág: `feat/h8-source-inventory`; PR megnyitva; végső platform-CI a #24 checkjeinél. | Keretrendszer-szolgáltatások és generált kód függőségeinek feltárása, minimális hostadapter és fordítás. CPU/firmware-végrehajtás nem történt. |
+| 2026-10-27 | **Korabeli állapot:** [#24](https://github.com/RobCZart82/yaman1x/pull/24): **M0 első önálló H8-periféria:** MAME-független digitális portmodell; [forrásazonosság, határok és teszt](h8-digital-port.md). | MSVC 19.44 Release build és natív teszt PASS: 786432 DDR/adat/maszk/forced-input kombináció négy bemeneti mintával; értesítéssorrend, reset és példányizoláció PASS. Platform-CI, firmware-integráció és hardverpróba NOT RUN; ág: `feat/h8-source-inventory`. | PR és háromplatformos ellenőrzés; utána a SCI/IRQ/timer időzítési és hostszolgáltatás-határának kialakítása. A CPU-port még nincs kész. |
+| 2026-10-27 | **Korabeli állapot:** [#24](https://github.com/RobCZart82/yaman1x/pull/24): digitális port helyi upstream összehasonlítása. | A rögzített MAME 11 eredeti regiszter/reset metódustörzsével 600000 determinisztikus művelet: **0 eltérés**, MSVC Release. [Próba határai](h8-digital-port.md#validation). | Végső platform-CI és teljes kutatási build ellenőrzése. Teljes MAME-eszköz-, CPU- és hardvervalidáció továbbra sem történt. |
+| 2026-10-27 | **Korabeli állapot:** **#24 beolvadt, H8-periféria platformellenőrzés lezárva.** [Végső bizonyíték](h8-digital-port.md). | `896bd7882309bb03868c5c3816f4f9b7b068b858`: [Linux/macOS/Windows](https://github.com/RobCZart82/yaman1x/actions/runs/40468100477), [MSan](https://github.com/RobCZart82/yaman1x/actions/runs/40468100462) és [teljes kutatási MAME-build](https://github.com/RobCZart82/yaman1x/actions/runs/40468100442) PASS. A korábbi NOT RUN platformbejegyzések történeti állapotok. | SCI/IRQ/timer hostadapter és CPU-leválasztás. Az új GPIO firmware-integrációja és a friss Mac-firmware-próba továbbra is NOT RUN. M0/M1 még nem teljesült. |
+| 2026-10-27 | **Korabeli állapot:** [#26](https://github.com/RobCZart82/yaman1x/pull/26): **M0 H8H belső IRQ-választó elkészült külön komponensként.** [Szemantika és hiányzó adapter](h8-internal-irqs.md). | Helyi MSVC Release build/teszt PASS: 11 prioritáscsoport és 44 belső vektor, 990 vektorpár, DMA-elfogyasztás, szűrők, NMI-latch, reset és izoláció. Platform-CI a külön PR-ben; CPU-/SCI-/firmware-integráció NOT RUN. | Teljes IRQ-adapter, külső lábak és CPU-szűrők bekötése; időzített SCI-modell és friss Mac-firmware-próba. Az NMI-élt és időfeltételt a tulajdonosnak kell igazolnia. |
+| 2026-10-27 | **Korabeli állapot:** [#27](https://github.com/RobCZart82/yaman1x/pull/27): **M0 H8H IRQ-regiszter/láb adapter elkészült.** [Szemantika, ICR-kockázat és inbox-értékelés](h8h-irq-controller.md). | Helyi MSVC Release tesztek PASS; az eredeti upstream metódustörzsekkel 300000 determinisztikus művelet, **0 eltérés**. A PIN/NMI/IER/ISR/ISCR/ICR és publikációs határok megőrizve; CPU/SCI/firmware-bekötés NOT RUN. | Platform-CI és kutatási build; utána időzített SCI- és CPU-adapter. Az új PKS-HLE/dummy-ROM jegyzet nem tekinthető protokollbizonyítéknak; feltételezett választ nem vezetünk be. |
+| 2026-10-27 | **Korabeli állapot:** [#28](https://github.com/RobCZart82/yaman1x/pull/28): **M0 SCI belső ciklusóra-adapter.** [Részletes szerződés, tesztek és következő lépés](h8-sci-cycle-clock.md). | Helyi MSVC Release próba: 1024 osztó, TX/RX ciklusnézet, blokkfelosztás, standby és hibahatárok PASS. Eredeti upstream ütemezési metódusokkal 200000 determinisztikus művelet, **0 eltérés**. Végső platform-CI a külön PR-ben; bájtállapotgép és CPU-/firmware-integráció NOT RUN. | SCI TX/RX és SSR/RDR mellékhatások, IRQ-kapcsolat, majd közös gépütemező és tényleges H8-végrehajtás. Külső SCI-órás módok még nem támogatottak. |
+| 2026-10-27 | **Korabeli állapot:** [#29](https://github.com/RobCZart82/yaman1x/pull/29): **M0 részben teljesült:** önálló [SCI SSR státusz-latch](h8-sci-status.md), olvasás utáni törlés, debugger/DMA mellékhatások és upstream reset-viselkedés. A teljes UART még nincs bekötve. | Windows MSVC Release: 33 554 432 átmenet független bitenkénti orákulummal PASS; külön szekvenciatesztek PASS. A végső revízió és platformeredmények a kapcsolódó PR checkjeinél. Firmware/MIDI/hardver: NOT RUN. | SCI TX/RX bájtállapotgép, TDR/RDR és megszakítások; az SSR-write utáni tx_start/sync_rx_start tulajdonosi lépések és ciklusóra összekötése, majd CPU-bekötés. |
+| 2026-10-27 | **Korabeli állapot:** [#30](https://github.com/RobCZart82/yaman1x/pull/30): **Ötletfeljegyzés:** PKS HLE, fokozatos protokollbizonyítás, dummy ROM korlátai és távlati hardveres helyettesítés lehetőségei rögzítve az M1 alatt. | Dokumentációs értékelés; új működési vagy hardveres bizonyíték nincs, M0/M1 állapota változatlan. | Firmware-elvárások és tényleges kommunikáció bizonyítása; csak utána döntés egy külön tesztelhető PKS-modellről. |
+| 2026-10-27 | **Korabeli állapot:** [#31](https://github.com/RobCZart82/yaman1x/pull/31): **Architekturális követelmény:** cserélhető PKS HLE/firmware megvalósítás, közös időzített perifériafelület és verziózott mentett állapot; áttérési út az M1 alatt és ADR-0001-ben. | Dokumentációs döntés; nincs megvalósított backend vagy új dump, M0/M1 változatlan. | A bizonyított protokoll alapján interfész és szintetikus tesztek; dump esetén MCU-integráció és összehasonlító elfogadás. |
+| 2026-10-27 | **Korabeli állapot:** [#32](https://github.com/RobCZart82/yaman1x/pull/32): **M0 licencnyilvántartás megerősítve:** javított harmadikfél-összesítő; 219 fájl, 5 licencszöveg nyilvántartása és CTest-ellenőrzése. [Hatókör és nyitott feltételek](../THIRD_PARTY.md#reviewed-sourcenotice-coverage). | Helyi Windows: 7 célzott pozitív/negatív teszt PASS; forrás-/értesítés-lefedettség PASS. A végső revízió és háromplatformos eredmények a kapcsolódó PR checkjeinél. Ez nem jogi vagy bináris kiadási jóváhagyás. | Új átvételnél kötelező nyilvántartás és licencvizsgálat; saját projektlicenc döntése, teljes H8/SDK függőségzár és tényleges kiadási csomag értesítéseinek ellenőrzése továbbra is nyitott. |
+| 2026-10-27 | **Korabeli állapot:** [#34](https://github.com/RobCZart82/yaman1x/pull/34): **M0 részben teljesült:** [aszinkron SCI TX](h8-sci-async-tx.md), TDR/puffer, SSR/ciklusóra összekötése, adási vonal és TXI/TEI események. RX/CPU még nincs bekötve. | Windows MSVC Release: 4096 adat/keretezés kombináció és célzott tulajdonosi szekvenciák PASS; eredeti upstream metódusokkal 200000 művelet, 82931 TX-tick, 0 eltérés. Végső revízió/platformok a kapcsolódó PR checkjeinél. Firmware/hardver/audio NOT RUN. | Aszinkron RX/RDR és hibák, közös TX/RX óra/státusz, IRQ/CPU MMIO; utána friss firmware-es MIDI-elfogadás. Paritás upstream szerint megőrizve, nem igazolt hardvertény. |
+| 2026-10-27 | **Korabeli állapot:** [#35](https://github.com/RobCZart82/yaman1x/pull/35): **M0 részben teljesült:** [aszinkron SCI RX](h8-sci-async-rx.md), vonalmintavétel, RDR és RXI/ERI kérések, túlcsordulás/paritás/keretezési hibák. Külön RX-tulajdonos; közös TX/RX és CPU még nincs bekötve. | Windows MSVC Release: 4096 adat/keretezés kombináció és célzott hibás szekvenciák PASS; eredeti upstream metódusokkal 896623 összehasonlítás, 663805 RX-tick, 0 eltérés. Végső revízió/platformok a kapcsolódó PR checkjeinél. Firmware/hardver/audio NOT RUN. | Közös TX/RX regiszter/óra/státusz és azonos idejű események; IRQ/CPU MMIO; utána friss firmware-es MIDI-elfogadás. A külön TX/RX osztályok együtt még nem teljes SCI-csatorna. |
+| 2026-10-27 | **Korabeli állapot:** [#36](https://github.com/RobCZart82/yaman1x/pull/36): **M0 részben teljesült:** [közös aszinkron SCI-csatorna](h8-sci-async-channel.md), egy regiszter/óra/SSR-tulajdonos TX/RX állapotgépekkel. Régi felületek kompatibilitási rétegként megmaradtak, a bitlogika közös. | Windows MSVC Release: 4096 teljes duplex adat/keretezés kombináció és célzott sorrend-/státusz-/izolációs tesztek PASS; eredeti upstream óra/TX/RX metódusokkal 1153468 összehasonlítás, 804316 közös él, 0 eltérés. Végső revízió/platformok a kapcsolódó PR checkjeinél. CPU/firmware/hardver/audio NOT RUN. | Négy SCI IRQ-kérés útvonalazása és hatregiszteres MMIO-adapter, két SCI-csatorna tesztje; majd CPU/periféria-ütemező és friss firmware-es MIDI-elfogadás. |
 
 ## A cél pontos meghatározása
 
@@ -80,7 +156,13 @@ Az első változathoz minimális beállítási lehetőség kell a helyi ROM-fáj
 kiválasztására és az indítás állapotának jelzésére. Az egyedi grafikus skin,
 AU, Windows, teljes polifónia, bankböngésző és MEG-effektek későbbi feladatok.
 
-## Jelenlegi helyzet
+## Jelenlegi helyzet és kutatási előzmények
+
+A ROM-mentes motoralap mai állapota a fenti M0-táblában és a #36 lezárásában
+szerepel. Az alábbi firmware-/DSP-megfigyelések a hivatkozott kutatási
+jegyzőkönyvek korábbi felvételei; a dokumentáció egységesítésekor nem futtattunk
+új firmware-t vagy hardvermérést. Nem tekinthetők a közös SCI-adapter friss
+firmware-integrációs bizonyítékának.
 
 | Terület | Bizonyított eredmény | Nyitott feladat |
 |---|---|---|
@@ -98,18 +180,39 @@ Részletek: [STATUS](STATUS.md), [SCI-megfigyelések](sci-state-milestone.md),
 
 ### M0 — Rögzített fejlesztési alap és motorarchitektúra
 
-2026-10-27: [ADR-0001](ADR-0001-engine-boundary.md) rögzíti a motorhatárt,
-a függőségazonosítókat és a VST3 SDK-választást. M0 részben teljesült;
-a H8-port, annak függőség- és licencauditja, valamint a teljes referencia-
-toolchain rögzítése még nyitott.
+2026-10-27: **részben teljesült**. A következő alapok elkészültek:
 
-- Rögzíteni a fordító, célarchitektúra és külső függőségek pontos verzióját.
-- Eldönteni, hogyan kerül a H8/perifériamodell a beágyazható motorba. A jelenlegi
-  MAME parancssoros kutatási program és dinamikus bridge még nem pluginmotor.
-- Megvizsgálni a CPU-mag, DSP-mag és VST3-hosztréteg integrálását és licenceit;
-  a saját kód licencéről is dönteni a bináris terjesztés előtt. A kiválasztott
-  VST3 SDK/keretrendszer verzióját és feltételeit ekkor kell ellenőrizni.
-- Megőrizni a ROM-mentes alapbuildet, a forrásauditot és a meglévő kutatási utat.
+- Az [ADR-0001](ADR-0001-engine-boundary.md) kiválasztotta a motorhatárt, a
+  külön MAME kutatási utat és a tervezett VST3 SDK-t. Az architekturális választás
+  rögzített; a CPU/periféria-port végrehajtása és elfogadása még hátravan.
+- A [függőségazonosítók](engine-dependencies.json), a forráslockok, a H8-leltár
+  és a generátor bemenetei/kimenetei rögzítettek. A teljes fordítói/licenc-
+  függőségzár ezzel még nincs lezárva.
+- A [buildalap](BUILD_BASELINE.md) dokumentálja a helyi Windows referencia-
+  környezetet és a külön teljes macOS arm64 MAME-build rögzített adatait.
+  A kutatási build előfeltétele a #20 óta teljesült, a #36-nál is PASS.
+  A hosztolt CI-runner verziói ettől nem válnak állandó toolchain-lockká.
+- Önálló GPIO, IRQ-adapter és [közös aszinkron SCI TX/RX-csatorna](h8-sci-async-channel.md)
+  áll rendelkezésre. Komponensszintű időléptetési/izolációs tesztjeik sikeresek;
+  ez még nem teljes CPU-/gépizolációs vagy firmware-elfogadás.
+- A forráseredet és a [licenc-/értesítés-lefedettség](../THIRD_PARTY.md#reviewed-sourcenotice-coverage)
+  ellenőrzése automatizált. A saját projektlicenc és a tényleges kiadási csomag
+  megfelelőségének ellenőrzése továbbra is nyitott.
+
+Nyitott feladatok, végrehajtási sorrendben:
+
+1. Az SCI négy megszakításkérését bekötni, hatregiszteres MMIO-adaptert készíteni,
+   és a két SCI-csatornát külön tesztelni.
+2. Kialakítani a közös CPU/periféria-ütemezőt és az azonos idejű külső események
+   bizonyított sorrendjét; lezárni a tényleges H8-port keretrendszer- és
+   generáltkód-függőségeit, majd lefordítani és végrehajtani a CPU-portot.
+3. A teljes gép CPU-/RAM-/periféria-/DSP-/MIDI-állapotának példányizolációját,
+   resetjét és blokkfelosztástól független időléptetését igazolni.
+4. Az újonnan ténylegesen beépített függőségek licenceit lezárni; a saját kód
+   licencéről a bináris terjesztés előtt dönteni. A kiválasztott SDK tényleges
+   integrációját és összekapcsolt részeit akkor ellenőrizni; az SDK még tervezett.
+5. Megőrizni a ROM-mentes alapbuildet és a külön kutatási utat; a beágyazott
+   motorhoz saját, revízióhoz kötött referencia-buildet rögzíteni.
 
 **Kész, ha:** van rövid architektúradöntés, függőséglista és megismételhető
 buildutasítás. A kiválasztott motor CPU-, periféria-, DSP- és MIDI-állapota
@@ -117,19 +220,23 @@ példányonként elkülöníthető, időléptetése külső audiofolyamhoz illes
 
 ### M1 — Indulási út, PKS és valódi MIDI-vétel
 
-Mac M1 folytatás: [helyi előkészítés és párosított firmware-próba](MAC_M1_HANDOFF.md).
-Az új futtató szervezése szintetikusan tesztelt; tényleges firmware-es
-eredmény csak a Macen végrehajtott friss futás után rögzíthető.
+2026-10-27: **előkészítve, nem teljesült**. Elkészült az
+[időbélyeges SCI-hozzáférés-megfigyelő](m1-sci-access-milestone.md), a naplóellenőrzés
+és a [Mac M1 párosított helyi próba futtatója](MAC_M1_HANDOFF.md). Ezek szintetikus
+szervezési/hibakezelési tesztjei sikeresek; nem friss firmware-es elfogadások.
 
-Következő előfeltétel: [rögzített forrású teljes kutatási build](source-identity-recovery.md).
-Külön ROM-mentes CI igazolta a teljes MAME-target buildjét; ennek sikere sem
-helyettesíti a friss firmware-es SCI/MIDI-próbát.
+**Teljesült előfeltétel:** a [rögzített forrású teljes kutatási build](source-identity-recovery.md)
+#20 óta sikeres, és a #36 külön macOS buildje/regisztrációs próbája is PASS.
+A build sikere önmagában nem bizonyít tényleges SCI-bájtvételt.
+Az önálló közös SCI-modell komponensbizonyítéka az M0 része; a fő CPU-hoz még
+nincs bekötve.
 
-2026-10-27: **folyamatban**, első műszerezési lépés elkészült:
-[időbélyeges SCI-hozzáférések](m1-sci-access-milestone.md). A ROM-mentes
-tesztek a megfigyelőt és a naplóellenőrzést vizsgálják; a teljes új MAME-build
-azóta a #20 CI-jében sikeres. A friss firmware-es MIDI-próba még nem futott;
-M1 nem teljesült.
+**Következő elfogadási lépés:** a Mac M1 átadási útmutató szerint friss helyi
+firmware-futást és párosított megfigyelést készíteni, majd a tényleges SCI0
+bájtfogadást és a note-on/note-off feldolgozását bizonyítani. A friss elfogadáshoz
+nincs rögzített eredmény; dokumentált státusza **NOT RUN**. A PKS-kézfogás és az
+SCI0 engedélyezésének okozati útja továbbra is kutatási feladat; a ROM-mentes CI
+nem váltja ki.
 
 - Visszakövetni a firmware SCI1/PKS-inicializálását és az SCI0 engedélyezését.
   A mostani megfigyelés alapján a PKS-válasz hiánya lehetséges akadály, de
