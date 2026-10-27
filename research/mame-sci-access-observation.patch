@@ -1,0 +1,116 @@
+--- a/src/mame/yamaha/yman1x.cpp
++++ b/src/mame/yamaha/yman1x.cpp
+@@ -11,6 +11,7 @@
+ *******************************************************************************/
+ 
+ #include "emu.h"
++#include "yamanix_sci_access_trace.h"
+ #include "bus/midi/midi.h"
+ #include "cpu/h8/h83002.h"
+ #include "cpu/m6805/hd6305.h"
+@@ -59,6 +60,8 @@
+     void machine_start() override ATTR_COLD;
+     TIMER_CALLBACK_MEMBER(trace_tick);
+     void sci_state(unsigned tick);
++    void sci_access(unsigned channel, char op, offs_t address, u16 data, u16 mask);
++    yamanix::SciAccessTrace m_sci_access_trace;
+     memory_passthrough_handler m_read_trace, m_write_trace, m_dms_flag_trace;
+     std::set<offs_t> m_reads, m_writes;
+     unsigned m_ticks = 0;
+@@ -169,6 +172,7 @@
+     space.install_read_tap(0xffffb0, 0xffffb5, "yamanix_sci0_read",
+         [this](offs_t address, u16 &data, u16 mask) {
+             if (machine().side_effects_disabled()) return;
++            sci_access(0, 'R', address, data, mask);
+             if (address == 0xffffb4 && (mask & 0x00ff)) {
+                 ++m_sci0_rdr_reads;
+                 if (m_sci0_rdr_reads <= 128)
+@@ -179,13 +183,16 @@
+     space.install_write_tap(0xffffb0, 0xffffb5, "yamanix_sci0_write",
+         [this](offs_t address, u16 &data, u16 mask) {
+             if (machine().side_effects_disabled()) return;
++            sci_access(0, 'W', address, data, mask);
+             if (address == 0xffffb2 && (mask & 0xff00))
+                 logerror("YAMANIX SCI0_SCR write=%02x pc=%06x\n", (data >> 8) & 0xff, m_maincpu->pc());
+         });
++    logerror("YAMANIX SCI_ACCESS_BEGIN version=1 capacity=4096 hardware_validated=0\n");
+     auto *timer = timer_alloc(FUNC(an1x_state::trace_tick), this);
+     space.install_write_tap(0xffffb8, 0xffffbd, "yamanix_sci1_write",
+         [this](offs_t address, u16 &data, u16 mask) {
+             if (machine().side_effects_disabled()) return;
++            sci_access(1, 'W', address, data, mask);
+             if (address == 0xffffba && (mask & 0x00ff)) {
+                 ++m_sci1_tdr_writes;
+                 if (m_sci1_tdr_writes <= 128)
+@@ -196,6 +203,7 @@
+     space.install_read_tap(0xffffb8, 0xffffbd, "yamanix_sci1_read",
+         [this](offs_t address, u16 &data, u16 mask) {
+             if (machine().side_effects_disabled()) return;
++            sci_access(1, 'R', address, data, mask);
+             if (address == 0xffffbc && (mask & 0x00ff)) ++m_sci1_rdr_reads;
+         });
+     timer->adjust(attotime::zero, 0, attotime::from_msec(10));
+@@ -214,6 +222,17 @@
+             m_ticks, m_contract_enabled ? "firmware-contract" : "passive", m_upload_control[0].status(),
+             m_upload_control[1].status(), m_maincpu->space(AS_PROGRAM).read_byte(0x23cbc3));
+     ++m_ticks;
++}
++
++void an1x_state::sci_access(unsigned channel, char op, offs_t address, u16 data, u16 mask)
++{
++    if (machine().side_effects_disabled()) return;
++    m_sci_access_trace.observe(channel, op, address, data, mask,
++        [this](uint64_t seq, unsigned channel, char op, unsigned reg, uint8_t data, uint8_t mask) {
++            logerror("YAMANIX SCI_ACCESS seq=%llu time_ns=%llu channel=%u op=%c reg=%u data=%02x mask=%02x pc=%06x\n",
++                (unsigned long long)seq, (unsigned long long)machine().time().as_ticks(1000000000),
++                channel, op, reg, data, mask, m_maincpu->pc());
++        });
+ }
+ 
+ void an1x_state::sci_state(unsigned tick)
+@@ -250,6 +269,8 @@
+ 
+ void an1x_state::dsp_trace_end()
+ {
++    logerror("YAMANIX SCI_ACCESS_END events=%llu dropped=%llu hardware_validated=0\n",
++        (unsigned long long)m_sci_access_trace.events(), (unsigned long long)m_sci_access_trace.dropped());
+     logerror("YAMANIX MIDI_RX transitions=%llu hardware_validated=0\n", (unsigned long long)m_midi_rx_edges);
+     logerror("YAMANIX SCI0_RDR reads=%llu hardware_validated=0\n", (unsigned long long)m_sci0_rdr_reads);
+     logerror("YAMANIX SCI1_END tdr_writes=%llu rdr_reads=%llu hardware_validated=0\n",
+--- /dev/null
++++ b/src/mame/yamaha/yamanix_sci_access_trace.h
+@@ -0,0 +1,34 @@
++#ifndef YAMANIX_SCI_ACCESS_TRACE_H
++#define YAMANIX_SCI_ACCESS_TRACE_H
++#include <cstdint>
++
++namespace yamanix {
++// Passive research observer. Input is an aligned H8 16-bit bus access.
++// Emit writes to SCI byte registers and reads of RDR, never polling reads.
++class SciAccessTrace {
++public:
++    static constexpr uint64_t capacity = 4096;
++    uint64_t events() const { return m_events; }
++    uint64_t dropped() const { return m_dropped; }
++
++    template<class Emit>
++    void observe(unsigned channel, char op, uint32_t address, uint16_t data,
++                 uint16_t mask, Emit emit) {
++        if (channel > 1 || (op != 'R' && op != 'W')) return;
++        const uint32_t base = channel ? 0xffffb8 : 0xffffb0;
++        if (address < base || address > base + 4 || (address & 1)) return;
++        for (unsigned lane = 0; lane < 2; ++lane) {
++            const unsigned shift = lane ? 0 : 8;
++            const auto byte_mask = uint8_t(mask >> shift);
++            const auto reg = unsigned(address - base + lane);
++            if (!byte_mask || (op == 'R' && reg != 5)) continue;
++            const auto seq = m_events++;
++            if (seq >= capacity) { ++m_dropped; continue; }
++            emit(seq, channel, op, reg, uint8_t(data >> shift), byte_mask);
++        }
++    }
++private:
++    uint64_t m_events = 0, m_dropped = 0;
++};
++}
++#endif

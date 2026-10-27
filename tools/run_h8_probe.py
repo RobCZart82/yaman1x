@@ -13,6 +13,7 @@ import subprocess
 import zipfile
 from rom_inspect import read_input, identify
 from sci_trace import parse_sci_observation
+from sci_access_trace import parse_sci_access
 
 
 def summarize_trace(lines):
@@ -25,6 +26,9 @@ def summarize_trace(lines):
     sci_observation = parse_sci_observation(lines)
     if sci_observation is not None:
         result["sci_observation"] = sci_observation
+    sci_access = parse_sci_access(lines)
+    if sci_access is not None:
+        result["sci_access_observation"] = sci_access
     dsp = set()
     for line in lines:
         match = re.search(r"YAMANIX (?:READ|WRITE).*address=([0-9a-fA-F]+)", line)

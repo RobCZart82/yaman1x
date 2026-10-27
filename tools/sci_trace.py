@@ -3,6 +3,7 @@ import argparse
 import json
 from pathlib import Path
 import re
+from sci_access_trace import parse_sci_access
 
 STATE = re.compile(r"SCI_STATE tick=(\d+) channel=([01]) smr=([0-9a-f]{2}) brr=([0-9a-f]{2}) scr=([0-9a-f]{2}) ssr=([0-9a-f]{2}) hardware_validated=0$")
 TX = re.compile(r"SCI1_TDR write=(\d+) data=([0-9a-f]{2}) pc=([0-9a-f]{6})$")
@@ -70,9 +71,13 @@ def main():
         manifest = json.loads((args.directory / "run.json").read_text())
         if manifest.get("returncode") != 0 or not manifest["rom_identity"]["matches_known_an1x_104"]:
             raise ValueError("Expected a successful known AN1x 1.04 run")
-        result = parse_sci_observation((args.directory / "trace.log").read_text().splitlines())
+        lines = (args.directory / "trace.log").read_text().splitlines()
+        result = parse_sci_observation(lines)
         if result is None:
             raise ValueError("SCI observation patch is required")
+        access = parse_sci_access(lines)
+        if access is not None:
+            result["access_observation"] = access
         print(json.dumps(result, indent=2))
     except (OSError, ValueError, KeyError) as error:
         parser.exit(2, f"SCI audit error: {error}\n")
