@@ -88,6 +88,10 @@ példányonként elkülöníthető, időléptetése külső audiofolyamhoz illes
 
 ### M1 — Indulási út, PKS és valódi MIDI-vétel
 
+Mac M1 folytatás: [helyi előkészítés és párosított firmware-próba](MAC_M1_HANDOFF.md).
+Az új futtató szervezése szintetikusan tesztelt; tényleges firmware-es
+eredmény csak a Macen végrehajtott friss futás után rögzíthető.
+
 Következő előfeltétel: [rögzített forrású teljes kutatási build](source-identity-recovery.md).
 Külön ROM-mentes CI igazolta a teljes MAME-target buildjét; ennek sikere sem
 helyettesíti a friss firmware-es SCI/MIDI-próbát.
