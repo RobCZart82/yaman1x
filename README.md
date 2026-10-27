@@ -19,7 +19,7 @@ ctest --test-dir build -C Release --output-on-failure
 python3 tools/repository_audit.py
 ```
 
-The source-only build runs **twenty-three test groups**. Tests generate synthetic
+The source-only build runs **twenty-four test groups**. Tests generate synthetic
 programs/banks in temporary directories. The two upstream tests that require
 Yamaha images are not part of this suite. ROM-free GitHub Actions currently
 builds and passes this suite on Linux x64, macOS Apple Silicon and Windows x64.
@@ -98,3 +98,5 @@ use the previous working name YamANIx; historical context is explained in
 [research history](docs/HISTORY.md).
 
 The default branch uses an [active PR-based protection ruleset](docs/BRANCH_PROTECTION.md).
+
+The bounded [integer-cycle dispatcher](docs/cycle-dispatcher.md) is a tested scheduling primitive; CPU/peripheral integration remains pending.

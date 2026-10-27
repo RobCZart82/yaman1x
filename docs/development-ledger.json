@@ -3,7 +3,7 @@
   "recorded_date": "2026-10-27",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "47950097b564f7ca48a1a2fd27a125066c3fc7a9",
+  "baseline_commit": "6c1dd8a0c83eac1d593abd4e70c040f88908bb48",
   "entries": [
     {
       "pr": 6,
@@ -334,15 +334,25 @@
       "merge_commit": "47950097b564f7ca48a1a2fd27a125066c3fc7a9",
       "reviewed_head": "583a1f96ba6de8de6af2db50a9175c27dd99ddde",
       "status": "merged"
+    },
+    {
+      "pr": 39,
+      "title": "Connect both H83002 SCI channels through MMIO and IRQ routing",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/39",
+      "kind": "development",
+      "merged_at_utc": "2026-10-27T18:06:08Z",
+      "merge_commit": "6c1dd8a0c83eac1d593abd4e70c040f88908bb48",
+      "reviewed_head": "9459a805af0834c5ad66329f0f1b037a9354b08d",
+      "status": "merged"
     }
   ],
   "active_change": {
-    "id": "SCI-MMIO-2026-10-27",
-    "branch": "feat/h8-sci-mmio-irq",
-    "pr": 39,
+    "id": "SCHED-2026-10-27",
+    "branch": "feat/bounded-cycle-dispatcher",
     "status": "in_review",
-    "summary": "Two-channel H83002 SCI byte/word MMIO and DMA-qualified IRQ adapter; reconcile merged audit documentation",
-    "url": "https://github.com/RobCZart82/yaman1x/pull/39",
-    "validation": "Original head: five GitHub checks PASS. Combined main #38 tree: macOS arm64 Release 23/23 CTest groups and 60 Python cases PASS. Final merge-commit CI is pending on PR #39."
+    "summary": "Bounded monotonic integer-cycle dispatcher; CPU/peripheral owner remains pending",
+    "validation": "Combined main #39 tree: macOS arm64 Release 24/24 CTest groups and 60 Python cases PASS. Original standalone native ASan/UBSan PASS; component implementations unchanged by merge. Final synchronized PR-head CI pending.",
+    "pr": 40,
+    "url": "https://github.com/RobCZart82/yaman1x/pull/40"
   }
 }
