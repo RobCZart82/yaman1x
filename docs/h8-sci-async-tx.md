@@ -1,5 +1,10 @@
 # H8 SCI asynchronous TX owner
 
+Current implementation note (2026-10-27): this API now forwards to the
+[shared asynchronous channel](h8-sci-async-channel.md). The extraction evidence
+below records the earlier standalone milestone; current integration gates are
+listed in the shared-channel document.
+
 Date: 2026-10-27. Baseline: main `6e5da15024e33cf11cff56dbc51854e0050cad31`.
 The intervening #33 changes LICENSE line wrapping only; its licensing status
 is preserved. Source identities and BSD-3-Clause attribution are recorded in
@@ -64,8 +69,8 @@ and their generated builds are excluded from the repository.
 
 Final revision/platform results are recorded on PR checks. The full MAME research
 build remains a separate reference smoke test, not integration of this owner.
-Next: implement asynchronous RX sampling/error behavior and RDR; combine TX/RX
-on one clock/status boundary and connect interrupt requests, then CPU MMIO and
-firmware/MIDI acceptance. PKS communication, actual hardware parity behavior,
+Next: connect the shared channel interrupt requests and CPU MMIO, then perform
+firmware/MIDI acceptance. RX/RDR and common asynchronous ownership now exist
+as documented in the shared-channel milestone. PKS communication, actual hardware parity behavior,
 audio and plugin acceptance remain open. No Yamaha ROM/bank/trace is included;
 EG target-hold is unchanged.

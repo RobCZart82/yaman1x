@@ -14,5 +14,6 @@
       "copyright_holder": "Olivier Galibert"
     }
   },
-  "adaptation": "src/h8_sci_async_rx.h; asynchronous RX sampling and RX-only register/status/clock owner; original parity, resynchronization and error precedence retained. TX/shared register ownership, synchronous/MP/external-clock modes, standby, CPU and DMA controller omitted."
+  "adaptation": "src/h8_sci_async_rx.h; asynchronous RX sampling and RX-only register/status/clock owner; original parity, resynchronization and error precedence retained. TX/shared register ownership, synchronous/MP/external-clock modes, standby, CPU and DMA controller omitted.",
+  "current_implementation": "src/h8_sci_async_rx.h now provides a compatibility facade over src/h8_sci_async_channel.h; original extraction evidence retained. See research/h8-sci-channel-provenance.json."
 }
