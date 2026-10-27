@@ -39,6 +39,11 @@ Részletek: [STATUS](STATUS.md), [SCI-megfigyelések](sci-state-milestone.md),
 
 ### M0 — Rögzített fejlesztési alap és motorarchitektúra
 
+2026-10-27: [ADR-0001](ADR-0001-engine-boundary.md) rögzíti a motorhatárt,
+a függőségazonosítókat és a VST3 SDK-választást. M0 részben teljesült;
+a H8-port, annak függőség- és licencauditja, valamint a teljes referencia-
+toolchain rögzítése még nyitott.
+
 - Rögzíteni a fordító, célarchitektúra és külső függőségek pontos verzióját.
 - Eldönteni, hogyan kerül a H8/perifériamodell a beágyazható motorba. A jelenlegi
   MAME parancssoros kutatási program és dinamikus bridge még nem pluginmotor.
