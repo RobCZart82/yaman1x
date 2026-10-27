@@ -38,7 +38,8 @@ def patch_preflight(root, repo, lock):
         for name in lock["patches"]:
             patch = safe_path(repo / "research", name)
             result = subprocess.run(
-                ["git", "apply", "--unsafe-paths", "--whitespace=error", str(patch.resolve())],
+                ["git", "-c", "core.autocrlf=false", "-c", "core.eol=lf",
+                 "apply", "--unsafe-paths", "--whitespace=error", str(patch.resolve())],
                 cwd=stage, capture_output=True, text=True)
             if result.returncode:
                 raise ValueError(f"Research patch does not apply: {name}\n{result.stderr}")

@@ -1,10 +1,12 @@
 """Synthetic source trees exercise preparation without downloading MAME or ROMs."""
 import difflib
 import hashlib
+import os
 import subprocess
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 import zipfile
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools"))
@@ -64,6 +66,14 @@ class ResearchPreparationTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "differs from tested"):
             prepare_checkout(self.source, self.repo, self.lock)
         self.assertEqual(self.git("status", "--porcelain"), "")
+
+    def test_global_autocrlf_does_not_change_prepared_bytes(self):
+        with patch.dict(os.environ, {"GIT_CONFIG_COUNT": "1",
+                                      "GIT_CONFIG_KEY_0": "core.autocrlf",
+                                      "GIT_CONFIG_VALUE_0": "true"}):
+            prepared = patch_preflight(self.source, self.repo, self.lock)
+        self.assertEqual(prepared["src/helper.h"], self.helper)
+        self.assertEqual(prepared["src/driver.cpp"], self.updated)
 
     def test_wrong_revision_modified_inputs_and_unsafe_paths_are_rejected(self):
         self.lock["commit"] = "0" * 40

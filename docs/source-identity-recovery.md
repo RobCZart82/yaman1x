@@ -60,8 +60,21 @@ and prepares the patch chain, builds the complete research executable and runs
 `-listfull an1x`. This is separate from the three-platform core/helper CI.
 The research build uses `OPTIMIZE=0` to limit validation build cost; it is not
 a performance benchmark or the product toolchain. The job records compiler,
-Xcode, Python and Make versions. It neither acquires Yamaha inputs nor runs
+Xcode, Python and Make versions and selects Xcode 16.2 explicitly. It neither acquires Yamaha inputs nor runs
 firmware nor uploads the executable as an artifact.
+
+The initial Xcode 15.4 / AppleClang 15 build failed in upstream MAME C++
+constraint expressions (`devdelegate.h`, referenced from `emumem.h` and
+`emupal.h`): [initial research run](https://github.com/RobCZart82/yaman1x/actions/runs/40457347981).
+The research job now selects the installed Xcode 16.2 rather than modifying
+MAME framework code to accommodate the older compiler. It also verifies the
+linked executable is arm64 before the registration smoke. Final build outcome
+is recorded in the implementation PR's checks.
+
+Windows CI also exposed Git's global `core.autocrlf` affecting temporary patch
+outputs. Preparation now explicitly disables conversion and selects LF for
+patch application; a regression case injects the conflicting setting. Original
+input hashes and generated-header equality remain byte-for-byte checks.
 
 Validation status and the implementation PR's CI checks must distinguish:
 

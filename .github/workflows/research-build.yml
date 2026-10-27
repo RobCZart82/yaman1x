@@ -28,6 +28,8 @@ jobs:
   research-macos:
     runs-on: macos-14
     timeout-minutes: 60
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_16.2.app/Contents/Developer
     steps:
       - uses: actions/checkout@v7
         with:
@@ -54,4 +56,6 @@ jobs:
         run: make SUBTARGET=yamanix SOURCES=src/mame/yamaha/yman1x.cpp OSD=mac NO_USE_MIDI=1 NO_USE_PORTAUDIO=1 USE_QTDEBUG=0 USE_TAPTUN=0 USE_PCAP=0 REGENIE=1 OPTIMIZE=0 SYMBOLS=0 -j3
       - name: Confirm the research machine is registered without loading ROMs
         working-directory: work/mame
-        run: ./yamanix -listfull an1x
+        run: |
+          test "$(lipo -archs ./yamanix)" = "arm64"
+          ./yamanix -listfull an1x
