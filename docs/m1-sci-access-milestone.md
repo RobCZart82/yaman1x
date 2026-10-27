@@ -4,6 +4,13 @@ Date: 2026-10-27. Baseline `064ddbe56dd7931839bd2a45e73c2093240098b1`.
 Implementation: [PR #19](https://github.com/RobCZart82/yaman1x/pull/19).
 Status: observation tooling implemented; firmware/MIDI acceptance NOT RUN.
 
+Follow-up: [PR #20](https://github.com/RobCZart82/yaman1x/pull/20) verified the
+complete patched MAME build and arm64/ROM-free registration smoke in CI at
+`31664c74f2726091eb9f403c1621ef949479ddbb`. See
+[source/build evidence](source-identity-recovery.md#verified-result).
+The original Windows-local NOT RUN statements below are historical validation
+boundaries; fresh firmware/SCI/MIDI acceptance still has not been executed.
+
 The eleventh research patch adds passive SCI0/SCI1 bus-access events to the
 existing MAME harness. It records all writes to SMR, BRR, SCR, TDR, SSR and RDR,
 and reads of RDR. Other register polling reads are omitted. Each selected byte
