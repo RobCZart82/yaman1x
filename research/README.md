@@ -47,8 +47,10 @@ A jelenlegi mérés friss processzusú hidegindításra készült. Save-state, v
 A tizenegyedik patch időbélyeges, PC-vel ellátott SCI-regiszterírásokat és
 RDR-olvasásokat figyel meg. A napló korlátos; veszteséges vagy befejezetlen
 felvételt az auditor elutasít. Ez nem PKS-emuláció és nem igazolt MIDI-vétel.
-Az új patch teljes MAME-buildje és firmware-próbája még nem futott;
-részletek és következő kísérlet: [M1 SCI-hozzáférések](../docs/m1-sci-access-milestone.md).
+A teljes, tizenegy patches MAME-target fordítása és regisztrációs próbája már
+sikeres a külön macOS CI-ben; a friss SCI-hozzáféréses firmware-elfogadás még
+nyitott. Részletek és következő kísérlet:
+[M1 SCI-hozzáférések](../docs/m1-sci-access-milestone.md).
 
 A negyedik patch minden olvasást és írást rögzít a `0x440000–0x4400FF` és `0x480000–0x4800FF` tartományból, a korábbi címenkénti mintavétel mellett. A CPU által látott adatot és memóriamaszkot nem módosítja. Megmarad az eseménysorrend, a nanomásodpercben megadott gépidő és a programcím. A 200 000 eseményes korlát elérésekor a napló veszteségesnek minősül, és az ellenőrző elutasítja. A szabályos kilépéskor kiírt zárósor kötelező; összeomláskor megmaradt résznaplóból nem lesz elfogadott teljes felvétel.
 
@@ -96,6 +98,11 @@ A bridge az írásokat ténylegesen, a H8 futása közben továbbítja a két VO
 Kilépéskor `live-vop3-state.bin` és két chipzárósor készül. Az auditor megköveteli a teljes trace-t, a konzisztens profiljelölést és számlálókat, majd a SELECT/program/együttható/tag/slot mezőket hasonlítja össze a független rekonstrukcióval és az opcionális natív visszajátszással. Nem teljes chipállapotot vagy hangazonosságot auditál. A nyers felvételek és firmware-eredetű állapotképek helyi kutatási adatok, nem nyilvános csomag részei. Részletes eredmény: `docs/live-register-milestone.md`.
 
 ## Kiválasztott EG-szint és ABI 2
+
+A következő bekezdések a hetedik patch korabeli, még mintafuttatás nélküli
+mérföldkövét írják le. A jelenlegi teljes láncban a nyolcadik patch kapcsolja
+be az opcionális időléptetést. A VOP3 későbbi konstruktorjavítását külön
+provenance rekord őrzi; az EG-modell célon tartási szabálya nem változott.
 
 A hetedik, `mame-eg-readback-experiment.patch` az AN1x 1.04 szint-visszaolvasási rutinjait naplózza disassemblyként, és a `--eg-readback zero|an1x-level-experiment` kapcsolót vezeti be. A MAME és a saját bridge egyaránt újrafordítandó: a driver ABI 2-t követel, a régi ABI 1 könyvtárat elutasítja. Az első hat patch önmagában az előző ABI 1 kutatási állapotot állítja elő. A mostani auditor mindkét formátum korábbi felvételeit ellenőrzi.
 

@@ -4,6 +4,12 @@ Detailed execution plan, with milestone acceptance criteria through the first
 audible firmware-driven VST3 voice in REAPER:
 [First REAPER sound plan (Hungarian)](FIRST_REAPER_SOUND_PLAN.md).
 
+Changes/fixes are recorded in the [development ledger](DEVELOPMENT_LOG.md).
+The [repository audit](REPOSITORY_AUDIT_2026-10-27.md) identifies current gaps.
+Immediate M0 work is the SCI interrupt/MMIO adapter and shared CPU/peripheral
+scheduler, followed by actual H8 execution. M1 protocol research can proceed
+independently in the pinned MAME harness. Neither milestone is complete.
+
 These tasks follow the first private source snapshot. No GUI work is planned
 before the engine has a validated signal path.
 
@@ -36,6 +42,7 @@ before the engine has a validated signal path.
 5. **VST3/AU host layer.** Wrap the validated engine, check real-time behavior,
    sample-rate conversion and state serialization, then begin product UI work.
 
-Repository work: keep the source-only audit, clean-clone build, dependency
-provenance and license notices current. Add cross-platform CI before declaring
-support beyond the validated local platform.
+Repository work: keep source/notice audits, dependency provenance, current
+status and the ledger in step with each PR. Cross-platform ROM-free CI already
+exists; retain it alongside MSan and the separately filtered MAME build. Plugin,
+hardware and host support require their own evidence.

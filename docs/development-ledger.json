@@ -1,0 +1,337 @@
+{
+  "schema_version": 1,
+  "recorded_date": "2026-10-27",
+  "display_timezone": "Europe/Budapest",
+  "source": "GitHub merged pull-request metadata, verified against main Git history",
+  "baseline_commit": "276399870400bd81272c21889257984651c816ed",
+  "entries": [
+    {
+      "pr": 6,
+      "title": "Prepare main-branch protection ruleset; activation requires eligible plan",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/6",
+      "kind": "infrastructure-or-research",
+      "merged_at_utc": "2026-10-26T19:54:35Z",
+      "merge_commit": "89e54b953089fd54c545244ea29ae6e6312ca426",
+      "reviewed_head": "17a335f070303f4ee50c9b031b8e21024e8c38cc",
+      "status": "merged"
+    },
+    {
+      "pr": 7,
+      "title": "Record public research release and active main-branch protection",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/7",
+      "kind": "documentation",
+      "merged_at_utc": "2026-10-26T20:29:20Z",
+      "merge_commit": "9978fb71b0ea2b82c2f964cc7c6754f1d0cf022c",
+      "reviewed_head": "da17fae03de04124f6fed7c11d25a12213aeb800",
+      "status": "merged"
+    },
+    {
+      "pr": 8,
+      "title": "Align branch ruleset docs with zero required approvals",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/8",
+      "kind": "documentation",
+      "merged_at_utc": "2026-10-26T21:26:41Z",
+      "merge_commit": "f797796251397c429323f25b88b28ec403dae3ce",
+      "reviewed_head": "cb4ee062cbc079afc4b39627a5cb38f983106edc",
+      "status": "merged"
+    },
+    {
+      "pr": 9,
+      "title": "Add ROM-free cross-platform CI",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/9",
+      "kind": "infrastructure-or-research",
+      "merged_at_utc": "2026-10-26T21:34:32Z",
+      "merge_commit": "cdfce265590e212634ad446acfef7c47769e1a98",
+      "reviewed_head": "4e85e989f3a2cce9a44b438650ad6fb46a0bcf24",
+      "status": "merged"
+    },
+    {
+      "pr": 10,
+      "title": "Document AN1x table-ROM findings and audit tool",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/10",
+      "kind": "infrastructure-or-research",
+      "merged_at_utc": "2026-10-26T22:02:45Z",
+      "merge_commit": "f19674cebede4de7b20791b7e9f5e214808386f6",
+      "reviewed_head": "60a8bba4754f27e3cc4b222ae21056dcd85d8152",
+      "status": "merged"
+    },
+    {
+      "pr": 11,
+      "title": "Add opt-in timed H8 VOP3 experiment",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/11",
+      "kind": "infrastructure-or-research",
+      "merged_at_utc": "2026-10-26T22:29:24Z",
+      "merge_commit": "b735bd3e8cc6fe1cc77089743215f187924a84d1",
+      "reviewed_head": "962cc984809a28477910f05c95baac4aad1e184d",
+      "status": "merged"
+    },
+    {
+      "pr": 12,
+      "title": "Route MAME MIDI input to H8 SCI0",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/12",
+      "kind": "infrastructure-or-research",
+      "merged_at_utc": "2026-10-26T22:38:53Z",
+      "merge_commit": "db9028297e05192fb8a8039787365fc62d2e2923",
+      "reviewed_head": "ac6f46af6c40b44cd02886d4813bc58a2d479bd3",
+      "status": "merged"
+    },
+    {
+      "pr": 13,
+      "title": "Audit MIDI input at H8 SCI0",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/13",
+      "kind": "infrastructure-or-research",
+      "merged_at_utc": "2026-10-26T22:53:24Z",
+      "merge_commit": "216af8b06070e2220c68c6754260872cb318abdf",
+      "reviewed_head": "371fd3113db52a7a944fa539bd63d6d8f20690fc",
+      "status": "merged"
+    },
+    {
+      "pr": 14,
+      "title": "Observe both H8 SCI devices and keyboard-port traffic",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/14",
+      "kind": "infrastructure-or-research",
+      "merged_at_utc": "2026-10-26T23:03:38Z",
+      "merge_commit": "1f9163c2866e127451610e62465c9da6f95ec1de",
+      "reviewed_head": "a8a32dd666dc9e22db5fbbd1188320190cfd0718",
+      "status": "merged"
+    },
+    {
+      "pr": 15,
+      "title": "Plan development through the first audible voice in REAPER",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/15",
+      "kind": "documentation",
+      "merged_at_utc": "2026-10-27T04:18:15Z",
+      "merge_commit": "d242372929083fc8626c6cea0e346d555bc7e308",
+      "reviewed_head": "144512bb561b7b378c57eb2f4d50f0840a769194",
+      "status": "merged"
+    },
+    {
+      "pr": 16,
+      "title": "Keep ROM-free ABI checks active under Python -O",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/16",
+      "kind": "fix",
+      "merged_at_utc": "2026-10-27T05:17:15Z",
+      "merge_commit": "d70a309ca08a9889ffe2a9d539892a3526090823",
+      "reviewed_head": "ac56d8c7144ef8cb478f3a714578203c440b841e",
+      "status": "merged"
+    },
+    {
+      "pr": 17,
+      "title": "Record M0 engine architecture and dependency baseline",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/17",
+      "kind": "documentation",
+      "merged_at_utc": "2026-10-27T05:19:37Z",
+      "merge_commit": "865e479304977ae17b787167a66c9f032db920a9",
+      "reviewed_head": "bd2262fd7c06c91f7e40ea2aaa3ea52dceecedc1",
+      "status": "merged"
+    },
+    {
+      "pr": 18,
+      "title": "Track development plan progress with dated validation evidence",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/18",
+      "kind": "documentation",
+      "merged_at_utc": "2026-10-27T05:23:19Z",
+      "merge_commit": "064ddbe56dd7931839bd2a45e73c2093240098b1",
+      "reviewed_head": "e503321ad31b2d0a36e0ae419215034cbf82b74f",
+      "status": "merged"
+    },
+    {
+      "pr": 19,
+      "title": "Add timestamped SCI access observation for M1 startup research",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/19",
+      "kind": "development",
+      "merged_at_utc": "2026-10-27T05:32:37Z",
+      "merge_commit": "291e04554c59d172a1ac6cc73b3d8398d89c5e0c",
+      "reviewed_head": "748d8495b1e75ed43bd69d456bfd519ffca85557",
+      "status": "merged"
+    },
+    {
+      "pr": 20,
+      "title": "Pin MAME research source and compile the full patched target in CI",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/20",
+      "kind": "development",
+      "merged_at_utc": "2026-10-27T06:02:44Z",
+      "merge_commit": "4bca07273afa7cf5cc4ff3c7244cd32188f5c6e0",
+      "reviewed_head": "31664c74f2726091eb9f403c1621ef949479ddbb",
+      "status": "merged"
+    },
+    {
+      "pr": 21,
+      "title": "Record verified MAME build evidence and remaining M1 acceptance",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/21",
+      "kind": "documentation",
+      "merged_at_utc": "2026-10-27T06:08:17Z",
+      "merge_commit": "c42c6f24463166f1258eb5fe0c55375d49633db2",
+      "reviewed_head": "cfb87b521f601daff01c15befb09af88066239e4",
+      "status": "merged"
+    },
+    {
+      "pr": 22,
+      "title": "Initialize VOP3 decoded operations before the first comparison",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/22",
+      "kind": "fix",
+      "merged_at_utc": "2026-10-27T06:35:48Z",
+      "merge_commit": "94482f2e05a946c6cbf75ea4faeef83fc2d6ad8f",
+      "reviewed_head": "d363d6a530f03aef5e6167759357874d7b4650b0",
+      "status": "merged"
+    },
+    {
+      "pr": 23,
+      "title": "Prepare paired local M1 serial experiment for Mac continuation",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/23",
+      "kind": "development",
+      "merged_at_utc": "2026-10-27T07:15:48Z",
+      "merge_commit": "54757fbcb3408d21bcee5c98e6c350b4d5bcd1ef",
+      "reviewed_head": "e0ad4df4884af8d0926cd68e451ebcbc280ed4d0",
+      "status": "merged"
+    },
+    {
+      "pr": 24,
+      "title": "Prepare H8 source boundary and extract standalone digital port",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/24",
+      "kind": "development",
+      "merged_at_utc": "2026-10-27T07:44:53Z",
+      "merge_commit": "14635883d5e33cb71322ddf7dac34a72964f0575",
+      "reviewed_head": "896bd7882309bb03868c5c3816f4f9b7b068b858",
+      "status": "merged"
+    },
+    {
+      "pr": 25,
+      "title": "Record completed H8 peripheral CI evidence",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/25",
+      "kind": "documentation",
+      "merged_at_utc": "2026-10-27T07:48:37Z",
+      "merge_commit": "26dce3d3ceff34f883dc5172cd8fae1f8d7944d8",
+      "reviewed_head": "a917c9779f64ce5afacae5fa2fc615d194c8abaa",
+      "status": "merged"
+    },
+    {
+      "pr": 26,
+      "title": "Extract standalone H8H internal interrupt arbitration",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/26",
+      "kind": "development",
+      "merged_at_utc": "2026-10-27T08:09:52Z",
+      "merge_commit": "3a6cf4832025c6e2fb8eb4c2f3698dae67bccd97",
+      "reviewed_head": "d5d80e49f4664ce00f5df33d2d3408e74c2aa64a",
+      "status": "merged"
+    },
+    {
+      "pr": 27,
+      "title": "Adapt H8H IRQ registers and pins preserving upstream publication",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/27",
+      "kind": "development",
+      "merged_at_utc": "2026-10-27T08:46:59Z",
+      "merge_commit": "3ec574095dfa8af53cfc62ab8aa964b8607bd75d",
+      "reviewed_head": "d33a27bdef963ddc8b1385d87fa324878af51f89",
+      "status": "merged"
+    },
+    {
+      "pr": 28,
+      "title": "Extract internal H8 SCI cycle clock and refresh milestone plan",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/28",
+      "kind": "development",
+      "merged_at_utc": "2026-10-27T09:11:21Z",
+      "merge_commit": "019070d95f82ac4efd011c4b1402da792ad99088",
+      "reviewed_head": "747cd98fac4ae300216f0bd5021dbd0cc2eae6ea",
+      "status": "merged"
+    },
+    {
+      "pr": 29,
+      "title": "Extract H8 SCI status latch with exhaustive flag transition checks",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/29",
+      "kind": "development",
+      "merged_at_utc": "2026-10-27T09:47:43Z",
+      "merge_commit": "3890122ffddf49109df3dd34d868941a9c728958",
+      "reviewed_head": "b169bbe9b3e995328b75d6190f7458138c154722",
+      "status": "merged"
+    },
+    {
+      "pr": 30,
+      "title": "Record PKS replacement ideas as unverified research options",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/30",
+      "kind": "documentation",
+      "merged_at_utc": "2026-10-27T09:56:28Z",
+      "merge_commit": "bc946bd39d2ba65cc471e93ec5030028b924f61c",
+      "reviewed_head": "955dd73afd3760df1535de60a94503c016161925",
+      "status": "merged"
+    },
+    {
+      "pr": 31,
+      "title": "Require replaceable PKS backends and a versioned firmware upgrade path",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/31",
+      "kind": "documentation",
+      "merged_at_utc": "2026-10-27T10:00:05Z",
+      "merge_commit": "e1bb9206b024f41124cac1b5dd4fd4209a2f82f4",
+      "reviewed_head": "41ff1d08c834632417efb4c6bbdca2a5c3754c24",
+      "status": "merged"
+    },
+    {
+      "pr": 32,
+      "title": "Track reviewed third-party license coverage and enforce source notices",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/32",
+      "kind": "fix",
+      "merged_at_utc": "2026-10-27T10:27:32Z",
+      "merge_commit": "cded711258a3c310a3e174bd2efe998d6943d369",
+      "reviewed_head": "fc6f4ed47774ba2b1a17394255a1427e2e7249fb",
+      "status": "merged"
+    },
+    {
+      "pr": 33,
+      "title": "Update LICENSE",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/33",
+      "kind": "infrastructure-or-research",
+      "merged_at_utc": "2026-10-27T10:43:03Z",
+      "merge_commit": "6e5da15024e33cf11cff56dbc51854e0050cad31",
+      "reviewed_head": "22cb57c8f1a617b6a9ddca90bad6fc8962671327",
+      "status": "merged"
+    },
+    {
+      "pr": 34,
+      "title": "Compose H8 asynchronous SCI transmitter with status and cycle clock",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/34",
+      "kind": "development",
+      "merged_at_utc": "2026-10-27T10:59:59Z",
+      "merge_commit": "389594251b9b4521286c94c232f5ce262b5de396",
+      "reviewed_head": "da5fcd3dd9301f06e68c489c879989661a3b3428",
+      "status": "merged"
+    },
+    {
+      "pr": 35,
+      "title": "Compose H8 asynchronous SCI receiver with sampled input and errors",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/35",
+      "kind": "development",
+      "merged_at_utc": "2026-10-27T11:22:19Z",
+      "merge_commit": "e7257ebe2bbc192ac8f7efc5c43f72b4779998d2",
+      "reviewed_head": "eeceb8282e920e163c5ff649068b90952d753671",
+      "status": "merged"
+    },
+    {
+      "pr": 36,
+      "title": "Unify asynchronous H8 SCI transmit and receive under one channel",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/36",
+      "kind": "development",
+      "merged_at_utc": "2026-10-27T12:10:32Z",
+      "merge_commit": "33dc7e97c174c7b4992ff838380b2ae9de01a579",
+      "reviewed_head": "6f3fbf6c22b9f3bfc28f78d0fc1bad55ed98ed8c",
+      "status": "merged"
+    },
+    {
+      "pr": 37,
+      "title": "Reconcile development plan with verified PR closures and historical snapshots",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/37",
+      "kind": "documentation",
+      "merged_at_utc": "2026-10-27T12:32:02Z",
+      "merge_commit": "276399870400bd81272c21889257984651c816ed",
+      "reviewed_head": "03fcefd0053623325a68aed05991422080d721bd",
+      "status": "merged"
+    }
+  ],
+  "active_change": {
+    "id": "AUD-2026-10-27",
+    "branch": "audit/repository-and-development-log",
+    "pr": null,
+    "status": "prepared",
+    "summary": "Repository review, register-only bridge audit fix, status reconciliation and development ledger",
+    "validation": "Local macOS arm64: 22 CTest groups; baseline 56 Python cases, candidate adds four regression cases. Source/notice/patch/generator checks pass."
+  }
+}

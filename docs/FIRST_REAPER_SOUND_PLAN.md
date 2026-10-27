@@ -58,6 +58,16 @@ pedig az aktuális feladatlistából átvezetjük az elkészült eredmények kö
 
 ## Előrehaladási napló
 
+### Repository-vizsgálat és központi változásjegyzék — 2026-10-27
+
+Az `AUD-2026-10-27` vizsgálat a #37 merge állapotáról indult. Elkészült a
+[repository-audit](REPOSITORY_AUDIT_2026-10-27.md), a PR-eket indexelő
+[fejlesztési napló](DEVELOPMENT_LOG.md) és a hozzá tartozó strukturált leltár.
+A korabeli bejegyzések és a fenti végső PR-ellenőrzési táblázat megmaradnak.
+Javítás készült a bridge-auditor mai register-only fejlécének kezelésére;
+ez nem változtatja a DSP-modellt vagy M0/M1 készültségét. A vizsgálat és a
+vezetési szabály a naplóban szerepel, a jelölt végső ellenőrzései a saját PR-ben.
+
 ### Dokumentációs egységesítés — 2026-10-27
 
 [#37](https://github.com/RobCZart82/yaman1x/pull/37): az M0/M1 részletes állapota,
