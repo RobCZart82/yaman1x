@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "upstream_commit": "706dbb73281320c54d7c2f16262c1c3786f2be01",
+  "inputs": {
+    "src/devices/cpu/h8/h8make.py": "a49e1152aa9a5a00ec2f78d8e98c2f71584bdc7cb425ca901cbeb39482b3e69b",
+    "src/devices/cpu/h8/h8.lst": "416f712236ef9c046ea31a23cb5d21403d25730e1516c0f7703233682bf2639a",
+    "scripts/src/cpu.lua": "f6bbd4ebc92ca41369050300fd0381c50e8fef0075c74d12f1bc56613e8b4fcd"
+  },
+  "outputs": {
+    "h8.hxx": {
+      "mode": "s",
+      "type": "o",
+      "lf_bytes": 233326,
+      "lf_sha256": "00922f704c2d811c660ecebf5b8adbcea9ac46ec6cf546ac2f1b106a28e875ad"
+    },
+    "h8h.hxx": {
+      "mode": "s",
+      "type": "h",
+      "lf_bytes": 282054,
+      "lf_sha256": "b0231d316fa0e8c09aa3598e063cbbcd53b392c78d7378c6e2e17284744e7f59"
+    },
+    "h8d.hxx": {
+      "mode": "d",
+      "type": "o",
+      "lf_bytes": 14031,
+      "lf_sha256": "341a617630ea41f33adc63a608f0206e8bb4f7207314f028acb8edf39128d3e9"
+    },
+    "h8hd.hxx": {
+      "mode": "d",
+      "type": "h",
+      "lf_bytes": 24924,
+      "lf_sha256": "cb203b511901c789d94365a793c32bc15ebf8590d607403006d51ab1d7803218"
+    }
+  },
+  "note": "Generated output hashes use LF normalization; original input hashes are byte-exact. This validates generation only, not compilation or CPU behavior."
+}

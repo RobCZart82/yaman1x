@@ -1,0 +1,512 @@
+{
+  "schema_version": 1,
+  "roots": [
+    "src/devices/cpu/h8/h83002.cpp",
+    "src/devices/cpu/h8/h83002.h"
+  ],
+  "files": [
+    {
+      "path": "src/devices/cpu/h8/h8.cpp",
+      "bytes": 31776,
+      "sha256": "89826ddcf2ab4116942a83ce3138206091a635ed8994f61787e10c8cb9870e48",
+      "notices": [
+        "// license:BSD-3-Clause",
+        "// copyright-holders:Olivier Galibert"
+      ],
+      "quoted_includes": [
+        "emu.h",
+        "h8.h",
+        "h8_dma.h",
+        "h8_dtc.h",
+        "h8_port.h",
+        "h8d.h",
+        "cpu/h8/h8.hxx"
+      ]
+    },
+    {
+      "path": "src/devices/cpu/h8/h8.h",
+      "bytes": 13449,
+      "sha256": "c8f4d4dc0a9e8e84dd16414f33700e827022d70520313ea1ee79dc3a34db66c0",
+      "notices": [
+        "// license:BSD-3-Clause",
+        "// copyright-holders:Olivier Galibert"
+      ],
+      "quoted_includes": [
+        "h8_cpu_base.h",
+        "h8_sci.h"
+      ]
+    },
+    {
+      "path": "src/devices/cpu/h8/h83002.cpp",
+      "bytes": 16657,
+      "sha256": "2b422dc4081700cccc27d3a6f62307ae5f138f4f601181015ff1d6605ecf1e92",
+      "notices": [
+        "// license:BSD-3-Clause",
+        "// copyright-holders:Olivier Galibert"
+      ],
+      "quoted_includes": [
+        "emu.h",
+        "h83002.h"
+      ]
+    },
+    {
+      "path": "src/devices/cpu/h8/h83002.h",
+      "bytes": 3358,
+      "sha256": "7172cec50713b46a22793e93df849bcdab6f87d2e64977ce3922b799f2d58667",
+      "notices": [
+        "// license:BSD-3-Clause",
+        "// copyright-holders:Olivier Galibert"
+      ],
+      "quoted_includes": [
+        "h8h.h",
+        "h8_adc.h",
+        "h8_dma.h",
+        "h8_port.h",
+        "h8_intc.h",
+        "h8_refresh.h",
+        "h8_timer16.h",
+        "h8_sci.h",
+        "h8_watchdog.h"
+      ]
+    },
+    {
+      "path": "src/devices/cpu/h8/h8_adc.cpp",
+      "bytes": 11504,
+      "sha256": "68577b708cac2233a31c1dfa5a4e83162a0db295d6d92805002f29ad4334be19",
+      "notices": [
+        "// license:BSD-3-Clause",
+        "// copyright-holders:Olivier Galibert"
+      ],
+      "quoted_includes": [
+        "emu.h",
+        "h8_adc.h"
+      ]
+    },
+    {
+      "path": "src/devices/cpu/h8/h8_adc.h",
+      "bytes": 5688,
+      "sha256": "8a9315888f6a70bb23bee00d61441263b7d69080cc260d91262caf0a43a594fc",
+      "notices": [
+        "// license:BSD-3-Clause",
+        "// copyright-holders:Olivier Galibert"
+      ],
+      "quoted_includes": [
+        "h8_cpu_base.h",
+        "h8_intc.h"
+      ]
+    },
+    {
+      "path": "src/devices/cpu/h8/h8_cpu_base.h",
+      "bytes": 1806,
+      "sha256": "0cb2fad41850a4dc92ea2a99fb1bd6363dd4ba6a9ac763cefb909a32c21a1c17",
+      "notices": [
+        "// license:BSD-3-Clause",
+        "// copyright-holders:Olivier Galibert, R. Belmont"
+      ],
+      "quoted_includes": []
+    },
+    {
+      "path": "src/devices/cpu/h8/h8_dma.cpp",
+      "bytes": 21039,
+      "sha256": "4938ecd8e96a95200428698c0d36a3587dab5fae3d7b4c2960c36ff701668216",
+      "notices": [
+        "// license:BSD-3-Clause",
+        "// copyright-holders:Olivier Galibert"
+      ],
+      "quoted_includes": [
+        "emu.h",
+        "h8_dma.h"
+      ]
+    },
+    {
+      "path": "src/devices/cpu/h8/h8_dma.h",
+      "bytes": 7896,
+      "sha256": "39c7eb1ae82d6f8b3d6cd94590584bdfadf81871c52f136728121646aad7047b",
+      "notices": [
+        "// license:BSD-3-Clause",
+        "// copyright-holders:Olivier Galibert"
+      ],
+      "quoted_includes": [
+        "h8_cpu_base.h",
+        "h8_intc.h"
+      ]
+    },
+    {
+      "path": "src/devices/cpu/h8/h8_dtc.cpp",
+      "bytes": 7759,
+      "sha256": "8affe2b327998f2d9e5e53437bdab48c201a3fb6d50c1e9147cf43433128f1fd",
+      "notices": [
+        "// license:BSD-3-Clause",
+        "// copyright-holders:Olivier Galibert"
+      ],
+      "quoted_includes": [
+        "emu.h",
+        "h8_dtc.h",
+        "h8.h"
+      ]
+    },
+    {
+      "path": "src/devices/cpu/h8/h8_dtc.h",
+      "bytes": 1972,
+      "sha256": "44640d8ea162d6888f98c2d070c441db0848844b05d69bd1742ff7b4a3383907",
+      "notices": [
+        "// license:BSD-3-Clause",
+        "// copyright-holders:Olivier Galibert"
+      ],
+      "quoted_includes": [
+        "h8_intc.h"
+      ]
+    },
+    {
+      "path": "src/devices/cpu/h8/h8_intc.cpp",
+      "bytes": 11802,
+      "sha256": "60d55cf124ed5ece134ca952c2c26fe4f71821a0f0fcac7afb9cdb9ed01d7111",
+      "notices": [
+        "// license:BSD-3-Clause",
+        "// copyright-holders:Olivier Galibert"
+      ],
+      "quoted_includes": [
+        "emu.h",
+        "h8_intc.h",
+        "h8_cpu_base.h"
+      ]
+    },
+    {
+      "path": "src/devices/cpu/h8/h8_intc.h",
+      "bytes": 4659,
+      "sha256": "9ecdbd830bf4715e18e5b628649bc37cf96da2526acf0cfc42f9ad8a3e344545",
+      "notices": [
+        "// license:BSD-3-Clause",
+        "// copyright-holders:Olivier Galibert"
+      ],
+      "quoted_includes": [
+        "h8_intc_base.h"
+      ]
+    },
+    {
+      "path": "src/devices/cpu/h8/h8_intc_base.h",
+      "bytes": 834,
+      "sha256": "b6ffaf5f9a66ee8fb2d4c7fae5b2a053c4b34aea25ee8c10f557c807339c4307",
+      "notices": [
+        "// license:BSD-3-Clause",
+        "// copyright-holders:Olivier Galibert, R. Belmont"
+      ],
+      "quoted_includes": []
+    },
+    {
+      "path": "src/devices/cpu/h8/h8_port.cpp",
+      "bytes": 3002,
+      "sha256": "c767e444bebcfb849d0cf225bb8a94e8eec481d62a75c1b554d36a8eda5114ca",
+      "notices": [
+        "// license:BSD-3-Clause",
+        "// copyright-holders:Olivier Galibert"
+      ],
+      "quoted_includes": [
+        "emu.h",
+        "h8_port.h"
+      ]
+    },
+    {
+      "path": "src/devices/cpu/h8/h8_port.h",
+      "bytes": 1586,
+      "sha256": "50579e13ab71992aee11fcf6372c538afa88689f72806c4dad6e693e67f3b74d",
+      "notices": [
+        "// license:BSD-3-Clause",
+        "// copyright-holders:Olivier Galibert"
+      ],
+      "quoted_includes": [
+        "h8_cpu_base.h"
+      ]
+    },
+    {
+      "path": "src/devices/cpu/h8/h8_refresh.cpp",
+      "bytes": 6273,
+      "sha256": "c41fa5e988b328b90c02e12401717de04745c1a4ddb9f27169176de13c68b7c6",
+      "notices": [
+        "// license:BSD-3-Clause",
+        "// copyright-holders:Olivier Galibert"
+      ],
+      "quoted_includes": [
+        "emu.h",
+        "h8_refresh.h"
+      ]
+    },
+    {
+      "path": "src/devices/cpu/h8/h8_refresh.h",
+      "bytes": 2403,
+      "sha256": "73cc7c516ec04fb3dc09e22c46e85392dcf87fba6da7761b1e70ba750faf745d",
+      "notices": [
+        "// license:BSD-3-Clause",
+        "// copyright-holders:Olivier Galibert"
+      ],
+      "quoted_includes": [
+        "h8.h",
+        "h8_intc.h"
+      ]
+    },
+    {
+      "path": "src/devices/cpu/h8/h8_sci.cpp",
+      "bytes": 21413,
+      "sha256": "5e5bd1e0e268919d98a8983ce141bdbbbd8831dbb3c2446e46b728ee66bcb7ad",
+      "notices": [
+        "// license:BSD-3-Clause",
+        "// copyright-holders:Olivier Galibert"
+      ],
+      "quoted_includes": [
+        "emu.h",
+        "h8_sci.h",
+        "h8_cpu_base.h",
+        "logmacro.h"
+      ]
+    },
+    {
+      "path": "src/devices/cpu/h8/h8_sci.h",
+      "bytes": 3297,
+      "sha256": "c54f42da1f956af642e1d99b26b5f55e169c2f02368fb540a0bc220df7defcfb",
+      "notices": [
+        "// license:BSD-3-Clause",
+        "// copyright-holders:Olivier Galibert"
+      ],
+      "quoted_includes": [
+        "h8_intc.h"
+      ]
+    },
+    {
+      "path": "src/devices/cpu/h8/h8_timer16.cpp",
+      "bytes": 18753,
+      "sha256": "7039beac99834b03ebd25fd20394c40f228cc9e33ee26c1e265a51c544da0c5c",
+      "notices": [
+        "// license:BSD-3-Clause",
+        "// copyright-holders:Olivier Galibert"
+      ],
+      "quoted_includes": [
+        "emu.h",
+        "h8_timer16.h",
+        "logmacro.h"
+      ]
+    },
+    {
+      "path": "src/devices/cpu/h8/h8_timer16.h",
+      "bytes": 8245,
+      "sha256": "c828bc4388aa33ab04a8ce0099a0399f1bb6b13dd8ae9bede32269c7ba19c7c0",
+      "notices": [
+        "// license:BSD-3-Clause",
+        "// copyright-holders:Olivier Galibert"
+      ],
+      "quoted_includes": [
+        "h8_cpu_base.h",
+        "h8_intc.h"
+      ]
+    },
+    {
+      "path": "src/devices/cpu/h8/h8_watchdog.cpp",
+      "bytes": 3760,
+      "sha256": "8050d0062246f271c11599785c356391a9eb51de8dbb730045c9199fc70eb759",
+      "notices": [
+        "// license:BSD-3-Clause",
+        "// copyright-holders:Olivier Galibert"
+      ],
+      "quoted_includes": [
+        "emu.h",
+        "h8_watchdog.h"
+      ]
+    },
+    {
+      "path": "src/devices/cpu/h8/h8_watchdog.h",
+      "bytes": 1755,
+      "sha256": "c525c0a7b87e7028a4525a6c2be390029f14c3f88a3ba2a8dcfa6ea69d7d4fe2",
+      "notices": [
+        "// license:BSD-3-Clause",
+        "// copyright-holders:Olivier Galibert"
+      ],
+      "quoted_includes": [
+        "h8_cpu_base.h",
+        "h8_intc.h"
+      ]
+    },
+    {
+      "path": "src/devices/cpu/h8/h8d.cpp",
+      "bytes": 7302,
+      "sha256": "2f08f395820d28b906e0b9b783f8d2730109e2e9011c052ddfb5fbbbcfc3c731",
+      "notices": [
+        "// license:BSD-3-Clause",
+        "// copyright-holders:Olivier Galibert"
+      ],
+      "quoted_includes": [
+        "emu.h",
+        "h8d.h",
+        "cpu/h8/h8d.hxx"
+      ]
+    },
+    {
+      "path": "src/devices/cpu/h8/h8d.h",
+      "bytes": 4169,
+      "sha256": "8ac16fba72738b745628c430e063e7f7170c2e0427c39934f380e8fbfd72806b",
+      "notices": [
+        "// license:BSD-3-Clause",
+        "// copyright-holders:Olivier Galibert"
+      ],
+      "quoted_includes": []
+    },
+    {
+      "path": "src/devices/cpu/h8/h8h.cpp",
+      "bytes": 541,
+      "sha256": "4716b78f3c64e1aefcba288211d1da7beb464ef0149826117326b14498f07298",
+      "notices": [
+        "// license:BSD-3-Clause",
+        "// copyright-holders:Olivier Galibert"
+      ],
+      "quoted_includes": [
+        "emu.h",
+        "h8h.h",
+        "h8hd.h",
+        "cpu/h8/h8h.hxx"
+      ]
+    },
+    {
+      "path": "src/devices/cpu/h8/h8h.h",
+      "bytes": 4271,
+      "sha256": "4cc7b135d56199b2bed4df86a12c879e3851b2c17525abcda3db765c957b4940",
+      "notices": [
+        "// license:BSD-3-Clause",
+        "// copyright-holders:Olivier Galibert"
+      ],
+      "quoted_includes": [
+        "h8.h"
+      ]
+    },
+    {
+      "path": "src/devices/cpu/h8/h8hd.cpp",
+      "bytes": 422,
+      "sha256": "9aa47987f77ed99be601ebfd30055bb46e45a8cb4f7f79a8f9d60f8abcc9ad11",
+      "notices": [
+        "// license:BSD-3-Clause",
+        "// copyright-holders:Olivier Galibert"
+      ],
+      "quoted_includes": [
+        "emu.h",
+        "h8hd.h",
+        "cpu/h8/h8hd.hxx"
+      ]
+    },
+    {
+      "path": "src/devices/cpu/h8/h8hd.h",
+      "bytes": 550,
+      "sha256": "5c895cc6395b35c395d9c2dff7dc17ebfa24868b0b2edbead0da870f0f6fb614",
+      "notices": [
+        "// license:BSD-3-Clause",
+        "// copyright-holders:Olivier Galibert"
+      ],
+      "quoted_includes": [
+        "h8d.h"
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "source": "src/devices/cpu/h8/h8.cpp",
+      "include": "cpu/h8/h8.hxx",
+      "kind": "generated-or-external"
+    },
+    {
+      "source": "src/devices/cpu/h8/h8.cpp",
+      "include": "emu.h",
+      "kind": "generated-or-external"
+    },
+    {
+      "source": "src/devices/cpu/h8/h83002.cpp",
+      "include": "emu.h",
+      "kind": "generated-or-external"
+    },
+    {
+      "source": "src/devices/cpu/h8/h8_adc.cpp",
+      "include": "emu.h",
+      "kind": "generated-or-external"
+    },
+    {
+      "source": "src/devices/cpu/h8/h8_dma.cpp",
+      "include": "emu.h",
+      "kind": "generated-or-external"
+    },
+    {
+      "source": "src/devices/cpu/h8/h8_dtc.cpp",
+      "include": "emu.h",
+      "kind": "generated-or-external"
+    },
+    {
+      "source": "src/devices/cpu/h8/h8_intc.cpp",
+      "include": "emu.h",
+      "kind": "generated-or-external"
+    },
+    {
+      "source": "src/devices/cpu/h8/h8_port.cpp",
+      "include": "emu.h",
+      "kind": "generated-or-external"
+    },
+    {
+      "source": "src/devices/cpu/h8/h8_refresh.cpp",
+      "include": "emu.h",
+      "kind": "generated-or-external"
+    },
+    {
+      "source": "src/devices/cpu/h8/h8_sci.cpp",
+      "include": "emu.h",
+      "kind": "generated-or-external"
+    },
+    {
+      "source": "src/devices/cpu/h8/h8_sci.cpp",
+      "include": "logmacro.h",
+      "kind": "generated-or-external"
+    },
+    {
+      "source": "src/devices/cpu/h8/h8_timer16.cpp",
+      "include": "emu.h",
+      "kind": "generated-or-external"
+    },
+    {
+      "source": "src/devices/cpu/h8/h8_timer16.cpp",
+      "include": "logmacro.h",
+      "kind": "generated-or-external"
+    },
+    {
+      "source": "src/devices/cpu/h8/h8_watchdog.cpp",
+      "include": "emu.h",
+      "kind": "generated-or-external"
+    },
+    {
+      "source": "src/devices/cpu/h8/h8d.cpp",
+      "include": "cpu/h8/h8d.hxx",
+      "kind": "generated-or-external"
+    },
+    {
+      "source": "src/devices/cpu/h8/h8d.cpp",
+      "include": "emu.h",
+      "kind": "generated-or-external"
+    },
+    {
+      "source": "src/devices/cpu/h8/h8h.cpp",
+      "include": "cpu/h8/h8h.hxx",
+      "kind": "generated-or-external"
+    },
+    {
+      "source": "src/devices/cpu/h8/h8h.cpp",
+      "include": "emu.h",
+      "kind": "generated-or-external"
+    },
+    {
+      "source": "src/devices/cpu/h8/h8hd.cpp",
+      "include": "cpu/h8/h8hd.hxx",
+      "kind": "generated-or-external"
+    },
+    {
+      "source": "src/devices/cpu/h8/h8hd.cpp",
+      "include": "emu.h",
+      "kind": "generated-or-external"
+    }
+  ],
+  "complete_compiler_closure": false,
+  "license_clearance": false,
+  "note": "Quoted-include traversal plus matching cpp/h pairs only. Conditional branches are not evaluated; generated code, framework services, symbols, build rules and transitive external dependencies require separate review.",
+  "archive_sha256": "acffc3d3c4d8ffab148d07de5ab0416e54841a1ac99375cfdf641eec5eca7a6e",
+  "upstream_commit": "706dbb73281320c54d7c2f16262c1c3786f2be01"
+}
