@@ -37,6 +37,9 @@ omissions are in `research/h8-internal-irqs-provenance.json` and
 [the internal IRQ record](docs/h8-internal-irqs.md).
 `src/h8h_irq_controller.h` extends the same adaptation with H8H register/pin
 semantics and original publication points; see [the controller record](docs/h8h-irq-controller.md).
+`src/h8_sci_cycle_clock.h` adapts the internal integer-cycle scheduling subset
+of the same author's BSD-3-Clause SCI source; source hashes and limits are in
+`research/h8-sci-clock-provenance.json` and [the clock record](docs/h8-sci-cycle-clock.md).
 New `yamanix_*.h` patch files reproduce the project's own bridge and bus
 interfaces. MAME research remains a separate program; this repository does
 not link MAME into the plugin core. A later distribution must account for

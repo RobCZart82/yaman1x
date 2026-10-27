@@ -3,6 +3,19 @@
 Rögzítve: 2026-10-27. Kiindulópont: a #14 PR-ig beolvadt kutatási eredmények.
 Ez végrehajtási terv; az alábbi, még nyitott mérföldkövek nem kész funkciók.
 
+## Aktuális mérföldkő-állapot — 2026-10-27
+
+| Mérföldkő | Aktuális állapot | Következő elfogadási feltétel |
+|---|---|---|
+| M0 | **Részben teljesült.** Architektúra, forrásazonosítók, generálási alap, önálló GPIO és IRQ-adapter megvan; az SCI belső ciklusórája most készül. | SCI TX/RX állapotgép és regiszterszabályok; közös CPU/periféria-ütemező; tényleges H8 CPU-port fordítása és végrehajtási/izolációs tesztjei. A terjesztési licenc döntése nyitott. |
+| M1 | **Előkészítve, nem teljesült.** A külön macOS MAME-build és a párosított helyi futtató rendelkezésre áll. | Friss Mac-firmware-próba: SCI0 tényleges bájtfogadás és note-on/note-off feldolgozás bizonyítása; PKS-kézfogás feltárása. |
+| M2–M3 | **Kutatási feladatok nyitva.** Nincs igazolt referenciahang. | AN1x órajel, táblacímzés, EG és soros hangút bizonyítása, majd megismételhető offline hang. |
+| M4–M6 | **Tervezett.** Nincs elkészült beágyazható hangszer vagy REAPER-elfogadás. | Validált offline referencia után audio-blokkmotor, VST3 és helyi REAPER-próba. |
+
+Az önálló komponens tesztje nem teljes CPU-/firmware-elfogadás. Az alábbi
+dátumozott napló őrzi a részletes bizonyítékot; a kapcsolódó PR checkjei
+rögzítik a végső tesztelt revíziót és platformfutásokat.
+
 ## A terv folyamatos vezetése
 
 Ez a dokumentum a fejlesztés során folyamatosan karbantartandó terv.
@@ -40,6 +53,7 @@ kerülhet a tervbe. A részletes mérési jegyzőkönyvekre hivatkozás mutasson
 | 2026-10-27 | **#24 beolvadt, H8-periféria platformellenőrzés lezárva.** [Végső bizonyíték](h8-digital-port.md). | `896bd7882309bb03868c5c3816f4f9b7b068b858`: [Linux/macOS/Windows](https://github.com/RobCZart82/yaman1x/actions/runs/40468100477), [MSan](https://github.com/RobCZart82/yaman1x/actions/runs/40468100462) és [teljes kutatási MAME-build](https://github.com/RobCZart82/yaman1x/actions/runs/40468100442) PASS. A korábbi NOT RUN platformbejegyzések történeti állapotok. | SCI/IRQ/timer hostadapter és CPU-leválasztás. Az új GPIO firmware-integrációja és a friss Mac-firmware-próba továbbra is NOT RUN. M0/M1 még nem teljesült. |
 | 2026-10-27 | [#26](https://github.com/RobCZart82/yaman1x/pull/26): **M0 H8H belső IRQ-választó elkészült külön komponensként.** [Szemantika és hiányzó adapter](h8-internal-irqs.md). | Helyi MSVC Release build/teszt PASS: 11 prioritáscsoport és 44 belső vektor, 990 vektorpár, DMA-elfogyasztás, szűrők, NMI-latch, reset és izoláció. Platform-CI a külön PR-ben; CPU-/SCI-/firmware-integráció NOT RUN. | Teljes IRQ-adapter, külső lábak és CPU-szűrők bekötése; időzített SCI-modell és friss Mac-firmware-próba. Az NMI-élt és időfeltételt a tulajdonosnak kell igazolnia. |
 | 2026-10-27 | [#27](https://github.com/RobCZart82/yaman1x/pull/27): **M0 H8H IRQ-regiszter/láb adapter elkészült.** [Szemantika, ICR-kockázat és inbox-értékelés](h8h-irq-controller.md). | Helyi MSVC Release tesztek PASS; az eredeti upstream metódustörzsekkel 300000 determinisztikus művelet, **0 eltérés**. A PIN/NMI/IER/ISR/ISCR/ICR és publikációs határok megőrizve; CPU/SCI/firmware-bekötés NOT RUN. | Platform-CI és kutatási build; utána időzített SCI- és CPU-adapter. Az új PKS-HLE/dummy-ROM jegyzet nem tekinthető protokollbizonyítéknak; feltételezett választ nem vezetünk be. |
+| 2026-10-27 | **M0 SCI belső ciklusóra-adapter.** [Részletes szerződés, tesztek és következő lépés](h8-sci-cycle-clock.md). | Helyi MSVC Release próba: 1024 osztó, TX/RX ciklusnézet, blokkfelosztás, standby és hibahatárok PASS. Eredeti upstream ütemezési metódusokkal 200000 determinisztikus művelet, **0 eltérés**. Végső platform-CI a külön PR-ben; bájtállapotgép és CPU-/firmware-integráció NOT RUN. | SCI TX/RX és SSR/RDR mellékhatások, IRQ-kapcsolat, majd közös gépütemező és tényleges H8-végrehajtás. Külső SCI-órás módok még nem támogatottak. |
 
 ## A cél pontos meghatározása
 
