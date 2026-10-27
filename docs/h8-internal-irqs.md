@@ -1,5 +1,6 @@
 # H8H internal interrupt arbitration
 
+Implementation: [PR #26](https://github.com/RobCZart82/yaman1x/pull/26).
 Date: 2026-10-27. Status: standalone native tests; CPU integration NOT RUN.
 
 `H8hInternalIrqs` adapts the internal-vector selection subset of the pinned
