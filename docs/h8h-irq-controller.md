@@ -1,5 +1,6 @@
 # H8H IRQ register and pin adapter
 
+Implementation: [PR #27](https://github.com/RobCZart82/yaman1x/pull/27).
 Date: 2026-10-27. Local MSVC Release tests PASS; CPU/SCI integration NOT RUN.
 
 `H8hIrqController` wraps the internal selector with the pinned MAME H8H
