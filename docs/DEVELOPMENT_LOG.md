@@ -1,7 +1,7 @@
 # YamAN1x fejlesztési napló
 
 Frissítve: 2026-10-27. Időzóna: Europe/Budapest.
-Ellenőrzött alap: `276399870400bd81272c21889257984651c816ed` (#37).
+Ellenőrzött alap: `47950097b564f7ca48a1a2fd27a125066c3fc7a9` (#38).
 
 ## A nyilvántartás feladata
 
@@ -19,7 +19,7 @@ merge- és PR-head SHA-kat, valamint az eredeti UTC-időbélyegeket.
 
 ## AUD-2026-10-27 — repository-audit és javítások
 
-Állapot: [#38 PR](https://github.com/RobCZart82/yaman1x/pull/38), review alatt; beolvasztás és végső CI-lezárás még függőben.
+Állapot: [#38 PR](https://github.com/RobCZart82/yaman1x/pull/38) beolvadt 2026-10-27 15:36:15 UTC-kor; merge: `47950097b564f7ca48a1a2fd27a125066c3fc7a9`.
 
 A helyben tesztelt kódfa a `de892c3ea278611d1a60e68ccbad8991e174b768`
 GitHub-revízió fájlfájával azonos. A követő változás csak e napló metaadatait
@@ -39,15 +39,21 @@ rögzíti; a legutóbbi PR-head saját CI-je az irányadó.
 - Nyitott: SCI IRQ/MMIO és H8-ütemező/CPU-bekötés; firmware-es PKS/MIDI,
   AN1x órajel/EG/táblacímzés, audio és REAPER-elfogadás.
 
+## SCI-MMIO-2026-10-27 — kétcsatornás SCI busz/IRQ-adapter
+
+Állapot: [#39 PR](https://github.com/RobCZart82/yaman1x/pull/39), review alatt.
+A hatregiszteres bájt/szó MMIO és a csatornánkénti ERI/RXI/TXI/TEI útvonal elkészült, DMA-elsőbbséggel. Szintetikus 512 RX bájt/csatorna eset, TX, hibák, reset és izoláció ellenőrizve. Az eredeti PR-head öt platform/build ellenőrzése sikeres volt; a #38 főági dokumentációjával feloldott ütközés után új CI szükséges. A kombinált fa helyben 23/23 CTest-csoporttal és 60 Python-esettel PASS. M0 részben teljesült; CPU-ütemezés és firmware/audio továbbra is nyitott.
+
 ## Beolvadt változások — a legutóbbi elöl
 
-A következő 32 bejegyzés GitHub PR-metaadatból és az aktuális `main` Git-előzményéből
-ellenőrzött visszamenőleges könyvelés (#6–#37). A beolvadás bizonyított; a
+A következő 33 bejegyzés GitHub PR-metaadatból és az aktuális `main` Git-előzményéből
+ellenőrzött visszamenőleges könyvelés (#6–#38). A beolvadás bizonyított; a
 felsorolás önmagában nem állít minden PR-re újrafuttatott hardveres vagy helyi
 validációt. A kezdeti importot a [történeti összefoglaló](HISTORY.md) őrzi.
 
 | Beolvasztás (Budapest) | PR | Fejlesztés / javítás | Merge commit |
 |---|---|---|---|
+| 2026-10-27 16:36:15 | [#38](https://github.com/RobCZart82/yaman1x/pull/38) | Repository-audit, bridge-kompatibilitási javítás és fejlesztési napló | `47950097b564f7ca48a1a2fd27a125066c3fc7a9` |
 | 2026-10-27 13:32 | [#37](https://github.com/RobCZart82/yaman1x/pull/37) | Reconcile development plan with verified PR closures and historical snapshots | `276399870400` |
 | 2026-10-27 13:10 | [#36](https://github.com/RobCZart82/yaman1x/pull/36) | Unify asynchronous H8 SCI transmit and receive under one channel | `33dc7e97c174` |
 | 2026-10-27 12:22 | [#35](https://github.com/RobCZart82/yaman1x/pull/35) | Compose H8 asynchronous SCI receiver with sampled input and errors | `e7257ebe2bbc` |

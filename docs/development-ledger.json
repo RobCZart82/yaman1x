@@ -3,7 +3,7 @@
   "recorded_date": "2026-10-27",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "276399870400bd81272c21889257984651c816ed",
+  "baseline_commit": "47950097b564f7ca48a1a2fd27a125066c3fc7a9",
   "entries": [
     {
       "pr": 6,
@@ -324,16 +324,25 @@
       "merge_commit": "276399870400bd81272c21889257984651c816ed",
       "reviewed_head": "03fcefd0053623325a68aed05991422080d721bd",
       "status": "merged"
+    },
+    {
+      "pr": 38,
+      "title": "Audit repository, fix bridge capture compatibility and add development ledger",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/38",
+      "kind": "fix-and-documentation",
+      "merged_at_utc": "2026-10-27T15:36:15Z",
+      "merge_commit": "47950097b564f7ca48a1a2fd27a125066c3fc7a9",
+      "reviewed_head": "583a1f96ba6de8de6af2db50a9175c27dd99ddde",
+      "status": "merged"
     }
   ],
   "active_change": {
-    "id": "AUD-2026-10-27",
-    "branch": "audit/repository-and-development-log",
-    "pr": 38,
+    "id": "SCI-MMIO-2026-10-27",
+    "branch": "feat/h8-sci-mmio-irq",
+    "pr": 39,
     "status": "in_review",
-    "summary": "Repository review, register-only bridge audit fix, status reconciliation and development ledger",
-    "validation": "Local macOS arm64 exact tree: 22/22 CTest groups and 60/60 Python cases PASS; focused four cases also PASS under -O. Source/notice/patch/generator checks pass. Follow-up only updates ledger metadata; final CI is on PR #38.",
-    "url": "https://github.com/RobCZart82/yaman1x/pull/38",
-    "tested_revision": "de892c3ea278611d1a60e68ccbad8991e174b768"
+    "summary": "Two-channel H83002 SCI byte/word MMIO and DMA-qualified IRQ adapter; reconcile merged audit documentation",
+    "url": "https://github.com/RobCZart82/yaman1x/pull/39",
+    "validation": "Original head: five GitHub checks PASS. Combined main #38 tree: macOS arm64 Release 23/23 CTest groups and 60 Python cases PASS. Final merge-commit CI is pending on PR #39."
   }
 }
