@@ -1,0 +1,18 @@
+{
+  "upstream_commit": "706dbb73281320c54d7c2f16262c1c3786f2be01",
+  "inputs": {
+    "src/devices/cpu/h8/h8_sci.cpp": {
+      "sha256": "5e5bd1e0e268919d98a8983ce141bdbbbd8831dbb3c2446e46b728ee66bcb7ad",
+      "bytes": 21413,
+      "license": "BSD-3-Clause",
+      "copyright_holder": "Olivier Galibert"
+    },
+    "src/devices/cpu/h8/h8_sci.h": {
+      "sha256": "c54f42da1f956af642e1d99b26b5f55e169c2f02368fb540a0bc220df7defcfb",
+      "bytes": 3297,
+      "license": "BSD-3-Clause",
+      "copyright_holder": "Olivier Galibert"
+    }
+  },
+  "adaptation": "src/h8_sci_async_tx.h; asynchronous TX state machine and TX-only register/clock/status owner. RX, synchronous/MP framing, external clocks, CPU and DMA-controller execution omitted. Original scheduling/status adapters composed, upstream TX parity convention retained."
+}

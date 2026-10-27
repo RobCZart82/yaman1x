@@ -1473,6 +1473,13 @@
             "// license:BSD-3-Clause",
             "// copyright-holders:Olivier Galibert"
           ]
+        },
+        {
+          "path": "src/h8_sci_async_tx.h",
+          "required_notices": [
+            "// license:BSD-3-Clause",
+            "// copyright-holders:Olivier Galibert"
+          ]
         }
       ],
       "license_files": [
