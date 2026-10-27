@@ -3,7 +3,7 @@
   "recorded_date": "2026-10-27",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "f8b1f4fbd4a422eab33d633e2384f1c82c11623d",
+  "baseline_commit": "b644b6e1c471f8632ea086d75bd37d20b5ebbeb4",
   "entries": [
     {
       "pr": 6,
@@ -343,7 +343,8 @@
       "merged_at_utc": "2026-10-27T18:06:08Z",
       "merge_commit": "6c1dd8a0c83eac1d593abd4e70c040f88908bb48",
       "reviewed_head": "9459a805af0834c5ad66329f0f1b037a9354b08d",
-      "status": "merged"
+      "status": "merged",
+      "ci_evidence": "research/ci-closures-39-44.json"
     },
     {
       "pr": 40,
@@ -353,7 +354,8 @@
       "merged_at_utc": "2026-10-27T18:56:09Z",
       "merge_commit": "76787a6ee5450fa29a7403b658fc861ef908a297",
       "reviewed_head": "34cec0074577a1add862772bcf3bc289de735b68",
-      "status": "merged"
+      "status": "merged",
+      "ci_evidence": "research/ci-closures-39-44.json"
     },
     {
       "pr": 41,
@@ -363,7 +365,8 @@
       "merged_at_utc": "2026-10-27T19:47:56Z",
       "merge_commit": "259338dbffed8b5b10b606c5f8f907bd791b1b74",
       "reviewed_head": "387c5e64c0ee9759b3d41dfa58bcda1b35594731",
-      "status": "merged"
+      "status": "merged",
+      "ci_evidence": "research/ci-closures-39-44.json"
     },
     {
       "pr": 42,
@@ -373,7 +376,8 @@
       "merged_at_utc": "2026-10-27T20:33:08Z",
       "merge_commit": "e3f71a89f6d967034a3c05926a7a86c595ab9a49",
       "reviewed_head": "a67b599f880f0981d68e04b276b0d904ea3f7d29",
-      "status": "merged"
+      "status": "merged",
+      "ci_evidence": "research/ci-closures-39-44.json"
     },
     {
       "pr": 43,
@@ -383,16 +387,26 @@
       "merged_at_utc": "2026-10-27T20:49:51Z",
       "merge_commit": "f8b1f4fbd4a422eab33d633e2384f1c82c11623d",
       "reviewed_head": "83caf332df3539037187888c60bc35ae422dc2a3",
-      "status": "merged"
+      "status": "merged",
+      "ci_evidence": "research/ci-closures-39-44.json"
+    },
+    {
+      "pr": 44,
+      "title": "Isolate H8 execution-slice debt and peripheral deadline arithmetic",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/44",
+      "kind": "development",
+      "merged_at_utc": "2026-10-27T21:43:08Z",
+      "merge_commit": "b644b6e1c471f8632ea086d75bd37d20b5ebbeb4",
+      "reviewed_head": "1bed694bdc066a66bcebb747ed74a052a4650c25",
+      "status": "merged",
+      "ci_evidence": "research/ci-closures-39-44.json"
     }
   ],
   "active_change": {
-    "id": "H8-BUDGET-2026-10-27",
-    "branch": "feat/h8-execution-budget",
+    "id": "DOC-CLOSE-2026-10-27",
+    "branch": "docs/close-development-ledger-44",
     "status": "in_review",
-    "summary": "Execution-slice debt and peripheral boundary arithmetic, without opcode runner",
-    "validation": "Local macOS arm64 Release 27/27 CTest groups, 74 Python cases and new native ASan/UBSan PASS. Original-method comparison: 200000 no-event synthetic slices plus 200000 deadlines, zero differences. Source/notice audits PASS. Final PR-head CI pending; no CPU opcodes executed.",
-    "pr": 44,
-    "url": "https://github.com/RobCZart82/yaman1x/pull/44"
+    "summary": "Reconcile merged #44 and verified final-head CI for #39\u2013#44",
+    "validation": "Read-only GitHub check snapshots: six final heads, five successful checks each. Documentation/data only; no engine change."
   }
 }
