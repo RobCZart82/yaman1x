@@ -1,0 +1,30 @@
+{
+  "upstream_commit": "706dbb73281320c54d7c2f16262c1c3786f2be01",
+  "inputs": {
+    "src/devices/cpu/h8/h8_port.cpp": {
+      "sha256": "c767e444bebcfb849d0cf225bb8a94e8eec481d62a75c1b554d36a8eda5114ca",
+      "bytes": 3002,
+      "notices": [
+        "// license:BSD-3-Clause",
+        "// copyright-holders:Olivier Galibert"
+      ]
+    },
+    "src/devices/cpu/h8/h8_port.h": {
+      "sha256": "50579e13ab71992aee11fcf6372c538afa88689f72806c4dad6e693e67f3b74d",
+      "bytes": 1586,
+      "notices": [
+        "// license:BSD-3-Clause",
+        "// copyright-holders:Olivier Galibert"
+      ]
+    },
+    "src/devices/cpu/h8/h8_cpu_base.h": {
+      "sha256": "0cb2fad41850a4dc92ea2a99fb1bd6363dd4ba6a9ac763cefb909a32c21a1c17",
+      "bytes": 1806,
+      "notices": [
+        "// license:BSD-3-Clause",
+        "// copyright-holders:Olivier Galibert, R. Belmont"
+      ]
+    }
+  },
+  "adaptation": "src/h8_digital_port.h; GPIO register/pin equations adapted; MAME lifecycle, device ownership, logging and NVRAM services omitted. No CPU instructions or SCI ported."
+}

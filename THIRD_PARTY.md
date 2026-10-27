@@ -26,6 +26,11 @@ MAME patch context comes from:
 - `src/devices/video/lc7985.cpp`: Olivier Galibert, BSD-3-Clause.
 
 The original MAME archive identity is in `docs/source-lock.json`.
+`src/h8_digital_port.h` is a standalone adaptation of the BSD-3-Clause H8
+digital-port register logic by Olivier Galibert. Its source identities,
+omissions and validation are in [the peripheral record](docs/h8-digital-port.md)
+and `research/h8-digital-port-provenance.json`; the original terms remain in
+`licenses/MAME-BSD-3-Clause.txt`.
 New `yamanix_*.h` patch files reproduce the project's own bridge and bus
 interfaces. MAME research remains a separate program; this repository does
 not link MAME into the plugin core. A later distribution must account for
