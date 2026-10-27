@@ -14,5 +14,6 @@
       "copyright_holder": "Olivier Galibert"
     }
   },
-  "adaptation": "src/h8h_internal_irqs.h; internal vectors 20..63 plus prequalified NMI latch only; no external pins, MMIO, device services, CPU callback or DMA implementation."
+  "adaptation": "src/h8h_internal_irqs.h; internal vectors 20..63 plus prequalified NMI latch only; no external pins, MMIO, device services, CPU callback or DMA implementation.",
+  "controller_adaptation": "src/h8h_irq_controller.h adds H8H external IRQ pins, NMI edge qualification parameter, IER/ISR/ISCR/ICR and upstream publication points; not a CPU or scheduler. Same pinned sources as the internal subset."
 }
