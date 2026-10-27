@@ -438,4 +438,4 @@ megszületése előtt nem vállalunk; M3 után a motor- és plugincsomagolás be
 
 ## 2026-10-27 — Korlátozott ciklus-eseményfuttató
 
-Ág: `feat/bounded-cycle-dispatcher`, alap: main #38; a nyitott #39-től független. [Komponensszerződés és tesztek](cycle-dispatcher.md): monoton ciklusidő, befoglaló határidő, folytatható lépéskeret, hibás tulajdonos elkülönítése. 1000 eseménysor blokk-/keretfüggetlensége és határesetei helyben PASS. Ez az ütemező alapja; CPU/periféria-tulajdonos, hardveres eseménysorrend és firmware-végrehajtás továbbra is nyitott. M0 részben teljesült.
+PR: [#40](https://github.com/RobCZart82/yaman1x/pull/40), ág: `feat/bounded-cycle-dispatcher`, alap: main #38; a nyitott #39-től független. [Komponensszerződés és tesztek](cycle-dispatcher.md): monoton ciklusidő, befoglaló határidő, folytatható lépéskeret, hibás tulajdonos elkülönítése. 1000 eseménysor blokk-/keretfüggetlensége és határesetei helyben PASS. Ez az ütemező alapja; CPU/periféria-tulajdonos, hardveres eseménysorrend és firmware-végrehajtás továbbra is nyitott. M0 részben teljesült.
