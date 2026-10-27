@@ -31,12 +31,14 @@ The upstream `scripts/src/cpu.lua` rules generate these four files from
 `src/devices/cpu/h8/h8.lst` using `h8make.py` with arguments respectively
 `s o`, `s h`, `d o`, `d h`, followed by the output path. The generator and
 instruction list are build inputs outside the include traversal; they have
-not been imported or executed by this inventory tool.
+not been imported or executed by this inventory tool. The separate generation
+check described below now verifies and executes those build inputs.
 
 ## Required next implementation work
 
-1. Capture the generator/list/build-rule hashes and reproduce generated outputs
-   in an isolated build directory. Review their notices and actual dependencies.
+1. Generator/list/build-rule hashes and two matching generation passes are now
+   recorded below. Compilation and notice/dependency review of the generated
+   outputs remain required.
 2. Enumerate framework services used by the 30-file candidate set: device
    construction/ownership, address spaces, delegates, timers/attotime, scheduler,
    interrupts, state registration and debugger/disassembler interfaces.
@@ -58,3 +60,28 @@ missing roots, external/generated boundaries, deterministic ordering, changed
 source hashes and escaping include rejection. The real locked archive produced
 the 30-file inventory. Compiler execution of an embedded H8 port: NOT RUN.
 The Mac firmware experiment remains separately documented in `MAC_M1_HANDOFF.md`.
+
+## Repeated generation experiment
+
+`research/h8-generator-lock.json` records the exact hashes of `h8make.py`,
+`h8.lst` and `scripts/src/cpu.lua` from the locked archive. It also records
+the four reviewed argument combinations, output sizes and SHA-256 values.
+The generated files are kept in ignored local work directories, not vendored.
+
+```sh
+python3 tools/check_h8_generation.py --archive /absolute/path/to/mame-master.zip --work work/h8-generation-check
+```
+
+The tool requires a new output directory, verifies the whole archive and all
+three inputs before executing the pinned generator, then runs each of the
+four jobs twice with independent output paths. Both passes must match the
+recorded output hash. Inputs are compared byte-for-byte; generated text uses
+explicit CRLF-to-LF normalization so Windows and Unix newline conventions do
+not masquerade as instruction changes. No other content is normalized.
+
+Windows Python 3.13.3 local result on 2026-10-27: three inputs verified,
+four outputs verified in two passes, PASS. Synthetic tests verify that source
+newline changes are rejected while generated newline differences are accepted,
+and changed generated content is rejected. This does not compile or execute
+the generated instruction handlers and is not a firmware test. Cross-platform
+CI for this branch remains NOT RUN until a PR is opened.
