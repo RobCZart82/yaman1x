@@ -329,9 +329,11 @@
   "active_change": {
     "id": "AUD-2026-10-27",
     "branch": "audit/repository-and-development-log",
-    "pr": null,
-    "status": "prepared",
+    "pr": 38,
+    "status": "in_review",
     "summary": "Repository review, register-only bridge audit fix, status reconciliation and development ledger",
-    "validation": "Local macOS arm64: 22 CTest groups; baseline 56 Python cases, candidate adds four regression cases. Source/notice/patch/generator checks pass."
+    "validation": "Local macOS arm64 exact tree: 22/22 CTest groups and 60/60 Python cases PASS; focused four cases also PASS under -O. Source/notice/patch/generator checks pass. Follow-up only updates ledger metadata; final CI is on PR #38.",
+    "url": "https://github.com/RobCZart82/yaman1x/pull/38",
+    "tested_revision": "de892c3ea278611d1a60e68ccbad8991e174b768"
   }
 }

@@ -101,7 +101,10 @@ sikeres. A változatlan kutatási cél legutóbbi main-ági
 a #36 merge `33dc7e97c174c7b4992ff838380b2ae9de01a579` revíziójához tartozik;
 nem a #37 vagy az auditjelölt újrafordításának állítjuk be.
 
-A végső jelölt PR saját ellenőrzései a PR checkjeinél követhetők. A fenti
+A végső jelölt [#38 PR](https://github.com/RobCZart82/yaman1x/pull/38) saját
+ellenőrzései a PR checkjeinél követhetők. A helyben tesztelt fa megegyezik a
+`de892c3ea278611d1a60e68ccbad8991e174b768` közzétett revízió fájlfájával;
+a követő commit csak a napló/ellenőrzési hivatkozásokat egészíti ki. A fenti
 helyi jelölttesztek a kódjavítást és regresszióit tartalmazó munkafát vizsgálják;
 a merge SHA csak beolvasztás után ismert. A nyilvános jegyzőkönyv nem tárol
 személyes elérési utat, Yamaha-adatot vagy privát nyers logot.

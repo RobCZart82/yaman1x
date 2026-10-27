@@ -19,7 +19,11 @@ merge- és PR-head SHA-kat, valamint az eredeti UTC-időbélyegeket.
 
 ## AUD-2026-10-27 — repository-audit és javítások
 
-Állapot: PR-előkészítés; beolvasztás és a PR saját végső CI-je még függőben.
+Állapot: [#38 PR](https://github.com/RobCZart82/yaman1x/pull/38), review alatt; beolvasztás és végső CI-lezárás még függőben.
+
+A helyben tesztelt kódfa a `de892c3ea278611d1a60e68ccbad8991e174b768`
+GitHub-revízió fájlfájával azonos. A követő változás csak e napló metaadatait
+rögzíti; a legutóbbi PR-head saját CI-je az irányadó.
 
 - Átvizsgált terület: build/CI, saját C++/Python kód és tesztek, kutatási patch-lánc,
   forrás-/licencleltár, állapotdokumentumok és PR-előzmények.
