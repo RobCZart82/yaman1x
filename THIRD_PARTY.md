@@ -5,7 +5,7 @@
 | [musicastudio/VOP3](https://github.com/musicastudio/VOP3) | Five C++ source/header files; one reviewed initialization adaptation in `third_party/vop3/src` | BSD-3-Clause; `third_party/vop3/LICENSE`; copyright 2026 Wouter van Nifterick, Zhiyuan Wan, James Hansen |
 | AsmJit snapshot supplied with VOP3 | Unchanged source files under `third_party/vop3/third_party/asmjit/asmjit` | zlib; `third_party/vop3/third_party/asmjit/LICENSE.md`; copyright 2008–2025 Petr Kobalicek |
 | [MAME](https://github.com/mamedev/mame) | Eleven research patch files; no executable or full source tree | Specific upstream files listed below are BSD-3-Clause; full MAME distribution has GPL-2.0 terms. License texts and original distribution notice are under `licenses/`. |
-| MAME H8 adaptations | Six standalone GPIO/IRQ/SCI headers under `src/`; source identities in the peripheral provenance records | BSD-3-Clause; Olivier Galibert; `licenses/MAME-BSD-3-Clause.txt` and retained file headers |
+| MAME H8 adaptations | Seven standalone GPIO/IRQ/SCI headers under `src/`; source identities in the peripheral provenance records | BSD-3-Clause; Olivier Galibert; `licenses/MAME-BSD-3-Clause.txt` and retained file headers |
 
 The VOP3 input archive has SHA-256
 `26dacd7280118556ed50ce6fcc03c6835866d18e17a9ad61c3bc77557809e0c9`.
@@ -77,3 +77,5 @@ its actual linked closure needs review when integrated. The project-specific
 license remains unselected in `LICENSE`; this change does not relicense any code.
 
 `src/h8_sci_async_tx.h` composes the reviewed status/cycle adapters with the BSD-3-Clause asynchronous transmit state machine by Olivier Galibert. Source identity and bounded scope: `research/h8-sci-tx-provenance.json`; contract and evidence: `docs/h8-sci-async-tx.md`.
+
+`src/h8_sci_async_rx.h` adapts the BSD-3-Clause asynchronous receive/sampling/error rules by Olivier Galibert and composes the reviewed SSR/cycle helpers. Source identity and scope: `research/h8-sci-rx-provenance.json`; evidence and integration limits: `docs/h8-sci-async-rx.md`.
