@@ -5,7 +5,7 @@
 | [musicastudio/VOP3](https://github.com/musicastudio/VOP3) | Five C++ source/header files; one reviewed initialization adaptation in `third_party/vop3/src` | BSD-3-Clause; `third_party/vop3/LICENSE`; copyright 2026 Wouter van Nifterick, Zhiyuan Wan, James Hansen |
 | AsmJit snapshot supplied with VOP3 | Unchanged source files under `third_party/vop3/third_party/asmjit/asmjit` | zlib; `third_party/vop3/third_party/asmjit/LICENSE.md`; copyright 2008–2025 Petr Kobalicek |
 | [MAME](https://github.com/mamedev/mame) | Eleven research patch files; no executable or full source tree | Specific upstream files listed below are BSD-3-Clause; full MAME distribution has GPL-2.0 terms. License texts and original distribution notice are under `licenses/`. |
-| MAME H8 adaptations | Nine GPIO/IRQ/SCI headers, including two compatibility facades and the H83002 SCI MMIO/IRQ adapter under `src/`; source identities in the peripheral provenance records | BSD-3-Clause; Olivier Galibert; `licenses/MAME-BSD-3-Clause.txt` and retained file headers |
+| MAME H8 adaptations | Ten GPIO/IRQ/SCI/bus headers, including two compatibility facades and the H83002 SCI MMIO/IRQ adapter under `src/`; source identities in the peripheral provenance records | BSD-3-Clause; Olivier Galibert; `licenses/MAME-BSD-3-Clause.txt` and retained file headers |
 
 The VOP3 input archive has SHA-256
 `26dacd7280118556ed50ce6fcc03c6835866d18e17a9ad61c3bc77557809e0c9`.
@@ -87,3 +87,5 @@ register map and interrupt vectors, preserving DMA-before-IRQ qualification
 (BSD-3-Clause, Olivier Galibert). Identities and scope:
 `research/h8-sci-mmio-provenance.json`; evidence and owner contract:
 [H83002 SCI MMIO/IRQ](docs/h83002-sci-mmio-irq.md).
+
+The H8H bus-access helpers retain BSD-3-Clause/Olivier Galibert notices. Their exact `h8.cpp` identity is in `research/h8h-bus-provenance.json`; the [component record](docs/h8h-bus-access.md) describes the isolated adaptation and optional original-method comparison.

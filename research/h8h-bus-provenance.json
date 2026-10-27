@@ -1,0 +1,12 @@
+{
+  "upstream_commit": "706dbb73281320c54d7c2f16262c1c3786f2be01",
+  "inputs": {
+    "src/devices/cpu/h8/h8.cpp": {
+      "bytes": 31776,
+      "sha256": "89826ddcf2ab4116942a83ce3138206091a635ed8994f61787e10c8cb9870e48",
+      "license": "BSD-3-Clause",
+      "copyright_holder": "Olivier Galibert"
+    }
+  },
+  "adaptation": "src/h8h_bus_access.h: five bus helpers for H8H (m_has_exr=false). Preserve two-cycle charge before bus, aligned instruction/data words and unmodified byte addresses. Add explicit underflow/reentry/failure guards. No full CPU, slice-debt runner, address-space implementation or hardware validation."
+}
