@@ -1,9 +1,13 @@
 # Development status
 
-Recorded: 2026-10-26. Product: YamAN1x. Repository: `yaman1x`. First public research snapshot: 2026-10-26.
+Recorded: 2026-10-27. Product: YamAN1x. Repository: `yaman1x`. First public research snapshot: 2026-10-26.
 
 The first GitHub snapshot contains a ROM-free C++/Python development foundation.
 No VST3, AU, GUI or AN1x audio output is available yet.
+
+## Current standalone engine increment
+
+The [H83002 SCI MMIO/IRQ adapter](h83002-sci-mmio-irq.md) connects both asynchronous channels to the standalone interrupt controller. Byte/word lane, DMA priority, debugger side effects, reset and isolation tests pass locally; the ROM-free suite now has 23 groups. CPU scheduling and firmware integration remain open. See the dated entry in the [development plan](FIRST_REAPER_SOUND_PLAN.md).
 
 ## Observed and tested
 

@@ -70,11 +70,7 @@ revision/platform CI results are recorded on the associated PR checks.
 
 ## Next acceptance gate
 
-Route the channel's four interrupt requests into the reviewed H8H interrupt
-controller with per-channel vector mapping; expose the six SCI registers through
-an explicit bus adapter and test both SCI channels independently. Then integrate
-the CPU/peripheral scheduler and exercise actual firmware/MIDI reception. The
-full MAME research CI remains a separate reference smoke, not this CPU integration.
+The [two-channel MMIO/IRQ adapter](h83002-sci-mmio-irq.md) now routes all four request kinds and exposes the six registers per channel with independent tests. Next, integrate the CPU/peripheral scheduler and exercise actual firmware/MIDI reception. The full MAME research CI remains a separate reference smoke, not this CPU integration.
 M0 remains partial, M1/PKS and audio/plugin acceptance remain open. Original parity
 semantics are preserved pending hardware evidence; EG target-hold is unchanged.
 No Yamaha ROM/bank/private trace is included.

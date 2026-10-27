@@ -1494,6 +1494,13 @@
             "// license:BSD-3-Clause",
             "// copyright-holders:Olivier Galibert"
           ]
+        },
+        {
+          "path": "src/h83002_sci_mmio.h",
+          "required_notices": [
+            "// license:BSD-3-Clause",
+            "// copyright-holders:Olivier Galibert"
+          ]
         }
       ],
       "license_files": [
