@@ -1,7 +1,14 @@
 # First standalone H8 peripheral: digital port
 
 Date: 2026-10-27. Branch `feat/h8-source-inventory`.
-Status: standalone Windows build/test PASS; platform CI and integration NOT RUN.
+Status: standalone Windows test and Linux/macOS/Windows CI PASS; integration NOT RUN.
+
+[PR #24](https://github.com/RobCZart82/yaman1x/pull/24) merged after all checks
+passed at `896bd7882309bb03868c5c3816f4f9b7b068b858`: [three-platform suite](https://github.com/RobCZart82/yaman1x/actions/runs/40468100477),
+[constructor MSan](https://github.com/RobCZart82/yaman1x/actions/runs/40468100462)
+and [complete macOS MAME build](https://github.com/RobCZart82/yaman1x/actions/runs/40468100442).
+This validates the standalone GPIO test on three platforms; the research MAME
+build does not integrate the new GPIO component into the firmware machine.
 
 `src/h8_digital_port.h` adapts the register/pin logic of MAME's H8 digital
 port into an instance-owned, header-only C++ component. It has no MAME headers,
