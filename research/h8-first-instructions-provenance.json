@@ -9,6 +9,10 @@
     "nop_partial",
     "mov_b_imm8_r8u_full",
     "mov_b_imm8_r8u_partial",
+    "mov_w_imm16_r16l_full",
+    "mov_w_imm16_r16l_partial",
+    "dispatch_0100_full",
+    "dispatch_0100_partial",
     "bt_rel8_full",
     "bt_rel8_partial",
     "bf_rel8_full",
@@ -56,16 +60,24 @@
       "sha256": "4cc7b135d56199b2bed4df86a12c879e3851b2c17525abcda3db765c957b4940"
     }
   },
-  "adaptation": "Selected generated bodies with class qualifiers removed; standalone advanced-H8H subset host with disabled IRQ/DMA/DTC/trace, no bus retries. Helpers r8_w/set_nzv8/prefetch_switch adapted from pinned h8.h/h8.cpp; prefetch completion reduced to the no-request/no-transfer/no-IRQ/no-trace branch. Reset IRQ filter callback is a no-op because IRQ entry is unsupported. Extended selection: all rel8 conditions, MOV.L imm32 and indirect byte load/store; 3-word IR, H8H r32 accessors and set_nzv32 helper. Completed synchronous data bus accesses use reviewed H8H bus charging.",
-  "selected_lf_sha256": "a373a8563f1ad91b165971f20a108762c60ee20ad1375ace0ab5e13a1484a97e",
+  "adaptation": "Selected generated bodies with class qualifiers removed; standalone advanced-H8H subset host with disabled IRQ/DMA/DTC/trace, no bus retries. Helpers r8_w/set_nzv8/prefetch_switch adapted from pinned h8.h/h8.cpp; prefetch completion reduced to the no-request/no-transfer/no-IRQ/no-trace branch. Reset IRQ filter callback is a no-op because IRQ entry is unsupported. Extended selection: all rel8 conditions, MOV.L imm32 and indirect byte load/store; 3-word IR, H8H r32 accessors and set_nzv32 helper. Completed synchronous data bus accesses use reviewed H8H bus charging. Word/long extension: MOV.W immediate16, indirect word/long loads/stores and original dispatch_0100 prefix handlers. Explicit internal-state decoder guards preserve prefixed partial execution; completed word accesses align down via reviewed H8H bus helpers. r16_r/r16_w and set_nzv16 are adapted from the same pinned h8.h/h8.cpp.",
+  "selected_lf_sha256": "b6ebde583283987017f25d758efc4bfb52dfdf0fe8772d54d932812144da5cbc",
   "h8h_methods": [
     "mov_l_imm32_r32l_full",
     "mov_l_imm32_r32l_partial",
     "mov_b_r32ih_r8l_full",
     "mov_b_r32ih_r8l_partial",
     "mov_b_r8l_r32ih_full",
-    "mov_b_r8l_r32ih_partial"
+    "mov_b_r8l_r32ih_partial",
+    "mov_w_r32ih_r16l_full",
+    "mov_w_r32ih_r16l_partial",
+    "mov_w_r16l_r32ih_full",
+    "mov_w_r16l_r32ih_partial",
+    "mov_l_r32ih_r32l_full",
+    "mov_l_r32ih_r32l_partial",
+    "mov_l_r32l_r32ih_full",
+    "mov_l_r32l_r32ih_partial"
   ],
   "h8h_generated_lf_sha256": "b0231d316fa0e8c09aa3598e063cbbcd53b392c78d7378c6e2e17284744e7f59",
-  "h8h_selected_lf_sha256": "2e0b84c7da77defb65ab1fe4930c88f143744da3fe3fedc4b1db5b0ace7c89ee"
+  "h8h_selected_lf_sha256": "cf079fa457c652ba3a6828e79f97ef8d175b0781c3d69c4fcedb6250307056ee"
 }

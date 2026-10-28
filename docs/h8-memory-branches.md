@@ -1,8 +1,9 @@
 # H8H byte memory operations and all short branch conditions
 
-Recorded: 2026-10-28. Based on merged #47. M0 remains partial.
+Historical #48 increment, 2026-10-28, based on #47. The current
+[word/long extension](h8-word-long-memory.md) expands this profile further. M0 remains partial.
 
-The limited `H8FirstInstructions` profile now compiles 44 original generated
+The limited `H8FirstInstructions` profile at #48 compiled 44 original generated
 full/partial methods from the locked base-H8 and H8H outputs. In addition to the
 first reset/NOP/immediate-byte/BRA selection, it supports all 16 rel8 branch
 conditions, MOV.L immediate32 to ER0–ER7, and indirect MOV.B loads/stores through
