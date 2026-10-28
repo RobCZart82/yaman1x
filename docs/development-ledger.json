@@ -696,16 +696,30 @@
         40743916622,
         40743916646
       ]
+    },
+    {
+      "pr": 65,
+      "title": "Connect fixed-profile H8H IRQ and NMI entry to controller",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/65",
+      "kind": "development",
+      "merge_commit": "f59661ed79860460ba2989f6d2177554e0b56a05",
+      "reviewed_head": "18f1fa382c8768e2424644464d7556170c9a8501",
+      "merged_at_utc": "2026-10-28T19:05:03Z",
+      "status": "merged",
+      "ci_runs": [
+        40747960602,
+        40747949918,
+        40747950647
+      ]
     }
   ],
   "active_change": {
-    "id": "H8-EXTERNAL-IRQ-2026-10-28",
-    "branch": "feat/h8-external-irq",
+    "id": "H8-SCI-CPU-RECEIVE-2026-10-28",
+    "branch": "feat/h8-sci-cpu-receive",
     "status": "in_review",
-    "pr": 65,
-    "parent_pr": 64,
-    "summary": "Optional fixed-reset-SYSCR IRQ/NMI entry",
-    "validation": "Parent #64 merged with all five checks successful. GitHub automatically rebased this branch onto main; tracked contents identical to locally validated c091847. Windows/Linux/MSan passed on d4fbd14; macOS pending. Metadata follow-up requires final-head CI."
+    "pr": 66,
+    "summary": "ROM-free CPU/SCI interrupt-driven receive composition",
+    "validation": "Rebased own change onto merged #65; local checks and final-head CI required. No general timed MMIO/firmware/audio acceptance."
   },
   "pending_changes": []
 }
