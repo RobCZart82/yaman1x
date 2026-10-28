@@ -61,6 +61,11 @@ private:
         }
         else if(m_inst_state>0xffff)throw std::runtime_error("Unsupported H8 internal instruction state");
         else if(m_inst_state==0x0100) {if(partial)dispatch_0100_partial();else dispatch_0100_full();}
+        else if((m_inst_state&0xf000)==0x8000) {if(partial)add_b_imm8_r8u_partial();else add_b_imm8_r8u_full();}
+        else if((m_inst_state&0xf000)==0xa000) {if(partial)cmp_b_imm8_r8u_partial();else cmp_b_imm8_r8u_full();}
+        else if((m_inst_state&0xff00)==0x0800) {if(partial)add_b_r8h_r8l_partial();else add_b_r8h_r8l_full();}
+        else if((m_inst_state&0xff00)==0x1800) {if(partial)sub_b_r8h_r8l_partial();else sub_b_r8h_r8l_full();}
+        else if((m_inst_state&0xff00)==0x1c00) {if(partial)cmp_b_r8h_r8l_partial();else cmp_b_r8h_r8l_full();}
         else if(m_inst_state==0) {if(partial)nop_partial();else nop_full();}
         else if((m_inst_state&0xf000)==0xf000 && m_inst_state<=0xffff) {
             if(partial)mov_b_imm8_r8u_partial();else mov_b_imm8_r8u_full();
@@ -83,13 +88,23 @@ private:
             case 14: if(partial)bgt_rel8_partial();else bgt_rel8_full();break;
             case 15: if(partial)ble_rel8_partial();else ble_rel8_full();break;
             }
-        } else if((m_inst_state&0xfff0)==0x7900) {
-            if(partial)mov_w_imm16_r16l_partial();else mov_w_imm16_r16l_full();
+        } else if((m_inst_state&0xffc0)==0x7900) {
+            switch((m_inst_state>>4)&3) {
+            case 0:if(partial)mov_w_imm16_r16l_partial();else mov_w_imm16_r16l_full();break;
+            case 1:if(partial)add_w_imm16_r16l_partial();else add_w_imm16_r16l_full();break;
+            case 2:if(partial)cmp_w_imm16_r16l_partial();else cmp_w_imm16_r16l_full();break;
+            case 3:if(partial)sub_w_imm16_r16l_partial();else sub_w_imm16_r16l_full();break;
+            }
         } else if((m_inst_state&0xff00)==0x6900) {
             if(m_inst_state&0x80) {if(partial)mov_w_r16l_r32ih_partial();else mov_w_r16l_r32ih_full();}
             else {if(partial)mov_w_r32ih_r16l_partial();else mov_w_r32ih_r16l_full();}
-        } else if((m_inst_state&0xfff8)==0x7a00) {
-            if(partial)mov_l_imm32_r32l_partial();else mov_l_imm32_r32l_full();
+        } else if((m_inst_state&0xffc8)==0x7a00) {
+            switch((m_inst_state>>4)&3) {
+            case 0:if(partial)mov_l_imm32_r32l_partial();else mov_l_imm32_r32l_full();break;
+            case 1:if(partial)add_l_imm32_r32l_partial();else add_l_imm32_r32l_full();break;
+            case 2:if(partial)cmp_l_imm32_r32l_partial();else cmp_l_imm32_r32l_full();break;
+            case 3:if(partial)sub_l_imm32_r32l_partial();else sub_l_imm32_r32l_full();break;
+            }
         } else if((m_inst_state&0xff00)==0x6800) {
             if(m_inst_state&0x80) {if(partial)mov_b_r8l_r32ih_partial();else mov_b_r8l_r32ih_full();}
             else {if(partial)mov_b_r32ih_r8l_partial();else mov_b_r32ih_r8l_full();}
@@ -114,6 +129,29 @@ private:
     uint32_t r32_r(int reg)const{return uint32_t(m_R[reg&7])|(uint32_t(m_R[(reg&7)|8])<<16);}
     void r32_w(int reg,uint32_t value){m_R[reg&7]=uint16_t(value);m_R[(reg&7)|8]=uint16_t(value>>16);}
     void set_nzv32(uint32_t value){m_CCR&=~(F_N|F_V|F_Z);if(!value)m_CCR|=F_Z;else if(s32(value)<0)m_CCR|=F_N;}
+    // Fixed H8H half-carry boundary: bits 4/12/28 for 8/16/32-bit operations.
+    template<unsigned Bits> uint32_t arithmetic(uint32_t left,uint32_t right,bool subtract) {
+        static_assert(Bits==8 || Bits==16 || Bits==32);
+        const uint64_t mask=(uint64_t{1}<<Bits)-1,sign=uint64_t{1}<<(Bits-1);
+        const uint64_t half_mask=(uint64_t{1}<<(Bits-4))-1;
+        const uint64_t a=left&mask,b=right&mask;
+        const uint64_t wide=subtract?a-b:a+b;
+        const uint64_t result=wide&mask;
+        const bool half=subtract?((a&half_mask)<(b&half_mask)):((a&half_mask)+(b&half_mask)>half_mask);
+        m_CCR&=~(F_H|F_N|F_Z|F_V|F_C);
+        if(!result)m_CCR|=F_Z;
+        if(result&sign)m_CCR|=F_N;
+        if((subtract?(a^b):~(a^b))&(a^result)&sign)m_CCR|=F_V;
+        if(subtract?a<b:wide>mask)m_CCR|=F_C;
+        if(half)m_CCR|=F_H;
+        return uint32_t(result);
+    }
+    uint8_t do_add8(uint8_t a,uint8_t b){return uint8_t(arithmetic<8>(a,b,false));}
+    uint8_t do_sub8(uint8_t a,uint8_t b){return uint8_t(arithmetic<8>(a,b,true));}
+    uint16_t do_add16(uint16_t a,uint16_t b){return uint16_t(arithmetic<16>(a,b,false));}
+    uint16_t do_sub16(uint16_t a,uint16_t b){return uint16_t(arithmetic<16>(a,b,true));}
+    uint32_t do_add32(uint32_t a,uint32_t b){return arithmetic<32>(a,b,false);}
+    uint32_t do_sub32(uint32_t a,uint32_t b){return arithmetic<32>(a,b,true);}
     Host& host_;
     H8ExecutionRunner runner_;
     int& m_icount;

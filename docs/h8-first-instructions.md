@@ -4,9 +4,9 @@ Initial increment: #47 based on #46, 2026-10-28. Current memory/branch extension
 is based on merged #47; see [the extension contract](h8-memory-branches.md). M0 remains partial.
 
 `H8FirstInstructions<Host>` is an intentionally limited advanced-H8H execution
-profile. The initial eight methods have expanded to 56 full/partial methods:
+profile. The initial eight methods have expanded to 78 full/partial methods:
 reset, NOP, immediate byte/word/long moves, all rel8 conditions, prefix dispatch
-and indirect byte/word/long loads/stores. The selection now includes base-H8 and H8H operations. Their bodies are unchanged; only class
+indirect byte/word/long loads/stores and selected ADD/SUB/CMP forms. The selection now includes base-H8 and H8H operations. Their bodies are unchanged; only class
 qualifiers are removed so they can be included inside the standalone template.
 
 The profile owns its 16 register halves, CCR/EXR, PC/PPC/NPC, IR/PIR, temporary
@@ -88,3 +88,5 @@ acceptance remain open. M0 and M1 acceptance criteria are unchanged.
 Historical #47 local validation: Windows MSVC Release build, all 28 locally runnable CTest groups PASS; all 81 runnable Python cases PASS with the one established symlink-privilege test explicitly excluded. Complete candidate suite: 29 CTest groups / 82 Python cases. Source audit and notice coverage PASS; final PR-head platform/MSan/MAME results remain separate evidence.
 
 Current word/long and prefix semantics, new host word callbacks and independent controls: [word/long contract](h8-word-long-memory.md).
+
+Current arithmetic forms, fixed-profile half-carry boundaries and independent flag controls: [arithmetic contract](h8-arithmetic-flags.md).
