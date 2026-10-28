@@ -4,30 +4,41 @@
 #include <vector>
 #include <stdexcept>
 #include <utility>
-using u8=uint8_t;using s8=int8_t;using u16=uint16_t;using u32=uint32_t;using u64=uint64_t;
+#include <map>
+#include <tuple>
+using u8=uint8_t;using s8=int8_t;using s32=int32_t;using u16=uint16_t;using u32=uint32_t;using u64=uint64_t;
 struct Host {
- std::array<u16,512> words{};std::vector<std::pair<u32,u16>> reads;u64 event=11;
+ std::array<u16,512> words{};
+ std::map<u32,u8> data;
+ std::vector<std::tuple<char,u32,u16>> bus;u64 event=11;
  explicit Host(unsigned seed){words[1]=0x100;unsigned random=seed;
-  for(unsigned r=0;r<16;++r){random=random*1664525u+1013904223u;words[0x80+r]=u16(0xf000|(r<<8)|(random>>24));}
-  words[0x90]=0;words[0x91]=0x40dc;
+  const u32 address=0x120001+seed;
+  std::vector<u16> code{0x7a00,u16(address>>16),u16(address),u16(0xf900|((seed*73)&255)),0x6889,0x680a,u16(0x4002|((seed%16)<<8)),0};
+  code.push_back(0x7a03);code.push_back(u16(seed*997));code.push_back(u16(seed*197));
+  for(unsigned r=0;r<16;++r){random=random*1664525u+1013904223u;code.push_back(u16(0xf000|(r<<8)|(random>>24)));}
+  code.push_back(0);const int displacement=-2*int(code.size()+1);code.push_back(u16(0x4000|u8(displacement)));
+  for(unsigned n=0;n<code.size();++n)words[0x80+n]=code[n];
  }
- u16 read_instruction_word(u32 address){if((address&1)||address/2>=words.size())throw std::out_of_range("bus");auto v=words[address/2];reads.emplace_back(address,v);return v;}
+ u16 read_instruction_word(u32 address){if((address&1)||address/2>=words.size())throw std::out_of_range("bus");auto v=words[address/2];bus.emplace_back('I',address,v);return v;}
+ u8 read_byte(u32 address){auto v=data[address&0xffffff];bus.emplace_back('R',address,v);return v;}
+ void write_byte(u32 address,u8 value){data[address&0xffffff]=value;bus.emplace_back('W',address,value);}
  u64 update(u64 cycle){while(event<=cycle)event+=11;return event;}
 };
 using Cpu=yamanix::H8FirstInstructions<Host>;
 struct Original {
  Host& host;
  struct Cache {Host& host;u16 read_word(u32 a){return host.read_instruction_word(a);}}m_cache;
+ struct Program {Host& host;u8 read_byte(u32 a){return host.read_byte(a);}void write_byte(u32 a,u8 v){host.write_byte(a,v);}}m_program;
  int m_icount=0,m_bcount=0,m_count_before_instruction_step=0,m_inst_substate=0;
  int m_inst_state=0x10000,m_requested_state=-1,m_current_dma=-1,m_irq_vector=0;
  void* m_current_dtc=nullptr;
  bool m_has_trace=false,m_has_exr=false,m_has_hc=true,m_mode_advanced=true;
  u32 m_PC=0,m_PPC=0,m_NPC=0,m_TMP1=0,m_TMP2=0;
- std::array<u16,16> m_R{};std::array<u16,2> m_IR{};u16 m_PIR=0;u8 m_CCR=0,m_EXR=0;
+ std::array<u16,16> m_R{};std::array<u16,3> m_IR{};u16 m_PIR=0;u8 m_CCR=0,m_EXR=0;
  static constexpr int STATE_DMA=0x10003,STATE_DTC=0x10004,STATE_TRACE=0x10002;
- static constexpr u8 F_I=0x80,F_H=0x20,F_N=8,F_Z=4,F_V=2,EXR_T=0x80,EXR_I=7,EXR_NC=0x78;
+ static constexpr u8 F_I=0x80,F_H=0x20,F_N=8,F_Z=4,F_V=2,F_C=1,EXR_T=0x80,EXR_I=7,EXR_NC=0x78;
  u64 end=0;
- explicit Original(Host& h,u8 ccr):host(h),m_cache{h},m_CCR(ccr){}
+ explicit Original(Host& h,u8 ccr):host(h),m_cache{h},m_program{h},m_CCR(ccr){}
  bool access_to_be_redone(){return false;}
  bool exr_in_stack(){return false;}
  bool debugger_enabled(){return false;}
@@ -44,14 +55,14 @@ struct Original {
  /* STUBS */
 };
 int main(){
- unsigned random=123;unsigned long long reads=0;
+ unsigned random=123;unsigned long long instruction_reads=0,data_reads=0,data_writes=0;
  for(unsigned seed=0;seed<100;++seed){
   Host a(seed+1),b(seed+1);Cpu cpu(a,u8(seed));Original ref(b,u8(seed));u64 start=0;
   for(unsigned n=0;n<2000;++n){random=random*1664525u+1013904223u;int size=int(random%19);
    ref.end=start+size;ref.m_icount=size;ref.execute_run();cpu.run(start,size,1000);
-   if(ref.snapshot()!=cpu.snapshot() || a.reads!=b.reads || a.event!=b.event){std::fprintf(stderr,"Mismatch seed %u slice %u\n",seed,n);return 1;}
-   reads+=a.reads.size();a.reads.clear();b.reads.clear();start+=size;
+   if(ref.snapshot()!=cpu.snapshot() || a.bus!=b.bus || a.data!=b.data || a.event!=b.event){std::fprintf(stderr,"Mismatch seed %u slice %u\n",seed,n);return 1;}
+   for(auto [kind,address,value]:a.bus){instruction_reads+=kind=='I';data_reads+=kind=='R';data_writes+=kind=='W';}a.bus.clear();b.bus.clear();start+=size;
   }
  }
- std::printf("Original generated H8H decoder/handlers + execute_run: 200000 slices, %llu instruction reads, zero differences\n",reads);
+ std::printf("Original generated H8H decoder/handlers + execute_run: 200000 slices, %llu instruction reads, %llu data reads, %llu data writes; zero differences\n",instruction_reads,data_reads,data_writes);
 }

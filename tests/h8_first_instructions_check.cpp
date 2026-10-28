@@ -15,6 +15,8 @@ struct Host {
         if((address&1) || address/2>=words.size())throw std::out_of_range("Synthetic instruction bus");
         auto value=words[address/2];reads.emplace_back(address,value);return value;
     }
+    uint8_t read_byte(uint32_t){throw std::logic_error("Unexpected legacy data read");}
+    void write_byte(uint32_t,uint8_t){throw std::logic_error("Unexpected legacy data write");}
     uint64_t update(uint64_t cycle){while(event<=cycle)event+=11;return event;}
 };
 using Cpu=H8FirstInstructions<Host>;

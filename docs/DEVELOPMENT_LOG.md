@@ -1,7 +1,7 @@
 # YamAN1x fejlesztési napló
 
 Frissítve: 2026-10-28. Időzóna: Europe/Budapest.
-Ellenőrzött alap: `00e16ce805d542e4a654923ddde2d462ebac78bb` (#46); az új H8-utasításjelölt alább.
+Ellenőrzött alap: `343f4c32c81229e89ec092b0d8e324f2a0305f8a` (#47); az új H8H memória-/elágazásjelölt alább.
 
 ## Ellenőrzött lezárások — #39–#44
 
@@ -163,3 +163,9 @@ PR: [#46](https://github.com/RobCZart82/yaman1x/pull/46). Ág: `feat/h8-executio
 Előző lépcső lezárása: [#46](https://github.com/RobCZart82/yaman1x/pull/46): merge `00e16ce805d542e4a654923ddde2d462ebac78bb`, végső head `478294b0570b0140b0ba2c5f78b65fcc99fecaa4`; [Linux/macOS/Windows PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40637467656), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40637467504), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40637467588).
 
 PR: [#47](https://github.com/RobCZart82/yaman1x/pull/47). Ág: `feat/h8-first-generated-handlers`, alap: beolvadt #46. Korabeli jelöltállapot: nyolc eredeti generált full/partial kezelő (reset, NOP, MOV.B immediate, BRA rel8) fordul és fut saját CPU-állapottal a busz-/cikluskereten. Az összes többi opcode explicit hiba. 4096 regiszter/érték, 65536 jelzőbit-eset, 256 elágazási eltolás és 1000 futásfelosztás tesztelve. Eredeti H8H-dekóderrel/kezelőkkel/futtatóval 200000 szakasz és 899400 olvasás, nulla eltérés; szándékos regiszterhibát a kontroll észleli. Hat új Python regresszió. Részletek: [komponensszerződés](h8-first-instructions.md). Teljes CPU, IRQ/SCI integráció és firmware/audio nincs; M0 részben teljesült. A jelölt végső PR-head CI-je külön ellenőrizendő.
+
+## H8-MEMORY-BRANCH-2026-10-28 — adatmemória és feltételes elágazások
+
+Előző lépcső lezárása: [#47](https://github.com/RobCZart82/yaman1x/pull/47): merge `343f4c32c81229e89ec092b0d8e324f2a0305f8a`, végső head `6f8107ec35e511c6aa9d347295e67a882a7826d3`; [Linux/macOS/Windows PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40640131062), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40640130940), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40640130959).
+
+PR: [#48](https://github.com/RobCZart82/yaman1x/pull/48). Ág: `feat/h8-memory-conditional-branches`, alap: beolvadt #47. Korabeli jelöltállapot: 44 eredeti generált full/partial kezelő; MOV.L immediate32, indirekt bájtolvasás/-írás és mind a 16 rel8 feltétel. 65536 elágazási és 65536 dekódereset, 32768–32768 load/store eset, 1000 felosztás; két új Python regresszió. Eredeti H8H-kóddal 200000 szakasz, 844255 utasítás-, 27571 adatolvasás, 27574 adatírás: nulla eltérés; szándékos adatírási hibát a kontroll észleli. [Szerződés és korlátok](h8-memory-branches.md). M0 részben teljesült; IRQ/SCI CPU-bekötés, teljes CPU és firmware/audio továbbra is nyitott. A végső PR-head CI-je külön ellenőrizendő.
