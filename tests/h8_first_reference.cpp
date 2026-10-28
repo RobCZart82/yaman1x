@@ -79,6 +79,7 @@ struct Host {
   if(seed%12==10){code={0x7a07,0xab12,0x3456,0x5670};data[0x123456]=u8(seed);data[0x123457]=0;data[0x123458]=1;data[0x123459]=0x80;words[0xc0]=0x5a00;words[0xc1]=0x100;}
   if(seed%12==11){code={0x7a07,0,0x180,0x5970};words[0xc0]=0x5a00;words[0xc1]=0x200;words[0x100]=0x5b40;data[0x40]=0;data[0x41]=0;data[0x42]=1;data[0x43]=0;}
   if(seed%16==15)code={0x7a00,u16(seed*997),u16(seed*197),0x0c89,0x0d12,0x0f92,u16(0x0700|(seed&255)),u16(0x0400|(seed&255)),u16(0x0500|((seed*17)&255)),0x06fe,0x0209,0x0309};
+  if(seed%16==15)code.insert(code.end(),{0x0a09,0x1a09,0x0b50,0x1bd0,0x0b70,0x1bf0,0x0b00,0x0b80,0x0b90,0x1b00,0x1b80,0x1b90});
   code.push_back(0);const int displacement=-2*int(code.size()+1);if(displacement < -128)throw std::logic_error("Reference rel8 loop exceeds range");code.push_back(u16(0x4000|u8(displacement)));
   for(unsigned n=0;n<code.size();++n)words[0x80+n]=code[n];
  }
@@ -120,15 +121,16 @@ struct Original {
  /* STUBS */
 };
 int main(){
- unsigned seen_mov=0;unsigned seen_ccr=0;unsigned random=123;unsigned long long instruction_reads=0,data_reads=0,data_writes=0,word_reads=0,word_writes=0;
+ unsigned seen_small=0;unsigned seen_mov=0;unsigned seen_ccr=0;unsigned random=123;unsigned long long instruction_reads=0,data_reads=0,data_writes=0,word_reads=0,word_writes=0;
  for(unsigned seed=0;seed<100;++seed){
   Host a(seed+1),b(seed+1);Cpu cpu(a,u8(seed));Original ref(b,u8(seed));u64 start=0;
   for(unsigned n=0;n<2000;++n){random=random*1664525u+1013904223u;int size=int(random%19);
    ref.end=start+size;ref.m_icount=size;ref.execute_run();cpu.run(start,size,1000);
    if(ref.snapshot()!=cpu.snapshot() || a.bus!=b.bus || a.data!=b.data || a.event!=b.event){std::fprintf(stderr,"Mismatch seed %u slice %u\n",seed,n);return 1;}
-   for(auto [kind,address,value]:a.bus){if((seed+1)%16==15 && kind=='I'){if((value&0xff00)==0x0c00)seen_mov|=1;if((value&0xff00)==0x0d00)seen_mov|=2;if((value&0xff88)==0x0f80)seen_mov|=4;if((value&0xff00)==0x0400)seen_ccr|=1;if((value&0xff00)==0x0500)seen_ccr|=2;if((value&0xff00)==0x0600)seen_ccr|=4;if((value&0xfff0)==0x0200)seen_ccr|=8;if((value&0xfff0)==0x0300)seen_ccr|=16;}instruction_reads+=kind=='I';data_reads+=kind=='R';data_writes+=kind=='W';word_reads+=kind=='Q';word_writes+=kind=='S';}a.bus.clear();b.bus.clear();start+=size;
+   for(auto [kind,address,value]:a.bus){if((seed+1)%16==15 && kind=='I'){const std::array<u16,12> forms{0x0a09,0x1a09,0x0b50,0x1bd0,0x0b70,0x1bf0,0x0b00,0x0b80,0x0b90,0x1b00,0x1b80,0x1b90};for(unsigned i=0;i<forms.size();++i)if(value==forms[i])seen_small|=1u<<i;if((value&0xff00)==0x0c00)seen_mov|=1;if((value&0xff00)==0x0d00)seen_mov|=2;if((value&0xff88)==0x0f80)seen_mov|=4;if((value&0xff00)==0x0400)seen_ccr|=1;if((value&0xff00)==0x0500)seen_ccr|=2;if((value&0xff00)==0x0600)seen_ccr|=4;if((value&0xfff0)==0x0200)seen_ccr|=8;if((value&0xfff0)==0x0300)seen_ccr|=16;}instruction_reads+=kind=='I';data_reads+=kind=='R';data_writes+=kind=='W';word_reads+=kind=='Q';word_writes+=kind=='S';}a.bus.clear();b.bus.clear();start+=size;
   }
  }
+ if(seen_small!=4095){std::fprintf(stderr,"Small arithmetic reference sequence was not reached\n");return 4;}
  if(seen_mov!=7){std::fprintf(stderr,"MOV reference sequence was not reached\n");return 3;}
  if(seen_ccr!=31){std::fprintf(stderr,"CCR reference sequence was not reached\n");return 2;}
  std::printf("Original generated H8H decoder/handlers + execute_run: 200000 slices, %llu instruction reads, %llu data reads, %llu data writes, %llu word reads, %llu word writes; zero differences\n",instruction_reads,data_reads,data_writes,word_reads,word_writes);

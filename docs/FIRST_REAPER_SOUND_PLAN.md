@@ -630,3 +630,7 @@ A dokumentációs egységesítés PR-je: [#58](https://github.com/RobCZart82/yam
 ## 2026-10-28 — regiszterközi MOV
 
 [Jegyzőkönyv](h8-register-transfers.md): mindhárom szélesség, teljes lane/alias megőrzés és N/Z/V szemantika. A forrásleltárban 80 hiányzó H8H-sor marad. CPU IRQ/TRAPA és gépütemezés továbbra is nyitott.
+
+## 2026-10-28 — INC/DEC és kis cím-aritmetika
+
+[Jegyzőkönyv](h8-small-arithmetic.md): 16 csoport, flagmegőrzés és részutasítás-felosztás tesztelve. A leltárban 64 hiányzó H8H-kódolási sor marad. M0/M1 készültsége ettől nem teljes.

@@ -282,3 +282,11 @@ A dokumentációs egységesítés PR-je: [#58](https://github.com/RobCZart82/yam
 ### Sorozatos lezárás — #60 beolvadt
 
 #60 merge: `18f7b7fa1b708c67cf7ed0baa2109d5f73c750db`, 2026-10-28 15:04:13 UTC. Végső head `e8dee6975054c4143abe36b3b8731b7cea510cf4`; három platform, MSan és MAME mind PASS. A korábbi referenciafixture elérhetőségi hibája beolvadás előtt javítva. #61 a friss mainre újraalapozott, önálló CI-re kész regiszter-MOV jelölt; #62–#64 szülőfüggőség miatt draft.
+
+## H8-SMALL-ARITHMETIC-2026-10-28
+
+Ág: `feat/h8-small-arithmetic`; [jegyzőkönyv](h8-small-arithmetic.md). 16 új csoport, 32 generált metódus (414 összesen). INC/DEC N/Z/V frissítés H/C megőrzéssel, ADDS/SUBS teljes CCR-megőrzéssel. Teljes szó/bájt tartomány és hosszúszó-határok, 1000 felosztás; 200000 eredetimetódus-szelet. Szülője a regiszter-MOV ág; PR csak annak beolvadása és újraalapozás után.
+
+### #61 lezárása, #62 előkészítése
+
+#61 mind az öt ellenőrzése zöld, nyitott review-thread és változtatáskérés nélkül beolvasztva: `9cedcdf92d0330103fbeac24932c5c13e3924b3a`, ellenőrzött head `c36473985c685147867f9b56ecd250b9377d037a`. A korábbi piros macOS-futások futtatóhiány miatt szakadtak meg; az újrafuttatások sikeresek. #62 önálló változtatása a friss mainre újraalapozva; saját végső CI-je még külön kapu. #63–#66 továbbra is függőségi draft.

@@ -204,6 +204,22 @@ private:
             }
         }
         else if(m_inst_state==0x0100) {if(partial)dispatch_0100_partial();else dispatch_0100_full();}
+        else if((m_inst_state&0xfff0)==0x0a00) {if(partial)inc_b_one_r8l_partial();else inc_b_one_r8l_full();}
+        else if((m_inst_state&0xfff0)==0x1a00) {if(partial)dec_b_one_r8l_partial();else dec_b_one_r8l_full();}
+        else if((m_inst_state&0xfff0)==0x0b50) {if(partial)inc_w_one_r16l_partial();else inc_w_one_r16l_full();}
+        else if((m_inst_state&0xfff8)==0x0b70) {if(partial)inc_l_one_r32l_partial();else inc_l_one_r32l_full();}
+        else if((m_inst_state&0xfff0)==0x0bd0) {if(partial)inc_w_two_r16l_partial();else inc_w_two_r16l_full();}
+        else if((m_inst_state&0xfff8)==0x0bf0) {if(partial)inc_l_two_r32l_partial();else inc_l_two_r32l_full();}
+        else if((m_inst_state&0xfff0)==0x1b50) {if(partial)dec_w_one_r16l_partial();else dec_w_one_r16l_full();}
+        else if((m_inst_state&0xfff8)==0x1b70) {if(partial)dec_l_one_r32l_partial();else dec_l_one_r32l_full();}
+        else if((m_inst_state&0xfff0)==0x1bd0) {if(partial)dec_w_two_r16l_partial();else dec_w_two_r16l_full();}
+        else if((m_inst_state&0xfff8)==0x1bf0) {if(partial)dec_l_two_r32l_partial();else dec_l_two_r32l_full();}
+        else if((m_inst_state&0xfff8)==0x0b00) {if(partial)adds_l_one_r32l_partial();else adds_l_one_r32l_full();}
+        else if((m_inst_state&0xfff8)==0x0b80) {if(partial)adds_l_two_r32l_partial();else adds_l_two_r32l_full();}
+        else if((m_inst_state&0xfff8)==0x0b90) {if(partial)adds_l_four_r32l_partial();else adds_l_four_r32l_full();}
+        else if((m_inst_state&0xfff8)==0x1b00) {if(partial)subs_l_one_r32l_partial();else subs_l_one_r32l_full();}
+        else if((m_inst_state&0xfff8)==0x1b80) {if(partial)subs_l_two_r32l_partial();else subs_l_two_r32l_full();}
+        else if((m_inst_state&0xfff8)==0x1b90) {if(partial)subs_l_four_r32l_partial();else subs_l_four_r32l_full();}
         else if((m_inst_state&0xff00)==0x0c00) {if(partial)mov_b_r8h_r8l_partial();else mov_b_r8h_r8l_full();}
         else if((m_inst_state&0xff00)==0x0d00) {if(partial)mov_w_r16h_r16l_partial();else mov_w_r16h_r16l_full();}
         else if((m_inst_state&0xff88)==0x0f80) {if(partial)mov_l_r32h_r32l_partial();else mov_l_r32h_r32l_full();}
@@ -329,6 +345,18 @@ private:
     uint16_t do_sub16(uint16_t a,uint16_t b){return uint16_t(arithmetic<16>(a,b,true));}
     uint32_t do_add32(uint32_t a,uint32_t b){return arithmetic<32>(a,b,false);}
     uint32_t do_sub32(uint32_t a,uint32_t b){return arithmetic<32>(a,b,true);}
+    template<unsigned Bits> uint32_t increment_decrement(uint32_t value,unsigned amount,bool subtract) {
+        const auto preserved=m_CCR&uint8_t(F_H|F_C);
+        const auto result=arithmetic<Bits>(value,amount,subtract);
+        m_CCR=uint8_t((m_CCR&~(F_H|F_C))|preserved);
+        return result;
+    }
+    uint8_t do_inc8(uint8_t a,uint8_t b){return uint8_t(increment_decrement<8>(a,b,false));}
+    uint16_t do_inc16(uint16_t a,uint16_t b){return uint16_t(increment_decrement<16>(a,b,false));}
+    uint32_t do_inc32(uint32_t a,uint32_t b){return increment_decrement<32>(a,b,false);}
+    uint8_t do_dec8(uint8_t a,uint8_t b){return uint8_t(increment_decrement<8>(a,b,true));}
+    uint16_t do_dec16(uint16_t a,uint16_t b){return uint16_t(increment_decrement<16>(a,b,true));}
+    uint32_t do_dec32(uint32_t a,uint32_t b){return increment_decrement<32>(a,b,true);}
     uint8_t extended_byte(uint8_t a,uint8_t b,bool subtract) {
         const unsigned carry=(m_CCR&F_C)?1:0;
         const uint16_t wide=subtract?uint16_t(int(a)-int(b)-int(carry)):uint16_t(unsigned(a)+b+carry);
