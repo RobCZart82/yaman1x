@@ -128,3 +128,5 @@ Selected CPU extension: [H8 register bit operations](docs/h8-register-bit-operat
 Selected CPU extension: [H8 indirect memory bit operations](docs/h8-memory-bit-operations.md).
 
 Selected CPU extension: [H8 absolute memory bit operations](docs/h8-absolute-bit-operations.md).
+
+Selected CPU extension: [H8 stack and control flow](docs/h8-stack-control-flow.md).

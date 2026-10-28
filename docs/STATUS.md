@@ -5,13 +5,13 @@ Recorded: 2026-10-28. Product: YamAN1x. Repository: `yaman1x`. First public rese
 The repository contains a ROM-free C++/Python development foundation.
 No VST3, AU, GUI or AN1x audio output is available yet.
 
-Current baseline: merged PR #55, `e53b6fe7e2906b472e898c57d59ccfe1b791fa96`.
+Current baseline: merged PR #56, `a3c2eb8ba25fc40eaa5057cc388260e4fc58b9df`.
 The [first-sound plan](FIRST_REAPER_SOUND_PLAN.md) tracks M0 as partial, M1 as
 prepared and M2–M6 as research/planned. Completed helper components do not
 establish a complete CPU or firmware boot. Changes and their provenance are
 indexed in the [development ledger](DEVELOPMENT_LOG.md).
 
-Merged #55 suite: **37 CTest groups, 84 Python cases**, with all five final-head checks PASS. Current absolute-memory-bit candidate: **38 CTest groups, 84 Python cases**; final candidate CI remains separate evidence. PRs #39–#44 are merged and each final head has five successful GitHub checks; see the [closure ledger](DEVELOPMENT_LOG.md). Earlier component counts and pending-CI notes describe their historical snapshots. Full CPU opcode execution, M0 closure and firmware/audio acceptance remain open.
+Merged #56 suite: **38 CTest groups, 84 Python cases**, with all five final-head checks PASS. Current stack/control candidate: **39 CTest groups, 84 Python cases**; final candidate CI remains separate evidence. PRs #39–#44 are merged and each final head has five successful GitHub checks; see the [closure ledger](DEVELOPMENT_LOG.md). Earlier component counts and pending-CI notes describe their historical snapshots. Full CPU opcode execution, M0 closure and firmware/audio acceptance remain open.
 
 ## Current standalone engine increment
 
@@ -168,3 +168,7 @@ The [indirect byte bit extension](h8-memory-bit-operations.md) retains 262 gener
 ## Absolute memory bit operations — current candidate
 
 The [absolute byte bit extension](h8-absolute-bit-operations.md) retains 302 generated methods, original 7e/7f prefixes and 18 abs8 bit groups. All short addresses, guarded extensions, flags and ordered bus effects are checked. M0 remains partial; stack/control flow and IRQ/SCI integration remain open.
+
+## Stack and control flow — current candidate
+
+The [stack/control extension](h8-stack-control-flow.md) completes the normal fixed-profile H8H instruction families: pre/post MOV at all widths, all JMP/JSR forms, BSR rel8/16, all rel16 branches and RTS. Synthetic RTE frame restore is implemented; IRQ/TRAPA entry is separate and unsupported. 366 generated methods retained. M0 remains partial; full CPU and CPU/SCI integration remain open.
