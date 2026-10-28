@@ -16,9 +16,10 @@ struct Host {
   std::vector<u16> code{0x7a00,u16(address>>16),u16(address),u16(0xf900|((seed*73)&255)),0x6889,0x680a,u16(0x4002|((seed%16)<<8)),0};
   code.push_back(0x7a03);code.push_back(u16(seed*997));code.push_back(u16(seed*197));
   code.insert(code.end(),{0x7905,u16(seed*13),0x6983,0x6904,0x0100,0x6983,0x0100,0x6904});
-  code.insert(code.end(),{0x8901,0xa97f,0x089a,0x18a9,0x1c9a,0x7915,u16(seed*19),0x7925,0x8000,0x7935,0xffff,0x7a13,0x1000,u16(seed),0x7a23,0x7fff,0xffff,0x7a33,0xffff,0xffff});
-  for(unsigned r=0;r<16;++r){random=random*1664525u+1013904223u;code.push_back(u16(0xf000|(r<<8)|(random>>24)));}
-  code.push_back(0);const int displacement=-2*int(code.size()+1);code.push_back(u16(0x4000|u8(displacement)));
+  if(seed&1)code.insert(code.end(),{0x8901,0xa97f,0x089a,0x18a9,0x1c9a,0x7915,u16(seed*19),0x7925,0x8000,0x7935,0xffff,0x7a13,0x1000,u16(seed),0x7a23,0x7fff,0xffff,0x7a33,0xffff,0xffff});
+  for(unsigned r=0;r<4;++r){random=random*1664525u+1013904223u;code.push_back(u16(0xf000|(r<<8)|(random>>24)));}
+  if(!(seed&1))code.insert(code.end(),{0xf900,u16(0x0700|((seed>>1)&0xfe)),0x9900,0xb900,u16(0x0700|((seed>>1)&255)),0x9901,0xbaff,0x0e9a,0x1ea9,0xc955,0xd9aa,0xe90f,0x149a,0x159a,0x169a,0x0934,0x1934,0x1d34,0x0ab4,0x1ab4,0x1fb4,0x7945,0xaaaa,0x7955,0x5555,0x7965,0xff00,0x7a43,0x1234,0x5678,0x7a53,0xaaaa,0x5555,0x7a63,0xffff,0xff00});
+  code.push_back(0);const int displacement=-2*int(code.size()+1);if(displacement < -128)throw std::logic_error("Reference rel8 loop exceeds range");code.push_back(u16(0x4000|u8(displacement)));
   for(unsigned n=0;n<code.size();++n)words[0x80+n]=code[n];
  }
  u16 read_instruction_word(u32 address){if((address&1)||address/2>=words.size())throw std::out_of_range("bus");auto v=words[address/2];bus.emplace_back('I',address,v);return v;}

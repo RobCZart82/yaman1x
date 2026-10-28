@@ -5,13 +5,13 @@ Recorded: 2026-10-28. Product: YamAN1x. Repository: `yaman1x`. First public rese
 The repository contains a ROM-free C++/Python development foundation.
 No VST3, AU, GUI or AN1x audio output is available yet.
 
-Current baseline: merged PR #49, `4567d7bfe852100f5483a8104bcba81b50ae26bb`.
+Current baseline: merged PR #50, `0f8d3ae96eb32dcabb3a039f40e5c0fd0315a1b9`.
 The [first-sound plan](FIRST_REAPER_SOUND_PLAN.md) tracks M0 as partial, M1 as
 prepared and M2–M6 as research/planned. Completed helper components do not
 establish a complete CPU or firmware boot. Changes and their provenance are
 indexed in the [development ledger](DEVELOPMENT_LOG.md).
 
-Merged #49 suite: **31 CTest groups, 84 Python cases**, with all five final-head checks PASS. Current arithmetic candidate: **32 CTest groups, 84 Python cases**; final candidate CI remains separate evidence. PRs #39–#44 are merged and each final head has five successful GitHub checks; see the [closure ledger](DEVELOPMENT_LOG.md). Earlier component counts and pending-CI notes describe their historical snapshots. Full CPU opcode execution, M0 closure and firmware/audio acceptance remain open.
+Merged #50 suite: **32 CTest groups, 84 Python cases**, with all five final-head checks PASS. Current carry/register/logic candidate: **33 CTest groups, 84 Python cases**; final candidate CI remains separate evidence. PRs #39–#44 are merged and each final head has five successful GitHub checks; see the [closure ledger](DEVELOPMENT_LOG.md). Earlier component counts and pending-CI notes describe their historical snapshots. Full CPU opcode execution, M0 closure and firmware/audio acceptance remain open.
 
 ## Current standalone engine increment
 
@@ -141,6 +141,10 @@ The [expanded profile](h8-memory-branches.md) executes all rel8 conditions, MOV.
 
 The [word/long extension](h8-word-long-memory.md) adds MOV.W immediate, indirect word/long data accesses and the original 0100 prefix state. All 56 selected full/partial bodies match locked generated outputs. Original-code comparison: 200,000 slices, zero differences in diagnostic state, memory and ordered instruction/byte/word traces. Arithmetic coverage, IRQ entry and CPU/SCI integration remain open. The #48 automated review was still running at merge; it is not counted as completed evidence.
 
-## H8H arithmetic and comparison — 2026-10-28 candidate
+## H8H arithmetic and comparison — historical #50 candidate
 
 The [arithmetic extension](h8-arithmetic-flags.md) executes selected ADD/SUB/CMP forms at 8/16/32 bits. A fixed-profile unsigned helper preserves H/N/Z/V/C, including half-carry at bits 4/12/28. Independent mathematical controls and original-code comparison agree, and CMP leaves registers unchanged. Register-wide/carry-input arithmetic, logical/shift operations, stack/IRQ and CPU/SCI integration remain open; M0 is partial and firmware/audio acceptance unchanged.
+
+## Carry/register/logic — 2026-10-28 candidate
+
+The [carry/register/logic extension](h8-carry-register-logic.md) retains 124 generated methods, adding sticky-Z carry byte arithmetic, wide register arithmetic, logic and immediate CCR storage. Over one million carry cases and 20,000 multi-byte programs agree with independent math; original-code comparison has zero differences across 200,000 slices. LDC stores I/CCR but does not implement IRQ input/entry. Wide register logic, shift/bit/stack and IRQ/SCI integration remain open.

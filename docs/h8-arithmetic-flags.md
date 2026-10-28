@@ -1,8 +1,9 @@
 # H8H arithmetic and comparison flags
 
-Recorded: 2026-10-28. Based on merged #49. M0 remains partial.
+Historical #50 increment, 2026-10-28, based on #49. The current
+[carry/register/logic extension](h8-carry-register-logic.md) adds further forms. M0 remains partial.
 
-The limited profile now retains 78 unchanged generated full/partial methods.
+The limited profile at #50 retained 78 unchanged generated full/partial methods.
 This increment adds byte ADD/CMP immediate, byte ADD/SUB/CMP register forms,
 and word/long ADD/SUB/CMP immediate forms. Other arithmetic, carry-input,
 logical, shift and addressing forms remain unsupported and fail explicitly.

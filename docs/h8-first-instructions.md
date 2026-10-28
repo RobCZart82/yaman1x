@@ -4,9 +4,10 @@ Initial increment: #47 based on #46, 2026-10-28. Current memory/branch extension
 is based on merged #47; see [the extension contract](h8-memory-branches.md). M0 remains partial.
 
 `H8FirstInstructions<Host>` is an intentionally limited advanced-H8H execution
-profile. The initial eight methods have expanded to 78 full/partial methods:
+profile. The initial eight methods have expanded to 124 full/partial methods:
 reset, NOP, immediate byte/word/long moves, all rel8 conditions, prefix dispatch
-indirect byte/word/long loads/stores and selected ADD/SUB/CMP forms. The selection now includes base-H8 and H8H operations. Their bodies are unchanged; only class
+indirect byte/word/long loads/stores, selected ADD/SUB/CMP and carry-input forms,
+logic and LDC immediate CCR. The selection now includes base-H8 and H8H operations. Their bodies are unchanged; only class
 qualifiers are removed so they can be included inside the standalone template.
 
 The profile owns its 16 register halves, CCR/EXR, PC/PPC/NPC, IR/PIR, temporary
@@ -24,8 +25,9 @@ all other opcodes explicitly and poisons execution through the runner.
   appropriate. CPU word reads align down exactly as in the reviewed bus helper.
 - Reads and writes must complete synchronously. Wait/retry behavior is disabled; no host
   API advertises it. Program storage must remain immutable during execution.
-- IRQ, DMA, DTC, trace/debug hooks and standby are disabled and have no enabling
-  API. Prefetch completion therefore uses the original no-request/no-transfer/
+- IRQ input/entry, DMA, DTC, trace/debug hooks and standby remain unimplemented.
+  LDC stores all CCR bits but the IRQ-filter hook is still a no-op; no interrupt
+  acceptance is claimed. Prefetch completion therefore uses the original no-request/no-transfer/
   no-IRQ/no-trace branch. Reset IRQ-filter publication is a no-op in this profile.
 - Construction uses deterministic research cold-state defaults and optionally
   an initial CCR for synthetic experiments. These are not verified AN1x
@@ -90,3 +92,5 @@ Historical #47 local validation: Windows MSVC Release build, all 28 locally runn
 Current word/long and prefix semantics, new host word callbacks and independent controls: [word/long contract](h8-word-long-memory.md).
 
 Current arithmetic forms, fixed-profile half-carry boundaries and independent flag controls: [arithmetic contract](h8-arithmetic-flags.md).
+
+Current carry-input/sticky-Z, register and logical forms plus the limited CCR/IRQ contract: [carry/register/logic](h8-carry-register-logic.md).
