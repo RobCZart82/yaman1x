@@ -634,3 +634,7 @@ A dokumentációs egységesítés PR-je: [#58](https://github.com/RobCZart82/yam
 ## 2026-10-28 — INC/DEC és kis cím-aritmetika
 
 [Jegyzőkönyv](h8-small-arithmetic.md): 16 csoport, flagmegőrzés és részutasítás-felosztás tesztelve. A leltárban 64 hiányzó H8H-kódolási sor marad. M0/M1 készültsége ettől nem teljes.
+
+## 2026-10-28 — unáris műveletek és kiterjesztés
+
+[Jegyzőkönyv](h8-unary-extension.md): tíz új csoport, 434 full/partial kezelő; 54 hiányzó H8H-sor marad. Az eredetimetódus-próbák új családjai elérhető ciklusban és bejárási őrfeltétellel futnak. A mérföldkő nem IRQ-, firmware- vagy hangelfogadás.

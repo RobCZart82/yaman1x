@@ -210,3 +210,9 @@ Audit baseline #58 (`863d21abcde448d746b3b44c39a1eb61be455a15`): fresh local mac
 [INC/DEC and ADDS/SUBS](h8-small-arithmetic.md): 414 full/partial methods; encoding rows 200 selected / 64 missing / 135 excluded. Local candidate suite 42 CTest groups / 87 Python cases; reference/sanitizer checks recorded in component document. CPU IRQ and firmware remain open.
 
 #61 closure: register MOV merged as 9cedcdf92d0330103fbeac24932c5c13e3924b3a after all five CI jobs succeeded. #62 small arithmetic is now the next candidate, rebased onto main; own final-head CI pending. Earlier pending descriptions are historical.
+
+## Unary/extension candidate
+
+[NOT/NEG/EXTU/EXTS](h8-unary-extension.md): 434 full/partial handlers; encoding rows 210 selected / 54 missing / 135 excluded. Local stacked candidate 43/43 CTest, 87 Python, native sanitizer and reachable original-reference checks PASS. Parent merges and final CI required.
+
+#62 closed: merged f0b37f3e10e02248b8c9d0f52b3a555ae944c8d5 after all five CI jobs passed. #63 unary/extension is the next candidate, rebased onto main with flat-dispatch Windows portability preserved. Earlier pending descriptions are historical.

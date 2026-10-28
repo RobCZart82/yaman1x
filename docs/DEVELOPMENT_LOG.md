@@ -300,3 +300,13 @@ A főágra célzás és ready állapot önmagában nem indított workflow-t: az 
 A `9222223a7c4c4c57c3d214b34e7af87eac4410f9` head Windows CI-je MSVC C1061 hibát jelzett: a 127 ágból álló utasításválasztó else-if lánc túllépte a fordító beágyazási korlátját. A legkülső lánc sorrendtartó, korai visszatéréses if ágakká alakult; minden kiválasztott kezelő után pontosan egy kilépés történik, így a kezelő által módosított állapotra nem történik újabb kiválasztás. A generált utasítástörzsek és kódolások változatlanok. A macOS normál feladata külön futtatóhiány miatt szakadt meg; a MAME macOS referencia-, Linux- és MSan-feladat sikeres volt. Az új head saját teljes CI-je továbbra is kötelező.
 
 A lapos választó helyi ellenőrzése: 42/42 CTest, 87 Python-eset, 200000 eredeti dekóder/execute_run referenciaszelet nulla eltéréssel; forrás-/licenc-/feltöltési audit PASS. A Windows-fordító eredménye az új CI futásától függ, helyi macOS-eredményből nincs Windows PASS állítás.
+
+## H8-UNARY-2026-10-28
+
+Ág: `feat/h8-unary-extension`; [jegyzőkönyv](h8-unary-extension.md). NOT/NEG/EXTU/EXTS tíz csoportban, 20 eredeti metódus, 434 összesen. 43/43 helyi CTest, 87 Python, független flag/adat orákulum, ASan/UBSan PASS. Elérhető referenciaciklus, minden új családra bejárási őrfeltétellel; 200000 szelet 0 eltérés. Szülője az INC/DEC ág; a szülők merge/CI feltételei miatt egyelőre egymásra épülő jelölt, nem main-elfogadás.
+
+### #62 lezárása, #63 előkészítése
+
+#62 végső head `3e1652252342b0b58d31f9f475af2a6bf14cd909`: mind az öt CI PASS, nyitott review-thread és változtatáskérés nincs. Merge: `f0b37f3e10e02248b8c9d0f52b3a555ae944c8d5`, 2026-10-28 17:44:11 UTC. A GitHub új stack #67 miatt a szinkron merge API nem támogatott; a webes felület kizárólag #62-re indított aszinkron squash merge-je sikeres, API-val visszaellenőrizve. #63 önálló unáris változtatása a friss mainre újraalapozva, a Windows-javítás lapos választójának megőrzésével. Saját végső CI külön kapu; #64–#66 draft függőség marad.
+
+#63 újraalapozás utáni helyi ellenőrzés: 43/43 CTest, 87 Python, 200000 eredetimetódus-szelet nulla eltéréssel, forrás-/licenc-/feltöltési audit PASS. A főágra célzás már megtörtént; a végső feltöltés indítja a PR saját CI-jét.

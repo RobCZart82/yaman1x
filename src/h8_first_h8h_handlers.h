@@ -2,6 +2,374 @@
 // copyright-holders:Olivier Galibert
 // Selected pinned generated h8h.hxx methods; only class qualifiers removed.
 // Included inside H8FirstInstructions. See research/h8-first-instructions-provenance.json.
+void not_w_r16l_full()
+{
+	m_TMP1 = ~r16_r(m_IR[0]);
+	set_nzv16(m_TMP1);
+	r16_w(m_IR[0], m_TMP1);
+	m_NPC = m_PC & 0xffffff;
+	m_PIR = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 1;
+		} else
+			m_inst_substate = 2;
+		return;
+	}
+	m_PC += 2;
+	prefetch_done();
+}
+
+void not_w_r16l_partial()
+{
+switch(m_inst_substate) {
+case 0:
+	m_TMP1 = ~r16_r(m_IR[0]);
+	set_nzv16(m_TMP1);
+	r16_w(m_IR[0], m_TMP1);
+	m_NPC = m_PC & 0xffffff;
+	[[fallthrough]];
+case 1:;
+	m_PIR = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 1;
+		} else
+			m_inst_substate = 2;
+		return;
+	}
+	[[fallthrough]];
+case 2:;
+	m_PC += 2;
+	prefetch_done();
+	break;
+}
+	m_inst_substate = 0;
+}
+
+void not_l_r32l_full()
+{
+	m_TMP1 = ~r32_r(m_IR[0]);
+	set_nzv32(m_TMP1);
+	r32_w(m_IR[0], m_TMP1);
+	m_NPC = m_PC & 0xffffff;
+	m_PIR = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 1;
+		} else
+			m_inst_substate = 2;
+		return;
+	}
+	m_PC += 2;
+	prefetch_done();
+}
+
+void not_l_r32l_partial()
+{
+switch(m_inst_substate) {
+case 0:
+	m_TMP1 = ~r32_r(m_IR[0]);
+	set_nzv32(m_TMP1);
+	r32_w(m_IR[0], m_TMP1);
+	m_NPC = m_PC & 0xffffff;
+	[[fallthrough]];
+case 1:;
+	m_PIR = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 1;
+		} else
+			m_inst_substate = 2;
+		return;
+	}
+	[[fallthrough]];
+case 2:;
+	m_PC += 2;
+	prefetch_done();
+	break;
+}
+	m_inst_substate = 0;
+}
+
+void extu_w_r16l_full()
+{
+	m_TMP1 = u8(r16_r(m_IR[0]));
+	set_nzv16(m_TMP1);
+	r16_w(m_IR[0], m_TMP1);
+	m_NPC = m_PC & 0xffffff;
+	m_PIR = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 1;
+		} else
+			m_inst_substate = 2;
+		return;
+	}
+	m_PC += 2;
+	prefetch_done();
+}
+
+void extu_w_r16l_partial()
+{
+switch(m_inst_substate) {
+case 0:
+	m_TMP1 = u8(r16_r(m_IR[0]));
+	set_nzv16(m_TMP1);
+	r16_w(m_IR[0], m_TMP1);
+	m_NPC = m_PC & 0xffffff;
+	[[fallthrough]];
+case 1:;
+	m_PIR = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 1;
+		} else
+			m_inst_substate = 2;
+		return;
+	}
+	[[fallthrough]];
+case 2:;
+	m_PC += 2;
+	prefetch_done();
+	break;
+}
+	m_inst_substate = 0;
+}
+
+void extu_l_r32l_full()
+{
+	m_TMP1 = u16(r32_r(m_IR[0]));
+	set_nzv32(m_TMP1);
+	r32_w(m_IR[0], m_TMP1);
+	m_NPC = m_PC & 0xffffff;
+	m_PIR = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 1;
+		} else
+			m_inst_substate = 2;
+		return;
+	}
+	m_PC += 2;
+	prefetch_done();
+}
+
+void extu_l_r32l_partial()
+{
+switch(m_inst_substate) {
+case 0:
+	m_TMP1 = u16(r32_r(m_IR[0]));
+	set_nzv32(m_TMP1);
+	r32_w(m_IR[0], m_TMP1);
+	m_NPC = m_PC & 0xffffff;
+	[[fallthrough]];
+case 1:;
+	m_PIR = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 1;
+		} else
+			m_inst_substate = 2;
+		return;
+	}
+	[[fallthrough]];
+case 2:;
+	m_PC += 2;
+	prefetch_done();
+	break;
+}
+	m_inst_substate = 0;
+}
+
+void neg_w_r16l_full()
+{
+	r16_w(m_IR[0], do_sub16(0, r16_r(m_IR[0])));
+	m_NPC = m_PC & 0xffffff;
+	m_PIR = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 1;
+		} else
+			m_inst_substate = 2;
+		return;
+	}
+	m_PC += 2;
+	prefetch_done();
+}
+
+void neg_w_r16l_partial()
+{
+switch(m_inst_substate) {
+case 0:
+	r16_w(m_IR[0], do_sub16(0, r16_r(m_IR[0])));
+	m_NPC = m_PC & 0xffffff;
+	[[fallthrough]];
+case 1:;
+	m_PIR = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 1;
+		} else
+			m_inst_substate = 2;
+		return;
+	}
+	[[fallthrough]];
+case 2:;
+	m_PC += 2;
+	prefetch_done();
+	break;
+}
+	m_inst_substate = 0;
+}
+
+void neg_l_r32l_full()
+{
+	r32_w(m_IR[0], do_sub32(0, r32_r(m_IR[0])));
+	m_NPC = m_PC & 0xffffff;
+	m_PIR = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 1;
+		} else
+			m_inst_substate = 2;
+		return;
+	}
+	m_PC += 2;
+	prefetch_done();
+}
+
+void neg_l_r32l_partial()
+{
+switch(m_inst_substate) {
+case 0:
+	r32_w(m_IR[0], do_sub32(0, r32_r(m_IR[0])));
+	m_NPC = m_PC & 0xffffff;
+	[[fallthrough]];
+case 1:;
+	m_PIR = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 1;
+		} else
+			m_inst_substate = 2;
+		return;
+	}
+	[[fallthrough]];
+case 2:;
+	m_PC += 2;
+	prefetch_done();
+	break;
+}
+	m_inst_substate = 0;
+}
+
+void exts_w_r16l_full()
+{
+	m_TMP1 = s8(r16_r(m_IR[0]));
+	set_nzv16(m_TMP1);
+	r16_w(m_IR[0], m_TMP1);
+	m_NPC = m_PC & 0xffffff;
+	m_PIR = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 1;
+		} else
+			m_inst_substate = 2;
+		return;
+	}
+	m_PC += 2;
+	prefetch_done();
+}
+
+void exts_w_r16l_partial()
+{
+switch(m_inst_substate) {
+case 0:
+	m_TMP1 = s8(r16_r(m_IR[0]));
+	set_nzv16(m_TMP1);
+	r16_w(m_IR[0], m_TMP1);
+	m_NPC = m_PC & 0xffffff;
+	[[fallthrough]];
+case 1:;
+	m_PIR = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 1;
+		} else
+			m_inst_substate = 2;
+		return;
+	}
+	[[fallthrough]];
+case 2:;
+	m_PC += 2;
+	prefetch_done();
+	break;
+}
+	m_inst_substate = 0;
+}
+
+void exts_l_r32l_full()
+{
+	m_TMP1 = s16(r32_r(m_IR[0]));
+	set_nzv32(m_TMP1);
+	r32_w(m_IR[0], m_TMP1);
+	m_NPC = m_PC & 0xffffff;
+	m_PIR = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 1;
+		} else
+			m_inst_substate = 2;
+		return;
+	}
+	m_PC += 2;
+	prefetch_done();
+}
+
+void exts_l_r32l_partial()
+{
+switch(m_inst_substate) {
+case 0:
+	m_TMP1 = s16(r32_r(m_IR[0]));
+	set_nzv32(m_TMP1);
+	r32_w(m_IR[0], m_TMP1);
+	m_NPC = m_PC & 0xffffff;
+	[[fallthrough]];
+case 1:;
+	m_PIR = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 1;
+		} else
+			m_inst_substate = 2;
+		return;
+	}
+	[[fallthrough]];
+case 2:;
+	m_PC += 2;
+	prefetch_done();
+	break;
+}
+	m_inst_substate = 0;
+}
+
 void inc_w_one_r16l_full()
 {
 	r16_w(m_IR[0], do_inc16(r16_r(m_IR[0]), 1));
