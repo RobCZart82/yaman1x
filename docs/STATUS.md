@@ -5,25 +5,25 @@ Recorded: 2026-10-28. Product: YamAN1x. Repository: `yaman1x`. First public rese
 The repository contains a ROM-free C++/Python development foundation.
 No VST3, AU, GUI or AN1x audio output is available yet.
 
-Verified engine baseline: merged PR #60, `18f7b7fa1b708c67cf7ed0baa2109d5f73c750db`. Later documentation commits do not change this tested engine baseline.
-The [first-sound plan](FIRST_REAPER_SOUND_PLAN.md) tracks M0 as partial, M1 as
-prepared and M2–M6 as research/planned. Completed helper components do not
-establish a complete CPU or firmware boot. Changes and their provenance are
-indexed in the [development ledger](DEVELOPMENT_LOG.md).
+Verified engine baseline: merged [PR #75](https://github.com/RobCZart82/yaman1x/pull/75),
+`0bb14d89950d2406b0e71bb6033ebc315b1f1cdc`. Final tested head `29f1282486ab26a55253329177e2dc90e84a3d65`.
+[Platform CI](https://github.com/RobCZart82/yaman1x/actions/runs/40781266219),
+[MSan](https://github.com/RobCZart82/yaman1x/actions/runs/40781266313),
+[MAME](https://github.com/RobCZart82/yaman1x/actions/runs/40781266255): all successful.
+Current suite: **54 CTest groups, 87 Python cases**, with 200000 original-reference
+slices and zero differences. Selected original handlers: **458 full/partial**;
+encoding rows: **221 selected / 43 missing / 135 excluded profiles**.
 
-Historical #57 suite: **39 CTest groups, 84 Python cases**, all five final-head jobs PASS.
-Final tested head: `bf3e7158a9a4dac6edb36ea4deb659bdf3c54cb1`.
-[Platform CI](https://github.com/RobCZart82/yaman1x/actions/runs/40685365642),
-[MSan](https://github.com/RobCZart82/yaman1x/actions/runs/40685365647),
-[MAME](https://github.com/RobCZart82/yaman1x/actions/runs/40685365644).
-Local Windows: 38 runnable CTest groups / 83 Python cases PASS; one symlink-privilege
-case excluded (WinError 1314). There is no open engine candidate recorded in the ledger.
+Fixed-profile TRAPA/IRQ/NMI and synthetic CPU/SCI RX/TX, duplex and receive-error
+integration are merged, along with byte/word abs8/abs16/abs32 memory subsets.
+No open engine candidate remains from this series. The current documentation
+update does not alter this engine baseline. Later candidate/pending descriptions
+below are historical and superseded by this closure.
 
-Historical #57 subset: 366 selected original full/partial handlers, including normal H8H
-stack/control families and synthetic RTE frame restore. Next: remaining H8H opcode/
-addressing coverage, IRQ/TRAPA entry/filter integration, then common CPU/peripheral
-scheduling and machine integration. Full CPU, firmware MIDI, audio and REAPER
-acceptance remain open; M0 stays partial.
+M0 remains partial; M1 is prepared but unaccepted. Missing instructions and
+address modes, full AN1x memory/MMIO integration, physical timing verification,
+firmware/MIDI/audio and REAPER acceptance remain open. See the
+[first-sound plan](FIRST_REAPER_SOUND_PLAN.md) and [development log](DEVELOPMENT_LOG.md).
 
 ## Historical component evidence — current state is above
 

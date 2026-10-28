@@ -1,9 +1,32 @@
 # YamAN1x fejlesztési napló
 
 Frissítve: 2026-10-28. Időzóna: Europe/Budapest.
-Ellenőrzött motoralap: `f8b6aa20834f209931e3e9bb9463cc47b5b7a540` (#57).
+Ellenőrzött motoralap: `0bb14d89950d2406b0e71bb6033ebc315b1f1cdc` (#75).
 
-## Aktuális lezárás — #57, 2026-10-28
+## Aktuális lezárás — #75, 2026-10-28
+
+Ellenőrzött motoralap: [PR #75](https://github.com/RobCZart82/yaman1x/pull/75), merge
+`0bb14d89950d2406b0e71bb6033ebc315b1f1cdc`; tesztelt head
+`29f1282486ab26a55253329177e2dc90e84a3d65`. Beolvadt: 2026-10-28 23:54:05 Europe/Budapest
+(22:54:05 UTC). [Linux/macOS/Windows PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40781266219),
+[MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40781266313),
+[MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40781266255).
+
+**54 CTest-csoport, 87 Python-eset; 200000 eredetimetódus-szelet nulla eltéréssel.**
+458 kiválasztott eredeti full/partial kezelő; 221 kiválasztott, 43 hiányzó és 135
+kizárt profilú kódolássor. A sorszámok nem teljes CPU-lefedettségi százalékok.
+Beolvadt a CCR/MOV/INC/DEC/unáris bővítés, rögzített SYSCR-es TRAPA és IRQ/NMI,
+buszidőbélyeg/határidőfrissítés, szintetikus CPU–SCI RX/TX/duplex/FER/PER/overrun,
+valamint a bájtos/szavas abs8/abs16/abs32 memóriautasítások megfelelő részhalmaza.
+A módszer- és komponenskorlátokat az egyes jegyzőkönyvek tartalmazzák.
+
+Nyitott: 43 utasítássor (köztük hosszúszó-abszolút és eltolásos címzés), teljes
+AN1x címtér/MMIO-gép, fizikai időzítési/paritásbizonyíték, firmware/MIDI/DSP-hangút,
+majd offline audio és VST3/AU/REAPER. M0 részben teljesült; firmware-boot és audio
+nincs igazolva. Nincs nyitott motorjelölt a lezárt sorozatból. A mostani változás
+csak dokumentáció; az alábbi régi jelölt/CI-pending állapotok történeti bejegyzések.
+
+## Történeti lezárás — #57, 2026-10-28
 
 Ellenőrzött motoralap: [PR #57](https://github.com/RobCZart82/yaman1x/pull/57), merge
 `f8b6aa20834f209931e3e9bb9463cc47b5b7a540`. Végső tesztelt head:
@@ -392,3 +415,7 @@ Helyi lezárás: 53/53 CTest, 87 Python, célzott ASan/UBSan, forrás-/licenc-/f
 Ág: `feat/h8-absolute32-memory`; [jegyzőkönyv](h8-absolute32-memory.md). Négy bájt/szó abs32 MOV-csoport, nyolc eredeti metódus (458 összesen), leltár221 kiválasztott/43 hiányzó/135 kizárt. 15 címhatár minden regisztersávval, formánként65536 korrelált32-bites címminta (nem teljes32-bites tartomány), 201 felosztás és négy buszhibahely. Külön elérhető eredeti referencia mindnégy fetch-őrrel. #74 öt zöld CI, nyitott review-thread/változtatáskérés nélkül beolvadt `758ad981253f8d3b5c72915f2fe5b60df560de97`, head `642977224868632203a46b1d220b926e506b0b5c`. Teljes helyi teszt/ref/sanitizer lezárás folyamatban; saját végső CI külön kapu.
 
 Helyi lezárás: 54/54 CTest, 87 Python, célzott ASan/UBSan és forrás-/licenc-/feltöltési audit PASS. Eredeti dekóder/execute_run: 200000 szelet nulla eltéréssel; mindnégy abs32 fetch-őr és minden korábbi család elérhetőségi őre teljesült. Teljes32-bites tartomány helyett határpontokat és65536 mintát ellenőriztünk formánként. Saját végső CI/review szükséges.
+
+## DOC-CLOSE-ABSOLUTE-MEMORY-2026-10-28
+
+#75 lezárása az élő GitHub merge/head/időpont és öt sikeres ellenőrzés alapján rögzítve. A napló eleje, STATUS, REAPER-terv, README és strukturált ledger egységesítve; a korábbi jelöltleírások történetiek. A motoralap #75, nincs új motor-/firmware-/audioelfogadás. A dokumentációs PR saját CI-je külön követendő.

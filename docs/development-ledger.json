@@ -3,7 +3,7 @@
   "recorded_date": "2026-10-28",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "18f7b7fa1b708c67cf7ed0baa2109d5f73c750db",
+  "baseline_commit": "0bb14d89950d2406b0e71bb6033ebc315b1f1cdc",
   "entries": [
     {
       "pr": 6,
@@ -819,14 +819,23 @@
         40779797991,
         40779798025
       ]
+    },
+    {
+      "pr": 75,
+      "title": "Execute H8H byte and word absolute32 memory moves",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/75",
+      "kind": "development",
+      "status": "merged",
+      "merge_commit": "0bb14d89950d2406b0e71bb6033ebc315b1f1cdc",
+      "reviewed_head": "29f1282486ab26a55253329177e2dc90e84a3d65",
+      "merged_at_utc": "2026-10-28T22:54:05Z",
+      "ci_runs": [
+        40781266219,
+        40781266255,
+        40781266313
+      ]
     }
   ],
-  "active_change": {
-    "id": "H8-ABSOLUTE32-MEMORY-2026-10-28",
-    "branch": "feat/h8-absolute32-memory",
-    "status": "in_development",
-    "summary": "Original byte/word MOV absolute32 address families",
-    "validation": "54/54 local CTest,87 Python,targeted ASan/UBSan,source/notice/upload audits PASS.200000 original decoder/execute_run slices zero differences,all four abs32 reachability guards and prior guards PASS.458 methods,221 selected rows. Final-head CI/review required."
-  },
+  "active_change": null,
   "pending_changes": []
 }
