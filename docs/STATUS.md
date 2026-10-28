@@ -238,3 +238,7 @@ Audit baseline #58 (`863d21abcde448d746b3b44c39a1eb61be455a15`): fresh local mac
 ## CPU SCI TX candidate
 
 [CPU-configured transmit](h8-sci-cpu-transmit.md), after #68: optional next_bus_event publishes newly created MMIO deadlines into both runner and handler boundaries. Synthetic BRR=0 TX checks both channels/all bytes and all 1602 split positions. Full firmware, concurrent I/O and audio remain open.
+
+## CPU SCI duplex candidate
+
+#69 merged as 298b8465aee4e74cfe7ec8e1459402b21f2ce9aa after all five CI jobs succeeded. [Overlapping TX/RX checks](h8-sci-cpu-duplex.md) cover all four channel pairings, independent wire/data/IRQ checks and 3604 execution splits. This is an integration-test increment; firmware boot/audio and receive-error matrices remain open.
