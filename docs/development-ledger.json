@@ -753,14 +753,27 @@
         40763169879,
         40763169805
       ]
+    },
+    {
+      "pr": 70,
+      "title": "Verify overlapping CPU SCI TX RX across all channel pairings",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/70",
+      "kind": "development",
+      "status": "merged",
+      "merge_commit": "860815eb62afb2d9b55e1e2cc8318a85967d4d04",
+      "reviewed_head": "a063232d4f877fc2d3eea43303b73273a8e872eb",
+      "ci_runs": [
+        40765813371,
+        40765813485
+      ]
     }
   ],
   "active_change": {
-    "id": "H8-SCI-CPU-DUPLEX-2026-10-28",
-    "branch": "feat/h8-sci-cpu-duplex",
+    "id": "H8-SCI-CPU-FER-2026-10-28",
+    "branch": "feat/h8-sci-cpu-framing",
     "status": "in_development",
-    "summary": "Overlapping TX/RX across all channel pairings with CPU receive ISR",
-    "validation": "49/49 local CTest, 87 Python, native ASan/UBSan and source/notice/upload audits PASS. 1024 frame cases/3604 splits; disabling RXI makes the negative control fail. Engine unchanged. Final-head CI/review required."
+    "summary": "CPU framing-error acknowledgement and subsequent valid-frame recovery",
+    "validation": "50/50 local CTest,87 Python,targeted ASan/UBSan,source/notice/upload audits PASS. 1024 cases,3604 splits,512 recovery cases; omitted FER clear negative control fails. Engine unchanged; final-head CI/review required."
   },
   "pending_changes": []
 }

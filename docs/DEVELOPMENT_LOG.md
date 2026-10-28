@@ -360,3 +360,9 @@ Helyi lezárás: 48/48 CTest, 87 Python, ASan/UBSan, 200000 eredetimetódus-szel
 Ág: `feat/h8-sci-cpu-duplex`; [szerződés](h8-sci-cpu-duplex.md). Motorváltoztatás nélkül egyidejű TX/RX, mind a négy csatornapárosítás, 1024 bájteset és 3604 felosztás. Független wire/adat/IRQ/RDRF/RTE ellenőrzés; a frame-ek átfedik egymást, de aktív TX közbeni RXI-preempciót nem állítunk. Szülő #69 öt sikeres CI és üres review-thread/változtatáskérés lista után beolvadt: `298b8465aee4e74cfe7ec8e1459402b21f2ce9aa`, head `08a18b492a2c7df3abc5c33edac1f37a994a080f`. Teljes helyi teszt/sanitizer lezárás folyamatban; saját végső CI külön kapu.
 
 Helyi lezárás: 49/49 CTest, 87 Python, célzott ASan/UBSan és forrás-/licenc-/feltöltési audit PASS. Negatív kontroll: RXI engedélyezés nélkül a teszt hibát jelez, tehát a RAM/IRQ elfogadás nem pusztán a TX befejezését ellenőrzi. Eredeti CPU-/UART-motorkód változatlan; a #69 eredetimetódus-referenciája továbbra is a motoralap bizonyítéka.
+
+## H8-SCI-CPU-FER-2026-10-28
+
+Ág: `feat/h8-sci-cpu-framing`; [jegyzőkönyv](h8-sci-cpu-framing.md). Motorváltoztatás nélküli ERI/FER-integráció: 1024 bájt/csatorna eset, 3604 felosztás, 512 következő jó frame helyreállítási eset. CPU SSR-kiolvasás/RAM/nyugtázás/RTE, majd RXI és helyes adat. A hiányzó idle-high stimulus mind512 recovery esetben hibát jelzett, a tesztbemenet javítva. #70 négy zöld CI, üres review-thread/változtatáskérés lista után beolvadt `860815eb62afb2d9b55e1e2cc8318a85967d4d04`, head `a063232d4f877fc2d3eea43303b73273a8e872eb`. Saját végső CI külön kapu; overrun/paritás még nyitott.
+
+Helyi lezárás: 50/50 CTest, 87 Python, célzott ASan/UBSan és forrás-/licenc-/feltöltési audit PASS. Negatív kontroll: FER-törlés kihagyása 2048 elfogadási hibát eredményez, tehát a teszt a nyugtázást és recovery-t is ellenőrzi. A közös fixture kiemelése után a korábbi duplex teszt változatlan alapbeállításokkal továbbra is sikeres. Saját végső CI/review még szükséges.
