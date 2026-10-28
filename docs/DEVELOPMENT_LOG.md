@@ -342,3 +342,9 @@ A #64–#66 javított lánc helyi lezárása: 46/46 CTest, 87 Python-eset, 20000
 ### #65 lezárása, #66 utolsó jelölt
 
 #65 beolvadt `f59661ed79860460ba2989f6d2177554e0b56a05`, 2026-10-28 19:05:03 UTC, head `18f1fa382c8768e2424644464d7556170c9a8501`, öt sikeres CI, nyitott review-thread és változtatáskérés nélkül. #66 önálló fogadási tesztje a friss mainre újraalapozva; csak napló/ledger konfliktus volt. A végső head saját ellenőrzése még szükséges.
+
+## H8-BUS-CYCLE-TIME-2026-10-28
+
+Ág: `feat/h8-bus-cycle-time`, alap: #66 beolvadt `817e9ce91db22c770291fe2acf666f86f29e1896`, head `66687f2313c5824e629cff570aeffd365da71d73`, négy sikeres CI, nyitott review-thread nélkül. A korábbi #66 jelöltleírás történeti. [Új szerződés](h8-bus-cycle-time.md): opcionális bus_cycle időbélyeg minden kétciklusos buszművelet után, a memóriaművelet előtt, túlcsordulás- és hibakezeléssel. Öt művelettípus és 201 felosztás független ellenőrzése sikeres. Ez a CPU-vezérelt soros adás előfeltétele; az MMIO által létrehozott új határidő beillesztése külön következő lépés.
+
+Helyi lezárás: 47/47 CTest, 87 Python, 200000 eredetimetódus-szelet nulla eltéréssel; új célzott teszt és ASan/UBSan PASS, forrás-/licenc-/feltöltési audit PASS. Hiányzó időalap és negatív abszolút idő külön visszautasítva. Saját végső CI/review még külön merge-kapu.

@@ -711,15 +711,28 @@
         40747949918,
         40747950647
       ]
+    },
+    {
+      "pr": 66,
+      "title": "Test interrupt-driven CPU SCI receive on both channels",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/66",
+      "kind": "development",
+      "status": "merged",
+      "merge_commit": "817e9ce91db22c770291fe2acf666f86f29e1896",
+      "reviewed_head": "66687f2313c5824e629cff570aeffd365da71d73",
+      "merged_at_utc": "2026-10-28T19:44:16Z",
+      "ci_runs": [
+        40754085598,
+        40754085741
+      ]
     }
   ],
   "active_change": {
-    "id": "H8-SCI-CPU-RECEIVE-2026-10-28",
-    "branch": "feat/h8-sci-cpu-receive",
-    "status": "in_review",
-    "pr": 66,
-    "summary": "ROM-free CPU/SCI interrupt-driven receive composition",
-    "validation": "Rebased own change onto merged #65; local checks and final-head CI required. No general timed MMIO/firmware/audio acceptance."
+    "id": "H8-BUS-CYCLE-TIME-2026-10-28",
+    "branch": "feat/h8-bus-cycle-time",
+    "status": "in_development",
+    "summary": "Optional absolute bus completion timestamps with cycle-debt handling",
+    "validation": "47/47 local CTest, 87 Python, 200000 original-reference slices zero differences, targeted ASan/UBSan and source/notice/upload audits PASS. Final-head CI/review pending. Deadline rescheduling and CPU-driven SCI TX remain open."
   },
   "pending_changes": []
 }

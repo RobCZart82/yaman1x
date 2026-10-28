@@ -17,6 +17,7 @@ public:
     H8ExecutionRunner(const H8ExecutionRunner&)=delete;
     H8ExecutionRunner& operator=(const H8ExecutionRunner&)=delete;
     int& counter() { return budget_.counter(); }
+    uint64_t slice_end() const { return budget_.slice_end(); }
     int debt() const { return budget_.debt(); }
     bool failed() const { return failed_; }
 

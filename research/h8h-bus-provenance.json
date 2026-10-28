@@ -8,5 +8,5 @@
       "copyright_holder": "Olivier Galibert"
     }
   },
-  "adaptation": "src/h8h_bus_access.h: five bus helpers for H8H (m_has_exr=false). Preserve two-cycle charge before bus, aligned instruction/data words and unmodified byte addresses. Add explicit underflow/reentry/failure guards. No full CPU, slice-debt runner, address-space implementation or hardware validation."
+  "adaptation": "src/h8h_bus_access.h: five bus helpers for H8H (m_has_exr=false). Preserve two-cycle charge before bus, aligned instruction/data words and unmodified byte addresses. Add explicit underflow/reentry/failure guards. No full CPU, slice-debt runner, address-space implementation or hardware validation. Absolute host-time extension: runner exposes slice_end; CPU supplies it to bus. Optional bus_cycle callback observes completion after two-cycle charge, checked for signed-debt/uint64 overflow, before memory operation. This is local integration scaffolding; no generated bodies changed and no event-deadline rescheduling is claimed."
 }
