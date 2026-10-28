@@ -310,3 +310,11 @@ A lapos választó helyi ellenőrzése: 42/42 CTest, 87 Python-eset, 200000 ered
 #62 végső head `3e1652252342b0b58d31f9f475af2a6bf14cd909`: mind az öt CI PASS, nyitott review-thread és változtatáskérés nincs. Merge: `f0b37f3e10e02248b8c9d0f52b3a555ae944c8d5`, 2026-10-28 17:44:11 UTC. A GitHub új stack #67 miatt a szinkron merge API nem támogatott; a webes felület kizárólag #62-re indított aszinkron squash merge-je sikeres, API-val visszaellenőrizve. #63 önálló unáris változtatása a friss mainre újraalapozva, a Windows-javítás lapos választójának megőrzésével. Saját végső CI külön kapu; #64–#66 draft függőség marad.
 
 #63 újraalapozás utáni helyi ellenőrzés: 43/43 CTest, 87 Python, 200000 eredetimetódus-szelet nulla eltéréssel, forrás-/licenc-/feltöltési audit PASS. A főágra célzás már megtörtént; a végső feltöltés indítja a PR saját CI-jét.
+
+## H8-TRAPA-2026-10-28
+
+Ág: `feat/h8-trapa-entry`; [jegyzőkönyv](h8-trapa-entry.md). Négy szinkron trapkódolás, 436 eredeti metódus. Rögzített reset-SYSCR, vektor8–11, stack-sorrend és observerhibák. 44/44 helyi CTest, 87 Python, ASan/UBSan és 200000 eredetimetódus-szelet PASS. A stackbe írt m_NPC viselkedése forrásazonosság, nem hardverbizonyíték. Külső IRQ/NMI külön következő lépés; szülője az unáris ág.
+
+### #63 lezárása és a #64–#66 Windows-javítása
+
+#63 a GitHub szerint beolvadt: `dfa7af9bc21c8fe2b91367ad88b91bd7a56ba498`, 2026-10-28 18:12:45 UTC, végső head `ff7fa98a801ad33e0976206606673c7db0b17eca`, öt zöld CI. #64 újraalapozva a friss mainre; a régi Windows C1061 hibát okozó választólánc helyett a már ellenőrzött sorrendtartó korai kilépések megőrizve. #65 és #66 ugyanebben a függőségi sorrendben kapja meg ezt a javítást. A generált metódustörzsek változatlanok; minden új head saját CI-je szükséges.

@@ -638,3 +638,7 @@ A dokumentációs egységesítés PR-je: [#58](https://github.com/RobCZart82/yam
 ## 2026-10-28 — unáris műveletek és kiterjesztés
 
 [Jegyzőkönyv](h8-unary-extension.md): tíz új csoport, 434 full/partial kezelő; 54 hiányzó H8H-sor marad. Az eredetimetódus-próbák új családjai elérhető ciklusban és bejárási őrfeltétellel futnak. A mérföldkő nem IRQ-, firmware- vagy hangelfogadás.
+
+## 2026-10-28 — szinkron TRAPA-belépés
+
+[Jegyzőkönyv](h8-trapa-entry.md): default SYSCR-profil, négy vektor, eredeti stack/busz/időzítés. Külső IRQ/NMI, szűrők és gépütemezés továbbra is nyitott; hardveres trap-visszatérés nincs igazolva.

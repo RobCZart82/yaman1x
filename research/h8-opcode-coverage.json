@@ -4,8 +4,8 @@
   "profile": "advanced H8H, fixed no-IRQ research host",
   "counts": {
     "excluded_profile": 135,
-    "missing_handler": 54,
-    "selected_handler": 210
+    "missing_handler": 53,
+    "selected_handler": 211
   },
   "instructions": [
     {
@@ -2750,7 +2750,7 @@
       ],
       "method": "trapa_imm2",
       "profile": "h",
-      "status": "missing_handler"
+      "status": "selected_handler"
     },
     {
       "line": 1607,

@@ -667,15 +667,30 @@
         40732322413,
         40732322740
       ]
+    },
+    {
+      "pr": 63,
+      "title": "Execute H8H NOT NEG and sign/zero extension families",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/63",
+      "kind": "development",
+      "merge_commit": "dfa7af9bc21c8fe2b91367ad88b91bd7a56ba498",
+      "reviewed_head": "ff7fa98a801ad33e0976206606673c7db0b17eca",
+      "merged_at_utc": "2026-10-28T18:12:45Z",
+      "status": "merged",
+      "ci_runs": [
+        40738801066,
+        40738801326,
+        40738801482
+      ]
     }
   ],
   "active_change": {
-    "id": "H8-UNARY-2026-10-28",
-    "branch": "feat/h8-unary-extension",
+    "id": "H8-TRAPA-2026-10-28",
+    "branch": "feat/h8-trapa-entry",
     "status": "in_review",
-    "pr": 63,
-    "url": "https://github.com/RobCZart82/yaman1x/pull/63",
-    "summary": "NOT/NEG and sign/zero extension groups",
-    "validation": "After rebase: 43/43 local CTest, 87 Python, 200000 original-reference slices with zero differences; source/notice/upload audits PASS. Flat-dispatch Windows fix preserved. Final-head GitHub CI pending."
+    "pr": 64,
+    "url": "https://github.com/RobCZart82/yaman1x/pull/64",
+    "summary": "Synchronous TRAPA in fixed reset-SYSCR profile",
+    "validation": "Rebased onto merged #63, preserving flat-dispatch Windows fix. Local revalidation in progress; final-head CI required."
   }
 }

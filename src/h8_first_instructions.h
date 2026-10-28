@@ -9,7 +9,7 @@
 
 namespace yamanix {
 // Host: read_instruction_word, read/write_byte, read/write_word, update(cycle).
-// Fixed profile: advanced H8H, no IRQ/DMA/DTC/trace/retry/standby support.
+// Fixed profile: advanced H8H, reset-SYSCR TRAPA; no external IRQ/DMA/DTC/trace/retry/standby support.
 // Bus accesses complete synchronously; the host owns address mapping.
 // Both host and immutable code memory must outlive the instance; no reentry.
 template<class Host> class H8FirstInstructions {
@@ -20,7 +20,7 @@ public:
         std::array<uint16_t,3> ir;
         uint16_t pir;
         uint8_t ccr, exr;
-        int remaining, debt;
+        int remaining, debt, taken_vector;
         bool operator==(const Snapshot&) const = default;
     };
     // Deterministic research cold state, not verified hardware power-on values.
@@ -34,11 +34,11 @@ public:
     bool failed() const {return runner_.failed();}
     Snapshot snapshot() const {
         return {m_R,m_PC,m_PPC,m_NPC,m_inst_state,m_inst_substate,m_TMP1,m_TMP2,
-                m_IR,m_PIR,m_CCR,m_EXR,m_icount,runner_.debt()};
+                m_IR,m_PIR,m_CCR,m_EXR,m_icount,runner_.debt(),m_taken_irq_vector};
     }
 private:
     using u8=uint8_t; using u16=uint16_t; using s8=int8_t; using s16=int16_t; using s32=int32_t;
-    static constexpr u8 F_I=0x80,F_H=0x20,F_N=0x08,F_Z=0x04,F_V=0x02,F_C=0x01;
+    static constexpr u8 F_I=0x80,F_UI=0x40,F_H=0x20,F_N=0x08,F_Z=0x04,F_V=0x02,F_C=0x01;
     static constexpr u8 EXR_I=0x07,EXR_NC=0x78;
     static constexpr bool m_has_hc=true,m_mode_advanced=true;
     struct Owner {
@@ -122,7 +122,7 @@ private:
             else if((m_inst_state&0xff8f)==0x6780) {if(partial)bist_imm3_abs8_partial();else bist_imm3_abs8_full();}
             else throw std::runtime_error("Unsupported H8 absolute-bit extension"); return;
         }
-        if(m_inst_state>0xffff) {throw std::runtime_error("Unsupported H8 internal instruction state");
+        if(m_inst_state>0xffff) {throw std::runtime_error("Unsupported H8 internal instruction state"); return;
         }
         if((m_inst_state&0xff00)==0x6400) {if(partial)or_w_r16h_r16l_partial();else or_w_r16h_r16l_full(); return;
         }
@@ -272,16 +272,28 @@ private:
         }
         if(m_inst_state==0x0100) {if(partial)dispatch_0100_partial();else dispatch_0100_full(); return;
         }
-        if((m_inst_state&0xfff0)==0x1700) {if(partial)not_b_r8l_partial();else not_b_r8l_full(); return;}
-        if((m_inst_state&0xfff0)==0x1710) {if(partial)not_w_r16l_partial();else not_w_r16l_full(); return;}
-        if((m_inst_state&0xfff8)==0x1730) {if(partial)not_l_r32l_partial();else not_l_r32l_full(); return;}
-        if((m_inst_state&0xfff0)==0x1750) {if(partial)extu_w_r16l_partial();else extu_w_r16l_full(); return;}
-        if((m_inst_state&0xfff8)==0x1770) {if(partial)extu_l_r32l_partial();else extu_l_r32l_full(); return;}
-        if((m_inst_state&0xfff0)==0x1780) {if(partial)neg_b_r8l_partial();else neg_b_r8l_full(); return;}
-        if((m_inst_state&0xfff0)==0x1790) {if(partial)neg_w_r16l_partial();else neg_w_r16l_full(); return;}
-        if((m_inst_state&0xfff8)==0x17b0) {if(partial)neg_l_r32l_partial();else neg_l_r32l_full(); return;}
-        if((m_inst_state&0xfff0)==0x17d0) {if(partial)exts_w_r16l_partial();else exts_w_r16l_full(); return;}
-        if((m_inst_state&0xfff8)==0x17f0) {if(partial)exts_l_r32l_partial();else exts_l_r32l_full(); return;}
+        if((m_inst_state&0xffcf)==0x5700) {if(partial)trapa_imm2_partial();else trapa_imm2_full(); return;
+        }
+        if((m_inst_state&0xfff0)==0x1700) {if(partial)not_b_r8l_partial();else not_b_r8l_full(); return;
+        }
+        if((m_inst_state&0xfff0)==0x1710) {if(partial)not_w_r16l_partial();else not_w_r16l_full(); return;
+        }
+        if((m_inst_state&0xfff8)==0x1730) {if(partial)not_l_r32l_partial();else not_l_r32l_full(); return;
+        }
+        if((m_inst_state&0xfff0)==0x1750) {if(partial)extu_w_r16l_partial();else extu_w_r16l_full(); return;
+        }
+        if((m_inst_state&0xfff8)==0x1770) {if(partial)extu_l_r32l_partial();else extu_l_r32l_full(); return;
+        }
+        if((m_inst_state&0xfff0)==0x1780) {if(partial)neg_b_r8l_partial();else neg_b_r8l_full(); return;
+        }
+        if((m_inst_state&0xfff0)==0x1790) {if(partial)neg_w_r16l_partial();else neg_w_r16l_full(); return;
+        }
+        if((m_inst_state&0xfff8)==0x17b0) {if(partial)neg_l_r32l_partial();else neg_l_r32l_full(); return;
+        }
+        if((m_inst_state&0xfff0)==0x17d0) {if(partial)exts_w_r16l_partial();else exts_w_r16l_full(); return;
+        }
+        if((m_inst_state&0xfff8)==0x17f0) {if(partial)exts_l_r32l_partial();else exts_l_r32l_full(); return;
+        }
         if((m_inst_state&0xfff0)==0x0a00) {if(partial)inc_b_one_r8l_partial();else inc_b_one_r8l_full(); return;
         }
         if((m_inst_state&0xfff0)==0x1a00) {if(partial)dec_b_one_r8l_partial();else dec_b_one_r8l_full(); return;
@@ -441,6 +453,9 @@ private:
     void prefetch_done(){m_inst_state=m_IR[0]=m_PIR;}
     void prefetch_done_noirq(){prefetch_done();}
     void prefetch_done_notrace(){prefetch_done();}
+    // Fixed reset SYSCR=0x0b: H83002 trapa_setup sets I, vector base 8.
+    int trapa_setup(){m_CCR|=F_I;return 8;}
+    void debugger_exception_hook(int vector){if constexpr(requires{host_.exception_hook(vector);})host_.exception_hook(vector);}
     bool exr_in_stack()const{return false;}
     void internal(int cycles){m_icount-=cycles+1;}
     void prefetch_switch(uint32_t pc,uint16_t ir){m_NPC=pc&0xffffff;m_PC=pc+2;m_PIR=ir;}
@@ -552,6 +567,7 @@ private:
     H8ExecutionRunner runner_;
     int& m_icount;
     H8hBusAccess<Host> bus_;
+    int m_taken_irq_vector=0;
     int m_bcount=0;
     std::array<uint16_t,16> m_R{};
     uint32_t m_PC=0,m_PPC=0,m_NPC=0,m_inst_state=0x10000,m_inst_substate=0,m_TMP1=0,m_TMP2=0;
