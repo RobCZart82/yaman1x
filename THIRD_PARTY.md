@@ -91,3 +91,5 @@ register map and interrupt vectors, preserving DMA-before-IRQ qualification
 The H8H bus-access helpers retain BSD-3-Clause/Olivier Galibert notices. Their exact `h8.cpp` identity is in `research/h8h-bus-provenance.json`; the [component record](docs/h8h-bus-access.md) describes the isolated adaptation and optional original-method comparison.
 
 The H8 execution-budget arithmetic retains the same MAME BSD notices; exact `h8.cpp` source identity and scope are in `research/h8-execution-budget-provenance.json`.
+
+The H8 execution-order runner retains the same MAME BSD notices; scope and source identity: `research/h8-execution-runner-provenance.json`. Original reference method bodies remain outside tracked sources.

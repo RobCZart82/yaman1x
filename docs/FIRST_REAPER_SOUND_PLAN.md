@@ -16,15 +16,14 @@ Ellenőrizve: 2026-10-27. Mind a hat PR beolvadt; mindegyik végső headjén öt
 
 Rögzítve: 2026-10-27. Kiindulópont: a #14 PR-ig beolvadt kutatási eredmények.
 Ez végrehajtási terv; az alábbi, még nyitott mérföldkövek nem kész funkciók.
-Állapotellenőrzés: 2026-10-27, a #36 beolvasztása utáni kódbázison:
-`33dc7e97c174c7b4992ff838380b2ae9de01a579`. A jelen dokumentációs egységesítés
-nem jelent új motor-, firmware- vagy hardveres eredményt.
+Állapotellenőrzés: 2026-10-28, alap: #45 (`ed966cef79eb33eb309165e9e9d6edca920410ea`).
+Az új H8-futtatási sorrend komponensszintű előrelépés; nem teljes CPU- vagy firmware-elfogadás.
 
 ## Aktuális mérföldkő-állapot — 2026-10-27
 
 | Mérföldkő | Aktuális állapot | Következő elfogadási feltétel |
 |---|---|---|
-| M0 | **Részben teljesült.** Architektúra, forrásazonosítók, generálási alap, önálló GPIO és IRQ-adapter megvan; az önálló SCI belső ciklusóra, közös aszinkron SCI TX/RX-csatorna rendelkezésre áll; a kétcsatornás SCI MMIO/IRQ-adapter elkészült; a CPU-bekötés nyitott. | Közös CPU/periféria-ütemező; tényleges H8 CPU-port fordítása és végrehajtási/izolációs tesztjei. A terjesztési licenc döntése nyitott. |
+| M0 | **Részben teljesült.** Architektúra, forrásazonosítók, generálási alap, önálló GPIO és IRQ-adapter megvan; az önálló SCI belső ciklusóra, közös aszinkron SCI TX/RX-csatorna rendelkezésre áll; a kétcsatornás SCI MMIO/IRQ-adapter elkészült; a kétcsatornás SCI-idővonal, H8H-busz, cikluskeret és H8-futtatási sorrend komponensei rendelkezésre állnak; a valódi CPU-utasításkezelők bekötése nyitott. | Közös CPU/periféria-ütemező; tényleges H8 CPU-port fordítása és végrehajtási/izolációs tesztjei. A terjesztési licenc döntése nyitott. |
 | M1 | **Előkészítve, nem teljesült.** A külön macOS MAME-build és a párosított helyi futtató rendelkezésre áll. | Friss Mac-firmware-próba: SCI0 tényleges bájtfogadás és note-on/note-off feldolgozás bizonyítása; PKS-kézfogás feltárása. |
 | M2–M3 | **Kutatási feladatok nyitva.** Nincs igazolt referenciahang. | AN1x órajel, táblacímzés, EG és soros hangút bizonyítása, majd megismételhető offline hang. |
 | M4–M6 | **Tervezett.** Nincs elkészült beágyazható hangszer vagy REAPER-elfogadás. | Validált offline referencia után audio-blokkmotor, VST3 és helyi REAPER-próba. |
@@ -34,7 +33,7 @@ Az önálló komponens tesztje nem teljes CPU-/firmware-elfogadás. A jelenlegi
 az ellenőrzött végső PR-revíziókat és CI-futásokat rögzíti; a korabeli napló
 az akkori munkamenet állapotát őrzi.
 
-Legutóbbi lezárt platformeredmény: [#36](https://github.com/RobCZart82/yaman1x/pull/36),
+Korábbi, #36-hoz tartozó platformeredmény: [#36](https://github.com/RobCZart82/yaman1x/pull/36),
 `6f3fbf6c22b9f3bfc28f78d0fc1bad55ed98ed8c`: Linux/macOS/Windows platformonként
 **22/22 tesztcsoport PASS**, MSan és teljes macOS MAME-build PASS. A konkrét
 futások a lezárási táblában vannak. Helyben Windows alatt 21 futtatható csoport
@@ -224,6 +223,10 @@ Részletek: [STATUS](STATUS.md), [SCI-megfigyelések](sci-state-milestone.md),
   megfelelőségének ellenőrzése továbbra is nyitott.
 
 A [kétcsatornás SCI MMIO/IRQ-adapter](h83002-sci-mmio-irq.md) szintén elkészült: bájt-/szóhozzáférés, DMA-elsőbbség és csatornánkénti vektorkiosztás.
+
+Az önálló SCI-idővonal (#41), CPU-hoszthatár (#42), buszsegédek (#43),
+cikluskeret (#44) és [végrehajtási sorrend](h8-execution-runner.md) elkészült.
+Ez még nem generált H8-utasításvégrehajtás.
 
 Nyitott feladatok, végrehajtási sorrendben:
 
@@ -487,3 +490,7 @@ PR: [#44](https://github.com/RobCZart82/yaman1x/pull/44), ág: `feat/h8-executio
 Local validation / helyi ellenőrzés: macOS arm64 Release, 27/27 CTest groups and 74 Python cases PASS; new native ASan/UBSan and source/notice audits PASS. Final PR-head CI pending.
 
 2026-10-27 dokumentációs lezárás: #44 beolvadt, végső head mind az öt CI-je PASS. A motor legutóbbi helyi eredménye 27/27 CTest-csoport és 74 Python-eset PASS. CPU-opcode végrehajtás, M0 teljes lezárása és M1/audio továbbra is nyitott.
+
+## 2026-10-28 — H8 teljes/részutasítás-futtatási sorrend
+
+Ág: `feat/h8-execution-order`, alap: beolvadt #45. A [futtatókeret](h8-execution-runner.md) összeköti a ciklustartozást, perifériahatáridőket és full/partial callback-sorrendet. 200000 eseményes referencia-szelet, nulla eltérés az eredeti execute_run metódussal szintetikus kezelők mellett. Natív sorrend-/hiba-/1000 felosztási teszt. M0 részben teljesült; valódi CPU-utasítások, IRQ-belépés, firmware/MIDI/audio nem igazolt. A jelölt saját platform-CI-je külön ellenőrizendő.

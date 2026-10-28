@@ -5,17 +5,17 @@ Recorded: 2026-10-27. Product: YamAN1x. Repository: `yaman1x`. First public rese
 The repository contains a ROM-free C++/Python development foundation.
 No VST3, AU, GUI or AN1x audio output is available yet.
 
-Current baseline: merged PR #44, `b644b6e1c471f8632ea086d75bd37d20b5ebbeb4`.
+Current baseline: merged PR #45, `ed966cef79eb33eb309165e9e9d6edca920410ea`.
 The [first-sound plan](FIRST_REAPER_SOUND_PLAN.md) tracks M0 as partial, M1 as
 prepared and M2–M6 as research/planned. Completed helper components do not
 establish a complete CPU or firmware boot. Changes and their provenance are
 indexed in the [development ledger](DEVELOPMENT_LOG.md).
 
-Current verified suite: **27 CTest groups, 74 Python cases**. PRs #39–#44 are merged and each final head has five successful GitHub checks; see the [closure ledger](DEVELOPMENT_LOG.md). Earlier component counts and pending-CI notes describe their historical snapshots. Full CPU opcode execution, M0 closure and firmware/audio acceptance remain open.
+Merged #45 suite: **27 CTest groups, 74 Python cases**. Current execution-runner candidate: **28 CTest groups, 76 Python cases**; final candidate CI remains pending. PRs #39–#44 are merged and each final head has five successful GitHub checks; see the [closure ledger](DEVELOPMENT_LOG.md). Earlier component counts and pending-CI notes describe their historical snapshots. Full CPU opcode execution, M0 closure and firmware/audio acceptance remain open.
 
 ## Current standalone engine increment
 
-The [H83002 SCI MMIO/IRQ adapter](h83002-sci-mmio-irq.md), PR #39, connects both asynchronous channels to the standalone interrupt controller. Byte/word lane, DMA priority, debugger side effects, reset and isolation tests pass locally; the ROM-free suite now has 27 groups. CPU scheduling and firmware integration remain open. See the dated entry in the [development plan](FIRST_REAPER_SOUND_PLAN.md).
+The [H83002 SCI MMIO/IRQ adapter](h83002-sci-mmio-irq.md), PR #39, connects both asynchronous channels to the standalone interrupt controller. Byte/word lane, DMA priority, debugger side effects, reset and isolation tests pass locally; the historical SCI-MMIO increment added one group. CPU scheduling and firmware integration remain open. See the dated entry in the [development plan](FIRST_REAPER_SOUND_PLAN.md).
 
 ## Observed and tested
 
@@ -107,7 +107,7 @@ Fresh scope and evidence: [repository audit](REPOSITORY_AUDIT_2026-10-27.md).
 
 ## Current scheduling increment
 
-The [bounded cycle dispatcher](cycle-dispatcher.md) provides monotonic, resumable event processing with explicit budgets and callback-failure handling. It is now combined with merged SCI integration PR #39. This branch has 27 CTest groups and 60 Python cases. A two-channel SCI event owner is now implemented; CPU integration and hardware-validated tie ordering remain open.
+The [bounded cycle dispatcher](cycle-dispatcher.md) provides monotonic, resumable event processing with explicit budgets and callback-failure handling. It is now combined with merged SCI integration PR #39. At this increment the historical Python count was 60; current counts are in the summary above. A two-channel SCI event owner is now implemented; CPU integration and hardware-validated tie ordering remain open.
 
 ## SCI event-owner increment
 
@@ -115,12 +115,16 @@ The [two-channel SCI cycle timeline](sci-cycle-timeline.md) combines immutable t
 
 ## CPU host-boundary preparation
 
-The [H8 host-services report](h8-host-services-boundary.md) records reviewed token references across 30 candidate sources and four verified generated outputs. Two independent regenerations match byte-for-byte. Word-address alignment and execution-budget carry are documented requirements for the future host adapter. This is source evidence, not compiler/linker closure; no new CPU execution is claimed. The source-only suite remains 25 CTest groups and now includes 68 Python cases.
+The [H8 host-services report](h8-host-services-boundary.md) records reviewed token references across 30 candidate sources and four verified generated outputs. Two independent regenerations match byte-for-byte. Word-address alignment and execution-budget carry are documented requirements for the future host adapter. This is source evidence, not compiler/linker closure; no new CPU execution is claimed. At #42, the historical suite contained 25 CTest groups and 68 Python cases.
 
 ## H8H bus-access increment
 
-The [standalone bus helpers](h8h-bus-access.md) preserve two-cycle pre-access charging, separate instruction/data paths and aligned word access. Local comparison against five original pinned MAME method bodies: 200,000 mixed operations, zero differences. Native tests cover all 65,536 word values and failure/isolation contracts. The source-only suite now has 26 CTest groups and 72 Python cases. No full CPU or Yamaha firmware execution is established.
+The [standalone bus helpers](h8h-bus-access.md) preserve two-cycle pre-access charging, separate instruction/data paths and aligned word access. Local comparison against five original pinned MAME method bodies: 200,000 mixed operations, zero differences. Native tests cover all 65,536 word values and failure/isolation contracts. At #43, the historical suite contained 26 CTest groups and 72 Python cases. No full CPU or Yamaha firmware execution is established.
 
 ## H8 execution-budget increment
 
-The [execution budget](h8-execution-budget.md) isolates inter-slice debt and peripheral-deadline arithmetic. Original-method comparison: 200,000 synthetic no-event slices plus 200,000 deadline calculations, zero differences. Native bus/budget tests cover 1,000 partition histories and boundary/error/isolation cases. The suite now has 27 CTest groups and 74 Python cases. Actual full/partial opcode execution and complete CPU/peripheral scheduling remain open.
+The [execution budget](h8-execution-budget.md) isolates inter-slice debt and peripheral-deadline arithmetic. Original-method comparison: 200,000 synthetic no-event slices plus 200,000 deadline calculations, zero differences. Native bus/budget tests cover 1,000 partition histories and boundary/error/isolation cases. At #44, the historical suite contained 27 CTest groups and 74 Python cases. Actual full/partial opcode execution and complete CPU/peripheral scheduling remain open.
+
+## H8 execution-order candidate — 2026-10-28
+
+The [runner](h8-execution-runner.md) composes initial update, carry, peripheral catch-up and full/partial callbacks. A fail-stop callback bound detects nonprogress. Original-method comparison across 200,000 eventful synthetic slices has zero differences. Actual generated handlers, CPU state, IRQ entry and firmware/audio acceptance remain open; M0 stays partial.

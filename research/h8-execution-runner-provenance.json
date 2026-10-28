@@ -1,0 +1,12 @@
+{
+  "upstream_commit": "706dbb73281320c54d7c2f16262c1c3786f2be01",
+  "inputs": {
+    "src/devices/cpu/h8/h8.cpp": {
+      "bytes": 31776,
+      "sha256": "89826ddcf2ab4116942a83ce3138206091a635ed8994f61787e10c8cb9870e48",
+      "license": "BSD-3-Clause",
+      "copyright_holder": "Olivier Galibert"
+    }
+  },
+  "adaptation": "src/h8_execution_runner.h: execute_run full/partial/peripheral ordering composed with reviewed budget arithmetic; explicit callback fail-stop bound. No opcode implementation, IRQ entry or firmware execution."
+}
