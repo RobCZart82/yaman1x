@@ -13,8 +13,7 @@ adds immediate32, indirect byte accesses and every rel8 condition. Immediate M0
 work now includes the [word/long and prefix extension](h8-word-long-memory.md).
 Selected [arithmetic/compare forms](h8-arithmetic-flags.md) are now implemented.
 The [carry/register/logic extension](h8-carry-register-logic.md) adds selected
-remaining arithmetic and logic. Next are two-bit shift/rotate forms and
-bit operations, then stack/IRQ and explicit CPU/peripheral scheduling integration. M1 protocol research can proceed
+remaining arithmetic and logic. Next are memory bit operations, then stack/IRQ and explicit CPU/peripheral scheduling integration. M1 protocol research can proceed
 independently in the pinned MAME harness. Neither milestone is complete.
 
 These tasks follow the first private source snapshot. No GUI work is planned
@@ -54,6 +53,6 @@ status and the ledger in step with each PR. Cross-platform ROM-free CI already
 exists; retain it alongside MSan and the separately filtered MAME build. Plugin,
 hardware and host support require their own evidence.
 
-Latest M0 increment: [word/long register OR/XOR/AND](h8-wide-register-logic.md), including guarded original 01f0 prefix execution. Next: shift/rotate and bit operations, then stack/control flow and IRQ/SCI integration. M0 remains partial.
 
-Latest M0 increment: [single-bit shift/rotate](h8-shift-rotate.md) for byte/word/long registers. Next: two-bit forms and bit operations, then stack/control flow and IRQ/SCI integration; M0 remains partial.
+
+Latest M0 increment: [register bit operations](h8-register-bit-operations.md). Next: memory bit forms and stack/control flow, then IRQ/SCI integration. Two-bit shifts are H8S/2000-specific in the pinned source and remain excluded from this H8H profile. M0 stays partial.

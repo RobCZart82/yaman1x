@@ -122,3 +122,5 @@ The [carry/register/logic extension](docs/h8-carry-register-logic.md) adds byte 
 Selected CPU extension: [H8 word/long register logic](docs/h8-wide-register-logic.md).
 
 Selected CPU extension: [H8 single-bit shifts and rotates](docs/h8-shift-rotate.md).
+
+Selected CPU extension: [H8 register bit operations](docs/h8-register-bit-operations.md).

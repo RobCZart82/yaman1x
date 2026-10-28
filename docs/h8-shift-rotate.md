@@ -53,3 +53,7 @@ cases PASS. One symlink-privilege Python case is explicitly excluded locally
 (WinError 1314); full CI runs 35 groups / 84 cases. Source audit: 416 files,
 201 upstream identities and one reviewed vendor edit; notices: 229 files / five
 license texts. Both selected generated-header checks PASS. Final PR CI pending.
+
+Profile correction (next increment): the pinned two-bit forms carry the s20
+(H8S/2000) marker and are absent in the H8H decoder. They are not a remaining
+H83002 task; see [register-bit extension](h8-register-bit-operations.md).
