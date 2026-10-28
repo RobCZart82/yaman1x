@@ -75,3 +75,11 @@ cases PASS. One symlink-privilege Python case explicitly excluded locally
 (WinError 1314); full CI runs 39 groups / 84 cases. Source audit: 425 files,
 201 upstream identities and one reviewed vendor edit; notices: 229 files / five
 texts. Both generated selections match locks. Final-head PR CI pending.
+
+Closure (2026-10-28): [PR #57](https://github.com/RobCZart82/yaman1x/pull/57) merged
+as `f8b6aa20834f209931e3e9bb9463cc47b5b7a540`; final tested head
+`bf3e7158a9a4dac6edb36ea4deb659bdf3c54cb1` passed all five jobs:
+[Linux/macOS/Windows](https://github.com/RobCZart82/yaman1x/actions/runs/40685365642),
+[MSan](https://github.com/RobCZart82/yaman1x/actions/runs/40685365647),
+[MAME](https://github.com/RobCZart82/yaman1x/actions/runs/40685365644).
+Earlier pending-CI text is a preparation snapshot, not a current blocker.

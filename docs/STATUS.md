@@ -5,15 +5,33 @@ Recorded: 2026-10-28. Product: YamAN1x. Repository: `yaman1x`. First public rese
 The repository contains a ROM-free C++/Python development foundation.
 No VST3, AU, GUI or AN1x audio output is available yet.
 
-Current baseline: merged PR #56, `a3c2eb8ba25fc40eaa5057cc388260e4fc58b9df`.
+Verified engine baseline: merged PR #57, `f8b6aa20834f209931e3e9bb9463cc47b5b7a540`. Later documentation commits do not change this tested engine baseline.
 The [first-sound plan](FIRST_REAPER_SOUND_PLAN.md) tracks M0 as partial, M1 as
 prepared and M2–M6 as research/planned. Completed helper components do not
 establish a complete CPU or firmware boot. Changes and their provenance are
 indexed in the [development ledger](DEVELOPMENT_LOG.md).
 
-Merged #56 suite: **38 CTest groups, 84 Python cases**, with all five final-head checks PASS. Current stack/control candidate: **39 CTest groups, 84 Python cases**; final candidate CI remains separate evidence. PRs #39–#44 are merged and each final head has five successful GitHub checks; see the [closure ledger](DEVELOPMENT_LOG.md). Earlier component counts and pending-CI notes describe their historical snapshots. Full CPU opcode execution, M0 closure and firmware/audio acceptance remain open.
+Merged #57 suite: **39 CTest groups, 84 Python cases**, all five final-head jobs PASS.
+Final tested head: `bf3e7158a9a4dac6edb36ea4deb659bdf3c54cb1`.
+[Platform CI](https://github.com/RobCZart82/yaman1x/actions/runs/40685365642),
+[MSan](https://github.com/RobCZart82/yaman1x/actions/runs/40685365647),
+[MAME](https://github.com/RobCZart82/yaman1x/actions/runs/40685365644).
+Local Windows: 38 runnable CTest groups / 83 Python cases PASS; one symlink-privilege
+case excluded (WinError 1314). There is no open engine candidate recorded in the ledger.
 
-## Current standalone engine increment
+Current subset: 366 selected original full/partial handlers, including normal H8H
+stack/control families and synthetic RTE frame restore. Next: remaining H8H opcode/
+addressing coverage, IRQ/TRAPA entry/filter integration, then common CPU/peripheral
+scheduling and machine integration. Full CPU, firmware MIDI, audio and REAPER
+acceptance remain open; M0 stays partial.
+
+## Historical component evidence — current state is above
+
+The following dated increments retain their preparation-time counts, open tasks
+and pending-CI notes. They are not current blockers; completed later work is
+summarized above and in the closure ledger.
+
+### SCI MMIO/IRQ adapter — historical #39 increment
 
 The [H83002 SCI MMIO/IRQ adapter](h83002-sci-mmio-irq.md), PR #39, connects both asynchronous channels to the standalone interrupt controller. Byte/word lane, DMA priority, debugger side effects, reset and isolation tests pass locally; the historical SCI-MMIO increment added one group. CPU scheduling and firmware integration remain open. See the dated entry in the [development plan](FIRST_REAPER_SOUND_PLAN.md).
 
@@ -149,26 +167,26 @@ The [arithmetic extension](h8-arithmetic-flags.md) executes selected ADD/SUB/CMP
 
 The [carry/register/logic extension](h8-carry-register-logic.md) retains 124 generated methods, adding sticky-Z carry byte arithmetic, wide register arithmetic, logic and immediate CCR storage. Over one million carry cases and 20,000 multi-byte programs agree with independent math; original-code comparison has zero differences across 200,000 slices. LDC stores I/CCR but does not implement IRQ input/entry. Wide register logic, shift/bit/stack and IRQ/SCI integration remain open.
 
-## Wide register logic — current candidate
+## Wide register logic — historical #52 preparation snapshot
 
 The [word/long register logic](h8-wide-register-logic.md) adds OR/XOR/AND and the original 01f0 prefix, with strict internal-state guards. 138 generated full/partial methods are retained. All 65536 extensions are checked; original-code comparison across 200000 slices has zero differences. M0 remains partial; shift/bit/stack/IRQ and CPU/SCI integration remain open.
 
-## Single-bit shifts and rotates — current candidate
+## Single-bit shifts and rotates — historical #53 preparation snapshot
 
 The [shift/rotate extension](h8-shift-rotate.md) adds all eight single-bit operations at byte/word/long width (186 retained generated methods). Independent bit-lane and signed-range controls, partial/debt and original-code comparisons pass. Two-bit forms, bit operations, stack/IRQ and CPU/SCI integration remain open; M0 is partial.
 
-## Register bit operations — current candidate
+## Register bit operations — historical #54 preparation snapshot
 
 The [register-bit extension](h8-register-bit-operations.md) retains 222 generated methods, adding byte register bit modification/test and carry boolean/load/store forms. Independent controls and 200000 original-code slices agree. Two-bit shifts are H8S/2000 forms, absent in the pinned H8H decoder, so they are excluded from this CPU profile. Memory bit forms, stack/control flow, IRQ and CPU/SCI integration remain open; M0 stays partial.
 
-## Indirect memory bit operations — current candidate
+## Indirect memory bit operations — historical #55 preparation snapshot
 
 The [indirect byte bit extension](h8-memory-bit-operations.md) retains 262 generated methods, original 7c/7d prefixes and 18 memory bit groups. Tests cover flags, addresses, rejected extensions, exact read/prefetch/write order, failures and partitioned execution. M0 remains partial; absolute forms, stack/control flow and IRQ/SCI integration remain open.
 
-## Absolute memory bit operations — current candidate
+## Absolute memory bit operations — historical #56 preparation snapshot
 
 The [absolute byte bit extension](h8-absolute-bit-operations.md) retains 302 generated methods, original 7e/7f prefixes and 18 abs8 bit groups. All short addresses, guarded extensions, flags and ordered bus effects are checked. M0 remains partial; stack/control flow and IRQ/SCI integration remain open.
 
-## Stack and control flow — current candidate
+## Stack and control flow — historical #57 preparation snapshot
 
 The [stack/control extension](h8-stack-control-flow.md) completes the normal fixed-profile H8H instruction families: pre/post MOV at all widths, all JMP/JSR forms, BSR rel8/16, all rel16 branches and RTS. Synthetic RTE frame restore is implemented; IRQ/TRAPA entry is separate and unsupported. 366 generated methods retained. M0 remains partial; full CPU and CPU/SCI integration remain open.
