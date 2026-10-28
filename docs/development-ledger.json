@@ -599,7 +599,28 @@
         40685365644
       ],
       "automated_review_source": "No automated review result present at closure; local source, independent matrices, negative control and original-code comparison inspected"
+    },
+    {
+      "pr": 58,
+      "title": "Reconcile development plan and ledger with merged engine baseline",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/58",
+      "kind": "documentation",
+      "merged_at_utc": "2026-10-28T12:47:56Z",
+      "merge_commit": "863d21abcde448d746b3b44c39a1eb61be455a15",
+      "reviewed_head": "a331d76f4d6a9dd4ab5e6d4b61de0b5145055f1d",
+      "status": "merged",
+      "ci_runs": [
+        40690053399,
+        40690053451
+      ]
     }
   ],
-  "active_change": null
+  "active_change": {
+    "id": "AUD-2026-10-28",
+    "branch": "audit/repository-2026-10-28",
+    "status": "in_review",
+    "audited_revision": "863d21abcde448d746b3b44c39a1eb61be455a15",
+    "summary": "Whole-repository review, refreshed native/reference/sanitizer evidence and current-count correction",
+    "validation": "Fresh local macOS arm64 Release 39/39 CTest, 84 Python cases, 200000 original-code slices, four CPU ASan/UBSan groups PASS; source/notice/link/ledger checks PASS. No engine code changes. Candidate PR CI pending."
+  }
 }

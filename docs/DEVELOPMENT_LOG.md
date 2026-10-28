@@ -46,7 +46,7 @@ kapcsolódó bizonyítékokat köti a PR-ekhez. A részletes mérföldkő-elfoga
 PR #16–#36 végső CI-revízióinak táblája továbbra is a
 [REAPER-tervben](FIRST_REAPER_SOUND_PLAN.md) marad. Az aktuális készültséget a
 [STATUS](STATUS.md), az audit megállapításait a
-[2026-10-27-es jelentés](REPOSITORY_AUDIT_2026-10-27.md) tartalmazza.
+[2026-10-28-as jelentés](REPOSITORY_AUDIT_2026-10-28.md) tartalmazza.
 
 A korábbi napló tehát már létezett a tervben; ez a dokumentum teljesebb,
 külön megtalálható könyvelést ad, és nem nyilvánít késznek nyitott mérföldkövet.
@@ -266,3 +266,7 @@ Korabeli jelöltbejegyzés: verem/vezérlésátadási fejlesztés: [PR #57](http
 A #57 lezárása a motoralaphoz rögzítve, a strukturált nyilvántartásban nincs nyitott motorjelölt. STATUS és roadmap egységesítve; korábbi jelöltbejegyzések megőrizve és történetiként jelölve. Az M0 következő feltétele már a hiányzó lefedettségre és gépintegrációra vonatkozik, nem az első CPU-fordításra. Dokumentációs javítás, új motor-/firmware-/audioelfogadás nélkül. Ellenőrzés: élő #57 merge/head és mind az öt CI-feladat, JSON-lezárás és egyedi PR-azonosítók, UTF-8 és helyi fájlhivatkozások, forrás- és értesítéslefedettségi audit.
 
 A dokumentációs egységesítés PR-je: [#58](https://github.com/RobCZart82/yaman1x/pull/58). A motoralap továbbra is a lezárt #57; a dokumentációs PR saját aktuális CI-/merge-állapotát a hivatkozott PR mutatja.
+
+## AUD-2026-10-28 — teljes repository-áttekintés
+
+Ág: `audit/repository-2026-10-28`; átvizsgált dokumentációs főág: #58, `863d21abcde448d746b3b44c39a1eb61be455a15`. [Jelentés](REPOSITORY_AUDIT_2026-10-28.md). Helyi macOS: 39/39 CTest, 84/84 Python, 200000 eredetimetódus-szelet, célzott négy CPU ASan/UBSan-csoport PASS; forrás/licenc/napló/link ellenőrizve. Reprodukálható motorhiba nem jelentkezett. STATUS elavult „current 27” bekezdése javítva. A jelentés két CI-fejlesztési javaslatot és a nyitott CPU/firmware/audio határokat rögzíti; motorkód és mérföldkő-készültség változatlan.
