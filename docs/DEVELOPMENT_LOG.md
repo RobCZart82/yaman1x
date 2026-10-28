@@ -419,3 +419,11 @@ Helyi lezárás: 54/54 CTest, 87 Python, célzott ASan/UBSan és forrás-/licenc
 ## DOC-CLOSE-ABSOLUTE-MEMORY-2026-10-28
 
 #75 lezárása az élő GitHub merge/head/időpont és öt sikeres ellenőrzés alapján rögzítve. A napló eleje, STATUS, REAPER-terv, README és strukturált ledger egységesítve; a korábbi jelöltleírások történetiek. A motoralap #75, nincs új motor-/firmware-/audioelfogadás. A dokumentációs PR saját CI-je külön követendő.
+
+## H8-LONG-ABSOLUTE-MEMORY-2026-10-29
+
+Ág: `feat/h8-long-absolute-memory`; [jegyzőkönyv](h8-long-absolute-memory.md). Négy abs16/abs32 MOV.L csoport, nyolc eredeti metódus (466 összesen),225 kiválasztott/39 hiányzó/135 kizárt sor. Négy szavas IR-puffer és snapshot/reference,0100 prefix ER-őrök; eredeti két szavas sorrend/átfordulás. Célzott összes abs16 cím, ER/CCR határpontok,201 felosztás és első/második írási hibák PASS. #76 dokumentációs PR még CI alatt; a mostani motorjelölt ettől külön kezelendő. Teljes teszt/ref/sanitizer lezárás folyamatban.
+
+Helyi lezárás: 55/55 CTest, 87 Python, célzott ASan/UBSan és forrás-/licenc-/feltöltési audit PASS. Eredeti dekóder/execute_run:200000 szelet nulla eltéréssel, mindnégy long-abs fetch-őr és minden korábbi őr teljesült. A régi65536 prefixkiterjesztés-orákulum32 új támogatott kódolással frissítve; érvénytelen ER8..15 szomszédok továbbra is tiltottak. #76 macOS várakozik; az új motor-PR csak a szülőmerge és saját végső CI miatt draft.
+
+#76 lezárva: négy sikeres CI, üres review-thread/változtatáskérés lista; merge `0c67fce0e32450709523e4ac01ae477a64633916`, head `ae753a6bc1418be4885645a38ae3fc757e7e293c`. #77 tisztán újraalapozva a mainre; korábbi szülővárakozása megszűnt. Saját végső CI/review még merge-kapu.

@@ -18,7 +18,7 @@ public:
     struct Snapshot {
         std::array<uint16_t,16> registers;
         uint32_t pc, ppc, npc, state, substate, tmp1, tmp2;
-        std::array<uint16_t,3> ir;
+        std::array<uint16_t,4> ir;
         uint16_t pir;
         uint8_t ccr, exr;
         int remaining, debt, taken_vector, taken_level;
@@ -66,6 +66,10 @@ private:
             } else if((m_inst_state&0xff08)==0x6d00) {
                 if(m_inst_state&0x80) {if(partial)mov_l_r32l_pr32h_partial();else mov_l_r32l_pr32h_full();}
                 else {if(partial)mov_l_r32ph_r32l_partial();else mov_l_r32ph_r32l_full();}
+            } else if((m_inst_state&0xfff8)==0x6b00) {if(partial)mov_l_abs16_r32l_partial();else mov_l_abs16_r32l_full();
+            } else if((m_inst_state&0xfff8)==0x6b80) {if(partial)mov_l_r32l_abs16_partial();else mov_l_r32l_abs16_full();
+            } else if((m_inst_state&0xfff8)==0x6b20) {if(partial)mov_l_abs32_r32l_partial();else mov_l_abs32_r32l_full();
+            } else if((m_inst_state&0xfff8)==0x6ba0) {if(partial)mov_l_r32l_abs32_partial();else mov_l_r32l_abs32_full();
             } else throw std::runtime_error("Unsupported H8 long-memory extension"); return;
         }
         if((m_inst_state&0xffff0000)==0x110000) {
@@ -596,7 +600,7 @@ private:
     int m_bcount=0;
     std::array<uint16_t,16> m_R{};
     uint32_t m_PC=0,m_PPC=0,m_NPC=0,m_inst_state=0x10000,m_inst_substate=0,m_TMP1=0,m_TMP2=0;
-    std::array<uint16_t,3> m_IR{};
+    std::array<uint16_t,4> m_IR{};
     uint16_t m_PIR=0;
     uint8_t m_CCR=0,m_EXR=0;
 #include "h8_first_handlers.h"

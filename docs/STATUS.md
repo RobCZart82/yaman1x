@@ -262,3 +262,7 @@ Audit baseline #58 (`863d21abcde448d746b3b44c39a1eb61be455a15`): fresh local mac
 ## Absolute32 memory candidate
 
 #74 merged as 758ad981253f8d3b5c72915f2fe5b60df560de97 with five successful checks. [Byte/word abs32 MOV](h8-absolute32-memory.md) adds four original groups (458 methods),221 selected/43 missing/135 excluded encoding rows. Full32-bit bus arguments and24-bit host mapping are checked separately. Long-width/displacement forms and firmware/audio remain open.
+
+## Long absolute memory candidate — 2026-10-29
+
+[Abs16/abs32 MOV.L](h8-long-absolute-memory.md) adds four original groups and a four-word instruction buffer. Candidate counts:466 methods,225 selected/39 missing/135 excluded encoding rows. The verified merged baseline above remains #75 until this candidate passes its own CI and merges.
