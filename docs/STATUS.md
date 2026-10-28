@@ -222,3 +222,7 @@ Audit baseline #58 (`863d21abcde448d746b3b44c39a1eb61be455a15`): fresh local mac
 [Fixed reset-SYSCR trap entry](h8-trapa-entry.md): 436 handlers, 211 selected / 53 missing / 135 excluded encoding rows; 44/44 local CTest groups, 87 Python, native sanitizer and original-reference checks PASS. Stacked PC follows pinned m_NPC behavior and is not hardware-validated. External IRQ/NMI and mutable SYSCR are not yet integrated.
 
 #63 merged as dfa7af9bc21c8fe2b91367ad88b91bd7a56ba498 with five successful checks. #64 TRAPA is next, rebased onto main with the Windows flat-dispatch fix; #65/#66 remain dependent candidates. Earlier pending paragraphs are historical.
+
+## External IRQ/NMI candidate
+
+[Fixed reset-SYSCR entry](h8-external-irq.md) binds an optional controller to the CPU, preserving noirq prefetch boundaries and original entry/acknowledgement order. 438 selected methods; instruction counts remain 211/53/135. Dedicated ROM-free IRQ/NMI, stack-fault and partition checks plus 200000 original-method reference slices. Still a stacked candidate after #64; full CPU/peripheral scheduling and firmware/audio acceptance remain open.

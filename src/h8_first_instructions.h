@@ -5,11 +5,12 @@
 #pragma once
 #include "h8_execution_runner.h"
 #include "h8h_bus_access.h"
+#include "h8h_irq_controller.h"
 #include <array>
 
 namespace yamanix {
 // Host: read_instruction_word, read/write_byte, read/write_word, update(cycle).
-// Fixed profile: advanced H8H, reset-SYSCR TRAPA; no external IRQ/DMA/DTC/trace/retry/standby support.
+// Fixed profile: advanced H8H, reset-SYSCR TRAPA; optional external IRQ/NMI controller; no DMA/DTC/trace/retry/standby support.
 // Bus accesses complete synchronously; the host owns address mapping.
 // Both host and immutable code memory must outlive the instance; no reentry.
 template<class Host> class H8FirstInstructions {
@@ -20,12 +21,12 @@ public:
         std::array<uint16_t,3> ir;
         uint16_t pir;
         uint8_t ccr, exr;
-        int remaining, debt, taken_vector;
+        int remaining, debt, taken_vector, taken_level;
         bool operator==(const Snapshot&) const = default;
     };
     // Deterministic research cold state, not verified hardware power-on values.
-    explicit H8FirstInstructions(Host& host, uint8_t initial_ccr=0)
-        : host_(host), m_icount(runner_.counter()), bus_(host,m_icount), m_CCR(initial_ccr) {}
+    explicit H8FirstInstructions(Host& host, uint8_t initial_ccr=0, H8hIrqController* irq=nullptr)
+        : host_(host), irq_(irq), m_icount(runner_.counter()), bus_(host,m_icount), m_CCR(initial_ccr) {}
     H8FirstInstructions(const H8FirstInstructions&)=delete;
     H8FirstInstructions& operator=(const H8FirstInstructions&)=delete;
     std::size_t run(uint64_t start,int cycles,std::size_t limit) {
@@ -34,7 +35,7 @@ public:
     bool failed() const {return runner_.failed();}
     Snapshot snapshot() const {
         return {m_R,m_PC,m_PPC,m_NPC,m_inst_state,m_inst_substate,m_TMP1,m_TMP2,
-                m_IR,m_PIR,m_CCR,m_EXR,m_icount,runner_.debt(),m_taken_irq_vector};
+                m_IR,m_PIR,m_CCR,m_EXR,m_icount,runner_.debt(),m_taken_irq_vector,m_taken_irq_level};
     }
 private:
     using u8=uint8_t; using u16=uint16_t; using s8=int8_t; using s16=int16_t; using s32=int32_t;
@@ -55,6 +56,8 @@ private:
     void dispatch(bool partial) {
         // Flat first-match exits avoid MSVC C1061 from a deep else-if chain.
         if(m_inst_state==0x10000) {if(partial)state_reset_partial();else state_reset_full(); return;
+        }
+        if(m_inst_state==0x10001) {if(partial)state_irq_partial();else state_irq_full(); return;
         }
         if((m_inst_state&0xffff0000)==0x20000) {
             if((m_inst_state&0xff08)==0x6900) {
@@ -449,12 +452,19 @@ private:
     uint16_t read16(uint32_t address){return bus_.read16(address);}
     void write16(uint32_t address,uint16_t data){bus_.write16(address,data);}
     bool access_to_be_redone()const{return false;}
-    void update_irq_filter() {} // IRQ entry is not supported by this fixed profile.
-    void prefetch_done(){m_inst_state=m_IR[0]=m_PIR;}
-    void prefetch_done_noirq(){prefetch_done();}
+    void update_irq_filter(){if(irq_)irq_->set_filter((m_CCR&F_I)?2:0,-1);}
+    void prefetch_done(){
+        if(irq_){const auto selected=irq_->current();if(selected.vector>0 && selected.level>=0){
+            m_taken_irq_vector=selected.vector;m_taken_irq_level=selected.level;m_inst_state=0x10001;return;
+        }}
+        m_inst_state=m_IR[0]=m_PIR;
+    }
+    void prefetch_done_noirq(){m_inst_state=m_IR[0]=m_PIR;}
     void prefetch_done_notrace(){prefetch_done();}
     // Fixed reset SYSCR=0x0b: H83002 trapa_setup sets I, vector base 8.
     int trapa_setup(){m_CCR|=F_I;return 8;}
+    void irq_setup(){m_CCR|=F_I;}
+    void interrupt_taken(){if(!irq_)throw std::logic_error("Missing IRQ owner");irq_->taken(m_taken_irq_vector);}
     void debugger_exception_hook(int vector){if constexpr(requires{host_.exception_hook(vector);})host_.exception_hook(vector);}
     bool exr_in_stack()const{return false;}
     void internal(int cycles){m_icount-=cycles+1;}
@@ -564,10 +574,11 @@ private:
     uint16_t do_rotr16(uint16_t v){return uint16_t(shift_rotate<16,7>(v));}
     uint32_t do_rotr32(uint32_t v){return uint32_t(shift_rotate<32,7>(v));}
     Host& host_;
+    H8hIrqController* irq_;
     H8ExecutionRunner runner_;
     int& m_icount;
     H8hBusAccess<Host> bus_;
-    int m_taken_irq_vector=0;
+    int m_taken_irq_vector=0,m_taken_irq_level=-1;
     int m_bcount=0;
     std::array<uint16_t,16> m_R{};
     uint32_t m_PC=0,m_PPC=0,m_NPC=0,m_inst_state=0x10000,m_inst_substate=0,m_TMP1=0,m_TMP2=0;

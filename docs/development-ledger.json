@@ -682,15 +682,30 @@
         40738801326,
         40738801482
       ]
+    },
+    {
+      "pr": 64,
+      "title": "Execute synchronous H83002 TRAPA entry in fixed reset-SYSCR profile",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/64",
+      "kind": "development",
+      "merge_commit": "ad1df979f17d7806d24f997f84d63fb087803675",
+      "reviewed_head": "c31fc8e1eeb2ed561b88831b1e433f3557ed0cbb",
+      "status": "merged",
+      "ci_runs": [
+        40743916629,
+        40743916622,
+        40743916646
+      ]
     }
   ],
   "active_change": {
-    "id": "H8-TRAPA-2026-10-28",
-    "branch": "feat/h8-trapa-entry",
+    "id": "H8-EXTERNAL-IRQ-2026-10-28",
+    "branch": "feat/h8-external-irq",
     "status": "in_review",
-    "pr": 64,
-    "url": "https://github.com/RobCZart82/yaman1x/pull/64",
-    "summary": "Synchronous TRAPA in fixed reset-SYSCR profile",
-    "validation": "Rebased onto merged #63, preserving flat-dispatch Windows fix. Local revalidation in progress; final-head CI required."
-  }
+    "pr": 65,
+    "parent_pr": 64,
+    "summary": "Optional fixed-reset-SYSCR IRQ/NMI entry",
+    "validation": "Parent #64 merged with all five checks successful. GitHub automatically rebased this branch onto main; tracked contents identical to locally validated c091847. Windows/Linux/MSan passed on d4fbd14; macOS pending. Metadata follow-up requires final-head CI."
+  },
+  "pending_changes": []
 }
