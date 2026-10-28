@@ -3,7 +3,7 @@
   "recorded_date": "2026-10-28",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "f8b6aa20834f209931e3e9bb9463cc47b5b7a540",
+  "baseline_commit": "18f7b7fa1b708c67cf7ed0baa2109d5f73c750db",
   "entries": [
     {
       "pr": 6,
@@ -621,14 +621,31 @@
       "kind": "documentation",
       "merge_commit": "717b8318b7a4d0f403915793a2b5676d485c588d",
       "reviewed_head": "af7f1d337f6da91455236543495dd270cd3c9ed4",
-      "status": "merged"
+      "status": "merged",
+      "merged_at_utc": "2026-10-28T14:30:47Z"
+    },
+    {
+      "pr": 60,
+      "title": "Map locked H8H encoding coverage and execute CCR register/immediate family",
+      "merge_commit": "18f7b7fa1b708c67cf7ed0baa2109d5f73c750db",
+      "reviewed_head": "e8dee6975054c4143abe36b3b8731b7cea510cf4",
+      "merged_at_utc": "2026-10-28T15:04:13Z",
+      "status": "merged",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/60",
+      "ci_runs": [
+        40709319349,
+        40709319468,
+        40709319329
+      ]
     }
   ],
   "active_change": {
-    "id": "H8-COVERAGE-CCR-2026-10-28",
-    "branch": "feat/h8-coverage-ccr",
+    "id": "H8-REGISTER-MOV-2026-10-28",
+    "branch": "feat/h8-register-transfers",
     "status": "in_review",
-    "summary": "Locked encoding-row inventory and CCR register/immediate family",
-    "validation": "Local macOS Release 40/40 CTest and 87 Python PASS; new native ASan/UBSan PASS; 200000 original-code slices zero differences. 181 selected / 83 missing / 135 excluded encoding rows. PR CI pending."
+    "summary": "Byte/word/long register MOV preserving lanes and original flag semantics",
+    "validation": "Local 41/41 CTest, 87 Python, native ASan/UBSan and reachable 200000-slice original reference PASS. Parent #60 merged with all five checks PASS. Rebased onto main; own final CI pending.",
+    "pr": 61,
+    "url": "https://github.com/RobCZart82/yaman1x/pull/61"
   }
 }

@@ -5,13 +5,13 @@ Recorded: 2026-10-28. Product: YamAN1x. Repository: `yaman1x`. First public rese
 The repository contains a ROM-free C++/Python development foundation.
 No VST3, AU, GUI or AN1x audio output is available yet.
 
-Verified engine baseline: merged PR #57, `f8b6aa20834f209931e3e9bb9463cc47b5b7a540`. Later documentation commits do not change this tested engine baseline.
+Verified engine baseline: merged PR #60, `18f7b7fa1b708c67cf7ed0baa2109d5f73c750db`. Later documentation commits do not change this tested engine baseline.
 The [first-sound plan](FIRST_REAPER_SOUND_PLAN.md) tracks M0 as partial, M1 as
 prepared and M2–M6 as research/planned. Completed helper components do not
 establish a complete CPU or firmware boot. Changes and their provenance are
 indexed in the [development ledger](DEVELOPMENT_LOG.md).
 
-Merged #57 suite: **39 CTest groups, 84 Python cases**, all five final-head jobs PASS.
+Historical #57 suite: **39 CTest groups, 84 Python cases**, all five final-head jobs PASS.
 Final tested head: `bf3e7158a9a4dac6edb36ea4deb659bdf3c54cb1`.
 [Platform CI](https://github.com/RobCZart82/yaman1x/actions/runs/40685365642),
 [MSan](https://github.com/RobCZart82/yaman1x/actions/runs/40685365647),
@@ -19,7 +19,7 @@ Final tested head: `bf3e7158a9a4dac6edb36ea4deb659bdf3c54cb1`.
 Local Windows: 38 runnable CTest groups / 83 Python cases PASS; one symlink-privilege
 case excluded (WinError 1314). There is no open engine candidate recorded in the ledger.
 
-Current subset: 366 selected original full/partial handlers, including normal H8H
+Historical #57 subset: 366 selected original full/partial handlers, including normal H8H
 stack/control families and synthetic RTE frame restore. Next: remaining H8H opcode/
 addressing coverage, IRQ/TRAPA entry/filter integration, then common CPU/peripheral
 scheduling and machine integration. Full CPU, firmware MIDI, audio and REAPER
@@ -198,3 +198,9 @@ Audit baseline #58 (`863d21abcde448d746b3b44c39a1eb61be455a15`): fresh local mac
 ## Coverage / CCR candidate
 
 [Coverage inventory and CCR](h8-coverage-and-ccr.md): 181 selected encoding rows, 83 missing and 135 excluded; 376 full/partial handlers. Candidate suite 40 CTest groups / 87 Python cases; IRQ/filter/firmware acceptance still open.
+
+## Register-transfer candidate
+
+[MOV register family](h8-register-transfers.md): 382 selected full/partial methods, coverage rows 184 selected / 80 missing / 135 excluded. Local candidate suite 41/41 CTest and 87 Python PASS; native sanitizer and 200000 original-reference slices PASS. IRQ and firmware acceptance unchanged.
+
+#60 closure: 376 handlers / 40 CTest groups / 87 Python cases; final head e8dee6975054c4143abe36b3b8731b7cea510cf4 passed all five CI jobs. #61 is the current register-MOV candidate (382 handlers / 41 groups), rebased on the merged main; its own CI is pending.

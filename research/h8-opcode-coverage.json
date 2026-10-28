@@ -4,8 +4,8 @@
   "profile": "advanced H8H, fixed no-IRQ research host",
   "counts": {
     "excluded_profile": 135,
-    "missing_handler": 83,
-    "selected_handler": 181
+    "missing_handler": 80,
+    "selected_handler": 184
   },
   "instructions": [
     {
@@ -1182,7 +1182,7 @@
       ],
       "method": "mov_b_r8h_r8l",
       "profile": "common",
-      "status": "missing_handler"
+      "status": "selected_handler"
     },
     {
       "line": 1012,
@@ -1196,7 +1196,7 @@
       ],
       "method": "mov_w_r16h_r16l",
       "profile": "common",
-      "status": "missing_handler"
+      "status": "selected_handler"
     },
     {
       "line": 1018,
@@ -1238,7 +1238,7 @@
       ],
       "method": "mov_l_r32h_r32l",
       "profile": "h",
-      "status": "missing_handler"
+      "status": "selected_handler"
     },
     {
       "line": 1053,
