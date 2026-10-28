@@ -792,15 +792,27 @@
         40768929422,
         40768929574
       ]
+    },
+    {
+      "pr": 73,
+      "title": "Verify CPU SCI overrun preservation and pending interrupt order",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/73",
+      "kind": "development",
+      "status": "merged",
+      "merge_commit": "8446d10b65c698b5fbc749279f696d69c100e5fc",
+      "reviewed_head": "c37346094ed6b35f068d8969a2401df40f010636",
+      "ci_runs": [
+        40773563109,
+        40773563008
+      ]
     }
   ],
   "active_change": {
-    "id": "H8-SCI-CPU-OVERRUN-2026-10-28",
-    "branch": "feat/h8-sci-cpu-overrun",
-    "status": "in_review",
-    "summary": "Unread RDR overrun, first-byte preservation and CPU pending IRQ ordering",
-    "validation": "52/52 local CTest,87 Python,targeted ASan/UBSan,source/notice/upload audits PASS. 512 cases/4802 splits; omitting second frame fails negative control. Engine unchanged. Parent #72 and final CI/review required. Parent #72 now merged after four successful checks; rebased cleanly onto main. Own final-head CI/review pending.",
-    "pr": 73
+    "id": "H8-ABSOLUTE-MEMORY-2026-10-28",
+    "branch": "feat/h8-absolute-memory",
+    "status": "in_development",
+    "summary": "Original abs8 byte and abs16 byte/word memory move families",
+    "validation": "53/53 local CTest,87 Python,targeted ASan/UBSan and source/notice/upload audits PASS.200000 original decoder/execute_run slices zero differences; all six reachable-form guards PASS.450 selected methods,217 selected encoding rows. Final-head CI/review required."
   },
   "pending_changes": []
 }

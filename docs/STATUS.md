@@ -254,3 +254,7 @@ Audit baseline #58 (`863d21abcde448d746b3b44c39a1eb61be455a15`): fresh local mac
 ## CPU SCI overrun candidate
 
 [Unread RDR and pending IRQ checks](h8-sci-cpu-overrun.md) verify ORER/RDRF and first-byte preservation across masked CPU time, then ERI and latched RXI service after unmasking. Synthetic fixed-profile evidence; depends on #72. Firmware/audio and combined-error/repeated-overrun coverage remain open.
+
+## Absolute memory candidate
+
+#73 overrun tests merged as 8446d10b65c698b5fbc749279f696d69c100e5fc with four successful checks. [Abs8 byte/abs16 byte-word MOV](h8-absolute-memory.md) adds six original groups (450 methods); encoding rows217 selected/47 missing/135 excluded. Abs32/displacements and full firmware/audio acceptance remain open.

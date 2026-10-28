@@ -380,3 +380,9 @@ Helyi lezárás: 51/51 CTest, 87 Python, célzott ASan/UBSan, forrás-/licenc-/f
 Helyi lezárás: 52/52 CTest, 87 Python, célzott ASan/UBSan és forrás-/licenc-/feltöltési audit PASS. Második frame nélküli negatív kontroll 2048 elfogadási hibát jelez. Motorkód változatlan. #72 macOS újrafutása folyamatban; az overrun jelölt szülőmerge és saját végső CI miatt draft.
 
 #72 lezárása: macOS újrafutás sikeres, négy zöld CI, üres review-thread/változtatáskérés lista; merge `f29f0373be4dc6ca866744c2a0d832d82eb7dfa6`, head `dceda74cfa1402f050649b14b91de531aa8d9fdf`. #73 tisztán újraalapozva a mainre és review-ra kész; a korábbi draft/szülővárakozás bejegyzés történeti. A végső head saját CI-je még merge-kapu.
+
+## H8-ABSOLUTE-MEMORY-2026-10-28
+
+Ág: `feat/h8-absolute-memory`; [jegyzőkönyv](h8-absolute-memory.md). Hat abs8/abs16 MOV-csoport, 12 eredeti full/partial metódus (450 összesen), leltár217 kiválasztott/47 hiányzó/135 kizárt. Összes abs16 cím, abs8 regisztersáv/érték/CCR, 201 felosztás és hat buszhibahely; elérhető eredeti referenciaciklus mindhat formára fetch-őrrel. #73 négy zöld CI és üres review-thread/változtatáskérés lista után beolvadt `8446d10b65c698b5fbc749279f696d69c100e5fc`, head `c37346094ed6b35f068d8969a2401df40f010636`. Teljes helyi teszt/ref/sanitizer lezárás folyamatban; saját végső CI külön kapu.
+
+Helyi lezárás: 53/53 CTest, 87 Python, célzott ASan/UBSan, forrás-/licenc-/feltöltési audit PASS. Eredeti dekóder/execute_run: 200000 szelet nulla eltéréssel, mindhat abszolút forma fetch-őre teljesült. A végső adatbuszhiba-tesztekkel az új cél külön újrafordítva és újrafuttatva. A 65536 elsőszavas dekóder-orákulum az újonnan támogatott abszolút kódolásokkal frissítve; szomszédos tiltott formák továbbra is elutasítva. Saját végső CI/review szükséges.
