@@ -510,8 +510,10 @@
   "active_change": {
     "id": "H8-WIDE-LOGIC-2026-10-28",
     "branch": "feat/h8-wide-register-logic",
-    "status": "in_progress",
+    "status": "pr_open",
     "summary": "Word/long register OR/XOR/AND with original 01f0 prefix and strict extension decoding",
-    "validation": "196608 word cases, 245760 alias/CCR combinations, 65536 extensions and 1000 partitions pass; original code 200000 slices zero differences; XOR-to-OR negative control detected. Final PR CI pending."
+    "validation": "196608 word cases, 245760 alias/CCR combinations, 65536 extensions and 1000 partitions pass; original code 200000 slices zero differences; XOR-to-OR negative control detected. Final PR CI pending.",
+    "pr": 52,
+    "url": "https://github.com/RobCZart82/yaman1x/pull/52"
   }
 }
