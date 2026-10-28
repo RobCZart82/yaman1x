@@ -526,8 +526,10 @@
   "active_change": {
     "id": "H8-SHIFT-ROTATE-2026-10-28",
     "branch": "feat/h8-shift-rotate",
-    "status": "in_progress",
+    "status": "pr_open",
     "summary": "Single-bit byte/word/long shifts and rotates with preserved CCR and partial execution",
-    "validation": "1744896 operand/CCR/lane cases and 1000 partitions; original-code 200000 slices zero differences; dropped rotate carry detected after explicit carry fixture strengthening. Final PR CI pending."
+    "validation": "1744896 operand/CCR/lane cases and 1000 partitions; original-code 200000 slices zero differences; dropped rotate carry detected after explicit carry fixture strengthening. Final PR CI pending.",
+    "pr": 53,
+    "url": "https://github.com/RobCZart82/yaman1x/pull/53"
   }
 }
