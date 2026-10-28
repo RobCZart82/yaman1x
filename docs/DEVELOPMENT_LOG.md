@@ -1,7 +1,7 @@
 # YamAN1x fejlesztési napló
 
 Frissítve: 2026-10-28. Időzóna: Europe/Budapest.
-Ellenőrzött alap: `ed966cef79eb33eb309165e9e9d6edca920410ea` (#45); #46 jelöltállapot alább.
+Ellenőrzött alap: `00e16ce805d542e4a654923ddde2d462ebac78bb` (#46); az új H8-utasításjelölt alább.
 
 ## Ellenőrzött lezárások — #39–#44
 
@@ -157,3 +157,9 @@ Local validation / helyi ellenőrzés: macOS arm64 Release, 27/27 CTest groups a
 ## H8-RUNNER-2026-10-28 — végrehajtási sorrend
 
 PR: [#46](https://github.com/RobCZart82/yaman1x/pull/46). Ág: `feat/h8-execution-order`, alap: #45. Korabeli jelöltállapot: H8 full/partial/periféria-sorrend a meglévő cikluskeret fölött, nem teljes CPU. 200000 eseményes referencia-szelet: 338598 update, 761211 full, 276336 partial callback, nulla eltérés. Natív 1000 felosztás és hibahatárok; két új Python regresszió. A Windows helyi teljes Python-csoport symlink-jogosultsági korlátját külön kezeljük; végső PR-head CI szükséges. Következő: tényleges generált kezelők és CPU-regiszterállapot. M0 részben teljesült.
+
+## H8-FIRST-2026-10-28 — első generált utasítások
+
+Előző lépcső lezárása: [#46](https://github.com/RobCZart82/yaman1x/pull/46): merge `00e16ce805d542e4a654923ddde2d462ebac78bb`, végső head `478294b0570b0140b0ba2c5f78b65fcc99fecaa4`; [Linux/macOS/Windows PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40637467656), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40637467504), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40637467588).
+
+PR: [#47](https://github.com/RobCZart82/yaman1x/pull/47). Ág: `feat/h8-first-generated-handlers`, alap: beolvadt #46. Korabeli jelöltállapot: nyolc eredeti generált full/partial kezelő (reset, NOP, MOV.B immediate, BRA rel8) fordul és fut saját CPU-állapottal a busz-/cikluskereten. Az összes többi opcode explicit hiba. 4096 regiszter/érték, 65536 jelzőbit-eset, 256 elágazási eltolás és 1000 futásfelosztás tesztelve. Eredeti H8H-dekóderrel/kezelőkkel/futtatóval 200000 szakasz és 899400 olvasás, nulla eltérés; szándékos regiszterhibát a kontroll észleli. Hat új Python regresszió. Részletek: [komponensszerződés](h8-first-instructions.md). Teljes CPU, IRQ/SCI integráció és firmware/audio nincs; M0 részben teljesült. A jelölt végső PR-head CI-je külön ellenőrizendő.

@@ -1,17 +1,17 @@
 # Development status
 
-Recorded: 2026-10-27. Product: YamAN1x. Repository: `yaman1x`. First public research snapshot: 2026-10-26.
+Recorded: 2026-10-28. Product: YamAN1x. Repository: `yaman1x`. First public research snapshot: 2026-10-26.
 
 The repository contains a ROM-free C++/Python development foundation.
 No VST3, AU, GUI or AN1x audio output is available yet.
 
-Current baseline: merged PR #45, `ed966cef79eb33eb309165e9e9d6edca920410ea`.
+Current baseline: merged PR #46, `00e16ce805d542e4a654923ddde2d462ebac78bb`.
 The [first-sound plan](FIRST_REAPER_SOUND_PLAN.md) tracks M0 as partial, M1 as
 prepared and M2–M6 as research/planned. Completed helper components do not
 establish a complete CPU or firmware boot. Changes and their provenance are
 indexed in the [development ledger](DEVELOPMENT_LOG.md).
 
-Merged #45 suite: **27 CTest groups, 74 Python cases**. Current execution-runner candidate: **28 CTest groups, 76 Python cases**; final candidate CI remains pending. PRs #39–#44 are merged and each final head has five successful GitHub checks; see the [closure ledger](DEVELOPMENT_LOG.md). Earlier component counts and pending-CI notes describe their historical snapshots. Full CPU opcode execution, M0 closure and firmware/audio acceptance remain open.
+Merged #46 suite: **28 CTest groups, 76 Python cases**, with all five final-head checks PASS. Current first-instruction candidate: **29 CTest groups, 82 Python cases**; final candidate CI remains separate evidence. PRs #39–#44 are merged and each final head has five successful GitHub checks; see the [closure ledger](DEVELOPMENT_LOG.md). Earlier component counts and pending-CI notes describe their historical snapshots. Full CPU opcode execution, M0 closure and firmware/audio acceptance remain open.
 
 ## Current standalone engine increment
 
@@ -125,6 +125,10 @@ The [standalone bus helpers](h8h-bus-access.md) preserve two-cycle pre-access ch
 
 The [execution budget](h8-execution-budget.md) isolates inter-slice debt and peripheral-deadline arithmetic. Original-method comparison: 200,000 synthetic no-event slices plus 200,000 deadline calculations, zero differences. Native bus/budget tests cover 1,000 partition histories and boundary/error/isolation cases. At #44, the historical suite contained 27 CTest groups and 74 Python cases. Actual full/partial opcode execution and complete CPU/peripheral scheduling remain open.
 
-## H8 execution-order candidate — 2026-10-28
+## H8 execution-order historical candidate — 2026-10-28
 
 The [runner](h8-execution-runner.md) composes initial update, carry, peripheral catch-up and full/partial callbacks. A fail-stop callback bound detects nonprogress. Original-method comparison across 200,000 eventful synthetic slices has zero differences. Actual generated handlers, CPU state, IRQ entry and firmware/audio acceptance remain open; M0 stays partial.
+
+## First generated H8 instructions — 2026-10-28 candidate
+
+The [limited execution profile](h8-first-instructions.md) executes real generated reset, NOP, MOV.B immediate and BRA rel8 handlers with owned CPU register/prefetch/substate storage. Other opcodes fail explicitly; IRQ/DMA/trace/retry/standby are disabled. Original H8H decoder/handlers and execute_run agree across 200,000 synthetic slices and 899,400 instruction reads, with a detected negative control. This is first opcode execution, not a complete CPU or firmware boot. M0 remains partial. Next: memory instructions, conditional branches, IRQ entry and CPU/SCI ordering.

@@ -93,3 +93,5 @@ The H8H bus-access helpers retain BSD-3-Clause/Olivier Galibert notices. Their e
 The H8 execution-budget arithmetic retains the same MAME BSD notices; exact `h8.cpp` source identity and scope are in `research/h8-execution-budget-provenance.json`.
 
 The H8 execution-order runner retains the same MAME BSD notices; scope and source identity: `research/h8-execution-runner-provenance.json`. Original reference method bodies remain outside tracked sources.
+
+The first-instruction research subset retains Olivier Galibert BSD-3-Clause notices for eight selected generated H8 handlers and adapted host helpers. `research/h8-first-instructions-provenance.json` records source/generated identities and adaptations; `tools/check_h8_first_instructions.py` checks the selection against the locked full generated output. No additional Yamaha data or new upstream revision is imported.
