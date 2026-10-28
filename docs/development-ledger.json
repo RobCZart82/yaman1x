@@ -542,8 +542,10 @@
   "active_change": {
     "id": "H8-REGISTER-BITS-2026-10-28",
     "branch": "feat/h8-register-bit-operations",
-    "status": "in_progress",
+    "status": "pr_open",
     "summary": "Register byte bit operations, original bodies and H8H instruction-profile correction",
-    "validation": "8126464 independent cases, 1000 partitions; original-code 200000 slices zero differences; toggle-to-set negative control detected. Final PR CI pending."
+    "validation": "8126464 independent cases, 1000 partitions; original-code 200000 slices zero differences; toggle-to-set negative control detected. Final PR CI pending.",
+    "pr": 54,
+    "url": "https://github.com/RobCZart82/yaman1x/pull/54"
   }
 }
