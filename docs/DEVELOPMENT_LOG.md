@@ -290,3 +290,7 @@ A dokumentációs egységesítés PR-je: [#58](https://github.com/RobCZart82/yam
 ### #61 lezárása, #62 előkészítése
 
 #61 mind az öt ellenőrzése zöld, nyitott review-thread és változtatáskérés nélkül beolvasztva: `9cedcdf92d0330103fbeac24932c5c13e3924b3a`, ellenőrzött head `c36473985c685147867f9b56ecd250b9377d037a`. A korábbi piros macOS-futások futtatóhiány miatt szakadtak meg; az újrafuttatások sikeresek. #62 önálló változtatása a friss mainre újraalapozva; saját végső CI-je még külön kapu. #63–#66 továbbra is függőségi draft.
+
+### #62 CI-indítás javítása
+
+A főágra célzás és ready állapot önmagában nem indított workflow-t: az újraalapozott commit feltöltésekor a PR még a korábbi feature ágat célozta, a workflow-k pedig csak main célágra indulnak. Az élő Actions API az `1d0cd3d2df4a6dfcb319822ec5a034c1aece8bc0` headhez nulla futást mutatott. Ez a naplófrissítés a már mainre célzott PR szinkronizálásával indítja a szükséges ellenőrzéseket. A következő lépcsőknél a main célág beállítása után történjen a végső feltöltés. Motorkód változatlan; nincs CI- vagy merge-szabály megkerülés.
