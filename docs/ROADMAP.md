@@ -6,15 +6,27 @@ audible firmware-driven VST3 voice in REAPER:
 
 Changes/fixes are recorded in the [development ledger](DEVELOPMENT_LOG.md).
 The [repository audit](REPOSITORY_AUDIT_2026-10-27.md) identifies current gaps.
-The standalone SCI interrupt/MMIO adapter is implemented in PR #39.
-The [first generated instruction subset](h8-first-instructions.md) now executes
-reset/NOP/MOV.B/BRA and the [memory/branch extension](h8-memory-branches.md)
-adds immediate32, indirect byte accesses and every rel8 condition. Immediate M0
-work now includes the [word/long and prefix extension](h8-word-long-memory.md).
-Selected [arithmetic/compare forms](h8-arithmetic-flags.md) are now implemented.
-The [carry/register/logic extension](h8-carry-register-logic.md) adds selected
-remaining arithmetic and logic. Next are memory bit operations, then stack/IRQ and explicit CPU/peripheral scheduling integration. M1 protocol research can proceed
-independently in the pinned MAME harness. Neither milestone is complete.
+Verified engine baseline: merged [PR #57](https://github.com/RobCZart82/yaman1x/pull/57),
+`f8b6aa20834f209931e3e9bb9463cc47b5b7a540`. See [current status](STATUS.md)
+for final-head CI and local environment limits. The [CPU subset](h8-first-instructions.md)
+already builds and executes 366 original full/partial handlers, including memory,
+arithmetic/logic, single-bit shifts/rotates, byte bit operations and normal
+[stack/control flow](h8-stack-control-flow.md). RTE frame restoration is tested
+synthetically; interrupt delivery is not implemented. H8S two-bit shifts remain
+outside this H8H profile.
+
+Next M0 work, in order:
+
+1. Inventory and close missing H8H opcodes/addressing; implement IRQ/TRAPA entry
+   and CPU interrupt-filter integration against the pinned reference.
+2. Connect CPU, address map/MMIO and existing peripherals to a common scheduler;
+   verify event ordering, isolation, reset and partition-independent execution.
+3. Close whole-machine dependency/distribution requirements. Source notice checks
+   alone are not legal or binary release clearance.
+
+M0 remains partial. M1 protocol research can proceed independently in the pinned
+MAME harness. M1 firmware MIDI acceptance and M2–M6 audio/plugin work remain open.
+The research items below are evidence requirements, not a second implementation order.
 
 These tasks follow the first private source snapshot. No GUI work is planned
 before the engine has a validated signal path.
@@ -52,13 +64,3 @@ Repository work: keep source/notice audits, dependency provenance, current
 status and the ledger in step with each PR. Cross-platform ROM-free CI already
 exists; retain it alongside MSan and the separately filtered MAME build. Plugin,
 hardware and host support require their own evidence.
-
-
-
-Latest M0 increment: [register bit operations](h8-register-bit-operations.md). Next: memory bit forms and stack/control flow, then IRQ/SCI integration. Two-bit shifts are H8S/2000-specific in the pinned source and remain excluded from this H8H profile. M0 stays partial.
-
-Latest M0 increment: [register-indirect memory bit operations](h8-memory-bit-operations.md). Next: absolute bit forms and stack/control flow, then IRQ/SCI integration; M0 stays partial.
-
-Latest M0 increment: [absolute-byte memory bit operations](h8-absolute-bit-operations.md). Next: stack/control flow, then IRQ/SCI integration; M0 stays partial.
-
-Latest M0 increment: [fixed-profile H8H stack/control flow](h8-stack-control-flow.md), including synthetic RTE frame restore. Normal stack/control families implemented; IRQ/TRAPA entry, remaining CPU coverage and CPU/SCI integration are next. M0 stays partial.

@@ -1,29 +1,38 @@
 # YamAN1x: fejlesztési terv az első REAPER-ben megszólaló hangig
 
-## Ellenőrzött lezárások — #39–#44
-
-Ellenőrizve: 2026-10-27. Mind a hat PR beolvadt; mindegyik végső headjén öt ellenőrzés PASS. Az alábbi lezárás az irányadó a korábbi, készítéskori „CI pending / review alatt” megjegyzésekkel szemben. Azok történeti pillanatképek, nem aktuális akadályok. A PR-head CI nem hardver-/firmware-/audioelfogadás.
-
-| PR | Ellenőrzött head | Linux/macOS/Windows | MSan | MAME |
-|---|---|---|---|---|
-| [#39](https://github.com/RobCZart82/yaman1x/pull/39) | `9459a805af0834c5ad66329f0f1b037a9354b08d` | [Linux](https://github.com/RobCZart82/yaman1x/actions/runs/40533549011/job/122292566377) / [macOS](https://github.com/RobCZart82/yaman1x/actions/runs/40533549011/job/122292566528) / [Windows](https://github.com/RobCZart82/yaman1x/actions/runs/40533549011/job/122292565993) PASS | [PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40533549567/job/122292568462) | [PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40533549032/job/122370894035) |
-| [#40](https://github.com/RobCZart82/yaman1x/pull/40) | `34cec0074577a1add862772bcf3bc289de735b68` | [Linux](https://github.com/RobCZart82/yaman1x/actions/runs/40557237913/job/122376453074) / [macOS](https://github.com/RobCZart82/yaman1x/actions/runs/40557237913/job/122376453726) / [Windows](https://github.com/RobCZart82/yaman1x/actions/runs/40557237913/job/122376453515) PASS | [PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40557238091/job/122376454019) | [PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40557237934/job/122376453689) |
-| [#41](https://github.com/RobCZart82/yaman1x/pull/41) | `387c5e64c0ee9759b3d41dfa58bcda1b35594731` | [Linux](https://github.com/RobCZart82/yaman1x/actions/runs/40566011632/job/122407943734) / [macOS](https://github.com/RobCZart82/yaman1x/actions/runs/40566011632/job/122407943358) / [Windows](https://github.com/RobCZart82/yaman1x/actions/runs/40566011632/job/122407943754) PASS | [PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40566011629/job/122407456482) | [PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40566012882/job/122408084911) |
-| [#42](https://github.com/RobCZart82/yaman1x/pull/42) | `a67b599f880f0981d68e04b276b0d904ea3f7d29` | [Linux](https://github.com/RobCZart82/yaman1x/actions/runs/40573072777/job/122432580997) / [macOS](https://github.com/RobCZart82/yaman1x/actions/runs/40573072777/job/122432580920) / [Windows](https://github.com/RobCZart82/yaman1x/actions/runs/40573072777/job/122432580479) PASS | [PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40573072700/job/122432444681) | [PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40573072611/job/122432149653) |
-| [#43](https://github.com/RobCZart82/yaman1x/pull/43) | `83caf332df3539037187888c60bc35ae422dc2a3` | [Linux](https://github.com/RobCZart82/yaman1x/actions/runs/40580107525/job/122457473798) / [macOS](https://github.com/RobCZart82/yaman1x/actions/runs/40580107525/job/122457474477) / [Windows](https://github.com/RobCZart82/yaman1x/actions/runs/40580107525/job/122457474285) PASS | [PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40580107561/job/122456981421) | [PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40580107642/job/122457680585) |
-| [#44](https://github.com/RobCZart82/yaman1x/pull/44) | `1bed694bdc066a66bcebb747ed74a052a4650c25` | [Linux](https://github.com/RobCZart82/yaman1x/actions/runs/40586879805/job/122481074548) / [macOS](https://github.com/RobCZart82/yaman1x/actions/runs/40586879805/job/122481074297) / [Windows](https://github.com/RobCZart82/yaman1x/actions/runs/40586879805/job/122481074723) PASS | [PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40586879809/job/122480613181) | [PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40586879880/job/122480584462) |
-
-
 Rögzítve: 2026-10-27. Kiindulópont: a #14 PR-ig beolvadt kutatási eredmények.
 Ez végrehajtási terv; az alábbi, még nyitott mérföldkövek nem kész funkciók.
-Állapotellenőrzés: 2026-10-28, alap: #56 (`a3c2eb8ba25fc40eaa5057cc388260e4fc58b9df`).
-Az új H8-futtatási sorrend komponensszintű előrelépés; nem teljes CPU- vagy firmware-elfogadás.
+Állapotellenőrzés: 2026-10-28, motoralap: #57 (`f8b6aa20834f209931e3e9bb9463cc47b5b7a540`).
+A működő H8H-részhalmaz nem teljes CPU- vagy firmware-elfogadás.
+
+## Aktuális lezárás — #57, 2026-10-28
+
+Ellenőrzött motoralap: [PR #57](https://github.com/RobCZart82/yaman1x/pull/57), merge
+`f8b6aa20834f209931e3e9bb9463cc47b5b7a540`. Végső tesztelt head:
+`bf3e7158a9a4dac6edb36ea4deb659bdf3c54cb1`.
+[Linux/macOS/Windows PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40685365642),
+[MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40685365647),
+[MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40685365644).
+A beolvadt csomag **39 CTest-csoportot és 84 Python-esetet** tartalmaz.
+Helyi Windows-ellenőrzés: 38 futtatható CTest-csoport és 83 Python-eset PASS;
+egy symlink-jogosultsági eset kizárva (WinError 1314). A CI a teljes csomagot futtatta.
+
+A normál, rögzített H8H-profil verem-/vezérlésátadási családjai elkészültek;
+366 eredeti full/partial kezelő szerepel a részhalmazban. Az RTE szintetikus
+veremkép-visszaállítása tesztelt, az IRQ/TRAPA-belépés még nincs bekötve.
+M0 részben teljesült; M1 nincs elfogadva; M2–M6 nyitott. Nincs igazolt AN1x-hang
+vagy REAPER-plugin. A következő motorfeladatok: hiányzó H8H-utasítások/címzések
+leltára, IRQ/TRAPA-belépés és szűrők, majd közös CPU/periféria-ütemezés és gépintegráció.
+
+A korábbi „aktív”, „jelölt”, „CI pending” és „következő” bejegyzések az akkori
+állapotot őrzik; a jelenlegi készültségre ez a lezárás és az aktuális mérföldkő-tábla
+irányadó. A dokumentáció mostani javítása nem új motorfejlesztés vagy elfogadás.
 
 ## Aktuális mérföldkő-állapot — 2026-10-28
 
 | Mérföldkő | Aktuális állapot | Következő elfogadási feltétel |
 |---|---|---|
-| M0 | **Részben teljesült.** Architektúra, forrásazonosítók, generálási alap, önálló GPIO és IRQ-adapter megvan; az önálló SCI belső ciklusóra, közös aszinkron SCI TX/RX-csatorna rendelkezésre áll; a kétcsatornás SCI MMIO/IRQ-adapter elkészült; a kétcsatornás SCI-idővonal, H8H-busz, cikluskeret és H8-futtatási sorrend komponensei rendelkezésre állnak; a generált részhalmaz rel8, byte/word/long memória, prefix és kiválasztott ADD/SUB/CMP, carry-input, byte/word/long regiszteres és immediate logikai, CCR-betöltési és egybites shift/rotate és regiszteres, indirekt és abszolút memóriás bitműveleti, valamint normál verem-/vezérlésátadási formákat támogat; a teljes CPU-utasításkészlet és gépintegráció nyitott. | Közös CPU/periféria-ütemező; tényleges H8 CPU-port fordítása és végrehajtási/izolációs tesztjei. A terjesztési licenc döntése nyitott. |
+| M0 | **Részben teljesült.** Architektúra és forrás-/licencnyilvántartás; tesztelt GPIO-, IRQ- és SCI-komponensek; működő önálló H8H-részhalmaz 366 eredeti kezelővel, a normál verem-/vezérlésátadási családokkal együtt. Az RTE veremkép-visszaállítása szintetikusan tesztelt. | Hiányzó H8H-utasítások/címzések lezárása; IRQ/TRAPA-belépés és szűrők; közös CPU/periféria-ütemező, teljes címtér/MMIO és gépizoláció. A részhalmaz már fordul és fut; a teljes CPU és a terjesztési licenc lezárása nyitott. |
 | M1 | **Előkészítve, nem teljesült.** A külön macOS MAME-build és a párosított helyi futtató rendelkezésre áll. | Friss Mac-firmware-próba: SCI0 tényleges bájtfogadás és note-on/note-off feldolgozás bizonyítása; PKS-kézfogás feltárása. |
 | M2–M3 | **Kutatási feladatok nyitva.** Nincs igazolt referenciahang. | AN1x órajel, táblacímzés, EG és soros hangút bizonyítása, majd megismételhető offline hang. |
 | M4–M6 | **Tervezett.** Nincs elkészült beágyazható hangszer vagy REAPER-elfogadás. | Validált offline referencia után audio-blokkmotor, VST3 és helyi REAPER-próba. |
@@ -40,6 +49,20 @@ futások a lezárási táblában vannak. Helyben Windows alatt 21 futtatható cs
 PASS; a Python unittest-csoportot a korábban igazolt symlink-jogosultsági korlát
 miatt kizártuk a helyi futásból. A teljes csoport CI-ben sikeres. Ez nem teljes
 helyi tesztcsomag-PASS, és nem firmware-es MIDI-elfogadás.
+
+## Ellenőrzött lezárások — #39–#44
+
+Ellenőrizve: 2026-10-27. Mind a hat PR beolvadt; mindegyik végső headjén öt ellenőrzés PASS. Az alábbi lezárás az irányadó a korábbi, készítéskori „CI pending / review alatt” megjegyzésekkel szemben. Azok történeti pillanatképek, nem aktuális akadályok. A PR-head CI nem hardver-/firmware-/audioelfogadás.
+
+| PR | Ellenőrzött head | Linux/macOS/Windows | MSan | MAME |
+|---|---|---|---|---|
+| [#39](https://github.com/RobCZart82/yaman1x/pull/39) | `9459a805af0834c5ad66329f0f1b037a9354b08d` | [Linux](https://github.com/RobCZart82/yaman1x/actions/runs/40533549011/job/122292566377) / [macOS](https://github.com/RobCZart82/yaman1x/actions/runs/40533549011/job/122292566528) / [Windows](https://github.com/RobCZart82/yaman1x/actions/runs/40533549011/job/122292565993) PASS | [PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40533549567/job/122292568462) | [PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40533549032/job/122370894035) |
+| [#40](https://github.com/RobCZart82/yaman1x/pull/40) | `34cec0074577a1add862772bcf3bc289de735b68` | [Linux](https://github.com/RobCZart82/yaman1x/actions/runs/40557237913/job/122376453074) / [macOS](https://github.com/RobCZart82/yaman1x/actions/runs/40557237913/job/122376453726) / [Windows](https://github.com/RobCZart82/yaman1x/actions/runs/40557237913/job/122376453515) PASS | [PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40557238091/job/122376454019) | [PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40557237934/job/122376453689) |
+| [#41](https://github.com/RobCZart82/yaman1x/pull/41) | `387c5e64c0ee9759b3d41dfa58bcda1b35594731` | [Linux](https://github.com/RobCZart82/yaman1x/actions/runs/40566011632/job/122407943734) / [macOS](https://github.com/RobCZart82/yaman1x/actions/runs/40566011632/job/122407943358) / [Windows](https://github.com/RobCZart82/yaman1x/actions/runs/40566011632/job/122407943754) PASS | [PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40566011629/job/122407456482) | [PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40566012882/job/122408084911) |
+| [#42](https://github.com/RobCZart82/yaman1x/pull/42) | `a67b599f880f0981d68e04b276b0d904ea3f7d29` | [Linux](https://github.com/RobCZart82/yaman1x/actions/runs/40573072777/job/122432580997) / [macOS](https://github.com/RobCZart82/yaman1x/actions/runs/40573072777/job/122432580920) / [Windows](https://github.com/RobCZart82/yaman1x/actions/runs/40573072777/job/122432580479) PASS | [PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40573072700/job/122432444681) | [PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40573072611/job/122432149653) |
+| [#43](https://github.com/RobCZart82/yaman1x/pull/43) | `83caf332df3539037187888c60bc35ae422dc2a3` | [Linux](https://github.com/RobCZart82/yaman1x/actions/runs/40580107525/job/122457473798) / [macOS](https://github.com/RobCZart82/yaman1x/actions/runs/40580107525/job/122457474477) / [Windows](https://github.com/RobCZart82/yaman1x/actions/runs/40580107525/job/122457474285) PASS | [PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40580107561/job/122456981421) | [PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40580107642/job/122457680585) |
+| [#44](https://github.com/RobCZart82/yaman1x/pull/44) | `1bed694bdc066a66bcebb747ed74a052a4650c25` | [Linux](https://github.com/RobCZart82/yaman1x/actions/runs/40586879805/job/122481074548) / [macOS](https://github.com/RobCZart82/yaman1x/actions/runs/40586879805/job/122481074297) / [Windows](https://github.com/RobCZart82/yaman1x/actions/runs/40586879805/job/122481074723) PASS | [PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40586879809/job/122480613181) | [PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40586879880/job/122480584462) |
+
 
 ## A terv folyamatos vezetése
 
@@ -58,6 +81,14 @@ késznek. A ROM-mentes CI sikere nem helyettesíti a hardver-, firmware-, audio-
 vagy REAPER-próbát. Tervváltozásnál az indokot és az új sorrendet is rögzíteni
 kell. A történeti eredményeket megőrizzük dátumozott bizonyítékként;
 az aktuális állapotot az új bejegyzés és az érintett mérföldkő együtt mutatja.
+
+A PR készítésekor a végső CI még nem ismert. Beolvasztás után a következő
+nyilvántartási frissítésben kötelező a merge SHA, végső head és tényleges CI-eredmény
+lezárása; az előző jelölt nem maradhat aktuális aktív fejlesztésként. A strukturált
+nyilvántartás motoralapja az utolsó ellenőrzött motorcommit, nem szükségszerűen a
+legújabb dokumentációs commit; `active_change: null` azt jelenti, nincs nyilvántartott
+nyitott motorjelölt. A dokumentációs PR saját CI-jét a PR lezárása rögzíti.
+
 ROM, bank és privát trace helyett csak publikálható azonosító és összefoglaló
 kerülhet a tervbe. A részletes mérési jegyzőkönyvekre hivatkozás mutasson.
 
@@ -226,13 +257,20 @@ A [kétcsatornás SCI MMIO/IRQ-adapter](h83002-sci-mmio-irq.md) szintén elkész
 
 Az önálló SCI-idővonal (#41), CPU-hoszthatár (#42), buszsegédek (#43),
 cikluskeret (#44) és [végrehajtási sorrend](h8-execution-runner.md) elkészült.
-A [következő jelölt](h8-first-instructions.md) nyolc valódi generált full/partial kezelőt kapcsol a kerethez (reset, NOP, MOV.B immediate, BRA rel8). Az új [memória-/elágazásbővítés](h8-memory-branches.md) ezt 44 kezelőre bővíti: 32 bites immediate, indirekt bájt load/store és minden rel8 feltétel. A [szó-/hosszúszó-bővítés](h8-word-long-memory.md) 56 kezelőre és prefixelt adatátvitelre lép tovább. Az [aritmetikai bővítés](h8-arithmetic-flags.md) 78 kezelőre lép tovább, matematikai és eredeti kódos jelzőbit-kontrollokkal. A [carry/regiszter/logika bővítés](h8-carry-register-logic.md) 124 kezelőre lép tovább; a CCR I bitje tárolható, de IRQ-elfogadás még nincs. A [széles regiszteres logika](h8-wide-register-logic.md) 138 kezelőre bővíti a készletet az eredeti 01f0 prefixszel. Az [egybites eltolás/forgatás](h8-shift-rotate.md) 186 kezelőre bővíti a részhalmazt. A [regiszteres bitműveletek](h8-register-bit-operations.md) 222 kezelőre bővítik a részhalmazt. Az [indirekt memóriás bitműveletek](h8-memory-bit-operations.md) 262 kezelőre bővítik a részhalmazt. Az [abszolút memóriás bitműveletek](h8-absolute-bit-operations.md) 302 kezelőre bővítik a részhalmazt. A [verem/vezérlés bővítés](h8-stack-control-flow.md) 366 kezelőre lép tovább; RTE-veremkép-visszaállítás tesztelt, de IRQ/TRAPA-belépés még nincs. Ez továbbra is részhalmaz, nem teljes CPU.
+A [beolvadt H8H-részhalmaz](h8-first-instructions.md) már fordul és eredeti
+full/partial kezelőket hajt végre. A jelenlegi 366 kezelő támogatott műveletei:
+memória és prefixek, rel8/rel16 feltételek, kiválasztott aritmetika/logika,
+egybites shift/rotate, regiszteres/indirekt/abszolút bitműveletek, normál
+[veremkezelés és vezérlésátadás](h8-stack-control-flow.md). Ez részhalmaz,
+nem teljes CPU. A korábbi bővítések és mérések az előrehaladási naplóban maradnak.
 
 Nyitott feladatok, végrehajtási sorrendben:
 
-1. Kialakítani a közös CPU/periféria-ütemezőt és az azonos idejű külső események
-   bizonyított sorrendjét; lezárni a tényleges H8-port keretrendszer- és
-   generáltkód-függőségeit, majd lefordítani és végrehajtani a CPU-portot.
+1. Leltározni és lezárni a hiányzó H8H-utasításokat/címzéseket; megvalósítani
+   az IRQ/TRAPA-belépést és a CPU megszakításszűrőinek bekötését. Az önálló
+   részhalmaz már fordul és fut; a teljes CPU lefedettsége még nem igazolt.
+   Ezután a közös CPU/periféria-ütemező és a teljes címtér/MMIO-gép összekötése,
+   az azonos idejű külső események sorrendjének külön igazolásával.
 2. A teljes gép CPU-/RAM-/periféria-/DSP-/MIDI-állapotának példányizolációját,
    resetjét és blokkfelosztástól független időléptetését igazolni.
 3. Az újonnan ténylegesen beépített függőségek licenceit lezárni; a saját kód
@@ -525,7 +563,7 @@ Előző lépcső lezárása: [#49](https://github.com/RobCZart82/yaman1x/pull/49
 
 Előző lépcső lezárása: [#50](https://github.com/RobCZart82/yaman1x/pull/50): merge `0f8d3ae96eb32dcabb3a039f40e5c0fd0315a1b9`, végső head `4bbea3449f5d73f15031332b537919b493a5defc`; [Linux/macOS/Windows PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40652119562), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40652119555), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40652119545). Automatikus review a `ddc8d51221838e64c9e849101756c1aeca260dce` forrásrevízión: kész, nincs találat; a követő commit csak PR-metaadatot rögzített.
 
-Aktív carry/regiszter/logika fejlesztés: [PR #51](https://github.com/RobCZart82/yaman1x/pull/51), `feat/h8-carry-register-logic`. Helyben 32 CTest-csoport és 83 Python-eset PASS; egy symlink-jogosultsági eset kihagyva. A végső head teljes CI-je külön ellenőrzendő; M0 részben teljesült.
+Korabeli jelöltbejegyzés: carry/regiszter/logika fejlesztés: [PR #51](https://github.com/RobCZart82/yaman1x/pull/51), `feat/h8-carry-register-logic`. Helyben 32 CTest-csoport és 83 Python-eset PASS; egy symlink-jogosultsági eset kihagyva. A végső head teljes CI-je külön ellenőrzendő; M0 részben teljesült.
 
 ## H8-WIDE-LOGIC-2026-10-28 — széles regiszteres logika
 
@@ -533,7 +571,7 @@ Előző lépcső lezárása: [#51](https://github.com/RobCZart82/yaman1x/pull/51
 
 Ág: `feat/h8-wide-register-logic`, alap: beolvadt #51. 138 eredeti generált full/partial kezelő: word/long regiszteres OR/XOR/AND és eredeti 01f0 prefix. 196608 word-eset, 245760 regiszter/CCR-kombináció, 65536 prefixkiterjesztés és 1000 felosztás PASS. Eredeti H8H-kóddal 200000 szakasz, nulla eltérés; XOR helyett OR hibát a kontroll észleli. [Szerződés és korlátok](h8-wide-register-logic.md). Helyben 33 natív CTest-csoport PASS; a teljes 34 csoport / 84 Python-eset végső CI-je külön ellenőrizendő. M0 részben teljesült; shift/rotate, bit, stack/IRQ és CPU/SCI-integráció nyitott.
 
-Aktív széles regiszteres logika: [PR #52](https://github.com/RobCZart82/yaman1x/pull/52), `feat/h8-wide-register-logic`. Helyi 33 natív csoport / 83 Python-eset PASS; a teljes végső head CI-je külön ellenőrizendő.
+Korabeli jelöltbejegyzés: széles regiszteres logika: [PR #52](https://github.com/RobCZart82/yaman1x/pull/52), `feat/h8-wide-register-logic`. Helyi 33 natív csoport / 83 Python-eset PASS; a teljes végső head CI-je külön ellenőrizendő.
 
 ## H8-SHIFT-ROTATE-2026-10-28 — egybites eltolás és forgatás
 
@@ -541,7 +579,7 @@ Előző lépcső lezárása: [#52](https://github.com/RobCZart82/yaman1x/pull/52
 
 Ág: `feat/h8-shift-rotate`, alap: beolvadt #52. 186 eredeti generált full/partial kezelő; SHLL/SHAL/SHLR/SHAR/ROTXL/ROTL/ROTXR/ROTR 8/16/32 biten. Független bitenkénti orákulum, signed-range overflow, 1744896 operandus/CCR/regisztersáv-eset, 1000 felosztás. Eredeti H8H-kóddal 200000 szakasz, nulla eltérés; a megerősített explicit carry-program a kihagyott ROTXR carry-t seed 2/slice 8 helyen észleli. [Szerződés és korlátok](h8-shift-rotate.md). M0 részben teljesült; kétbites változatok, bitműveletek, stack/IRQ és CPU/SCI-integráció nyitott. A jelölt teljes CI-je külön ellenőrizendő.
 
-Aktív egybites shift/rotate fejlesztés: [PR #53](https://github.com/RobCZart82/yaman1x/pull/53), `feat/h8-shift-rotate`. Helyi 34 natív csoport / 83 Python-eset PASS; a végső head teljes CI-je külön ellenőrizendő.
+Korabeli jelöltbejegyzés: egybites shift/rotate fejlesztés: [PR #53](https://github.com/RobCZart82/yaman1x/pull/53), `feat/h8-shift-rotate`. Helyi 34 natív csoport / 83 Python-eset PASS; a végső head teljes CI-je külön ellenőrizendő.
 
 ## H8-REGISTER-BITS-2026-10-28 — regiszteres bitműveletek
 
@@ -549,7 +587,7 @@ Előző lépcső lezárása: [#53](https://github.com/RobCZart82/yaman1x/pull/53
 
 Ág: `feat/h8-register-bit-operations`, alap: beolvadt #53. 222 eredeti generált full/partial kezelő; regiszteres/immediate BSET/BNOT/BCLR/BTST, BST/BIST és carry logikai/load formák. 8126464 független operandus/bitindex/CCR/átfedési eset, 1000 felosztás. Eredeti H8H-kóddal 200000 szakasz: nulla eltérés; a BNOT helyett BSET hibát seed 3/slice 51 helyen felismeri a kontroll. [Szerződés és korlátok](h8-register-bit-operations.md). **Tervpontosítás:** a kétbites shift/rotate az eredeti listában `s20` (H8S/2000), a H8H-dekóderben nincs; nem H83002-fejlesztési feladat. Memóriás bitműveletek, stack/control flow és IRQ/SCI-integráció nyitott; M0 részben teljesült. Végső jelölt-CI külön ellenőrizendő.
 
-Aktív regiszteres bitműveleti fejlesztés: [PR #54](https://github.com/RobCZart82/yaman1x/pull/54), `feat/h8-register-bit-operations`. Helyi 35 natív csoport / 83 Python-eset PASS; a végső head teljes CI-je külön ellenőrizendő.
+Korabeli jelöltbejegyzés: regiszteres bitműveleti fejlesztés: [PR #54](https://github.com/RobCZart82/yaman1x/pull/54), `feat/h8-register-bit-operations`. Helyi 35 natív csoport / 83 Python-eset PASS; a végső head teljes CI-je külön ellenőrizendő.
 
 ## H8-MEMORY-BITS-2026-10-28 — indirekt memóriás bitműveletek
 
@@ -557,7 +595,7 @@ Előző lépcső lezárása: [#54](https://github.com/RobCZart82/yaman1x/pull/54
 
 Ág: `feat/h8-memory-bit-operations`, alap: beolvadt #54. 262 eredeti generált full/partial kezelő: 7c/7d prefix és 18 indirekt bájtos bitművelet. 7340032 immediate eset, 131072 cím/indexátfedés, 131072 prefixkiterjesztés, 31 megszakítási pont és 1000 felosztás. Eredeti H8H-kóddal 200000 szakasz, nulla eltérés; read/prefetch/write sorrend és pontosan egyszeri mellékhatás ellenőrizve. [Szerződés és korlátok](h8-memory-bit-operations.md). M0 részben teljesült; abszolút memóriás formák, stack/control flow, IRQ és CPU/SCI-integráció nyitott. Végső CI külön ellenőrizendő.
 
-Aktív indirekt memóriás bitműveleti fejlesztés: [PR #55](https://github.com/RobCZart82/yaman1x/pull/55), `feat/h8-memory-bit-operations`. Helyi 36 natív csoport / 83 Python-eset PASS; a végső head teljes CI-je külön ellenőrizendő.
+Korabeli jelöltbejegyzés: indirekt memóriás bitműveleti fejlesztés: [PR #55](https://github.com/RobCZart82/yaman1x/pull/55), `feat/h8-memory-bit-operations`. Helyi 36 natív csoport / 83 Python-eset PASS; a végső head teljes CI-je külön ellenőrizendő.
 
 ## H8-ABSOLUTE-BITS-2026-10-28 — abszolút memóriás bitműveletek
 
@@ -565,7 +603,7 @@ Előző lépcső lezárása: [#55](https://github.com/RobCZart82/yaman1x/pull/55
 
 Ág: `feat/h8-absolute-bit-operations`, alap: beolvadt #55. 302 eredeti generált full/partial kezelő; 7e/7f prefix és 18 abs8 bitművelet. 7340032 immediate eset, 262144 cím/regisztersáv eset, 131072 prefixkiterjesztés, 31 futtatási vágáspont és 1000 felosztás. Eredeti H8H-kóddal 200000 szakasz, nulla eltérés. [Szerződés és korlátok](h8-absolute-bit-operations.md). M0 részben teljesült; stack/control flow, IRQ és CPU/SCI-integráció nyitott. Végső CI külön ellenőrizendő.
 
-Aktív abszolút memóriás bitműveleti fejlesztés: [PR #56](https://github.com/RobCZart82/yaman1x/pull/56), `feat/h8-absolute-bit-operations`. Helyi 37 natív csoport / 83 Python-eset PASS; a végső head teljes CI-je külön ellenőrizendő.
+Korabeli jelöltbejegyzés: abszolút memóriás bitműveleti fejlesztés: [PR #56](https://github.com/RobCZart82/yaman1x/pull/56), `feat/h8-absolute-bit-operations`. Helyi 37 natív csoport / 83 Python-eset PASS; a végső head teljes CI-je külön ellenőrizendő.
 
 ## H8-STACK-CONTROL-2026-10-28 — veremkezelés és vezérlésátadás
 
@@ -573,4 +611,8 @@ Előző lépcső lezárása: [#56](https://github.com/RobCZart82/yaman1x/pull/56
 
 Ág: `feat/h8-stack-control-flow`, alap: beolvadt #56. 366 eredeti full/partial kezelő; predecrement/postincrement MOV byte/word/long, JMP/JSR mindhárom címzése, BSR rel8/rel16, mind a 16 rel16 feltétel, RTS és szintetikus RTE-veremkép-visszaállítás. Független előjeles eltolás-/alias-/címhatár-/CCR-próbák, 201 beágyazott és 388 további hívás/RTE vágáspont, buszhiba-kontroll. Eredeti H8H-kóddal 200000 szakasz: nulla eltérés; a hibás RTS SP+2 értéket seed 6/slice 5 helyen felismeri a kontroll. [Hatókör, bizonyíték és fennmaradó korlátok](h8-stack-control-flow.md). A normál verem/vezérlés utasításcsaládok ebben a rögzített H8H-profilban megvalósítva; IRQ/TRAPA-belépés, teljes CPU és CPU/SCI-integráció nyitott, M0 részben teljesült. Végső CI külön ellenőrizendő.
 
-Aktív verem/vezérlésátadási fejlesztés: [PR #57](https://github.com/RobCZart82/yaman1x/pull/57), `feat/h8-stack-control-flow`. Helyi 38 natív csoport / 83 Python-eset PASS; a végső head teljes CI-je külön ellenőrizendő. Normál utasításcsaládok készültek el; IRQ/TRAPA-belépés továbbra is nyitott.
+Korabeli jelöltbejegyzés: verem/vezérlésátadási fejlesztés: [PR #57](https://github.com/RobCZart82/yaman1x/pull/57), `feat/h8-stack-control-flow`. Helyi 38 natív csoport / 83 Python-eset PASS; a végső head teljes CI-je külön ellenőrizendő. Normál utasításcsaládok készültek el; IRQ/TRAPA-belépés továbbra is nyitott.
+
+## DOC-RECONCILE-2026-10-28 — aktuális és történeti állapot egységesítése
+
+A #57 lezárása a motoralaphoz rögzítve, a strukturált nyilvántartásban nincs nyitott motorjelölt. STATUS és roadmap egységesítve; korábbi jelöltbejegyzések megőrizve és történetiként jelölve. Az M0 következő feltétele már a hiányzó lefedettségre és gépintegrációra vonatkozik, nem az első CPU-fordításra. Dokumentációs javítás, új motor-/firmware-/audioelfogadás nélkül. Ellenőrzés: élő #57 merge/head és mind az öt CI-feladat, JSON-lezárás és egyedi PR-azonosítók, UTF-8 és helyi fájlhivatkozások, forrás- és értesítéslefedettségi audit.

@@ -3,7 +3,7 @@
   "recorded_date": "2026-10-28",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "a3c2eb8ba25fc40eaa5057cc388260e4fc58b9df",
+  "baseline_commit": "f8b6aa20834f209931e3e9bb9463cc47b5b7a540",
   "entries": [
     {
       "pr": 6,
@@ -583,15 +583,23 @@
         40682502638,
         40682502838
       ]
+    },
+    {
+      "pr": 57,
+      "title": "Complete fixed-profile H8H stack and control instruction families",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/57",
+      "kind": "development",
+      "merged_at_utc": "2026-10-28T12:14:32Z",
+      "merge_commit": "f8b6aa20834f209931e3e9bb9463cc47b5b7a540",
+      "reviewed_head": "bf3e7158a9a4dac6edb36ea4deb659bdf3c54cb1",
+      "status": "merged",
+      "ci_runs": [
+        40685365642,
+        40685365647,
+        40685365644
+      ],
+      "automated_review_source": "No automated review result present at closure; local source, independent matrices, negative control and original-code comparison inspected"
     }
   ],
-  "active_change": {
-    "id": "H8-STACK-CONTROL-2026-10-28",
-    "branch": "feat/h8-stack-control-flow",
-    "status": "pr_open",
-    "summary": "Complete normal fixed-profile H8H stack/control instruction families; synthetic RTE frame restore, IRQ/TRAPA entry remains separate",
-    "validation": "Independent rel16/call displacement matrices, pre/post widths and aliases, all call/jump/return forms, nested split/failure controls; original-code 200000 slices zero differences; wrong RTS stack increment detected. Final PR CI pending.",
-    "pr": 57,
-    "url": "https://github.com/RobCZart82/yaman1x/pull/57"
-  }
+  "active_change": null
 }
