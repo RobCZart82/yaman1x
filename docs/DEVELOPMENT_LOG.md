@@ -348,3 +348,9 @@ A #64–#66 javított lánc helyi lezárása: 46/46 CTest, 87 Python-eset, 20000
 Ág: `feat/h8-bus-cycle-time`, alap: #66 beolvadt `817e9ce91db22c770291fe2acf666f86f29e1896`, head `66687f2313c5824e629cff570aeffd365da71d73`, négy sikeres CI, nyitott review-thread nélkül. A korábbi #66 jelöltleírás történeti. [Új szerződés](h8-bus-cycle-time.md): opcionális bus_cycle időbélyeg minden kétciklusos buszművelet után, a memóriaművelet előtt, túlcsordulás- és hibakezeléssel. Öt művelettípus és 201 felosztás független ellenőrzése sikeres. Ez a CPU-vezérelt soros adás előfeltétele; az MMIO által létrehozott új határidő beillesztése külön következő lépés.
 
 Helyi lezárás: 47/47 CTest, 87 Python, 200000 eredetimetódus-szelet nulla eltéréssel; új célzott teszt és ASan/UBSan PASS, forrás-/licenc-/feltöltési audit PASS. Hiányzó időalap és negatív abszolút idő külön visszautasítva. Saját végső CI/review még külön merge-kapu.
+
+## H8-SCI-CPU-TX-2026-10-28
+
+Ág: `feat/h8-sci-cpu-transmit`, szülő #68. [Szerződés](h8-sci-cpu-transmit.md): minden sikeres buszművelet után opcionális tiszta next_bus_event lekérdezés frissíti a futtató és az aktuális generált kezelő eseményhatárát. CPU által konfigurált SCI-adás két csatornán, összesen 512 bájteset és 1602 felosztás; start/adat/stop/végső idle, 32 ciklusos bitköz. Eredeti metódustörzsek változatlanok; teljes teszt/ref/sanitizer lezárás folyamatban, szülőmerge és saját végső CI külön kapu.
+
+Helyi lezárás: 48/48 CTest, 87 Python, ASan/UBSan, 200000 eredetimetódus-szelet nulla eltéréssel; forrás-/licenc-/feltöltési audit PASS. #68 mind az öt CI-je zöld, nyitott review-thread/változtatáskérés nélkül beolvasztva: `0fa40aaba818a0efd7265a1861650479795cbba1`, head `7867ec70308e4e06ad794758e4f7c05008534f38`. A TX-jelölt saját végső CI-je külön kapu.
