@@ -573,8 +573,10 @@
   "active_change": {
     "id": "H8-ABSOLUTE-BITS-2026-10-28",
     "branch": "feat/h8-absolute-bit-operations",
-    "status": "in_progress",
+    "status": "pr_open",
     "summary": "Absolute-byte memory bit operations with original upper-page address construction",
-    "validation": "7340032 immediate cases, 262144 address/lane cases, 131072 extensions, 31 splits, 1000 partitions; original-code 200000 slices zero differences. Final PR CI pending."
+    "validation": "7340032 immediate cases, 262144 address/lane cases, 131072 extensions, 31 splits, 1000 partitions; original-code 200000 slices zero differences. Final PR CI pending.",
+    "pr": 56,
+    "url": "https://github.com/RobCZart82/yaman1x/pull/56"
   }
 }
