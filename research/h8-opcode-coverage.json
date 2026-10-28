@@ -4,8 +4,8 @@
   "profile": "advanced H8H, fixed no-IRQ research host",
   "counts": {
     "excluded_profile": 135,
-    "missing_handler": 64,
-    "selected_handler": 200
+    "missing_handler": 54,
+    "selected_handler": 210
   },
   "instructions": [
     {
@@ -1966,7 +1966,7 @@
       ],
       "method": "not_b_r8l",
       "profile": "common",
-      "status": "missing_handler"
+      "status": "selected_handler"
     },
     {
       "line": 1269,
@@ -1980,7 +1980,7 @@
       ],
       "method": "not_w_r16l",
       "profile": "h",
-      "status": "missing_handler"
+      "status": "selected_handler"
     },
     {
       "line": 1275,
@@ -1994,7 +1994,7 @@
       ],
       "method": "not_l_r32l",
       "profile": "h",
-      "status": "missing_handler"
+      "status": "selected_handler"
     },
     {
       "line": 1281,
@@ -2008,7 +2008,7 @@
       ],
       "method": "extu_w_r16l",
       "profile": "h",
-      "status": "missing_handler"
+      "status": "selected_handler"
     },
     {
       "line": 1287,
@@ -2022,7 +2022,7 @@
       ],
       "method": "extu_l_r32l",
       "profile": "h",
-      "status": "missing_handler"
+      "status": "selected_handler"
     },
     {
       "line": 1293,
@@ -2036,7 +2036,7 @@
       ],
       "method": "neg_b_r8l",
       "profile": "common",
-      "status": "missing_handler"
+      "status": "selected_handler"
     },
     {
       "line": 1297,
@@ -2050,7 +2050,7 @@
       ],
       "method": "neg_w_r16l",
       "profile": "h",
-      "status": "missing_handler"
+      "status": "selected_handler"
     },
     {
       "line": 1301,
@@ -2064,7 +2064,7 @@
       ],
       "method": "neg_l_r32l",
       "profile": "h",
-      "status": "missing_handler"
+      "status": "selected_handler"
     },
     {
       "line": 1305,
@@ -2078,7 +2078,7 @@
       ],
       "method": "exts_w_r16l",
       "profile": "h",
-      "status": "missing_handler"
+      "status": "selected_handler"
     },
     {
       "line": 1311,
@@ -2092,7 +2092,7 @@
       ],
       "method": "exts_l_r32l",
       "profile": "h",
-      "status": "missing_handler"
+      "status": "selected_handler"
     },
     {
       "line": 1317,
