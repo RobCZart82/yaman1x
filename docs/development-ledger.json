@@ -430,8 +430,9 @@
   "active_change": {
     "id": "H8-FIRST-2026-10-28",
     "branch": "feat/h8-first-generated-handlers",
-    "status": "in_progress",
+    "status": "in_review",
     "summary": "Compile and execute selected real generated H8 reset/NOP/MOV.B/BRA handlers with per-instance state",
-    "validation": "200000 original H8H decoder/handler/runner comparison slices, 899400 instruction reads, zero differences; negative control detected. Final candidate CI pending; full CPU/IRQ/firmware remain open."
+    "validation": "200000 original H8H decoder/handler/runner comparison slices, 899400 instruction reads, zero differences; negative control detected. Final candidate CI pending; full CPU/IRQ/firmware remain open.",
+    "pr": 47
   }
 }
