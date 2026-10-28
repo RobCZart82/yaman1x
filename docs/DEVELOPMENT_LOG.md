@@ -1,7 +1,7 @@
 # YamAN1x fejlesztési napló
 
 Frissítve: 2026-10-28. Időzóna: Europe/Budapest.
-Ellenőrzött alap: `0f8d3ae96eb32dcabb3a039f40e5c0fd0315a1b9` (#50); a carry/regiszter/logika jelölt alább.
+Ellenőrzött alap: `ba2c91d8a156972bcf3c7b9adab98e36f7279b0c` (#51); a carry/regiszter/logika jelölt alább.
 
 ## Ellenőrzött lezárások — #39–#44
 
@@ -189,3 +189,11 @@ Előző lépcső lezárása: [#50](https://github.com/RobCZart82/yaman1x/pull/50
 Ág: `feat/h8-carry-register-logic`, alap: beolvadt #50. Korabeli jelöltállapot: 124 eredeti full/partial kezelő; wide register ADD/SUB/CMP, byte ADDX/SUBX, byte register/immediate és wide immediate logika, LDC CCR. 1048576 carry/Z eset, 30720 wide register eset, 393216 byte logika, 12288 logikai átfedés, 36864 wide logika, 20000 négybyte-os lánc, 1000 felosztás. Eredeti kóddal 200000 szakasz, nulla eltérés; hibás Z-assertet a kontroll észleli. [Szerződés és korlátok](h8-carry-register-logic.md). M0 részben teljesült; LDC csak CCR-állapot, nem IRQ-elfogadás. Shift/rotate, bit, stack/IRQ és CPU/SCI-integráció nyitott. Végső PR-head CI külön ellenőrizendő.
 
 Aktív carry/regiszter/logika fejlesztés: [PR #51](https://github.com/RobCZart82/yaman1x/pull/51), `feat/h8-carry-register-logic`. Helyben 32 CTest-csoport és 83 Python-eset PASS; egy symlink-jogosultsági eset kihagyva. A végső head teljes CI-je külön ellenőrzendő; M0 részben teljesült.
+
+## H8-WIDE-LOGIC-2026-10-28 — széles regiszteres logika
+
+Előző lépcső lezárása: [#51](https://github.com/RobCZart82/yaman1x/pull/51), merge `ba2c91d8a156972bcf3c7b9adab98e36f7279b0c`, végső head `931a5a50dfe57c575d45d9d8b6b817889501a5a0`; [Linux/macOS/Windows PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40656821739), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40656821601), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40656821621). A forrásrevízió (`df6ce5574346e32b57a81dffb5c5b5f0e7929bbf`) automatikus review-ja kész, nincs találat; a követő commit dokumentációs PR-metaadat. A korábbi pending-CI bejegyzések történeti állapotok.
+
+Ág: `feat/h8-wide-register-logic`, alap: beolvadt #51. 138 eredeti generált full/partial kezelő: word/long regiszteres OR/XOR/AND és eredeti 01f0 prefix. 196608 word-eset, 245760 regiszter/CCR-kombináció, 65536 prefixkiterjesztés és 1000 felosztás PASS. Eredeti H8H-kóddal 200000 szakasz, nulla eltérés; XOR helyett OR hibát a kontroll észleli. [Szerződés és korlátok](h8-wide-register-logic.md). Helyben 33 natív CTest-csoport PASS; a teljes 34 csoport / 84 Python-eset végső CI-je külön ellenőrizendő. M0 részben teljesült; shift/rotate, bit, stack/IRQ és CPU/SCI-integráció nyitott.
+
+Aktív széles regiszteres logika: [PR #52](https://github.com/RobCZart82/yaman1x/pull/52), `feat/h8-wide-register-logic`. Helyi 33 natív csoport / 83 Python-eset PASS; a teljes végső head CI-je külön ellenőrizendő.

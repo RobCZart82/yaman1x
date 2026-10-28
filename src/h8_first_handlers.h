@@ -317,6 +317,45 @@ case 2:;
 	m_inst_substate = 0;
 }
 
+void dispatch_01f0_full()
+{
+	m_IR[1] = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 1;
+		} else
+			m_inst_substate = 2;
+		return;
+	}
+	m_PC += 2;
+	m_inst_state = 0x110000 | m_IR[1];
+}
+
+void dispatch_01f0_partial()
+{
+switch(m_inst_substate) {
+case 0:
+	[[fallthrough]];
+case 1:;
+	m_IR[1] = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 1;
+		} else
+			m_inst_substate = 2;
+		return;
+	}
+	[[fallthrough]];
+case 2:;
+	m_PC += 2;
+	m_inst_state = 0x110000 | m_IR[1];
+	break;
+}
+	m_inst_substate = 0;
+}
+
 void add_b_imm8_r8u_full()
 {
 	r8_w(m_IR[0] >> 8, do_add8(r8_r(m_IR[0] >> 8), m_IR[0]));

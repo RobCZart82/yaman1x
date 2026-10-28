@@ -16,14 +16,14 @@ Ellenőrizve: 2026-10-27. Mind a hat PR beolvadt; mindegyik végső headjén öt
 
 Rögzítve: 2026-10-27. Kiindulópont: a #14 PR-ig beolvadt kutatási eredmények.
 Ez végrehajtási terv; az alábbi, még nyitott mérföldkövek nem kész funkciók.
-Állapotellenőrzés: 2026-10-28, alap: #50 (`0f8d3ae96eb32dcabb3a039f40e5c0fd0315a1b9`).
+Állapotellenőrzés: 2026-10-28, alap: #51 (`ba2c91d8a156972bcf3c7b9adab98e36f7279b0c`).
 Az új H8-futtatási sorrend komponensszintű előrelépés; nem teljes CPU- vagy firmware-elfogadás.
 
 ## Aktuális mérföldkő-állapot — 2026-10-28
 
 | Mérföldkő | Aktuális állapot | Következő elfogadási feltétel |
 |---|---|---|
-| M0 | **Részben teljesült.** Architektúra, forrásazonosítók, generálási alap, önálló GPIO és IRQ-adapter megvan; az önálló SCI belső ciklusóra, közös aszinkron SCI TX/RX-csatorna rendelkezésre áll; a kétcsatornás SCI MMIO/IRQ-adapter elkészült; a kétcsatornás SCI-idővonal, H8H-busz, cikluskeret és H8-futtatási sorrend komponensei rendelkezésre állnak; a generált részhalmaz rel8, byte/word/long memória, prefix és kiválasztott ADD/SUB/CMP, carry-input, logikai és CCR-betöltési formákat támogat; a teljes CPU-utasításkészlet és gépintegráció nyitott. | Közös CPU/periféria-ütemező; tényleges H8 CPU-port fordítása és végrehajtási/izolációs tesztjei. A terjesztési licenc döntése nyitott. |
+| M0 | **Részben teljesült.** Architektúra, forrásazonosítók, generálási alap, önálló GPIO és IRQ-adapter megvan; az önálló SCI belső ciklusóra, közös aszinkron SCI TX/RX-csatorna rendelkezésre áll; a kétcsatornás SCI MMIO/IRQ-adapter elkészült; a kétcsatornás SCI-idővonal, H8H-busz, cikluskeret és H8-futtatási sorrend komponensei rendelkezésre állnak; a generált részhalmaz rel8, byte/word/long memória, prefix és kiválasztott ADD/SUB/CMP, carry-input, byte/word/long regiszteres és immediate logikai, valamint CCR-betöltési formákat támogat; a teljes CPU-utasításkészlet és gépintegráció nyitott. | Közös CPU/periféria-ütemező; tényleges H8 CPU-port fordítása és végrehajtási/izolációs tesztjei. A terjesztési licenc döntése nyitott. |
 | M1 | **Előkészítve, nem teljesült.** A külön macOS MAME-build és a párosított helyi futtató rendelkezésre áll. | Friss Mac-firmware-próba: SCI0 tényleges bájtfogadás és note-on/note-off feldolgozás bizonyítása; PKS-kézfogás feltárása. |
 | M2–M3 | **Kutatási feladatok nyitva.** Nincs igazolt referenciahang. | AN1x órajel, táblacímzés, EG és soros hangút bizonyítása, majd megismételhető offline hang. |
 | M4–M6 | **Tervezett.** Nincs elkészült beágyazható hangszer vagy REAPER-elfogadás. | Validált offline referencia után audio-blokkmotor, VST3 és helyi REAPER-próba. |
@@ -226,7 +226,7 @@ A [kétcsatornás SCI MMIO/IRQ-adapter](h83002-sci-mmio-irq.md) szintén elkész
 
 Az önálló SCI-idővonal (#41), CPU-hoszthatár (#42), buszsegédek (#43),
 cikluskeret (#44) és [végrehajtási sorrend](h8-execution-runner.md) elkészült.
-A [következő jelölt](h8-first-instructions.md) nyolc valódi generált full/partial kezelőt kapcsol a kerethez (reset, NOP, MOV.B immediate, BRA rel8). Az új [memória-/elágazásbővítés](h8-memory-branches.md) ezt 44 kezelőre bővíti: 32 bites immediate, indirekt bájt load/store és minden rel8 feltétel. A [szó-/hosszúszó-bővítés](h8-word-long-memory.md) 56 kezelőre és prefixelt adatátvitelre lép tovább. Az [aritmetikai bővítés](h8-arithmetic-flags.md) 78 kezelőre lép tovább, matematikai és eredeti kódos jelzőbit-kontrollokkal. A [carry/regiszter/logika bővítés](h8-carry-register-logic.md) 124 kezelőre lép tovább; a CCR I bitje tárolható, de IRQ-elfogadás még nincs. Ez továbbra is részhalmaz, nem teljes CPU.
+A [következő jelölt](h8-first-instructions.md) nyolc valódi generált full/partial kezelőt kapcsol a kerethez (reset, NOP, MOV.B immediate, BRA rel8). Az új [memória-/elágazásbővítés](h8-memory-branches.md) ezt 44 kezelőre bővíti: 32 bites immediate, indirekt bájt load/store és minden rel8 feltétel. A [szó-/hosszúszó-bővítés](h8-word-long-memory.md) 56 kezelőre és prefixelt adatátvitelre lép tovább. Az [aritmetikai bővítés](h8-arithmetic-flags.md) 78 kezelőre lép tovább, matematikai és eredeti kódos jelzőbit-kontrollokkal. A [carry/regiszter/logika bővítés](h8-carry-register-logic.md) 124 kezelőre lép tovább; a CCR I bitje tárolható, de IRQ-elfogadás még nincs. A [széles regiszteres logika](h8-wide-register-logic.md) 138 kezelőre bővíti a készletet az eredeti 01f0 prefixszel. Ez továbbra is részhalmaz, nem teljes CPU.
 
 Nyitott feladatok, végrehajtási sorrendben:
 
@@ -526,3 +526,11 @@ Előző lépcső lezárása: [#49](https://github.com/RobCZart82/yaman1x/pull/49
 Előző lépcső lezárása: [#50](https://github.com/RobCZart82/yaman1x/pull/50): merge `0f8d3ae96eb32dcabb3a039f40e5c0fd0315a1b9`, végső head `4bbea3449f5d73f15031332b537919b493a5defc`; [Linux/macOS/Windows PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40652119562), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40652119555), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40652119545). Automatikus review a `ddc8d51221838e64c9e849101756c1aeca260dce` forrásrevízión: kész, nincs találat; a követő commit csak PR-metaadatot rögzített.
 
 Aktív carry/regiszter/logika fejlesztés: [PR #51](https://github.com/RobCZart82/yaman1x/pull/51), `feat/h8-carry-register-logic`. Helyben 32 CTest-csoport és 83 Python-eset PASS; egy symlink-jogosultsági eset kihagyva. A végső head teljes CI-je külön ellenőrzendő; M0 részben teljesült.
+
+## H8-WIDE-LOGIC-2026-10-28 — széles regiszteres logika
+
+Előző lépcső lezárása: [#51](https://github.com/RobCZart82/yaman1x/pull/51), merge `ba2c91d8a156972bcf3c7b9adab98e36f7279b0c`, végső head `931a5a50dfe57c575d45d9d8b6b817889501a5a0`; [Linux/macOS/Windows PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40656821739), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40656821601), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40656821621). A forrásrevízió (`df6ce5574346e32b57a81dffb5c5b5f0e7929bbf`) automatikus review-ja kész, nincs találat; a követő commit dokumentációs PR-metaadat. A korábbi pending-CI bejegyzések történeti állapotok.
+
+Ág: `feat/h8-wide-register-logic`, alap: beolvadt #51. 138 eredeti generált full/partial kezelő: word/long regiszteres OR/XOR/AND és eredeti 01f0 prefix. 196608 word-eset, 245760 regiszter/CCR-kombináció, 65536 prefixkiterjesztés és 1000 felosztás PASS. Eredeti H8H-kóddal 200000 szakasz, nulla eltérés; XOR helyett OR hibát a kontroll észleli. [Szerződés és korlátok](h8-wide-register-logic.md). Helyben 33 natív CTest-csoport PASS; a teljes 34 csoport / 84 Python-eset végső CI-je külön ellenőrizendő. M0 részben teljesült; shift/rotate, bit, stack/IRQ és CPU/SCI-integráció nyitott.
+
+Aktív széles regiszteres logika: [PR #52](https://github.com/RobCZart82/yaman1x/pull/52), `feat/h8-wide-register-logic`. Helyi 33 natív csoport / 83 Python-eset PASS; a teljes végső head CI-je külön ellenőrizendő.

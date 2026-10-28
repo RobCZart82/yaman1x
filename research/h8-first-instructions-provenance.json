@@ -13,6 +13,8 @@
     "mov_w_imm16_r16l_partial",
     "dispatch_0100_full",
     "dispatch_0100_partial",
+    "dispatch_01f0_full",
+    "dispatch_01f0_partial",
     "add_b_imm8_r8u_full",
     "add_b_imm8_r8u_partial",
     "cmp_b_imm8_r8u_full",
@@ -98,8 +100,8 @@
       "sha256": "4cc7b135d56199b2bed4df86a12c879e3851b2c17525abcda3db765c957b4940"
     }
   },
-  "adaptation": "Selected generated bodies with class qualifiers removed; standalone advanced-H8H subset host with disabled IRQ/DMA/DTC/trace, no bus retries. Helpers r8_w/set_nzv8/prefetch_switch adapted from pinned h8.h/h8.cpp; prefetch completion reduced to the no-request/no-transfer/no-IRQ/no-trace branch. Reset IRQ filter callback is a no-op because IRQ entry is unsupported. Extended selection: all rel8 conditions, MOV.L imm32 and indirect byte load/store; 3-word IR, H8H r32 accessors and set_nzv32 helper. Completed synchronous data bus accesses use reviewed H8H bus charging. Word/long extension: MOV.W immediate16, indirect word/long loads/stores and original dispatch_0100 prefix handlers. Explicit internal-state decoder guards preserve prefixed partial execution; completed word accesses align down via reviewed H8H bus helpers. r16_r/r16_w and set_nzv16 are adapted from the same pinned h8.h/h8.cpp. Arithmetic extension: original ADD/CMP byte immediate, ADD/SUB/CMP byte-register, and word/long immediate handlers; width-generic unsigned arithmetic adapts pinned do_add8/16/32 and do_sub8/16/32 for the fixed m_has_hc=true profile, preserving half-carry bits 4/12/28. Carry/register/logic extension: original ADDX/SUBX byte forms, wide register ADD/SUB/CMP, byte register and immediate AND/OR/XOR, wide immediate logic, and LDC immediate CCR. extended_byte adapts pinned do_addx8/do_subx8, retaining carry input and sticky Z in the fixed half-carry-enabled profile. IRQ filter publication remains disabled; LDC only stores CCR in this subset.",
-  "selected_lf_sha256": "a7db579630d0e33807565efb6a9d7652fa1731128a801eaa6d1e38339d73cb8a",
+  "adaptation": "Selected generated bodies with class qualifiers removed; standalone advanced-H8H subset host with disabled IRQ/DMA/DTC/trace, no bus retries. Helpers r8_w/set_nzv8/prefetch_switch adapted from pinned h8.h/h8.cpp; prefetch completion reduced to the no-request/no-transfer/no-IRQ/no-trace branch. Reset IRQ filter callback is a no-op because IRQ entry is unsupported. Extended selection: all rel8 conditions, MOV.L imm32 and indirect byte load/store; 3-word IR, H8H r32 accessors and set_nzv32 helper. Completed synchronous data bus accesses use reviewed H8H bus charging. Word/long extension: MOV.W immediate16, indirect word/long loads/stores and original dispatch_0100 prefix handlers. Explicit internal-state decoder guards preserve prefixed partial execution; completed word accesses align down via reviewed H8H bus helpers. r16_r/r16_w and set_nzv16 are adapted from the same pinned h8.h/h8.cpp. Arithmetic extension: original ADD/CMP byte immediate, ADD/SUB/CMP byte-register, and word/long immediate handlers; width-generic unsigned arithmetic adapts pinned do_add8/16/32 and do_sub8/16/32 for the fixed m_has_hc=true profile, preserving half-carry bits 4/12/28. Carry/register/logic extension: original ADDX/SUBX byte forms, wide register ADD/SUB/CMP, byte register and immediate AND/OR/XOR, wide immediate logic, and LDC immediate CCR. extended_byte adapts pinned do_addx8/do_subx8, retaining carry input and sticky Z in the fixed half-carry-enabled profile. IRQ filter publication remains disabled; LDC only stores CCR in this subset. Wide register logic: original word/long OR/XOR/AND and dispatch_01f0 prefix bodies, guarded 0x110000 extension state; no new host helper.",
+  "selected_lf_sha256": "bd63d4afbf5a90b446e118b3696e0164287c48b984ee5275424e05222fe0506b",
   "h8h_methods": [
     "mov_l_imm32_r32l_full",
     "mov_l_imm32_r32l_partial",
@@ -144,8 +146,20 @@
     "or_l_imm32_r32l_full",
     "or_l_imm32_r32l_partial",
     "xor_l_imm32_r32l_full",
-    "xor_l_imm32_r32l_partial"
+    "xor_l_imm32_r32l_partial",
+    "or_w_r16h_r16l_full",
+    "or_w_r16h_r16l_partial",
+    "xor_w_r16h_r16l_full",
+    "xor_w_r16h_r16l_partial",
+    "and_w_r16h_r16l_full",
+    "and_w_r16h_r16l_partial",
+    "or_l_r32h_r32l_full",
+    "or_l_r32h_r32l_partial",
+    "xor_l_r32h_r32l_full",
+    "xor_l_r32h_r32l_partial",
+    "and_l_r32h_r32l_full",
+    "and_l_r32h_r32l_partial"
   ],
   "h8h_generated_lf_sha256": "b0231d316fa0e8c09aa3598e063cbbcd53b392c78d7378c6e2e17284744e7f59",
-  "h8h_selected_lf_sha256": "41f229479775b780f97765a0cd67f4b67bf1b1c09cd3850ce72f63e8b0531881"
+  "h8h_selected_lf_sha256": "bd68b398fa0ab01991b33ea3a74865fbacf685de0e668fbe0b58146ef258e28a"
 }

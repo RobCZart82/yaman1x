@@ -13,7 +13,7 @@ adds immediate32, indirect byte accesses and every rel8 condition. Immediate M0
 work now includes the [word/long and prefix extension](h8-word-long-memory.md).
 Selected [arithmetic/compare forms](h8-arithmetic-flags.md) are now implemented.
 The [carry/register/logic extension](h8-carry-register-logic.md) adds selected
-remaining arithmetic and logic. Next are wide register logic, shift/rotate and
+remaining arithmetic and logic. Next are shift/rotate and
 bit operations, then stack/IRQ and explicit CPU/peripheral scheduling integration. M1 protocol research can proceed
 independently in the pinned MAME harness. Neither milestone is complete.
 
@@ -53,3 +53,5 @@ Repository work: keep source/notice audits, dependency provenance, current
 status and the ledger in step with each PR. Cross-platform ROM-free CI already
 exists; retain it alongside MSan and the separately filtered MAME build. Plugin,
 hardware and host support require their own evidence.
+
+Latest M0 increment: [word/long register OR/XOR/AND](h8-wide-register-logic.md), including guarded original 01f0 prefix execution. Next: shift/rotate and bit operations, then stack/control flow and IRQ/SCI integration. M0 remains partial.
