@@ -1,26 +1,28 @@
 # First generated H8 instructions on the standalone bus/runner
 
-Recorded: 2026-10-28. Based on merged #46. M0 remains partial.
+Initial increment: #47 based on #46, 2026-10-28. Current memory/branch extension
+is based on merged #47; see [the extension contract](h8-memory-branches.md). M0 remains partial.
 
 `H8FirstInstructions<Host>` is an intentionally limited advanced-H8H execution
-profile. It compiles eight real generated full/partial methods: reset, NOP,
-MOV.B immediate-to-register and BRA rel8. The methods are inherited base-H8
-operations in the original H8H decoder. Their bodies are unchanged; only class
+profile. The initial eight methods have expanded to 44 full/partial methods:
+reset, NOP, immediate byte/long moves, all rel8 conditions and indirect byte
+loads/stores. The selection now includes base-H8 and H8H operations. Their bodies are unchanged; only class
 qualifiers are removed so they can be included inside the standalone template.
 
 The profile owns its 16 register halves, CCR/EXR, PC/PPC/NPC, IR/PIR, temporary
-registers, instruction/substate and cycle debt per instance. `H8hBusAccess`
-charges before completed instruction reads; `H8ExecutionRunner` preserves
+registers, instruction/substate and cycle debt per instance. IR has three words
+for immediate32; the diagnostic snapshot is not a persistence format. `H8hBusAccess`
+charges before completed instruction and byte data accesses; `H8ExecutionRunner` preserves
 peripheral-boundary and partial-handler ordering. The reduced decoder rejects
 all other opcodes explicitly and poisons execution through the runner.
 
 ## Host and lifecycle contract
 
-- Host must outlive the CPU and provide `read_instruction_word(address)` and
-  `update(cycle)` returning the next absolute peripheral deadline (zero=none).
+- Host must outlive the CPU and provide `read_instruction_word(address)`,
+  `read_byte(address)`, `write_byte(address,value)` and `update(cycle)` returning the next absolute peripheral deadline (zero=none).
   The bus owns address-space mapping, including 24-bit mapping/wrapping when
   appropriate. CPU word reads align down exactly as in the reviewed bus helper.
-- Reads must complete synchronously. Wait/retry behavior is disabled; no host
+- Reads and writes must complete synchronously. Wait/retry behavior is disabled; no host
   API advertises it. Program storage must remain immutable during execution.
 - IRQ, DMA, DTC, trace/debug hooks and standby are disabled and have no enabling
   API. Prefetch completion therefore uses the original no-request/no-transfer/
@@ -46,11 +48,12 @@ reviewed selection is committed, with no Yamaha inputs.
 
 ```sh
 python tools/check_h8_first_instructions.py --generated /absolute/path/to/verified/h8.hxx
+python tools/check_h8_first_instructions.py --generated /absolute/path/to/verified/h8h.hxx --h8h
 python tools/check_h8_first_instructions.py --archive /absolute/mame-master.zip --work work/first-reference
 ```
 
-The first command checks the complete generated output against its lock before
-comparing the selection. The second validates the original archive, regenerates
+Each --generated command checks its complete generated output against its lock before
+comparing the selection. The archive command validates the original archive, regenerates
 all four locked outputs twice, verifies selected bodies, and compiles a local
 reference using the original generated **H8H decoder**, original selected
 handlers, execute_run, recompute_bcount, instruction-read and flag/register/
@@ -60,7 +63,7 @@ is not the complete MAME device or an AN1x firmware run. Optional `--cmake`
 selects CMake; a configured C++20 compiler is required. Work directory must be
 new; original implementation bodies and binaries stay in ignored local work.
 
-## Evidence and remaining work
+## Historical #47 evidence and remaining work
 
 - Native tests: reset-vector/read/prefetch sequence; 4,096 register/immediate
   combinations; 65,536 initial-CCR/value cases; all 256 signed BRA offsets
@@ -76,10 +79,10 @@ new; original implementation bodies and binaries stay in ignored local work.
   duplicate/missing methods, generated/selected corruption, LF/CRLF behavior,
   recorded source identities and bad-archive rejection before output/execution.
 
-Next: expand generated instruction coverage to data-memory operations and
-conditional branches with independent flag/bus controls, then implement IRQ
-entry and explicit CPU/SCI ordering. Full opcode coverage, timers/ADC/transfers,
+The byte-memory and rel8-condition part of the former next step is now covered
+by the extension contract. Word/long operations, arithmetic/compare flags, IRQ
+entry and explicit CPU/SCI ordering remain open. Full opcode coverage, timers/ADC/transfers,
 faithful reset/save-state, firmware PKS/MIDI, hardware timing, audio and REAPER
 acceptance remain open. M0 and M1 acceptance criteria are unchanged.
 
-Candidate local validation: Windows MSVC Release build, all 28 locally runnable CTest groups PASS; all 81 runnable Python cases PASS with the one established symlink-privilege test explicitly excluded. Complete candidate suite: 29 CTest groups / 82 Python cases. Source audit and notice coverage PASS; final PR-head platform/MSan/MAME results remain separate evidence.
+Historical #47 local validation: Windows MSVC Release build, all 28 locally runnable CTest groups PASS; all 81 runnable Python cases PASS with the one established symlink-privilege test explicitly excluded. Complete candidate suite: 29 CTest groups / 82 Python cases. Source audit and notice coverage PASS; final PR-head platform/MSan/MAME results remain separate evidence.

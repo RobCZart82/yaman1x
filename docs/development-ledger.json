@@ -3,7 +3,7 @@
   "recorded_date": "2026-10-28",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "00e16ce805d542e4a654923ddde2d462ebac78bb",
+  "baseline_commit": "343f4c32c81229e89ec092b0d8e324f2a0305f8a",
   "entries": [
     {
       "pr": 6,
@@ -425,14 +425,28 @@
         40637467504,
         40637467588
       ]
+    },
+    {
+      "pr": 47,
+      "title": "Execute first generated H8 reset, move and branch handlers",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/47",
+      "kind": "development",
+      "merged_at_utc": "2026-10-28T05:56:22Z",
+      "merge_commit": "343f4c32c81229e89ec092b0d8e324f2a0305f8a",
+      "reviewed_head": "6f8107ec35e511c6aa9d347295e67a882a7826d3",
+      "status": "merged",
+      "ci_runs": [
+        40640131062,
+        40640130940,
+        40640130959
+      ]
     }
   ],
   "active_change": {
-    "id": "H8-FIRST-2026-10-28",
-    "branch": "feat/h8-first-generated-handlers",
-    "status": "in_review",
-    "summary": "Compile and execute selected real generated H8 reset/NOP/MOV.B/BRA handlers with per-instance state",
-    "validation": "200000 original H8H decoder/handler/runner comparison slices, 899400 instruction reads, zero differences; negative control detected. Final candidate CI pending; full CPU/IRQ/firmware remain open.",
-    "pr": 47
+    "id": "H8-MEMORY-BRANCH-2026-10-28",
+    "branch": "feat/h8-memory-conditional-branches",
+    "status": "in_progress",
+    "summary": "Extend generated H8H execution with byte loads/stores, MOV.L immediate32 and all rel8 conditions",
+    "validation": "200000 original-reference slices, 844255 instruction reads, 27571 data reads, 27574 data writes; zero differences. Corrupted-store negative control detected. Final candidate CI pending."
   }
 }

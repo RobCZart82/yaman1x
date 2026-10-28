@@ -8,7 +8,9 @@ import subprocess
 import zipfile
 from check_h8_generation import check as generate, verify_output
 
-NAMES = ('state_reset', 'nop', 'mov_b_imm8_r8u', 'bt_rel8')
+BRANCHES = ('bt','bf','bhi','bls','bcc','bcs','bne','beq','bvc','bvs','bpl','bmi','bge','blt','bgt','ble')
+NAMES = ('state_reset', 'nop', 'mov_b_imm8_r8u') + tuple(n+'_rel8' for n in BRANCHES)
+H8H_NAMES = ('mov_l_imm32_r32l','mov_b_r32ih_r8l','mov_b_r8l_r32ih')
 PREFIX = ('// license:BSD-3-Clause\n// copyright-holders:Olivier Galibert\n'
           '// Selected pinned generated h8.hxx methods; only class qualifiers removed.\n'
           '// Included inside H8FirstInstructions. See research/h8-first-instructions-provenance.json.\n')
@@ -27,22 +29,25 @@ def generated_method(text, name, device='h8_device'):
     return result.replace(device+'::', '', 1)
 
 
-def render(raw):
+def render(raw, names=NAMES, device='h8_device'):
     text = raw.decode('utf-8')
-    return PREFIX+'\n\n'.join(generated_method(text,n+'_'+s) for n in NAMES for s in ('full','partial'))+'\n'
+    prefix = PREFIX if device=='h8_device' else PREFIX.replace('h8.hxx','h8h.hxx')
+    return prefix+'\n\n'.join(generated_method(text,n+'_'+s,device) for n in names for s in ('full','partial'))+'\n'
 
 
-def verify_selected(raw, root):
+def verify_selected(raw, root, h8h=False):
     lock = json.loads((root/'research/h8-generator-lock.json').read_text())
-    normalized = verify_output(raw, lock['outputs']['h8.hxx'])
-    selected = render(normalized)
-    if selected != (root/'src/h8_first_handlers.h').read_text(encoding='utf-8'):
+    name = 'h8h.hxx' if h8h else 'h8.hxx'
+    normalized = verify_output(raw, lock['outputs'][name])
+    selected = render(normalized,H8H_NAMES,'h8h_device') if h8h else render(normalized)
+    path = 'src/h8_first_h8h_handlers.h' if h8h else 'src/h8_first_handlers.h'
+    if selected != (root/path).read_text(encoding='utf-8'):
         raise ValueError('Selected handlers differ from locked generated bodies')
     return selected
 
 
 def original_method(text, name):
-    found = re.findall(r'^(?:void|u16) h8_device::'+name+r'\([^\n]*\)\n\{\n.*?^\}',text,re.M|re.S)
+    found = re.findall(r'^(?:void|u8|u16) h8_device::'+name+r'\([^\n]*\)\n\{\n.*?^\}',text,re.M|re.S)
     if len(found) != 1:
         raise ValueError('Expected one original host method: '+name)
     return found[0].replace('h8_device::','',1)
@@ -55,6 +60,7 @@ def check(archive, work, cmake='cmake'):
         raise ValueError('Reference work directory must be new')
     generate(archive,work/'gen') # Archive and generator hashes checked before execution/output.
     selected = verify_selected((work/'gen/0-h8.hxx').read_bytes(),root)
+    selected += verify_selected((work/'gen/0-h8h.hxx').read_bytes(),root,True)
     lock = json.loads((root/'research/h8-first-instructions-provenance.json').read_text())
     generator_lock = json.loads((root/'research/h8-generator-lock.json').read_text())
     if lock['upstream_commit'] != generator_lock['upstream_commit']:
@@ -70,20 +76,22 @@ def check(archive, work, cmake='cmake'):
                 raise ValueError('Source identity differs')
             sources[Path(name).name] = raw.decode('utf-8')
     host = '\n'.join(original_method(sources['h8.cpp'],n) for n in
-                     ('read16i','set_nzv8','prefetch_done','prefetch_done_noirq','recompute_bcount','execute_run'))
-    header = sources['h8.h']
+                     ('read16i','read8','write8','set_nzv8','set_nzv32','prefetch_done','prefetch_done_noirq','recompute_bcount','execute_run'))
     inline = []
-    for name in ('r8_w','prefetch_switch'):
-        pattern = (r'\tinline void r8_w\([^\n]*\) \{\n.*?^\t\}' if name=='r8_w'
-                   else r'\tvoid prefetch_switch\([^\n]*\) \{[^\n]*\}')
+    for filename,name in [('h8.h','r8_w'),('h8.h','r8_r'),('h8.h','prefetch_switch'),('h8h.h','r32_w'),('h8h.h','r32_r')]:
+        header = sources[filename]
+        if name in ('r8_w','r8_r'):
+            pattern = r'\tinline (?:void|u8) '+name+r'\([^\n]*\) \{\n.*?^\t\}'
+        else:
+            pattern = r'\t(?:inline )?(?:void|u32) '+name+r'\([^\n]*\)(?: const)? \{[^\n]*\}'
         found = re.findall(pattern,header,re.M|re.S)
         if len(found)!=1:
-            raise ValueError('Expected one inline host helper')
+            raise ValueError('Expected one inline host helper: '+name)
         inline.append(found[0])
     raw = (work/'gen/0-h8h.hxx').read_bytes()
     verify_output(raw,generator_lock['outputs']['h8h.hxx'])
     dispatch = '\n'.join(generated_method(raw.decode(),n,'h8h_device') for n in ('do_exec_full','do_exec_partial'))
-    supported = {n+'_'+s for n in NAMES for s in ('full','partial')}|{'do_exec_full','do_exec_partial'}
+    supported = {n+'_'+s for n in NAMES+H8H_NAMES for s in ('full','partial')}|{'do_exec_full','do_exec_partial'}
     unsupported = sorted(set(re.findall(r'\b(\w+_(?:full|partial))\(\)',dispatch))-supported)
     stubs = '\n'.join('void '+n+'(){throw std::runtime_error("Unsupported reference instruction");}' for n in unsupported)
     fixture = (root/'tests/h8_first_reference.cpp').read_text(encoding='utf-8')
@@ -100,12 +108,13 @@ def check(archive, work, cmake='cmake'):
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--generated',type=Path)
+    p.add_argument('--h8h',action='store_true',help='Verify an h8h.hxx selection with --generated')
     p.add_argument('--archive',type=Path)
     p.add_argument('--work',type=Path)
     p.add_argument('--cmake',default='cmake')
     a=p.parse_args()
     if a.generated and not a.archive:
-        verify_selected(a.generated.read_bytes(),Path(__file__).resolve().parents[1])
+        verify_selected(a.generated.read_bytes(),Path(__file__).resolve().parents[1],a.h8h)
         print('Selected generated H8 handlers match locked output')
     elif a.archive and a.work and not a.generated:
         check(a.archive,a.work,a.cmake)

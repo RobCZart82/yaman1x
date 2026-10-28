@@ -8,8 +8,10 @@ Changes/fixes are recorded in the [development ledger](DEVELOPMENT_LOG.md).
 The [repository audit](REPOSITORY_AUDIT_2026-10-27.md) identifies current gaps.
 The standalone SCI interrupt/MMIO adapter is implemented in PR #39.
 The [first generated instruction subset](h8-first-instructions.md) now executes
-reset/NOP/MOV.B/BRA. Immediate M0 work is broader instruction coverage and
-IRQ entry, followed by explicit CPU/peripheral scheduling integration. M1 protocol research can proceed
+reset/NOP/MOV.B/BRA and the [memory/branch extension](h8-memory-branches.md)
+adds immediate32, indirect byte accesses and every rel8 condition. Immediate M0
+work is word/long data access, arithmetic/compare flags and broader instruction
+coverage, then IRQ entry and explicit CPU/peripheral scheduling integration. M1 protocol research can proceed
 independently in the pinned MAME harness. Neither milestone is complete.
 
 These tasks follow the first private source snapshot. No GUI work is planned

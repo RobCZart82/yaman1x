@@ -16,14 +16,14 @@ Ellenőrizve: 2026-10-27. Mind a hat PR beolvadt; mindegyik végső headjén öt
 
 Rögzítve: 2026-10-27. Kiindulópont: a #14 PR-ig beolvadt kutatási eredmények.
 Ez végrehajtási terv; az alábbi, még nyitott mérföldkövek nem kész funkciók.
-Állapotellenőrzés: 2026-10-28, alap: #46 (`00e16ce805d542e4a654923ddde2d462ebac78bb`).
+Állapotellenőrzés: 2026-10-28, alap: #47 (`343f4c32c81229e89ec092b0d8e324f2a0305f8a`).
 Az új H8-futtatási sorrend komponensszintű előrelépés; nem teljes CPU- vagy firmware-elfogadás.
 
 ## Aktuális mérföldkő-állapot — 2026-10-28
 
 | Mérföldkő | Aktuális állapot | Következő elfogadási feltétel |
 |---|---|---|
-| M0 | **Részben teljesült.** Architektúra, forrásazonosítók, generálási alap, önálló GPIO és IRQ-adapter megvan; az önálló SCI belső ciklusóra, közös aszinkron SCI TX/RX-csatorna rendelkezésre áll; a kétcsatornás SCI MMIO/IRQ-adapter elkészült; a kétcsatornás SCI-idővonal, H8H-busz, cikluskeret és H8-futtatási sorrend komponensei rendelkezésre állnak; az első valódi generált reset/NOP/MOV.B/BRA kezelők saját állapottal futnak; a teljes CPU-utasításkészlet és gépintegráció nyitott. | Közös CPU/periféria-ütemező; tényleges H8 CPU-port fordítása és végrehajtási/izolációs tesztjei. A terjesztési licenc döntése nyitott. |
+| M0 | **Részben teljesült.** Architektúra, forrásazonosítók, generálási alap, önálló GPIO és IRQ-adapter megvan; az önálló SCI belső ciklusóra, közös aszinkron SCI TX/RX-csatorna rendelkezésre áll; a kétcsatornás SCI MMIO/IRQ-adapter elkészült; a kétcsatornás SCI-idővonal, H8H-busz, cikluskeret és H8-futtatási sorrend komponensei rendelkezésre állnak; a generált részhalmaz már az összes rel8 feltételt, MOV.L immediate32 és indirekt bájtmemória-műveleteket is végrehajtja; a teljes CPU-utasításkészlet és gépintegráció nyitott. | Közös CPU/periféria-ütemező; tényleges H8 CPU-port fordítása és végrehajtási/izolációs tesztjei. A terjesztési licenc döntése nyitott. |
 | M1 | **Előkészítve, nem teljesült.** A külön macOS MAME-build és a párosított helyi futtató rendelkezésre áll. | Friss Mac-firmware-próba: SCI0 tényleges bájtfogadás és note-on/note-off feldolgozás bizonyítása; PKS-kézfogás feltárása. |
 | M2–M3 | **Kutatási feladatok nyitva.** Nincs igazolt referenciahang. | AN1x órajel, táblacímzés, EG és soros hangút bizonyítása, majd megismételhető offline hang. |
 | M4–M6 | **Tervezett.** Nincs elkészült beágyazható hangszer vagy REAPER-elfogadás. | Validált offline referencia után audio-blokkmotor, VST3 és helyi REAPER-próba. |
@@ -226,7 +226,7 @@ A [kétcsatornás SCI MMIO/IRQ-adapter](h83002-sci-mmio-irq.md) szintén elkész
 
 Az önálló SCI-idővonal (#41), CPU-hoszthatár (#42), buszsegédek (#43),
 cikluskeret (#44) és [végrehajtási sorrend](h8-execution-runner.md) elkészült.
-A [következő jelölt](h8-first-instructions.md) nyolc valódi generált full/partial kezelőt kapcsol a kerethez (reset, NOP, MOV.B immediate, BRA rel8). Ez első részhalmaz, nem teljes CPU.
+A [következő jelölt](h8-first-instructions.md) nyolc valódi generált full/partial kezelőt kapcsol a kerethez (reset, NOP, MOV.B immediate, BRA rel8). Az új [memória-/elágazásbővítés](h8-memory-branches.md) ezt 44 kezelőre bővíti: 32 bites immediate, indirekt bájt load/store és minden rel8 feltétel. Ez továbbra is részhalmaz, nem teljes CPU.
 
 Nyitott feladatok, végrehajtási sorrendben:
 
@@ -500,3 +500,9 @@ PR: [#46](https://github.com/RobCZart82/yaman1x/pull/46). Ág: `feat/h8-executio
 PR: [#47](https://github.com/RobCZart82/yaman1x/pull/47). Ág: `feat/h8-first-generated-handlers`, alap: beolvadt #46. [Részletes bizonyíték és korlátok](h8-first-instructions.md). Saját regiszter-/prefetch-/részutasítás-állapot, eredeti generált reset/NOP/MOV.B/BRA kód, explicit nem támogatott opcode-hiba. 200000 szintetikus szakasz összevetve az eredeti H8H-dekóderrel és futtatóval, 899400 olvasás, nulla eltérés; szándékos hibát a kontroll észleli. M0 részben teljesült. Következő: adatmemória-műveletek, feltételes elágazások, IRQ-belépés és CPU/SCI-sorrend. A teljes CPU-/firmware-/MIDI-/audioelfogadás továbbra is nyitott.
 
 Előző lépcső lezárása: [#46](https://github.com/RobCZart82/yaman1x/pull/46): merge `00e16ce805d542e4a654923ddde2d462ebac78bb`, végső head `478294b0570b0140b0ba2c5f78b65fcc99fecaa4`; [Linux/macOS/Windows PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40637467656), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40637467504), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40637467588).
+
+## 2026-10-28 — H8H memória és rel8 feltételek
+
+Ág: `feat/h8-memory-conditional-branches`, alap: beolvadt #47. [Részletes tesztek és korlátok](h8-memory-branches.md). 44 eredeti generált full/partial metódus, háromszavas IR, teljes ER-címek és kétciklusos adatbusz-hozzáférés. 200000 eredeti referencia-szakasz, 844255 utasításolvasás, 27571 adatolvasás, 27574 adatírás: nulla eltérés. M0 részben teljesült. Következő: szó-/hosszúszó-műveletek, aritmetikai/összehasonlítási jelzőbitek, majd IRQ és CPU/SCI-sorrend. Teljes CPU-/firmware-/MIDI-/audioelfogadás továbbra is nyitott.
+
+Előző lépcső lezárása: [#47](https://github.com/RobCZart82/yaman1x/pull/47): merge `343f4c32c81229e89ec092b0d8e324f2a0305f8a`, végső head `6f8107ec35e511c6aa9d347295e67a882a7826d3`; [Linux/macOS/Windows PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40640131062), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40640130940), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40640130959).

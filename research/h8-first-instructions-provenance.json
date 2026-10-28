@@ -10,7 +10,37 @@
     "mov_b_imm8_r8u_full",
     "mov_b_imm8_r8u_partial",
     "bt_rel8_full",
-    "bt_rel8_partial"
+    "bt_rel8_partial",
+    "bf_rel8_full",
+    "bf_rel8_partial",
+    "bhi_rel8_full",
+    "bhi_rel8_partial",
+    "bls_rel8_full",
+    "bls_rel8_partial",
+    "bcc_rel8_full",
+    "bcc_rel8_partial",
+    "bcs_rel8_full",
+    "bcs_rel8_partial",
+    "bne_rel8_full",
+    "bne_rel8_partial",
+    "beq_rel8_full",
+    "beq_rel8_partial",
+    "bvc_rel8_full",
+    "bvc_rel8_partial",
+    "bvs_rel8_full",
+    "bvs_rel8_partial",
+    "bpl_rel8_full",
+    "bpl_rel8_partial",
+    "bmi_rel8_full",
+    "bmi_rel8_partial",
+    "bge_rel8_full",
+    "bge_rel8_partial",
+    "blt_rel8_full",
+    "blt_rel8_partial",
+    "bgt_rel8_full",
+    "bgt_rel8_partial",
+    "ble_rel8_full",
+    "ble_rel8_partial"
   ],
   "inputs": {
     "src/devices/cpu/h8/h8.cpp": {
@@ -20,8 +50,22 @@
     "src/devices/cpu/h8/h8.h": {
       "bytes": 13449,
       "sha256": "c8f4d4dc0a9e8e84dd16414f33700e827022d70520313ea1ee79dc3a34db66c0"
+    },
+    "src/devices/cpu/h8/h8h.h": {
+      "bytes": 4271,
+      "sha256": "4cc7b135d56199b2bed4df86a12c879e3851b2c17525abcda3db765c957b4940"
     }
   },
-  "adaptation": "Selected generated bodies with class qualifiers removed; standalone advanced-H8H subset host with disabled IRQ/DMA/DTC/trace, no bus retries. Helpers r8_w/set_nzv8/prefetch_switch adapted from pinned h8.h/h8.cpp; prefetch completion reduced to the no-request/no-transfer/no-IRQ/no-trace branch. Reset IRQ filter callback is a no-op because IRQ entry is unsupported.",
-  "selected_lf_sha256": "b2aa5c5bf7fa3b23024970872f4d8b9ebb40019d18983f4f91c2909eaeeb7fd2"
+  "adaptation": "Selected generated bodies with class qualifiers removed; standalone advanced-H8H subset host with disabled IRQ/DMA/DTC/trace, no bus retries. Helpers r8_w/set_nzv8/prefetch_switch adapted from pinned h8.h/h8.cpp; prefetch completion reduced to the no-request/no-transfer/no-IRQ/no-trace branch. Reset IRQ filter callback is a no-op because IRQ entry is unsupported. Extended selection: all rel8 conditions, MOV.L imm32 and indirect byte load/store; 3-word IR, H8H r32 accessors and set_nzv32 helper. Completed synchronous data bus accesses use reviewed H8H bus charging.",
+  "selected_lf_sha256": "a373a8563f1ad91b165971f20a108762c60ee20ad1375ace0ab5e13a1484a97e",
+  "h8h_methods": [
+    "mov_l_imm32_r32l_full",
+    "mov_l_imm32_r32l_partial",
+    "mov_b_r32ih_r8l_full",
+    "mov_b_r32ih_r8l_partial",
+    "mov_b_r8l_r32ih_full",
+    "mov_b_r8l_r32ih_partial"
+  ],
+  "h8h_generated_lf_sha256": "b0231d316fa0e8c09aa3598e063cbbcd53b392c78d7378c6e2e17284744e7f59",
+  "h8h_selected_lf_sha256": "2e0b84c7da77defb65ab1fe4930c88f143744da3fe3fedc4b1db5b0ace7c89ee"
 }
