@@ -3,7 +3,7 @@
   "recorded_date": "2026-10-28",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "ed966cef79eb33eb309165e9e9d6edca920410ea",
+  "baseline_commit": "00e16ce805d542e4a654923ddde2d462ebac78bb",
   "entries": [
     {
       "pr": 6,
@@ -410,14 +410,28 @@
       "merge_commit": "ed966cef79eb33eb309165e9e9d6edca920410ea",
       "reviewed_head": "eee27cef236fb54cb0d012f1df1716d2d03fa63c",
       "status": "merged"
+    },
+    {
+      "pr": 46,
+      "title": "Compose H8 full/partial execution ordering with peripheral deadlines",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/46",
+      "kind": "development",
+      "merged_at_utc": "2026-10-28T05:30:05Z",
+      "merge_commit": "00e16ce805d542e4a654923ddde2d462ebac78bb",
+      "reviewed_head": "478294b0570b0140b0ba2c5f78b65fcc99fecaa4",
+      "status": "merged",
+      "ci_runs": [
+        40637467656,
+        40637467504,
+        40637467588
+      ]
     }
   ],
   "active_change": {
-    "id": "H8-RUNNER-2026-10-28",
-    "branch": "feat/h8-execution-order",
-    "status": "in_review",
-    "summary": "Compose H8 full/partial execution ordering with budget and peripheral deadlines",
-    "validation": "Original execute_run: 200000 eventful synthetic slices, zero differences; final candidate CI pending. No actual opcode/firmware execution.",
-    "pr": 46
+    "id": "H8-FIRST-2026-10-28",
+    "branch": "feat/h8-first-generated-handlers",
+    "status": "in_progress",
+    "summary": "Compile and execute selected real generated H8 reset/NOP/MOV.B/BRA handlers with per-instance state",
+    "validation": "200000 original H8H decoder/handler/runner comparison slices, 899400 instruction reads, zero differences; negative control detected. Final candidate CI pending; full CPU/IRQ/firmware remain open."
   }
 }

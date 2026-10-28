@@ -66,7 +66,11 @@ The Mac firmware experiment remains separately documented in `MAC_M1_HANDOFF.md`
 `research/h8-generator-lock.json` records the exact hashes of `h8make.py`,
 `h8.lst` and `scripts/src/cpu.lua` from the locked archive. It also records
 the four reviewed argument combinations, output sizes and SHA-256 values.
-The generated files are kept in ignored local work directories, not vendored.
+The complete generated files stay in ignored local work directories. As of
+2026-10-28, eight selected full/partial methods are retained with notices for
+the [first instruction execution profile](h8-first-instructions.md); their bodies
+are checked against the locked full output. The earlier generation-only result
+below remains historical and does not describe that later compilation step.
 
 ```sh
 python3 tools/check_h8_generation.py --archive /absolute/path/to/mame-master.zip --work work/h8-generation-check

@@ -1,0 +1,27 @@
+{
+  "upstream_commit": "706dbb73281320c54d7c2f16262c1c3786f2be01",
+  "generated_output": "h8.hxx",
+  "generated_lf_sha256": "00922f704c2d811c660ecebf5b8adbcea9ac46ec6cf546ac2f1b106a28e875ad",
+  "methods": [
+    "state_reset_full",
+    "state_reset_partial",
+    "nop_full",
+    "nop_partial",
+    "mov_b_imm8_r8u_full",
+    "mov_b_imm8_r8u_partial",
+    "bt_rel8_full",
+    "bt_rel8_partial"
+  ],
+  "inputs": {
+    "src/devices/cpu/h8/h8.cpp": {
+      "bytes": 31776,
+      "sha256": "89826ddcf2ab4116942a83ce3138206091a635ed8994f61787e10c8cb9870e48"
+    },
+    "src/devices/cpu/h8/h8.h": {
+      "bytes": 13449,
+      "sha256": "c8f4d4dc0a9e8e84dd16414f33700e827022d70520313ea1ee79dc3a34db66c0"
+    }
+  },
+  "adaptation": "Selected generated bodies with class qualifiers removed; standalone advanced-H8H subset host with disabled IRQ/DMA/DTC/trace, no bus retries. Helpers r8_w/set_nzv8/prefetch_switch adapted from pinned h8.h/h8.cpp; prefetch completion reduced to the no-request/no-transfer/no-IRQ/no-trace branch. Reset IRQ filter callback is a no-op because IRQ entry is unsupported.",
+  "selected_lf_sha256": "b2aa5c5bf7fa3b23024970872f4d8b9ebb40019d18983f4f91c2909eaeeb7fd2"
+}
