@@ -22,7 +22,7 @@ def inventory(raw, selected):
         eligible=profile in ('common','h')
         status=('selected_handler' if name in selected else 'missing_handler') if eligible else 'excluded_profile'
         rows.append(dict(line=number,value=t[0],mask=t[1],skip=int(t[2]),mnemonic=t[3],operands=t[4:6],method=name,profile=profile,status=status))
-    return dict(schema_version=1,source_sha256=hashlib.sha256(raw).hexdigest(),profile='advanced H8H, fixed no-IRQ research host',
+    return dict(schema_version=1,source_sha256=hashlib.sha256(raw).hexdigest(),profile='advanced H8H, fixed reset-SYSCR research host',
                 counts=dict(sorted(Counter(r['status'] for r in rows).items())),instructions=rows,
                 complete_cpu=False,decoder_proven=False,
                 limits='Encoding rows, not opcode-word coverage percentages. Selected means full/partial bodies are selected; dispatch, prefix continuation and semantics require separate tests. Internal states/macros excluded. H8S/GT913/base-only rows excluded from H8H.')

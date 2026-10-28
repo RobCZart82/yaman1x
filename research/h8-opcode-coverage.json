@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "source_sha256": "416f712236ef9c046ea31a23cb5d21403d25730e1516c0f7703233682bf2639a",
-  "profile": "advanced H8H, fixed no-IRQ research host",
+  "profile": "advanced H8H, fixed reset-SYSCR research host",
   "counts": {
     "excluded_profile": 135,
     "missing_handler": 53,

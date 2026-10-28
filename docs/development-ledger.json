@@ -685,12 +685,20 @@
     }
   ],
   "active_change": {
-    "id": "H8-TRAPA-2026-10-28",
-    "branch": "feat/h8-trapa-entry",
-    "status": "in_review",
-    "pr": 64,
-    "url": "https://github.com/RobCZart82/yaman1x/pull/64",
-    "summary": "Synchronous TRAPA in fixed reset-SYSCR profile",
-    "validation": "Rebased onto merged #63, preserving flat-dispatch Windows fix. Local revalidation in progress; final-head CI required."
-  }
+    "id": "H8-EXTERNAL-IRQ-2026-10-28",
+    "branch": "feat/h8-external-irq",
+    "status": "draft_dependency_hold",
+    "pr": 65,
+    "parent_pr": 64,
+    "summary": "Optional fixed-reset-SYSCR IRQ/NMI entry",
+    "validation": "Rebased onto corrected #64 with flat Windows dispatcher; local revalidation and own final CI required."
+  },
+  "pending_changes": [
+    {
+      "pr": 64,
+      "branch": "feat/h8-trapa-entry",
+      "status": "in_review",
+      "parent_pr": 63
+    }
+  ]
 }

@@ -318,3 +318,9 @@ A lapos választó helyi ellenőrzése: 42/42 CTest, 87 Python-eset, 200000 ered
 ### #63 lezárása és a #64–#66 Windows-javítása
 
 #63 a GitHub szerint beolvadt: `dfa7af9bc21c8fe2b91367ad88b91bd7a56ba498`, 2026-10-28 18:12:45 UTC, végső head `ff7fa98a801ad33e0976206606673c7db0b17eca`, öt zöld CI. #64 újraalapozva a friss mainre; a régi Windows C1061 hibát okozó választólánc helyett a már ellenőrzött sorrendtartó korai kilépések megőrizve. #65 és #66 ugyanebben a függőségi sorrendben kapja meg ezt a javítást. A generált metódustörzsek változatlanok; minden új head saját CI-je szükséges.
+
+## H8-EXTERNAL-IRQ-2026-10-28
+
+Ág: `feat/h8-external-irq`; [jegyzőkönyv](h8-external-irq.md). Két eredeti state_irq metódus (438 összesen), opcionális kontrollerkötés, rögzített reset-SYSCR CCR.I szűrés, normál/noirq prefetch különválasztása. 512 maszkolás/NMI/RTE eset, 322 felosztás, külső edge pin, stackhibák és példányizoláció. 45/45 CTest, 87 Python, ASan/UBSan és 200000 eredetimetódus-szelet PASS. Szülő #64; a merge kizárólag a szülők és saját végső CI miatt vár. #61 Linux/Windows/MSan zöld, két macOS-feladat még sorban áll; nem újrafuttatott hibák. Teljes gép- és audioelfogadás továbbra sincs.
+
+#65 Windows-javítás: a #64 javított ágára újraalapozva, a régi mély else-if választó lecserélve sorrendtartó, azonnal kilépő ágakra. Új opcode vagy metódustörzs-változás nincs. A #64 függőség és a #65 saját végső CI-je továbbra is beolvasztási kapu.

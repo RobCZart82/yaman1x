@@ -2,6 +2,215 @@
 // copyright-holders:Olivier Galibert
 // Selected pinned generated h8h.hxx methods; only class qualifiers removed.
 // Included inside H8FirstInstructions. See research/h8-first-instructions-provenance.json.
+void state_irq_full()
+{
+	internal(1);
+	m_TMP1 = r32_r(7) - 2;
+	r32_w(7, m_TMP1);
+	write16(m_TMP1, m_NPC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 1;
+		} else
+			m_inst_substate = 2;
+		return;
+	}
+	m_TMP1 = r32_r(7) - 2;
+	r32_w(7, m_TMP1);
+	write16(m_TMP1, (m_CCR << 8) | ((m_NPC >> 16) & 0xff));
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 3;
+		} else
+			m_inst_substate = 4;
+		return;
+	}
+	if(exr_in_stack()) {
+		m_TMP1 = r32_r(7) - 2;
+		r32_w(7, m_TMP1);
+		write16(m_TMP1, m_EXR << 8);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 5;
+		} else
+			m_inst_substate = 6;
+		return;
+	}
+	}
+	debugger_exception_hook(m_taken_irq_vector);
+	if(m_mode_advanced) {
+		m_IR[0] = read16i(4*m_taken_irq_vector);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 7;
+		} else
+			m_inst_substate = 8;
+		return;
+	}
+		m_IR[1] = read16i(4*m_taken_irq_vector+2);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 9;
+		} else
+			m_inst_substate = 10;
+		return;
+	}
+		m_PC = (m_IR[0] << 16) | m_IR[1];
+	} else {
+		m_PC = read16i(2*m_taken_irq_vector);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 11;
+		} else
+			m_inst_substate = 12;
+		return;
+	}
+	}
+	internal(1);
+	irq_setup();
+	update_irq_filter();
+	interrupt_taken();
+	m_NPC = m_PC & 0xffffff;
+	m_PIR = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 13;
+		} else
+			m_inst_substate = 14;
+		return;
+	}
+	m_PC += 2;
+	prefetch_done_noirq();
+}
+
+void state_irq_partial()
+{
+switch(m_inst_substate) {
+case 0:
+	internal(1);
+	m_TMP1 = r32_r(7) - 2;
+	r32_w(7, m_TMP1);
+	[[fallthrough]];
+case 1:;
+	write16(m_TMP1, m_NPC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 1;
+		} else
+			m_inst_substate = 2;
+		return;
+	}
+	[[fallthrough]];
+case 2:;
+	m_TMP1 = r32_r(7) - 2;
+	r32_w(7, m_TMP1);
+	[[fallthrough]];
+case 3:;
+	write16(m_TMP1, (m_CCR << 8) | ((m_NPC >> 16) & 0xff));
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 3;
+		} else
+			m_inst_substate = 4;
+		return;
+	}
+	[[fallthrough]];
+case 4:;
+	if(exr_in_stack()) {
+		m_TMP1 = r32_r(7) - 2;
+		r32_w(7, m_TMP1);
+	[[fallthrough]];
+case 5:;
+		write16(m_TMP1, m_EXR << 8);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 5;
+		} else
+			m_inst_substate = 6;
+		return;
+	}
+	[[fallthrough]];
+case 6:;
+	}
+	debugger_exception_hook(m_taken_irq_vector);
+	if(m_mode_advanced) {
+	[[fallthrough]];
+case 7:;
+		m_IR[0] = read16i(4*m_taken_irq_vector);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 7;
+		} else
+			m_inst_substate = 8;
+		return;
+	}
+	[[fallthrough]];
+case 8:;
+	[[fallthrough]];
+case 9:;
+		m_IR[1] = read16i(4*m_taken_irq_vector+2);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 9;
+		} else
+			m_inst_substate = 10;
+		return;
+	}
+	[[fallthrough]];
+case 10:;
+		m_PC = (m_IR[0] << 16) | m_IR[1];
+	} else {
+	[[fallthrough]];
+case 11:;
+		m_PC = read16i(2*m_taken_irq_vector);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 11;
+		} else
+			m_inst_substate = 12;
+		return;
+	}
+	[[fallthrough]];
+case 12:;
+	}
+	internal(1);
+	irq_setup();
+	update_irq_filter();
+	interrupt_taken();
+	m_NPC = m_PC & 0xffffff;
+	[[fallthrough]];
+case 13:;
+	m_PIR = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 13;
+		} else
+			m_inst_substate = 14;
+		return;
+	}
+	[[fallthrough]];
+case 14:;
+	m_PC += 2;
+	prefetch_done_noirq();
+	break;
+}
+	m_inst_substate = 0;
+}
+
 void trapa_imm2_full()
 {
 	internal(1);
