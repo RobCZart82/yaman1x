@@ -71,6 +71,30 @@ private:
         else if((m_inst_state&0xff00)==0x6400) {if(partial)or_w_r16h_r16l_partial();else or_w_r16h_r16l_full();}
         else if((m_inst_state&0xff00)==0x6500) {if(partial)xor_w_r16h_r16l_partial();else xor_w_r16h_r16l_full();}
         else if((m_inst_state&0xff00)==0x6600) {if(partial)and_w_r16h_r16l_partial();else and_w_r16h_r16l_full();}
+        else if((m_inst_state&0xfff0)==0x1000) {if(partial)shll_b_r8l_partial();else shll_b_r8l_full();}
+        else if((m_inst_state&0xfff0)==0x1010) {if(partial)shll_w_r16l_partial();else shll_w_r16l_full();}
+        else if((m_inst_state&0xfff8)==0x1030) {if(partial)shll_l_r32l_partial();else shll_l_r32l_full();}
+        else if((m_inst_state&0xfff0)==0x1080) {if(partial)shal_b_r8l_partial();else shal_b_r8l_full();}
+        else if((m_inst_state&0xfff0)==0x1090) {if(partial)shal_w_r16l_partial();else shal_w_r16l_full();}
+        else if((m_inst_state&0xfff8)==0x10b0) {if(partial)shal_l_r32l_partial();else shal_l_r32l_full();}
+        else if((m_inst_state&0xfff0)==0x1100) {if(partial)shlr_b_r8l_partial();else shlr_b_r8l_full();}
+        else if((m_inst_state&0xfff0)==0x1110) {if(partial)shlr_w_r16l_partial();else shlr_w_r16l_full();}
+        else if((m_inst_state&0xfff8)==0x1130) {if(partial)shlr_l_r32l_partial();else shlr_l_r32l_full();}
+        else if((m_inst_state&0xfff0)==0x1180) {if(partial)shar_b_r8l_partial();else shar_b_r8l_full();}
+        else if((m_inst_state&0xfff0)==0x1190) {if(partial)shar_w_r16l_partial();else shar_w_r16l_full();}
+        else if((m_inst_state&0xfff8)==0x11b0) {if(partial)shar_l_r32l_partial();else shar_l_r32l_full();}
+        else if((m_inst_state&0xfff0)==0x1200) {if(partial)rotxl_b_r8l_partial();else rotxl_b_r8l_full();}
+        else if((m_inst_state&0xfff0)==0x1210) {if(partial)rotxl_w_r16l_partial();else rotxl_w_r16l_full();}
+        else if((m_inst_state&0xfff8)==0x1230) {if(partial)rotxl_l_r32l_partial();else rotxl_l_r32l_full();}
+        else if((m_inst_state&0xfff0)==0x1280) {if(partial)rotl_b_r8l_partial();else rotl_b_r8l_full();}
+        else if((m_inst_state&0xfff0)==0x1290) {if(partial)rotl_w_r16l_partial();else rotl_w_r16l_full();}
+        else if((m_inst_state&0xfff8)==0x12b0) {if(partial)rotl_l_r32l_partial();else rotl_l_r32l_full();}
+        else if((m_inst_state&0xfff0)==0x1300) {if(partial)rotxr_b_r8l_partial();else rotxr_b_r8l_full();}
+        else if((m_inst_state&0xfff0)==0x1310) {if(partial)rotxr_w_r16l_partial();else rotxr_w_r16l_full();}
+        else if((m_inst_state&0xfff8)==0x1330) {if(partial)rotxr_l_r32l_partial();else rotxr_l_r32l_full();}
+        else if((m_inst_state&0xfff0)==0x1380) {if(partial)rotr_b_r8l_partial();else rotr_b_r8l_full();}
+        else if((m_inst_state&0xfff0)==0x1390) {if(partial)rotr_w_r16l_partial();else rotr_w_r16l_full();}
+        else if((m_inst_state&0xfff8)==0x13b0) {if(partial)rotr_l_r32l_partial();else rotr_l_r32l_full();}
         else if(m_inst_state==0x0100) {if(partial)dispatch_0100_partial();else dispatch_0100_full();}
         else if((m_inst_state&0xff00)==0x0700) {if(partial)ldc_imm8_ccr_partial();else ldc_imm8_ccr_full();}
         else if((m_inst_state&0xff00)==0x0900) {if(partial)add_w_r16h_r16l_partial();else add_w_r16h_r16l_full();}
@@ -202,6 +226,50 @@ private:
     }
     uint8_t do_addx8(uint8_t a,uint8_t b){return extended_byte(a,b,false);}
     uint8_t do_subx8(uint8_t a,uint8_t b){return extended_byte(a,b,true);}
+    // Unsigned fixed-width adaptation of pinned MAME do_sh*/do_rot* helpers.
+    template<unsigned Bits,unsigned Op> uint32_t shift_rotate(uint32_t input) {
+        const uint64_t modulus=uint64_t{1}<<Bits, sign=modulus/2;
+        const uint64_t v=input&(modulus-1), carry=(m_CCR&F_C)?1:0;
+        const bool left=Op==0 || Op==1 || Op==4 || Op==5;
+        const bool outgoing=left?(v&sign)!=0:(v&1)!=0;
+        uint64_t result=left?(v<<1):(v>>1);
+        if constexpr(Op==3)result|=v&sign;
+        if constexpr(Op==4)result|=carry;
+        if constexpr(Op==5)result|=outgoing?1:0;
+        if constexpr(Op==6)result|=carry?sign:0;
+        if constexpr(Op==7)result|=outgoing?sign:0;
+        result&=modulus-1;
+        m_CCR&=~(F_N|F_Z|F_V|F_C);
+        if(!result)m_CCR|=F_Z;
+        if(result&sign)m_CCR|=F_N;
+        if(outgoing)m_CCR|=F_C;
+        if constexpr(Op==1)if((v^result)&sign)m_CCR|=F_V;
+        return uint32_t(result);
+    }
+    uint8_t do_shll8(uint8_t v){return uint8_t(shift_rotate<8,0>(v));}
+    uint16_t do_shll16(uint16_t v){return uint16_t(shift_rotate<16,0>(v));}
+    uint32_t do_shll32(uint32_t v){return uint32_t(shift_rotate<32,0>(v));}
+    uint8_t do_shal8(uint8_t v){return uint8_t(shift_rotate<8,1>(v));}
+    uint16_t do_shal16(uint16_t v){return uint16_t(shift_rotate<16,1>(v));}
+    uint32_t do_shal32(uint32_t v){return uint32_t(shift_rotate<32,1>(v));}
+    uint8_t do_shlr8(uint8_t v){return uint8_t(shift_rotate<8,2>(v));}
+    uint16_t do_shlr16(uint16_t v){return uint16_t(shift_rotate<16,2>(v));}
+    uint32_t do_shlr32(uint32_t v){return uint32_t(shift_rotate<32,2>(v));}
+    uint8_t do_shar8(uint8_t v){return uint8_t(shift_rotate<8,3>(v));}
+    uint16_t do_shar16(uint16_t v){return uint16_t(shift_rotate<16,3>(v));}
+    uint32_t do_shar32(uint32_t v){return uint32_t(shift_rotate<32,3>(v));}
+    uint8_t do_rotxl8(uint8_t v){return uint8_t(shift_rotate<8,4>(v));}
+    uint16_t do_rotxl16(uint16_t v){return uint16_t(shift_rotate<16,4>(v));}
+    uint32_t do_rotxl32(uint32_t v){return uint32_t(shift_rotate<32,4>(v));}
+    uint8_t do_rotl8(uint8_t v){return uint8_t(shift_rotate<8,5>(v));}
+    uint16_t do_rotl16(uint16_t v){return uint16_t(shift_rotate<16,5>(v));}
+    uint32_t do_rotl32(uint32_t v){return uint32_t(shift_rotate<32,5>(v));}
+    uint8_t do_rotxr8(uint8_t v){return uint8_t(shift_rotate<8,6>(v));}
+    uint16_t do_rotxr16(uint16_t v){return uint16_t(shift_rotate<16,6>(v));}
+    uint32_t do_rotxr32(uint32_t v){return uint32_t(shift_rotate<32,6>(v));}
+    uint8_t do_rotr8(uint8_t v){return uint8_t(shift_rotate<8,7>(v));}
+    uint16_t do_rotr16(uint16_t v){return uint16_t(shift_rotate<16,7>(v));}
+    uint32_t do_rotr32(uint32_t v){return uint32_t(shift_rotate<32,7>(v));}
     Host& host_;
     H8ExecutionRunner runner_;
     int& m_icount;

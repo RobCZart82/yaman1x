@@ -84,7 +84,23 @@
     "bgt_rel8_full",
     "bgt_rel8_partial",
     "ble_rel8_full",
-    "ble_rel8_partial"
+    "ble_rel8_partial",
+    "shll_b_r8l_full",
+    "shll_b_r8l_partial",
+    "shal_b_r8l_full",
+    "shal_b_r8l_partial",
+    "shlr_b_r8l_full",
+    "shlr_b_r8l_partial",
+    "shar_b_r8l_full",
+    "shar_b_r8l_partial",
+    "rotxl_b_r8l_full",
+    "rotxl_b_r8l_partial",
+    "rotl_b_r8l_full",
+    "rotl_b_r8l_partial",
+    "rotxr_b_r8l_full",
+    "rotxr_b_r8l_partial",
+    "rotr_b_r8l_full",
+    "rotr_b_r8l_partial"
   ],
   "inputs": {
     "src/devices/cpu/h8/h8.cpp": {
@@ -100,8 +116,8 @@
       "sha256": "4cc7b135d56199b2bed4df86a12c879e3851b2c17525abcda3db765c957b4940"
     }
   },
-  "adaptation": "Selected generated bodies with class qualifiers removed; standalone advanced-H8H subset host with disabled IRQ/DMA/DTC/trace, no bus retries. Helpers r8_w/set_nzv8/prefetch_switch adapted from pinned h8.h/h8.cpp; prefetch completion reduced to the no-request/no-transfer/no-IRQ/no-trace branch. Reset IRQ filter callback is a no-op because IRQ entry is unsupported. Extended selection: all rel8 conditions, MOV.L imm32 and indirect byte load/store; 3-word IR, H8H r32 accessors and set_nzv32 helper. Completed synchronous data bus accesses use reviewed H8H bus charging. Word/long extension: MOV.W immediate16, indirect word/long loads/stores and original dispatch_0100 prefix handlers. Explicit internal-state decoder guards preserve prefixed partial execution; completed word accesses align down via reviewed H8H bus helpers. r16_r/r16_w and set_nzv16 are adapted from the same pinned h8.h/h8.cpp. Arithmetic extension: original ADD/CMP byte immediate, ADD/SUB/CMP byte-register, and word/long immediate handlers; width-generic unsigned arithmetic adapts pinned do_add8/16/32 and do_sub8/16/32 for the fixed m_has_hc=true profile, preserving half-carry bits 4/12/28. Carry/register/logic extension: original ADDX/SUBX byte forms, wide register ADD/SUB/CMP, byte register and immediate AND/OR/XOR, wide immediate logic, and LDC immediate CCR. extended_byte adapts pinned do_addx8/do_subx8, retaining carry input and sticky Z in the fixed half-carry-enabled profile. IRQ filter publication remains disabled; LDC only stores CCR in this subset. Wide register logic: original word/long OR/XOR/AND and dispatch_01f0 prefix bodies, guarded 0x110000 extension state; no new host helper.",
-  "selected_lf_sha256": "bd63d4afbf5a90b446e118b3696e0164287c48b984ee5275424e05222fe0506b",
+  "adaptation": "Selected generated bodies with class qualifiers removed; standalone advanced-H8H subset host with disabled IRQ/DMA/DTC/trace, no bus retries. Helpers r8_w/set_nzv8/prefetch_switch adapted from pinned h8.h/h8.cpp; prefetch completion reduced to the no-request/no-transfer/no-IRQ/no-trace branch. Reset IRQ filter callback is a no-op because IRQ entry is unsupported. Extended selection: all rel8 conditions, MOV.L imm32 and indirect byte load/store; 3-word IR, H8H r32 accessors and set_nzv32 helper. Completed synchronous data bus accesses use reviewed H8H bus charging. Word/long extension: MOV.W immediate16, indirect word/long loads/stores and original dispatch_0100 prefix handlers. Explicit internal-state decoder guards preserve prefixed partial execution; completed word accesses align down via reviewed H8H bus helpers. r16_r/r16_w and set_nzv16 are adapted from the same pinned h8.h/h8.cpp. Arithmetic extension: original ADD/CMP byte immediate, ADD/SUB/CMP byte-register, and word/long immediate handlers; width-generic unsigned arithmetic adapts pinned do_add8/16/32 and do_sub8/16/32 for the fixed m_has_hc=true profile, preserving half-carry bits 4/12/28. Carry/register/logic extension: original ADDX/SUBX byte forms, wide register ADD/SUB/CMP, byte register and immediate AND/OR/XOR, wide immediate logic, and LDC immediate CCR. extended_byte adapts pinned do_addx8/do_subx8, retaining carry input and sticky Z in the fixed half-carry-enabled profile. IRQ filter publication remains disabled; LDC only stores CCR in this subset. Wide register logic: original word/long OR/XOR/AND and dispatch_01f0 prefix bodies, guarded 0x110000 extension state; no new host helper. Single-bit shift/rotate extension: original SHLL/SHAL/SHLR/SHAR/ROTXL/ROTL/ROTXR/ROTR byte/word/long handlers. Unsigned width-generic shift_rotate adapts the corresponding 24 pinned helpers; only SHAL sets V, H and unrelated CCR bits are preserved. Two-bit and H8S variants remain unsupported.",
+  "selected_lf_sha256": "94b7dace5ed2d26eafe1f04cdb1a915c313e34fe2630a3b32d48ba6692215835",
   "h8h_methods": [
     "mov_l_imm32_r32l_full",
     "mov_l_imm32_r32l_partial",
@@ -158,8 +174,40 @@
     "xor_l_r32h_r32l_full",
     "xor_l_r32h_r32l_partial",
     "and_l_r32h_r32l_full",
-    "and_l_r32h_r32l_partial"
+    "and_l_r32h_r32l_partial",
+    "shll_w_r16l_full",
+    "shll_w_r16l_partial",
+    "shll_l_r32l_full",
+    "shll_l_r32l_partial",
+    "shal_w_r16l_full",
+    "shal_w_r16l_partial",
+    "shal_l_r32l_full",
+    "shal_l_r32l_partial",
+    "shlr_w_r16l_full",
+    "shlr_w_r16l_partial",
+    "shlr_l_r32l_full",
+    "shlr_l_r32l_partial",
+    "shar_w_r16l_full",
+    "shar_w_r16l_partial",
+    "shar_l_r32l_full",
+    "shar_l_r32l_partial",
+    "rotxl_w_r16l_full",
+    "rotxl_w_r16l_partial",
+    "rotxl_l_r32l_full",
+    "rotxl_l_r32l_partial",
+    "rotl_w_r16l_full",
+    "rotl_w_r16l_partial",
+    "rotl_l_r32l_full",
+    "rotl_l_r32l_partial",
+    "rotxr_w_r16l_full",
+    "rotxr_w_r16l_partial",
+    "rotxr_l_r32l_full",
+    "rotxr_l_r32l_partial",
+    "rotr_w_r16l_full",
+    "rotr_w_r16l_partial",
+    "rotr_l_r32l_full",
+    "rotr_l_r32l_partial"
   ],
   "h8h_generated_lf_sha256": "b0231d316fa0e8c09aa3598e063cbbcd53b392c78d7378c6e2e17284744e7f59",
-  "h8h_selected_lf_sha256": "bd68b398fa0ab01991b33ea3a74865fbacf685de0e668fbe0b58146ef258e28a"
+  "h8h_selected_lf_sha256": "42e5d60966e5cd39b958f8ecc3d10607e06a605b9b1b6f043a0eae7f17426c4c"
 }

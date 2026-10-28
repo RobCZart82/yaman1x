@@ -52,7 +52,7 @@ int main(){
      while(start<512){random=random*1664525u+1013904223u;int n=int(1+random%19);if(start+n>512)n=int(512-start);y.run(start,n,1000);start+=n;}
      check(x.snapshot()==y.snapshot() && a.reads==b.reads,"1000 split histories preserve real instruction state and bus trace");}
     {Host a,b;Cpu x(a),y(b);x.run(0,20,1000);check(b.reads.empty() && y.snapshot().state==0x10000,"Machine state isolation");}
-    {Host host;host.words[0x80]=0x1234;Cpu cpu(host);
+    {Host host;host.words[0x80]=0x123c;Cpu cpu(host);
      throws<std::runtime_error>([&]{cpu.run(0,20,1000);});check(cpu.failed(),"Unsupported opcode explicitly poisons instance");}
     {Host host;host.words[1]=0x8000;Cpu cpu(host);
      throws<std::out_of_range>([&]{cpu.run(0,20,1000);});check(cpu.failed(),"Bus failure poisons instance");}

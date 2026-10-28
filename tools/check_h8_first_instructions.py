@@ -8,9 +8,10 @@ import subprocess
 import zipfile
 from check_h8_generation import check as generate, verify_output
 
+SHIFTS = ('shll','shal','shlr','shar','rotxl','rotl','rotxr','rotr')
 BRANCHES = ('bt','bf','bhi','bls','bcc','bcs','bne','beq','bvc','bvs','bpl','bmi','bge','blt','bgt','ble')
-NAMES = ('state_reset', 'nop', 'mov_b_imm8_r8u','mov_w_imm16_r16l','dispatch_0100','dispatch_01f0','add_b_imm8_r8u','cmp_b_imm8_r8u','add_b_r8h_r8l','sub_b_r8h_r8l','cmp_b_r8h_r8l','ldc_imm8_ccr','add_w_r16h_r16l','sub_w_r16h_r16l','cmp_w_r16h_r16l','addx_b_imm8_r8u','subx_b_imm8_r8u','addx_b_r8h_r8l','subx_b_r8h_r8l','and_b_imm8_r8u','or_b_imm8_r8u','xor_b_imm8_r8u','and_b_r8h_r8l','or_b_r8h_r8l','xor_b_r8h_r8l') + tuple(n+'_rel8' for n in BRANCHES)
-H8H_NAMES = ('mov_l_imm32_r32l','mov_b_r32ih_r8l','mov_b_r8l_r32ih','mov_w_r32ih_r16l','mov_w_r16l_r32ih','mov_l_r32ih_r32l','mov_l_r32l_r32ih','add_w_imm16_r16l','sub_w_imm16_r16l','cmp_w_imm16_r16l','add_l_imm32_r32l','sub_l_imm32_r32l','cmp_l_imm32_r32l','add_l_r32h_r32l','sub_l_r32h_r32l','cmp_l_r32h_r32l','and_w_imm16_r16l','or_w_imm16_r16l','xor_w_imm16_r16l','and_l_imm32_r32l','or_l_imm32_r32l','xor_l_imm32_r32l','or_w_r16h_r16l','xor_w_r16h_r16l','and_w_r16h_r16l','or_l_r32h_r32l','xor_l_r32h_r32l','and_l_r32h_r32l')
+NAMES = ('state_reset', 'nop', 'mov_b_imm8_r8u','mov_w_imm16_r16l','dispatch_0100','dispatch_01f0','add_b_imm8_r8u','cmp_b_imm8_r8u','add_b_r8h_r8l','sub_b_r8h_r8l','cmp_b_r8h_r8l','ldc_imm8_ccr','add_w_r16h_r16l','sub_w_r16h_r16l','cmp_w_r16h_r16l','addx_b_imm8_r8u','subx_b_imm8_r8u','addx_b_r8h_r8l','subx_b_r8h_r8l','and_b_imm8_r8u','or_b_imm8_r8u','xor_b_imm8_r8u','and_b_r8h_r8l','or_b_r8h_r8l','xor_b_r8h_r8l') + tuple(n+'_rel8' for n in BRANCHES) + tuple(n+'_b_r8l' for n in SHIFTS)
+H8H_NAMES = ('mov_l_imm32_r32l','mov_b_r32ih_r8l','mov_b_r8l_r32ih','mov_w_r32ih_r16l','mov_w_r16l_r32ih','mov_l_r32ih_r32l','mov_l_r32l_r32ih','add_w_imm16_r16l','sub_w_imm16_r16l','cmp_w_imm16_r16l','add_l_imm32_r32l','sub_l_imm32_r32l','cmp_l_imm32_r32l','add_l_r32h_r32l','sub_l_r32h_r32l','cmp_l_r32h_r32l','and_w_imm16_r16l','or_w_imm16_r16l','xor_w_imm16_r16l','and_l_imm32_r32l','or_l_imm32_r32l','xor_l_imm32_r32l','or_w_r16h_r16l','xor_w_r16h_r16l','and_w_r16h_r16l','or_l_r32h_r32l','xor_l_r32h_r32l','and_l_r32h_r32l') + tuple(n+'_'+size+'_'+reg for n in SHIFTS for size,reg in (('w','r16l'),('l','r32l')))
 PREFIX = ('// license:BSD-3-Clause\n// copyright-holders:Olivier Galibert\n'
           '// Selected pinned generated h8.hxx methods; only class qualifiers removed.\n'
           '// Included inside H8FirstInstructions. See research/h8-first-instructions-provenance.json.\n')
@@ -76,7 +77,7 @@ def check(archive, work, cmake='cmake'):
                 raise ValueError('Source identity differs')
             sources[Path(name).name] = raw.decode('utf-8')
     host = '\n'.join(original_method(sources['h8.cpp'],n) for n in
-                     ('read16i','read8','write8','read16','write16','set_nzv8','set_nzv16','set_nzv32','do_add8','do_sub8','do_addx8','do_subx8','do_add16','do_sub16','do_add32','do_sub32','prefetch_done','prefetch_done_noirq','recompute_bcount','execute_run'))
+                     ('read16i','read8','write8','read16','write16','set_nzv8','set_nzv16','set_nzv32','do_add8','do_sub8','do_addx8','do_subx8','do_add16','do_sub16','do_add32','do_sub32','prefetch_done','prefetch_done_noirq','recompute_bcount','execute_run') + tuple('do_'+n+str(bits) for n in SHIFTS for bits in (8,16,32)))
     inline = []
     for filename,name in [('h8.h','r8_w'),('h8.h','r8_r'),('h8.h','r16_w'),('h8.h','r16_r'),('h8.h','prefetch_switch'),('h8h.h','r32_w'),('h8h.h','r32_r')]:
         header = sources[filename]

@@ -120,3 +120,5 @@ The [H8H arithmetic extension](docs/h8-arithmetic-flags.md) adds selected ADD/SU
 The [carry/register/logic extension](docs/h8-carry-register-logic.md) adds byte carry-input/sticky-Z arithmetic, wide register arithmetic, logical forms and CCR storage. Multi-byte arithmetic is tested against independent full-width results; IRQ entry and full firmware/audio acceptance remain open.
 
 Selected CPU extension: [H8 word/long register logic](docs/h8-wide-register-logic.md).
+
+Selected CPU extension: [H8 single-bit shifts and rotates](docs/h8-shift-rotate.md).

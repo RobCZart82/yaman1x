@@ -3,7 +3,7 @@
   "recorded_date": "2026-10-28",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "ba2c91d8a156972bcf3c7b9adab98e36f7279b0c",
+  "baseline_commit": "88e88bd8551f78bc312230d459ea3c92d7b66f01",
   "entries": [
     {
       "pr": 6,
@@ -505,15 +505,29 @@
         40656821621
       ],
       "automated_review_source": "df6ce5574346e32b57a81dffb5c5b5f0e7929bbf; completed, no findings"
+    },
+    {
+      "pr": 52,
+      "title": "Execute H8 word/long register logic with guarded prefix",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/52",
+      "kind": "development",
+      "merged_at_utc": "2026-10-28T09:02:20Z",
+      "merge_commit": "88e88bd8551f78bc312230d459ea3c92d7b66f01",
+      "reviewed_head": "eac6be6a95e22f1266730c6941efa0c766658913",
+      "status": "merged",
+      "ci_runs": [
+        40660124816,
+        40660124527,
+        40660124813
+      ],
+      "automated_review_source": "c726582b72c43bc87cc917f1ff60c10f762a768a; completed, no findings; later metadata and internal guard ordering checked with targeted and original-code tests"
     }
   ],
   "active_change": {
-    "id": "H8-WIDE-LOGIC-2026-10-28",
-    "branch": "feat/h8-wide-register-logic",
-    "status": "pr_open",
-    "summary": "Word/long register OR/XOR/AND with original 01f0 prefix and strict extension decoding",
-    "validation": "196608 word cases, 245760 alias/CCR combinations, 65536 extensions and 1000 partitions pass; original code 200000 slices zero differences; XOR-to-OR negative control detected. Final PR CI pending.",
-    "pr": 52,
-    "url": "https://github.com/RobCZart82/yaman1x/pull/52"
+    "id": "H8-SHIFT-ROTATE-2026-10-28",
+    "branch": "feat/h8-shift-rotate",
+    "status": "in_progress",
+    "summary": "Single-bit byte/word/long shifts and rotates with preserved CCR and partial execution",
+    "validation": "1744896 operand/CCR/lane cases and 1000 partitions; original-code 200000 slices zero differences; dropped rotate carry detected after explicit carry fixture strengthening. Final PR CI pending."
   }
 }
