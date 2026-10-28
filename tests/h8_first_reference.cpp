@@ -80,6 +80,7 @@ struct Host {
   if(seed%12==10){code={0x7a07,0xab12,0x3456,0x5670};data[0x123456]=u8(seed);data[0x123457]=0;data[0x123458]=1;data[0x123459]=0x80;words[0xc0]=0x5a00;words[0xc1]=0x100;}
   if(seed%12==11){code={0x7a07,0,0x180,0x5970};words[0xc0]=0x5a00;words[0xc1]=0x200;words[0x100]=0x5b40;data[0x40]=0;data[0x41]=0;data[0x42]=1;data[0x43]=0;}
   if(seed%16==13)code={0xf955,0x39ab,0x2aab,0x6a89,0x8001,0x6a0a,0x8001,0x7903,u16(seed*997),0x6b83,0xfffd,0x6b04,0xfffd};
+  if(seed%16==12)code={0xf955,0x6aa9,0xab12,0x3457,0x6a2a,0xab12,0x3457,0x7903,u16(seed*997),0x6ba3,0xffff,0xffff,0x6b24,0xffff,0xffff};
   if(seed%16==14){enable_irq=true;nmi=((seed>>4)&1)!=0;irq.set_filter(0,-1);const unsigned vector=nmi?7:52;words[2*vector]=0;words[2*vector+1]=0x180;words[0xc0]=0x5670;code={0x7a07,0,0x300,0x0700,0,0x40fe};}
   if(seed%16==15)code={0x7a00,u16(seed*997),u16(seed*197),0x0c89,0x0d12,0x0f92,u16(0x0700|(seed&255)),u16(0x0400|(seed&255)),u16(0x0500|((seed*17)&255)),0x06fe,0x0209,0x0309};
   if(seed%16==15)code.insert(code.end(),{0x0a09,0x1a09,0x0b50,0x1bd0,0x0b70,0x1bf0,0x0b00,0x0b80,0x0b90,0x1b00,0x1b80,0x1b90});
@@ -132,15 +133,16 @@ struct Original {
  /* STUBS */
 };
 int main(){
- unsigned seen_absolute=0;unsigned seen_trap=0;unsigned seen_unary=0;unsigned seen_small=0;unsigned seen_mov=0;unsigned seen_ccr=0;unsigned random=123;unsigned long long instruction_reads=0,data_reads=0,data_writes=0,word_reads=0,word_writes=0;
+ unsigned seen_absolute32=0;unsigned seen_absolute=0;unsigned seen_trap=0;unsigned seen_unary=0;unsigned seen_small=0;unsigned seen_mov=0;unsigned seen_ccr=0;unsigned random=123;unsigned long long instruction_reads=0,data_reads=0,data_writes=0,word_reads=0,word_writes=0;
  for(unsigned seed=0;seed<100;++seed){
   Host a(seed+1),b(seed+1);Cpu cpu(a,u8(seed),a.enable_irq?&a.irq:nullptr);Original ref(b,u8(seed));u64 start=0;
   for(unsigned n=0;n<2000;++n){random=random*1664525u+1013904223u;int size=int(random%19);
    ref.end=start+size;ref.m_icount=size;ref.execute_run();cpu.run(start,size,1000);
    if(ref.snapshot()!=cpu.snapshot() || a.bus!=b.bus || a.data!=b.data || a.event!=b.event || a.exceptions!=b.exceptions || a.irq.current().vector!=b.irq.current().vector || a.irq.current().level!=b.irq.current().level){std::fprintf(stderr,"Mismatch seed %u slice %u\n",seed,n);return 1;}
-   for(auto [kind,address,value]:a.bus){if((seed+1)%16==13 && kind=='I'){const std::array<u16,6> forms{0x39ab,0x2aab,0x6a89,0x6a0a,0x6b83,0x6b04};for(unsigned i=0;i<forms.size();++i)if(value==forms[i])seen_absolute|=1u<<i;}if((seed+1)%16==15 && kind=='I'){if((value&0xffcf)==0x5700)seen_trap|=1u<<((value>>4)&3);const std::array<u16,10> unary{0x1708,0x1788,0x1710,0x1790,0x1730,0x17b0,0x1750,0x17d0,0x1770,0x17f0};for(unsigned i=0;i<unary.size();++i)if(value==unary[i])seen_unary|=1u<<i;const std::array<u16,12> forms{0x0a09,0x1a09,0x0b50,0x1bd0,0x0b70,0x1bf0,0x0b00,0x0b80,0x0b90,0x1b00,0x1b80,0x1b90};for(unsigned i=0;i<forms.size();++i)if(value==forms[i])seen_small|=1u<<i;if((value&0xff00)==0x0c00)seen_mov|=1;if((value&0xff00)==0x0d00)seen_mov|=2;if((value&0xff88)==0x0f80)seen_mov|=4;if((value&0xff00)==0x0400)seen_ccr|=1;if((value&0xff00)==0x0500)seen_ccr|=2;if((value&0xff00)==0x0600)seen_ccr|=4;if((value&0xfff0)==0x0200)seen_ccr|=8;if((value&0xfff0)==0x0300)seen_ccr|=16;}instruction_reads+=kind=='I';data_reads+=kind=='R';data_writes+=kind=='W';word_reads+=kind=='Q';word_writes+=kind=='S';}a.bus.clear();b.bus.clear();start+=size;
+   for(auto [kind,address,value]:a.bus){if((seed+1)%16==12 && kind=='I'){const std::array<u16,4> forms{0x6aa9,0x6a2a,0x6ba3,0x6b24};for(unsigned i=0;i<forms.size();++i)if(value==forms[i])seen_absolute32|=1u<<i;}if((seed+1)%16==13 && kind=='I'){const std::array<u16,6> forms{0x39ab,0x2aab,0x6a89,0x6a0a,0x6b83,0x6b04};for(unsigned i=0;i<forms.size();++i)if(value==forms[i])seen_absolute|=1u<<i;}if((seed+1)%16==15 && kind=='I'){if((value&0xffcf)==0x5700)seen_trap|=1u<<((value>>4)&3);const std::array<u16,10> unary{0x1708,0x1788,0x1710,0x1790,0x1730,0x17b0,0x1750,0x17d0,0x1770,0x17f0};for(unsigned i=0;i<unary.size();++i)if(value==unary[i])seen_unary|=1u<<i;const std::array<u16,12> forms{0x0a09,0x1a09,0x0b50,0x1bd0,0x0b70,0x1bf0,0x0b00,0x0b80,0x0b90,0x1b00,0x1b80,0x1b90};for(unsigned i=0;i<forms.size();++i)if(value==forms[i])seen_small|=1u<<i;if((value&0xff00)==0x0c00)seen_mov|=1;if((value&0xff00)==0x0d00)seen_mov|=2;if((value&0xff88)==0x0f80)seen_mov|=4;if((value&0xff00)==0x0400)seen_ccr|=1;if((value&0xff00)==0x0500)seen_ccr|=2;if((value&0xff00)==0x0600)seen_ccr|=4;if((value&0xfff0)==0x0200)seen_ccr|=8;if((value&0xfff0)==0x0300)seen_ccr|=16;}instruction_reads+=kind=='I';data_reads+=kind=='R';data_writes+=kind=='W';word_reads+=kind=='Q';word_writes+=kind=='S';}a.bus.clear();b.bus.clear();start+=size;
   }
  }
+ if(seen_absolute32!=15){std::fprintf(stderr,"Abs32 reference sequence was not reached\n");return 8;}
  if(seen_absolute!=63){std::fprintf(stderr,"Absolute reference sequence was not reached\n");return 7;}
  if(seen_trap!=15){std::fprintf(stderr,"All TRAPA reference vectors were not reached\n");return 6;}
  if(seen_unary!=1023){std::fprintf(stderr,"Unary reference sequence was not reached\n");return 5;}

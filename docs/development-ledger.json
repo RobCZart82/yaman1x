@@ -805,14 +805,28 @@
         40773563109,
         40773563008
       ]
+    },
+    {
+      "pr": 74,
+      "title": "Execute H8H absolute byte and word memory move families",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/74",
+      "kind": "development",
+      "status": "merged",
+      "merge_commit": "758ad981253f8d3b5c72915f2fe5b60df560de97",
+      "reviewed_head": "642977224868632203a46b1d220b926e506b0b5c",
+      "ci_runs": [
+        40779798017,
+        40779797991,
+        40779798025
+      ]
     }
   ],
   "active_change": {
-    "id": "H8-ABSOLUTE-MEMORY-2026-10-28",
-    "branch": "feat/h8-absolute-memory",
+    "id": "H8-ABSOLUTE32-MEMORY-2026-10-28",
+    "branch": "feat/h8-absolute32-memory",
     "status": "in_development",
-    "summary": "Original abs8 byte and abs16 byte/word memory move families",
-    "validation": "53/53 local CTest,87 Python,targeted ASan/UBSan and source/notice/upload audits PASS.200000 original decoder/execute_run slices zero differences; all six reachable-form guards PASS.450 selected methods,217 selected encoding rows. Final-head CI/review required."
+    "summary": "Original byte/word MOV absolute32 address families",
+    "validation": "54/54 local CTest,87 Python,targeted ASan/UBSan,source/notice/upload audits PASS.200000 original decoder/execute_run slices zero differences,all four abs32 reachability guards and prior guards PASS.458 methods,221 selected rows. Final-head CI/review required."
   },
   "pending_changes": []
 }

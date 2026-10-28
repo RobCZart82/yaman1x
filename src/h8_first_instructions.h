@@ -133,6 +133,10 @@ private:
         if((m_inst_state&0xfff0)==0x6a80) {if(partial)mov_b_r8l_abs16_partial();else mov_b_r8l_abs16_full();return;}
         if((m_inst_state&0xfff0)==0x6b00) {if(partial)mov_w_abs16_r16l_partial();else mov_w_abs16_r16l_full();return;}
         if((m_inst_state&0xfff0)==0x6b80) {if(partial)mov_w_r16l_abs16_partial();else mov_w_r16l_abs16_full();return;}
+        if((m_inst_state&0xfff0)==0x6a20) {if(partial)mov_b_abs32_r8l_partial();else mov_b_abs32_r8l_full();return;}
+        if((m_inst_state&0xfff0)==0x6aa0) {if(partial)mov_b_r8l_abs32_partial();else mov_b_r8l_abs32_full();return;}
+        if((m_inst_state&0xfff0)==0x6b20) {if(partial)mov_w_abs32_r16l_partial();else mov_w_abs32_r16l_full();return;}
+        if((m_inst_state&0xfff0)==0x6ba0) {if(partial)mov_w_r16l_abs32_partial();else mov_w_r16l_abs32_full();return;}
         if((m_inst_state&0xff00)==0x6400) {if(partial)or_w_r16h_r16l_partial();else or_w_r16h_r16l_full(); return;
         }
         if((m_inst_state&0xff00)==0x6500) {if(partial)xor_w_r16h_r16l_partial();else xor_w_r16h_r16l_full(); return;

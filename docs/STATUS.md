@@ -258,3 +258,7 @@ Audit baseline #58 (`863d21abcde448d746b3b44c39a1eb61be455a15`): fresh local mac
 ## Absolute memory candidate
 
 #73 overrun tests merged as 8446d10b65c698b5fbc749279f696d69c100e5fc with four successful checks. [Abs8 byte/abs16 byte-word MOV](h8-absolute-memory.md) adds six original groups (450 methods); encoding rows217 selected/47 missing/135 excluded. Abs32/displacements and full firmware/audio acceptance remain open.
+
+## Absolute32 memory candidate
+
+#74 merged as 758ad981253f8d3b5c72915f2fe5b60df560de97 with five successful checks. [Byte/word abs32 MOV](h8-absolute32-memory.md) adds four original groups (458 methods),221 selected/43 missing/135 excluded encoding rows. Full32-bit bus arguments and24-bit host mapping are checked separately. Long-width/displacement forms and firmware/audio remain open.
