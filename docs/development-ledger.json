@@ -494,8 +494,10 @@
   "active_change": {
     "id": "H8-CARRY-LOGIC-2026-10-28",
     "branch": "feat/h8-carry-register-logic",
-    "status": "in_progress",
+    "status": "pr_open",
     "summary": "Execute carry-input byte, wide register arithmetic, logic and LDC CCR with verified sticky zero",
-    "validation": "1048576 carry cases, 20000 four-byte chains; original-code 200000 slices zero differences; forced-zero Z negative control detected. Final candidate CI pending."
+    "validation": "1048576 carry cases, 20000 four-byte chains; original-code 200000 slices zero differences; forced-zero Z negative control detected. Final candidate CI pending.",
+    "pr": 51,
+    "url": "https://github.com/RobCZart82/yaman1x/pull/51"
   }
 }
