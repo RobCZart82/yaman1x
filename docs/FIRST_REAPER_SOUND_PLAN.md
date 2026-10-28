@@ -626,3 +626,7 @@ A dokumentációs egységesítés PR-je: [#58](https://github.com/RobCZart82/yam
 ## 2026-10-28 — lefedettség és CCR
 
 [Jegyzőkönyv](h8-coverage-and-ccr.md): forrásazonosított kódolásleltár (181 kiválasztott / 83 hiányzó / 135 másprofilú sor), STC/LDC regiszteres és ORC/XORC/ANDC immediát család. Ez nem ISA-készültségi százalék és nem IRQ-belépési bizonyíték. Következő a fennmaradó utasítás/címzéscsaládok, majd IRQ/TRAPA és gépütemezés.
+
+## 2026-10-28 — regiszterközi MOV
+
+[Jegyzőkönyv](h8-register-transfers.md): mindhárom szélesség, teljes lane/alias megőrzés és N/Z/V szemantika. A forrásleltárban 80 hiányzó H8H-sor marad. CPU IRQ/TRAPA és gépütemezés továbbra is nyitott.

@@ -274,3 +274,11 @@ A dokumentációs egységesítés PR-je: [#58](https://github.com/RobCZart82/yam
 ## H8-COVERAGE-CCR-2026-10-28
 
 Ág: `feat/h8-coverage-ccr`; alap: beolvadt #59. [Komponensjegyzőkönyv](h8-coverage-and-ccr.md). Reprodukálható 399 soros H8H-leltár és öt új CCR-család; 376 eredeti full/partial metódus, 196608 immediát CCR-eset, regiszterlane- és partíciópróbák. Eredeti kód 200000 szelet, 0 eltérés; ASan/UBSan PASS. A régi dekóderteszt 800 újonnan támogatott kódolással frissítve. M0 részben teljesült. A #59 saját négy ellenőrzése zöld volt, nyitott review-thread nélkül beolvasztva a felhasználó sorozatos merge-engedélye alapján.
+
+## H8-REGISTER-MOV-2026-10-28
+
+Ág: `feat/h8-register-transfers`; [jegyzőkönyv](h8-register-transfers.md). Bájt/szó/hosszúszó regiszterközi MOV, hat új eredeti full/partial metódus (382 összesen), 576 további elsőszavas kódolás. 147456 lane/alias/flag eset, 1000 felosztási történet; 41/41 helyi CTest, 87 Python, ASan/UBSan és 200000 eredetimetódus-szelet PASS. Szülő: #60; saját PR csak annak beolvasztása után, a főágra újraalapozva.
+
+### Sorozatos lezárás — #60 beolvadt
+
+#60 merge: `18f7b7fa1b708c67cf7ed0baa2109d5f73c750db`, 2026-10-28 15:04:13 UTC. Végső head `e8dee6975054c4143abe36b3b8731b7cea510cf4`; három platform, MSan és MAME mind PASS. A korábbi referenciafixture elérhetőségi hibája beolvadás előtt javítva. #61 a friss mainre újraalapozott, önálló CI-re kész regiszter-MOV jelölt; #62–#64 szülőfüggőség miatt draft.
