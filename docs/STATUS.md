@@ -226,3 +226,7 @@ Audit baseline #58 (`863d21abcde448d746b3b44c39a1eb61be455a15`): fresh local mac
 ## External IRQ/NMI candidate
 
 [Fixed reset-SYSCR entry](h8-external-irq.md) binds an optional controller to the CPU, preserving noirq prefetch boundaries and original entry/acknowledgement order. 438 selected methods; instruction counts remain 211/53/135. Dedicated ROM-free IRQ/NMI, stack-fault and partition checks plus 200000 original-method reference slices. Still a stacked candidate after #64; full CPU/peripheral scheduling and firmware/audio acceptance remain open.
+
+## CPU/SCI receive composition candidate
+
+[Interrupt-driven receive fixture](h8-sci-cpu-receive.md) tests both channels/all bytes and 1602 execution splits through RXI, CPU ISR, RAM storage, RDRF clear and RTE. No production machine bus or general timed MMIO write support is claimed. Follows #65; ROM boot and audio remain open.

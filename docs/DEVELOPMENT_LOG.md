@@ -328,3 +328,17 @@ A lapos választó helyi ellenőrzése: 42/42 CTest, 87 Python-eset, 200000 ered
 ### #64 lezárása, #65 aktuális jelölt
 
 #64 beolvadt `ad1df979f17d7806d24f997f84d63fb087803675`, öt sikeres ellenőrzéssel, nyitott review-thread nélkül. A GitHub a #65 és #66 stackágakat automatikusan újraalapozta; #65 `d4fbd149d7141e05b47aee8262ce9973c9b5f2c8` teljes fájltartalma azonos a helyben validált `c091847` változattal. #65 már mainre céloz és review-ra kész; Windows/Linux/MSan zöld, két macOS-feladat vár. E naplófrissítés után az új head CI-je a merge-kapu. #66 még szülőfüggőség miatt draft.
+
+## H8-SCI-CPU-RECEIVE-2026-10-28
+
+Ág: `feat/h8-sci-cpu-receive`; [jegyzőkönyv](h8-sci-cpu-receive.md). Meglévő CPU/IRQ/SCI összekötése szintetikus teszthostban: 512 bájt/csatorna eset, 1602 felosztás; vezetéki él → RXI → ISR → RAM → RDRF-törlés → RTE. Új motorkód nincs. A host kizárólag előre konfigurált RX-et és időfüggetlen SSR-nyugtázást támogat; általános MMIO-írás időbélyeg és új határidő publikálása külön következő feladat. Szülő #65, merge/CI függőség miatt jelölt.
+
+Helyi lezárás: 46/46 CTest és ASan/UBSan PASS; változatlan eszközök 87 Python-esete újra ellenőrizve. #60 beolvasztva `18f7b7fa1b708c67cf7ed0baa2109d5f73c750db` (öt zöld ellenőrzés), #61 saját macOS-feladatai még várakoznak. #65 az IRQ/NMI-jelölt PR-je.
+
+#66 a javított #65 ágára újraalapozva; örökli a Windows-fordítási javítást. A három javított head közös teljes helyi tesztje és a legutolsó eredetimetódus-referenciája következik; a szülői merge-kapuk változatlanok.
+
+A #64–#66 javított lánc helyi lezárása: 46/46 CTest, 87 Python-eset, 200000 eredeti dekóder/execute_run referenciaszelet nulla eltéréssel; forrás-/licenc-/feltöltési audit és diffellenőrzés PASS. #64 külön TRAPA-próbája 1024 eset/81 vágáspont mellett is sikeres. Windows PASS csak az új headek GitHub-fordítása után állítható; a régi piros headek történeti eredmények.
+
+### #65 lezárása, #66 utolsó jelölt
+
+#65 beolvadt `f59661ed79860460ba2989f6d2177554e0b56a05`, 2026-10-28 19:05:03 UTC, head `18f1fa382c8768e2424644464d7556170c9a8501`, öt sikeres CI, nyitott review-thread és változtatáskérés nélkül. #66 önálló fogadási tesztje a friss mainre újraalapozva; csak napló/ledger konfliktus volt. A végső head saját ellenőrzése még szükséges.
