@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "recorded_date": "2026-10-28",
+  "recorded_date": "2026-10-29",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
   "baseline_commit": "0bb14d89950d2406b0e71bb6033ebc315b1f1cdc",
@@ -834,8 +834,28 @@
         40781266255,
         40781266313
       ]
+    },
+    {
+      "pr": 76,
+      "title": "Reconcile development documentation with merged PR 75 baseline",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/76",
+      "kind": "documentation",
+      "status": "merged",
+      "merge_commit": "0c67fce0e32450709523e4ac01ae477a64633916",
+      "reviewed_head": "ae753a6bc1418be4885645a38ae3fc757e7e293c",
+      "ci_runs": [
+        40783999161,
+        40783999104
+      ]
     }
   ],
-  "active_change": null,
+  "active_change": {
+    "id": "H8-LONG-ABSOLUTE-MEMORY-2026-10-29",
+    "branch": "feat/h8-long-absolute-memory",
+    "status": "in_review",
+    "summary": "Original MOV.L abs16/abs32 and four-word prefix buffer",
+    "validation": "55/55 local CTest,87 Python,targeted ASan/UBSan,source/notice/upload audits PASS.200000 original decoder/execute_run slices zero differences; all four long-absolute and prior reachability guards PASS.466 methods,225 selected rows. Parent #76 and final CI/review required. Parent #76 merged after four successful checks; clean rebase onto main. Own final-head CI pending.",
+    "pr": 77
+  },
   "pending_changes": []
 }
