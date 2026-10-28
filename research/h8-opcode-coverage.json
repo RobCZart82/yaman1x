@@ -4,8 +4,8 @@
   "profile": "advanced H8H, fixed no-IRQ research host",
   "counts": {
     "excluded_profile": 135,
-    "missing_handler": 80,
-    "selected_handler": 184
+    "missing_handler": 64,
+    "selected_handler": 200
   },
   "instructions": [
     {
@@ -1028,7 +1028,7 @@
       ],
       "method": "inc_b_one_r8l",
       "profile": "common",
-      "status": "missing_handler"
+      "status": "selected_handler"
     },
     {
       "line": 966,
@@ -1070,7 +1070,7 @@
       ],
       "method": "adds_l_one_r32l",
       "profile": "h",
-      "status": "missing_handler"
+      "status": "selected_handler"
     },
     {
       "line": 978,
@@ -1084,7 +1084,7 @@
       ],
       "method": "inc_w_one_r16l",
       "profile": "h",
-      "status": "missing_handler"
+      "status": "selected_handler"
     },
     {
       "line": 982,
@@ -1098,7 +1098,7 @@
       ],
       "method": "inc_l_one_r32l",
       "profile": "h",
-      "status": "missing_handler"
+      "status": "selected_handler"
     },
     {
       "line": 986,
@@ -1126,7 +1126,7 @@
       ],
       "method": "adds_l_two_r32l",
       "profile": "h",
-      "status": "missing_handler"
+      "status": "selected_handler"
     },
     {
       "line": 994,
@@ -1140,7 +1140,7 @@
       ],
       "method": "adds_l_four_r32l",
       "profile": "h",
-      "status": "missing_handler"
+      "status": "selected_handler"
     },
     {
       "line": 998,
@@ -1154,7 +1154,7 @@
       ],
       "method": "inc_w_two_r16l",
       "profile": "h",
-      "status": "missing_handler"
+      "status": "selected_handler"
     },
     {
       "line": 1002,
@@ -1168,7 +1168,7 @@
       ],
       "method": "inc_l_two_r32l",
       "profile": "h",
-      "status": "missing_handler"
+      "status": "selected_handler"
     },
     {
       "line": 1006,
@@ -2134,7 +2134,7 @@
       ],
       "method": "dec_b_one_r8l",
       "profile": "common",
-      "status": "missing_handler"
+      "status": "selected_handler"
     },
     {
       "line": 1329,
@@ -2176,7 +2176,7 @@
       ],
       "method": "subs_l_one_r32l",
       "profile": "h",
-      "status": "missing_handler"
+      "status": "selected_handler"
     },
     {
       "line": 1341,
@@ -2190,7 +2190,7 @@
       ],
       "method": "dec_w_one_r16l",
       "profile": "h",
-      "status": "missing_handler"
+      "status": "selected_handler"
     },
     {
       "line": 1345,
@@ -2204,7 +2204,7 @@
       ],
       "method": "dec_l_one_r32l",
       "profile": "h",
-      "status": "missing_handler"
+      "status": "selected_handler"
     },
     {
       "line": 1349,
@@ -2232,7 +2232,7 @@
       ],
       "method": "subs_l_two_r32l",
       "profile": "h",
-      "status": "missing_handler"
+      "status": "selected_handler"
     },
     {
       "line": 1357,
@@ -2246,7 +2246,7 @@
       ],
       "method": "subs_l_four_r32l",
       "profile": "h",
-      "status": "missing_handler"
+      "status": "selected_handler"
     },
     {
       "line": 1361,
@@ -2260,7 +2260,7 @@
       ],
       "method": "dec_w_two_r16l",
       "profile": "h",
-      "status": "missing_handler"
+      "status": "selected_handler"
     },
     {
       "line": 1365,
@@ -2274,7 +2274,7 @@
       ],
       "method": "dec_l_two_r32l",
       "profile": "h",
-      "status": "missing_handler"
+      "status": "selected_handler"
     },
     {
       "line": 1369,

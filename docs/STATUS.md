@@ -204,3 +204,9 @@ Audit baseline #58 (`863d21abcde448d746b3b44c39a1eb61be455a15`): fresh local mac
 [MOV register family](h8-register-transfers.md): 382 selected full/partial methods, coverage rows 184 selected / 80 missing / 135 excluded. Local candidate suite 41/41 CTest and 87 Python PASS; native sanitizer and 200000 original-reference slices PASS. IRQ and firmware acceptance unchanged.
 
 #60 closure: 376 handlers / 40 CTest groups / 87 Python cases; final head e8dee6975054c4143abe36b3b8731b7cea510cf4 passed all five CI jobs. #61 is the current register-MOV candidate (382 handlers / 41 groups), rebased on the merged main; its own CI is pending.
+
+## Small-arithmetic candidate
+
+[INC/DEC and ADDS/SUBS](h8-small-arithmetic.md): 414 full/partial methods; encoding rows 200 selected / 64 missing / 135 excluded. Local candidate suite 42 CTest groups / 87 Python cases; reference/sanitizer checks recorded in component document. CPU IRQ and firmware remain open.
+
+#61 closure: register MOV merged as 9cedcdf92d0330103fbeac24932c5c13e3924b3a after all five CI jobs succeeded. #62 small arithmetic is now the next candidate, rebased onto main; own final-head CI pending. Earlier pending descriptions are historical.

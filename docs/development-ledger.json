@@ -637,15 +637,30 @@
         40709319468,
         40709319329
       ]
+    },
+    {
+      "pr": 61,
+      "title": "Execute H8H byte word and long register transfers with lane and flag checks",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/61",
+      "kind": "development",
+      "merge_commit": "9cedcdf92d0330103fbeac24932c5c13e3924b3a",
+      "reviewed_head": "c36473985c685147867f9b56ecd250b9377d037a",
+      "status": "merged",
+      "ci_runs": [
+        40712517334,
+        40712517403,
+        40712517409
+      ],
+      "merged_at_utc": "2026-10-28T16:23:39Z"
     }
   ],
   "active_change": {
-    "id": "H8-REGISTER-MOV-2026-10-28",
-    "branch": "feat/h8-register-transfers",
+    "id": "H8-SMALL-ARITHMETIC-2026-10-28",
+    "branch": "feat/h8-small-arithmetic",
     "status": "in_review",
-    "summary": "Byte/word/long register MOV preserving lanes and original flag semantics",
-    "validation": "Local 41/41 CTest, 87 Python, native ASan/UBSan and reachable 200000-slice original reference PASS. Parent #60 merged with all five checks PASS. Rebased onto main; own final CI pending.",
-    "pr": 61,
-    "url": "https://github.com/RobCZart82/yaman1x/pull/61"
+    "pr": 62,
+    "url": "https://github.com/RobCZart82/yaman1x/pull/62",
+    "summary": "INC/DEC and flag-preserving ADDS/SUBS groups",
+    "validation": "Local 42/42 CTest, 87 Python, native sanitizer and 200000-slice original reference previously PASS. Parent #61 merged with all five CI jobs successful and no open review threads. Rebased onto main; final-head CI pending. CI trigger correction: no runs existed on initial rebased head because push preceded base retarget. Documentation-only synchronization after targeting main starts required PR workflows; engine code unchanged. Windows CI found MSVC C1061 nesting limit; outer dispatcher flattened with first-match returns. Generated bodies unchanged; new final-head CI required."
   }
 }
