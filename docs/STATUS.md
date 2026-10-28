@@ -250,3 +250,7 @@ Audit baseline #58 (`863d21abcde448d746b3b44c39a1eb61be455a15`): fresh local mac
 ## CPU SCI parity candidate
 
 #71 framing/recovery merged as 8e9c431f1a0629cc20db136c50c56eba81854202 with four successful checks. [Parity status/IRQ checks](h8-sci-cpu-parity.md) cover SMR0x20/0x30, good/bad input, CPU RXI/ERI acknowledgement and transmitted parity. Source-profile polarity is explicitly distinguished from physical hardware validation. Overrun, full CPU/firmware and audio remain open.
+
+## CPU SCI overrun candidate
+
+[Unread RDR and pending IRQ checks](h8-sci-cpu-overrun.md) verify ORER/RDRF and first-byte preservation across masked CPU time, then ERI and latched RXI service after unmasking. Synthetic fixed-profile evidence; depends on #72. Firmware/audio and combined-error/repeated-overrun coverage remain open.

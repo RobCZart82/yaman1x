@@ -779,14 +779,28 @@
         40767693017,
         40767692958
       ]
+    },
+    {
+      "pr": 72,
+      "title": "Verify CPU SCI parity status and interrupt selection",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/72",
+      "kind": "development",
+      "status": "merged",
+      "merge_commit": "f29f0373be4dc6ca866744c2a0d832d82eb7dfa6",
+      "reviewed_head": "dceda74cfa1402f050649b14b91de531aa8d9fdf",
+      "ci_runs": [
+        40768929422,
+        40768929574
+      ]
     }
   ],
   "active_change": {
-    "id": "H8-SCI-CPU-PARITY-2026-10-28",
-    "branch": "feat/h8-sci-cpu-parity",
-    "status": "in_development",
-    "summary": "CPU parity-status and RXI/ERI selection in locked source profile",
-    "validation": "51/51 local CTest,87 Python,targeted ASan/UBSan and source/notice/upload audits PASS. 2048 cases/8808 splits; omitted PER clear negative control fails. Engine unchanged. Physical parity polarity unverified; final CI/review required."
+    "id": "H8-SCI-CPU-OVERRUN-2026-10-28",
+    "branch": "feat/h8-sci-cpu-overrun",
+    "status": "in_review",
+    "summary": "Unread RDR overrun, first-byte preservation and CPU pending IRQ ordering",
+    "validation": "52/52 local CTest,87 Python,targeted ASan/UBSan,source/notice/upload audits PASS. 512 cases/4802 splits; omitting second frame fails negative control. Engine unchanged. Parent #72 and final CI/review required. Parent #72 now merged after four successful checks; rebased cleanly onto main. Own final-head CI/review pending.",
+    "pr": 73
   },
   "pending_changes": []
 }

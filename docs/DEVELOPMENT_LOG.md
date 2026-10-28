@@ -372,3 +372,11 @@ Helyi lezárás: 50/50 CTest, 87 Python, célzott ASan/UBSan és forrás-/licenc
 Ág: `feat/h8-sci-cpu-parity`; [jegyzőkönyv](h8-sci-cpu-parity.md). SMR0x20/0x30, jó/rossz paritás mindkét csatornán, 2048 bájteset és 8808 felosztás. CPU RXI/ERI, RAM/SSR, PER-törlés és RTE; független bit-count bemenet és TX-paritás/időzítés. A rögzített forrás paritáspolaritását követjük, hardver-validált even/odd állítás nélkül. #71 négy zöld CI, nyitott review-thread/változtatáskérés nélkül beolvadt `8e9c431f1a0629cc20db136c50c56eba81854202`, head `e49e6c0053c8c5179e4475fc51ee3628478b9177`. Teljes helyi teszt/sanitizer lezárás folyamatban; saját végső CI külön kapu.
 
 Helyi lezárás: 51/51 CTest, 87 Python, célzott ASan/UBSan, forrás-/licenc-/feltöltési audit PASS. PER-törlés nélküli negatív kontroll hibát jelez. A közös fixture alapértelmezett no-parity és FER-próbái továbbra is sikeresek. Motorkód változatlan; saját végső CI/review még szükséges.
+
+## H8-SCI-CPU-OVERRUN-2026-10-28
+
+Ág: `feat/h8-sci-cpu-overrun`, szülő #72. [Jegyzőkönyv](h8-sci-cpu-overrun.md). Két kiolvasatlan frame maszkolt CPU mellett, ORER+RDRF és első adat megőrzése; késleltetett LDC0 után CPU SSR/RDR mentés, törlés és RTE. A korábban latch-elt RXI az ERI után külön RTE-kezelőt kap; ez rögzített modellviselkedés, nem hardverbizonyíték. 512 bájteset, 4802 felosztás célzott PASS. #72 Linux/Windows/MSan zöld, macOS futtatóhiány miatt megszakadt, újraindítva. Az overrun PR a szülő CI/merge miatt visszatartandó, nem több fejlesztési lépcső miatt.
+
+Helyi lezárás: 52/52 CTest, 87 Python, célzott ASan/UBSan és forrás-/licenc-/feltöltési audit PASS. Második frame nélküli negatív kontroll 2048 elfogadási hibát jelez. Motorkód változatlan. #72 macOS újrafutása folyamatban; az overrun jelölt szülőmerge és saját végső CI miatt draft.
+
+#72 lezárása: macOS újrafutás sikeres, négy zöld CI, üres review-thread/változtatáskérés lista; merge `f29f0373be4dc6ca866744c2a0d832d82eb7dfa6`, head `dceda74cfa1402f050649b14b91de531aa8d9fdf`. #73 tisztán újraalapozva a mainre és review-ra kész; a korábbi draft/szülővárakozás bejegyzés történeti. A végső head saját CI-je még merge-kapu.
