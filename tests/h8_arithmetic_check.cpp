@@ -5,22 +5,7 @@
 using Cpu=yamanix::H8FirstInstructions<Host>;
 static unsigned failures=0;
 static void check(bool ok,const char* why){if(!ok && ++failures<12)std::fprintf(stderr,"%s\n",why);}
-struct Expected{uint32_t value;uint8_t ccr;};
-// Independent signed-range/modular oracle, not the source's xor overflow formula.
-static Expected expected(unsigned bits,uint32_t a,uint32_t b,bool sub,unsigned seed){
- const uint64_t modulus=uint64_t{1}<<bits,half=uint64_t{1}<<(bits-4),sign=modulus/2;
- a=uint32_t(a%modulus);b=uint32_t(b%modulus);
- const int64_t sa=a>=sign?int64_t(a)-int64_t(modulus):a,sb=b>=sign?int64_t(b)-int64_t(modulus):b;
- const int64_t signed_result=sub?sa-sb:sa+sb;
- const uint64_t result=sub?(uint64_t(a)+modulus-b)%modulus:(uint64_t(a)+b)%modulus;
- unsigned flags=(seed|0x80)&0xd0;
- if(!result)flags|=4;
- if(result>=sign)flags|=8;
- if(signed_result < -int64_t(sign) || signed_result>=int64_t(sign))flags|=2;
- if(sub?(a<b):(uint64_t(a)+b>=modulus))flags|=1;
- if(sub?((a%half)<(b%half)):((a%half)+(b%half)>=half))flags|=0x20;
- return {uint32_t(result),uint8_t(flags)};
-}
+#include "h8_flags_oracle.h"
 static uint8_t byte(const std::array<uint16_t,16>& r,unsigned reg){return uint8_t(reg&8?r[reg&7]:r[reg&7]/256);}
 static void set_byte(std::array<uint16_t,16>& r,unsigned reg,uint8_t v){r[reg&7]=uint16_t(reg&8?((r[reg&7]&0xff00)|v):((r[reg&7]&0xff)|(uint16_t(v)<<8)));}
 static void byte_pair(unsigned form,unsigned a,unsigned b,unsigned seed){

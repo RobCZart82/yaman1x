@@ -61,6 +61,23 @@ private:
         }
         else if(m_inst_state>0xffff)throw std::runtime_error("Unsupported H8 internal instruction state");
         else if(m_inst_state==0x0100) {if(partial)dispatch_0100_partial();else dispatch_0100_full();}
+        else if((m_inst_state&0xff00)==0x0700) {if(partial)ldc_imm8_ccr_partial();else ldc_imm8_ccr_full();}
+        else if((m_inst_state&0xff00)==0x0900) {if(partial)add_w_r16h_r16l_partial();else add_w_r16h_r16l_full();}
+        else if((m_inst_state&0xff00)==0x1900) {if(partial)sub_w_r16h_r16l_partial();else sub_w_r16h_r16l_full();}
+        else if((m_inst_state&0xff00)==0x1d00) {if(partial)cmp_w_r16h_r16l_partial();else cmp_w_r16h_r16l_full();}
+        else if((m_inst_state&0xff88)==0x0a80) {if(partial)add_l_r32h_r32l_partial();else add_l_r32h_r32l_full();}
+        else if((m_inst_state&0xff88)==0x1a80) {if(partial)sub_l_r32h_r32l_partial();else sub_l_r32h_r32l_full();}
+        else if((m_inst_state&0xff88)==0x1f80) {if(partial)cmp_l_r32h_r32l_partial();else cmp_l_r32h_r32l_full();}
+        else if((m_inst_state&0xf000)==0x9000) {if(partial)addx_b_imm8_r8u_partial();else addx_b_imm8_r8u_full();}
+        else if((m_inst_state&0xf000)==0xb000) {if(partial)subx_b_imm8_r8u_partial();else subx_b_imm8_r8u_full();}
+        else if((m_inst_state&0xff00)==0x0e00) {if(partial)addx_b_r8h_r8l_partial();else addx_b_r8h_r8l_full();}
+        else if((m_inst_state&0xff00)==0x1e00) {if(partial)subx_b_r8h_r8l_partial();else subx_b_r8h_r8l_full();}
+        else if((m_inst_state&0xf000)==0xc000) {if(partial)or_b_imm8_r8u_partial();else or_b_imm8_r8u_full();}
+        else if((m_inst_state&0xf000)==0xd000) {if(partial)xor_b_imm8_r8u_partial();else xor_b_imm8_r8u_full();}
+        else if((m_inst_state&0xf000)==0xe000) {if(partial)and_b_imm8_r8u_partial();else and_b_imm8_r8u_full();}
+        else if((m_inst_state&0xff00)==0x1400) {if(partial)or_b_r8h_r8l_partial();else or_b_r8h_r8l_full();}
+        else if((m_inst_state&0xff00)==0x1500) {if(partial)xor_b_r8h_r8l_partial();else xor_b_r8h_r8l_full();}
+        else if((m_inst_state&0xff00)==0x1600) {if(partial)and_b_r8h_r8l_partial();else and_b_r8h_r8l_full();}
         else if((m_inst_state&0xf000)==0x8000) {if(partial)add_b_imm8_r8u_partial();else add_b_imm8_r8u_full();}
         else if((m_inst_state&0xf000)==0xa000) {if(partial)cmp_b_imm8_r8u_partial();else cmp_b_imm8_r8u_full();}
         else if((m_inst_state&0xff00)==0x0800) {if(partial)add_b_r8h_r8l_partial();else add_b_r8h_r8l_full();}
@@ -88,22 +105,28 @@ private:
             case 14: if(partial)bgt_rel8_partial();else bgt_rel8_full();break;
             case 15: if(partial)ble_rel8_partial();else ble_rel8_full();break;
             }
-        } else if((m_inst_state&0xffc0)==0x7900) {
-            switch((m_inst_state>>4)&3) {
+        } else if((m_inst_state&0xff00)==0x7900 && (m_inst_state&0xf0)<=0x60) {
+            switch((m_inst_state>>4)&7) {
             case 0:if(partial)mov_w_imm16_r16l_partial();else mov_w_imm16_r16l_full();break;
             case 1:if(partial)add_w_imm16_r16l_partial();else add_w_imm16_r16l_full();break;
             case 2:if(partial)cmp_w_imm16_r16l_partial();else cmp_w_imm16_r16l_full();break;
             case 3:if(partial)sub_w_imm16_r16l_partial();else sub_w_imm16_r16l_full();break;
+            case 4:if(partial)or_w_imm16_r16l_partial();else or_w_imm16_r16l_full();break;
+            case 5:if(partial)xor_w_imm16_r16l_partial();else xor_w_imm16_r16l_full();break;
+            case 6:if(partial)and_w_imm16_r16l_partial();else and_w_imm16_r16l_full();break;
             }
         } else if((m_inst_state&0xff00)==0x6900) {
             if(m_inst_state&0x80) {if(partial)mov_w_r16l_r32ih_partial();else mov_w_r16l_r32ih_full();}
             else {if(partial)mov_w_r32ih_r16l_partial();else mov_w_r32ih_r16l_full();}
-        } else if((m_inst_state&0xffc8)==0x7a00) {
-            switch((m_inst_state>>4)&3) {
+        } else if((m_inst_state&0xff08)==0x7a00 && (m_inst_state&0xf0)<=0x60) {
+            switch((m_inst_state>>4)&7) {
             case 0:if(partial)mov_l_imm32_r32l_partial();else mov_l_imm32_r32l_full();break;
             case 1:if(partial)add_l_imm32_r32l_partial();else add_l_imm32_r32l_full();break;
             case 2:if(partial)cmp_l_imm32_r32l_partial();else cmp_l_imm32_r32l_full();break;
             case 3:if(partial)sub_l_imm32_r32l_partial();else sub_l_imm32_r32l_full();break;
+            case 4:if(partial)or_l_imm32_r32l_partial();else or_l_imm32_r32l_full();break;
+            case 5:if(partial)xor_l_imm32_r32l_partial();else xor_l_imm32_r32l_full();break;
+            case 6:if(partial)and_l_imm32_r32l_partial();else and_l_imm32_r32l_full();break;
             }
         } else if((m_inst_state&0xff00)==0x6800) {
             if(m_inst_state&0x80) {if(partial)mov_b_r8l_r32ih_partial();else mov_b_r8l_r32ih_full();}
@@ -152,6 +175,22 @@ private:
     uint16_t do_sub16(uint16_t a,uint16_t b){return uint16_t(arithmetic<16>(a,b,true));}
     uint32_t do_add32(uint32_t a,uint32_t b){return arithmetic<32>(a,b,false);}
     uint32_t do_sub32(uint32_t a,uint32_t b){return arithmetic<32>(a,b,true);}
+    uint8_t extended_byte(uint8_t a,uint8_t b,bool subtract) {
+        const unsigned carry=(m_CCR&F_C)?1:0;
+        const uint16_t wide=subtract?uint16_t(int(a)-int(b)-int(carry)):uint16_t(unsigned(a)+b+carry);
+        const uint8_t result=uint8_t(wide);
+        const bool half=subtract?((a&15)<(b&15)+carry):((a&15)+(b&15)+carry>=16);
+        // Z is sticky: a zero result preserves it; any nonzero byte clears it.
+        m_CCR&=~(F_H|F_N|F_V|F_C);
+        if(result)m_CCR&=~F_Z;
+        if(result&0x80)m_CCR|=F_N;
+        if((subtract?(a^b):~(a^b))&(a^result)&0x80)m_CCR|=F_V;
+        if(subtract?unsigned(a)<unsigned(b)+carry:unsigned(a)+b+carry>255)m_CCR|=F_C;
+        if(half)m_CCR|=F_H;
+        return result;
+    }
+    uint8_t do_addx8(uint8_t a,uint8_t b){return extended_byte(a,b,false);}
+    uint8_t do_subx8(uint8_t a,uint8_t b){return extended_byte(a,b,true);}
     Host& host_;
     H8ExecutionRunner runner_;
     int& m_icount;

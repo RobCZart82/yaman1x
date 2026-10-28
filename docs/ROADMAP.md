@@ -12,8 +12,9 @@ reset/NOP/MOV.B/BRA and the [memory/branch extension](h8-memory-branches.md)
 adds immediate32, indirect byte accesses and every rel8 condition. Immediate M0
 work now includes the [word/long and prefix extension](h8-word-long-memory.md).
 Selected [arithmetic/compare forms](h8-arithmetic-flags.md) are now implemented.
-Next are remaining register/carry-input arithmetic, logical/shift and stack
-operations, then IRQ entry and explicit CPU/peripheral scheduling integration. M1 protocol research can proceed
+The [carry/register/logic extension](h8-carry-register-logic.md) adds selected
+remaining arithmetic and logic. Next are wide register logic, shift/rotate and
+bit operations, then stack/IRQ and explicit CPU/peripheral scheduling integration. M1 protocol research can proceed
 independently in the pinned MAME harness. Neither milestone is complete.
 
 These tasks follow the first private source snapshot. No GUI work is planned
