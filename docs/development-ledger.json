@@ -445,8 +445,9 @@
   "active_change": {
     "id": "H8-MEMORY-BRANCH-2026-10-28",
     "branch": "feat/h8-memory-conditional-branches",
-    "status": "in_progress",
+    "status": "in_review",
     "summary": "Extend generated H8H execution with byte loads/stores, MOV.L immediate32 and all rel8 conditions",
-    "validation": "200000 original-reference slices, 844255 instruction reads, 27571 data reads, 27574 data writes; zero differences. Corrupted-store negative control detected. Final candidate CI pending."
+    "validation": "200000 original-reference slices, 844255 instruction reads, 27571 data reads, 27574 data writes; zero differences. Corrupted-store negative control detected. Final candidate CI pending.",
+    "pr": 48
   }
 }
