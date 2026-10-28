@@ -30,6 +30,13 @@ See [engine architecture decision](docs/ADR-0001-engine-boundary.md) and
 
 ## Current state
 
+Verified engine baseline: [#75](https://github.com/RobCZart82/yaman1x/pull/75).
+54 CTest groups, 87 Python cases; 458 original full/partial handlers and
+221 selected / 43 missing / 135 excluded encoding rows. All five final-head
+checks passed. No open engine candidate from the completed series; full CPU,
+firmware boot and audio remain unaccepted. See [current status](docs/STATUS.md).
+
+
 See the [development plan through the first sound in REAPER (Hungarian)](docs/FIRST_REAPER_SOUND_PLAN.md)
 for the planned firmware, audio-engine and VST3 milestones and acceptance criteria.
 
@@ -38,8 +45,8 @@ for the planned firmware, audio-engine and VST3 milestones and acceptance criter
 - Two VOP3 instances, C ABI 2, register replay and independent upload-state audit.
 - LCD bus model and a separate instrumented MAME research patch chain.
 - Two standalone H83002 SCI channels with byte/word MMIO and DMA-qualified
-  interrupt routing to the H8H controller; the CPU/scheduler integration remains
-  pending. See [SCI MMIO/IRQ evidence](docs/h83002-sci-mmio-irq.md).
+  interrupt routing to the H8H controller; synthetic CPU/scheduler RX/TX and
+  receive-error integration is tested, while full AN1x machine integration remains open. See [SCI MMIO/IRQ evidence](docs/h83002-sci-mmio-irq.md).
 - Opt-in experimental upload-control and selected EG-level readback profiles.
 - Integer sample clock; synthetic tests run 2400 samples per chip with matching
   results under different call partitions.
@@ -131,12 +138,12 @@ Selected CPU extension: [H8 absolute memory bit operations](docs/h8-absolute-bit
 
 Selected CPU extension: [H8 stack and control flow](docs/h8-stack-control-flow.md).
 
-Current candidate: [coverage and CCR family](docs/h8-coverage-and-ccr.md).
+Merged extension (historical candidate): [coverage and CCR family](docs/h8-coverage-and-ccr.md).
 
-Candidate [register-to-register transfers](docs/h8-register-transfers.md) extend MOV at all three widths with lane/alias/flag checks.
+Merged extension [register-to-register transfers](docs/h8-register-transfers.md) extend MOV at all three widths with lane/alias/flag checks.
 
-Candidate [small arithmetic](docs/h8-small-arithmetic.md) adds INC/DEC and ADDS/SUBS with explicit flag-preservation checks.
+Merged extension [small arithmetic](docs/h8-small-arithmetic.md) adds INC/DEC and ADDS/SUBS with explicit flag-preservation checks.
 
-Candidate [unary/extension family](docs/h8-unary-extension.md) adds NOT/NEG/EXTU/EXTS with independent value/flag expectations.
+Merged extension [unary/extension family](docs/h8-unary-extension.md) adds NOT/NEG/EXTU/EXTS with independent value/flag expectations.
 
-Candidate [fixed-profile TRAPA entry](docs/h8-trapa-entry.md) adds synchronous trap stack/vector handling; external IRQ/NMI remains separate.
+Merged extension [fixed-profile TRAPA entry](docs/h8-trapa-entry.md) adds synchronous trap stack/vector handling; external IRQ/NMI remains separate.
