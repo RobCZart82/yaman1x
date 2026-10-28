@@ -558,8 +558,10 @@
   "active_change": {
     "id": "H8-MEMORY-BITS-2026-10-28",
     "branch": "feat/h8-memory-bit-operations",
-    "status": "in_progress",
+    "status": "pr_open",
     "summary": "Register-indirect memory byte bit operations with original 7c/7d prefix and exact bus sequencing",
-    "validation": "7340032 immediate cases, 131072 aliases, 131072 extensions, 31 splits, 1000 partitions; original-code 200000 slices zero differences. Final PR CI pending."
+    "validation": "7340032 immediate cases, 131072 aliases, 131072 extensions, 31 splits, 1000 partitions; original-code 200000 slices zero differences. Final PR CI pending.",
+    "pr": 55,
+    "url": "https://github.com/RobCZart82/yaman1x/pull/55"
   }
 }
