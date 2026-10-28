@@ -49,8 +49,10 @@ filter hook is still a stub. This increment does not claim interrupts work.
 - New native ASan/UBSan PASS; source/notice audits PASS.
 - Optional original H8H decoder/handlers/execute_run experiment: 200000 slices,
   zero differences after adding CCR sequences to a short reference fixture.
-  An initial attempt appended to every fixture and exceeded rel8 range; fixture
-  layout was corrected without changing production CPU timing or jump behavior.
+  The reference uses a dedicated reachable CCR loop with an explicit all-five-form
+  fetch-coverage guard. Earlier layouts exceeded rel8 range or followed an RTE
+  redirect; those fixture issues were corrected before merge without changing
+  production CPU timing or jump behavior.
 
 Normal suite: 40 CTest groups, 87 Python cases (three new coverage regressions).
 No firmware/ROM/bank input is used. Final PR-head CI is separate evidence.
