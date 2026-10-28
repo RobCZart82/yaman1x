@@ -81,6 +81,7 @@ struct Host {
   if(seed%16==15)code={0x7a00,u16(seed*997),u16(seed*197),0x0c89,0x0d12,0x0f92,u16(0x0700|(seed&255)),u16(0x0400|(seed&255)),u16(0x0500|((seed*17)&255)),0x06fe,0x0209,0x0309};
   if(seed%16==15)code.insert(code.end(),{0x0a09,0x1a09,0x0b50,0x1bd0,0x0b70,0x1bf0,0x0b00,0x0b80,0x0b90,0x1b00,0x1b80,0x1b90});
   if(seed%16==15)code.insert(code.end(),{0x1708,0x1788,0x1710,0x1790,0x1730,0x17b0,0x1750,0x17d0,0x1770,0x17f0});
+  if(seed%16==15){const unsigned trap=(seed>>4)&3;code.push_back(u16(0x5700|(trap<<4)));words[16+2*trap]=0;words[17+2*trap]=0x180;words[0xc0]=0x40fe;}
   code.push_back(0);const int displacement=-2*int(code.size()+1);if(displacement < -128)throw std::logic_error("Reference rel8 loop exceeds range");code.push_back(u16(0x4000|u8(displacement)));
   for(unsigned n=0;n<code.size();++n)words[0x80+n]=code[n];
  }
@@ -99,38 +100,41 @@ struct Original {
  int m_icount=0,m_bcount=0,m_count_before_instruction_step=0,m_inst_substate=0;
  int m_inst_state=0x10000,m_requested_state=-1,m_current_dma=-1,m_irq_vector=0;
  void* m_current_dtc=nullptr;
+ int m_taken_irq_vector=0;static constexpr u8 m_syscr=0x0b;
  bool m_has_trace=false,m_has_exr=false,m_has_hc=true,m_mode_advanced=true;
  u32 m_PC=0,m_PPC=0,m_NPC=0,m_TMP1=0,m_TMP2=0;
  std::array<u16,16> m_R{};std::array<u16,3> m_IR{};u16 m_PIR=0;u8 m_CCR=0,m_EXR=0;
  static constexpr int STATE_DMA=0x10003,STATE_DTC=0x10004,STATE_TRACE=0x10002;
- static constexpr u8 F_I=0x80,F_H=0x20,F_N=8,F_Z=4,F_V=2,F_C=1,EXR_T=0x80,EXR_I=7,EXR_NC=0x78;
+ static constexpr u8 F_I=0x80,F_UI=0x40,F_H=0x20,F_N=8,F_Z=4,F_V=2,F_C=1,EXR_T=0x80,EXR_I=7,EXR_NC=0x78;
  u64 end=0;
  explicit Original(Host& h,u8 ccr):host(h),m_cache{h},m_program{h},m_CCR(ccr){}
  bool access_to_be_redone(){return false;}
  bool exr_in_stack(){return false;}
  bool debugger_enabled(){return false;}
  void debugger_instruction_hook(u32){}
+ void debugger_exception_hook(int){}
  void take_interrupt(){throw std::runtime_error("Unsupported IRQ");}
  void illegal(){throw std::runtime_error("Unsupported opcode");}
  void update_irq_filter(){}
  u64 total_cycles(){return end-u64(m_icount);}
  void internal_update(u64 cycle){recompute_bcount(host.update(cycle));}
- Cpu::Snapshot snapshot()const{return {m_R,m_PC,m_PPC,m_NPC,u32(m_inst_state),u32(m_inst_substate),m_TMP1,m_TMP2,m_IR,m_PIR,m_CCR,m_EXR,m_icount,m_count_before_instruction_step};}
+ Cpu::Snapshot snapshot()const{return {m_R,m_PC,m_PPC,m_NPC,u32(m_inst_state),u32(m_inst_substate),m_TMP1,m_TMP2,m_IR,m_PIR,m_CCR,m_EXR,m_icount,m_count_before_instruction_step,m_taken_irq_vector};}
  /* HOST */
  /* SELECTED */
  /* DISPATCH */
  /* STUBS */
 };
 int main(){
- unsigned seen_unary=0;unsigned seen_small=0;unsigned seen_mov=0;unsigned seen_ccr=0;unsigned random=123;unsigned long long instruction_reads=0,data_reads=0,data_writes=0,word_reads=0,word_writes=0;
+ unsigned seen_trap=0;unsigned seen_unary=0;unsigned seen_small=0;unsigned seen_mov=0;unsigned seen_ccr=0;unsigned random=123;unsigned long long instruction_reads=0,data_reads=0,data_writes=0,word_reads=0,word_writes=0;
  for(unsigned seed=0;seed<100;++seed){
   Host a(seed+1),b(seed+1);Cpu cpu(a,u8(seed));Original ref(b,u8(seed));u64 start=0;
   for(unsigned n=0;n<2000;++n){random=random*1664525u+1013904223u;int size=int(random%19);
    ref.end=start+size;ref.m_icount=size;ref.execute_run();cpu.run(start,size,1000);
    if(ref.snapshot()!=cpu.snapshot() || a.bus!=b.bus || a.data!=b.data || a.event!=b.event){std::fprintf(stderr,"Mismatch seed %u slice %u\n",seed,n);return 1;}
-   for(auto [kind,address,value]:a.bus){if((seed+1)%16==15 && kind=='I'){const std::array<u16,10> unary{0x1708,0x1788,0x1710,0x1790,0x1730,0x17b0,0x1750,0x17d0,0x1770,0x17f0};for(unsigned i=0;i<unary.size();++i)if(value==unary[i])seen_unary|=1u<<i;const std::array<u16,12> forms{0x0a09,0x1a09,0x0b50,0x1bd0,0x0b70,0x1bf0,0x0b00,0x0b80,0x0b90,0x1b00,0x1b80,0x1b90};for(unsigned i=0;i<forms.size();++i)if(value==forms[i])seen_small|=1u<<i;if((value&0xff00)==0x0c00)seen_mov|=1;if((value&0xff00)==0x0d00)seen_mov|=2;if((value&0xff88)==0x0f80)seen_mov|=4;if((value&0xff00)==0x0400)seen_ccr|=1;if((value&0xff00)==0x0500)seen_ccr|=2;if((value&0xff00)==0x0600)seen_ccr|=4;if((value&0xfff0)==0x0200)seen_ccr|=8;if((value&0xfff0)==0x0300)seen_ccr|=16;}instruction_reads+=kind=='I';data_reads+=kind=='R';data_writes+=kind=='W';word_reads+=kind=='Q';word_writes+=kind=='S';}a.bus.clear();b.bus.clear();start+=size;
+   for(auto [kind,address,value]:a.bus){if((seed+1)%16==15 && kind=='I'){if((value&0xffcf)==0x5700)seen_trap|=1u<<((value>>4)&3);const std::array<u16,10> unary{0x1708,0x1788,0x1710,0x1790,0x1730,0x17b0,0x1750,0x17d0,0x1770,0x17f0};for(unsigned i=0;i<unary.size();++i)if(value==unary[i])seen_unary|=1u<<i;const std::array<u16,12> forms{0x0a09,0x1a09,0x0b50,0x1bd0,0x0b70,0x1bf0,0x0b00,0x0b80,0x0b90,0x1b00,0x1b80,0x1b90};for(unsigned i=0;i<forms.size();++i)if(value==forms[i])seen_small|=1u<<i;if((value&0xff00)==0x0c00)seen_mov|=1;if((value&0xff00)==0x0d00)seen_mov|=2;if((value&0xff88)==0x0f80)seen_mov|=4;if((value&0xff00)==0x0400)seen_ccr|=1;if((value&0xff00)==0x0500)seen_ccr|=2;if((value&0xff00)==0x0600)seen_ccr|=4;if((value&0xfff0)==0x0200)seen_ccr|=8;if((value&0xfff0)==0x0300)seen_ccr|=16;}instruction_reads+=kind=='I';data_reads+=kind=='R';data_writes+=kind=='W';word_reads+=kind=='Q';word_writes+=kind=='S';}a.bus.clear();b.bus.clear();start+=size;
   }
  }
+ if(seen_trap!=15){std::fprintf(stderr,"All TRAPA reference vectors were not reached\n");return 6;}
  if(seen_unary!=1023){std::fprintf(stderr,"Unary reference sequence was not reached\n");return 5;}
  if(seen_small!=4095){std::fprintf(stderr,"Small arithmetic reference sequence was not reached\n");return 4;}
  if(seen_mov!=7){std::fprintf(stderr,"MOV reference sequence was not reached\n");return 3;}

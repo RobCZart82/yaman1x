@@ -216,3 +216,9 @@ Audit baseline #58 (`863d21abcde448d746b3b44c39a1eb61be455a15`): fresh local mac
 [NOT/NEG/EXTU/EXTS](h8-unary-extension.md): 434 full/partial handlers; encoding rows 210 selected / 54 missing / 135 excluded. Local stacked candidate 43/43 CTest, 87 Python, native sanitizer and reachable original-reference checks PASS. Parent merges and final CI required.
 
 #62 closed: merged f0b37f3e10e02248b8c9d0f52b3a555ae944c8d5 after all five CI jobs passed. #63 unary/extension is the next candidate, rebased onto main with flat-dispatch Windows portability preserved. Earlier pending descriptions are historical.
+
+## Synchronous TRAPA candidate
+
+[Fixed reset-SYSCR trap entry](h8-trapa-entry.md): 436 handlers, 211 selected / 53 missing / 135 excluded encoding rows; 44/44 local CTest groups, 87 Python, native sanitizer and original-reference checks PASS. Stacked PC follows pinned m_NPC behavior and is not hardware-validated. External IRQ/NMI and mutable SYSCR are not yet integrated.
+
+#63 merged as dfa7af9bc21c8fe2b91367ad88b91bd7a56ba498 with five successful checks. #64 TRAPA is next, rebased onto main with the Windows flat-dispatch fix; #65/#66 remain dependent candidates. Earlier pending paragraphs are historical.
