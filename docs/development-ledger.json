@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "recorded_date": "2026-10-27",
+  "recorded_date": "2026-10-28",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "b644b6e1c471f8632ea086d75bd37d20b5ebbeb4",
+  "baseline_commit": "ed966cef79eb33eb309165e9e9d6edca920410ea",
   "entries": [
     {
       "pr": 6,
@@ -400,13 +400,24 @@
       "reviewed_head": "1bed694bdc066a66bcebb747ed74a052a4650c25",
       "status": "merged",
       "ci_evidence": "research/ci-closures-39-44.json"
+    },
+    {
+      "pr": 45,
+      "title": "Reconcile development ledger with merged PR 44 and final CI closures",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/45",
+      "kind": "documentation",
+      "merged_at_utc": "2026-10-27T21:58:12Z",
+      "merge_commit": "ed966cef79eb33eb309165e9e9d6edca920410ea",
+      "reviewed_head": "eee27cef236fb54cb0d012f1df1716d2d03fa63c",
+      "status": "merged"
     }
   ],
   "active_change": {
-    "id": "DOC-CLOSE-2026-10-27",
-    "branch": "docs/close-development-ledger-44",
+    "id": "H8-RUNNER-2026-10-28",
+    "branch": "feat/h8-execution-order",
     "status": "in_review",
-    "summary": "Reconcile merged #44 and verified final-head CI for #39\u2013#44",
-    "validation": "Read-only GitHub check snapshots: six final heads, five successful checks each. Documentation/data only; no engine change."
+    "summary": "Compose H8 full/partial execution ordering with budget and peripheral deadlines",
+    "validation": "Original execute_run: 200000 eventful synthetic slices, zero differences; final candidate CI pending. No actual opcode/firmware execution.",
+    "pr": 46
   }
 }

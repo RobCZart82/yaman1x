@@ -1,7 +1,7 @@
 # YamAN1x fejlesztési napló
 
-Frissítve: 2026-10-27. Időzóna: Europe/Budapest.
-Ellenőrzött alap: `b644b6e1c471f8632ea086d75bd37d20b5ebbeb4` (#44).
+Frissítve: 2026-10-28. Időzóna: Europe/Budapest.
+Ellenőrzött alap: `ed966cef79eb33eb309165e9e9d6edca920410ea` (#45); #46 jelöltállapot alább.
 
 ## Ellenőrzött lezárások — #39–#44
 
@@ -56,6 +56,10 @@ rögzíti; a legutóbbi PR-head saját CI-je az irányadó.
 
 Állapot: [#39 PR](https://github.com/RobCZart82/yaman1x/pull/39) beolvadt 2026-10-27 18:06:08 UTC-kor; merge: `6c1dd8a0c83eac1d593abd4e70c040f88908bb48`.
 A hatregiszteres bájt/szó MMIO és a csatornánkénti ERI/RXI/TXI/TEI útvonal elkészült, DMA-elsőbbséggel. Szintetikus 512 RX bájt/csatorna eset, TX, hibák, reset és izoláció ellenőrizve. Az eredeti PR-head öt platform/build ellenőrzése sikeres volt; a #38 főági dokumentációjával feloldott ütközés után új CI szükséges. A kombinált fa helyben 23/23 CTest-csoporttal és 60 Python-esettel PASS. M0 részben teljesült; CPU-ütemezés és firmware/audio továbbra is nyitott.
+
+## #45 dokumentációs lezárás
+
+Beolvadt 2026-10-27 21:58:12 UTC: `ed966cef79eb33eb309165e9e9d6edca920410ea`; head `eee27cef236fb54cb0d012f1df1716d2d03fa63c`. [Három platform PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40589542410), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40589542442), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40589542551). A strukturált leltár #45-öt is tartalmazza; az alábbi régebbi táblázat #44-ig történeti index.
 
 ## Beolvadt változások — a legutóbbi elöl
 
@@ -149,3 +153,7 @@ Local validation / helyi ellenőrzés: macOS arm64 Release, 26/26 CTest groups a
 PR: [#44](https://github.com/RobCZart82/yaman1x/pull/44), ág: `feat/h8-execution-budget`, alap: beolvadt #43. [Szerződés és bizonyíték](h8-execution-budget.md). Ciklustartozás, határidő és stabil CPU-counter a buszsegédhez; 1000 felosztási történet és 400000 eredetimetódus-összevetés 0 eltéréssel. Licenc- és eredetnyilvántartás frissítve. Teljes CPU-utasításvégrehajtás, firmware és hang nincs.
 
 Local validation / helyi ellenőrzés: macOS arm64 Release, 27/27 CTest groups and 74 Python cases PASS; new native ASan/UBSan and source/notice audits PASS. Final PR-head CI pending.
+
+## H8-RUNNER-2026-10-28 — végrehajtási sorrend
+
+PR: [#46](https://github.com/RobCZart82/yaman1x/pull/46). Ág: `feat/h8-execution-order`, alap: #45. Korabeli jelöltállapot: H8 full/partial/periféria-sorrend a meglévő cikluskeret fölött, nem teljes CPU. 200000 eseményes referencia-szelet: 338598 update, 761211 full, 276336 partial callback, nulla eltérés. Natív 1000 felosztás és hibahatárok; két új Python regresszió. A Windows helyi teljes Python-csoport symlink-jogosultsági korlátját külön kezeljük; végső PR-head CI szükséges. Következő: tényleges generált kezelők és CPU-regiszterállapot. M0 részben teljesült.
