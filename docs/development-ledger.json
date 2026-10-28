@@ -3,7 +3,7 @@
   "recorded_date": "2026-10-28",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "e53b6fe7e2906b472e898c57d59ccfe1b791fa96",
+  "baseline_commit": "a3c2eb8ba25fc40eaa5057cc388260e4fc58b9df",
   "entries": [
     {
       "pr": 6,
@@ -568,15 +568,30 @@
         40677897191,
         40677897202
       ]
+    },
+    {
+      "pr": 56,
+      "title": "Execute H8 absolute byte memory bit operations",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/56",
+      "kind": "development",
+      "merged_at_utc": "2026-10-28T11:52:03Z",
+      "merge_commit": "a3c2eb8ba25fc40eaa5057cc388260e4fc58b9df",
+      "reviewed_head": "dee08721b3c2d3ccb16e1dfa4b4475625889c962",
+      "status": "merged",
+      "ci_runs": [
+        40682502703,
+        40682502638,
+        40682502838
+      ]
     }
   ],
   "active_change": {
-    "id": "H8-ABSOLUTE-BITS-2026-10-28",
-    "branch": "feat/h8-absolute-bit-operations",
+    "id": "H8-STACK-CONTROL-2026-10-28",
+    "branch": "feat/h8-stack-control-flow",
     "status": "pr_open",
-    "summary": "Absolute-byte memory bit operations with original upper-page address construction",
-    "validation": "7340032 immediate cases, 262144 address/lane cases, 131072 extensions, 31 splits, 1000 partitions; original-code 200000 slices zero differences. Final PR CI pending.",
-    "pr": 56,
-    "url": "https://github.com/RobCZart82/yaman1x/pull/56"
+    "summary": "Complete normal fixed-profile H8H stack/control instruction families; synthetic RTE frame restore, IRQ/TRAPA entry remains separate",
+    "validation": "Independent rel16/call displacement matrices, pre/post widths and aliases, all call/jump/return forms, nested split/failure controls; original-code 200000 slices zero differences; wrong RTS stack increment detected. Final PR CI pending.",
+    "pr": 57,
+    "url": "https://github.com/RobCZart82/yaman1x/pull/57"
   }
 }

@@ -37,7 +37,7 @@ public:
                 m_IR,m_PIR,m_CCR,m_EXR,m_icount,runner_.debt()};
     }
 private:
-    using u8=uint8_t; using s8=int8_t; using s32=int32_t;
+    using u8=uint8_t; using s8=int8_t; using s16=int16_t; using s32=int32_t;
     static constexpr u8 F_I=0x80,F_H=0x20,F_N=0x08,F_Z=0x04,F_V=0x02,F_C=0x01;
     static constexpr u8 EXR_I=0x07,EXR_NC=0x78;
     static constexpr bool m_has_hc=true,m_mode_advanced=true;
@@ -55,9 +55,13 @@ private:
     void dispatch(bool partial) {
         if(m_inst_state==0x10000) {if(partial)state_reset_partial();else state_reset_full();}
         else if((m_inst_state&0xffff0000)==0x20000) {
-            if((m_inst_state&0xff08)!=0x6900)throw std::runtime_error("Unsupported H8 long-memory extension");
-            if(m_inst_state&0x80) {if(partial)mov_l_r32l_r32ih_partial();else mov_l_r32l_r32ih_full();}
-            else {if(partial)mov_l_r32ih_r32l_partial();else mov_l_r32ih_r32l_full();}
+            if((m_inst_state&0xff08)==0x6900) {
+                if(m_inst_state&0x80) {if(partial)mov_l_r32l_r32ih_partial();else mov_l_r32l_r32ih_full();}
+                else {if(partial)mov_l_r32ih_r32l_partial();else mov_l_r32ih_r32l_full();}
+            } else if((m_inst_state&0xff08)==0x6d00) {
+                if(m_inst_state&0x80) {if(partial)mov_l_r32l_pr32h_partial();else mov_l_r32l_pr32h_full();}
+                else {if(partial)mov_l_r32ph_r32l_partial();else mov_l_r32ph_r32l_full();}
+            } else throw std::runtime_error("Unsupported H8 long-memory extension");
         }
         else if((m_inst_state&0xffff0000)==0x110000) {
             const auto code=m_inst_state&0xff88;
@@ -165,6 +169,40 @@ private:
         else if((m_inst_state&0xff8f)==0x7d00) {if(partial)dispatch_7d00_partial();else dispatch_7d00_full();}
         else if((m_inst_state&0xff00)==0x7e00) {if(partial)dispatch_7e00_partial();else dispatch_7e00_full();}
         else if((m_inst_state&0xff00)==0x7f00) {if(partial)dispatch_7f00_partial();else dispatch_7f00_full();}
+        else if((m_inst_state&0xffff)==0x5470) {if(partial)rts_partial();else rts_full();}
+        else if((m_inst_state&0xffff)==0x5670) {if(partial)rte_partial();else rte_full();}
+        else if((m_inst_state&0xff00)==0x5500) {if(partial)bsr_rel8_partial();else bsr_rel8_full();}
+        else if((m_inst_state&0xffff)==0x5c00) {if(partial)bsr_rel16_partial();else bsr_rel16_full();}
+        else if((m_inst_state&0xff8f)==0x5900) {if(partial)jmp_r32h_partial();else jmp_r32h_full();}
+        else if((m_inst_state&0xff00)==0x5a00) {if(partial)jmp_abs24e_partial();else jmp_abs24e_full();}
+        else if((m_inst_state&0xff00)==0x5b00) {if(partial)jmp_abs8i_partial();else jmp_abs8i_full();}
+        else if((m_inst_state&0xff8f)==0x5d00) {if(partial)jsr_r32h_partial();else jsr_r32h_full();}
+        else if((m_inst_state&0xff00)==0x5e00) {if(partial)jsr_abs24e_partial();else jsr_abs24e_full();}
+        else if((m_inst_state&0xff00)==0x5f00) {if(partial)jsr_abs8i_partial();else jsr_abs8i_full();}
+        else if((m_inst_state&0xff80)==0x6c00) {if(partial)mov_b_r32ph_r8l_partial();else mov_b_r32ph_r8l_full();}
+        else if((m_inst_state&0xff80)==0x6c80) {if(partial)mov_b_r8l_pr32h_partial();else mov_b_r8l_pr32h_full();}
+        else if((m_inst_state&0xff80)==0x6d00) {if(partial)mov_w_r32ph_r16l_partial();else mov_w_r32ph_r16l_full();}
+        else if((m_inst_state&0xff80)==0x6d80) {if(partial)mov_w_r16l_pr32h_partial();else mov_w_r16l_pr32h_full();}
+        else if((m_inst_state&0xff0f)==0x5800) {
+            switch((m_inst_state>>4)&15) {
+            case 0:if(partial)bt_rel16_partial();else bt_rel16_full();break;
+            case 1:if(partial)bf_rel16_partial();else bf_rel16_full();break;
+            case 2:if(partial)bhi_rel16_partial();else bhi_rel16_full();break;
+            case 3:if(partial)bls_rel16_partial();else bls_rel16_full();break;
+            case 4:if(partial)bcc_rel16_partial();else bcc_rel16_full();break;
+            case 5:if(partial)bcs_rel16_partial();else bcs_rel16_full();break;
+            case 6:if(partial)bne_rel16_partial();else bne_rel16_full();break;
+            case 7:if(partial)beq_rel16_partial();else beq_rel16_full();break;
+            case 8:if(partial)bvc_rel16_partial();else bvc_rel16_full();break;
+            case 9:if(partial)bvs_rel16_partial();else bvs_rel16_full();break;
+            case 10:if(partial)bpl_rel16_partial();else bpl_rel16_full();break;
+            case 11:if(partial)bmi_rel16_partial();else bmi_rel16_full();break;
+            case 12:if(partial)bge_rel16_partial();else bge_rel16_full();break;
+            case 13:if(partial)blt_rel16_partial();else blt_rel16_full();break;
+            case 14:if(partial)bgt_rel16_partial();else bgt_rel16_full();break;
+            case 15:if(partial)ble_rel16_partial();else ble_rel16_full();break;
+            }
+        }
         else if(m_inst_state==0x0100) {if(partial)dispatch_0100_partial();else dispatch_0100_full();}
         else if((m_inst_state&0xff00)==0x0700) {if(partial)ldc_imm8_ccr_partial();else ldc_imm8_ccr_full();}
         else if((m_inst_state&0xff00)==0x0900) {if(partial)add_w_r16h_r16l_partial();else add_w_r16h_r16l_full();}
@@ -247,6 +285,9 @@ private:
     void update_irq_filter() {} // IRQ entry is not supported by this fixed profile.
     void prefetch_done(){m_inst_state=m_IR[0]=m_PIR;}
     void prefetch_done_noirq(){prefetch_done();}
+    void prefetch_done_notrace(){prefetch_done();}
+    bool exr_in_stack()const{return false;}
+    void internal(int cycles){m_icount-=cycles+1;}
     void prefetch_switch(uint32_t pc,uint16_t ir){m_NPC=pc&0xffffff;m_PC=pc+2;m_PIR=ir;}
     void set_nzv8(u8 v){m_CCR&=~(F_N|F_V|F_Z);if(!v)m_CCR|=F_Z;else if(s8(v)<0)m_CCR|=F_N;}
     void r8_w(int reg,u8 val){if(reg&8)m_R[reg&7]=(m_R[reg&7]&0xff00)|val;else m_R[reg&7]=(m_R[reg&7]&0xff)|(uint16_t(val)<<8);}

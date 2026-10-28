@@ -60,3 +60,5 @@ Latest M0 increment: [register bit operations](h8-register-bit-operations.md). N
 Latest M0 increment: [register-indirect memory bit operations](h8-memory-bit-operations.md). Next: absolute bit forms and stack/control flow, then IRQ/SCI integration; M0 stays partial.
 
 Latest M0 increment: [absolute-byte memory bit operations](h8-absolute-bit-operations.md). Next: stack/control flow, then IRQ/SCI integration; M0 stays partial.
+
+Latest M0 increment: [fixed-profile H8H stack/control flow](h8-stack-control-flow.md), including synthetic RTE frame restore. Normal stack/control families implemented; IRQ/TRAPA entry, remaining CPU coverage and CPU/SCI integration are next. M0 stays partial.
