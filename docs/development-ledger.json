@@ -588,8 +588,10 @@
   "active_change": {
     "id": "H8-STACK-CONTROL-2026-10-28",
     "branch": "feat/h8-stack-control-flow",
-    "status": "in_progress",
+    "status": "pr_open",
     "summary": "Complete normal fixed-profile H8H stack/control instruction families; synthetic RTE frame restore, IRQ/TRAPA entry remains separate",
-    "validation": "Independent rel16/call displacement matrices, pre/post widths and aliases, all call/jump/return forms, nested split/failure controls; original-code 200000 slices zero differences; wrong RTS stack increment detected. Final PR CI pending."
+    "validation": "Independent rel16/call displacement matrices, pre/post widths and aliases, all call/jump/return forms, nested split/failure controls; original-code 200000 slices zero differences; wrong RTS stack increment detected. Final PR CI pending.",
+    "pr": 57,
+    "url": "https://github.com/RobCZart82/yaman1x/pull/57"
   }
 }
