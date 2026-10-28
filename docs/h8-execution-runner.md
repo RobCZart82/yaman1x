@@ -53,3 +53,5 @@ register state and this bus/budget/runner boundary, then compare synthetic reset
 flags, branches and interrupt entry against the upstream reference. SCI/MMIO
 CPU ordering, complete CPU execution, M1 firmware MIDI, audio and REAPER
 acceptance remain open.
+
+Candidate validation: Windows MSVC Release; 27 locally runnable CTest groups PASS, with the complete Python group excluded due to the established symlink privilege restriction. Both new Python cases PASS. Complete candidate suite: 28 CTest groups / 76 Python cases; final #46 platform CI is tracked on the PR. Source provenance and notice audits PASS.

@@ -493,4 +493,4 @@ Local validation / helyi ellenőrzés: macOS arm64 Release, 27/27 CTest groups a
 
 ## 2026-10-28 — H8 teljes/részutasítás-futtatási sorrend
 
-Ág: `feat/h8-execution-order`, alap: beolvadt #45. A [futtatókeret](h8-execution-runner.md) összeköti a ciklustartozást, perifériahatáridőket és full/partial callback-sorrendet. 200000 eseményes referencia-szelet, nulla eltérés az eredeti execute_run metódussal szintetikus kezelők mellett. Natív sorrend-/hiba-/1000 felosztási teszt. M0 részben teljesült; valódi CPU-utasítások, IRQ-belépés, firmware/MIDI/audio nem igazolt. A jelölt saját platform-CI-je külön ellenőrizendő.
+PR: [#46](https://github.com/RobCZart82/yaman1x/pull/46). Ág: `feat/h8-execution-order`, alap: beolvadt #45. A [futtatókeret](h8-execution-runner.md) összeköti a ciklustartozást, perifériahatáridőket és full/partial callback-sorrendet. 200000 eseményes referencia-szelet, nulla eltérés az eredeti execute_run metódussal szintetikus kezelők mellett. Natív sorrend-/hiba-/1000 felosztási teszt. M0 részben teljesült; valódi CPU-utasítások, IRQ-belépés, firmware/MIDI/audio nem igazolt. A jelölt saját platform-CI-je külön ellenőrizendő.

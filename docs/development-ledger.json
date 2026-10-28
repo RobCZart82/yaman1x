@@ -415,8 +415,9 @@
   "active_change": {
     "id": "H8-RUNNER-2026-10-28",
     "branch": "feat/h8-execution-order",
-    "status": "in_progress",
+    "status": "in_review",
     "summary": "Compose H8 full/partial execution ordering with budget and peripheral deadlines",
-    "validation": "Original execute_run: 200000 eventful synthetic slices, zero differences; final candidate CI pending. No actual opcode/firmware execution."
+    "validation": "Original execute_run: 200000 eventful synthetic slices, zero differences; final candidate CI pending. No actual opcode/firmware execution.",
+    "pr": 46
   }
 }

@@ -43,7 +43,7 @@ def check(archive, work, cmake='cmake'):
     work = work.resolve()
     work.mkdir(parents=True, exist_ok=False)
     fixture = (root/'tests/h8_execution_runner_reference.cpp').read_text()
-    (work/'reference.cpp').write_text(fixture.replace('/* ORIGINAL_METHODS */', original))
+    (work/'reference.cpp').write_text('// license:BSD-3-Clause\n// copyright-holders:Olivier Galibert\n'+fixture.replace('/* ORIGINAL_METHODS */', original), encoding='utf-8')
     (work/'CMakeLists.txt').write_text('cmake_minimum_required(VERSION 3.20)\nproject(reference LANGUAGES CXX)\nset(CMAKE_CXX_STANDARD 20)\nadd_executable(reference reference.cpp)\ntarget_include_directories(reference PRIVATE "'+(root/'src').as_posix()+'")\n')
     subprocess.run([cmake, '-S', str(work), '-B', str(work/'b')], check=True, timeout=120)
     subprocess.run([cmake, '--build', str(work/'b'), '--config', 'Release'], check=True, timeout=120)
