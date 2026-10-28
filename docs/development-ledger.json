@@ -462,8 +462,9 @@
   "active_change": {
     "id": "H8-WORD-LONG-2026-10-28",
     "branch": "feat/h8-word-long-memory",
-    "status": "in_progress",
+    "status": "in_review",
     "summary": "Execute generated word/long memory operations with original prefix state and aligned word bus callbacks",
-    "validation": "200000 original-reference slices, zero differences; word-byte-swap negative control detected. Final candidate CI pending."
+    "validation": "200000 original-reference slices, zero differences; word-byte-swap negative control detected. Final candidate CI pending.",
+    "pr": 49
   }
 }
