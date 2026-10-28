@@ -16,14 +16,14 @@ Ellenőrizve: 2026-10-27. Mind a hat PR beolvadt; mindegyik végső headjén öt
 
 Rögzítve: 2026-10-27. Kiindulópont: a #14 PR-ig beolvadt kutatási eredmények.
 Ez végrehajtási terv; az alábbi, még nyitott mérföldkövek nem kész funkciók.
-Állapotellenőrzés: 2026-10-28, alap: #48 (`800f8b4eabfe484b54e9918a652096c0acf50986`).
+Állapotellenőrzés: 2026-10-28, alap: #49 (`4567d7bfe852100f5483a8104bcba81b50ae26bb`).
 Az új H8-futtatási sorrend komponensszintű előrelépés; nem teljes CPU- vagy firmware-elfogadás.
 
 ## Aktuális mérföldkő-állapot — 2026-10-28
 
 | Mérföldkő | Aktuális állapot | Következő elfogadási feltétel |
 |---|---|---|
-| M0 | **Részben teljesült.** Architektúra, forrásazonosítók, generálási alap, önálló GPIO és IRQ-adapter megvan; az önálló SCI belső ciklusóra, közös aszinkron SCI TX/RX-csatorna rendelkezésre áll; a kétcsatornás SCI MMIO/IRQ-adapter elkészült; a kétcsatornás SCI-idővonal, H8H-busz, cikluskeret és H8-futtatási sorrend komponensei rendelkezésre állnak; a generált részhalmaz rel8 feltételeket, bájt-/szó-/hosszúszó-átvitelt és prefixelt végrehajtást is támogat; a teljes CPU-utasításkészlet és gépintegráció nyitott. | Közös CPU/periféria-ütemező; tényleges H8 CPU-port fordítása és végrehajtási/izolációs tesztjei. A terjesztési licenc döntése nyitott. |
+| M0 | **Részben teljesült.** Architektúra, forrásazonosítók, generálási alap, önálló GPIO és IRQ-adapter megvan; az önálló SCI belső ciklusóra, közös aszinkron SCI TX/RX-csatorna rendelkezésre áll; a kétcsatornás SCI MMIO/IRQ-adapter elkészült; a kétcsatornás SCI-idővonal, H8H-busz, cikluskeret és H8-futtatási sorrend komponensei rendelkezésre állnak; a generált részhalmaz rel8, byte/word/long memória, prefix és kiválasztott ADD/SUB/CMP formákat támogat; a teljes CPU-utasításkészlet és gépintegráció nyitott. | Közös CPU/periféria-ütemező; tényleges H8 CPU-port fordítása és végrehajtási/izolációs tesztjei. A terjesztési licenc döntése nyitott. |
 | M1 | **Előkészítve, nem teljesült.** A külön macOS MAME-build és a párosított helyi futtató rendelkezésre áll. | Friss Mac-firmware-próba: SCI0 tényleges bájtfogadás és note-on/note-off feldolgozás bizonyítása; PKS-kézfogás feltárása. |
 | M2–M3 | **Kutatási feladatok nyitva.** Nincs igazolt referenciahang. | AN1x órajel, táblacímzés, EG és soros hangút bizonyítása, majd megismételhető offline hang. |
 | M4–M6 | **Tervezett.** Nincs elkészült beágyazható hangszer vagy REAPER-elfogadás. | Validált offline referencia után audio-blokkmotor, VST3 és helyi REAPER-próba. |
@@ -226,7 +226,7 @@ A [kétcsatornás SCI MMIO/IRQ-adapter](h83002-sci-mmio-irq.md) szintén elkész
 
 Az önálló SCI-idővonal (#41), CPU-hoszthatár (#42), buszsegédek (#43),
 cikluskeret (#44) és [végrehajtási sorrend](h8-execution-runner.md) elkészült.
-A [következő jelölt](h8-first-instructions.md) nyolc valódi generált full/partial kezelőt kapcsol a kerethez (reset, NOP, MOV.B immediate, BRA rel8). Az új [memória-/elágazásbővítés](h8-memory-branches.md) ezt 44 kezelőre bővíti: 32 bites immediate, indirekt bájt load/store és minden rel8 feltétel. A [szó-/hosszúszó-bővítés](h8-word-long-memory.md) 56 kezelőre és prefixelt adatátvitelre lép tovább. Ez továbbra is részhalmaz, nem teljes CPU.
+A [következő jelölt](h8-first-instructions.md) nyolc valódi generált full/partial kezelőt kapcsol a kerethez (reset, NOP, MOV.B immediate, BRA rel8). Az új [memória-/elágazásbővítés](h8-memory-branches.md) ezt 44 kezelőre bővíti: 32 bites immediate, indirekt bájt load/store és minden rel8 feltétel. A [szó-/hosszúszó-bővítés](h8-word-long-memory.md) 56 kezelőre és prefixelt adatátvitelre lép tovább. Az [aritmetikai bővítés](h8-arithmetic-flags.md) 78 kezelőre lép tovább, matematikai és eredeti kódos jelzőbit-kontrollokkal. Ez továbbra is részhalmaz, nem teljes CPU.
 
 Nyitott feladatok, végrehajtási sorrendben:
 
@@ -512,3 +512,9 @@ Előző lépcső lezárása: [#47](https://github.com/RobCZart82/yaman1x/pull/47
 PR: [#49](https://github.com/RobCZart82/yaman1x/pull/49). Ág: `feat/h8-word-long-memory`, alap: beolvadt #48. [Részletes bizonyíték és korlátok](h8-word-long-memory.md). Eredeti 0100 prefix, külön belső dekódállapot, igazított word busz és kétlépcsős long átvitel. 200000 referencia-szakaszon nulla eltérés; mid-transfer folytatás/hiba és unsigned címkörbefordulás tesztelve. M0 részben teljesült. Következő: aritmetikai/összehasonlítási jelzőbitek, szélesebb utasításkészlet, majd IRQ és CPU/SCI-sorrend. Firmware/MIDI/audio-elfogadás változatlanul nyitott.
 
 Előző lépcső lezárása: [#48](https://github.com/RobCZart82/yaman1x/pull/48): merge `800f8b4eabfe484b54e9918a652096c0acf50986`, végső head `a2da3e66797ec5d9f617e3e85b1e6505ccf26beb`; [Linux/macOS/Windows PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40644345253), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40644345183), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40644345179). Az automatikus review a beolvasztáskor még futott; nem lezárt eredményként szerepel. A beolvasztás a kézi forrásellenőrzés, eredeti kódos kontrollok és mind az öt sikeres CI alapján történt.
+
+## 2026-10-28 — H8H aritmetika és összehasonlítás
+
+Ág: `feat/h8-arithmetic-flags`, alap: beolvadt #49. [Részletes bizonyíték és korlátok](h8-arithmetic-flags.md). Byte ADD/CMP immediate, byte ADD/SUB/CMP register, word/long ADD/SUB/CMP immediate; H/N/Z/V/C és CMP nem-írás ellenőrizve. 200000 eredeti referencia-szakasz, nulla eltérés; független signed-range/maradékos orákulum és half-carry negatív kontroll. M0 részben teljesült. Következő: további regiszteres/carry-input aritmetika, logika/shift, stack/IRQ és CPU/SCI-sorrend. Firmware/MIDI/audio-elfogadás változatlanul nyitott.
+
+Előző lépcső lezárása: [#49](https://github.com/RobCZart82/yaman1x/pull/49): merge `4567d7bfe852100f5483a8104bcba81b50ae26bb`, végső head `f69503487de2fbbf3c575d81f54ca5a91e965f90`; [Linux/macOS/Windows PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40647971856), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40647971826), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40647971835). Az automatikus review a `5aff015d6157f166d9f26d0591e7b13d067cd171` forrásrevízión hibát nem jelzett; a követő commit csak PR-metaadatot rögzített a dokumentációban.

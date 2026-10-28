@@ -1,8 +1,9 @@
 # H8H word/long memory and the original 0100 prefix state
 
-Recorded: 2026-10-28. Based on merged #48. M0 remains partial.
+Historical #49 increment, 2026-10-28, based on #48. The current
+[arithmetic extension](h8-arithmetic-flags.md) adds selected ADD/SUB/CMP forms. M0 remains partial.
 
-The research execution profile now retains 56 unchanged generated full/partial
+The research execution profile at #49 retained 56 unchanged generated full/partial
 methods. This increment adds MOV.W immediate16, indirect MOV.W and MOV.L loads/
 stores, and the original dispatch_0100 prefix handler. The existing byte moves,
 immediate32, reset/NOP and rel8 conditions remain covered.

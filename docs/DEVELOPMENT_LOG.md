@@ -1,7 +1,7 @@
 # YamAN1x fejlesztési napló
 
 Frissítve: 2026-10-28. Időzóna: Europe/Budapest.
-Ellenőrzött alap: `800f8b4eabfe484b54e9918a652096c0acf50986` (#48); az új szó-/hosszúszó-jelölt alább.
+Ellenőrzött alap: `4567d7bfe852100f5483a8104bcba81b50ae26bb` (#49); az aritmetikai jelölt alább.
 
 ## Ellenőrzött lezárások — #39–#44
 
@@ -175,3 +175,9 @@ PR: [#48](https://github.com/RobCZart82/yaman1x/pull/48). Ág: `feat/h8-memory-c
 Előző lépcső lezárása: [#48](https://github.com/RobCZart82/yaman1x/pull/48): merge `800f8b4eabfe484b54e9918a652096c0acf50986`, végső head `a2da3e66797ec5d9f617e3e85b1e6505ccf26beb`; [Linux/macOS/Windows PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40644345253), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40644345183), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40644345179). Az automatikus review a beolvasztáskor még futott; nem lezárt eredményként szerepel. A beolvasztás a kézi forrásellenőrzés, eredeti kódos kontrollok és mind az öt sikeres CI alapján történt.
 
 PR: [#49](https://github.com/RobCZart82/yaman1x/pull/49). Ág: `feat/h8-word-long-memory`, alap: beolvadt #48. Korabeli jelöltállapot: 56 eredeti generált full/partial kezelő; MOV.W immediate, indirekt word/long load/store és eredeti 0100 prefixállapot. Mind a 65536 szóérték, regiszter-/címátfedések, 65536 prefixkiterjesztés és 1000 felosztás ellenőrizve. Eredeti H8H-kóddal 200000 szakasz: 745100 utasításolvasás, 19304 bájtolvasás, 19310 bájtírás, 57833 szóolvasás, 57853 szóírás; nulla eltérés. Szándékos szó-bájtsorrendhibát a kontroll észleli. [Szerződés és korlátok](h8-word-long-memory.md). M0 részben teljesült; aritmetika, IRQ/SCI és teljes CPU/firmware/audio továbbra is nyitott. Végső PR-head CI külön ellenőrizendő.
+
+## H8-ARITHMETIC-2026-10-28 — ADD/SUB/CMP és jelzőbitek
+
+Előző lépcső lezárása: [#49](https://github.com/RobCZart82/yaman1x/pull/49): merge `4567d7bfe852100f5483a8104bcba81b50ae26bb`, végső head `f69503487de2fbbf3c575d81f54ca5a91e965f90`; [Linux/macOS/Windows PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40647971856), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40647971826), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40647971835). Az automatikus review a `5aff015d6157f166d9f26d0591e7b13d067cd171` forrásrevízión hibát nem jelzett; a követő commit csak PR-metaadatot rögzített a dokumentációban.
+
+Ág: `feat/h8-arithmetic-flags`, alap: beolvadt #49. Korabeli jelöltállapot: 78 eredeti generált full/partial kezelő; ADD/CMP byte immediate, ADD/SUB/CMP byte register és word/long immediate formák. 327680 byte-bemenetpár, 12288 regiszterátfedés, 100800 szélesebb eset és 1000 felosztás tesztelve. Matematikai overflow/borrow orákulum; CMP nem ír regisztert. Eredeti H8H-kóddal 200000 szakasz: 791089 utasításolvasás, 13555 byte-olvasás, 13557 byte-írás, 40593 word-olvasás és 40606 word-írás; nulla eltérés. Szándékos half-carry-hibát a kontroll észleli. [Szerződés és korlátok](h8-arithmetic-flags.md). M0 részben teljesült; további aritmetika/logika/shift, stack/IRQ és CPU/SCI-integráció nyitott. Végső PR-head CI külön ellenőrizendő.

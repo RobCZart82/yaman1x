@@ -16,6 +16,7 @@ struct Host {
   std::vector<u16> code{0x7a00,u16(address>>16),u16(address),u16(0xf900|((seed*73)&255)),0x6889,0x680a,u16(0x4002|((seed%16)<<8)),0};
   code.push_back(0x7a03);code.push_back(u16(seed*997));code.push_back(u16(seed*197));
   code.insert(code.end(),{0x7905,u16(seed*13),0x6983,0x6904,0x0100,0x6983,0x0100,0x6904});
+  code.insert(code.end(),{0x8901,0xa97f,0x089a,0x18a9,0x1c9a,0x7915,u16(seed*19),0x7925,0x8000,0x7935,0xffff,0x7a13,0x1000,u16(seed),0x7a23,0x7fff,0xffff,0x7a33,0xffff,0xffff});
   for(unsigned r=0;r<16;++r){random=random*1664525u+1013904223u;code.push_back(u16(0xf000|(r<<8)|(random>>24)));}
   code.push_back(0);const int displacement=-2*int(code.size()+1);code.push_back(u16(0x4000|u8(displacement)));
   for(unsigned n=0;n<code.size();++n)words[0x80+n]=code[n];
