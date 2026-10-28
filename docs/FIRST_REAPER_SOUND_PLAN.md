@@ -622,3 +622,7 @@ A dokumentációs egységesítés PR-je: [#58](https://github.com/RobCZart82/yam
 ## 2026-10-28 — repository-audit a #58 főágon
 
 [Auditjelentés](REPOSITORY_AUDIT_2026-10-28.md): a 39 csoportos/84 Python-esetes csomag Macen teljesen PASS, 200000 eredetimetódus-szelet eltérés nélkül, célzott CPU ASan/UBSan PASS. Az ellenőrzés nem igazol firmware-, hardver- vagy audioelfogadást; M0/M1 állapota változatlan. A következő feladatok a megmaradt utasítás/címzés-lefedettség, IRQ/TRAPA és a közös gépütemezés.
+
+## 2026-10-28 — lefedettség és CCR
+
+[Jegyzőkönyv](h8-coverage-and-ccr.md): forrásazonosított kódolásleltár (181 kiválasztott / 83 hiányzó / 135 másprofilú sor), STC/LDC regiszteres és ORC/XORC/ANDC immediát család. Ez nem ISA-készültségi százalék és nem IRQ-belépési bizonyíték. Következő a fennmaradó utasítás/címzéscsaládok, majd IRQ/TRAPA és gépütemezés.

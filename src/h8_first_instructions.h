@@ -204,6 +204,11 @@ private:
             }
         }
         else if(m_inst_state==0x0100) {if(partial)dispatch_0100_partial();else dispatch_0100_full();}
+        else if((m_inst_state&0xfff0)==0x0200) {if(partial)stc_ccr_r8l_partial();else stc_ccr_r8l_full();}
+        else if((m_inst_state&0xfff0)==0x0300) {if(partial)ldc_r8l_ccr_partial();else ldc_r8l_ccr_full();}
+        else if((m_inst_state&0xff00)==0x0400) {if(partial)orc_imm8_ccr_partial();else orc_imm8_ccr_full();}
+        else if((m_inst_state&0xff00)==0x0500) {if(partial)xorc_imm8_ccr_partial();else xorc_imm8_ccr_full();}
+        else if((m_inst_state&0xff00)==0x0600) {if(partial)andc_imm8_ccr_partial();else andc_imm8_ccr_full();}
         else if((m_inst_state&0xff00)==0x0700) {if(partial)ldc_imm8_ccr_partial();else ldc_imm8_ccr_full();}
         else if((m_inst_state&0xff00)==0x0900) {if(partial)add_w_r16h_r16l_partial();else add_w_r16h_r16l_full();}
         else if((m_inst_state&0xff00)==0x1900) {if(partial)sub_w_r16h_r16l_partial();else sub_w_r16h_r16l_full();}

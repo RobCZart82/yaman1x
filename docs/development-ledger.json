@@ -613,14 +613,22 @@
         40690053399,
         40690053451
       ]
+    },
+    {
+      "pr": 59,
+      "title": "Audit current repository and reconcile current test counts",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/59",
+      "kind": "documentation",
+      "merge_commit": "717b8318b7a4d0f403915793a2b5676d485c588d",
+      "reviewed_head": "af7f1d337f6da91455236543495dd270cd3c9ed4",
+      "status": "merged"
     }
   ],
   "active_change": {
-    "id": "AUD-2026-10-28",
-    "branch": "audit/repository-2026-10-28",
+    "id": "H8-COVERAGE-CCR-2026-10-28",
+    "branch": "feat/h8-coverage-ccr",
     "status": "in_review",
-    "audited_revision": "863d21abcde448d746b3b44c39a1eb61be455a15",
-    "summary": "Whole-repository review, refreshed native/reference/sanitizer evidence and current-count correction",
-    "validation": "Fresh local macOS arm64 Release 39/39 CTest, 84 Python cases, 200000 original-code slices, four CPU ASan/UBSan groups PASS; source/notice/link/ledger checks PASS. No engine code changes. Candidate PR CI pending."
+    "summary": "Locked encoding-row inventory and CCR register/immediate family",
+    "validation": "Local macOS Release 40/40 CTest and 87 Python PASS; new native ASan/UBSan PASS; 200000 original-code slices zero differences. 181 selected / 83 missing / 135 excluded encoding rows. PR CI pending."
   }
 }

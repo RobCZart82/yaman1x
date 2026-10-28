@@ -113,7 +113,7 @@ The ROM-free CMake/CTest suite also passes in GitHub Actions on Linux x64,
 macOS Apple Silicon and Windows x64. These builds do not validate AN1x audio,
 hardware timing or DAW/plugin-host behavior.
 
-The current CMake suite has **39 CTest groups**, including the Python unittest
+The merged #57 CMake suite has **39 CTest groups**, including the Python unittest
 group, license coverage, provenance and normal/optimized ABI checks. The audit
 of the earlier #37 baseline passed all 22 groups and 56 Python cases locally on macOS arm64;
 the merged bridge-auditor regression fix adds four Python cases in the same CTest group.
@@ -194,3 +194,7 @@ The [stack/control extension](h8-stack-control-flow.md) completes the normal fix
 ## Repository review — 2026-10-28
 
 Audit baseline #58 (`863d21abcde448d746b3b44c39a1eb61be455a15`): fresh local macOS arm64 Release 39/39 CTest and 84/84 Python PASS; original-code comparison 200000 slices with zero differences; four focused CPU ASan/UBSan groups PASS. Source/notice/link/ledger checks pass. No reproducible engine regression found in the exercised scope. [Full audit and remaining coverage limits](REPOSITORY_AUDIT_2026-10-28.md).
+
+## Coverage / CCR candidate
+
+[Coverage inventory and CCR](h8-coverage-and-ccr.md): 181 selected encoding rows, 83 missing and 135 excluded; 376 full/partial handlers. Candidate suite 40 CTest groups / 87 Python cases; IRQ/filter/firmware acceptance still open.
