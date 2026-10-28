@@ -366,3 +366,9 @@ Helyi lezárás: 49/49 CTest, 87 Python, célzott ASan/UBSan és forrás-/licenc
 Ág: `feat/h8-sci-cpu-framing`; [jegyzőkönyv](h8-sci-cpu-framing.md). Motorváltoztatás nélküli ERI/FER-integráció: 1024 bájt/csatorna eset, 3604 felosztás, 512 következő jó frame helyreállítási eset. CPU SSR-kiolvasás/RAM/nyugtázás/RTE, majd RXI és helyes adat. A hiányzó idle-high stimulus mind512 recovery esetben hibát jelzett, a tesztbemenet javítva. #70 négy zöld CI, üres review-thread/változtatáskérés lista után beolvadt `860815eb62afb2d9b55e1e2cc8318a85967d4d04`, head `a063232d4f877fc2d3eea43303b73273a8e872eb`. Saját végső CI külön kapu; overrun/paritás még nyitott.
 
 Helyi lezárás: 50/50 CTest, 87 Python, célzott ASan/UBSan és forrás-/licenc-/feltöltési audit PASS. Negatív kontroll: FER-törlés kihagyása 2048 elfogadási hibát eredményez, tehát a teszt a nyugtázást és recovery-t is ellenőrzi. A közös fixture kiemelése után a korábbi duplex teszt változatlan alapbeállításokkal továbbra is sikeres. Saját végső CI/review még szükséges.
+
+## H8-SCI-CPU-PARITY-2026-10-28
+
+Ág: `feat/h8-sci-cpu-parity`; [jegyzőkönyv](h8-sci-cpu-parity.md). SMR0x20/0x30, jó/rossz paritás mindkét csatornán, 2048 bájteset és 8808 felosztás. CPU RXI/ERI, RAM/SSR, PER-törlés és RTE; független bit-count bemenet és TX-paritás/időzítés. A rögzített forrás paritáspolaritását követjük, hardver-validált even/odd állítás nélkül. #71 négy zöld CI, nyitott review-thread/változtatáskérés nélkül beolvadt `8e9c431f1a0629cc20db136c50c56eba81854202`, head `e49e6c0053c8c5179e4475fc51ee3628478b9177`. Teljes helyi teszt/sanitizer lezárás folyamatban; saját végső CI külön kapu.
+
+Helyi lezárás: 51/51 CTest, 87 Python, célzott ASan/UBSan, forrás-/licenc-/feltöltési audit PASS. PER-törlés nélküli negatív kontroll hibát jelez. A közös fixture alapértelmezett no-parity és FER-próbái továbbra is sikeresek. Motorkód változatlan; saját végső CI/review még szükséges.

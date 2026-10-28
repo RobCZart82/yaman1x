@@ -246,3 +246,7 @@ Audit baseline #58 (`863d21abcde448d746b3b44c39a1eb61be455a15`): fresh local mac
 ## CPU framing-error candidate
 
 #70 duplex tests merged as 860815eb62afb2d9b55e1e2cc8318a85967d4d04 with four successful checks. [ERI/FER and valid-frame recovery](h8-sci-cpu-framing.md) add CPU status capture/clear/RTE evidence and subsequent RXI reception. Fixed synthetic UART profile only; parity/overrun and firmware/audio remain open.
+
+## CPU SCI parity candidate
+
+#71 framing/recovery merged as 8e9c431f1a0629cc20db136c50c56eba81854202 with four successful checks. [Parity status/IRQ checks](h8-sci-cpu-parity.md) cover SMR0x20/0x30, good/bad input, CPU RXI/ERI acknowledgement and transmitted parity. Source-profile polarity is explicitly distinguished from physical hardware validation. Overrun, full CPU/firmware and audio remain open.
