@@ -3,7 +3,7 @@
   "recorded_date": "2026-10-28",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "806ddf86a6373731f7b138c985a55ed41c583d6a",
+  "baseline_commit": "efdb6df59ba53e8497d313fb33c7b40dcd9d76c4",
   "entries": [
     {
       "pr": 6,
@@ -537,15 +537,29 @@
         40665288416
       ],
       "automated_review_source": "8ea376e0ba91bbc83ff94b521c5f0082bb093811; completed, no findings; following commit is PR metadata only"
+    },
+    {
+      "pr": 54,
+      "title": "Execute H8 register bit operations and correct H8H instruction scope",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/54",
+      "kind": "development",
+      "merged_at_utc": "2026-10-28T10:35:16Z",
+      "merge_commit": "efdb6df59ba53e8497d313fb33c7b40dcd9d76c4",
+      "reviewed_head": "f9cab7c831a6aa2e880e2131b52a3623c049347c",
+      "status": "merged",
+      "ci_runs": [
+        40672059555,
+        40672059577,
+        40672059727
+      ],
+      "automated_review_source": "No automated review result present at closure; local source, independent and original-code controls inspected"
     }
   ],
   "active_change": {
-    "id": "H8-REGISTER-BITS-2026-10-28",
-    "branch": "feat/h8-register-bit-operations",
-    "status": "pr_open",
-    "summary": "Register byte bit operations, original bodies and H8H instruction-profile correction",
-    "validation": "8126464 independent cases, 1000 partitions; original-code 200000 slices zero differences; toggle-to-set negative control detected. Final PR CI pending.",
-    "pr": 54,
-    "url": "https://github.com/RobCZart82/yaman1x/pull/54"
+    "id": "H8-MEMORY-BITS-2026-10-28",
+    "branch": "feat/h8-memory-bit-operations",
+    "status": "in_progress",
+    "summary": "Register-indirect memory byte bit operations with original 7c/7d prefix and exact bus sequencing",
+    "validation": "7340032 immediate cases, 131072 aliases, 131072 extensions, 31 splits, 1000 partitions; original-code 200000 slices zero differences. Final PR CI pending."
   }
 }

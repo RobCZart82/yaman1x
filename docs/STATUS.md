@@ -5,13 +5,13 @@ Recorded: 2026-10-28. Product: YamAN1x. Repository: `yaman1x`. First public rese
 The repository contains a ROM-free C++/Python development foundation.
 No VST3, AU, GUI or AN1x audio output is available yet.
 
-Current baseline: merged PR #53, `806ddf86a6373731f7b138c985a55ed41c583d6a`.
+Current baseline: merged PR #54, `efdb6df59ba53e8497d313fb33c7b40dcd9d76c4`.
 The [first-sound plan](FIRST_REAPER_SOUND_PLAN.md) tracks M0 as partial, M1 as
 prepared and M2–M6 as research/planned. Completed helper components do not
 establish a complete CPU or firmware boot. Changes and their provenance are
 indexed in the [development ledger](DEVELOPMENT_LOG.md).
 
-Merged #53 suite: **35 CTest groups, 84 Python cases**, with all five final-head checks PASS. Current register-bit candidate: **36 CTest groups, 84 Python cases**; final candidate CI remains separate evidence. PRs #39–#44 are merged and each final head has five successful GitHub checks; see the [closure ledger](DEVELOPMENT_LOG.md). Earlier component counts and pending-CI notes describe their historical snapshots. Full CPU opcode execution, M0 closure and firmware/audio acceptance remain open.
+Merged #54 suite: **36 CTest groups, 84 Python cases**, with all five final-head checks PASS. Current indirect-memory-bit candidate: **37 CTest groups, 84 Python cases**; final candidate CI remains separate evidence. PRs #39–#44 are merged and each final head has five successful GitHub checks; see the [closure ledger](DEVELOPMENT_LOG.md). Earlier component counts and pending-CI notes describe their historical snapshots. Full CPU opcode execution, M0 closure and firmware/audio acceptance remain open.
 
 ## Current standalone engine increment
 
@@ -160,3 +160,7 @@ The [shift/rotate extension](h8-shift-rotate.md) adds all eight single-bit opera
 ## Register bit operations — current candidate
 
 The [register-bit extension](h8-register-bit-operations.md) retains 222 generated methods, adding byte register bit modification/test and carry boolean/load/store forms. Independent controls and 200000 original-code slices agree. Two-bit shifts are H8S/2000 forms, absent in the pinned H8H decoder, so they are excluded from this CPU profile. Memory bit forms, stack/control flow, IRQ and CPU/SCI integration remain open; M0 stays partial.
+
+## Indirect memory bit operations — current candidate
+
+The [indirect byte bit extension](h8-memory-bit-operations.md) retains 262 generated methods, original 7c/7d prefixes and 18 memory bit groups. Tests cover flags, addresses, rejected extensions, exact read/prefetch/write order, failures and partitioned execution. M0 remains partial; absolute forms, stack/control flow and IRQ/SCI integration remain open.
