@@ -294,3 +294,9 @@ A dokumentációs egységesítés PR-je: [#58](https://github.com/RobCZart82/yam
 ### #62 CI-indítás javítása
 
 A főágra célzás és ready állapot önmagában nem indított workflow-t: az újraalapozott commit feltöltésekor a PR még a korábbi feature ágat célozta, a workflow-k pedig csak main célágra indulnak. Az élő Actions API az `1d0cd3d2df4a6dfcb319822ec5a034c1aece8bc0` headhez nulla futást mutatott. Ez a naplófrissítés a már mainre célzott PR szinkronizálásával indítja a szükséges ellenőrzéseket. A következő lépcsőknél a main célág beállítása után történjen a végső feltöltés. Motorkód változatlan; nincs CI- vagy merge-szabály megkerülés.
+
+### #62 Windows-fordítási javítás
+
+A `9222223a7c4c4c57c3d214b34e7af87eac4410f9` head Windows CI-je MSVC C1061 hibát jelzett: a 127 ágból álló utasításválasztó else-if lánc túllépte a fordító beágyazási korlátját. A legkülső lánc sorrendtartó, korai visszatéréses if ágakká alakult; minden kiválasztott kezelő után pontosan egy kilépés történik, így a kezelő által módosított állapotra nem történik újabb kiválasztás. A generált utasítástörzsek és kódolások változatlanok. A macOS normál feladata külön futtatóhiány miatt szakadt meg; a MAME macOS referencia-, Linux- és MSan-feladat sikeres volt. Az új head saját teljes CI-je továbbra is kötelező.
+
+A lapos választó helyi ellenőrzése: 42/42 CTest, 87 Python-eset, 200000 eredeti dekóder/execute_run referenciaszelet nulla eltéréssel; forrás-/licenc-/feltöltési audit PASS. A Windows-fordító eredménye az új CI futásától függ, helyi macOS-eredményből nincs Windows PASS állítás.

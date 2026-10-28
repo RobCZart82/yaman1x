@@ -19,3 +19,5 @@ Local Release: 42/42 CTest groups and 87 Python cases PASS; new ASan/UBSan PASS;
 200000 original decoder/handler/execute_run slices agree with no differences.
 Source notices, locks and provenance retained. Final PR-head CI is separate.
 No IRQ/firmware/audio acceptance. No planned hold after checks and review.
+
+Windows portability follow-up: MSVC C1061 on the growing outer else-if dispatcher is fixed with ordered independent guards and immediate return after the selected handler. Internal instruction branches and generated method bodies are unchanged. This preserves first-match behavior even when a handler changes the instruction state. Final-head Windows CI must confirm compilation.

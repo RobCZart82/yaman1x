@@ -661,6 +661,6 @@
     "pr": 62,
     "url": "https://github.com/RobCZart82/yaman1x/pull/62",
     "summary": "INC/DEC and flag-preserving ADDS/SUBS groups",
-    "validation": "Local 42/42 CTest, 87 Python, native sanitizer and 200000-slice original reference previously PASS. Parent #61 merged with all five CI jobs successful and no open review threads. Rebased onto main; final-head CI pending. CI trigger correction: no runs existed on initial rebased head because push preceded base retarget. Documentation-only synchronization after targeting main starts required PR workflows; engine code unchanged."
+    "validation": "Local 42/42 CTest, 87 Python, native sanitizer and 200000-slice original reference previously PASS. Parent #61 merged with all five CI jobs successful and no open review threads. Rebased onto main; final-head CI pending. CI trigger correction: no runs existed on initial rebased head because push preceded base retarget. Documentation-only synchronization after targeting main starts required PR workflows; engine code unchanged. Windows CI found MSVC C1061 nesting limit; outer dispatcher flattened with first-match returns. Generated bodies unchanged; new final-head CI required."
   }
 }
