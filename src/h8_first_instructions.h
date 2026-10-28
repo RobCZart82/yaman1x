@@ -446,11 +446,15 @@ private:
         }
         throw std::runtime_error("Unsupported first-H8 instruction");
     }
-    uint16_t read16i(uint32_t address){return bus_.read16i(address);}
-    uint8_t read8(uint32_t address){return bus_.read8(address);}
-    void write8(uint32_t address,uint8_t data){bus_.write8(address,data);}
-    uint16_t read16(uint32_t address){return bus_.read16(address);}
-    void write16(uint32_t address,uint16_t data){bus_.write16(address,data);}
+    void refresh_bus_deadline(){
+        if constexpr(requires{host_.next_bus_event();})
+            m_bcount=runner_.reschedule(host_.next_bus_event());
+    }
+    uint16_t read16i(uint32_t address){auto v=bus_.read16i(address);refresh_bus_deadline();return v;}
+    uint8_t read8(uint32_t address){auto v=bus_.read8(address);refresh_bus_deadline();return v;}
+    void write8(uint32_t address,uint8_t data){bus_.write8(address,data);refresh_bus_deadline();}
+    uint16_t read16(uint32_t address){auto v=bus_.read16(address);refresh_bus_deadline();return v;}
+    void write16(uint32_t address,uint16_t data){bus_.write16(address,data);refresh_bus_deadline();}
     bool access_to_be_redone()const{return false;}
     void update_irq_filter(){if(irq_)irq_->set_filter((m_CCR&F_I)?2:0,-1);}
     void prefetch_done(){

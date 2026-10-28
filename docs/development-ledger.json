@@ -725,14 +725,28 @@
         40754085598,
         40754085741
       ]
+    },
+    {
+      "pr": 68,
+      "title": "Expose checked absolute H8 bus completion timestamps",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/68",
+      "kind": "development",
+      "status": "merged",
+      "merge_commit": "0fa40aaba818a0efd7265a1861650479795cbba1",
+      "reviewed_head": "7867ec70308e4e06ad794758e4f7c05008534f38",
+      "ci_runs": [
+        40760663011,
+        40760663120,
+        40760662967
+      ]
     }
   ],
   "active_change": {
-    "id": "H8-BUS-CYCLE-TIME-2026-10-28",
-    "branch": "feat/h8-bus-cycle-time",
+    "id": "H8-SCI-CPU-TX-2026-10-28",
+    "branch": "feat/h8-sci-cpu-transmit",
     "status": "in_development",
-    "summary": "Optional absolute bus completion timestamps with cycle-debt handling",
-    "validation": "47/47 local CTest, 87 Python, 200000 original-reference slices zero differences, targeted ASan/UBSan and source/notice/upload audits PASS. Final-head CI/review pending. Deadline rescheduling and CPU-driven SCI TX remain open."
+    "summary": "CPU-configured UART TX and bus-created deadline publication",
+    "validation": "48/48 local CTest, 87 Python, ASan/UBSan, 200000 original-reference slices zero differences and source/notice/upload audits PASS. Parent #68 merged after five successful CI jobs. Own final-head CI/review required."
   },
   "pending_changes": []
 }

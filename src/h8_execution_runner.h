@@ -18,6 +18,10 @@ public:
     H8ExecutionRunner& operator=(const H8ExecutionRunner&)=delete;
     int& counter() { return budget_.counter(); }
     uint64_t slice_end() const { return budget_.slice_end(); }
+    int reschedule(uint64_t event) {
+        if(!busy_ || failed_) throw std::logic_error("Unavailable H8 reschedule");
+        budget_.recompute_deadline(event);return budget_.boundary();
+    }
     int debt() const { return budget_.debt(); }
     bool failed() const { return failed_; }
 
