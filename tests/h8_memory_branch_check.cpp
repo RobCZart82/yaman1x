@@ -7,18 +7,7 @@
 using namespace yamanix;
 static unsigned failures=0;
 static void check(bool ok,const char* why){if(!ok && ++failures<12)std::fprintf(stderr,"%s\n",why);}
-struct Host {
- std::array<uint16_t,512> words{};
- std::map<uint32_t,uint8_t> data;
- std::vector<std::tuple<char,uint32_t,uint16_t>> trace;
- uint64_t event=11;bool bad_read=false,bad_write=false;
- Host(){words[1]=0x100;}
- void program(const std::vector<uint16_t>& code){for(unsigned i=0;i<code.size();++i)words[0x80+i]=code[i];}
- uint16_t read_instruction_word(uint32_t address){if((address&1)||address/2>=words.size())throw std::out_of_range("instruction bus");auto v=words[address/2];trace.emplace_back('I',address,v);return v;}
- uint8_t read_byte(uint32_t address){if(bad_read)throw std::runtime_error("data read");auto v=data[address&0xffffff];trace.emplace_back('R',address,v);return v;}
- void write_byte(uint32_t address,uint8_t value){data[address&0xffffff]=value;trace.emplace_back('W',address,value);if(bad_write)throw std::runtime_error("data write after mutation");}
- uint64_t update(uint64_t cycle){while(event<=cycle)event+=11;return event;}
-};
+#include "h8_memory_fixture.h"
 using Cpu=H8FirstInstructions<Host>;
 static bool condition(unsigned op,unsigned flags){
  bool c=flags&1,v=flags&2,z=flags&4,n=flags&8;
@@ -66,11 +55,11 @@ int main(){
   while(start<512){random=random*1664525u+1013904223u;int n=int(1+random%19);if(start+n>512)n=int(512-start);y.run(start,n,1000);start+=n;}
   check(x.snapshot()==y.snapshot() && a.data==b.data && a.trace==b.trace,"1000 mixed memory/branch partition histories");}
  for(unsigned opcode=0;opcode<65536;++opcode){
-  const bool supported=opcode==0 || (opcode&0xf000)==0xf000 || (opcode&0xf000)==0x4000 || (opcode&0xfff8)==0x7a00 || (opcode&0xff00)==0x6800;
+  const bool supported=opcode==0 || opcode==0x0100 || (opcode&0xfff0)==0x7900 || (opcode&0xff00)==0x6900 || (opcode&0xf000)==0xf000 || (opcode&0xf000)==0x4000 || (opcode&0xfff8)==0x7a00 || (opcode&0xff00)==0x6800;
   Host host;host.program({uint16_t(opcode)});Cpu cpu(host);bool rejected=false;
   try{cpu.run(0,7,100);}catch(const std::runtime_error&){rejected=true;}
   check(rejected!=supported && cpu.failed()==rejected,"Exhaustive 65536-word reduced-decoder acceptance/rejection");}
- for(auto opcode:{0x7a08,0x7a10,0x6900}){Host host;host.program({uint16_t(opcode)});Cpu cpu(host);fails([&]{cpu.run(0,20,100);});check(cpu.failed(),"Unsupported opcode neighbors rejected");}
+ for(auto opcode:{0x7a08,0x7a10,0x6a00}){Host host;host.program({uint16_t(opcode)});Cpu cpu(host);fails([&]{cpu.run(0,20,100);});check(cpu.failed(),"Unsupported opcode neighbors rejected");}
  {Host host;auto code=load32(0,0x123457);code.push_back(0x6809);host.program(code);host.bad_read=true;Cpu cpu(host);fails([&]{cpu.run(0,20,100);});check(cpu.failed(),"Data read failure poisons CPU");}
  {Host host;auto code=load32(0,0x123457);code.push_back(0xf980);code.push_back(0x6889);host.program(code);host.bad_write=true;Cpu cpu(host);fails([&]{cpu.run(0,20,100);});check(cpu.failed() && host.data[0x123457]==0x80,"Failed data store has no rollback; discard owner");}
  std::printf("H8 memory/branches: 65536 branch, 32768 load, 32768 store cases, 1000 partitions: %u failures\n",failures);return failures?1:0;

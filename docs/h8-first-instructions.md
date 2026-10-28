@@ -4,22 +4,22 @@ Initial increment: #47 based on #46, 2026-10-28. Current memory/branch extension
 is based on merged #47; see [the extension contract](h8-memory-branches.md). M0 remains partial.
 
 `H8FirstInstructions<Host>` is an intentionally limited advanced-H8H execution
-profile. The initial eight methods have expanded to 44 full/partial methods:
-reset, NOP, immediate byte/long moves, all rel8 conditions and indirect byte
-loads/stores. The selection now includes base-H8 and H8H operations. Their bodies are unchanged; only class
+profile. The initial eight methods have expanded to 56 full/partial methods:
+reset, NOP, immediate byte/word/long moves, all rel8 conditions, prefix dispatch
+and indirect byte/word/long loads/stores. The selection now includes base-H8 and H8H operations. Their bodies are unchanged; only class
 qualifiers are removed so they can be included inside the standalone template.
 
 The profile owns its 16 register halves, CCR/EXR, PC/PPC/NPC, IR/PIR, temporary
 registers, instruction/substate and cycle debt per instance. IR has three words
 for immediate32; the diagnostic snapshot is not a persistence format. `H8hBusAccess`
-charges before completed instruction and byte data accesses; `H8ExecutionRunner` preserves
+charges before completed instruction and byte/word data accesses; `H8ExecutionRunner` preserves
 peripheral-boundary and partial-handler ordering. The reduced decoder rejects
 all other opcodes explicitly and poisons execution through the runner.
 
 ## Host and lifecycle contract
 
 - Host must outlive the CPU and provide `read_instruction_word(address)`,
-  `read_byte(address)`, `write_byte(address,value)` and `update(cycle)` returning the next absolute peripheral deadline (zero=none).
+  `read_byte(address)`, `write_byte(address,value)`, word equivalents and `update(cycle)` returning the next absolute peripheral deadline (zero=none).
   The bus owns address-space mapping, including 24-bit mapping/wrapping when
   appropriate. CPU word reads align down exactly as in the reviewed bus helper.
 - Reads and writes must complete synchronously. Wait/retry behavior is disabled; no host
@@ -86,3 +86,5 @@ faithful reset/save-state, firmware PKS/MIDI, hardware timing, audio and REAPER
 acceptance remain open. M0 and M1 acceptance criteria are unchanged.
 
 Historical #47 local validation: Windows MSVC Release build, all 28 locally runnable CTest groups PASS; all 81 runnable Python cases PASS with the one established symlink-privilege test explicitly excluded. Complete candidate suite: 29 CTest groups / 82 Python cases. Source audit and notice coverage PASS; final PR-head platform/MSan/MAME results remain separate evidence.
+
+Current word/long and prefix semantics, new host word callbacks and independent controls: [word/long contract](h8-word-long-memory.md).

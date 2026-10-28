@@ -6,7 +6,7 @@
 #include <utility>
 #include <map>
 #include <tuple>
-using u8=uint8_t;using s8=int8_t;using s32=int32_t;using u16=uint16_t;using u32=uint32_t;using u64=uint64_t;
+using u8=uint8_t;using s8=int8_t;using s16=int16_t;using s32=int32_t;using u16=uint16_t;using u32=uint32_t;using u64=uint64_t;
 struct Host {
  std::array<u16,512> words{};
  std::map<u32,u8> data;
@@ -15,6 +15,7 @@ struct Host {
   const u32 address=0x120001+seed;
   std::vector<u16> code{0x7a00,u16(address>>16),u16(address),u16(0xf900|((seed*73)&255)),0x6889,0x680a,u16(0x4002|((seed%16)<<8)),0};
   code.push_back(0x7a03);code.push_back(u16(seed*997));code.push_back(u16(seed*197));
+  code.insert(code.end(),{0x7905,u16(seed*13),0x6983,0x6904,0x0100,0x6983,0x0100,0x6904});
   for(unsigned r=0;r<16;++r){random=random*1664525u+1013904223u;code.push_back(u16(0xf000|(r<<8)|(random>>24)));}
   code.push_back(0);const int displacement=-2*int(code.size()+1);code.push_back(u16(0x4000|u8(displacement)));
   for(unsigned n=0;n<code.size();++n)words[0x80+n]=code[n];
@@ -22,13 +23,15 @@ struct Host {
  u16 read_instruction_word(u32 address){if((address&1)||address/2>=words.size())throw std::out_of_range("bus");auto v=words[address/2];bus.emplace_back('I',address,v);return v;}
  u8 read_byte(u32 address){auto v=data[address&0xffffff];bus.emplace_back('R',address,v);return v;}
  void write_byte(u32 address,u8 value){data[address&0xffffff]=value;bus.emplace_back('W',address,value);}
+ u16 read_word(u32 address){if(address&1)throw std::logic_error("unaligned data word");auto v=u16((u16(data[address&0xffffff])<<8)|data[(address+1)&0xffffff]);bus.emplace_back('Q',address,v);return v;}
+ void write_word(u32 address,u16 value){if(address&1)throw std::logic_error("unaligned data word");data[address&0xffffff]=u8(value>>8);data[(address+1)&0xffffff]=u8(value);bus.emplace_back('S',address,value);}
  u64 update(u64 cycle){while(event<=cycle)event+=11;return event;}
 };
 using Cpu=yamanix::H8FirstInstructions<Host>;
 struct Original {
  Host& host;
  struct Cache {Host& host;u16 read_word(u32 a){return host.read_instruction_word(a);}}m_cache;
- struct Program {Host& host;u8 read_byte(u32 a){return host.read_byte(a);}void write_byte(u32 a,u8 v){host.write_byte(a,v);}}m_program;
+ struct Program {Host& host;u8 read_byte(u32 a){return host.read_byte(a);}void write_byte(u32 a,u8 v){host.write_byte(a,v);}u16 read_word(u32 a){return host.read_word(a);}void write_word(u32 a,u16 v){host.write_word(a,v);}}m_program;
  int m_icount=0,m_bcount=0,m_count_before_instruction_step=0,m_inst_substate=0;
  int m_inst_state=0x10000,m_requested_state=-1,m_current_dma=-1,m_irq_vector=0;
  void* m_current_dtc=nullptr;
@@ -55,14 +58,14 @@ struct Original {
  /* STUBS */
 };
 int main(){
- unsigned random=123;unsigned long long instruction_reads=0,data_reads=0,data_writes=0;
+ unsigned random=123;unsigned long long instruction_reads=0,data_reads=0,data_writes=0,word_reads=0,word_writes=0;
  for(unsigned seed=0;seed<100;++seed){
   Host a(seed+1),b(seed+1);Cpu cpu(a,u8(seed));Original ref(b,u8(seed));u64 start=0;
   for(unsigned n=0;n<2000;++n){random=random*1664525u+1013904223u;int size=int(random%19);
    ref.end=start+size;ref.m_icount=size;ref.execute_run();cpu.run(start,size,1000);
    if(ref.snapshot()!=cpu.snapshot() || a.bus!=b.bus || a.data!=b.data || a.event!=b.event){std::fprintf(stderr,"Mismatch seed %u slice %u\n",seed,n);return 1;}
-   for(auto [kind,address,value]:a.bus){instruction_reads+=kind=='I';data_reads+=kind=='R';data_writes+=kind=='W';}a.bus.clear();b.bus.clear();start+=size;
+   for(auto [kind,address,value]:a.bus){instruction_reads+=kind=='I';data_reads+=kind=='R';data_writes+=kind=='W';word_reads+=kind=='Q';word_writes+=kind=='S';}a.bus.clear();b.bus.clear();start+=size;
   }
  }
- std::printf("Original generated H8H decoder/handlers + execute_run: 200000 slices, %llu instruction reads, %llu data reads, %llu data writes; zero differences\n",instruction_reads,data_reads,data_writes);
+ std::printf("Original generated H8H decoder/handlers + execute_run: 200000 slices, %llu instruction reads, %llu data reads, %llu data writes, %llu word reads, %llu word writes; zero differences\n",instruction_reads,data_reads,data_writes,word_reads,word_writes);
 }

@@ -3,7 +3,7 @@
   "recorded_date": "2026-10-28",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "343f4c32c81229e89ec092b0d8e324f2a0305f8a",
+  "baseline_commit": "800f8b4eabfe484b54e9918a652096c0acf50986",
   "entries": [
     {
       "pr": 6,
@@ -440,14 +440,30 @@
         40640130940,
         40640130959
       ]
+    },
+    {
+      "pr": 48,
+      "title": "Execute H8H byte memory operations and all short branch conditions",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/48",
+      "kind": "development",
+      "merged_at_utc": "2026-10-28T06:50:57Z",
+      "merge_commit": "800f8b4eabfe484b54e9918a652096c0acf50986",
+      "reviewed_head": "a2da3e66797ec5d9f617e3e85b1e6505ccf26beb",
+      "status": "merged",
+      "ci_runs": [
+        40644345253,
+        40644345183,
+        40644345179
+      ],
+      "automated_review_at_merge": "running; not claimed complete",
+      "merge_basis": "All five final-head CI jobs PASS; manual source review and original-code/native controls; owner standing green-PR authorization."
     }
   ],
   "active_change": {
-    "id": "H8-MEMORY-BRANCH-2026-10-28",
-    "branch": "feat/h8-memory-conditional-branches",
-    "status": "in_review",
-    "summary": "Extend generated H8H execution with byte loads/stores, MOV.L immediate32 and all rel8 conditions",
-    "validation": "200000 original-reference slices, 844255 instruction reads, 27571 data reads, 27574 data writes; zero differences. Corrupted-store negative control detected. Final candidate CI pending.",
-    "pr": 48
+    "id": "H8-WORD-LONG-2026-10-28",
+    "branch": "feat/h8-word-long-memory",
+    "status": "in_progress",
+    "summary": "Execute generated word/long memory operations with original prefix state and aligned word bus callbacks",
+    "validation": "200000 original-reference slices, zero differences; word-byte-swap negative control detected. Final candidate CI pending."
   }
 }

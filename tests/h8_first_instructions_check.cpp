@@ -17,6 +17,8 @@ struct Host {
     }
     uint8_t read_byte(uint32_t){throw std::logic_error("Unexpected legacy data read");}
     void write_byte(uint32_t,uint8_t){throw std::logic_error("Unexpected legacy data write");}
+    uint16_t read_word(uint32_t){throw std::logic_error("Unexpected legacy word read");}
+    void write_word(uint32_t,uint16_t){throw std::logic_error("Unexpected legacy word write");}
     uint64_t update(uint64_t cycle){while(event<=cycle)event+=11;return event;}
 };
 using Cpu=H8FirstInstructions<Host>;

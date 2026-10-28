@@ -8,9 +8,9 @@
 #include <array>
 
 namespace yamanix {
-// Host: read_instruction_word/read_byte/write_byte, update(cycle)->next deadline.
+// Host: read_instruction_word, read/write_byte, read/write_word, update(cycle).
 // Fixed profile: advanced H8H, no IRQ/DMA/DTC/trace/retry/standby support.
-// Bus must perform completed synchronous instruction reads and own address mapping.
+// Bus accesses complete synchronously; the host owns address mapping.
 // Both host and immutable code memory must outlive the instance; no reentry.
 template<class Host> class H8FirstInstructions {
 public:
@@ -54,6 +54,13 @@ private:
     };
     void dispatch(bool partial) {
         if(m_inst_state==0x10000) {if(partial)state_reset_partial();else state_reset_full();}
+        else if((m_inst_state&0xffff0000)==0x20000) {
+            if((m_inst_state&0xff08)!=0x6900)throw std::runtime_error("Unsupported H8 long-memory extension");
+            if(m_inst_state&0x80) {if(partial)mov_l_r32l_r32ih_partial();else mov_l_r32l_r32ih_full();}
+            else {if(partial)mov_l_r32ih_r32l_partial();else mov_l_r32ih_r32l_full();}
+        }
+        else if(m_inst_state>0xffff)throw std::runtime_error("Unsupported H8 internal instruction state");
+        else if(m_inst_state==0x0100) {if(partial)dispatch_0100_partial();else dispatch_0100_full();}
         else if(m_inst_state==0) {if(partial)nop_partial();else nop_full();}
         else if((m_inst_state&0xf000)==0xf000 && m_inst_state<=0xffff) {
             if(partial)mov_b_imm8_r8u_partial();else mov_b_imm8_r8u_full();
@@ -76,6 +83,11 @@ private:
             case 14: if(partial)bgt_rel8_partial();else bgt_rel8_full();break;
             case 15: if(partial)ble_rel8_partial();else ble_rel8_full();break;
             }
+        } else if((m_inst_state&0xfff0)==0x7900) {
+            if(partial)mov_w_imm16_r16l_partial();else mov_w_imm16_r16l_full();
+        } else if((m_inst_state&0xff00)==0x6900) {
+            if(m_inst_state&0x80) {if(partial)mov_w_r16l_r32ih_partial();else mov_w_r16l_r32ih_full();}
+            else {if(partial)mov_w_r32ih_r16l_partial();else mov_w_r32ih_r16l_full();}
         } else if((m_inst_state&0xfff8)==0x7a00) {
             if(partial)mov_l_imm32_r32l_partial();else mov_l_imm32_r32l_full();
         } else if((m_inst_state&0xff00)==0x6800) {
@@ -86,6 +98,8 @@ private:
     uint16_t read16i(uint32_t address){return bus_.read16i(address);}
     uint8_t read8(uint32_t address){return bus_.read8(address);}
     void write8(uint32_t address,uint8_t data){bus_.write8(address,data);}
+    uint16_t read16(uint32_t address){return bus_.read16(address);}
+    void write16(uint32_t address,uint16_t data){bus_.write16(address,data);}
     bool access_to_be_redone()const{return false;}
     void update_irq_filter() {} // IRQ entry is not supported by this fixed profile.
     void prefetch_done(){m_inst_state=m_IR[0]=m_PIR;}
@@ -93,6 +107,9 @@ private:
     void prefetch_switch(uint32_t pc,uint16_t ir){m_NPC=pc&0xffffff;m_PC=pc+2;m_PIR=ir;}
     void set_nzv8(u8 v){m_CCR&=~(F_N|F_V|F_Z);if(!v)m_CCR|=F_Z;else if(s8(v)<0)m_CCR|=F_N;}
     void r8_w(int reg,u8 val){if(reg&8)m_R[reg&7]=(m_R[reg&7]&0xff00)|val;else m_R[reg&7]=(m_R[reg&7]&0xff)|(uint16_t(val)<<8);}
+    uint16_t r16_r(int reg)const{return m_R[reg&15];}
+    void r16_w(int reg,uint16_t value){m_R[reg&15]=value;}
+    void set_nzv16(uint16_t value){m_CCR&=~(F_N|F_V|F_Z);if(!value)m_CCR|=F_Z;else if(value&0x8000)m_CCR|=F_N;}
     uint8_t r8_r(int reg)const{return reg&8?uint8_t(m_R[reg&7]):uint8_t(m_R[reg&7]>>8);}
     uint32_t r32_r(int reg)const{return uint32_t(m_R[reg&7])|(uint32_t(m_R[(reg&7)|8])<<16);}
     void r32_w(int reg,uint32_t value){m_R[reg&7]=uint16_t(value);m_R[(reg&7)|8]=uint16_t(value>>16);}
