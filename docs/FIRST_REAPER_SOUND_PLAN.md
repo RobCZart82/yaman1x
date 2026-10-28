@@ -19,7 +19,7 @@ Ez végrehajtási terv; az alábbi, még nyitott mérföldkövek nem kész funkc
 Állapotellenőrzés: 2026-10-28, alap: #45 (`ed966cef79eb33eb309165e9e9d6edca920410ea`).
 Az új H8-futtatási sorrend komponensszintű előrelépés; nem teljes CPU- vagy firmware-elfogadás.
 
-## Aktuális mérföldkő-állapot — 2026-10-27
+## Aktuális mérföldkő-állapot — 2026-10-28
 
 | Mérföldkő | Aktuális állapot | Következő elfogadási feltétel |
 |---|---|---|

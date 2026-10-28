@@ -1,7 +1,7 @@
 # YamAN1x fejlesztési napló
 
-Frissítve: 2026-10-27. Időzóna: Europe/Budapest.
-Ellenőrzött alap: `b644b6e1c471f8632ea086d75bd37d20b5ebbeb4` (#44).
+Frissítve: 2026-10-28. Időzóna: Europe/Budapest.
+Ellenőrzött alap: `ed966cef79eb33eb309165e9e9d6edca920410ea` (#45); #46 jelöltállapot alább.
 
 ## Ellenőrzött lezárások — #39–#44
 
