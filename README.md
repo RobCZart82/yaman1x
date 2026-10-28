@@ -126,3 +126,5 @@ Selected CPU extension: [H8 single-bit shifts and rotates](docs/h8-shift-rotate.
 Selected CPU extension: [H8 register bit operations](docs/h8-register-bit-operations.md).
 
 Selected CPU extension: [H8 indirect memory bit operations](docs/h8-memory-bit-operations.md).
+
+Selected CPU extension: [H8 absolute memory bit operations](docs/h8-absolute-bit-operations.md).
