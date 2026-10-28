@@ -44,7 +44,7 @@ private:
     static constexpr bool m_has_hc=true,m_mode_advanced=true;
     struct Owner {
         H8FirstInstructions& cpu;
-        uint64_t update(uint64_t cycle){return cpu.host_.update(cycle);}
+        uint64_t update(uint64_t cycle){cpu.bus_.set_slice_end(cpu.runner_.slice_end());return cpu.host_.update(cycle);}
         bool has_partial()const{return cpu.m_inst_substate!=0;}
         void full(H8ExecutionBudget& b){
             cpu.m_bcount=b.boundary();

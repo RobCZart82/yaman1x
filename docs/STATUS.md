@@ -230,3 +230,7 @@ Audit baseline #58 (`863d21abcde448d746b3b44c39a1eb61be455a15`): fresh local mac
 ## CPU/SCI receive composition candidate
 
 [Interrupt-driven receive fixture](h8-sci-cpu-receive.md) tests both channels/all bytes and 1602 execution splits through RXI, CPU ISR, RAM storage, RDRF clear and RTE. No production machine bus or general timed MMIO write support is claimed. Follows #65; ROM boot and audio remain open.
+
+## Bus cycle time candidate
+
+#66 receive composition merged as 817e9ce91db22c770291fe2acf666f86f29e1896 with four successful CI checks. [Absolute bus completion timestamps](h8-bus-cycle-time.md) are the next candidate; optional host observation includes slice overrun/debt. CPU-driven UART writes still need explicit deadline rescheduling. No firmware/audio acceptance.
