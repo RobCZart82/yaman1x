@@ -56,3 +56,5 @@ hardware and host support require their own evidence.
 
 
 Latest M0 increment: [register bit operations](h8-register-bit-operations.md). Next: memory bit forms and stack/control flow, then IRQ/SCI integration. Two-bit shifts are H8S/2000-specific in the pinned source and remain excluded from this H8H profile. M0 stays partial.
+
+Latest M0 increment: [register-indirect memory bit operations](h8-memory-bit-operations.md). Next: absolute bit forms and stack/control flow, then IRQ/SCI integration; M0 stays partial.

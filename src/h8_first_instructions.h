@@ -67,6 +67,30 @@ private:
             else throw std::runtime_error("Unsupported H8 long-logic extension");
         }
         else if(m_inst_state==0x01f0) {if(partial)dispatch_01f0_partial();else dispatch_01f0_full();}
+        else if((m_inst_state&0xffff0000)==0x190000) {
+            if((m_inst_state&0xff0f)==0x6300) {if(partial)btst_r8h_r32ihh_partial();else btst_r8h_r32ihh_full();}
+            else if((m_inst_state&0xff8f)==0x7300) {if(partial)btst_imm3_r32ihh_partial();else btst_imm3_r32ihh_full();}
+            else if((m_inst_state&0xff8f)==0x7400) {if(partial)bor_imm3_r32ihh_partial();else bor_imm3_r32ihh_full();}
+            else if((m_inst_state&0xff8f)==0x7480) {if(partial)bior_imm3_r32ihh_partial();else bior_imm3_r32ihh_full();}
+            else if((m_inst_state&0xff8f)==0x7500) {if(partial)bxor_imm3_r32ihh_partial();else bxor_imm3_r32ihh_full();}
+            else if((m_inst_state&0xff8f)==0x7580) {if(partial)bixor_imm3_r32ihh_partial();else bixor_imm3_r32ihh_full();}
+            else if((m_inst_state&0xff8f)==0x7600) {if(partial)band_imm3_r32ihh_partial();else band_imm3_r32ihh_full();}
+            else if((m_inst_state&0xff8f)==0x7680) {if(partial)biand_imm3_r32ihh_partial();else biand_imm3_r32ihh_full();}
+            else if((m_inst_state&0xff8f)==0x7700) {if(partial)bld_imm3_r32ihh_partial();else bld_imm3_r32ihh_full();}
+            else if((m_inst_state&0xff8f)==0x7780) {if(partial)bild_imm3_r32ihh_partial();else bild_imm3_r32ihh_full();}
+            else throw std::runtime_error("Unsupported H8 indirect-bit extension");
+        }
+        else if((m_inst_state&0xffff0000)==0x1a0000) {
+            if((m_inst_state&0xff0f)==0x6000) {if(partial)bset_r8h_r32ihh_partial();else bset_r8h_r32ihh_full();}
+            else if((m_inst_state&0xff0f)==0x6100) {if(partial)bnot_r8h_r32ihh_partial();else bnot_r8h_r32ihh_full();}
+            else if((m_inst_state&0xff0f)==0x6200) {if(partial)bclr_r8h_r32ihh_partial();else bclr_r8h_r32ihh_full();}
+            else if((m_inst_state&0xff8f)==0x7000) {if(partial)bset_imm3_r32ihh_partial();else bset_imm3_r32ihh_full();}
+            else if((m_inst_state&0xff8f)==0x7100) {if(partial)bnot_imm3_r32ihh_partial();else bnot_imm3_r32ihh_full();}
+            else if((m_inst_state&0xff8f)==0x7200) {if(partial)bclr_imm3_r32ihh_partial();else bclr_imm3_r32ihh_full();}
+            else if((m_inst_state&0xff8f)==0x6700) {if(partial)bst_imm3_r32ihh_partial();else bst_imm3_r32ihh_full();}
+            else if((m_inst_state&0xff8f)==0x6780) {if(partial)bist_imm3_r32ihh_partial();else bist_imm3_r32ihh_full();}
+            else throw std::runtime_error("Unsupported H8 indirect-bit extension");
+        }
         else if(m_inst_state>0xffff)throw std::runtime_error("Unsupported H8 internal instruction state");
         else if((m_inst_state&0xff00)==0x6400) {if(partial)or_w_r16h_r16l_partial();else or_w_r16h_r16l_full();}
         else if((m_inst_state&0xff00)==0x6500) {if(partial)xor_w_r16h_r16l_partial();else xor_w_r16h_r16l_full();}
@@ -113,6 +137,8 @@ private:
         else if((m_inst_state&0xff80)==0x7680) {if(partial)biand_imm3_r8l_partial();else biand_imm3_r8l_full();}
         else if((m_inst_state&0xff80)==0x7700) {if(partial)bld_imm3_r8l_partial();else bld_imm3_r8l_full();}
         else if((m_inst_state&0xff80)==0x7780) {if(partial)bild_imm3_r8l_partial();else bild_imm3_r8l_full();}
+        else if((m_inst_state&0xff8f)==0x7c00) {if(partial)dispatch_7c00_partial();else dispatch_7c00_full();}
+        else if((m_inst_state&0xff8f)==0x7d00) {if(partial)dispatch_7d00_partial();else dispatch_7d00_full();}
         else if(m_inst_state==0x0100) {if(partial)dispatch_0100_partial();else dispatch_0100_full();}
         else if((m_inst_state&0xff00)==0x0700) {if(partial)ldc_imm8_ccr_partial();else ldc_imm8_ccr_full();}
         else if((m_inst_state&0xff00)==0x0900) {if(partial)add_w_r16h_r16l_partial();else add_w_r16h_r16l_full();}
