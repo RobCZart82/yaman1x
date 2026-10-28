@@ -59,6 +59,17 @@ private:
             if(m_inst_state&0x80) {if(partial)mov_l_r32l_r32ih_partial();else mov_l_r32l_r32ih_full();}
             else {if(partial)mov_l_r32ih_r32l_partial();else mov_l_r32ih_r32l_full();}
         }
+        else if((m_inst_state&0xffff0000)==0x110000) {
+            const auto code=m_inst_state&0xff88;
+            if(code==0x6400) {if(partial)or_l_r32h_r32l_partial();else or_l_r32h_r32l_full();}
+            else if(code==0x6500) {if(partial)xor_l_r32h_r32l_partial();else xor_l_r32h_r32l_full();}
+            else if(code==0x6600) {if(partial)and_l_r32h_r32l_partial();else and_l_r32h_r32l_full();}
+            else throw std::runtime_error("Unsupported H8 long-logic extension");
+        }
+        else if(m_inst_state==0x01f0) {if(partial)dispatch_01f0_partial();else dispatch_01f0_full();}
+        else if((m_inst_state&0xff00)==0x6400) {if(partial)or_w_r16h_r16l_partial();else or_w_r16h_r16l_full();}
+        else if((m_inst_state&0xff00)==0x6500) {if(partial)xor_w_r16h_r16l_partial();else xor_w_r16h_r16l_full();}
+        else if((m_inst_state&0xff00)==0x6600) {if(partial)and_w_r16h_r16l_partial();else and_w_r16h_r16l_full();}
         else if(m_inst_state>0xffff)throw std::runtime_error("Unsupported H8 internal instruction state");
         else if(m_inst_state==0x0100) {if(partial)dispatch_0100_partial();else dispatch_0100_full();}
         else if((m_inst_state&0xff00)==0x0700) {if(partial)ldc_imm8_ccr_partial();else ldc_imm8_ccr_full();}

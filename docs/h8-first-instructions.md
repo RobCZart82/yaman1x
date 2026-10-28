@@ -4,7 +4,7 @@ Initial increment: #47 based on #46, 2026-10-28. Current memory/branch extension
 is based on merged #47; see [the extension contract](h8-memory-branches.md). M0 remains partial.
 
 `H8FirstInstructions<Host>` is an intentionally limited advanced-H8H execution
-profile. The initial eight methods have expanded to 124 full/partial methods:
+profile. The initial eight methods have expanded to 138 full/partial methods:
 reset, NOP, immediate byte/word/long moves, all rel8 conditions, prefix dispatch
 indirect byte/word/long loads/stores, selected ADD/SUB/CMP and carry-input forms,
 logic and LDC immediate CCR. The selection now includes base-H8 and H8H operations. Their bodies are unchanged; only class
@@ -94,3 +94,5 @@ Current word/long and prefix semantics, new host word callbacks and independent 
 Current arithmetic forms, fixed-profile half-carry boundaries and independent flag controls: [arithmetic contract](h8-arithmetic-flags.md).
 
 Current carry-input/sticky-Z, register and logical forms plus the limited CCR/IRQ contract: [carry/register/logic](h8-carry-register-logic.md).
+
+Word/long register OR/XOR/AND now use the original 01f0 long prefix and guarded 0x110000 extension state. See [wide register logic](h8-wide-register-logic.md). Shift/rotate, bit, stack, IRQ entry and CPU/SCI integration remain open.

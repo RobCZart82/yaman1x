@@ -3,7 +3,7 @@
   "recorded_date": "2026-10-28",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "0f8d3ae96eb32dcabb3a039f40e5c0fd0315a1b9",
+  "baseline_commit": "ba2c91d8a156972bcf3c7b9adab98e36f7279b0c",
   "entries": [
     {
       "pr": 6,
@@ -489,15 +489,29 @@
         40652119545
       ],
       "automated_review_source": "ddc8d51221838e64c9e849101756c1aeca260dce; completed, no findings"
+    },
+    {
+      "pr": 51,
+      "title": "Execute H8 carry arithmetic and selected register/logic instructions",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/51",
+      "kind": "development",
+      "merged_at_utc": "2026-10-28T08:35:45Z",
+      "merge_commit": "ba2c91d8a156972bcf3c7b9adab98e36f7279b0c",
+      "reviewed_head": "931a5a50dfe57c575d45d9d8b6b817889501a5a0",
+      "status": "merged",
+      "ci_runs": [
+        40656821739,
+        40656821601,
+        40656821621
+      ],
+      "automated_review_source": "df6ce5574346e32b57a81dffb5c5b5f0e7929bbf; completed, no findings"
     }
   ],
   "active_change": {
-    "id": "H8-CARRY-LOGIC-2026-10-28",
-    "branch": "feat/h8-carry-register-logic",
-    "status": "pr_open",
-    "summary": "Execute carry-input byte, wide register arithmetic, logic and LDC CCR with verified sticky zero",
-    "validation": "1048576 carry cases, 20000 four-byte chains; original-code 200000 slices zero differences; forced-zero Z negative control detected. Final candidate CI pending.",
-    "pr": 51,
-    "url": "https://github.com/RobCZart82/yaman1x/pull/51"
+    "id": "H8-WIDE-LOGIC-2026-10-28",
+    "branch": "feat/h8-wide-register-logic",
+    "status": "in_progress",
+    "summary": "Word/long register OR/XOR/AND with original 01f0 prefix and strict extension decoding",
+    "validation": "196608 word cases, 245760 alias/CCR combinations, 65536 extensions and 1000 partitions pass; original code 200000 slices zero differences; XOR-to-OR negative control detected. Final PR CI pending."
   }
 }
