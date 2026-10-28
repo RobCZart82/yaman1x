@@ -3,7 +3,7 @@
   "recorded_date": "2026-10-28",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "efdb6df59ba53e8497d313fb33c7b40dcd9d76c4",
+  "baseline_commit": "e53b6fe7e2906b472e898c57d59ccfe1b791fa96",
   "entries": [
     {
       "pr": 6,
@@ -553,15 +553,28 @@
         40672059727
       ],
       "automated_review_source": "No automated review result present at closure; local source, independent and original-code controls inspected"
+    },
+    {
+      "pr": 55,
+      "title": "Execute H8 register-indirect memory bit operations",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/55",
+      "kind": "development",
+      "merged_at_utc": "2026-10-28T11:41:08Z",
+      "merge_commit": "e53b6fe7e2906b472e898c57d59ccfe1b791fa96",
+      "reviewed_head": "452f9585afe1e67ceb57cd9cc8ac258202cd3cf7",
+      "status": "merged",
+      "ci_runs": [
+        40677897203,
+        40677897191,
+        40677897202
+      ]
     }
   ],
   "active_change": {
-    "id": "H8-MEMORY-BITS-2026-10-28",
-    "branch": "feat/h8-memory-bit-operations",
-    "status": "pr_open",
-    "summary": "Register-indirect memory byte bit operations with original 7c/7d prefix and exact bus sequencing",
-    "validation": "7340032 immediate cases, 131072 aliases, 131072 extensions, 31 splits, 1000 partitions; original-code 200000 slices zero differences. Final PR CI pending.",
-    "pr": 55,
-    "url": "https://github.com/RobCZart82/yaman1x/pull/55"
+    "id": "H8-ABSOLUTE-BITS-2026-10-28",
+    "branch": "feat/h8-absolute-bit-operations",
+    "status": "in_progress",
+    "summary": "Absolute-byte memory bit operations with original upper-page address construction",
+    "validation": "7340032 immediate cases, 262144 address/lane cases, 131072 extensions, 31 splits, 1000 partitions; original-code 200000 slices zero differences. Final PR CI pending."
   }
 }

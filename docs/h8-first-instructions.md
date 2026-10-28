@@ -4,7 +4,7 @@ Initial increment: #47 based on #46, 2026-10-28. Current memory/branch extension
 is based on merged #47; see [the extension contract](h8-memory-branches.md). M0 remains partial.
 
 `H8FirstInstructions<Host>` is an intentionally limited advanced-H8H execution
-profile. The initial eight methods have expanded to 262 full/partial methods:
+profile. The initial eight methods have expanded to 302 full/partial methods:
 reset, NOP, immediate byte/word/long moves, all rel8 conditions, prefix dispatch
 indirect byte/word/long loads/stores, selected ADD/SUB/CMP and carry-input forms,
 logic, LDC immediate CCR and single-bit shifts/rotates. The selection now includes base-H8 and H8H operations. Their bodies are unchanged; only class
@@ -102,3 +102,5 @@ The [single-bit shift/rotate extension](h8-shift-rotate.md) adds eight operation
 The [register-bit extension](h8-register-bit-operations.md) adds original byte-register bit operations and carry boolean/load/store forms. H8S two-bit shifts are outside the H8H profile. Memory bit operations, stack/control flow and IRQ/SCI remain open.
 
 The [indirect memory bit extension](h8-memory-bit-operations.md) adds original 7c/7d prefixes and register-indirect byte bit forms with guarded internal states. Absolute forms, stack/control flow and IRQ/SCI remain open.
+
+The [absolute memory bit extension](h8-absolute-bit-operations.md) adds original 7e/7f prefixes and all abs8 byte bit forms with guarded internal states. Stack/control flow and IRQ/SCI remain open.
