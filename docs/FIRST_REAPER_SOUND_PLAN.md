@@ -618,3 +618,7 @@ Korabeli jelöltbejegyzés: verem/vezérlésátadási fejlesztés: [PR #57](http
 A #57 lezárása a motoralaphoz rögzítve, a strukturált nyilvántartásban nincs nyitott motorjelölt. STATUS és roadmap egységesítve; korábbi jelöltbejegyzések megőrizve és történetiként jelölve. Az M0 következő feltétele már a hiányzó lefedettségre és gépintegrációra vonatkozik, nem az első CPU-fordításra. Dokumentációs javítás, új motor-/firmware-/audioelfogadás nélkül. Ellenőrzés: élő #57 merge/head és mind az öt CI-feladat, JSON-lezárás és egyedi PR-azonosítók, UTF-8 és helyi fájlhivatkozások, forrás- és értesítéslefedettségi audit.
 
 A dokumentációs egységesítés PR-je: [#58](https://github.com/RobCZart82/yaman1x/pull/58). A motoralap továbbra is a lezárt #57; a dokumentációs PR saját aktuális CI-/merge-állapotát a hivatkozott PR mutatja.
+
+## 2026-10-28 — repository-audit a #58 főágon
+
+[Auditjelentés](REPOSITORY_AUDIT_2026-10-28.md): a 39 csoportos/84 Python-esetes csomag Macen teljesen PASS, 200000 eredetimetódus-szelet eltérés nélkül, célzott CPU ASan/UBSan PASS. Az ellenőrzés nem igazol firmware-, hardver- vagy audioelfogadást; M0/M1 állapota változatlan. A következő feladatok a megmaradt utasítás/címzés-lefedettség, IRQ/TRAPA és a közös gépütemezés.

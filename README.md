@@ -57,7 +57,7 @@ AN1x clock and table-ROM scaling remain unresolved. These are recorded in
 [development status](docs/STATUS.md) and the [roadmap](docs/ROADMAP.md).
 
 The [development ledger](docs/DEVELOPMENT_LOG.md) records merged changes and
-maintenance rules. The [repository audit](docs/REPOSITORY_AUDIT_2026-10-27.md)
+maintenance rules. The [repository audit](docs/REPOSITORY_AUDIT_2026-10-28.md)
 lists verified checks, fixes and outstanding work. Contribution requirements
 are in [CONTRIBUTING.md](CONTRIBUTING.md).
 

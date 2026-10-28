@@ -113,15 +113,15 @@ The ROM-free CMake/CTest suite also passes in GitHub Actions on Linux x64,
 macOS Apple Silicon and Windows x64. These builds do not validate AN1x audio,
 hardware timing or DAW/plugin-host behavior.
 
-The current CMake suite has **27 CTest groups**, including the Python unittest
+The current CMake suite has **39 CTest groups**, including the Python unittest
 group, license coverage, provenance and normal/optimized ABI checks. The audit
-of the baseline passed all 22 groups and 56 Python cases locally on macOS arm64;
+of the earlier #37 baseline passed all 22 groups and 56 Python cases locally on macOS arm64;
 the merged bridge-auditor regression fix adds four Python cases in the same CTest group.
-The combined PR #39 tree therefore contains 60 Python cases.
+That historical #39 increment contained 60 Python cases; current discovery has 84.
 Default checks use no Yamaha data. Two upstream ROM-dependent tests remain
 excluded, without substituting successful results for missing fixtures.
 
-Fresh scope and evidence: [repository audit](REPOSITORY_AUDIT_2026-10-27.md).
+Fresh scope and evidence: [repository audit](REPOSITORY_AUDIT_2026-10-28.md).
 
 ## Current scheduling increment
 
@@ -190,3 +190,7 @@ The [absolute byte bit extension](h8-absolute-bit-operations.md) retains 302 gen
 ## Stack and control flow — historical #57 preparation snapshot
 
 The [stack/control extension](h8-stack-control-flow.md) completes the normal fixed-profile H8H instruction families: pre/post MOV at all widths, all JMP/JSR forms, BSR rel8/16, all rel16 branches and RTS. Synthetic RTE frame restore is implemented; IRQ/TRAPA entry is separate and unsupported. 366 generated methods retained. M0 remains partial; full CPU and CPU/SCI integration remain open.
+
+## Repository review — 2026-10-28
+
+Audit baseline #58 (`863d21abcde448d746b3b44c39a1eb61be455a15`): fresh local macOS arm64 Release 39/39 CTest and 84/84 Python PASS; original-code comparison 200000 slices with zero differences; four focused CPU ASan/UBSan groups PASS. Source/notice/link/ledger checks pass. No reproducible engine regression found in the exercised scope. [Full audit and remaining coverage limits](REPOSITORY_AUDIT_2026-10-28.md).
