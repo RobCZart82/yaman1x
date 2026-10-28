@@ -270,3 +270,7 @@ A dokumentációs egységesítés PR-je: [#58](https://github.com/RobCZart82/yam
 ## AUD-2026-10-28 — teljes repository-áttekintés
 
 Ág: `audit/repository-2026-10-28`; átvizsgált dokumentációs főág: #58, `863d21abcde448d746b3b44c39a1eb61be455a15`. [Jelentés](REPOSITORY_AUDIT_2026-10-28.md). Helyi macOS: 39/39 CTest, 84/84 Python, 200000 eredetimetódus-szelet, célzott négy CPU ASan/UBSan-csoport PASS; forrás/licenc/napló/link ellenőrizve. Reprodukálható motorhiba nem jelentkezett. STATUS elavult „current 27” bekezdése javítva. A jelentés két CI-fejlesztési javaslatot és a nyitott CPU/firmware/audio határokat rögzíti; motorkód és mérföldkő-készültség változatlan.
+
+## H8-COVERAGE-CCR-2026-10-28
+
+Ág: `feat/h8-coverage-ccr`; alap: beolvadt #59. [Komponensjegyzőkönyv](h8-coverage-and-ccr.md). Reprodukálható 399 soros H8H-leltár és öt új CCR-család; 376 eredeti full/partial metódus, 196608 immediát CCR-eset, regiszterlane- és partíciópróbák. Eredeti kód 200000 szelet, 0 eltérés; ASan/UBSan PASS. A régi dekóderteszt 800 újonnan támogatott kódolással frissítve. M0 részben teljesült. A #59 saját négy ellenőrzése zöld volt, nyitott review-thread nélkül beolvasztva a felhasználó sorozatos merge-engedélye alapján.

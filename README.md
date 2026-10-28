@@ -130,3 +130,5 @@ Selected CPU extension: [H8 indirect memory bit operations](docs/h8-memory-bit-o
 Selected CPU extension: [H8 absolute memory bit operations](docs/h8-absolute-bit-operations.md).
 
 Selected CPU extension: [H8 stack and control flow](docs/h8-stack-control-flow.md).
+
+Current candidate: [coverage and CCR family](docs/h8-coverage-and-ccr.md).
