@@ -766,14 +766,27 @@
         40765813371,
         40765813485
       ]
+    },
+    {
+      "pr": 71,
+      "title": "Verify CPU SCI framing-error acknowledgement and receive recovery",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/71",
+      "kind": "development",
+      "status": "merged",
+      "merge_commit": "8e9c431f1a0629cc20db136c50c56eba81854202",
+      "reviewed_head": "e49e6c0053c8c5179e4475fc51ee3628478b9177",
+      "ci_runs": [
+        40767693017,
+        40767692958
+      ]
     }
   ],
   "active_change": {
-    "id": "H8-SCI-CPU-FER-2026-10-28",
-    "branch": "feat/h8-sci-cpu-framing",
+    "id": "H8-SCI-CPU-PARITY-2026-10-28",
+    "branch": "feat/h8-sci-cpu-parity",
     "status": "in_development",
-    "summary": "CPU framing-error acknowledgement and subsequent valid-frame recovery",
-    "validation": "50/50 local CTest,87 Python,targeted ASan/UBSan,source/notice/upload audits PASS. 1024 cases,3604 splits,512 recovery cases; omitted FER clear negative control fails. Engine unchanged; final-head CI/review required."
+    "summary": "CPU parity-status and RXI/ERI selection in locked source profile",
+    "validation": "51/51 local CTest,87 Python,targeted ASan/UBSan and source/notice/upload audits PASS. 2048 cases/8808 splits; omitted PER clear negative control fails. Engine unchanged. Physical parity polarity unverified; final CI/review required."
   },
   "pending_changes": []
 }
