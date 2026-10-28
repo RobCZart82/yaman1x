@@ -354,3 +354,9 @@ Helyi lezárás: 47/47 CTest, 87 Python, 200000 eredetimetódus-szelet nulla elt
 Ág: `feat/h8-sci-cpu-transmit`, szülő #68. [Szerződés](h8-sci-cpu-transmit.md): minden sikeres buszművelet után opcionális tiszta next_bus_event lekérdezés frissíti a futtató és az aktuális generált kezelő eseményhatárát. CPU által konfigurált SCI-adás két csatornán, összesen 512 bájteset és 1602 felosztás; start/adat/stop/végső idle, 32 ciklusos bitköz. Eredeti metódustörzsek változatlanok; teljes teszt/ref/sanitizer lezárás folyamatban, szülőmerge és saját végső CI külön kapu.
 
 Helyi lezárás: 48/48 CTest, 87 Python, ASan/UBSan, 200000 eredetimetódus-szelet nulla eltéréssel; forrás-/licenc-/feltöltési audit PASS. #68 mind az öt CI-je zöld, nyitott review-thread/változtatáskérés nélkül beolvasztva: `0fa40aaba818a0efd7265a1861650479795cbba1`, head `7867ec70308e4e06ad794758e4f7c05008534f38`. A TX-jelölt saját végső CI-je külön kapu.
+
+## H8-SCI-CPU-DUPLEX-2026-10-28
+
+Ág: `feat/h8-sci-cpu-duplex`; [szerződés](h8-sci-cpu-duplex.md). Motorváltoztatás nélkül egyidejű TX/RX, mind a négy csatornapárosítás, 1024 bájteset és 3604 felosztás. Független wire/adat/IRQ/RDRF/RTE ellenőrzés; a frame-ek átfedik egymást, de aktív TX közbeni RXI-preempciót nem állítunk. Szülő #69 öt sikeres CI és üres review-thread/változtatáskérés lista után beolvadt: `298b8465aee4e74cfe7ec8e1459402b21f2ce9aa`, head `08a18b492a2c7df3abc5c33edac1f37a994a080f`. Teljes helyi teszt/sanitizer lezárás folyamatban; saját végső CI külön kapu.
+
+Helyi lezárás: 49/49 CTest, 87 Python, célzott ASan/UBSan és forrás-/licenc-/feltöltési audit PASS. Negatív kontroll: RXI engedélyezés nélkül a teszt hibát jelez, tehát a RAM/IRQ elfogadás nem pusztán a TX befejezését ellenőrzi. Eredeti CPU-/UART-motorkód változatlan; a #69 eredetimetódus-referenciája továbbra is a motoralap bizonyítéka.

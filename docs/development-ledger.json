@@ -739,14 +739,28 @@
         40760663120,
         40760662967
       ]
+    },
+    {
+      "pr": 69,
+      "title": "Publish MMIO-created deadlines and test CPU-configured SCI transmit",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/69",
+      "kind": "development",
+      "status": "merged",
+      "merge_commit": "298b8465aee4e74cfe7ec8e1459402b21f2ce9aa",
+      "reviewed_head": "08a18b492a2c7df3abc5c33edac1f37a994a080f",
+      "ci_runs": [
+        40763169819,
+        40763169879,
+        40763169805
+      ]
     }
   ],
   "active_change": {
-    "id": "H8-SCI-CPU-TX-2026-10-28",
-    "branch": "feat/h8-sci-cpu-transmit",
+    "id": "H8-SCI-CPU-DUPLEX-2026-10-28",
+    "branch": "feat/h8-sci-cpu-duplex",
     "status": "in_development",
-    "summary": "CPU-configured UART TX and bus-created deadline publication",
-    "validation": "48/48 local CTest, 87 Python, ASan/UBSan, 200000 original-reference slices zero differences and source/notice/upload audits PASS. Parent #68 merged after five successful CI jobs. Own final-head CI/review required."
+    "summary": "Overlapping TX/RX across all channel pairings with CPU receive ISR",
+    "validation": "49/49 local CTest, 87 Python, native ASan/UBSan and source/notice/upload audits PASS. 1024 frame cases/3604 splits; disabling RXI makes the negative control fail. Engine unchanged. Final-head CI/review required."
   },
   "pending_changes": []
 }
