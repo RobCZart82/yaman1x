@@ -5,20 +5,21 @@ Recorded: 2026-10-29. Product: YamAN1x. Repository: `yaman1x`. First public rese
 The repository contains a ROM-free C++/Python development foundation.
 No VST3, AU, GUI or AN1x audio output is available yet.
 
-Verified engine baseline: merged [PR #90](https://github.com/RobCZart82/yaman1x/pull/90),
-`a4f52f600d2cfd85f14a5e8822eb5e025d28825d`; final head `f24ca47f3511764dfec4971e84c3c1487aaed443`.
-[Platform CI](https://github.com/RobCZart82/yaman1x/actions/runs/40842792043),
-[MSan](https://github.com/RobCZart82/yaman1x/actions/runs/40842792142),
-[MAME](https://github.com/RobCZart82/yaman1x/actions/runs/40842792129): all five jobs successful.
-Linux UBSan passed DAA/DAS and prior arithmetic tests plus original-overflow control.
+Verified engine baseline: merged [PR #92](https://github.com/RobCZart82/yaman1x/pull/92),
+`1adeb1030871083bb510f4e691da4467cd96a816`; final head `b719cf25b0d0d8b929c5b639d5971ddc424a1a49`.
+[Platform CI](https://github.com/RobCZart82/yaman1x/actions/runs/40847532370),
+[MSan](https://github.com/RobCZart82/yaman1x/actions/runs/40847532267),
+[MAME](https://github.com/RobCZart82/yaman1x/actions/runs/40847532335): all five jobs successful.
+Linux UBSan passed signed-byte divide/prior arithmetic plus original-overflow control.
 Automated code review completed on this final head with no findings.
-Merged suite: **62 CTest groups /87 Python cases;496 upstream-derived methods
-(492 unchanged,4 prior adaptations);239 selected /25 missing /135 excluded encoding rows**
+Merged suite: **63 CTest groups /87 Python cases;500 upstream-derived methods
+(496 unchanged,4 prior adaptations);240 selected /24 missing /135 excluded encoding rows**
 (not a CPU percentage). Fixed-profile IRQ/NMI/TRAPA, synthetic CPU/SCI exchange/errors,
 long absolute/signed16 displacement moves, signed/unsigned byte/word multiply,
-unsigned byte/word divide and DAA/DAS are merged. Decimal arithmetic oracle covers
-valid BCD operations; [scope and limits](h8-decimal-adjust.md). Signed byte divide is a separate M0 candidate:63 CTest/87 Python,500 methods (496 unchanged,4 prior adaptations),240 selected/24 missing rows;CI pending. See [scope](h8-signed-byte-divide.md).
-Local Windows:61 runnable CTest/86 Python PASS; one known symlink privilege case excluded.
+unsigned byte/word divide,DAA/DAS and signed-byte divide are merged.
+Signed-word extreme quotient/packing remains open; [scope](h8-signed-byte-divide.md).
+No active engine candidate. Local Windows:62 runnable CTest/86 Python PASS;
+one known symlink privilege case excluded.
 
 M0 remains partial; M1 is prepared but unaccepted. Missing instructions and
 address modes, full AN1x memory/MMIO integration, physical timing verification,

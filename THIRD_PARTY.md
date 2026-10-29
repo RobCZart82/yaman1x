@@ -112,4 +112,4 @@ Merged unsigned word divide: two additional generated-body local-type adaptation
 
 Merged DAA/DAS: four unchanged original handlers; [scope and evidence](docs/h8-decimal-adjust.md).
 
-Signed byte divide candidate: four unchanged prefix/instruction methods; [scope](docs/h8-signed-byte-divide.md).
+Merged signed byte divide: four unchanged prefix/instruction methods; [scope](docs/h8-signed-byte-divide.md).

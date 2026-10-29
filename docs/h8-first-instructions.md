@@ -120,4 +120,4 @@ Merged unsigned word divide: [source flags and full-range evidence](h8-word-divi
 
 Merged DAA/DAS: [decimal oracle and evidence limits](h8-decimal-adjust.md).
 
-Signed byte divide candidate: [scope and remaining word extreme case](h8-signed-byte-divide.md).
+Merged signed byte divide: [scope and remaining word extreme case](h8-signed-byte-divide.md).

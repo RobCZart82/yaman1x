@@ -44,3 +44,6 @@ INT32_MIN/-1,full quotient sign and packing,source narrowing and exact flag
 behavior; use widened arithmetic/provenance review if needed and distinguish
 source agreement from hardware evidence. This candidate does not settle that case.
 See [plan](FIRST_REAPER_SOUND_PLAN.md) and [status](STATUS.md).
+
+Closure: merged [PR92](https://github.com/RobCZart82/yaman1x/pull/92), engine `1adeb1030871083bb510f4e691da4467cd96a816`, final head `b719cf25b0d0d8b929c5b639d5971ddc424a1a49`. All five jobs PASS including Linux UBSan signed-byte divide and prior arithmetic controls; [run links](STATUS.md). Final-head automated code review completed with no findings. Preparation-time candidate/pending notes above are historical.
+Final source inventory:479 files,201 locked upstream identities,one reviewed manifest edit;four prior generated-body adaptations separately recorded. Source/notice checks PASS.
