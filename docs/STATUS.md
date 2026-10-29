@@ -17,7 +17,7 @@ Merged suite: **62 CTest groups /87 Python cases;496 upstream-derived methods
 (not a CPU percentage). Fixed-profile IRQ/NMI/TRAPA, synthetic CPU/SCI exchange/errors,
 long absolute/signed16 displacement moves, signed/unsigned byte/word multiply,
 unsigned byte/word divide and DAA/DAS are merged. Decimal arithmetic oracle covers
-valid BCD operations; [scope and limits](h8-decimal-adjust.md). No active engine candidate.
+valid BCD operations; [scope and limits](h8-decimal-adjust.md). Signed byte divide is a separate M0 candidate:63 CTest/87 Python,500 methods (496 unchanged,4 prior adaptations),240 selected/24 missing rows;CI pending. See [scope](h8-signed-byte-divide.md).
 Local Windows:61 runnable CTest/86 Python PASS; one known symlink privilege case excluded.
 
 M0 remains partial; M1 is prepared but unaccepted. Missing instructions and

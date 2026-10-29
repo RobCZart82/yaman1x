@@ -893,3 +893,16 @@ elérése kötelező; DAA korrekció+1 kontroll seed7/slice0 felismerve. Jelölt
 25 hiányzó/135 kizárt sor. Linux UBSan kiterjesztve. M0 továbbra is részleges;
 teljes gép/firmware/MIDI/hang/plugin elfogadás nyitott. [Szerződés](h8-decimal-adjust.md).
 Yamaha-adat nem került be.
+
+## 2026-10-29 — M0 előjeles bájtos osztás jelölt
+
+Változatlan eredeti01d0 prefix és DIVXS.B kezelők, őrzött0xf0000 folytatás.
+Független64 bites számítás:393216 osztandó-söprés,2048 osztóhatáreset,36864 alias/CCR,
+20000 véletlen pár,241 szétvágás és65536 prefixfolytatás PASS. A hányados nullához
+csonkolódik,maradék az osztandó előjelét követi; N a teljes hányados előjele,Z a nullás
+osztó. Eredeti kommentek helyett a matematikát és futó kódot ellenőrizzük; hardverigazolás nincs.
+200000 referenciaszelet nulla eltéréssel; hányados+1 kontroll seed7/slice3 felismerve.
+Jelölt:63 CTest/87 Python,500 upstream-kezelő (496 változatlan,4 korábbi adaptáció),
+240 kiválasztott/24 hiányzó/135 kizárt sor. Linux UBSan kiterjesztve; CI függőben.
+Szó-osztás INT32_MIN/-1 és csomagolás külön nyitott vizsgálat. [Szerződés](h8-signed-byte-divide.md).
+M0 részleges; teljes gép/firmware/MIDI/hang/plugin elfogadás nyitott. Yamaha-adat nem került be.
