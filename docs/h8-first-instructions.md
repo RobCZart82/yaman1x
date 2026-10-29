@@ -127,4 +127,4 @@ Merged signed word divide: [32-bit-int profile and extreme flags](h8-signed-word
 
 Merged displacement32 byte/word: [address wrap,alias and prefix controls](h8-displacement32-memory.md).
 
-Current candidate: [long displacement32 memory](h8-long-displacement32-memory.md), five-word IR storage; own final CI/merge pending.
+Merged #100: [long displacement32 memory](h8-long-displacement32-memory.md), five-word IR storage; all five final-head CI jobs and automated review completed successfully.

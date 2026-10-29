@@ -2,26 +2,35 @@
 
 Rögzítve: 2026-10-27. Kiindulópont: a #14 PR-ig beolvadt kutatási eredmények.
 Ez végrehajtási terv; az alábbi, még nyitott mérföldkövek nem kész funkciók.
-Állapotellenőrzés: 2026-10-29, motoralap: #98 (`1c7ba628aceb29fd4c057db73fe31b2be4841558`).
+Állapotellenőrzés: 2026-10-29, motoralap: #100 (`1de8971b8fdd7694a8c3051ae86611a9ff6cd3cd`).
 A működő H8H-részhalmaz nem teljes CPU- vagy firmware-elfogadás.
 
-## Aktív fejlesztési lépés — hosszúszavas32 bites eltolás, 2026-10-29
+## Aktuális lezárás — #100, 2026-10-29
 
-Két MOV.L művelet és eredeti kettős prefixfolytatás: hat változatlan kezelő;
-öt szóra bővített utasításpuffer. Jelölt:67 CTest/87 Python,524 kezelő
-(520 változatlan,4 korábbi adaptáció),249 kiválasztott/15 hiányzó/135 kizárt sor.
+A [#100 PR](https://github.com/RobCZart82/yaman1x/pull/100) beolvadt:
+merge `1de8971b8fdd7694a8c3051ae86611a9ff6cd3cd`, végső tesztelt head `ba6db1c61a3ba9d696f8affee1410e5969c0aa9d`.
+Időpont:2026-10-29 17:10:15 Europe/Budapest (16:10:15 UTC).
+[Linux/macOS/Windows és Linux UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40906424971),
+[MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40906424908),
+[MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40906424743): mind az öt feladat sikeres.
+Automatikus review a végső commiton befejeződött, hibamegállapítás és nyitott review-szál nélkül.
+
+Beolvadt: **67 CTest-csoport /87 Python-eset;524 upstreamből származó kezelő
+(520 változatlan,4 korábbi adaptáció);249 kiválasztott /15 hiányzó /135 kizárt sor**.
+Két MOV.L művelet, eredeti kettős prefix és öt szavas utasításpuffer.
 524288 eltolásfél-söprés,55296 határeset,241 szétvágás,65536 prefixfolytatás,
-regiszteraliasok és első/második memóriaátviteli hibák célzott ellenőrzése PASS.
-Eredeti referencia200000 szelet,nulla eltérés; a felső eltolásszó elhagyásának
-hibás kontrollját seed4/slice4 felismerte. Célzott ASan/UBSan PASS.
-Teljes helyi Release:67/67 CTest és87 Python PASS. Végső CI és beolvasztás még nyitott.
-[Hatókör és bizonyíték](h8-long-displacement32-memory.md). A beolvadt motoralap
-még #98. A #99 dokumentációs lezárás beolvadt `b5d0f36ecf0c25861e5b1ad9182b6b2b555ac3e5`:
-2026-10-29 16:50:24 Europe/Budapest (15:50:24 UTC), négy sikeres CI-feladat,
-automatikus review a tesztelt57b6bfb commiton befejeződött, hibamegállapítás nélkül.
-Egyszerre továbbra is csak egy PR; teljes gép/firmware/hang nem igazolt.
+regiszteraliasok és első/második memóriaátviteli hibák PASS. Helyi Release67/67
+CTest és87 Python, célzott ASan/UBSan PASS. Eredeti referencia200000 szelet,
+nulla eltérés; a felső eltolásszó elhagyásának hibás kontrollja seed4/slice4-nél felismerve.
+[Hatókör és bizonyíték](h8-long-displacement32-memory.md).
 
-## Aktuális lezárás — #98, 2026-10-29
+Nincs aktív motorjelölt. Következő lépés: a fennmaradó CCR-címzések és további
+hiányzó H8H-kódolások, majd teljes gép/MMIO-integráció. M0 részleges;
+firmware/MIDI/hang/plugin elfogadás nyitott. Egyszerre egy PR; új fejlesztés csak beolvadás után.
+A #99 dokumentációs PR beolvadását a strukturált nyilvántartás már tartalmazza.
+Az alábbi korábbi jelölt/pending állapotok történetiek.
+
+## Történeti lezárás — #98, 2026-10-29
 
 A [#98 PR](https://github.com/RobCZart82/yaman1x/pull/98) beolvadt:
 merge `1c7ba628aceb29fd4c057db73fe31b2be4841558`, tesztelt head `a3c033256ec247555b44b0d820bb228dcaf9bc39`.
@@ -295,14 +304,14 @@ vagy REAPER-plugin. A következő motorfeladatok: hiányzó H8H-utasítások/cí
 leltára, IRQ/TRAPA-belépés és szűrők, majd közös CPU/periféria-ütemezés és gépintegráció.
 
 A korábbi „aktív”, „jelölt”, „CI pending” és „következő” bejegyzések az akkori
-állapotot őrzik; a jelenlegi készültségre a fenti #98 lezárás és az aktuális mérföldkő-tábla
+állapotot őrzik; a jelenlegi készültségre a fenti #100 lezárás és az aktuális mérföldkő-tábla
 irányadó. A dokumentáció mostani javítása nem új motorfejlesztés vagy elfogadás.
 
 ## Aktuális mérföldkő-állapot — 2026-10-29
 
 | Mérföldkő | Aktuális állapot | Következő elfogadási feltétel |
 |---|---|---|
-| M0 | **Részben teljesült.** Architektúra és forrás-/licencnyilvántartás; tesztelt GPIO-, IRQ- és SCI-komponensek; működő önálló H8H-részhalmaz 518 upstreamből származó kezelővel (514 változatlan,4 adaptált), rögzített SYSCR-es IRQ/NMI/TRAPA-belépéssel, buszidőbélyeggel és szintetikus CPU–SCI RX/TX/hibakezeléssel. | 17 hiányzó H8H-kódolássor lezárása; a tesztelt CPU/periféria-ütemezés teljes AN1x címtér/MMIO-gépbe integrálása és gépizoláció. A részhalmaz már fordul és fut; a teljes CPU és a terjesztési licenc lezárása nyitott. |
+| M0 | **Részben teljesült.** Architektúra és forrás-/licencnyilvántartás; tesztelt GPIO-, IRQ- és SCI-komponensek; működő önálló H8H-részhalmaz 524 upstreamből származó kezelővel (520 változatlan,4 adaptált), rögzített SYSCR-es IRQ/NMI/TRAPA-belépéssel, buszidőbélyeggel és szintetikus CPU–SCI RX/TX/hibakezeléssel. | 15 hiányzó H8H-kódolássor lezárása; a tesztelt CPU/periféria-ütemezés teljes AN1x címtér/MMIO-gépbe integrálása és gépizoláció. A részhalmaz már fordul és fut; a teljes CPU és a terjesztési licenc lezárása nyitott. |
 | M1 | **Előkészítve, nem teljesült.** A külön macOS MAME-build és a párosított helyi futtató rendelkezésre áll. | Friss Mac-firmware-próba: SCI0 tényleges bájtfogadás és note-on/note-off feldolgozás bizonyítása; PKS-kézfogás feltárása. |
 | M2–M3 | **Kutatási feladatok nyitva.** Nincs igazolt referenciahang. | AN1x órajel, táblacímzés, EG és soros hangút bizonyítása, majd megismételhető offline hang. |
 | M4–M6 | **Tervezett.** Nincs elkészült beágyazható hangszer vagy REAPER-elfogadás. | Validált offline referencia után audio-blokkmotor, VST3 és helyi REAPER-próba. |

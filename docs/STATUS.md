@@ -5,28 +5,22 @@ Recorded: 2026-10-29. Product: YamAN1x. Repository: `yaman1x`. First public rese
 The repository contains a ROM-free C++/Python development foundation.
 No VST3, AU, GUI or AN1x audio output is available yet.
 
-Active candidate: [long displacement32 MOV.L](h8-long-displacement32-memory.md),67 CTest/524 methods
-(520 unchanged/four prior adaptations),249 selected/15 missing/135 excluded rows.
-Final-head CI and merge pending; merged evidence below remains #98.
+Verified engine baseline: merged [PR #100](https://github.com/RobCZart82/yaman1x/pull/100),
+`1de8971b8fdd7694a8c3051ae86611a9ff6cd3cd`; tested head `ba6db1c61a3ba9d696f8affee1410e5969c0aa9d`.
+[Platform CI and Linux UBSan](https://github.com/RobCZart82/yaman1x/actions/runs/40906424971),
+[MSan](https://github.com/RobCZart82/yaman1x/actions/runs/40906424908),
+[MAME](https://github.com/RobCZart82/yaman1x/actions/runs/40906424743): all five jobs successful.
+Automated review completed on the final head without findings; no unresolved threads.
+Merged suite: **67 CTest groups /87 Python cases;524 upstream-derived methods
+(520 unchanged,four prior adaptations);249 selected /15 missing /135 excluded encoding rows**
+(not a CPU percentage). Local Release67/67 CTest,87 Python and targeted ASan/UBSan PASS.
+[Long displacement32 scope and tests](h8-long-displacement32-memory.md). No active engine candidate.
 
-Verified engine baseline: merged [PR #98](https://github.com/RobCZart82/yaman1x/pull/98),
-`1c7ba628aceb29fd4c057db73fe31b2be4841558`; final head `a3c033256ec247555b44b0d820bb228dcaf9bc39`.
-[Platform CI and Linux UBSan](https://github.com/RobCZart82/yaman1x/actions/runs/40870231488),
-[MSan](https://github.com/RobCZart82/yaman1x/actions/runs/40870229509),
-[MAME](https://github.com/RobCZart82/yaman1x/actions/runs/40870229586): all five jobs successful.
-Automated review was unavailable due to the service code-review usage limit;
-no successful automated review is claimed.
-Merged suite: **66 CTest groups /87 Python cases;518 upstream-derived methods
-(514 unchanged,4 prior adaptations);247 selected /17 missing /135 excluded encoding rows**
-(not a CPU percentage). [CCR indirect scope and tests](h8-ccr-indirect-memory.md).
-The prior series is closed; the new candidate is above. Previous local Windows evidence:65 runnable CTest/86 Python;
-one known symlink privilege case excluded, not counted as passed.
-
-M0 remains partial; M1 is prepared but unaccepted. Long displacement32, remaining
-CCR address modes and other missing instructions, full AN1x memory/MMIO integration,
-physical timing, firmware/MIDI/audio and REAPER acceptance remain open.
-See the [first-sound plan](FIRST_REAPER_SOUND_PLAN.md) and [development log](DEVELOPMENT_LOG.md).
-Development proceeds one PR at a time; the next increment begins after merge.
+M0 remains partial;M1 prepared but unaccepted. Remaining CCR address modes and
+other missing instructions,full AN1x memory/MMIO integration,physical timing,
+firmware/MIDI/audio and REAPER acceptance remain open. See the
+[first-sound plan](FIRST_REAPER_SOUND_PLAN.md) and [development log](DEVELOPMENT_LOG.md).
+Development proceeds one PR at a time;the next increment begins after merge.
 
 ## Historical component evidence — current state is above
 

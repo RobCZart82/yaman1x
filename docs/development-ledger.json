@@ -3,7 +3,7 @@
   "recorded_date": "2026-10-29",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "1c7ba628aceb29fd4c057db73fe31b2be4841558",
+  "baseline_commit": "1de8971b8fdd7694a8c3051ae86611a9ff6cd3cd",
   "entries": [
     {
       "pr": 6,
@@ -1186,13 +1186,24 @@
         40892254428
       ],
       "automated_review_at_merge": "completed_no_findings"
+    },
+    {
+      "pr": 100,
+      "title": "Execute H8H long displacement32 moves with five-word continuation",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/100",
+      "kind": "development",
+      "status": "merged",
+      "merge_commit": "1de8971b8fdd7694a8c3051ae86611a9ff6cd3cd",
+      "reviewed_head": "ba6db1c61a3ba9d696f8affee1410e5969c0aa9d",
+      "merged_at_utc": "2026-10-29T16:10:15Z",
+      "ci_runs": [
+        40906424971,
+        40906424908,
+        40906424743
+      ],
+      "automated_review_at_merge": "completed_no_findings"
     }
   ],
-  "active_change": {
-    "branch": "feat/h8-long-displacement32",
-    "scope": "MOV.L displacement32 and original five-word prefix continuation",
-    "status": "local_validation_passed",
-    "ci": "not_run"
-  },
+  "active_change": null,
   "pending_changes": []
 }
