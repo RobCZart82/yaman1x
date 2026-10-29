@@ -47,3 +47,6 @@ Generated selections match originals plus four earlier adaptations. Source/notic
 checks PASS. This closes source-level extreme-case research only after remote
 validation; physical timing and firmware/MIDI/audio/plugin acceptance stay open.
 M0 remains partial. See [plan](FIRST_REAPER_SOUND_PLAN.md) and [status](STATUS.md).
+
+Closure: merged [PR94](https://github.com/RobCZart82/yaman1x/pull/94),engine `442949856a92392986f3bbc5927f36b7884a505b`,final head `9f3cda7fcbe545ee2b0da9cebc23d8dd5ab6b42a`. All five jobs PASS including Linux UBSan extreme signed-word/prior arithmetic controls;[run links](STATUS.md). Automated code review was still running at merge;no completed review claimed. Preparation-time candidate/pending notes above are historical.
+Final source inventory:481 files,201 locked upstream identities,one reviewed manifest edit;four prior generated-body adaptations separately recorded. Source/notice checks PASS. Source/profile extreme-case investigation closed;hardware evidence remains open.

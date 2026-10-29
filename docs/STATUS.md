@@ -5,20 +5,20 @@ Recorded: 2026-10-29. Product: YamAN1x. Repository: `yaman1x`. First public rese
 The repository contains a ROM-free C++/Python development foundation.
 No VST3, AU, GUI or AN1x audio output is available yet.
 
-Verified engine baseline: merged [PR #92](https://github.com/RobCZart82/yaman1x/pull/92),
-`1adeb1030871083bb510f4e691da4467cd96a816`; final head `b719cf25b0d0d8b929c5b639d5971ddc424a1a49`.
-[Platform CI](https://github.com/RobCZart82/yaman1x/actions/runs/40847532370),
-[MSan](https://github.com/RobCZart82/yaman1x/actions/runs/40847532267),
-[MAME](https://github.com/RobCZart82/yaman1x/actions/runs/40847532335): all five jobs successful.
-Linux UBSan passed signed-byte divide/prior arithmetic plus original-overflow control.
-Automated code review completed on this final head with no findings.
-Merged suite: **63 CTest groups /87 Python cases;500 upstream-derived methods
-(496 unchanged,4 prior adaptations);240 selected /24 missing /135 excluded encoding rows**
-(not a CPU percentage). Fixed-profile IRQ/NMI/TRAPA, synthetic CPU/SCI exchange/errors,
-long absolute/signed16 displacement moves, signed/unsigned byte/word multiply,
-unsigned byte/word divide,DAA/DAS and signed-byte divide are merged.
-Signed-word extreme quotient/packing remains open; [scope](h8-signed-byte-divide.md).
-Signed word divide is a separate candidate:64 CTest/87 Python,502 methods (498 unchanged,4 prior adaptations),241 selected/23 missing rows;CI pending. See [extreme-case scope](h8-signed-word-divide.md). Local Windows:62 runnable CTest/86 Python PASS;
+Verified engine baseline: merged [PR #94](https://github.com/RobCZart82/yaman1x/pull/94),
+`442949856a92392986f3bbc5927f36b7884a505b`; final head `9f3cda7fcbe545ee2b0da9cebc23d8dd5ab6b42a`.
+[Platform CI](https://github.com/RobCZart82/yaman1x/actions/runs/40850898827),
+[MSan](https://github.com/RobCZart82/yaman1x/actions/runs/40850898826),
+[MAME](https://github.com/RobCZart82/yaman1x/actions/runs/40850898831): all five jobs successful.
+Linux UBSan passed extreme signed-word divide/prior arithmetic plus original-overflow control.
+Automated code review was still running at merge;no completed review is claimed.
+Merged suite: **64 CTest groups /87 Python cases;502 upstream-derived methods
+(498 unchanged,4 prior adaptations);241 selected /23 missing /135 excluded encoding rows**
+(not a CPU percentage). Fixed-profile IRQ/NMI/TRAPA,synthetic CPU/SCI exchange/errors,
+long absolute/signed16 displacement moves,signed/unsigned byte/word multiply and divide,
+and DAA/DAS are merged. Signed-word extreme-case research is closed at source/profile
+level; hardware behavior remains unverified. [Scope](h8-signed-word-divide.md).
+No active engine candidate. Local Windows:63 runnable CTest/86 Python PASS;
 one known symlink privilege case excluded.
 
 M0 remains partial; M1 is prepared but unaccepted. Missing instructions and

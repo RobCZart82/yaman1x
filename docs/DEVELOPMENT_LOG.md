@@ -1,9 +1,33 @@
 # YamAN1x fejlesztési napló
 
 Frissítve: 2026-10-29. Időzóna: Europe/Budapest.
-Ellenőrzött motoralap: `1adeb1030871083bb510f4e691da4467cd96a816` (#92).
+Ellenőrzött motoralap: `442949856a92392986f3bbc5927f36b7884a505b` (#94).
 
-## Aktuális lezárás — #92, 2026-10-29
+## Aktuális lezárás — #94, 2026-10-29
+
+Ellenőrzött motoralap: [#94](https://github.com/RobCZart82/yaman1x/pull/94),
+merge `442949856a92392986f3bbc5927f36b7884a505b`, végső tesztelt head `9f3cda7fcbe545ee2b0da9cebc23d8dd5ab6b42a`.
+Beolvadt: 2026-10-29 10:48:25 Europe/Budapest (09:48:25 UTC).
+[Linux/macOS/Windows PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40850898827),
+[MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40850898826),
+[MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40850898831).
+Linux UBSan: szélső előjeles szó-osztás és korábbi számtan PASS; eredeti unsigned-
+túlcsordulási kontroll PASS. Automatikus kódellenőrzés a beolvasztáskor még futott;
+lezárt review-t nem állítunk. Minden CI sikeres volt.
+
+Beolvadt: **64 CTest-csoport /87 Python-eset;502 upstreamből származó kezelő
+(498 változatlan,4 korábbi adaptáció);241 kiválasztott /23 hiányzó /135 kizárt sor**.
+Ez nem CPU-százalék. DIVXS.W:524288 osztó-söprés,21504 alias/CCR,20000 véletlen pár,
+1024 szélső/CCR-eset,321 szétvágás,128 tiltott ER-szomszéd PASS. Eredeti referencia:
+200000 szelet,nulla eltérés; fordított N kontroll seed7/slice7 felismerve. Helyi63
+futtatható CTest/86 Python PASS, ismert Windows-symlink eset kizárva.
+INT_MIN/-1: a matematikai +2147483648 hányadost az eredeti32 bites intre szűkíti;
+N=1,csomagolt eredmény0,Z=0. Ez forráskompatibilitás,nem hardveres mérés.
+A forrás szintű szélsőeset-vizsgálat lezárult;[pontos hatókör](h8-signed-word-divide.md).
+Nincs aktív motorjelölt. M0 részleges; teljes gép/firmware/MIDI/hang/plugin elfogadás
+nyitott. Az alábbi jelölt/pending és korábbi nyitott szélsőeset-bejegyzések történetiek.
+
+## Történeti lezárás — #92, 2026-10-29
 
 Ellenőrzött motoralap: [#92](https://github.com/RobCZart82/yaman1x/pull/92),
 merge `1adeb1030871083bb510f4e691da4467cd96a816`, végső tesztelt head `b719cf25b0d0d8b929c5b639d5971ddc424a1a49`.

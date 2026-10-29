@@ -114,4 +114,4 @@ Merged DAA/DAS: four unchanged original handlers; [scope and evidence](docs/h8-d
 
 Merged signed byte divide: four unchanged prefix/instruction methods; [scope](docs/h8-signed-byte-divide.md).
 
-Signed word divide candidate: two unchanged handlers; [extreme quotient/source limits](docs/h8-signed-word-divide.md).
+Merged signed word divide: two unchanged handlers; [extreme quotient/source limits](docs/h8-signed-word-divide.md).
