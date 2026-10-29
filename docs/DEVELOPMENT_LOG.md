@@ -1,23 +1,30 @@
 # YamAN1x fejlesztési napló
 
 Frissítve: 2026-10-29. Időzóna: Europe/Budapest.
-Ellenőrzött motoralap: `3d0ce825bb341402f40dab92c0f1ec2f409b5ee7` (#110).
+Ellenőrzött motoralap: `b14cd16e8d4d149cdb622371ac29928904bbc295` (#112).
 
-## Aktív fejlesztési lépés — EEPMOV blokkmozgatás, 2026-10-29
+## Aktuális lezárás — #112, 2026-10-29
 
-EEPMOV.B/W:két művelet,két eredeti prefix,nyolc változatlan kezelő.
-Mindkettő bájtokat másol,a számláló8/16 bites. Jelölt:73 CTest/87 Python,
-560 kezelő (556 változatlan,4 korábbi adaptáció),263 kiválasztott/1 hiányzó/135 kizárt sor.
-768 bájtszámláló-eset,10 szószámláló-határ (max65535),336 átfedés/címkörbefordulás,
-362 szétvágás,131072 prefixőr és12 memóriahiba célzott tesztje PASS.
-Eredeti referencia200000 szelet,nulla eltérés;hibás kétbájtos forrásléptetés
-kontrollja seed15/slice4-nél felismerve. Teljes helyi Release73/73 CTest és87 Python,célzott ASan/UBSan PASS;végső CI/review még nyitott.
-[Hatókör és bizonyíték](h8-eepmov-block.md). Beolvadt motoralap még #110.
-A #111 dokumentációs lezárás beolvadt `5c19c62d9a3db542a3d42ff15cf959c647121c59`:
-2026-10-29 21:45:36 Europe/Budapest (20:45:36 UTC),négy sikeres CI-feladat.
-Soros fejlesztés:új lépcső csak az aktuális PR beolvadása után.
+A [#112 PR](https://github.com/RobCZart82/yaman1x/pull/112) beolvadt:
+merge `b14cd16e8d4d149cdb622371ac29928904bbc295`,tesztelt head `41c5c34be49913dea5dc025f589cfde068a27736`.
+Időpont:2026-10-29 22:05:04 Europe/Budapest (21:05:04 UTC).
+[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40952371785), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40952371726), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40952371748):mind az öt feladat sikeres.
+Nincs rögzített automatikus review-eredmény vagy nyitott review-szál;
+sikeres automatikus review-t nem állítunk.
 
-## Aktuális lezárás — #110, 2026-10-29
+Beolvadt: **73 CTest-csoport /87 Python-eset;560 upstreamből származó kezelő
+(556 változatlan,4 korábbi adaptáció);263 kiválasztott /1 hiányzó /135 kizárt sor**.
+EEPMOV.B/W:bájtonkénti másolás8/16 bites számlálóval,két prefix,nyolc változatlan kezelő.
+Helyi Release73/73 CTest,87 Python,célzott ASan/UBSan PASS.
+Eredeti referencia200000 szelet,nulla eltérés;hibás forrásléptetés kontrollja
+seed15/slice4-nél felismerve. Max65535 darab,átfedés,címkörbefordulás,362 szétvágás,
+131072 prefixőr és12 memóriahiba ellenőrizve. [Bizonyíték](h8-eepmov-block.md).
+Nincs aktív motorjelölt. Következő:SLEEP megállás/ébresztés és periféria-előrehaladás
+host/ütemező-szerződésével. M0 részleges;teljes CPU/gép/MMIO,hardveridőzítés,
+firmware/MIDI/hang/plugin elfogadás nyitott. Soros fejlesztés:egyszerre egy PR.
+Az alábbi korábbi jelölt/pending állapotok történetiek.
+
+## Történeti lezárás — #110, 2026-10-29
 
 A [#110 PR](https://github.com/RobCZart82/yaman1x/pull/110) beolvadt:
 merge `3d0ce825bb341402f40dab92c0f1ec2f409b5ee7`,tesztelt head `903844cdb2a0466a93b2a61b056191afd0b37146`.

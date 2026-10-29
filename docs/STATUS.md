@@ -5,22 +5,18 @@ Recorded: 2026-10-29. Product: YamAN1x. Repository: `yaman1x`. First public rese
 The repository contains a ROM-free C++/Python development foundation.
 No VST3, AU, GUI or AN1x audio output is available yet.
 
-Active candidate: [EEPMOV byte block copies](h8-eepmov-block.md),73 CTest/560 methods
-(556 unchanged/four prior adaptations),263 selected/1 missing/135 excluded rows.
-Final-head CI/review pending;merged evidence below remains #110.
-
-Verified engine baseline: [#110](https://github.com/RobCZart82/yaman1x/pull/110),
-`3d0ce825bb341402f40dab92c0f1ec2f409b5ee7`;tested head `903844cdb2a0466a93b2a61b056191afd0b37146`.
-72 CTest groups/87 Python cases;552 upstream-derived methods (548 unchanged,
-four prior arithmetic adaptations);261 selected/3 missing/135 excluded encoding rows.
-[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40943842276), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40943842076), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40943841959):all five jobs passed.
+Verified engine baseline: [#112](https://github.com/RobCZart82/yaman1x/pull/112),
+`b14cd16e8d4d149cdb622371ac29928904bbc295`;tested head `41c5c34be49913dea5dc025f589cfde068a27736`.
+73 CTest groups/87 Python cases;560 upstream-derived methods (556 unchanged,
+four prior arithmetic adaptations);263 selected/1 missing/135 excluded encoding rows.
+[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40952371785), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40952371726), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40952371748):all five jobs passed.
 No recorded automated review result at inspection;no successful automated review claimed.
-The prior series is closed;the new candidate is above. [Peripheral move evidence](h8-peripheral-byte-moves.md).
+No active engine candidate. [EEPMOV evidence](h8-eepmov-block.md).
 Original peripheral timing TODO retained;no E-clock/handshake timing validation.
-Remaining:SLEEP and EEPMOV. Full CPU,machine/MMIO,physical timing,
-firmware/MIDI/audio and REAPER acceptance remain open.
+Remaining:SLEEP. Full CPU,machine/MMIO,physical timing,firmware/MIDI/audio
+and REAPER acceptance remain open;selected rows are not CPU completeness.
 
-M0 partial;M1 prepared but unaccepted. Next:EEPMOV. One PR at a time.
+M0 partial;M1 prepared but unaccepted. Next:SLEEP/wake scheduling. One PR at a time.
 
 ## Historical component evidence — current state is above
 

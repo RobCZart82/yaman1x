@@ -139,4 +139,4 @@ Merged #108: [displacement32 CCR memory](h8-ccr-displacement32-memory.md);all fi
 
 Merged #110: [peripheral byte moves](h8-peripheral-byte-moves.md);original timing TODO retained;all five final-head CI jobs passed. No recorded automated review result at inspection.
 
-Current candidate: [EEPMOV block copies](h8-eepmov-block.md);own final CI/review and merge pending.
+Merged #112: [EEPMOV block copies](h8-eepmov-block.md);all five final-head CI jobs passed. No recorded automated review result at inspection.
