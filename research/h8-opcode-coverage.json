@@ -4,8 +4,8 @@
   "profile": "advanced H8H, fixed reset-SYSCR research host",
   "counts": {
     "excluded_profile": 135,
-    "missing_handler": 29,
-    "selected_handler": 235
+    "missing_handler": 28,
+    "selected_handler": 236
   },
   "instructions": [
     {
@@ -2624,7 +2624,7 @@
       ],
       "method": "divxu_b_r8h_r16l",
       "profile": "common",
-      "status": "missing_handler"
+      "status": "selected_handler"
     },
     {
       "line": 1490,

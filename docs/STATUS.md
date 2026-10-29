@@ -16,7 +16,7 @@ Merged suite: **59 CTest groups /87 Python cases;488 upstream-derived methods
 (486 unchanged,2 prior adaptations);235 selected /29 missing /135 excluded encoding rows**
 (not a CPU percentage). Fixed-profile IRQ/NMI/TRAPA, synthetic CPU/SCI exchange/errors,
 long absolute/signed16 displacement moves, signed and unsigned byte/word multiply are merged.
-No active engine candidate; [signed-multiply evidence](h8-signed-multiply.md).
+Unsigned byte divide is a separate candidate:60 CTest/87 Python,490 methods (488 unchanged,2 prior adaptations),236 selected/28 missing rows; CI pending. See [contract](h8-byte-divide.md); [signed-multiply evidence](h8-signed-multiply.md).
 Local Windows:58 runnable CTest/86 Python PASS; one known symlink privilege case excluded.
 
 M0 remains partial; M1 is prepared but unaccepted. Missing instructions and

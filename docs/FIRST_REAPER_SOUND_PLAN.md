@@ -792,3 +792,15 @@ Jelölt:59 CTest/87 Python,488 upstreamből származó kezelő (486 változatlan
 unsigned-adaptáció);235 kiválasztott/29 hiányzó/135 kizárt kódolássor. Linux UBSan
 mindkét új formát is teszteli; távoli CI függőben, M0 továbbra is részleges.
 [Szerződés és részletes bizonyítékok](h8-signed-multiply.md). Yamaha-adat nem került be.
+
+## 2026-10-29 — Előjel nélküli bájtos osztás jelölt
+
+Eredeti DIVXU.B full/partial kezelők, külön5100/ff00 dekóderág. Nullás osztónál
+célregiszter-megőrzés; hányados alacsony8 bitje és maradék külön bájtban; N/Z
+az eredeti osztófüggő szabályt követi. Ez forrásegyezés, nem hardveres bizonyíték.
+393216 osztandó-söprés,2048 osztóhatáreset,30720 alias/CCR-eset,20000 véletlen pár
+és241 szétvágás PASS;200000 referenciaszelet nulla eltéréssel. Hányados+1 kontroll
+seed9/slice18 felismerve. Jelölt:60 CTest/87 Python,490 upstreamből származó kezelő
+(488 változatlan,2 korábbi adaptáció);236 kiválasztott/28 hiányzó/135 kizárt sor.
+Linux UBSan kiterjesztve osztásra is; távoli CI függőben. M0 továbbra is részleges.
+[Szerződés és ellenőrzési hatókör](h8-byte-divide.md). Yamaha-adat nem került be.

@@ -2,6 +2,73 @@
 // copyright-holders:Olivier Galibert
 // Selected pinned generated h8.hxx methods; only class qualifiers removed.
 // Included inside H8FirstInstructions. See research/h8-first-instructions-provenance.json.
+void divxu_b_r8h_r16l_full()
+{
+	m_NPC = m_PC & 0xffffff;
+	m_PIR = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 1;
+		} else
+			m_inst_substate = 2;
+		return;
+	}
+	m_PC += 2;
+	internal(11);
+	m_TMP1 = r16_r(m_IR[0]);
+	m_TMP2 = r8_r(m_IR[0] >> 4);
+	m_CCR &= ~(F_Z|F_N);
+	if(m_TMP2 & 0x80)
+		m_CCR |= F_N;
+	if(!m_TMP2) {
+		m_CCR |= F_Z;
+	} else {
+		int q = m_TMP1 / m_TMP2;
+		int r = m_TMP1 % m_TMP2;
+		r16_w(m_IR[0], (q & 0xff) | ((r & 0xff) << 8));
+	}
+	prefetch_done();
+}
+
+void divxu_b_r8h_r16l_partial()
+{
+switch(m_inst_substate) {
+case 0:
+	m_NPC = m_PC & 0xffffff;
+	[[fallthrough]];
+case 1:;
+	m_PIR = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 1;
+		} else
+			m_inst_substate = 2;
+		return;
+	}
+	[[fallthrough]];
+case 2:;
+	m_PC += 2;
+	internal(11);
+	m_TMP1 = r16_r(m_IR[0]);
+	m_TMP2 = r8_r(m_IR[0] >> 4);
+	m_CCR &= ~(F_Z|F_N);
+	if(m_TMP2 & 0x80)
+		m_CCR |= F_N;
+	if(!m_TMP2) {
+		m_CCR |= F_Z;
+	} else {
+		int q = m_TMP1 / m_TMP2;
+		int r = m_TMP1 % m_TMP2;
+		r16_w(m_IR[0], (q & 0xff) | ((r & 0xff) << 8));
+	}
+	prefetch_done();
+	break;
+}
+	m_inst_substate = 0;
+}
+
 void dispatch_01c0_full()
 {
 	m_IR[1] = read16i(m_PC);

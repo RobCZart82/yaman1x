@@ -966,6 +966,12 @@
       ]
     }
   ],
-  "active_change": null,
+  "active_change": {
+    "id": "H8-BYTE-DIVIDE-2026-10-29",
+    "branch": "feat/h8-unsigned-byte-divide",
+    "status": "in_progress",
+    "summary": "Original unsigned byte divide with zero-divisor/quotient/CCR controls",
+    "validation": "59 local CTest/86 Python PASS;independent aliases/CCR/splits,200000 original-reference slices zero differences;quotient+1 detected;remote CI pending"
+  },
   "pending_changes": []
 }
