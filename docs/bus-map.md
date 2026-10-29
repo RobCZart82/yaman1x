@@ -32,7 +32,7 @@ Az első LCD nélküli megfigyelést később LC7985-bekötés, teljes DSP-regis
 
 Legfrissebb vizsgálat: [EG-szint és mintaszámláló](eg-readback-milestone.md).
 
-## Önálló ROM/RAM-térkép jelölt — 2026-10-29
+## Önálló ROM/RAM-térkép beolvadt #116 — 2026-10-29
 
 [Új projektkód és szintetikus CPU-próba](an1x-memory-map.md):a fenti három
 memóriatartomány összekötve,MMIO és ismeretlen címek fail-closed. Nem teljes gép,

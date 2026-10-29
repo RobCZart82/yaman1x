@@ -6,22 +6,17 @@ audible firmware-driven VST3 voice in REAPER:
 
 Changes/fixes are recorded in the [development ledger](DEVELOPMENT_LOG.md).
 The [repository audit](REPOSITORY_AUDIT_2026-10-27.md) identifies current gaps.
-Active candidate: [AN1x bounded ROM/RAM map](an1x-memory-map.md),75 CTest/87 Python.
-CPU handlers/inventory unchanged. MMIO holes fail closed;synthetic CPU reset/transfers only.
-Final-head CI/review pending;merged evidence below remains #114.
-
-Verified engine baseline: [#114](https://github.com/RobCZart82/yaman1x/pull/114),
-`3172c55e9a1cea766e5326bfd56a98f68d6420f3`;tested head `532c5937cfc2b0b3f142e935cebba8dfa4912000`.
-74 CTest groups/87 Python cases;562 upstream-derived methods (558 unchanged,
-four prior arithmetic adaptations);264 selected/0 missing/135 excluded encoding rows.
-[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40958229492), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40958229514), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40958229555):all five jobs passed.
+Verified engine baseline: [#116](https://github.com/RobCZart82/yaman1x/pull/116),
+`7fe1d4bcb602ce96d40f34ec4ccd888430bf70e0`;tested head `1982509b2c4632b7e9198d3ae23656f59e2c2a55`.
+75 CTest groups/87 Python cases;CPU handlers unchanged:562 upstream-derived methods
+(558 unchanged,four prior adaptations);264 selected/0 missing/135 excluded encoding rows.
+[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40963649310), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40963649254), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40963649115):all five jobs passed.
 No recorded automated review result at inspection;no successful automated review claimed.
-The prior CPU series is closed;the map candidate is above. [Fixed-profile SLEEP/wake evidence](h8-sleep-wake.md).
-All eligible rows select handlers;this is not full CPU/machine acceptance.
-Next:AN1x address map/MMIO and common CPU/peripheral scheduler,reset/isolation,
-then local firmware/MIDI/PKS evidence. Dynamic SYSCR,standby,DMA/DTC,trace/retry,
-physical timing,firmware/audio and REAPER acceptance remain open.
-Original peripheral timing TODO remains;no E-clock/handshake validation.
+No active engine candidate. [Bounded AN1x memory map](an1x-memory-map.md) routes ROM/NVRAM/internal RAM.
+Synthetic CPU reset/transfers and isolation verified;MMIO holes/ROM writes fail closed.
+Next:timed SCI MMIO/IRQ composition on this map,reset/isolation,RX/TX and SLEEP wake.
+Full machine,GPIO/LCD/DSP/MEG,physical timing,firmware/MIDI/PKS/audio and REAPER acceptance
+remain open. Full handler selection is not full CPU/machine acceptance.
 
 Next M0 work, in order:
 

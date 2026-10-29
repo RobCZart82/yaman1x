@@ -2,25 +2,31 @@
 
 Rögzítve: 2026-10-27. Kiindulópont: a #14 PR-ig beolvadt kutatási eredmények.
 Ez végrehajtási terv; az alábbi, még nyitott mérföldkövek nem kész funkciók.
-Állapotellenőrzés: 2026-10-29, motoralap: #114 (`3172c55e9a1cea766e5326bfd56a98f68d6420f3`).
+Állapotellenőrzés: 2026-10-29, motoralap: #116 (`7fe1d4bcb602ce96d40f34ec4ccd888430bf70e0`).
 A működő H8H-részhalmaz nem teljes CPU- vagy firmware-elfogadás.
 
-## Aktív fejlesztési lépés — AN1x ROM/RAM címtér, 2026-10-29
+## Aktuális lezárás — #116, 2026-10-29
 
-Új projektkód:1MiB változatlan logikai ROM,külső256KiB NVRAM és512 bájt belső RAM,
-24 bites címtükrözés,big-endian byte/word hozzáférések,írásvédett saját ROM-másolat.
-MAME-címtények rögzített forrásból újraellenőrizve. Jelölt:75 CTest/87 Python;
-CPU-kezelők változatlanul562,264 kiválasztott/0 hiányzó/135 kizárt sor.
-Teljes ROM/RAM-söprés,határok/tükrözés/izoláció/NVRAM-roundtrip és241 CPU-szétvágás
-célzott tesztje PASS. Szintetikus program közös címtérből indul és RAM-ot mozgat.
-MMIO/hiányzó tartományok és ROM-írások fail-closed;ez explicit kutatási szabály,
-nem fizikai open-bus viselkedés. Teljes gépütemező és valódi firmware-futás még nincs.
-[Hatókör és bizonyíték](an1x-memory-map.md). Helyi Release75/75 CTest és87 Python,célzott ASan/UBSan PASS;végső CI/review még nyitott.
-A #115 dokumentációs lezárás beolvadt `72c773f9e48afa8941a8de2b8b989d24255d83e5`:
-2026-10-29 23:05:43 Europe/Budapest (22:05:43 UTC),négy sikeres CI-feladat.
-Soros fejlesztés:új lépcső csak az aktuális PR beolvadása után.
+A [#116 PR](https://github.com/RobCZart82/yaman1x/pull/116) beolvadt:
+merge `7fe1d4bcb602ce96d40f34ec4ccd888430bf70e0`,tesztelt head `1982509b2c4632b7e9198d3ae23656f59e2c2a55`.
+Időpont:2026-10-29 23:25:39 Europe/Budapest (22:25:39 UTC).
+[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40963649310), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40963649254), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40963649115):mind az öt feladat sikeres.
+Nincs rögzített automatikus review-eredmény vagy nyitott review-szál;
+sikeres automatikus review-t nem állítunk.
 
-## Aktuális lezárás — #114, 2026-10-29
+Beolvadt: **75 CTest-csoport /87 Python-eset**;CPU-kezelők változatlanul562
+(558 változatlan,4 korábbi adaptáció),264 kiválasztott/0 hiányzó/135 kizárt sor.
+1MiB saját ROM-másolat,külső256KiB NVRAM és512 bájt belső RAM,24 bites címtükrözés.
+Teljes ROM/RAM-söprés,határok/izoláció/NVRAM-roundtrip és241 CPU-partíció PASS.
+Helyi Release75/75 CTest,87 Python és célzott ASan/UBSan PASS.
+[Bizonyíték és kutatási szabályok](an1x-memory-map.md).
+Nincs aktív motorjelölt. MMIO és ROM-írás fail-closed,nem fizikai open-bus modell.
+Következő:SCI MMIO és IRQ közös címtérbe,CPU-buszidőbélyeg/periféria-határidők,
+reset/izoláció és szétvágástól független RX/TX,SLEEP-ébresztés.
+Teljes gép,GPIO/LCD/DSP/MEG,időzítés,firmware/MIDI/PKS/hang/plugin elfogadás nyitott.
+Soros fejlesztés:egyszerre egy PR;az alábbi jelölt/pending állapotok történetiek.
+
+## Történeti lezárás — #114, 2026-10-29
 
 A [#114 PR](https://github.com/RobCZart82/yaman1x/pull/114) beolvadt:
 merge `3172c55e9a1cea766e5326bfd56a98f68d6420f3`,tesztelt head `532c5937cfc2b0b3f142e935cebba8dfa4912000`.
@@ -481,7 +487,7 @@ vagy REAPER-plugin. A következő motorfeladatok: hiányzó H8H-utasítások/cí
 leltára, IRQ/TRAPA-belépés és szűrők, majd közös CPU/periféria-ütemezés és gépintegráció.
 
 A korábbi „aktív”, „jelölt”, „CI pending” és „következő” bejegyzések az akkori
-állapotot őrzik; a jelenlegi készültségre a fenti #114 lezárás és az aktuális mérföldkő-tábla
+állapotot őrzik; a jelenlegi készültségre a fenti #116 lezárás és az aktuális mérföldkő-tábla
 irányadó. A dokumentáció mostani javítása nem új motorfejlesztés vagy elfogadás.
 
 ## Aktuális mérföldkő-állapot — 2026-10-29

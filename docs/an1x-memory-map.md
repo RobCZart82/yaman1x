@@ -1,6 +1,6 @@
 # AN1x bounded ROM and RAM map
 
-Recorded:2026-10-29. Merged CPU baseline:#114;this memory-routing increment is a candidate.
+Recorded:2026-10-29. Merged #116 as `7fe1d4bcb602ce96d40f34ec4ccd888430bf70e0`;tested head `1982509b2c4632b7e9198d3ae23656f59e2c2a55`. CPU baseline:#114.
 
 ## Source facts and implementation policy
 
@@ -54,6 +54,7 @@ Local Release75/75 CTest and87 Python PASS;targeted ASan/UBSan PASS.
 Linux CI includes the map test under UBSan.
 The CPU's previously verified original-method reference remains unchanged;this
 increment tests routing against source address facts and independent memory
-expectations,not a new full-machine MAME equivalence claim. Final-head CI/review
-pending. Full reset/isolation/peripheral scheduling,firmware/MIDI/PKS,DSP/audio
+expectations,not a new full-machine MAME equivalence claim. [Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40963649310), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40963649254), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40963649115).
+All five jobs passed;merged. No recorded automated review result at inspection;
+no successful automated review claimed. Full reset/isolation/peripheral scheduling,firmware/MIDI/PKS,DSP/audio
 and plugin/REAPER acceptance remain open.
