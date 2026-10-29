@@ -6,16 +6,12 @@ audible firmware-driven VST3 voice in REAPER:
 
 Changes/fixes are recorded in the [development ledger](DEVELOPMENT_LOG.md).
 The [repository audit](REPOSITORY_AUDIT_2026-10-27.md) identifies current gaps.
-The prior engine series is closed; [absolute CCR memory](h8-ccr-absolute-memory.md) merged.
+No active engine candidate; [autoindex CCR memory](h8-ccr-autoindex-memory.md) merged.
 
-Active candidate: [autoindex CCR memory](h8-ccr-autoindex-memory.md),69 CTest/536 methods
-(532 unchanged/four prior adaptations),255 selected/9 missing/135 excluded rows.
-Final-head CI/review and merge pending; merged evidence below remains #102.
-
-Verified engine baseline: merged [PR #102](https://github.com/RobCZart82/yaman1x/pull/102),
-`2dab39c1598533fc0a84da9017b3f2975854ff96`. See [current status](STATUS.md)
+Verified engine baseline: merged [PR #104](https://github.com/RobCZart82/yaman1x/pull/104),
+`92e52f45307dc1adad37347febd407d0d2106182`. See [current status](STATUS.md)
 for final-head CI and local environment limits. The [CPU subset](h8-first-instructions.md)
-already builds and executes 532 upstream-derived full/partial handlers (528 unchanged,4 adapted), including memory,
+already builds and executes 536 upstream-derived full/partial handlers (532 unchanged,4 adapted), including memory,
 arithmetic/logic, single-bit shifts/rotates, byte bit operations and normal
 [stack/control flow](h8-stack-control-flow.md). Fixed-profile IRQ/NMI/TRAPA and synthetic CPU/SCI exchange/error handling are implemented;
 full AN1x integration and physical timing are not established. H8S two-bit shifts remain
@@ -23,7 +19,7 @@ outside this H8H profile.
 
 Next M0 work, in order:
 
-1. Close remaining H8H opcodes/addressing (11 encoding rows remain after absolute CCR; next: CCR postincrement/predecrement);
+1. Close remaining H8H opcodes/addressing (9 encoding rows remain after autoindex CCR; next: CCR displacement modes);
    retain the reviewed [word-multiply widening and UBSan control](h8-word-multiply.md);
    retain fixed-profile IRQ/TRAPA limitations and pinned reference comparisons.
 2. Connect CPU, address map/MMIO and existing peripherals to a common scheduler;

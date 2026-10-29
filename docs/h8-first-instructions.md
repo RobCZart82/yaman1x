@@ -131,4 +131,4 @@ Merged #100: [long displacement32 memory](h8-long-displacement32-memory.md), fiv
 
 Merged #102: [absolute CCR memory](h8-ccr-absolute-memory.md); all five final-head CI jobs and automated review completed successfully.
 
-Current candidate: [autoindex CCR memory](h8-ccr-autoindex-memory.md);own final CI/review and merge pending.
+Merged #104: [autoindex CCR memory](h8-ccr-autoindex-memory.md);all five final-head CI jobs and automated review completed successfully.

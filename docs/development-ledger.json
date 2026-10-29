@@ -3,7 +3,7 @@
   "recorded_date": "2026-10-29",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "2dab39c1598533fc0a84da9017b3f2975854ff96",
+  "baseline_commit": "92e52f45307dc1adad37347febd407d0d2106182",
   "entries": [
     {
       "pr": 6,
@@ -1248,13 +1248,24 @@
         40915641135
       ],
       "automated_review_at_merge": "completed_no_findings"
+    },
+    {
+      "pr": 104,
+      "title": "Execute H8H autoindex CCR memory with observable pointer ordering",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/104",
+      "kind": "development",
+      "status": "merged",
+      "merge_commit": "92e52f45307dc1adad37347febd407d0d2106182",
+      "reviewed_head": "570d7b11d5dde819ac12211671f39fd47163f81b",
+      "merged_at_utc": "2026-10-29T17:30:16Z",
+      "ci_runs": [
+        40919264372,
+        40919264370,
+        40919264281
+      ],
+      "automated_review_at_merge": "completed_no_findings"
     }
   ],
-  "active_change": {
-    "branch": "feat/h8-ccr-autoindex",
-    "scope": "LDC postincrement/STC predecrement CCR word memory",
-    "status": "local_validation_passed",
-    "ci": "not_run"
-  },
+  "active_change": null,
   "pending_changes": []
 }

@@ -1,6 +1,6 @@
 # H8H autoindex CCR word memory
 
-Recorded:2026-10-29. Merged engine baseline:#102;this increment is a candidate.
+Recorded:2026-10-29. Merged #104 as `92e52f45307dc1adad37347febd407d0d2106182`;tested head `570d7b11d5dde819ac12211671f39fd47163f81b`.
 
 ## Scope and provenance
 
@@ -51,6 +51,7 @@ seed2/slice3 (expected exit1). Tracked code remains correct.
 
 Local Release69/69 CTest and87 Python PASS;targeted ASan/UBSan PASS.
 Negative-control result is recorded above and in the log/PR. Linux CI includes the new target under
-UBSan. Final-head CI/review and merge remain pending. Remaining CCR displacement
+UBSan. All five final-head CI jobs passed: [platform/UBSan](https://github.com/RobCZart82/yaman1x/actions/runs/40919264372), [MSan](https://github.com/RobCZart82/yaman1x/actions/runs/40919264370), [MAME](https://github.com/RobCZart82/yaman1x/actions/runs/40919264281).
+Automated review completed on the final head without findings or unresolved threads. Remaining CCR displacement
 forms,other missing H8H instructions,full machine/MMIO integration,physical timing,
 firmware/MIDI/audio and plugin/REAPER acceptance remain open.
