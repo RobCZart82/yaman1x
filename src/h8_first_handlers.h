@@ -2,6 +2,192 @@
 // copyright-holders:Olivier Galibert
 // Selected pinned generated h8.hxx methods; only class qualifiers removed.
 // Included inside H8FirstInstructions. See research/h8-first-instructions-provenance.json.
+void movfpe_abs16_r8l_full()
+{
+	m_IR[1] = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 1;
+		} else
+			m_inst_substate = 2;
+		return;
+	}
+	m_PC += 2;
+	// TODO: timing
+	m_NPC = m_PC & 0xffffff;
+	m_PIR = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 3;
+		} else
+			m_inst_substate = 4;
+		return;
+	}
+	m_PC += 2;
+	m_TMP1 = read8(s16(m_IR[1]));
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 5;
+		} else
+			m_inst_substate = 6;
+		return;
+	}
+	set_nzv8(m_TMP1);
+	r8_w(m_IR[0], m_TMP1);
+	prefetch_done();
+}
+
+void movfpe_abs16_r8l_partial()
+{
+switch(m_inst_substate) {
+case 0:
+	[[fallthrough]];
+case 1:;
+	m_IR[1] = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 1;
+		} else
+			m_inst_substate = 2;
+		return;
+	}
+	[[fallthrough]];
+case 2:;
+	m_PC += 2;
+	// TODO: timing
+	m_NPC = m_PC & 0xffffff;
+	[[fallthrough]];
+case 3:;
+	m_PIR = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 3;
+		} else
+			m_inst_substate = 4;
+		return;
+	}
+	[[fallthrough]];
+case 4:;
+	m_PC += 2;
+	[[fallthrough]];
+case 5:;
+	m_TMP1 = read8(s16(m_IR[1]));
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 5;
+		} else
+			m_inst_substate = 6;
+		return;
+	}
+	[[fallthrough]];
+case 6:;
+	set_nzv8(m_TMP1);
+	r8_w(m_IR[0], m_TMP1);
+	prefetch_done();
+	break;
+}
+	m_inst_substate = 0;
+}
+
+void movtpe_r8l_abs16_full()
+{
+	m_IR[1] = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 1;
+		} else
+			m_inst_substate = 2;
+		return;
+	}
+	m_PC += 2;
+	// TODO: timing
+	m_NPC = m_PC & 0xffffff;
+	m_PIR = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 3;
+		} else
+			m_inst_substate = 4;
+		return;
+	}
+	m_PC += 2;
+	m_TMP1 = r8_r(m_IR[0]);
+	set_nzv8(m_TMP1);
+	write8(s16(m_IR[1]), m_TMP1);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 5;
+		} else
+			m_inst_substate = 6;
+		return;
+	}
+	prefetch_done();
+}
+
+void movtpe_r8l_abs16_partial()
+{
+switch(m_inst_substate) {
+case 0:
+	[[fallthrough]];
+case 1:;
+	m_IR[1] = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 1;
+		} else
+			m_inst_substate = 2;
+		return;
+	}
+	[[fallthrough]];
+case 2:;
+	m_PC += 2;
+	// TODO: timing
+	m_NPC = m_PC & 0xffffff;
+	[[fallthrough]];
+case 3:;
+	m_PIR = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 3;
+		} else
+			m_inst_substate = 4;
+		return;
+	}
+	[[fallthrough]];
+case 4:;
+	m_PC += 2;
+	m_TMP1 = r8_r(m_IR[0]);
+	set_nzv8(m_TMP1);
+	[[fallthrough]];
+case 5:;
+	write8(s16(m_IR[1]), m_TMP1);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 5;
+		} else
+			m_inst_substate = 6;
+		return;
+	}
+	[[fallthrough]];
+case 6:;
+	prefetch_done();
+	break;
+}
+	m_inst_substate = 0;
+}
+
 void dispatch_01407800_full()
 {
 	m_IR[2] = read16i(m_PC);
