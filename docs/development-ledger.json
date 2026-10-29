@@ -3,7 +3,7 @@
   "recorded_date": "2026-10-29",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "a4f52f600d2cfd85f14a5e8822eb5e025d28825d",
+  "baseline_commit": "1adeb1030871083bb510f4e691da4467cd96a816",
   "entries": [
     {
       "pr": 6,
@@ -1051,14 +1051,37 @@
         40842792142,
         40842792129
       ]
+    },
+    {
+      "pr": 91,
+      "title": "Close decimal adjustment evidence and update development baseline",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/91",
+      "kind": "documentation",
+      "status": "merged",
+      "merge_commit": "66959fea35f836174c7709706aa7c3308114772d",
+      "reviewed_head": "41a3060c5358436b645973617059cbb6bdd5f416",
+      "merged_at_utc": "2026-10-29T09:03:49Z",
+      "ci_runs": [
+        40843877863,
+        40843877900
+      ]
+    },
+    {
+      "pr": 92,
+      "title": "Execute H8H signed byte divide with arithmetic and guarded prefix controls",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/92",
+      "kind": "development",
+      "status": "merged",
+      "merge_commit": "1adeb1030871083bb510f4e691da4467cd96a816",
+      "reviewed_head": "b719cf25b0d0d8b929c5b639d5971ddc424a1a49",
+      "merged_at_utc": "2026-10-29T09:18:06Z",
+      "ci_runs": [
+        40847532370,
+        40847532267,
+        40847532335
+      ]
     }
   ],
-  "active_change": {
-    "id": "H8-SIGNED-BYTE-DIVIDE-2026-10-29",
-    "branch": "feat/h8-signed-byte-divide",
-    "status": "in_progress",
-    "summary": "Original DIVXS.B and guarded prefix; signed-word extreme case remains open",
-    "validation": "62 local CTest/86 Python PASS;independent sign/zero/packing,65536 prefixes,241 splits,200000 reference slices zero differences;quotient+1 detected;remote CI pending"
-  },
+  "active_change": null,
   "pending_changes": []
 }
