@@ -89,6 +89,8 @@ private:
             else if((m_inst_state&0xff8f)==0x6980) {if(partial)stc_w_ccr_r32ih_partial();else stc_w_ccr_r32ih_full();}
             else if((m_inst_state&0xff8f)==0x6d00) {if(partial)ldc_w_r32ph_ccr_partial();else ldc_w_r32ph_ccr_full();}
             else if((m_inst_state&0xff8f)==0x6d80) {if(partial)stc_w_ccr_pr32h_partial();else stc_w_ccr_pr32h_full();}
+            else if((m_inst_state&0xff8f)==0x6f00) {if(partial)ldc_w_r32d16h_ccr_partial();else ldc_w_r32d16h_ccr_full();}
+            else if((m_inst_state&0xff8f)==0x6f80) {if(partial)stc_w_ccr_r32d16h_partial();else stc_w_ccr_r32d16h_full();}
             else if(m_inst_state==0x76b00) {if(partial)ldc_w_abs16_ccr_partial();else ldc_w_abs16_ccr_full();}
             else if(m_inst_state==0x76b20) {if(partial)ldc_w_abs32_ccr_partial();else ldc_w_abs32_ccr_full();}
             else if(m_inst_state==0x76b80) {if(partial)stc_w_ccr_abs16_partial();else stc_w_ccr_abs16_full();}
