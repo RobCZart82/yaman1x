@@ -4,12 +4,12 @@ Initial increment: #47 based on #46, 2026-10-28. Current memory/branch extension
 is based on merged #47; see [the extension contract](h8-memory-branches.md). M0 remains partial.
 
 `H8FirstInstructions<Host>` is an intentionally limited advanced-H8H execution
-profile. The initial eight methods have expanded to 502 upstream-derived full/partial methods:
+profile. The initial eight methods have expanded to 512 upstream-derived full/partial methods:
 reset, NOP, immediate byte/word/long moves, all rel8 conditions, prefix dispatch
 indirect byte/word/long loads/stores, selected ADD/SUB/CMP and carry-input forms,
-logic, LDC immediate CCR and single-bit shifts/rotates. The selection now includes base-H8 and H8H operations. 498 bodies are unchanged except class qualifiers. Two MULXU.W bodies have reviewed unsigned widening; two DIVXU.W bodies
+logic, LDC immediate CCR and single-bit shifts/rotates. The selection now includes base-H8 and H8H operations. 508 bodies are unchanged except class qualifiers. Two MULXU.W bodies have reviewed unsigned widening; two DIVXU.W bodies
 use explicitly unsigned quotient/remainder locals. See [multiply](h8-word-multiply.md)
-and [divide](h8-word-divide.md) contracts;498 bodies remain unchanged.
+and [divide](h8-word-divide.md) contracts;508 bodies remain unchanged.
 
 The profile owns its 16 register halves, CCR/EXR, PC/PPC/NPC, IR/PIR, temporary
 registers, instruction/substate and cycle debt per instance. IR has four words
@@ -123,3 +123,5 @@ Merged DAA/DAS: [decimal oracle and evidence limits](h8-decimal-adjust.md).
 Merged signed byte divide: [scope and remaining word extreme case](h8-signed-byte-divide.md).
 
 Merged signed word divide: [32-bit-int profile and extreme flags](h8-signed-word-divide.md).
+
+Displacement32 byte/word candidate: [address wrap,alias and prefix controls](h8-displacement32-memory.md).

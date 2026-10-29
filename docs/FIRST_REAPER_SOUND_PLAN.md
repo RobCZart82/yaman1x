@@ -966,3 +966,17 @@ N kontroll seed7/slice7 felismerve. Jelölt:64 CTest/87 Python,502 upstream-keze
 (498 változatlan,4 korábbi adaptáció),241 kiválasztott/23 hiányzó/135 kizárt sor.
 Linux UBSan kiterjesztve; CI függőben. [Hatókör és szélső eredmény](h8-signed-word-divide.md).
 M0 részleges; teljes gép/firmware/MIDI/hang/plugin elfogadás nyitott. Yamaha-adat nincs.
+
+## 2026-10-29 — M0 32 bites eltolásos bájt/szó-memóriamozgatás jelölt
+
+Eredeti7800 prefix és négy MOV-csoport,tíz változatlan full/partial kezelő.
+Meglévő négyszavas IR,őrzött160000 folytatás,full32 cím és külön24 bites fizikai
+leképezés.1048576 eltolásfél-söprés,55296 cím/regiszter/CCR-határeset,241 szétvágás,
+65536 prefixfolytatás és memóriahibás fail-stop tesztek PASS. Nem teljes2^32 keresztszorzat.
+A prefixkontroll nyolc hibás belső-állapot újradekódolást fogott; az elsőszó-maszk
+szűkítése rendezte.200000 eredeti referenciaszelet nulla eltéréssel; felső eltolásszó
+elhagyása kontroll seed6/slice5 felismerve. Jelölt:65 CTest/87 Python,512 upstream-kezelő
+(508 változatlan,4 korábbi adaptáció),245 kiválasztott/19 hiányzó/135 kizárt sor.
+Hosszú szó32-eltolással továbbra is nyitott. Linux UBSan kiterjesztve; CI függőben.
+[Szerződés és hatókör](h8-displacement32-memory.md). M0 részleges; firmware/MIDI/hang/plugin
+elfogadás nincs. Yamaha-adat nem került be.
