@@ -141,6 +141,7 @@ private:
         if(m_inst_state>0xffff) {throw std::runtime_error("Unsupported H8 internal instruction state"); return;
         }
         if((m_inst_state&0xff08)==0x5200) {if(partial)mulxu_w_r16h_r32l_partial();else mulxu_w_r16h_r32l_full();return;}
+        if((m_inst_state&0xff00)==0x5100) {if(partial)divxu_b_r8h_r16l_partial();else divxu_b_r8h_r16l_full();return;}
         if((m_inst_state&0xff00)==0x5000) {if(partial)mulxu_b_r8h_r16l_partial();else mulxu_b_r8h_r16l_full();return;}
         if((m_inst_state&0xff80)==0x6e00) {if(partial)mov_b_r32d16h_r8l_partial();else mov_b_r32d16h_r8l_full();return;}
         if((m_inst_state&0xff80)==0x6e80) {if(partial)mov_b_r8l_r32d16h_partial();else mov_b_r8l_r32d16h_full();return;}
