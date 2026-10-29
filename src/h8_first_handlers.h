@@ -2,6 +2,68 @@
 // copyright-holders:Olivier Galibert
 // Selected pinned generated h8.hxx methods; only class qualifiers removed.
 // Included inside H8FirstInstructions. See research/h8-first-instructions-provenance.json.
+void sleep_full()
+{
+	m_NPC = m_PC & 0xffffff;
+	m_PIR = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 1;
+		} else
+			m_inst_substate = 2;
+		return;
+	}
+	m_PC += 2;
+	if(m_standby_pending) {
+		m_standby_time = total_cycles();
+		notify_standby(1);
+		suspend(SUSPEND_REASON_CLOCK, true);
+		m_standby_cb(1);
+	} else {
+		while(!m_irq_vector) {
+	if(m_icount) { m_icount = m_bcount; } m_inst_substate = 3; return;
+		}
+		prefetch_done();
+	}
+}
+
+void sleep_partial()
+{
+switch(m_inst_substate) {
+case 0:
+	m_NPC = m_PC & 0xffffff;
+	[[fallthrough]];
+case 1:;
+	m_PIR = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 1;
+		} else
+			m_inst_substate = 2;
+		return;
+	}
+	[[fallthrough]];
+case 2:;
+	m_PC += 2;
+	if(m_standby_pending) {
+		m_standby_time = total_cycles();
+		notify_standby(1);
+		suspend(SUSPEND_REASON_CLOCK, true);
+		m_standby_cb(1);
+	} else {
+		while(!m_irq_vector) {
+	if(m_icount) { m_icount = m_bcount; } m_inst_substate = 3; return;
+case 3:;
+		}
+		prefetch_done();
+	}
+	break;
+}
+	m_inst_substate = 0;
+}
+
 void dispatch_7b5c_full()
 {
 	m_IR[1] = read16i(m_PC);

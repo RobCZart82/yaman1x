@@ -1388,8 +1388,28 @@
         40952371748
       ],
       "automated_review_at_merge": "no_recorded_result_at_inspection"
+    },
+    {
+      "pr": 113,
+      "title": "Close EEPMOV evidence and record remaining sleep contract",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/113",
+      "kind": "documentation",
+      "status": "merged",
+      "merge_commit": "a304b1e32df1b5219cc2f59e7a6c185e5f82a8a8",
+      "reviewed_head": "d7942ab5687712f743f9c4045b16686bec8cfcfc",
+      "merged_at_utc": "2026-10-29T21:22:29Z",
+      "ci_runs": [
+        40954885230,
+        40954884997
+      ],
+      "automated_review_at_merge": "no_recorded_result_at_inspection"
     }
   ],
-  "active_change": null,
+  "active_change": {
+    "branch": "feat/h8-sleep-wake",
+    "scope": "Fixed-profile original SLEEP,qualified IRQ wake and peripheral deadline progression;standby excluded",
+    "status": "local_validation_passed",
+    "ci": "not_run"
+  },
   "pending_changes": []
 }
