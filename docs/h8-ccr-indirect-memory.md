@@ -1,6 +1,6 @@
 # H8H CCR indirect word memory
 
-Recorded:2026-10-29. Baseline:#96; candidate not yet merged.
+Recorded:2026-10-29. Merged #98 as `1c7ba628aceb29fd4c057db73fe31b2be4841558`; tested head `a3c033256ec247555b44b0d820bb228dcaf9bc39`.
 
 ## Scope and source identity
 
@@ -56,7 +56,7 @@ reference detects mismatch seed5/slice7 (expected exit1). Tracked code remains c
 
 New target PASS;86 runnable Python cases PASS,one known Windows symlink privilege
 case excluded. All65 locally runnable CTest groups PASS (full suite66; Python wrapper handled
-separately). Linux/macOS/Windows,MSan,MAME CI pending.
+separately). All five final-head CI jobs passed: [platform/UBSan](https://github.com/RobCZart82/yaman1x/actions/runs/40870231488), [MSan](https://github.com/RobCZart82/yaman1x/actions/runs/40870229509), [MAME](https://github.com/RobCZart82/yaman1x/actions/runs/40870229586).
 CI includes the new target under Linux UBSan; local UBSan not run.
 Source/notice audit passed (201 locked upstream files,one reviewed local edit,
 229 covered files,five license texts); this is not legal clearance.

@@ -6,12 +6,12 @@ audible firmware-driven VST3 voice in REAPER:
 
 Changes/fixes are recorded in the [development ledger](DEVELOPMENT_LOG.md).
 The [repository audit](REPOSITORY_AUDIT_2026-10-27.md) identifies current gaps.
-Active candidate: [CCR indirect memory](h8-ccr-indirect-memory.md), with final-head CI/merge pending.
+Merged [CCR indirect memory](h8-ccr-indirect-memory.md); no active engine candidate.
 
-Verified engine baseline: merged [PR #96](https://github.com/RobCZart82/yaman1x/pull/96),
-`8b1c37eb569202e394ff1caeb3f64618bae78a69`. See [current status](STATUS.md)
+Verified engine baseline: merged [PR #98](https://github.com/RobCZart82/yaman1x/pull/98),
+`1c7ba628aceb29fd4c057db73fe31b2be4841558`. See [current status](STATUS.md)
 for final-head CI and local environment limits. The [CPU subset](h8-first-instructions.md)
-already builds and executes 512 upstream-derived full/partial handlers (508 unchanged,4 adapted), including memory,
+already builds and executes 518 upstream-derived full/partial handlers (514 unchanged,4 adapted), including memory,
 arithmetic/logic, single-bit shifts/rotates, byte bit operations and normal
 [stack/control flow](h8-stack-control-flow.md). Fixed-profile IRQ/NMI/TRAPA and synthetic CPU/SCI exchange/error handling are implemented;
 full AN1x integration and physical timing are not established. H8S two-bit shifts remain
@@ -19,7 +19,7 @@ outside this H8H profile.
 
 Next M0 work, in order:
 
-1. Close remaining H8H opcodes/addressing (19 encoding rows remain after displacement32 byte/word moves);
+1. Close remaining H8H opcodes/addressing (17 encoding rows remain after CCR indirect memory; next: long displacement32);
    retain the reviewed [word-multiply widening and UBSan control](h8-word-multiply.md);
    retain fixed-profile IRQ/TRAPA limitations and pinned reference comparisons.
 2. Connect CPU, address map/MMIO and existing peripherals to a common scheduler;
