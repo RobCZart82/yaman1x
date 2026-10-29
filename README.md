@@ -30,11 +30,15 @@ See [engine architecture decision](docs/ADR-0001-engine-boundary.md) and
 
 ## Current state
 
+Active candidate: [autoindex CCR memory](docs/h8-ccr-autoindex-memory.md),69 CTest/536 methods
+(532 unchanged/four prior adaptations),255 selected/9 missing/135 excluded rows.
+Final-head CI/review and merge pending; merged evidence below remains #102.
+
 Verified engine baseline: [#102](https://github.com/RobCZart82/yaman1x/pull/102).
 68 CTest groups,87 Python cases;532 upstream-derived full/partial handlers
 (528 unchanged,four reviewed earlier arithmetic adaptations),253 selected/
 11 missing/135 excluded encoding rows. All five final-head checks passed;
-automated code review completed without findings. No active engine candidate.
+automated code review completed without findings. The prior series is closed;the new candidate is above.
 [Absolute CCR evidence](docs/h8-ccr-absolute-memory.md).
 Full CPU,firmware boot and audio remain unaccepted. See [current status](docs/STATUS.md).
 

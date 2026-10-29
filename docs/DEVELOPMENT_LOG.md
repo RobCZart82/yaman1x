@@ -3,6 +3,22 @@
 Frissítve: 2026-10-29. Időzóna: Europe/Budapest.
 Ellenőrzött motoralap: `2dab39c1598533fc0a84da9017b3f2975854ff96` (#102).
 
+## Aktív fejlesztési lépés — CCR automatikus mutatófrissítés, 2026-10-29
+
+LDC.W @ERn+,CCR és STC.W CCR,@-ERn:négy változatlan eredeti kezelő.
+Jelölt:69 CTest/87 Python,536 kezelő (532 változatlan,4 korábbi adaptáció),
+255 kiválasztott/9 hiányzó/135 kizárt sor. Beolvadt motoralap még #102.
+524288 memóriaszó,24576 határeset,201 szétvágás,512 IRQ/NMI-maszk,
+322 megszakításos szétvágás és16 memóriahiba célzott ellenőrzése PASS.
+A host-visszahívás a memóriaelérés előtt megfigyeli a módosított mutatót és régi CCR-t.
+Eredeti referencia200000 szelet,nulla eltérés;célzott ASan/UBSan PASS. A hibás négybájtos növelés kontrollját seed2/slice3-nál felismerte a referencia.
+Teljes helyi Release69/69 CTest és87 Python PASS. Végső CI/review és beolvasztás még nyitott.
+[Hatókör és bizonyíték](h8-ccr-autoindex-memory.md).
+A #103 dokumentációs lezárás beolvadt `b9325fed444fdd16ea69f83e24612638a6120bcb`:
+2026-10-29 18:10:15 Europe/Budapest (17:10:15 UTC),négy sikeres CI-feladat,
+automatikus review a tesztelt66ddc41 commiton hibamegállapítás nélkül befejeződött.
+Soros fejlesztés;új lépcső csak az aktuális PR beolvadása után.
+
 ## Aktuális lezárás — #102, 2026-10-29
 
 A [#102 PR](https://github.com/RobCZart82/yaman1x/pull/102) beolvadt:

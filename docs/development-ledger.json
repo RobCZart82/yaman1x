@@ -1233,8 +1233,28 @@
         40912848153
       ],
       "automated_review_at_merge": "completed_no_findings"
+    },
+    {
+      "pr": 103,
+      "title": "Close absolute CCR evidence and advance merged engine baseline",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/103",
+      "kind": "documentation",
+      "status": "merged",
+      "merge_commit": "b9325fed444fdd16ea69f83e24612638a6120bcb",
+      "reviewed_head": "66ddc41bc9abfb73bd1b4e81f46f38d86daea15e",
+      "merged_at_utc": "2026-10-29T17:10:15Z",
+      "ci_runs": [
+        40915641154,
+        40915641135
+      ],
+      "automated_review_at_merge": "completed_no_findings"
     }
   ],
-  "active_change": null,
+  "active_change": {
+    "branch": "feat/h8-ccr-autoindex",
+    "scope": "LDC postincrement/STC predecrement CCR word memory",
+    "status": "local_validation_passed",
+    "ci": "not_run"
+  },
   "pending_changes": []
 }
