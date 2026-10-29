@@ -1,24 +1,23 @@
 # Development status
 
-Recorded: 2026-10-29. Product: YamAN1x. Repository: `yaman1x`. First public research snapshot: 2026-10-26.
+Recorded: 2026-10-30. Product: YamAN1x. Repository: `yaman1x`. First public research snapshot: 2026-10-26.
 
 The repository contains a ROM-free C++/Python development foundation.
 No VST3, AU, GUI or AN1x audio output is available yet.
 
-Active candidate: [timed SCI on the common map](an1x-sci-bus.md),76 CTest/87 Python.
-CPU/peripheral bodies unchanged;synthetic CPU-configured TX/RX,SLEEP/IRQ/NVRAM composition.
-Final-head CI/review pending;merged evidence below remains #116.
-
-Verified engine baseline: [#116](https://github.com/RobCZart82/yaman1x/pull/116),
-`7fe1d4bcb602ce96d40f34ec4ccd888430bf70e0`;tested head `1982509b2c4632b7e9198d3ae23656f59e2c2a55`.
-75 CTest groups/87 Python cases;CPU handlers unchanged:562 upstream-derived methods
+Verified engine baseline: [#118](https://github.com/RobCZart82/yaman1x/pull/118),
+`6f9e8b8f66d962e968af8d6f9cd4135d2c4d1ab3`;tested head `85baf0a93896468e35f019845d9f9116763ecb29`.
+76 CTest groups/87 Python cases;CPU handlers unchanged:562 upstream-derived methods
 (558 unchanged,four prior adaptations);264 selected/0 missing/135 excluded encoding rows.
-[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40963649310), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40963649254), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40963649115):all five jobs passed.
+[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40973239180), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40973239137), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40973239160):all five jobs passed.
 No recorded automated review result at inspection;no successful automated review claimed.
-The prior memory-map series is closed;the SCI candidate is above. [Bounded AN1x memory map](an1x-memory-map.md) routes ROM/NVRAM/internal RAM.
-Synthetic CPU reset/transfers and isolation verified;MMIO holes/ROM writes fail closed.
-Next:timed SCI MMIO/IRQ composition on this map,reset/isolation,RX/TX and SLEEP wake.
-Full machine,GPIO/LCD/DSP/MEG,physical timing,firmware/MIDI/PKS/audio and REAPER acceptance
+No active engine candidate. [Timed SCI on the common map](an1x-sci-bus.md) connects owned ROM/RAM,
+IRQ and RX-event timeline. Synthetic CPU-configured TX/RX,SLEEP/IRQ/NVRAM composition,
+512+512 frames,3204 partitions,instance isolation and fail-stop controls verified.
+Next:check pinned GPIO/IRQ-control MMIO and fixed-profile gaps,then integrate one
+bounded register group with independent CPU/access/ordering tests. Complete machine reset
+still needs every owner;fresh-instance NVRAM persistence alone is not hardware reset.
+Full machine,LCD/DSP/MEG,physical timing,firmware/MIDI/PKS/audio and REAPER acceptance
 remain open. Full handler selection is not full CPU/machine acceptance.
 
 M0 partial;M1 prepared but unaccepted. One PR at a time.
