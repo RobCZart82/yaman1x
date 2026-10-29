@@ -18,7 +18,7 @@ Merged suite: **63 CTest groups /87 Python cases;500 upstream-derived methods
 long absolute/signed16 displacement moves, signed/unsigned byte/word multiply,
 unsigned byte/word divide,DAA/DAS and signed-byte divide are merged.
 Signed-word extreme quotient/packing remains open; [scope](h8-signed-byte-divide.md).
-No active engine candidate. Local Windows:62 runnable CTest/86 Python PASS;
+Signed word divide is a separate candidate:64 CTest/87 Python,502 methods (498 unchanged,4 prior adaptations),241 selected/23 missing rows;CI pending. See [extreme-case scope](h8-signed-word-divide.md). Local Windows:62 runnable CTest/86 Python PASS;
 one known symlink privilege case excluded.
 
 M0 remains partial; M1 is prepared but unaccepted. Missing instructions and

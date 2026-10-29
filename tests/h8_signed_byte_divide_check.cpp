@@ -23,6 +23,6 @@ int main(){
  for(unsigned s=0;s<16;++s)for(unsigned t=0;t<16;++t)for(unsigned n:{0u,1u,20u,255u,32767u,32768u,65516u,65535u})for(unsigned d:{0u,1u,127u,128u,253u,255u})for(unsigned f:{0u,0x55u,0xffu})one(s,t,n,d,f);
  uint32_t random=123;for(unsigned i=0;i<20000;++i){random=random*1664525u+1013904223u;unsigned n=random>>16;random=random*1664525u+1013904223u;one(i%16,(i/16)%16,n,random>>24,random&255);}
  for(unsigned cut=0;cut<=240;++cut){Host a,b;const std::vector<uint16_t> p{0x7900,0x8000,0xf1ff,0x01d0,0x5110,0xf100,0x01d0,0x5110,0xf101,0x01d0,0x5110,0x01d0,0x5100,0x40fe};a.program(p);b.program(p);Cpu x(a),y(b);x.run(0,240,1000);y.run(0,int(cut),1000);y.run(cut,int(240-cut),1000);check(x.snapshot()==y.snapshot()&&a.trace==b.trace,"241 split snapshots/instruction-event histories");}
- for(unsigned ext=0;ext<65536;++ext){Host h;h.program({0x01d0,uint16_t(ext)});Cpu c(h);bool rejected=false;try{c.run(0,9,100);}catch(const std::runtime_error&){rejected=true;}check(rejected!=((ext&0xff00)==0x5100)&&c.failed()==rejected,"65536 guarded prefix continuations");}
+ for(unsigned ext=0;ext<65536;++ext){Host h;h.program({0x01d0,uint16_t(ext)});Cpu c(h);bool rejected=false;try{c.run(0,9,100);}catch(const std::runtime_error&){rejected=true;}check(rejected!=((ext&0xff00)==0x5100||(ext&0xff08)==0x5300)&&c.failed()==rejected,"65536 guarded prefix continuations");}
  std::printf("Signed byte divide:393216 numerator sweeps,2048 divisor boundaries,36864 alias/CCR cases,20000 random,241 splits,65536 prefix guards:%u failures\n",failures);return failures?1:0;
 }

@@ -1082,6 +1082,12 @@
       ]
     }
   ],
-  "active_change": null,
+  "active_change": {
+    "id": "H8-SIGNED-WORD-DIVIDE-2026-10-29",
+    "branch": "feat/h8-signed-word-divide",
+    "status": "in_progress",
+    "summary": "Original DIVXS.W with32-bit-int guard and explicit extreme-quotient source compatibility",
+    "validation": "63 local CTest/86 Python PASS;524288 sweeps,21504 aliases/CCR,1024 extremes,321 splits,200000 reference slices zero differences;reversed N detected;remote CI pending"
+  },
   "pending_changes": []
 }
