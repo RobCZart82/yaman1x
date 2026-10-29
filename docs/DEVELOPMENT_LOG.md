@@ -1,9 +1,27 @@
 # YamAN1x fejlesztési napló
 
-Frissítve: 2026-10-28. Időzóna: Europe/Budapest.
-Ellenőrzött motoralap: `8993a6024b0cedfe0d3f5c48a2819009c98643f1` (#77).
+Frissítve: 2026-10-29. Időzóna: Europe/Budapest.
+Ellenőrzött motoralap: `d4ef0e45bc416f06216d43559e1f73df1d39caa8` (#78).
 
-## Aktuális lezárás — #77, 2026-10-29
+## Aktuális lezárás — #78, 2026-10-29
+
+Ellenőrzött motoralap: [#78](https://github.com/RobCZart82/yaman1x/pull/78),
+merge `d4ef0e45bc416f06216d43559e1f73df1d39caa8`, végső tesztelt head
+`ef6adefadb5b390f6822ae34c4db41edab5b1348`. Beolvadt: 2026-10-29 06:26:01 Europe/Budapest
+(2026-10-29 05:26:01 UTC). [Linux/macOS/Windows PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40822703637),
+[MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40822703598),
+[MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40822703615).
+
+Beolvadt csomag: **56 CTest-csoport, 87 Python-eset; 478 eredeti kezelő;
+231 kiválasztott / 33 hiányzó / 135 kizárt profilú kódolássor**. Ez nem CPU-százalék.
+Hat előjeles 16 bites eltolásos memóriautasítás-csoport készült el. Független
+referencia: 200000 szelet, nulla eltérés; a szándékos előjelhiba felismerve.
+Helyi Windows: 55 futtatható CTest és 86 Python PASS; egy ismert symlink-jogosultsági
+eset kizárva. A CI a teljes csomagot ellenőrizte. M0 részleges; teljes AN1x-gép,
+firmware-es MIDI, hang és plugin elfogadása nyitott. Nincs aktív motorjelölt.
+A korábbi jelölt/CI-pending bejegyzések történetiek; lezárásuk itt és a JSON-naplóban szerepel.
+
+## Történeti lezárás — #77, 2026-10-29
 
 Ellenőrzött motoralap: [#77](https://github.com/RobCZart82/yaman1x/pull/77),
 merge `8993a6024b0cedfe0d3f5c48a2819009c98643f1`, végső tesztelt head

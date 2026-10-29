@@ -2,10 +2,28 @@
 
 Rögzítve: 2026-10-27. Kiindulópont: a #14 PR-ig beolvadt kutatási eredmények.
 Ez végrehajtási terv; az alábbi, még nyitott mérföldkövek nem kész funkciók.
-Állapotellenőrzés: 2026-10-28, motoralap: #77 (`8993a6024b0cedfe0d3f5c48a2819009c98643f1`).
+Állapotellenőrzés: 2026-10-29, motoralap: #78 (`d4ef0e45bc416f06216d43559e1f73df1d39caa8`).
 A működő H8H-részhalmaz nem teljes CPU- vagy firmware-elfogadás.
 
-## Aktuális lezárás — #77, 2026-10-29
+## Aktuális lezárás — #78, 2026-10-29
+
+Ellenőrzött motoralap: [#78](https://github.com/RobCZart82/yaman1x/pull/78),
+merge `d4ef0e45bc416f06216d43559e1f73df1d39caa8`, végső tesztelt head
+`ef6adefadb5b390f6822ae34c4db41edab5b1348`. Beolvadt: 2026-10-29 06:26:01 Europe/Budapest
+(2026-10-29 05:26:01 UTC). [Linux/macOS/Windows PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40822703637),
+[MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40822703598),
+[MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40822703615).
+
+Beolvadt csomag: **56 CTest-csoport, 87 Python-eset; 478 eredeti kezelő;
+231 kiválasztott / 33 hiányzó / 135 kizárt profilú kódolássor**. Ez nem CPU-százalék.
+Hat előjeles 16 bites eltolásos memóriautasítás-csoport készült el. Független
+referencia: 200000 szelet, nulla eltérés; a szándékos előjelhiba felismerve.
+Helyi Windows: 55 futtatható CTest és 86 Python PASS; egy ismert symlink-jogosultsági
+eset kizárva. A CI a teljes csomagot ellenőrizte. M0 részleges; teljes AN1x-gép,
+firmware-es MIDI, hang és plugin elfogadása nyitott. Nincs aktív motorjelölt.
+A korábbi jelölt/CI-pending bejegyzések történetiek; lezárásuk itt és a JSON-naplóban szerepel.
+
+## Történeti lezárás — #77, 2026-10-29
 
 Ellenőrzött motoralap: [#77](https://github.com/RobCZart82/yaman1x/pull/77),
 merge `8993a6024b0cedfe0d3f5c48a2819009c98643f1`, végső tesztelt head
@@ -41,14 +59,14 @@ vagy REAPER-plugin. A következő motorfeladatok: hiányzó H8H-utasítások/cí
 leltára, IRQ/TRAPA-belépés és szűrők, majd közös CPU/periféria-ütemezés és gépintegráció.
 
 A korábbi „aktív”, „jelölt”, „CI pending” és „következő” bejegyzések az akkori
-állapotot őrzik; a jelenlegi készültségre a fenti #77 lezárás és az aktuális mérföldkő-tábla
+állapotot őrzik; a jelenlegi készültségre a fenti #78 lezárás és az aktuális mérföldkő-tábla
 irányadó. A dokumentáció mostani javítása nem új motorfejlesztés vagy elfogadás.
 
-## Aktuális mérföldkő-állapot — 2026-10-28
+## Aktuális mérföldkő-állapot — 2026-10-29
 
 | Mérföldkő | Aktuális állapot | Következő elfogadási feltétel |
 |---|---|---|
-| M0 | **Részben teljesült.** Architektúra és forrás-/licencnyilvántartás; tesztelt GPIO-, IRQ- és SCI-komponensek; működő önálló H8H-részhalmaz 466 eredeti kezelővel, rögzített SYSCR-es IRQ/NMI/TRAPA-belépéssel, buszidőbélyeggel és szintetikus CPU–SCI RX/TX/hibakezeléssel. | 39 hiányzó H8H-kódolássor lezárása; a tesztelt CPU/periféria-ütemezés teljes AN1x címtér/MMIO-gépbe integrálása és gépizoláció. A részhalmaz már fordul és fut; a teljes CPU és a terjesztési licenc lezárása nyitott. |
+| M0 | **Részben teljesült.** Architektúra és forrás-/licencnyilvántartás; tesztelt GPIO-, IRQ- és SCI-komponensek; működő önálló H8H-részhalmaz 478 eredeti kezelővel, rögzített SYSCR-es IRQ/NMI/TRAPA-belépéssel, buszidőbélyeggel és szintetikus CPU–SCI RX/TX/hibakezeléssel. | 33 hiányzó H8H-kódolássor lezárása; a tesztelt CPU/periféria-ütemezés teljes AN1x címtér/MMIO-gépbe integrálása és gépizoláció. A részhalmaz már fordul és fut; a teljes CPU és a terjesztési licenc lezárása nyitott. |
 | M1 | **Előkészítve, nem teljesült.** A külön macOS MAME-build és a párosított helyi futtató rendelkezésre áll. | Friss Mac-firmware-próba: SCI0 tényleges bájtfogadás és note-on/note-off feldolgozás bizonyítása; PKS-kézfogás feltárása. |
 | M2–M3 | **Kutatási feladatok nyitva.** Nincs igazolt referenciahang. | AN1x órajel, táblacímzés, EG és soros hangút bizonyítása, majd megismételhető offline hang. |
 | M4–M6 | **Tervezett.** Nincs elkészült beágyazható hangszer vagy REAPER-elfogadás. | Validált offline referencia után audio-blokkmotor, VST3 és helyi REAPER-próba. |

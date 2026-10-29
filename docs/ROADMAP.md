@@ -6,10 +6,10 @@ audible firmware-driven VST3 voice in REAPER:
 
 Changes/fixes are recorded in the [development ledger](DEVELOPMENT_LOG.md).
 The [repository audit](REPOSITORY_AUDIT_2026-10-27.md) identifies current gaps.
-Verified engine baseline: merged [PR #77](https://github.com/RobCZart82/yaman1x/pull/77),
-`8993a6024b0cedfe0d3f5c48a2819009c98643f1`. See [current status](STATUS.md)
+Verified engine baseline: merged [PR #78](https://github.com/RobCZart82/yaman1x/pull/78),
+`d4ef0e45bc416f06216d43559e1f73df1d39caa8`. See [current status](STATUS.md)
 for final-head CI and local environment limits. The [CPU subset](h8-first-instructions.md)
-already builds and executes 466 original full/partial handlers, including memory,
+already builds and executes 478 original full/partial handlers, including memory,
 arithmetic/logic, single-bit shifts/rotates, byte bit operations and normal
 [stack/control flow](h8-stack-control-flow.md). Fixed-profile IRQ/NMI/TRAPA and synthetic CPU/SCI exchange/error handling are implemented;
 full AN1x integration and physical timing are not established. H8S two-bit shifts remain
@@ -17,7 +17,7 @@ outside this H8H profile.
 
 Next M0 work, in order:
 
-1. Close remaining H8H opcodes/addressing (including the signed16 displacement candidate);
+1. Close remaining H8H opcodes/addressing (33 encoding rows remain after signed16 displacement);
    retain fixed-profile IRQ/TRAPA limitations and pinned reference comparisons.
 2. Connect CPU, address map/MMIO and existing peripherals to a common scheduler;
    verify event ordering, isolation, reset and partition-independent execution.
