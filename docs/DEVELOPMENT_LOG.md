@@ -3,6 +3,24 @@
 Frissítve: 2026-10-29. Időzóna: Europe/Budapest.
 Ellenőrzött motoralap: `7fe1d4bcb602ce96d40f34ec4ccd888430bf70e0` (#116).
 
+## Aktív fejlesztési lépés — időzített SCI a közös címtérben, 2026-10-30
+
+Új projekt-összetétel:ROM/RAM-térkép,IRQ,two-channel SCI és meglévő eseményütemező.
+Jelölt:76 CTest/87 Python;CPU/periféria-kezelők változatlanok.
+512 TX és512 RX keret,mindkét csatorna/minden bájt;3204 szétvágás célzott tesztje PASS.
+CPU ROM-ból konfigurálja a vevőt,SLEEP-ből RXI ébreszti,ISR NVRAM-ba ír,RTE belsőRAM-vermet
+állít vissza. Kimeneti bitek/időpontok,izoláció,NVRAM-visszatöltés,eseménykorlát,
+reentry,hibás bemenet és fail-stop ellenőrizve. A reentry-tesztet valódi adásindításig
+kellett futtatni;a puszta TE-bekapcsolás nem adott callbacket.
+[Hatókör és korlátok](an1x-sci-bus.md). Helyi teljes csomag:76 CTest és87 Python PASS;célzott ASan/UBSan PASS.
+Határidőket elrejtő próbahiba:2738 elvárt kudarc,változatlan követett kód.
+507 fájl forrásauditja és229 fájl licencjelölési lefedettsége PASS;ez nem jogi engedély.
+Végső GitHub CI/review még nyitott.
+Ez nem firmware MIDI-elfogadás;GPIO/LCD/DSP/MEG és teljes hardverreset még nincs bekötve.
+A #117 dokumentációs lezárás beolvadt `95523c2dc781030d9a1967914ebeb69d02e77a16`:
+2026-10-29 23:45:47 Europe/Budapest (22:45:47 UTC),négy sikeres CI-feladat.
+Soros fejlesztés:új lépcső csak az aktuális PR beolvadása után.
+
 ## Aktuális lezárás — #116, 2026-10-29
 
 A [#116 PR](https://github.com/RobCZart82/yaman1x/pull/116) beolvadt:
