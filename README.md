@@ -30,17 +30,13 @@ See [engine architecture decision](docs/ADR-0001-engine-boundary.md) and
 
 ## Current state
 
-Active candidate: [CCR indirect memory](docs/h8-ccr-indirect-memory.md), two additional
-encoding rows and six unchanged generated methods. Candidate:66 CTest/518 methods;
-merged evidence below remains #96 until final-head CI and merge.
-
-Verified engine baseline: [#96](https://github.com/RobCZart82/yaman1x/pull/96).
-65 CTest groups, 87 Python cases; 512 upstream-derived full/partial handlers
-(508 unchanged, 4 with reviewed unsigned arithmetic adaptations) and
-245 selected / 19 missing / 135 excluded encoding rows. All five final-head
-checks passed. No open engine candidate from the completed series; full CPU,
-firmware boot and audio remain unaccepted. See [current status](docs/STATUS.md).
-
+Verified engine baseline: [#98](https://github.com/RobCZart82/yaman1x/pull/98).
+66 CTest groups, 87 Python cases; 518 upstream-derived full/partial handlers
+(514 unchanged, 4 with reviewed unsigned arithmetic adaptations) and
+247 selected / 17 missing / 135 excluded encoding rows. All five final-head
+checks passed. [CCR indirect memory evidence](docs/h8-ccr-indirect-memory.md).
+No open engine candidate; full CPU, firmware boot and audio remain unaccepted.
+See [current status](docs/STATUS.md).
 
 See the [development plan through the first sound in REAPER (Hungarian)](docs/FIRST_REAPER_SOUND_PLAN.md)
 for the planned firmware, audio-engine and VST3 milestones and acceptance criteria.

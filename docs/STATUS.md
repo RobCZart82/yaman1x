@@ -5,32 +5,24 @@ Recorded: 2026-10-29. Product: YamAN1x. Repository: `yaman1x`. First public rese
 The repository contains a ROM-free C++/Python development foundation.
 No VST3, AU, GUI or AN1x audio output is available yet.
 
-Verified engine baseline: merged [PR #96](https://github.com/RobCZart82/yaman1x/pull/96),
-`8b1c37eb569202e394ff1caeb3f64618bae78a69`; final head `fd5d1293a21cf63c4b39293b30ca7e650702efe4`.
-[Platform CI](https://github.com/RobCZart82/yaman1x/actions/runs/40859583149),
-[MSan](https://github.com/RobCZart82/yaman1x/actions/runs/40859583161),
-[MAME](https://github.com/RobCZart82/yaman1x/actions/runs/40859583141): all five jobs successful.
-Linux UBSan passed displacement32/prior arithmetic plus original-overflow control.
-Automated code review could not complete because of the service code-review usage limit;
+Verified engine baseline: merged [PR #98](https://github.com/RobCZart82/yaman1x/pull/98),
+`1c7ba628aceb29fd4c057db73fe31b2be4841558`; final head `a3c033256ec247555b44b0d820bb228dcaf9bc39`.
+[Platform CI and Linux UBSan](https://github.com/RobCZart82/yaman1x/actions/runs/40870231488),
+[MSan](https://github.com/RobCZart82/yaman1x/actions/runs/40870229509),
+[MAME](https://github.com/RobCZart82/yaman1x/actions/runs/40870229586): all five jobs successful.
+Automated review was unavailable due to the service code-review usage limit;
 no successful automated review is claimed.
-Merged suite: **65 CTest groups /87 Python cases;512 upstream-derived methods
-(508 unchanged,4 prior adaptations);245 selected /19 missing /135 excluded encoding rows**
-(not a CPU percentage). Fixed-profile IRQ/NMI/TRAPA,synthetic CPU/SCI exchange/errors,
-long absolute/signed16 and byte/word displacement32 moves,signed/unsigned byte/word
-multiply/divide,and DAA/DAS are merged. Long displacement32 remains open.
-[Address/prefix evidence](h8-displacement32-memory.md). No active engine candidate.
-Local Windows:64 runnable CTest/86 Python PASS;one known symlink privilege case excluded.
+Merged suite: **66 CTest groups /87 Python cases;518 upstream-derived methods
+(514 unchanged,4 prior adaptations);247 selected /17 missing /135 excluded encoding rows**
+(not a CPU percentage). [CCR indirect scope and tests](h8-ccr-indirect-memory.md).
+No active engine candidate. Previous local Windows evidence:65 runnable CTest/86 Python;
+one known symlink privilege case excluded, not counted as passed.
 
-M0 remains partial; M1 is prepared but unaccepted. Missing instructions and
-address modes, full AN1x memory/MMIO integration, physical timing verification,
-firmware/MIDI/audio and REAPER acceptance remain open. See the
-[first-sound plan](FIRST_REAPER_SOUND_PLAN.md) and [development log](DEVELOPMENT_LOG.md).
-
-## Active candidate — CCR indirect memory
-
-Two encoding rows/six unchanged methods added; candidate66 CTest/87 Python,
-518 methods (514 unchanged/four earlier adaptations),247 selected/17 missing/135 excluded.
-Final-head CI/merge not yet claimed. See [scope and tests](h8-ccr-indirect-memory.md).
+M0 remains partial; M1 is prepared but unaccepted. Long displacement32, remaining
+CCR address modes and other missing instructions, full AN1x memory/MMIO integration,
+physical timing, firmware/MIDI/audio and REAPER acceptance remain open.
+See the [first-sound plan](FIRST_REAPER_SOUND_PLAN.md) and [development log](DEVELOPMENT_LOG.md).
+Development proceeds one PR at a time; the next increment begins after merge.
 
 ## Historical component evidence — current state is above
 

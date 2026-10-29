@@ -3,7 +3,7 @@
   "recorded_date": "2026-10-29",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "8b1c37eb569202e394ff1caeb3f64618bae78a69",
+  "baseline_commit": "1c7ba628aceb29fd4c057db73fe31b2be4841558",
   "entries": [
     {
       "pr": 6,
@@ -1155,13 +1155,24 @@
         40861049596
       ],
       "automated_review_at_merge": "unavailable_code_review_usage_limit"
+    },
+    {
+      "pr": 98,
+      "title": "Execute H8H CCR indirect memory with IRQ boundary controls",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/98",
+      "kind": "development",
+      "status": "merged",
+      "merge_commit": "1c7ba628aceb29fd4c057db73fe31b2be4841558",
+      "reviewed_head": "a3c033256ec247555b44b0d820bb228dcaf9bc39",
+      "merged_at_utc": "2026-10-29T12:36:16Z",
+      "ci_runs": [
+        40870231488,
+        40870229509,
+        40870229586
+      ],
+      "automated_review_at_merge": "unavailable_code_review_usage_limit"
     }
   ],
-  "active_change": {
-    "branch": "feat/h8-ccr-indirect",
-    "scope": "LDC/STC CCR indirect word memory",
-    "status": "local_validation_passed",
-    "ci": "not_run"
-  },
+  "active_change": null,
   "pending_changes": []
 }
