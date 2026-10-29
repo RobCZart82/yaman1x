@@ -1,6 +1,6 @@
 # H8H long displacement32 memory
 
-Recorded: 2026-10-29. Merged engine baseline: #98; this increment is a candidate.
+Recorded: 2026-10-29. Merged #100 as `1de8971b8fdd7694a8c3051ae86611a9ff6cd3cd`; final head `ba6db1c61a3ba9d696f8affee1410e5969c0aa9d`.
 
 ## Scope and provenance
 
@@ -53,8 +53,7 @@ bodies is detected at seed4/slice4 (expected exit1); original reference unchange
 ## Validation and remaining limits
 
 Release67/67 CTest and87 Python cases PASS. Targeted independent checks and
-ASan/UBSan PASS. Final-head CI remains pending and must succeed before merge. Linux CI also
-runs the new target under UBSan. No successful automated review is claimed until
-current evidence exists. Remaining CCR addressing, other missing H8H instructions,
+ASan/UBSan PASS. All five final-head CI jobs passed: [platform/UBSan](https://github.com/RobCZart82/yaman1x/actions/runs/40906424971), [MSan](https://github.com/RobCZart82/yaman1x/actions/runs/40906424908), [MAME](https://github.com/RobCZart82/yaman1x/actions/runs/40906424743). Linux CI also
+runs the new target under UBSan. Automated review completed on the final head without findings; no unresolved threads. Remaining CCR addressing, other missing H8H instructions,
 complete machine/MMIO integration, physical timing, firmware/MIDI/audio and
 plugin/REAPER acceptance remain open. M0 partial;M1 unaccepted.
