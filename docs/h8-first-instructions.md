@@ -5,12 +5,12 @@ extension has its own [contract](h8-memory-branches.md); see [current status](ST
 for the latest merged engine evidence. M0 remains partial.
 
 `H8FirstInstructions<Host>` is an intentionally limited advanced-H8H execution
-profile. The initial eight methods have expanded to 532 upstream-derived full/partial methods:
+profile. The initial eight methods have expanded to 536 upstream-derived full/partial methods:
 reset, NOP, immediate byte/word/long moves, all rel8 conditions, prefix dispatch
 indirect byte/word/long loads/stores, selected ADD/SUB/CMP and carry-input forms,
-logic, LDC immediate CCR and single-bit shifts/rotates. The selection now includes base-H8 and H8H operations. 528 bodies are unchanged except class qualifiers. Two MULXU.W bodies have reviewed unsigned widening; two DIVXU.W bodies
+logic, LDC immediate CCR and single-bit shifts/rotates. The selection now includes base-H8 and H8H operations. 532 bodies are unchanged except class qualifiers. Two MULXU.W bodies have reviewed unsigned widening; two DIVXU.W bodies
 use explicitly unsigned quotient/remainder locals. See [multiply](h8-word-multiply.md)
-and [divide](h8-word-divide.md) contracts;528 bodies remain unchanged.
+and [divide](h8-word-divide.md) contracts;532 bodies remain unchanged.
 
 The profile owns its 16 register halves, CCR/EXR, PC/PPC/NPC, IR/PIR, temporary
 registers, instruction/substate and cycle debt per instance. IR has four words
@@ -130,3 +130,5 @@ Merged displacement32 byte/word: [address wrap,alias and prefix controls](h8-dis
 Merged #100: [long displacement32 memory](h8-long-displacement32-memory.md), five-word IR storage; all five final-head CI jobs and automated review completed successfully.
 
 Merged #102: [absolute CCR memory](h8-ccr-absolute-memory.md); all five final-head CI jobs and automated review completed successfully.
+
+Current candidate: [autoindex CCR memory](h8-ccr-autoindex-memory.md);own final CI/review and merge pending.
