@@ -3,7 +3,7 @@
   "recorded_date": "2026-10-29",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "442949856a92392986f3bbc5927f36b7884a505b",
+  "baseline_commit": "8b1c37eb569202e394ff1caeb3f64618bae78a69",
   "entries": [
     {
       "pr": 6,
@@ -1110,14 +1110,38 @@
         40850898831
       ],
       "automated_review_at_merge": "running"
+    },
+    {
+      "pr": 95,
+      "title": "Close signed word divide evidence and update development baseline",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/95",
+      "kind": "documentation",
+      "status": "merged",
+      "merge_commit": "2eac2a99db996209590deb33e2d6e061df877cc9",
+      "reviewed_head": "a6806e1e49d5b922078fcaabb96206b5c1b1133c",
+      "merged_at_utc": "2026-10-29T09:56:58Z",
+      "ci_runs": [
+        40852772219,
+        40852772221
+      ]
+    },
+    {
+      "pr": 96,
+      "title": "Execute H8H displacement32 byte and word moves with guarded continuation",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/96",
+      "kind": "development",
+      "status": "merged",
+      "merge_commit": "8b1c37eb569202e394ff1caeb3f64618bae78a69",
+      "reviewed_head": "fd5d1293a21cf63c4b39293b30ca7e650702efe4",
+      "merged_at_utc": "2026-10-29T10:49:02Z",
+      "ci_runs": [
+        40859583149,
+        40859583161,
+        40859583141
+      ],
+      "automated_review_at_merge": "unavailable_code_review_usage_limit"
     }
   ],
-  "active_change": {
-    "id": "H8-DISPLACEMENT32-BYTE-WORD-2026-10-29",
-    "branch": "feat/h8-displacement32-byte-word",
-    "status": "in_progress",
-    "summary": "Four original byte/word displacement32 move groups and guarded prefix continuation",
-    "validation": "64 local CTest/86 Python PASS;1048576 offset sweeps,55296 boundaries,241 splits,65536 extensions,faults,200000 reference slices zero differences;high-offset mutation detected;remote CI pending"
-  },
+  "active_change": null,
   "pending_changes": []
 }

@@ -116,4 +116,4 @@ Merged signed byte divide: four unchanged prefix/instruction methods; [scope](do
 
 Merged signed word divide: two unchanged handlers; [extreme quotient/source limits](docs/h8-signed-word-divide.md).
 
-Displacement32 byte/word candidate: ten unchanged prefix/instruction methods; [scope](docs/h8-displacement32-memory.md).
+Merged displacement32 byte/word: ten unchanged prefix/instruction methods; [scope](docs/h8-displacement32-memory.md).

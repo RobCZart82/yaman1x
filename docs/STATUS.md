@@ -5,21 +5,21 @@ Recorded: 2026-10-29. Product: YamAN1x. Repository: `yaman1x`. First public rese
 The repository contains a ROM-free C++/Python development foundation.
 No VST3, AU, GUI or AN1x audio output is available yet.
 
-Verified engine baseline: merged [PR #94](https://github.com/RobCZart82/yaman1x/pull/94),
-`442949856a92392986f3bbc5927f36b7884a505b`; final head `9f3cda7fcbe545ee2b0da9cebc23d8dd5ab6b42a`.
-[Platform CI](https://github.com/RobCZart82/yaman1x/actions/runs/40850898827),
-[MSan](https://github.com/RobCZart82/yaman1x/actions/runs/40850898826),
-[MAME](https://github.com/RobCZart82/yaman1x/actions/runs/40850898831): all five jobs successful.
-Linux UBSan passed extreme signed-word divide/prior arithmetic plus original-overflow control.
-Automated code review was still running at merge;no completed review is claimed.
-Merged suite: **64 CTest groups /87 Python cases;502 upstream-derived methods
-(498 unchanged,4 prior adaptations);241 selected /23 missing /135 excluded encoding rows**
+Verified engine baseline: merged [PR #96](https://github.com/RobCZart82/yaman1x/pull/96),
+`8b1c37eb569202e394ff1caeb3f64618bae78a69`; final head `fd5d1293a21cf63c4b39293b30ca7e650702efe4`.
+[Platform CI](https://github.com/RobCZart82/yaman1x/actions/runs/40859583149),
+[MSan](https://github.com/RobCZart82/yaman1x/actions/runs/40859583161),
+[MAME](https://github.com/RobCZart82/yaman1x/actions/runs/40859583141): all five jobs successful.
+Linux UBSan passed displacement32/prior arithmetic plus original-overflow control.
+Automated code review could not complete because of the service code-review usage limit;
+no successful automated review is claimed.
+Merged suite: **65 CTest groups /87 Python cases;512 upstream-derived methods
+(508 unchanged,4 prior adaptations);245 selected /19 missing /135 excluded encoding rows**
 (not a CPU percentage). Fixed-profile IRQ/NMI/TRAPA,synthetic CPU/SCI exchange/errors,
-long absolute/signed16 displacement moves,signed/unsigned byte/word multiply and divide,
-and DAA/DAS are merged. Signed-word extreme-case research is closed at source/profile
-level; hardware behavior remains unverified. [Scope](h8-signed-word-divide.md).
-Displacement32 byte/word moves are a separate candidate:65 CTest/87 Python,512 methods (508 unchanged,4 prior adaptations),245 selected/19 missing rows;CI pending. See [scope](h8-displacement32-memory.md). Local Windows:63 runnable CTest/86 Python PASS;
-one known symlink privilege case excluded.
+long absolute/signed16 and byte/word displacement32 moves,signed/unsigned byte/word
+multiply/divide,and DAA/DAS are merged. Long displacement32 remains open.
+[Address/prefix evidence](h8-displacement32-memory.md). No active engine candidate.
+Local Windows:64 runnable CTest/86 Python PASS;one known symlink privilege case excluded.
 
 M0 remains partial; M1 is prepared but unaccepted. Missing instructions and
 address modes, full AN1x memory/MMIO integration, physical timing verification,
