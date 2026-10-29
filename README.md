@@ -30,16 +30,12 @@ See [engine architecture decision](docs/ADR-0001-engine-boundary.md) and
 
 ## Current state
 
-Active candidate: [absolute CCR memory](docs/h8-ccr-absolute-memory.md),68 CTest/532 methods
-(528 unchanged/four prior adaptations),253 selected/11 missing/135 excluded rows.
-Final-head CI/review and merge pending; merged evidence below remains #100.
-
-Verified engine baseline: [#100](https://github.com/RobCZart82/yaman1x/pull/100).
-67 CTest groups,87 Python cases;524 upstream-derived full/partial handlers
-(520 unchanged,four reviewed earlier arithmetic adaptations),249 selected/
-15 missing/135 excluded encoding rows. All five final-head checks passed;
-automated code review completed without findings. The prior series is closed; the new candidate is above.
-[Long displacement32 evidence](docs/h8-long-displacement32-memory.md).
+Verified engine baseline: [#102](https://github.com/RobCZart82/yaman1x/pull/102).
+68 CTest groups,87 Python cases;532 upstream-derived full/partial handlers
+(528 unchanged,four reviewed earlier arithmetic adaptations),253 selected/
+11 missing/135 excluded encoding rows. All five final-head checks passed;
+automated code review completed without findings. No active engine candidate.
+[Absolute CCR evidence](docs/h8-ccr-absolute-memory.md).
 Full CPU,firmware boot and audio remain unaccepted. See [current status](docs/STATUS.md).
 
 See the [development plan through the first sound in REAPER (Hungarian)](docs/FIRST_REAPER_SOUND_PLAN.md)

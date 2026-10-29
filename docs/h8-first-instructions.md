@@ -129,4 +129,4 @@ Merged displacement32 byte/word: [address wrap,alias and prefix controls](h8-dis
 
 Merged #100: [long displacement32 memory](h8-long-displacement32-memory.md), five-word IR storage; all five final-head CI jobs and automated review completed successfully.
 
-Current candidate: [absolute CCR memory](h8-ccr-absolute-memory.md); own final CI/review and merge pending.
+Merged #102: [absolute CCR memory](h8-ccr-absolute-memory.md); all five final-head CI jobs and automated review completed successfully.

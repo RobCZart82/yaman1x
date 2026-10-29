@@ -1,6 +1,6 @@
 # H8H absolute CCR word memory
 
-Recorded:2026-10-29. Merged engine baseline:#100; current increment is a candidate.
+Recorded:2026-10-29. Merged #102 as `2dab39c1598533fc0a84da9017b3f2975854ff96`;tested head `3c0f7947efc5cc170877fa99479f181d527bd195`.
 
 ## Scope and provenance
 
@@ -54,7 +54,7 @@ in all four LDC bodies mismatches the unchanged original reference at seed3/slic
 
 Local Release68/68 CTest and87 Python PASS;targeted ASan/UBSan PASS.
 Negative-control location is recorded above and in the development log/PR. Linux CI includes this target
-under UBSan. Final-head CI/review and merge remain pending; no completed review
-claimed without current evidence. Remaining CCR postincrement/predecrement and
+under UBSan. All five final-head CI jobs passed: [platform/UBSan](https://github.com/RobCZart82/yaman1x/actions/runs/40912848068), [MSan](https://github.com/RobCZart82/yaman1x/actions/runs/40912848027), [MAME](https://github.com/RobCZart82/yaman1x/actions/runs/40912848153).
+Automated review completed on the final head without findings or unresolved threads. Remaining CCR postincrement/predecrement and
 displacement forms,other missing instructions,complete AN1x machine/MMIO,
 hardware timing,firmware/MIDI/audio and REAPER acceptance remain open.
