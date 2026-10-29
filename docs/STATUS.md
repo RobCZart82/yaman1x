@@ -17,7 +17,7 @@ Merged suite: **60 CTest groups /87 Python cases;490 upstream-derived methods
 (not a CPU percentage). Fixed-profile IRQ/NMI/TRAPA, synthetic CPU/SCI exchange/errors,
 long absolute/signed16 displacement moves, signed/unsigned byte/word multiply and
 unsigned byte divide are merged. Divide zero/truncation/N/Z behavior is source-derived;
-[scope and evidence](h8-byte-divide.md). No active engine candidate.
+[scope and evidence](h8-byte-divide.md). Unsigned word divide is a separate candidate:61 CTest/87 Python,492 methods (488 unchanged,4 adapted),237 selected/27 missing rows; CI pending. See [contract](h8-word-divide.md).
 Local Windows:59 runnable CTest/86 Python PASS; one known symlink privilege case excluded.
 
 M0 remains partial; M1 is prepared but unaccepted. Missing instructions and

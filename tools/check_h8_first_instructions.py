@@ -18,7 +18,7 @@ NAMES = ('divxu_b_r8h_r16l','dispatch_01c0','mulxu_b_r8h_r16l',) + ABSOLUTE_MEMO
 ABSOLUTE32_MEMORY = ('mov_b_abs32_r8l','mov_b_r8l_abs32','mov_w_abs32_r16l','mov_w_r16l_abs32')
 LONG_ABSOLUTE_MEMORY = ('mov_l_abs16_r32l','mov_l_r32l_abs16','mov_l_abs32_r32l','mov_l_r32l_abs32')
 DISPLACEMENT16_MEMORY = ('mov_b_r32d16h_r8l', 'mov_b_r8l_r32d16h', 'mov_w_r32d16h_r16l', 'mov_w_r16l_r32d16h', 'mov_l_r32d16h_r32l', 'mov_l_r32l_r32d16h')
-H8H_NAMES = ('mulxs_b_r8h_r16l','mulxs_w_r16h_r32l','mulxu_w_r16h_r32l',) + DISPLACEMENT16_MEMORY + LONG_ABSOLUTE_MEMORY + ABSOLUTE32_MEMORY + ('state_irq','trapa_imm2','not_w_r16l','not_l_r32l','extu_w_r16l','extu_l_r32l','neg_w_r16l','neg_l_r32l','exts_w_r16l','exts_l_r32l','inc_w_one_r16l','inc_w_two_r16l','inc_l_one_r32l','inc_l_two_r32l','dec_w_one_r16l','dec_w_two_r16l','dec_l_one_r32l','dec_l_two_r32l','adds_l_one_r32l','adds_l_two_r32l','adds_l_four_r32l','subs_l_one_r32l','subs_l_two_r32l','subs_l_four_r32l','mov_l_r32h_r32l','mov_l_imm32_r32l','mov_b_r32ih_r8l','mov_b_r8l_r32ih','mov_w_r32ih_r16l','mov_w_r16l_r32ih','mov_l_r32ih_r32l','mov_l_r32l_r32ih','add_w_imm16_r16l','sub_w_imm16_r16l','cmp_w_imm16_r16l','add_l_imm32_r32l','sub_l_imm32_r32l','cmp_l_imm32_r32l','add_l_r32h_r32l','sub_l_r32h_r32l','cmp_l_r32h_r32l','and_w_imm16_r16l','or_w_imm16_r16l','xor_w_imm16_r16l','and_l_imm32_r32l','or_l_imm32_r32l','xor_l_imm32_r32l','or_w_r16h_r16l','xor_w_r16h_r16l','and_w_r16h_r16l','or_l_r32h_r32l','xor_l_r32h_r32l','and_l_r32h_r32l') + tuple(n+'_'+size+'_'+reg for n in SHIFTS for size,reg in (('w','r16l'),('l','r32l'))) + tuple(n+'_r8h_r32ihh' for n in BIT_REG) + tuple(n+'_imm3_r32ihh' for n in BIT_IMM) + STACK_CONTROL + tuple(n+'_rel16' for n in BRANCHES)
+H8H_NAMES = ('divxu_w_r16h_r32l','mulxs_b_r8h_r16l','mulxs_w_r16h_r32l','mulxu_w_r16h_r32l',) + DISPLACEMENT16_MEMORY + LONG_ABSOLUTE_MEMORY + ABSOLUTE32_MEMORY + ('state_irq','trapa_imm2','not_w_r16l','not_l_r32l','extu_w_r16l','extu_l_r32l','neg_w_r16l','neg_l_r32l','exts_w_r16l','exts_l_r32l','inc_w_one_r16l','inc_w_two_r16l','inc_l_one_r32l','inc_l_two_r32l','dec_w_one_r16l','dec_w_two_r16l','dec_l_one_r32l','dec_l_two_r32l','adds_l_one_r32l','adds_l_two_r32l','adds_l_four_r32l','subs_l_one_r32l','subs_l_two_r32l','subs_l_four_r32l','mov_l_r32h_r32l','mov_l_imm32_r32l','mov_b_r32ih_r8l','mov_b_r8l_r32ih','mov_w_r32ih_r16l','mov_w_r16l_r32ih','mov_l_r32ih_r32l','mov_l_r32l_r32ih','add_w_imm16_r16l','sub_w_imm16_r16l','cmp_w_imm16_r16l','add_l_imm32_r32l','sub_l_imm32_r32l','cmp_l_imm32_r32l','add_l_r32h_r32l','sub_l_r32h_r32l','cmp_l_r32h_r32l','and_w_imm16_r16l','or_w_imm16_r16l','xor_w_imm16_r16l','and_l_imm32_r32l','or_l_imm32_r32l','xor_l_imm32_r32l','or_w_r16h_r16l','xor_w_r16h_r16l','and_w_r16h_r16l','or_l_r32h_r32l','xor_l_r32h_r32l','and_l_r32h_r32l') + tuple(n+'_'+size+'_'+reg for n in SHIFTS for size,reg in (('w','r16l'),('l','r32l'))) + tuple(n+'_r8h_r32ihh' for n in BIT_REG) + tuple(n+'_imm3_r32ihh' for n in BIT_IMM) + STACK_CONTROL + tuple(n+'_rel16' for n in BRANCHES)
 PREFIX = ('// license:BSD-3-Clause\n// copyright-holders:Olivier Galibert\n'
           '// Selected pinned generated h8.hxx methods; only class qualifiers removed.\n'
           '// Included inside H8FirstInstructions. See research/h8-first-instructions-provenance.json.\n')
@@ -47,6 +47,13 @@ def render(raw, names=NAMES, device='h8_device', adapt=True):
             raise ValueError('Expected exact original word multiply expressions')
         bodies = bodies.replace(before, 'u32(u16(r32_r(m_IR[0]))) * r16_r(m_IR[0] >> 4)')
         prefix = prefix.replace('only class qualifiers removed.', 'class qualifiers removed; MULXU.W unsigned widening reviewed.')
+    if adapt and device == 'h8h_device' and 'divxu_w_r16h_r32l' in names:
+        before = 'int q = m_TMP1 / m_TMP2;\n\t\tint r = m_TMP1 % m_TMP2;'
+        after = 'u32 q = m_TMP1 / m_TMP2;\n\t\tu32 r = m_TMP1 % m_TMP2;'
+        if bodies.count(before) != 2:
+            raise ValueError('Expected exact original word divide locals')
+        bodies = bodies.replace(before, after)
+        prefix = prefix.replace('MULXU.W unsigned widening reviewed.', 'MULXU.W widening and DIVXU.W unsigned locals reviewed.')
     return prefix+bodies+'\n'
 
 
