@@ -2,6 +2,104 @@
 // copyright-holders:Olivier Galibert
 // Selected pinned generated h8h.hxx methods; class qualifiers removed; MULXU.W unsigned widening reviewed.
 // Included inside H8FirstInstructions. See research/h8-first-instructions-provenance.json.
+void mulxs_b_r8h_r16l_full()
+{
+	m_NPC = m_PC & 0xffffff;
+	m_PIR = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 1;
+		} else
+			m_inst_substate = 2;
+		return;
+	}
+	m_PC += 2;
+	m_TMP1 = s8(r16_r(m_IR[1])) * s8(r8_r(m_IR[1] >> 4));
+	set_nz16(m_TMP1);
+	r16_w(m_IR[1], m_TMP1);
+	internal(m_has_mac ? 2 : 11);
+	prefetch_done();
+}
+
+void mulxs_b_r8h_r16l_partial()
+{
+switch(m_inst_substate) {
+case 0:
+	m_NPC = m_PC & 0xffffff;
+	[[fallthrough]];
+case 1:;
+	m_PIR = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 1;
+		} else
+			m_inst_substate = 2;
+		return;
+	}
+	[[fallthrough]];
+case 2:;
+	m_PC += 2;
+	m_TMP1 = s8(r16_r(m_IR[1])) * s8(r8_r(m_IR[1] >> 4));
+	set_nz16(m_TMP1);
+	r16_w(m_IR[1], m_TMP1);
+	internal(m_has_mac ? 2 : 11);
+	prefetch_done();
+	break;
+}
+	m_inst_substate = 0;
+}
+
+void mulxs_w_r16h_r32l_full()
+{
+	m_NPC = m_PC & 0xffffff;
+	m_PIR = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 1;
+		} else
+			m_inst_substate = 2;
+		return;
+	}
+	m_PC += 2;
+	m_TMP1 = s16(r32_r(m_IR[1])) * s16(r16_r(m_IR[1] >> 4));
+	set_nz32(m_TMP1);
+	r32_w(m_IR[1], m_TMP1);
+	internal(m_has_mac ? 3 : 19);
+	prefetch_done();
+}
+
+void mulxs_w_r16h_r32l_partial()
+{
+switch(m_inst_substate) {
+case 0:
+	m_NPC = m_PC & 0xffffff;
+	[[fallthrough]];
+case 1:;
+	m_PIR = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 1;
+		} else
+			m_inst_substate = 2;
+		return;
+	}
+	[[fallthrough]];
+case 2:;
+	m_PC += 2;
+	m_TMP1 = s16(r32_r(m_IR[1])) * s16(r16_r(m_IR[1] >> 4));
+	set_nz32(m_TMP1);
+	r32_w(m_IR[1], m_TMP1);
+	internal(m_has_mac ? 3 : 19);
+	prefetch_done();
+	break;
+}
+	m_inst_substate = 0;
+}
+
 void mulxu_w_r16h_r32l_full()
 {
 	m_NPC = m_PC & 0xffffff;

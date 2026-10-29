@@ -16,7 +16,7 @@ Merged suite: **58 CTest groups /87 Python cases;482 upstream-derived methods
 (not a CPU percentage). Fixed-profile IRQ/NMI/TRAPA, synthetic CPU/SCI exchange/errors,
 long absolute/signed16 displacement moves and unsigned byte/word multiply are merged.
 The word-multiply signed-int promotion risk is resolved by reviewed unsigned widening;
-[scope and evidence](h8-word-multiply.md). No active engine candidate.
+[scope and evidence](h8-word-multiply.md). Signed byte/word multiply is a separate candidate:59 CTest/87 Python,488 methods (486 unchanged,2 prior adaptations),235 selected/29 missing rows; remote CI pending. See [contract](h8-signed-multiply.md).
 Local Windows:57 runnable CTest/86 Python PASS; one known symlink privilege case excluded.
 
 M0 remains partial; M1 is prepared but unaccepted. Missing instructions and

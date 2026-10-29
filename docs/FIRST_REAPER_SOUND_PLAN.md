@@ -758,3 +758,15 @@ Helyi57 CTest/86 Python PASS, ismert Windows-symlink eset kizárva. Jelölt:58 C
 bekötve; tényleges távoli eredmény még függőben. A szó-szorzás nyitott kockázata
 csak ezek sikeres lezárása után tekinthető rendezettnek; ez nem hardverelfogadás.
 [Szerződés, pontos adaptáció és bizonyítékok](h8-word-multiply.md). Yamaha-adat nem került be.
+
+## 2026-10-29 — Előjeles bájt- és szó-szorzás jelölt
+
+Eredeti01c0 prefix és MULXS.B/MULXS.W full/partial kezelők; külön őrzött folytatás.
+Az eredeti set_nz16/set_nz32 csak N/Z-t módosít. Független64 bites számítás:
+65536 bájtpár,327680 szó-söprés,28800 alias/CCR-határeset,20000 véletlen pár PASS;
+241 szétvágott futás és65536 prefixfolytatás ellenőrzött. Eredeti referenciaszeletek:
+200000,nulla eltérés; mindkét forma elérése kötelező. Product+1 kontroll seed9/slice14.
+Jelölt:59 CTest/87 Python,488 upstreamből származó kezelő (486 változatlan,2 korábbi
+unsigned-adaptáció);235 kiválasztott/29 hiányzó/135 kizárt kódolássor. Linux UBSan
+mindkét új formát is teszteli; távoli CI függőben, M0 továbbra is részleges.
+[Szerződés és részletes bizonyítékok](h8-signed-multiply.md). Yamaha-adat nem került be.

@@ -937,6 +937,12 @@
       ]
     }
   ],
-  "active_change": null,
+  "active_change": {
+    "id": "H8-SIGNED-MULTIPLY-2026-10-29",
+    "branch": "feat/h8-signed-multiply",
+    "status": "in_progress",
+    "summary": "Original signed byte/word multiply and guarded prefix continuation",
+    "validation": "58 local CTest/86 Python PASS;all-prefix guards/aliases/CCR/splits,200000 original-reference slices zero differences;product+1 detected;remote CI pending"
+  },
   "pending_changes": []
 }

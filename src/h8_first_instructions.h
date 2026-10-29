@@ -75,6 +75,12 @@ private:
                 else {if(partial)mov_l_r32d16h_r32l_partial();else mov_l_r32d16h_r32l_full();}
             } else throw std::runtime_error("Unsupported H8 long-memory extension"); return;
         }
+        if(m_inst_state==0x01c0) {if(partial)dispatch_01c0_partial();else dispatch_01c0_full();return;}
+        if((m_inst_state&0xffff0000)==0xe0000) {
+            if((m_inst_state&0xff00)==0x5000) {if(partial)mulxs_b_r8h_r16l_partial();else mulxs_b_r8h_r16l_full();}
+            else if((m_inst_state&0xff08)==0x5200) {if(partial)mulxs_w_r16h_r32l_partial();else mulxs_w_r16h_r32l_full();}
+            else throw std::runtime_error("Unsupported H8 signed multiply extension");return;
+        }
         if((m_inst_state&0xffff0000)==0x110000) {
             const auto code=m_inst_state&0xff88;
             if(code==0x6400) {if(partial)or_l_r32h_r32l_partial();else or_l_r32h_r32l_full();}
@@ -496,6 +502,22 @@ private:
     bool exr_in_stack()const{return false;}
     void internal(int cycles){m_icount-=cycles+1;}
     void prefetch_switch(uint32_t pc,uint16_t ir){m_NPC=pc&0xffffff;m_PC=pc+2;m_PIR=ir;}
+void set_nz16(u16 v)
+{
+	m_CCR &= ~(F_N|F_Z);
+	if(!v)
+		m_CCR |= F_Z;
+	else if(s16(v) < 0)
+		m_CCR |= F_N;
+}
+void set_nz32(u32 v)
+{
+	m_CCR &= ~(F_N|F_Z);
+	if(!v)
+		m_CCR |= F_Z;
+	else if(s32(v) < 0)
+		m_CCR |= F_N;
+}
     void set_nzv8(u8 v){m_CCR&=~(F_N|F_V|F_Z);if(!v)m_CCR|=F_Z;else if(s8(v)<0)m_CCR|=F_N;}
     void r8_w(int reg,u8 val){if(reg&8)m_R[reg&7]=(m_R[reg&7]&0xff00)|val;else m_R[reg&7]=(m_R[reg&7]&0xff)|(uint16_t(val)<<8);}
     uint16_t r16_r(int reg)const{return m_R[reg&15];}
