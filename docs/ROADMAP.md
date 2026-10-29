@@ -6,19 +6,19 @@ audible firmware-driven VST3 voice in REAPER:
 
 Changes/fixes are recorded in the [development ledger](DEVELOPMENT_LOG.md).
 The [repository audit](REPOSITORY_AUDIT_2026-10-27.md) identifies current gaps.
-Verified engine baseline: merged [PR #57](https://github.com/RobCZart82/yaman1x/pull/57),
-`f8b6aa20834f209931e3e9bb9463cc47b5b7a540`. See [current status](STATUS.md)
+Verified engine baseline: merged [PR #77](https://github.com/RobCZart82/yaman1x/pull/77),
+`8993a6024b0cedfe0d3f5c48a2819009c98643f1`. See [current status](STATUS.md)
 for final-head CI and local environment limits. The [CPU subset](h8-first-instructions.md)
-already builds and executes 366 original full/partial handlers, including memory,
+already builds and executes 466 original full/partial handlers, including memory,
 arithmetic/logic, single-bit shifts/rotates, byte bit operations and normal
-[stack/control flow](h8-stack-control-flow.md). RTE frame restoration is tested
-synthetically; interrupt delivery is not implemented. H8S two-bit shifts remain
+[stack/control flow](h8-stack-control-flow.md). Fixed-profile IRQ/NMI/TRAPA and synthetic CPU/SCI exchange/error handling are implemented;
+full AN1x integration and physical timing are not established. H8S two-bit shifts remain
 outside this H8H profile.
 
 Next M0 work, in order:
 
-1. Inventory and close missing H8H opcodes/addressing; implement IRQ/TRAPA entry
-   and CPU interrupt-filter integration against the pinned reference.
+1. Close remaining H8H opcodes/addressing (including the signed16 displacement candidate);
+   retain fixed-profile IRQ/TRAPA limitations and pinned reference comparisons.
 2. Connect CPU, address map/MMIO and existing peripherals to a common scheduler;
    verify event ordering, isolation, reset and partition-independent execution.
 3. Close whole-machine dependency/distribution requirements. Source notice checks
@@ -64,3 +64,5 @@ Repository work: keep source/notice audits, dependency provenance, current
 status and the ledger in step with each PR. Cross-platform ROM-free CI already
 exists; retain it alongside MSan and the separately filtered MAME build. Plugin,
 hardware and host support require their own evidence.
+
+Current candidate: [signed16 displacement memory](h8-displacement16-memory.md), six original groups.

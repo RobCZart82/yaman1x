@@ -1,30 +1,23 @@
 # YamAN1x fejlesztési napló
 
 Frissítve: 2026-10-28. Időzóna: Europe/Budapest.
-Ellenőrzött motoralap: `0bb14d89950d2406b0e71bb6033ebc315b1f1cdc` (#75).
+Ellenőrzött motoralap: `8993a6024b0cedfe0d3f5c48a2819009c98643f1` (#77).
 
-## Aktuális lezárás — #75, 2026-10-28
+## Aktuális lezárás — #77, 2026-10-29
 
-Ellenőrzött motoralap: [PR #75](https://github.com/RobCZart82/yaman1x/pull/75), merge
-`0bb14d89950d2406b0e71bb6033ebc315b1f1cdc`; tesztelt head
-`29f1282486ab26a55253329177e2dc90e84a3d65`. Beolvadt: 2026-10-28 23:54:05 Europe/Budapest
-(22:54:05 UTC). [Linux/macOS/Windows PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40781266219),
-[MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40781266313),
-[MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40781266255).
+Ellenőrzött motoralap: [#77](https://github.com/RobCZart82/yaman1x/pull/77),
+merge `8993a6024b0cedfe0d3f5c48a2819009c98643f1`, végső tesztelt head
+`fb2bc0935aad976706b0652d21275e5a55d0efd8`. Beolvadt: 2026-10-29 00:49:52 Europe/Budapest
+(2026-10-28 23:49:52 UTC). [Linux/macOS/Windows PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40788596091),
+[MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40788595788),
+[MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40788595917).
 
-**54 CTest-csoport, 87 Python-eset; 200000 eredetimetódus-szelet nulla eltéréssel.**
-458 kiválasztott eredeti full/partial kezelő; 221 kiválasztott, 43 hiányzó és 135
-kizárt profilú kódolássor. A sorszámok nem teljes CPU-lefedettségi százalékok.
-Beolvadt a CCR/MOV/INC/DEC/unáris bővítés, rögzített SYSCR-es TRAPA és IRQ/NMI,
-buszidőbélyeg/határidőfrissítés, szintetikus CPU–SCI RX/TX/duplex/FER/PER/overrun,
-valamint a bájtos/szavas abs8/abs16/abs32 memóriautasítások megfelelő részhalmaza.
-A módszer- és komponenskorlátokat az egyes jegyzőkönyvek tartalmazzák.
-
-Nyitott: 43 utasítássor (köztük hosszúszó-abszolút és eltolásos címzés), teljes
-AN1x címtér/MMIO-gép, fizikai időzítési/paritásbizonyíték, firmware/MIDI/DSP-hangút,
-majd offline audio és VST3/AU/REAPER. M0 részben teljesült; firmware-boot és audio
-nincs igazolva. Nincs nyitott motorjelölt a lezárt sorozatból. A mostani változás
-csak dokumentáció; az alábbi régi jelölt/CI-pending állapotok történeti bejegyzések.
+Beolvadt csomag: **55 CTest-csoport, 87 Python-eset; 466 eredeti kezelő;
+225 kiválasztott / 39 hiányzó / 135 kizárt profilú kódolássor**. Ez nem CPU-százalék.
+A fix profilú IRQ/NMI/TRAPA és a szintetikus CPU–SCI RX/TX/hibakezelés elkészült;
+a teljes AN1x-gép, firmware-es MIDI, hang és plugin elfogadása nyitott. M0 részleges.
+Az alábbi korábbi jelölt/CI-pending bejegyzések történetiek. Az új eltolásos
+memóriautasítások külön jelöltet alkotnak, nem írják felül ezt a lezárt motoralapot.
 
 ## Történeti lezárás — #57, 2026-10-28
 
@@ -427,3 +420,16 @@ Helyi lezárás: 54/54 CTest, 87 Python, célzott ASan/UBSan és forrás-/licenc
 Helyi lezárás: 55/55 CTest, 87 Python, célzott ASan/UBSan és forrás-/licenc-/feltöltési audit PASS. Eredeti dekóder/execute_run:200000 szelet nulla eltéréssel, mindnégy long-abs fetch-őr és minden korábbi őr teljesült. A régi65536 prefixkiterjesztés-orákulum32 új támogatott kódolással frissítve; érvénytelen ER8..15 szomszédok továbbra is tiltottak. #76 macOS várakozik; az új motor-PR csak a szülőmerge és saját végső CI miatt draft.
 
 #76 lezárva: négy sikeres CI, üres review-thread/változtatáskérés lista; merge `0c67fce0e32450709523e4ac01ae477a64633916`, head `ae753a6bc1418be4885645a38ae3fc757e7e293c`. #77 tisztán újraalapozva a mainre; korábbi szülővárakozása megszűnt. Saját végső CI/review még merge-kapu.
+
+## H8-DISPLACEMENT16-2026-10-29 — 16 bites eltolású memóriaátvitel
+
+Ág: `feat/h8-displacement16-memory`, alap: beolvadt #77. Hat eredeti MOV byte/word/long
+load/store csoport, 12 változatlan full/partial metódus: 478 összesen;
+231 kiválasztott / 33 hiányzó / 135 kizárt kódolássor. Mind a 65536 eltolás,
+regiszterátfedések, teljes ER-címkörbefordulás, CCR és szóigazítás tesztelve.
+201 felosztás és kétlépcsős store-hiba; eredeti dekóderrel 200000 szakasz nulla eltéréssel.
+Mind a hat új forma és a korábbi referencia-családok elérésellenőrzése megmarad.
+[Részletes bizonyíték és korlátok](h8-displacement16-memory.md). A jelölt teljes csomagja
+56 CTest / 87 Python; firmware/audio-elfogadás továbbra sincs. Végső PR-CI külön bizonyíték.
+
+Az eltolásos memóriautasítások PR-je: [#78](https://github.com/RobCZart82/yaman1x/pull/78). A készítéskori jelöltállapot és a végső CI-/merge-bizonyíték külön kezelendő.

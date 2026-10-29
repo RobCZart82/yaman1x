@@ -5,20 +5,17 @@ Recorded: 2026-10-28. Product: YamAN1x. Repository: `yaman1x`. First public rese
 The repository contains a ROM-free C++/Python development foundation.
 No VST3, AU, GUI or AN1x audio output is available yet.
 
-Verified engine baseline: merged [PR #75](https://github.com/RobCZart82/yaman1x/pull/75),
-`0bb14d89950d2406b0e71bb6033ebc315b1f1cdc`. Final tested head `29f1282486ab26a55253329177e2dc90e84a3d65`.
-[Platform CI](https://github.com/RobCZart82/yaman1x/actions/runs/40781266219),
-[MSan](https://github.com/RobCZart82/yaman1x/actions/runs/40781266313),
-[MAME](https://github.com/RobCZart82/yaman1x/actions/runs/40781266255): all successful.
-Current suite: **54 CTest groups, 87 Python cases**, with 200000 original-reference
-slices and zero differences. Selected original handlers: **458 full/partial**;
-encoding rows: **221 selected / 43 missing / 135 excluded profiles**.
-
-Fixed-profile TRAPA/IRQ/NMI and synthetic CPU/SCI RX/TX, duplex and receive-error
-integration are merged, along with byte/word abs8/abs16/abs32 memory subsets.
-No open engine candidate remains from this series. The current documentation
-update does not alter this engine baseline. Later candidate/pending descriptions
-below are historical and superseded by this closure.
+Verified engine baseline: merged [PR #77](https://github.com/RobCZart82/yaman1x/pull/77),
+`8993a6024b0cedfe0d3f5c48a2819009c98643f1`; final head `fb2bc0935aad976706b0652d21275e5a55d0efd8`.
+[Platform CI](https://github.com/RobCZart82/yaman1x/actions/runs/40788596091),
+[MSan](https://github.com/RobCZart82/yaman1x/actions/runs/40788595788),
+[MAME](https://github.com/RobCZart82/yaman1x/actions/runs/40788595917): all successful.
+Merged suite: **55 CTest groups / 87 Python cases; 466 original methods;
+225 selected / 39 missing / 135 excluded encoding rows** (not a CPU percentage).
+Fixed-profile IRQ/NMI/TRAPA and synthetic CPU/SCI RX/TX/error handling are merged.
+Long absolute memory uses a four-word IR buffer. The new signed16 displacement
+candidate is separate: 56 groups / 87 Python cases, 478 methods, 231 selected /
+33 missing rows; see [contract](h8-displacement16-memory.md). Final candidate CI pending.
 
 M0 remains partial; M1 is prepared but unaccepted. Missing instructions and
 address modes, full AN1x memory/MMIO integration, physical timing verification,
@@ -41,7 +38,7 @@ The [H83002 SCI MMIO/IRQ adapter](h83002-sci-mmio-irq.md), PR #39, connects both
   adapters are tested. SCI now has one shared asynchronous TX/RX owner,
   integer-cycle scheduling, an SSR latch and compatibility facades. Synthetic
   byte/format, error, timing, partitioning and isolation tests pass. SCI MMIO and IRQ routing are implemented as a standalone adapter;
-  CPU integration and the full machine scheduler remain open.
+  Synthetic CPU/SCI integration is implemented; the full AN1x machine map/scheduler remains open.
 - The eleven-patch MAME research target has a pinned source identity and a
   separate ROM-free macOS arm64 build/registration CI. This is distinct from
   local Yamaha-firmware execution and from the future embedded H8 port.

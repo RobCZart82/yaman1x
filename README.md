@@ -30,9 +30,9 @@ See [engine architecture decision](docs/ADR-0001-engine-boundary.md) and
 
 ## Current state
 
-Verified engine baseline: [#75](https://github.com/RobCZart82/yaman1x/pull/75).
-54 CTest groups, 87 Python cases; 458 original full/partial handlers and
-221 selected / 43 missing / 135 excluded encoding rows. All five final-head
+Verified engine baseline: [#77](https://github.com/RobCZart82/yaman1x/pull/77).
+55 CTest groups, 87 Python cases; 466 original full/partial handlers and
+225 selected / 39 missing / 135 excluded encoding rows. All five final-head
 checks passed. No open engine candidate from the completed series; full CPU,
 firmware boot and audio remain unaccepted. See [current status](docs/STATUS.md).
 
@@ -147,3 +147,5 @@ Merged extension [small arithmetic](docs/h8-small-arithmetic.md) adds INC/DEC an
 Merged extension [unary/extension family](docs/h8-unary-extension.md) adds NOT/NEG/EXTU/EXTS with independent value/flag expectations.
 
 Merged extension [fixed-profile TRAPA entry](docs/h8-trapa-entry.md) adds synchronous trap stack/vector handling; external IRQ/NMI remains separate.
+
+Candidate: [signed16 displacement memory moves](docs/h8-displacement16-memory.md).
