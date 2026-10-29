@@ -5,20 +5,20 @@ Recorded: 2026-10-29. Product: YamAN1x. Repository: `yaman1x`. First public rese
 The repository contains a ROM-free C++/Python development foundation.
 No VST3, AU, GUI or AN1x audio output is available yet.
 
-Verified engine baseline: merged [PR #86](https://github.com/RobCZart82/yaman1x/pull/86),
-`4dd788dadae4b09a21b4611f245640a63c56dcf5`; final head `189eeea02372839e8cf27f02853b990ed0625652`.
-[Platform CI](https://github.com/RobCZart82/yaman1x/actions/runs/40834892241),
-[MSan](https://github.com/RobCZart82/yaman1x/actions/runs/40834892230),
-[MAME](https://github.com/RobCZart82/yaman1x/actions/runs/40834892231): all five jobs successful.
-Linux UBSan passed byte divide and prior signed/unsigned multiply tests plus the
-required original unsigned-overflow control.
-Merged suite: **60 CTest groups /87 Python cases;490 upstream-derived methods
-(488 unchanged,2 prior adaptations);236 selected /28 missing /135 excluded encoding rows**
+Verified engine baseline: merged [PR #88](https://github.com/RobCZart82/yaman1x/pull/88),
+`3c5f7dddfdf54532670d9cdddd0ade0aab7c92bd`; final head `fc0db2778270a5ffdc612ab46ccd7be0b0d9b4fe`.
+[Platform CI](https://github.com/RobCZart82/yaman1x/actions/runs/40837738076),
+[MSan](https://github.com/RobCZart82/yaman1x/actions/runs/40837738102),
+[MAME](https://github.com/RobCZart82/yaman1x/actions/runs/40837738069): all five jobs successful.
+Linux UBSan passed byte/word divide and prior multiply tests plus required original-overflow control.
+Merged suite: **61 CTest groups /87 Python cases;492 upstream-derived methods
+(488 unchanged,4 adapted);237 selected /27 missing /135 excluded encoding rows**
 (not a CPU percentage). Fixed-profile IRQ/NMI/TRAPA, synthetic CPU/SCI exchange/errors,
 long absolute/signed16 displacement moves, signed/unsigned byte/word multiply and
-unsigned byte divide are merged. Divide zero/truncation/N/Z behavior is source-derived;
-[scope and evidence](h8-byte-divide.md). Unsigned word divide is a separate candidate:61 CTest/87 Python,492 methods (488 unchanged,4 adapted),237 selected/27 missing rows; CI pending. See [contract](h8-word-divide.md).
-Local Windows:59 runnable CTest/86 Python PASS; one known symlink privilege case excluded.
+unsigned byte/word divide are merged. Word-divide q/r locals are explicitly unsigned;
+original divisor-bit7 N behavior is preserved pending hardware evidence.
+[Scope and evidence](h8-word-divide.md). No active engine candidate.
+Local Windows:60 runnable CTest/86 Python PASS; one known symlink privilege case excluded.
 
 M0 remains partial; M1 is prepared but unaccepted. Missing instructions and
 address modes, full AN1x memory/MMIO integration, physical timing verification,
