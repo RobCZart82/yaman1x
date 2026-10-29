@@ -30,13 +30,17 @@ See [engine architecture decision](docs/ADR-0001-engine-boundary.md) and
 
 ## Current state
 
+Active candidate: [timed SCI on the common map](docs/an1x-sci-bus.md),76 CTest/87 Python.
+CPU/peripheral bodies unchanged;synthetic CPU-configured TX/RX,SLEEP/IRQ/NVRAM composition.
+Final-head CI/review pending;merged evidence below remains #116.
+
 Verified engine baseline: [#116](https://github.com/RobCZart82/yaman1x/pull/116),
 `7fe1d4bcb602ce96d40f34ec4ccd888430bf70e0`;tested head `1982509b2c4632b7e9198d3ae23656f59e2c2a55`.
 75 CTest groups/87 Python cases;CPU handlers unchanged:562 upstream-derived methods
 (558 unchanged,four prior adaptations);264 selected/0 missing/135 excluded encoding rows.
 [Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40963649310), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40963649254), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40963649115):all five jobs passed.
 No recorded automated review result at inspection;no successful automated review claimed.
-No active engine candidate. [Bounded AN1x memory map](docs/an1x-memory-map.md) routes ROM/NVRAM/internal RAM.
+The prior memory-map series is closed;the SCI candidate is above. [Bounded AN1x memory map](docs/an1x-memory-map.md) routes ROM/NVRAM/internal RAM.
 Synthetic CPU reset/transfers and isolation verified;MMIO holes/ROM writes fail closed.
 Next:timed SCI MMIO/IRQ composition on this map,reset/isolation,RX/TX and SLEEP wake.
 Full machine,GPIO/LCD/DSP/MEG,physical timing,firmware/MIDI/PKS/audio and REAPER acceptance

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "recorded_date": "2026-10-29",
+  "recorded_date": "2026-10-30",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
   "baseline_commit": "7fe1d4bcb602ce96d40f34ec4ccd888430bf70e0",
@@ -1450,8 +1450,36 @@
         40963649115
       ],
       "automated_review_at_merge": "no_recorded_result_at_inspection"
+    },
+    {
+      "pr": 117,
+      "title": "Close AN1x memory map evidence and plan timed SCI composition",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/117",
+      "kind": "documentation",
+      "status": "merged",
+      "merge_commit": "95523c2dc781030d9a1967914ebeb69d02e77a16",
+      "reviewed_head": "e1cd30562483dd5fe60b6c79cec3dfe0d06dac82",
+      "merged_at_utc": "2026-10-29T22:45:47Z",
+      "ci_runs": [
+        40965878886,
+        40965878872
+      ],
+      "automated_review_at_merge": "no_recorded_result_at_inspection"
     }
   ],
-  "active_change": null,
+  "active_change": {
+    "branch": "feat/an1x-sci-bus",
+    "scope": "Owned ROM/RAM+SCI/IRQ timed host composition with copied RX schedule and fail-stop callbacks",
+    "status": "local_validation_passed_ci_pending",
+    "ci": "not_run",
+    "validation": {
+      "ctest_groups": 76,
+      "python_tests": 87,
+      "asan_ubsan": "targeted_pass",
+      "deadline_mutation_failures": 2738,
+      "source_audit_files": 507,
+      "source_notice_files": 229
+    }
+  },
   "pending_changes": []
 }
