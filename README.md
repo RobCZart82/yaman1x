@@ -30,13 +30,17 @@ See [engine architecture decision](docs/ADR-0001-engine-boundary.md) and
 
 ## Current state
 
+Active candidate: [EEPMOV byte block copies](docs/h8-eepmov-block.md),73 CTest/560 methods
+(556 unchanged/four prior adaptations),263 selected/1 missing/135 excluded rows.
+Final-head CI/review pending;merged evidence below remains #110.
+
 Verified engine baseline: [#110](https://github.com/RobCZart82/yaman1x/pull/110),
 `3d0ce825bb341402f40dab92c0f1ec2f409b5ee7`;tested head `903844cdb2a0466a93b2a61b056191afd0b37146`.
 72 CTest groups/87 Python cases;552 upstream-derived methods (548 unchanged,
 four prior arithmetic adaptations);261 selected/3 missing/135 excluded encoding rows.
 [Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40943842276), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40943842076), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40943841959):all five jobs passed.
 No recorded automated review result at inspection;no successful automated review claimed.
-No active engine candidate. [Peripheral move evidence](docs/h8-peripheral-byte-moves.md).
+The prior series is closed;the new candidate is above. [Peripheral move evidence](docs/h8-peripheral-byte-moves.md).
 Original peripheral timing TODO retained;no E-clock/handshake timing validation.
 Remaining:SLEEP and EEPMOV. Full CPU,machine/MMIO,physical timing,
 firmware/MIDI/audio and REAPER acceptance remain open.
