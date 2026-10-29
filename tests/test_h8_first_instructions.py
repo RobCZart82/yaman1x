@@ -66,12 +66,17 @@ class FirstInstructionTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as t:
             root=Path(t);self.make_root(root)
             # Use the dedicated H8H names rather than a base-method fallback.
-            raw='\n'.join('void h8h_device::'+n+'_'+s+'()\n{\n} ' for n in H8H_NAMES for s in ('full','partial')).encode()
+            raw='\n'.join('void h8h_device::'+n+'_'+s+'()\n{\n'+('u16(r32_r(m_IR[0])) * r16_r(m_IR[0] >> 4);\n' if n=='mulxu_w_r16h_r32l' else '')+'} ' for n in H8H_NAMES for s in ('full','partial')).encode()
             lock=json.loads((root/'research/h8-generator-lock.json').read_text())
             lock['outputs']['h8h.hxx']={'lf_bytes':len(raw),'lf_sha256':hashlib.sha256(raw).hexdigest()}
             (root/'research/h8-generator-lock.json').write_text(json.dumps(lock))
             (root/'src/h8_first_h8h_handlers.h').write_text(render(raw,H8H_NAMES,'h8h_device'),encoding='utf-8')
             self.assertIn('mov_l_imm32',verify_selected(raw,root,True))
+            original=render(raw,H8H_NAMES,'h8h_device',adapt=False)
+            adapted=verify_selected(raw,root,True)
+            self.assertNotIn('u32(u16(',original)
+            self.assertEqual(adapted.count('u32(u16(r32_r(m_IR[0])))'),2)
+            with self.assertRaises(ValueError):render(raw.replace(b'u16(r32_r(m_IR[0])) *',b'u16(r32_r(m_IR[1])) *'),H8H_NAMES,'h8h_device')
             with self.assertRaises(ValueError):verify_selected(raw,root,False)
 
     def test_recorded_h8h_identities(self):

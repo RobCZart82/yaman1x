@@ -13,10 +13,10 @@ Verified engine baseline: merged [PR #80](https://github.com/RobCZart82/yaman1x/
 Merged suite: **57 CTest groups /87 Python cases;480 original methods;
 232 selected /32 missing /135 excluded encoding rows** (not a CPU percentage).
 Fixed-profile IRQ/NMI/TRAPA, synthetic CPU/SCI exchange/error handling, long absolute
-and signed16 displacement moves, unsigned byte multiply are merged. No active engine candidate.
+and signed16 displacement moves, unsigned byte multiply are merged. Word multiply is a separate candidate:58 CTest/87 Python,482 upstream-derived methods (480 unchanged,2 adapted),233 selected/31 missing rows.
 Local Windows:56 runnable CTest/86 Python PASS; one known symlink privilege case excluded.
-Word multiply stays excluded pending integer-promotion overflow review;
-see [contract and next acceptance gates](h8-byte-multiply.md).
+The word-multiply adaptation and its Linux UBSan control await final CI;
+see [contract and acceptance gates](h8-word-multiply.md).
 
 M0 remains partial; M1 is prepared but unaccepted. Missing instructions and
 address modes, full AN1x memory/MMIO integration, physical timing verification,

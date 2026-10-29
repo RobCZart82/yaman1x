@@ -18,7 +18,7 @@ outside this H8H profile.
 Next M0 work, in order:
 
 1. Close remaining H8H opcodes/addressing (32 encoding rows remain after unsigned byte multiply);
-   review word-multiply integer promotion before enabling it (see [contract](h8-byte-multiply.md));
+   close word-multiply CI/UBSan acceptance before promoting the [adapted candidate](h8-word-multiply.md);
    retain fixed-profile IRQ/TRAPA limitations and pinned reference comparisons.
 2. Connect CPU, address map/MMIO and existing peripherals to a common scheduler;
    verify event ordering, isolation, reset and partition-independent execution.
