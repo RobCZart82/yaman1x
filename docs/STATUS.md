@@ -14,7 +14,7 @@ Merged suite: **56 CTest groups / 87 Python cases; 478 original methods;
 231 selected / 33 missing / 135 excluded encoding rows** (not a CPU percentage).
 Fixed-profile IRQ/NMI/TRAPA and synthetic CPU/SCI RX/TX/error handling are merged.
 Long absolute memory uses a four-word IR buffer. Six signed16 displacement groups
-are now merged; see [contract](h8-displacement16-memory.md). No active engine candidate.
+are now merged; see [contract](h8-displacement16-memory.md). Unsigned byte multiply is a separate candidate:57 CTest/87 Python,480 methods,232 selected/32 missing rows; final CI pending. See [contract](h8-byte-multiply.md).
 Local Windows:55 runnable CTest/86 Python PASS; one known symlink privilege case excluded.
 
 M0 remains partial; M1 is prepared but unaccepted. Missing instructions and
