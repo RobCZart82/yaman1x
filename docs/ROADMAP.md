@@ -6,22 +6,19 @@ audible firmware-driven VST3 voice in REAPER:
 
 Changes/fixes are recorded in the [development ledger](DEVELOPMENT_LOG.md).
 The [repository audit](REPOSITORY_AUDIT_2026-10-27.md) identifies current gaps.
-Active candidate: [displacement32 CCR memory](h8-ccr-displacement32-memory.md),71 CTest/548 methods
-(544 unchanged/four prior adaptations),259 selected/5 missing/135 excluded rows.
-Final-head CI/review pending;merged evidence below remains #106.
-
-Verified engine baseline: [#106](https://github.com/RobCZart82/yaman1x/pull/106),
-`aee769ef224e2686ccd4a98bbd9d3851f8cc6399`; tested head `e3af0b4453d19194da8d32b24e6d409d4ab8809f`.
-70 CTest groups/87 Python cases;540 upstream-derived methods (536 unchanged,
-four prior arithmetic adaptations);257 selected/7 missing/135 excluded encoding rows.
-[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40928577461), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40928577203), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40928577221): all five jobs passed.
-No recorded automated review result at inspection; no successful automated review claimed.
-The prior series is closed;the new candidate is above. [Signed16 CCR evidence](h8-ccr-displacement16-memory.md).
-Full CPU,machine/MMIO,physical timing,firmware/MIDI/audio and REAPER acceptance remain open.
+Verified engine baseline: [#108](https://github.com/RobCZart82/yaman1x/pull/108),
+`3c7005a3a26da4149668f6ab9f4695e1672bdc6e`;tested head `ffef22c9d5794ec78028a0f2d07cb9659ff9d5bb`.
+71 CTest groups/87 Python cases;548 upstream-derived methods (544 unchanged,
+four prior arithmetic adaptations);259 selected/5 missing/135 excluded encoding rows.
+[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40937469453), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40937469399), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40937469419):all five jobs passed.
+No recorded automated review result at inspection;no successful automated review claimed.
+No active engine candidate. [Displacement32 CCR evidence](h8-ccr-displacement32-memory.md).
+Remaining:SLEEP,MOVFPE/MOVTPE,EEPMOV. Full CPU,machine/MMIO,physical timing,
+firmware/MIDI/audio and REAPER acceptance remain open.
 
 Next M0 work, in order:
 
-1. Close remaining H8H opcodes/addressing (7 encoding rows remain after signed16 CCR; next: CCR displacement32);
+1. Close remaining H8H opcodes/addressing (5 encoding rows remain after displacement32 CCR; next: MOVFPE/MOVTPE);
    retain the reviewed [word-multiply widening and UBSan control](h8-word-multiply.md);
    retain fixed-profile IRQ/TRAPA limitations and pinned reference comparisons.
 2. Connect CPU, address map/MMIO and existing peripherals to a common scheduler;

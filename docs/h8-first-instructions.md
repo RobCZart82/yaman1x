@@ -135,4 +135,4 @@ Merged #104: [autoindex CCR memory](h8-ccr-autoindex-memory.md);all five final-h
 
 Merged #106: [signed16 displacement CCR memory](h8-ccr-displacement16-memory.md);all five final-head CI jobs passed. No recorded automated review result at inspection.
 
-Current candidate: [displacement32 CCR memory](h8-ccr-displacement32-memory.md);own final CI/review and merge pending.
+Merged #108: [displacement32 CCR memory](h8-ccr-displacement32-memory.md);all five final-head CI jobs passed. No recorded automated review result at inspection.
