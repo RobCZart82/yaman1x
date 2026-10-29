@@ -103,4 +103,4 @@ Merged unsigned byte multiply: [scope, checks and word promotion risk](docs/h8-b
 Merged MULXU.W: two of488 methods have a reviewed unsigned-widening adaptation,
 not a claim of unchanged bodies; [exact scope/provenance](docs/h8-word-multiply.md).
 
-Signed multiply candidate: [scope,original helpers and evidence](docs/h8-signed-multiply.md).
+Merged signed multiply: [scope,original helpers and evidence](docs/h8-signed-multiply.md).
