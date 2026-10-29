@@ -30,17 +30,14 @@ See [engine architecture decision](docs/ADR-0001-engine-boundary.md) and
 
 ## Current state
 
-Active candidate: [signed16 displacement CCR memory](docs/h8-ccr-displacement16-memory.md),70 CTest/540 methods
-(536 unchanged/four prior adaptations),257 selected/7 missing/135 excluded rows.
-Final-head CI/review and merge pending;merged evidence below remains #104.
-
-Verified engine baseline: [#104](https://github.com/RobCZart82/yaman1x/pull/104).
-69 CTest groups,87 Python cases;536 upstream-derived full/partial handlers
-(532 unchanged,four reviewed earlier arithmetic adaptations),255 selected/
-9 missing/135 excluded encoding rows. All five final-head checks passed;
-automated code review completed without findings. The prior series is closed;the new candidate is above.
-[Autoindex CCR evidence](docs/h8-ccr-autoindex-memory.md).
-Full CPU,firmware boot and audio remain unaccepted. See [current status](docs/STATUS.md).
+Verified engine baseline: [#106](https://github.com/RobCZart82/yaman1x/pull/106),
+`aee769ef224e2686ccd4a98bbd9d3851f8cc6399`; tested head `e3af0b4453d19194da8d32b24e6d409d4ab8809f`.
+70 CTest groups/87 Python cases;540 upstream-derived methods (536 unchanged,
+four prior arithmetic adaptations);257 selected/7 missing/135 excluded encoding rows.
+[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40928577461), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40928577203), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40928577221): all five jobs passed.
+No recorded automated review result at inspection; no successful automated review claimed.
+No active engine candidate. [Signed16 CCR evidence](docs/h8-ccr-displacement16-memory.md).
+Full CPU,machine/MMIO,physical timing,firmware/MIDI/audio and REAPER acceptance remain open.
 
 See the [development plan through the first sound in REAPER (Hungarian)](docs/FIRST_REAPER_SOUND_PLAN.md)
 for the planned firmware, audio-engine and VST3 milestones and acceptance criteria.

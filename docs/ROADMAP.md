@@ -6,24 +6,18 @@ audible firmware-driven VST3 voice in REAPER:
 
 Changes/fixes are recorded in the [development ledger](DEVELOPMENT_LOG.md).
 The [repository audit](REPOSITORY_AUDIT_2026-10-27.md) identifies current gaps.
-The prior engine series is closed; [autoindex CCR memory](h8-ccr-autoindex-memory.md) merged.
-
-Active candidate: [signed16 displacement CCR memory](h8-ccr-displacement16-memory.md),70 CTest/540 methods
-(536 unchanged/four prior adaptations),257 selected/7 missing/135 excluded rows.
-Final-head CI/review and merge pending;merged evidence below remains #104.
-
-Verified engine baseline: merged [PR #104](https://github.com/RobCZart82/yaman1x/pull/104),
-`92e52f45307dc1adad37347febd407d0d2106182`. See [current status](STATUS.md)
-for final-head CI and local environment limits. The [CPU subset](h8-first-instructions.md)
-already builds and executes 536 upstream-derived full/partial handlers (532 unchanged,4 adapted), including memory,
-arithmetic/logic, single-bit shifts/rotates, byte bit operations and normal
-[stack/control flow](h8-stack-control-flow.md). Fixed-profile IRQ/NMI/TRAPA and synthetic CPU/SCI exchange/error handling are implemented;
-full AN1x integration and physical timing are not established. H8S two-bit shifts remain
-outside this H8H profile.
+Verified engine baseline: [#106](https://github.com/RobCZart82/yaman1x/pull/106),
+`aee769ef224e2686ccd4a98bbd9d3851f8cc6399`; tested head `e3af0b4453d19194da8d32b24e6d409d4ab8809f`.
+70 CTest groups/87 Python cases;540 upstream-derived methods (536 unchanged,
+four prior arithmetic adaptations);257 selected/7 missing/135 excluded encoding rows.
+[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40928577461), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40928577203), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40928577221): all five jobs passed.
+No recorded automated review result at inspection; no successful automated review claimed.
+No active engine candidate. [Signed16 CCR evidence](h8-ccr-displacement16-memory.md).
+Full CPU,machine/MMIO,physical timing,firmware/MIDI/audio and REAPER acceptance remain open.
 
 Next M0 work, in order:
 
-1. Close remaining H8H opcodes/addressing (9 encoding rows remain after autoindex CCR; next: CCR displacement modes);
+1. Close remaining H8H opcodes/addressing (7 encoding rows remain after signed16 CCR; next: CCR displacement32);
    retain the reviewed [word-multiply widening and UBSan control](h8-word-multiply.md);
    retain fixed-profile IRQ/TRAPA limitations and pinned reference comparisons.
 2. Connect CPU, address map/MMIO and existing peripherals to a common scheduler;
