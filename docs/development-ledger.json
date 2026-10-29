@@ -1419,8 +1419,28 @@
         40958229555
       ],
       "automated_review_at_merge": "no_recorded_result_at_inspection"
+    },
+    {
+      "pr": 115,
+      "title": "Close sleep evidence and advance plan to AN1x machine integration",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/115",
+      "kind": "documentation",
+      "status": "merged",
+      "merge_commit": "72c773f9e48afa8941a8de2b8b989d24255d83e5",
+      "reviewed_head": "1778bffa6d64c63f03954050b9c758a6d71cf6ed",
+      "merged_at_utc": "2026-10-29T22:05:43Z",
+      "ci_runs": [
+        40960596241,
+        40960596227
+      ],
+      "automated_review_at_merge": "no_recorded_result_at_inspection"
     }
   ],
-  "active_change": null,
+  "active_change": {
+    "branch": "feat/an1x-memory-map",
+    "scope": "Project-owned AN1x bounded ROM/NVRAM/internal RAM routing;MMIO fail-closed",
+    "status": "local_validation_passed",
+    "ci": "not_run"
+  },
   "pending_changes": []
 }

@@ -3,6 +3,21 @@
 Frissítve: 2026-10-29. Időzóna: Europe/Budapest.
 Ellenőrzött motoralap: `3172c55e9a1cea766e5326bfd56a98f68d6420f3` (#114).
 
+## Aktív fejlesztési lépés — AN1x ROM/RAM címtér, 2026-10-29
+
+Új projektkód:1MiB változatlan logikai ROM,külső256KiB NVRAM és512 bájt belső RAM,
+24 bites címtükrözés,big-endian byte/word hozzáférések,írásvédett saját ROM-másolat.
+MAME-címtények rögzített forrásból újraellenőrizve. Jelölt:75 CTest/87 Python;
+CPU-kezelők változatlanul562,264 kiválasztott/0 hiányzó/135 kizárt sor.
+Teljes ROM/RAM-söprés,határok/tükrözés/izoláció/NVRAM-roundtrip és241 CPU-szétvágás
+célzott tesztje PASS. Szintetikus program közös címtérből indul és RAM-ot mozgat.
+MMIO/hiányzó tartományok és ROM-írások fail-closed;ez explicit kutatási szabály,
+nem fizikai open-bus viselkedés. Teljes gépütemező és valódi firmware-futás még nincs.
+[Hatókör és bizonyíték](an1x-memory-map.md). Helyi Release75/75 CTest és87 Python,célzott ASan/UBSan PASS;végső CI/review még nyitott.
+A #115 dokumentációs lezárás beolvadt `72c773f9e48afa8941a8de2b8b989d24255d83e5`:
+2026-10-29 23:05:43 Europe/Budapest (22:05:43 UTC),négy sikeres CI-feladat.
+Soros fejlesztés:új lépcső csak az aktuális PR beolvadása után.
+
 ## Aktuális lezárás — #114, 2026-10-29
 
 A [#114 PR](https://github.com/RobCZart82/yaman1x/pull/114) beolvadt:

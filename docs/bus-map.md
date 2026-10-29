@@ -31,3 +31,9 @@ A DSP-báziscímek statikus azonosításához 16 bites határokon 7A 00..07 opk�
 Az első LCD nélküli megfigyelést később LC7985-bekötés, teljes DSP-regiszternapló, külön kísérleti feltöltésvezérlés és élő VOP3-regiszterkapcsolat követte. Az alapbeállítás továbbra is passzív; a kísérleti válaszok csak explicit profilban aktívak. Aktuális eredmények és következő mérés: [élő regiszterkapcsolat](live-register-milestone.md).
 
 Legfrissebb vizsgálat: [EG-szint és mintaszámláló](eg-readback-milestone.md).
+
+## Önálló ROM/RAM-térkép jelölt — 2026-10-29
+
+[Új projektkód és szintetikus CPU-próba](an1x-memory-map.md):a fenti három
+memóriatartomány összekötve,MMIO és ismeretlen címek fail-closed. Nem teljes gép,
+nem firmware-indítás és nem fizikai reset/open-bus bizonyíték.
