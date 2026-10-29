@@ -3,7 +3,7 @@
   "recorded_date": "2026-10-29",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "4dd788dadae4b09a21b4611f245640a63c56dcf5",
+  "baseline_commit": "3c5f7dddfdf54532670d9cdddd0ade0aab7c92bd",
   "entries": [
     {
       "pr": 6,
@@ -993,14 +993,37 @@
         40834892230,
         40834892231
       ]
+    },
+    {
+      "pr": 87,
+      "title": "Close byte divide evidence and update development baseline",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/87",
+      "kind": "documentation",
+      "status": "merged",
+      "merge_commit": "3d91fbbb46b8ee7bf6cef38396ba2dd81a50c44b",
+      "reviewed_head": "1e8be8e62df8acbdf144039ba7ba27ff0136040e",
+      "merged_at_utc": "2026-10-29T07:33:38Z",
+      "ci_runs": [
+        40835723992,
+        40835724072
+      ]
+    },
+    {
+      "pr": 88,
+      "title": "Execute H8H unsigned word divide with explicit unsigned result locals",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/88",
+      "kind": "development",
+      "status": "merged",
+      "merge_commit": "3c5f7dddfdf54532670d9cdddd0ade0aab7c92bd",
+      "reviewed_head": "fc0db2778270a5ffdc612ab46ccd7be0b0d9b4fe",
+      "merged_at_utc": "2026-10-29T07:55:24Z",
+      "ci_runs": [
+        40837738076,
+        40837738102,
+        40837738069
+      ]
     }
   ],
-  "active_change": {
-    "id": "H8-WORD-DIVIDE-2026-10-29",
-    "branch": "feat/h8-unsigned-word-divide",
-    "status": "in_progress",
-    "summary": "Unsigned word divide with explicit unsigned quotient/remainder and preserved source flags",
-    "validation": "60 local CTest/86 Python PASS;independent full-range aliases/CCR/splits,200000 bounded original-reference slices zero differences;quotient+1 detected;remote CI pending"
-  },
+  "active_change": null,
   "pending_changes": []
 }

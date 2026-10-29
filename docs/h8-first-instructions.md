@@ -116,4 +116,4 @@ Merged signed multiply: [scope,original helpers and evidence](h8-signed-multiply
 
 Merged unsigned byte divide: [scope and evidence](h8-byte-divide.md).
 
-Unsigned word divide candidate: [source flags and full-range evidence](h8-word-divide.md).
+Merged unsigned word divide: [source flags and full-range evidence](h8-word-divide.md).

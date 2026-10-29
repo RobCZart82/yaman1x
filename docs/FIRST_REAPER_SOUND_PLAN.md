@@ -2,10 +2,30 @@
 
 Rögzítve: 2026-10-27. Kiindulópont: a #14 PR-ig beolvadt kutatási eredmények.
 Ez végrehajtási terv; az alábbi, még nyitott mérföldkövek nem kész funkciók.
-Állapotellenőrzés: 2026-10-29, motoralap: #86 (`4dd788dadae4b09a21b4611f245640a63c56dcf5`).
+Állapotellenőrzés: 2026-10-29, motoralap: #88 (`3c5f7dddfdf54532670d9cdddd0ade0aab7c92bd`).
 A működő H8H-részhalmaz nem teljes CPU- vagy firmware-elfogadás.
 
-## Aktuális lezárás — #86, 2026-10-29
+## Aktuális lezárás — #88, 2026-10-29
+
+Ellenőrzött motoralap: [#88](https://github.com/RobCZart82/yaman1x/pull/88),
+merge `3c5f7dddfdf54532670d9cdddd0ade0aab7c92bd`, végső tesztelt head `fc0db2778270a5ffdc612ab46ccd7be0b0d9b4fe`.
+Beolvadt: 2026-10-29 08:55:24 Europe/Budapest (07:55:24 UTC).
+[Linux/macOS/Windows PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40837738076),
+[MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40837738102),
+[MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40837738069).
+Linux UBSan: bájt/szó-osztás és korábbi szorzások PASS; eredeti unsigned-túlcsordulási
+kontroll PASS. Beolvadt: **61 CTest-csoport /87 Python-eset;492 upstreamből származó
+kezelő (488 változatlan,4 dokumentált adaptáció);237 kiválasztott /27 hiányzó /135 kizárt
+kódolássor** (nem CPU-százalék). DIVXU.W:524288 osztó-söprés,30720 alias/CCR-eset,
+20000 véletlen pár,241 szétvágás PASS. Nagy értékek független64 bites számítással;
+200000 korlátozott eredeti referenciaszelet nulla eltéréssel; hányados+1 kontroll
+seed9/slice26 felismerve. Helyi60 futtatható CTest/86 Python PASS, ismert Windows-symlink
+eset kizárva. A q/r u32 típusmódosítás dokumentált; az eredeti osztóbit7 N-szabály
+megőrzött, hardveresen nem igazolt. [Pontos hatókör](h8-word-divide.md).
+Nincs aktív motorjelölt. M0 részleges; teljes gép/firmware/MIDI/hang/plugin elfogadás
+nyitott. Az alábbi jelölt/pending bejegyzések történetiek.
+
+## Történeti lezárás — #86, 2026-10-29
 
 Ellenőrzött motoralap: [#86](https://github.com/RobCZart82/yaman1x/pull/86),
 merge `4dd788dadae4b09a21b4611f245640a63c56dcf5`, végső tesztelt head `189eeea02372839e8cf27f02853b990ed0625652`.
@@ -145,14 +165,14 @@ vagy REAPER-plugin. A következő motorfeladatok: hiányzó H8H-utasítások/cí
 leltára, IRQ/TRAPA-belépés és szűrők, majd közös CPU/periféria-ütemezés és gépintegráció.
 
 A korábbi „aktív”, „jelölt”, „CI pending” és „következő” bejegyzések az akkori
-állapotot őrzik; a jelenlegi készültségre a fenti #86 lezárás és az aktuális mérföldkő-tábla
+állapotot őrzik; a jelenlegi készültségre a fenti #88 lezárás és az aktuális mérföldkő-tábla
 irányadó. A dokumentáció mostani javítása nem új motorfejlesztés vagy elfogadás.
 
 ## Aktuális mérföldkő-állapot — 2026-10-29
 
 | Mérföldkő | Aktuális állapot | Következő elfogadási feltétel |
 |---|---|---|
-| M0 | **Részben teljesült.** Architektúra és forrás-/licencnyilvántartás; tesztelt GPIO-, IRQ- és SCI-komponensek; működő önálló H8H-részhalmaz 490 upstreamből származó kezelővel (488 változatlan,2 adaptált), rögzített SYSCR-es IRQ/NMI/TRAPA-belépéssel, buszidőbélyeggel és szintetikus CPU–SCI RX/TX/hibakezeléssel. | 28 hiányzó H8H-kódolássor lezárása; a tesztelt CPU/periféria-ütemezés teljes AN1x címtér/MMIO-gépbe integrálása és gépizoláció. A részhalmaz már fordul és fut; a teljes CPU és a terjesztési licenc lezárása nyitott. |
+| M0 | **Részben teljesült.** Architektúra és forrás-/licencnyilvántartás; tesztelt GPIO-, IRQ- és SCI-komponensek; működő önálló H8H-részhalmaz 492 upstreamből származó kezelővel (488 változatlan,4 adaptált), rögzített SYSCR-es IRQ/NMI/TRAPA-belépéssel, buszidőbélyeggel és szintetikus CPU–SCI RX/TX/hibakezeléssel. | 27 hiányzó H8H-kódolássor lezárása; a tesztelt CPU/periféria-ütemezés teljes AN1x címtér/MMIO-gépbe integrálása és gépizoláció. A részhalmaz már fordul és fut; a teljes CPU és a terjesztési licenc lezárása nyitott. |
 | M1 | **Előkészítve, nem teljesült.** A külön macOS MAME-build és a párosított helyi futtató rendelkezésre áll. | Friss Mac-firmware-próba: SCI0 tényleges bájtfogadás és note-on/note-off feldolgozás bizonyítása; PKS-kézfogás feltárása. |
 | M2–M3 | **Kutatási feladatok nyitva.** Nincs igazolt referenciahang. | AN1x órajel, táblacímzés, EG és soros hangút bizonyítása, majd megismételhető offline hang. |
 | M4–M6 | **Tervezett.** Nincs elkészült beágyazható hangszer vagy REAPER-elfogadás. | Validált offline referencia után audio-blokkmotor, VST3 és helyi REAPER-próba. |

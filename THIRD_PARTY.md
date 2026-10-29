@@ -107,5 +107,5 @@ Merged signed multiply: [scope,original helpers and evidence](docs/h8-signed-mul
 
 Merged unsigned byte divide: unchanged original handlers; [scope and source-derived flags](docs/h8-byte-divide.md).
 
-Unsigned word divide candidate: two additional generated-body local-type adaptations
+Merged unsigned word divide: two additional generated-body local-type adaptations
 (int q/r to u32), alongside the two MULXU.W widenings; [scope and provenance](docs/h8-word-divide.md).

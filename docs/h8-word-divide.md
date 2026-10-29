@@ -47,3 +47,6 @@ Generated selections match locked originals plus explicit adaptations; source/
 notice checks PASS. Physical timing,firmware/MIDI/audio/plugin acceptance remain open.
 
 See [plan](FIRST_REAPER_SOUND_PLAN.md) and [status](STATUS.md).
+
+Closure: merged [PR88](https://github.com/RobCZart82/yaman1x/pull/88), engine `3c5f7dddfdf54532670d9cdddd0ade0aab7c92bd`, final head `fc0db2778270a5ffdc612ab46ccd7be0b0d9b4fe`. All five jobs PASS, including Linux UBSan word/byte divide and prior arithmetic controls; [run links](STATUS.md). Preparation-time candidate/pending notes above are historical.
+Final source inventory:475 files,201 locked upstream identities,one reviewed manifest edit; four generated-body adaptations separately recorded in CPU provenance. Source/notice checks PASS.
