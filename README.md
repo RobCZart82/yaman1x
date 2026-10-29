@@ -30,13 +30,18 @@ See [engine architecture decision](docs/ADR-0001-engine-boundary.md) and
 
 ## Current state
 
+Active candidate: [fixed-profile SLEEP/wake](docs/h8-sleep-wake.md),74 CTest/562 methods
+(558 unchanged/four prior adaptations),264 selected/0 missing/135 excluded rows.
+Encoding selection is not full CPU acceptance;clock-stopping standby unsupported.
+Final-head CI/review pending;merged evidence below remains #112.
+
 Verified engine baseline: [#112](https://github.com/RobCZart82/yaman1x/pull/112),
 `b14cd16e8d4d149cdb622371ac29928904bbc295`;tested head `41c5c34be49913dea5dc025f589cfde068a27736`.
 73 CTest groups/87 Python cases;560 upstream-derived methods (556 unchanged,
 four prior arithmetic adaptations);263 selected/1 missing/135 excluded encoding rows.
 [Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40952371785), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40952371726), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40952371748):all five jobs passed.
 No recorded automated review result at inspection;no successful automated review claimed.
-No active engine candidate. [EEPMOV evidence](docs/h8-eepmov-block.md).
+The prior series is closed;the new candidate is above. [EEPMOV evidence](docs/h8-eepmov-block.md).
 Original peripheral timing TODO retained;no E-clock/handshake timing validation.
 Remaining:SLEEP. Full CPU,machine/MMIO,physical timing,firmware/MIDI/audio
 and REAPER acceptance remain open;selected rows are not CPU completeness.

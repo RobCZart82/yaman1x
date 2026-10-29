@@ -95,6 +95,7 @@ private:
             if(m_inst_state!=0x18598f)throw std::runtime_error("Unsupported H8 EEPMOV.W extension");
             if(partial)eepmov_w_partial();else eepmov_w_full();return;
         }
+        if(m_inst_state==0x0180) {refresh_sleep_irq();if(partial)sleep_partial();else sleep_full();return;}
         if(m_inst_state==0x0140) {if(partial)dispatch_0140_partial();else dispatch_0140_full();return;}
         if((m_inst_state&0xffff0000)==0x70000) {
             if((m_inst_state&0xff8f)==0x6900) {if(partial)ldc_w_r32ih_ccr_partial();else ldc_w_r32ih_ccr_full();}
@@ -537,6 +538,22 @@ private:
         }
         throw std::runtime_error("Unsupported first-H8 instruction");
     }
+    // Fixed reset profile: SLEEP supported, clock-stopping standby never enabled.
+    static constexpr bool m_standby_pending=false;
+    static constexpr int SUSPEND_REASON_CLOCK=0;
+    uint64_t m_standby_time=0;
+    int m_irq_vector=0;
+    void refresh_sleep_irq(){m_irq_vector=irq_?irq_->current().vector:0;}
+    uint64_t total_cycles()const {
+        const auto end=runner_.slice_end();
+        if(m_icount>=0){if(uint64_t(m_icount)>end)throw std::overflow_error("H8 sleep time underflow");return end-uint64_t(m_icount);}
+        const auto debt=uint64_t(-int64_t(m_icount));
+        if(end>std::numeric_limits<uint64_t>::max()-debt)throw std::overflow_error("H8 sleep time overflow");
+        return end+debt;
+    }
+    void notify_standby(int){throw std::logic_error("Unsupported H8 standby");}
+    void suspend(int,bool){throw std::logic_error("Unsupported H8 standby");}
+    void m_standby_cb(int){throw std::logic_error("Unsupported H8 standby");}
     void refresh_bus_deadline(){
         if constexpr(requires{host_.next_bus_event();})
             m_bcount=runner_.reschedule(host_.next_bus_event());

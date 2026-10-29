@@ -3,6 +3,21 @@
 Frissítve: 2026-10-29. Időzóna: Europe/Budapest.
 Ellenőrzött motoralap: `b14cd16e8d4d149cdb622371ac29928904bbc295` (#112).
 
+## Aktív fejlesztési lépés — SLEEP és megszakításos ébresztés, 2026-10-29
+
+Két változatlan eredeti SLEEP-kezelő,rögzített profil,standby kizárva.
+Jelölt:74 CTest/87 Python,562 kezelő (558 változatlan,4 korábbi adaptáció),
+264 kiválasztott/0 hiányzó/135 kizárt kódolássor. Ez nem teljes CPU/gép-elfogadás.
+512 IRQ/NMI/CCR-maszk és644 szétvágás,periféria-előrehaladás,határidő nélküli
+alvás,már függő IRQ,prefetch-hiba és újraindítás-tiltás célzott tesztje PASS.
+Eredeti referencia200000 szelet,nulla eltérés;ébresztést tiltó hibás kontroll
+seed13/slice7-nél felismerve. Helyi Release74/74 CTest és87 Python,célzott ASan/UBSan PASS;végső CI/review még nyitott.
+A teszt F85A jelölőjének téves felsőbájt-elvárását R0L-re javítottuk.
+[Hatókör és korlátok](h8-sleep-wake.md). Beolvadt motoralap még #112.
+A #113 dokumentációs lezárás beolvadt `a304b1e32df1b5219cc2f59e7a6c185e5f82a8a8`:
+2026-10-29 22:22:29 Europe/Budapest (21:22:29 UTC),négy sikeres CI-feladat.
+Soros fejlesztés:új lépcső csak az aktuális PR beolvadása után.
+
 ## Aktuális lezárás — #112, 2026-10-29
 
 A [#112 PR](https://github.com/RobCZart82/yaman1x/pull/112) beolvadt:
