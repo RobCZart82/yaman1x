@@ -94,7 +94,7 @@ The H8 execution-budget arithmetic retains the same MAME BSD notices; exact `h8.
 
 The H8 execution-order runner retains the same MAME BSD notices; scope and source identity: `research/h8-execution-runner-provenance.json`. Original reference method bodies remain outside tracked sources.
 
-The first-instruction research subset retains Olivier Galibert BSD-3-Clause notices for 540 selected upstream-derived H8/H8H full/partial handlers and adapted host helpers. `research/h8-first-instructions-provenance.json` records source/generated identities and adaptations; `tools/check_h8_first_instructions.py` checks the selection against the locked full generated output. No additional Yamaha data or new upstream revision is imported.
+The first-instruction research subset retains Olivier Galibert BSD-3-Clause notices for 548 selected upstream-derived H8/H8H full/partial handlers and adapted host helpers. `research/h8-first-instructions-provenance.json` records source/generated identities and adaptations; `tools/check_h8_first_instructions.py` checks the selection against the locked full generated output. No additional Yamaha data or new upstream revision is imported.
 
 Merged signed16 displacement: six original groups; see [contract](docs/h8-displacement16-memory.md). Fixed-profile IRQ/TRAPA and synthetic CPU/SCI integration are implemented; full machine/firmware/audio acceptance remains open.
 
