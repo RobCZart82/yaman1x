@@ -33,3 +33,6 @@ reference comparison separate from the arithmetic oracle. No unverified upstream
 word handler is enabled by this PR.
 
 See [plan](FIRST_REAPER_SOUND_PLAN.md) and [status](STATUS.md).
+
+Closure: merged [PR80](https://github.com/RobCZart82/yaman1x/pull/80), engine `bddffa8743eac2e2af8e7fc1a3145046a45e6fa5`, final head `5bf4e97e64fc3ebbe00a42f8215a740fbca72d86`. All five jobs passed; [run links](STATUS.md). Preparation-time candidate/pending notes above are historical. Word multiply remains open.
+Final merged source audit:466 tracked source/document files,201 locked upstream identities,one reviewed edit; no problems.

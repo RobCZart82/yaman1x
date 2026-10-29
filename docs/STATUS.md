@@ -5,17 +5,18 @@ Recorded: 2026-10-29. Product: YamAN1x. Repository: `yaman1x`. First public rese
 The repository contains a ROM-free C++/Python development foundation.
 No VST3, AU, GUI or AN1x audio output is available yet.
 
-Verified engine baseline: merged [PR #78](https://github.com/RobCZart82/yaman1x/pull/78),
-`d4ef0e45bc416f06216d43559e1f73df1d39caa8`; final head `ef6adefadb5b390f6822ae34c4db41edab5b1348`.
-[Platform CI](https://github.com/RobCZart82/yaman1x/actions/runs/40822703637),
-[MSan](https://github.com/RobCZart82/yaman1x/actions/runs/40822703598),
-[MAME](https://github.com/RobCZart82/yaman1x/actions/runs/40822703615): all five jobs successful.
-Merged suite: **56 CTest groups / 87 Python cases; 478 original methods;
-231 selected / 33 missing / 135 excluded encoding rows** (not a CPU percentage).
-Fixed-profile IRQ/NMI/TRAPA and synthetic CPU/SCI RX/TX/error handling are merged.
-Long absolute memory uses a four-word IR buffer. Six signed16 displacement groups
-are now merged; see [contract](h8-displacement16-memory.md). Unsigned byte multiply is a separate candidate:57 CTest/87 Python,480 methods,232 selected/32 missing rows; final CI pending. See [contract](h8-byte-multiply.md).
-Local Windows:55 runnable CTest/86 Python PASS; one known symlink privilege case excluded.
+Verified engine baseline: merged [PR #80](https://github.com/RobCZart82/yaman1x/pull/80),
+`bddffa8743eac2e2af8e7fc1a3145046a45e6fa5`; final head `5bf4e97e64fc3ebbe00a42f8215a740fbca72d86`.
+[Platform CI](https://github.com/RobCZart82/yaman1x/actions/runs/40824422195),
+[MSan](https://github.com/RobCZart82/yaman1x/actions/runs/40824422322),
+[MAME](https://github.com/RobCZart82/yaman1x/actions/runs/40824422266): all five jobs successful.
+Merged suite: **57 CTest groups /87 Python cases;480 original methods;
+232 selected /32 missing /135 excluded encoding rows** (not a CPU percentage).
+Fixed-profile IRQ/NMI/TRAPA, synthetic CPU/SCI exchange/error handling, long absolute
+and signed16 displacement moves, unsigned byte multiply are merged. No active engine candidate.
+Local Windows:56 runnable CTest/86 Python PASS; one known symlink privilege case excluded.
+Word multiply stays excluded pending integer-promotion overflow review;
+see [contract and next acceptance gates](h8-byte-multiply.md).
 
 M0 remains partial; M1 is prepared but unaccepted. Missing instructions and
 address modes, full AN1x memory/MMIO integration, physical timing verification,

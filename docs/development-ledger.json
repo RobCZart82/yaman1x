@@ -3,7 +3,7 @@
   "recorded_date": "2026-10-29",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "d4ef0e45bc416f06216d43559e1f73df1d39caa8",
+  "baseline_commit": "bddffa8743eac2e2af8e7fc1a3145046a45e6fa5",
   "entries": [
     {
       "pr": 6,
@@ -877,14 +877,37 @@
         40822703598,
         40822703615
       ]
+    },
+    {
+      "pr": 79,
+      "title": "Close merged PR78 and update development baseline",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/79",
+      "kind": "documentation",
+      "status": "merged",
+      "merge_commit": "6869360db812c64cc7d9d7b9f9e72f3ba6260d46",
+      "reviewed_head": "bb0b8f6fc8ca2961c14ab6ab3c4f3af3ccc0b7e0",
+      "merged_at_utc": "2026-10-29T05:31:01Z",
+      "ci_runs": [
+        40823479493,
+        40823479624
+      ]
+    },
+    {
+      "pr": 80,
+      "title": "Execute H8H unsigned byte multiply with exhaustive arithmetic controls",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/80",
+      "kind": "development",
+      "status": "merged",
+      "merge_commit": "bddffa8743eac2e2af8e7fc1a3145046a45e6fa5",
+      "reviewed_head": "5bf4e97e64fc3ebbe00a42f8215a740fbca72d86",
+      "merged_at_utc": "2026-10-29T05:41:58Z",
+      "ci_runs": [
+        40824422195,
+        40824422322,
+        40824422266
+      ]
     }
   ],
-  "active_change": {
-    "id": "H8-BYTE-MULTIPLY-2026-10-29",
-    "branch": "feat/h8-unsigned-byte-multiply",
-    "status": "in_progress",
-    "summary": "Original unsigned byte multiply; word multiply deferred for overflow review",
-    "validation": "56 local CTest/86 Python PASS;200000 reference slices zero differences;product+1 control detected;remote CI pending"
-  },
+  "active_change": null,
   "pending_changes": []
 }

@@ -98,4 +98,4 @@ The first-instruction research subset retains Olivier Galibert BSD-3-Clause noti
 
 Signed16 displacement candidate: six original groups; see [contract](docs/h8-displacement16-memory.md). Fixed-profile IRQ/TRAPA and synthetic CPU/SCI integration are implemented; full machine/firmware/audio acceptance remains open.
 
-Unsigned byte multiply candidate: [scope, checks and word promotion risk](docs/h8-byte-multiply.md).
+Merged unsigned byte multiply: [scope, checks and word promotion risk](docs/h8-byte-multiply.md).
