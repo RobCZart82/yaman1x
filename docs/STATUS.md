@@ -5,6 +5,10 @@ Recorded: 2026-10-29. Product: YamAN1x. Repository: `yaman1x`. First public rese
 The repository contains a ROM-free C++/Python development foundation.
 No VST3, AU, GUI or AN1x audio output is available yet.
 
+Active candidate: [signed16 displacement CCR memory](h8-ccr-displacement16-memory.md),70 CTest/540 methods
+(536 unchanged/four prior adaptations),257 selected/7 missing/135 excluded rows.
+Final-head CI/review and merge pending;merged evidence below remains #104.
+
 Verified engine baseline: merged [PR #104](https://github.com/RobCZart82/yaman1x/pull/104),
 `92e52f45307dc1adad37347febd407d0d2106182`;tested head `570d7b11d5dde819ac12211671f39fd47163f81b`.
 [Platform CI and Linux UBSan](https://github.com/RobCZart82/yaman1x/actions/runs/40919264372),
@@ -14,7 +18,7 @@ Automated review completed on the final head without findings;no unresolved thre
 Merged suite: **69 CTest groups /87 Python cases;536 upstream-derived methods
 (532 unchanged,four prior adaptations);255 selected /9 missing /135 excluded encoding rows**
 (not a CPU percentage). Local Release69/69 CTest,87 Python and targeted ASan/UBSan PASS.
-[Autoindex CCR scope and tests](h8-ccr-autoindex-memory.md). No active engine candidate.
+[Autoindex CCR scope and tests](h8-ccr-autoindex-memory.md). The prior series is closed;the new candidate is above.
 
 M0 remains partial;M1 prepared but unaccepted. Remaining CCR displacement modes,
 other missing instructions,full AN1x memory/MMIO integration,physical timing,
