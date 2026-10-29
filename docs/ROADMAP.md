@@ -6,7 +6,11 @@ audible firmware-driven VST3 voice in REAPER:
 
 Changes/fixes are recorded in the [development ledger](DEVELOPMENT_LOG.md).
 The [repository audit](REPOSITORY_AUDIT_2026-10-27.md) identifies current gaps.
-Merged [CCR indirect memory](h8-ccr-indirect-memory.md); no active engine candidate.
+Merged [CCR indirect memory](h8-ccr-indirect-memory.md); subsequent candidate described above.
+
+Active candidate: [long displacement32 MOV.L](h8-long-displacement32-memory.md),67 CTest/524 methods
+(520 unchanged/four prior adaptations),249 selected/15 missing/135 excluded rows.
+Final-head CI and merge pending; merged evidence below remains #98.
 
 Verified engine baseline: merged [PR #98](https://github.com/RobCZart82/yaman1x/pull/98),
 `1c7ba628aceb29fd4c057db73fe31b2be4841558`. See [current status](STATUS.md)

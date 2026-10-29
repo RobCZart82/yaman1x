@@ -42,7 +42,7 @@ int main(){
  for(unsigned p=0;p<8;++p)for(unsigned r=0;r<8;++r)for(unsigned n=0;n<256;++n){long_case(p,r,pattern(n),n,false);long_case(p,r,pattern(n),n,true);}
  for(unsigned extension=0;extension<65536;++extension){
   const bool absolute=(extension&0xfff8)==0x6b00 || (extension&0xfff8)==0x6b80 || (extension&0xfff8)==0x6b20 || (extension&0xfff8)==0x6ba0;
-  const bool supported=(extension&0xff08)==0x6f00 || absolute || (extension&0xff08)==0x6900 || (extension&0xff08)==0x6d00;Host host;host.program({0x0100,uint16_t(extension)});Cpu cpu(host);bool rejected=false;
+  const bool supported=(extension&0xff0f)==0x7800 || (extension&0xff08)==0x6f00 || absolute || (extension&0xff08)==0x6900 || (extension&0xff08)==0x6d00;Host host;host.program({0x0100,uint16_t(extension)});Cpu cpu(host);bool rejected=false;
   try{cpu.run(0,9,100);}catch(const std::runtime_error&){rejected=true;}
   check(rejected!=supported && cpu.failed()==rejected,"Exhaustive prefix extension decoding rejects byte/other instructions");}
  {Host host;host.program({0x0100,0x6901});Cpu cpu(host);cpu.run(0,7,100);auto s=cpu.snapshot();check(s.state==0x0100 && s.substate==2 && s.debt==1,"Prefix read suspended with debt");cpu.run(7,1,100);check(cpu.snapshot().state==0x0100,"Debt repayment does not repeat extension fetch");cpu.run(8,1,100);check(cpu.snapshot().state==0x26901 && cpu.snapshot().substate==2 && cpu.snapshot().ppc==0x100,"Prefix continuation changes internal state before long handler");}

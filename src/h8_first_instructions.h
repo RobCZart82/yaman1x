@@ -20,7 +20,7 @@ public:
     struct Snapshot {
         std::array<uint16_t,16> registers;
         uint32_t pc, ppc, npc, state, substate, tmp1, tmp2;
-        std::array<uint16_t,4> ir;
+        std::array<uint16_t,5> ir;
         uint16_t pir;
         uint8_t ccr, exr;
         int remaining, debt, taken_vector, taken_level;
@@ -75,7 +75,13 @@ private:
             } else if((m_inst_state&0xff08)==0x6f00) {
                 if(m_inst_state&0x80) {if(partial)mov_l_r32l_r32d16h_partial();else mov_l_r32l_r32d16h_full();}
                 else {if(partial)mov_l_r32d16h_r32l_partial();else mov_l_r32d16h_r32l_full();}
+            } else if((m_inst_state&0xff0f)==0x7800) {if(partial)dispatch_01007800_partial();else dispatch_01007800_full();
             } else throw std::runtime_error("Unsupported H8 long-memory extension"); return;
+        }
+        if((m_inst_state&0xffff0000)==0x30000) {
+            if((m_inst_state&0xfff8)==0x6b20) {if(partial)mov_l_r32d32hh_r32l_partial();else mov_l_r32d32hh_r32l_full();}
+            else if((m_inst_state&0xfff8)==0x6ba0) {if(partial)mov_l_r32l_r32d32hh_partial();else mov_l_r32l_r32d32hh_full();}
+            else throw std::runtime_error("Unsupported H8 long displacement32 extension");return;
         }
         if(m_inst_state==0x0140) {if(partial)dispatch_0140_partial();else dispatch_0140_full();return;}
         if((m_inst_state&0xffff0000)==0x70000) {
@@ -657,7 +663,7 @@ void set_nz32(u32 v)
     int m_bcount=0;
     std::array<uint16_t,16> m_R{};
     uint32_t m_PC=0,m_PPC=0,m_NPC=0,m_inst_state=0x10000,m_inst_substate=0,m_TMP1=0,m_TMP2=0;
-    std::array<uint16_t,4> m_IR{};
+    std::array<uint16_t,5> m_IR{};
     uint16_t m_PIR=0;
     uint8_t m_CCR=0,m_EXR=0;
 #include "h8_first_handlers.h"
