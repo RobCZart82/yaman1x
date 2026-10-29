@@ -3,7 +3,7 @@
   "recorded_date": "2026-10-29",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "92e52f45307dc1adad37347febd407d0d2106182",
+  "baseline_commit": "aee769ef224e2686ccd4a98bbd9d3851f8cc6399",
   "entries": [
     {
       "pr": 6,
@@ -1279,13 +1279,24 @@
         40922104022
       ],
       "automated_review_at_merge": "completed_no_findings"
+    },
+    {
+      "pr": 106,
+      "title": "Execute H8H signed16 displacement CCR memory with IRQ controls",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/106",
+      "kind": "development",
+      "status": "merged",
+      "merge_commit": "aee769ef224e2686ccd4a98bbd9d3851f8cc6399",
+      "reviewed_head": "e3af0b4453d19194da8d32b24e6d409d4ab8809f",
+      "merged_at_utc": "2026-10-29T18:21:59Z",
+      "ci_runs": [
+        40928577461,
+        40928577203,
+        40928577221
+      ],
+      "automated_review_at_merge": "no_recorded_result_at_inspection"
     }
   ],
-  "active_change": {
-    "branch": "feat/h8-ccr-displacement16",
-    "scope": "LDC/STC signed16 displacement CCR word memory",
-    "status": "local_validation_passed",
-    "ci": "not_run"
-  },
+  "active_change": null,
   "pending_changes": []
 }

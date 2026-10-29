@@ -1,6 +1,6 @@
 # H8H signed16 displacement CCR word memory
 
-Recorded:2026-10-29. Merged engine baseline:#104;this increment is a candidate.
+Recorded:2026-10-29. Merged #106 as `aee769ef224e2686ccd4a98bbd9d3851f8cc6399`;tested head `e3af0b4453d19194da8d32b24e6d409d4ab8809f`.
 
 ## Scope and provenance
 
@@ -48,6 +48,8 @@ Tracked code remains correct.
 
 Local Release70/70 CTest and87 Python PASS;targeted ASan/UBSan PASS.
 Negative-control result is recorded above and in the log/PR. Linux CI includes this target under
-UBSan. Final-head CI/review and merge pending. Remaining CCR displacement32,
+UBSan. [Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40928577461), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40928577203), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40928577221).
+All five jobs passed;merged. No recorded automated review result at inspection;
+no successful automated review claimed. Remaining CCR displacement32,
 other missing H8H instructions,full AN1x machine/MMIO integration,physical timing,
 firmware/MIDI/audio and plugin/REAPER acceptance remain open.

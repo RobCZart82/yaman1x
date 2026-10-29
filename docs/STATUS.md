@@ -5,26 +5,16 @@ Recorded: 2026-10-29. Product: YamAN1x. Repository: `yaman1x`. First public rese
 The repository contains a ROM-free C++/Python development foundation.
 No VST3, AU, GUI or AN1x audio output is available yet.
 
-Active candidate: [signed16 displacement CCR memory](h8-ccr-displacement16-memory.md),70 CTest/540 methods
-(536 unchanged/four prior adaptations),257 selected/7 missing/135 excluded rows.
-Final-head CI/review and merge pending;merged evidence below remains #104.
+Verified engine baseline: [#106](https://github.com/RobCZart82/yaman1x/pull/106),
+`aee769ef224e2686ccd4a98bbd9d3851f8cc6399`; tested head `e3af0b4453d19194da8d32b24e6d409d4ab8809f`.
+70 CTest groups/87 Python cases;540 upstream-derived methods (536 unchanged,
+four prior arithmetic adaptations);257 selected/7 missing/135 excluded encoding rows.
+[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40928577461), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40928577203), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40928577221): all five jobs passed.
+No recorded automated review result at inspection; no successful automated review claimed.
+No active engine candidate. [Signed16 CCR evidence](h8-ccr-displacement16-memory.md).
+Full CPU,machine/MMIO,physical timing,firmware/MIDI/audio and REAPER acceptance remain open.
 
-Verified engine baseline: merged [PR #104](https://github.com/RobCZart82/yaman1x/pull/104),
-`92e52f45307dc1adad37347febd407d0d2106182`;tested head `570d7b11d5dde819ac12211671f39fd47163f81b`.
-[Platform CI and Linux UBSan](https://github.com/RobCZart82/yaman1x/actions/runs/40919264372),
-[MSan](https://github.com/RobCZart82/yaman1x/actions/runs/40919264370),
-[MAME](https://github.com/RobCZart82/yaman1x/actions/runs/40919264281):all five jobs successful.
-Automated review completed on the final head without findings;no unresolved threads.
-Merged suite: **69 CTest groups /87 Python cases;536 upstream-derived methods
-(532 unchanged,four prior adaptations);255 selected /9 missing /135 excluded encoding rows**
-(not a CPU percentage). Local Release69/69 CTest,87 Python and targeted ASan/UBSan PASS.
-[Autoindex CCR scope and tests](h8-ccr-autoindex-memory.md). The prior series is closed;the new candidate is above.
-
-M0 remains partial;M1 prepared but unaccepted. Remaining CCR displacement modes,
-other missing instructions,full AN1x memory/MMIO integration,physical timing,
-firmware/MIDI/audio and REAPER acceptance remain open. See the
-[first-sound plan](FIRST_REAPER_SOUND_PLAN.md) and [development log](DEVELOPMENT_LOG.md).
-Development proceeds one PR at a time;the next increment begins after merge.
+M0 partial;M1 prepared but unaccepted. Next:CCR displacement32. One PR at a time.
 
 ## Historical component evidence — current state is above
 
