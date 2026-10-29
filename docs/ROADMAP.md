@@ -6,10 +6,10 @@ audible firmware-driven VST3 voice in REAPER:
 
 Changes/fixes are recorded in the [development ledger](DEVELOPMENT_LOG.md).
 The [repository audit](REPOSITORY_AUDIT_2026-10-27.md) identifies current gaps.
-Verified engine baseline: merged [PR #84](https://github.com/RobCZart82/yaman1x/pull/84),
-`2540601aa985513a39d293ffa14fd8e0b76689da`. See [current status](STATUS.md)
+Verified engine baseline: merged [PR #86](https://github.com/RobCZart82/yaman1x/pull/86),
+`4dd788dadae4b09a21b4611f245640a63c56dcf5`. See [current status](STATUS.md)
 for final-head CI and local environment limits. The [CPU subset](h8-first-instructions.md)
-already builds and executes 488 upstream-derived full/partial handlers (486 unchanged,2 adapted), including memory,
+already builds and executes 490 upstream-derived full/partial handlers (488 unchanged,2 adapted), including memory,
 arithmetic/logic, single-bit shifts/rotates, byte bit operations and normal
 [stack/control flow](h8-stack-control-flow.md). Fixed-profile IRQ/NMI/TRAPA and synthetic CPU/SCI exchange/error handling are implemented;
 full AN1x integration and physical timing are not established. H8S two-bit shifts remain
@@ -17,7 +17,7 @@ outside this H8H profile.
 
 Next M0 work, in order:
 
-1. Close remaining H8H opcodes/addressing (29 encoding rows remain after signed byte/word multiply);
+1. Close remaining H8H opcodes/addressing (28 encoding rows remain after unsigned byte divide);
    retain the reviewed [word-multiply widening and UBSan control](h8-word-multiply.md);
    retain fixed-profile IRQ/TRAPA limitations and pinned reference comparisons.
 2. Connect CPU, address map/MMIO and existing peripherals to a common scheduler;

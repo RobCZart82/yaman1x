@@ -1,9 +1,31 @@
 # YamAN1x fejlesztési napló
 
 Frissítve: 2026-10-29. Időzóna: Europe/Budapest.
-Ellenőrzött motoralap: `2540601aa985513a39d293ffa14fd8e0b76689da` (#84).
+Ellenőrzött motoralap: `4dd788dadae4b09a21b4611f245640a63c56dcf5` (#86).
 
-## Aktuális lezárás — #84, 2026-10-29
+## Aktuális lezárás — #86, 2026-10-29
+
+Ellenőrzött motoralap: [#86](https://github.com/RobCZart82/yaman1x/pull/86),
+merge `4dd788dadae4b09a21b4611f245640a63c56dcf5`, végső tesztelt head `189eeea02372839e8cf27f02853b990ed0625652`.
+Beolvadt: 2026-10-29 08:26:31 Europe/Budapest (07:26:31 UTC).
+[Linux/macOS/Windows PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40834892241),
+[MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40834892230),
+[MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40834892231).
+Linux UBSan: bájtos unsigned osztás és korábbi szorzások PASS; az eredeti unsigned
+int-promóciós hibát megkövetelő kontroll is PASS.
+
+Beolvadt: **60 CTest-csoport /87 Python-eset;490 upstreamből származó kezelő
+(488 változatlan,2 korábbi adaptáció);236 kiválasztott /28 hiányzó /135 kizárt
+profilú kódolássor**. Ez nem CPU-százalék. DIVXU.B:393216 osztandó-söprés,
+2048 osztóhatáreset,30720 alias/CCR-eset,20000 véletlen pár,241 szétvágás PASS.
+Eredeti referencia:200000 szelet,nulla eltérés; hányados+1 kontroll seed9/slice18
+felismerve. Helyi59 futtatható CTest/86 Python PASS, ismert Windows-symlink eset kizárva.
+A nullás osztó, hányadoslevágás és osztófüggő N/Z az eredeti forrással egyezik,
+nem külön hardvermérés. Nincs aktív motorjelölt. [Hatókör és bizonyíték](h8-byte-divide.md).
+M0 részleges; teljes gép/firmware/MIDI/hang/plugin elfogadás nyitott.
+Az alábbi jelölt/pending bejegyzések történetiek, nem a jelenlegi állapotot jelzik.
+
+## Történeti lezárás — #84, 2026-10-29
 
 Ellenőrzött motoralap: [#84](https://github.com/RobCZart82/yaman1x/pull/84),
 merge `2540601aa985513a39d293ffa14fd8e0b76689da`, végső tesztelt head `7aee43a86ea21711254fd3e840728534e01b6a96`.
