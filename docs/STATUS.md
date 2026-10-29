@@ -5,20 +5,20 @@ Recorded: 2026-10-29. Product: YamAN1x. Repository: `yaman1x`. First public rese
 The repository contains a ROM-free C++/Python development foundation.
 No VST3, AU, GUI or AN1x audio output is available yet.
 
-Verified engine baseline: merged [PR #88](https://github.com/RobCZart82/yaman1x/pull/88),
-`3c5f7dddfdf54532670d9cdddd0ade0aab7c92bd`; final head `fc0db2778270a5ffdc612ab46ccd7be0b0d9b4fe`.
-[Platform CI](https://github.com/RobCZart82/yaman1x/actions/runs/40837738076),
-[MSan](https://github.com/RobCZart82/yaman1x/actions/runs/40837738102),
-[MAME](https://github.com/RobCZart82/yaman1x/actions/runs/40837738069): all five jobs successful.
-Linux UBSan passed byte/word divide and prior multiply tests plus required original-overflow control.
-Merged suite: **61 CTest groups /87 Python cases;492 upstream-derived methods
-(488 unchanged,4 adapted);237 selected /27 missing /135 excluded encoding rows**
+Verified engine baseline: merged [PR #90](https://github.com/RobCZart82/yaman1x/pull/90),
+`a4f52f600d2cfd85f14a5e8822eb5e025d28825d`; final head `f24ca47f3511764dfec4971e84c3c1487aaed443`.
+[Platform CI](https://github.com/RobCZart82/yaman1x/actions/runs/40842792043),
+[MSan](https://github.com/RobCZart82/yaman1x/actions/runs/40842792142),
+[MAME](https://github.com/RobCZart82/yaman1x/actions/runs/40842792129): all five jobs successful.
+Linux UBSan passed DAA/DAS and prior arithmetic tests plus original-overflow control.
+Automated code review completed on this final head with no findings.
+Merged suite: **62 CTest groups /87 Python cases;496 upstream-derived methods
+(492 unchanged,4 prior adaptations);239 selected /25 missing /135 excluded encoding rows**
 (not a CPU percentage). Fixed-profile IRQ/NMI/TRAPA, synthetic CPU/SCI exchange/errors,
-long absolute/signed16 displacement moves, signed/unsigned byte/word multiply and
-unsigned byte/word divide are merged. Word-divide q/r locals are explicitly unsigned;
-original divisor-bit7 N behavior is preserved pending hardware evidence.
-[Scope and evidence](h8-word-divide.md). DAA/DAS is a separate M0 candidate:62 CTest/87 Python,496 methods (492 unchanged,4 prior adaptations),239 selected/25 missing rows;CI pending. See [scope](h8-decimal-adjust.md).
-Local Windows:60 runnable CTest/86 Python PASS; one known symlink privilege case excluded.
+long absolute/signed16 displacement moves, signed/unsigned byte/word multiply,
+unsigned byte/word divide and DAA/DAS are merged. Decimal arithmetic oracle covers
+valid BCD operations; [scope and limits](h8-decimal-adjust.md). No active engine candidate.
+Local Windows:61 runnable CTest/86 Python PASS; one known symlink privilege case excluded.
 
 M0 remains partial; M1 is prepared but unaccepted. Missing instructions and
 address modes, full AN1x memory/MMIO integration, physical timing verification,

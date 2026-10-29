@@ -110,4 +110,4 @@ Merged unsigned byte divide: unchanged original handlers; [scope and source-deri
 Merged unsigned word divide: two additional generated-body local-type adaptations
 (int q/r to u32), alongside the two MULXU.W widenings; [scope and provenance](docs/h8-word-divide.md).
 
-DAA/DAS candidate: four unchanged original handlers; [scope and evidence](docs/h8-decimal-adjust.md).
+Merged DAA/DAS: four unchanged original handlers; [scope and evidence](docs/h8-decimal-adjust.md).

@@ -38,3 +38,6 @@ Linux UBSan includes decimal adjustment and previous multiply/divide controls.
 Generated selection,source/notice and local documentation checks are separate
 from physical timing,firmware/MIDI/audio/plugin acceptance; M0 remains partial.
 See [plan](FIRST_REAPER_SOUND_PLAN.md) and [status](STATUS.md).
+
+Closure: merged [PR90](https://github.com/RobCZart82/yaman1x/pull/90), engine `a4f52f600d2cfd85f14a5e8822eb5e025d28825d`, final head `f24ca47f3511764dfec4971e84c3c1487aaed443`. All five jobs PASS including decimal/prior arithmetic Linux UBSan and original-overflow control; [run links](STATUS.md). Automated code review completed with no findings on this head. Preparation-time candidate/pending notes above are historical.
+Final source inventory:477 files,201 locked upstream identities,one reviewed manifest edit;four prior generated-body adaptations remain separately recorded. Source/notice checks PASS.
