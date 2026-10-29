@@ -3,7 +3,7 @@
   "recorded_date": "2026-10-29",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "2540601aa985513a39d293ffa14fd8e0b76689da",
+  "baseline_commit": "4dd788dadae4b09a21b4611f245640a63c56dcf5",
   "entries": [
     {
       "pr": 6,
@@ -964,14 +964,37 @@
         40830383154,
         40830383285
       ]
+    },
+    {
+      "pr": 85,
+      "title": "Close signed multiply evidence and update development baseline",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/85",
+      "kind": "documentation",
+      "status": "merged",
+      "merge_commit": "b3ee3320db343d2a2f9f255fd4fbd4ef1eeb7791",
+      "reviewed_head": "4ef4a17fe6500ca44d9994478c1067f3fe7315c0",
+      "merged_at_utc": "2026-10-29T06:51:49Z",
+      "ci_runs": [
+        40831390623,
+        40831390389
+      ]
+    },
+    {
+      "pr": 86,
+      "title": "Execute H8H unsigned byte divide with zero-divisor and quotient controls",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/86",
+      "kind": "development",
+      "status": "merged",
+      "merge_commit": "4dd788dadae4b09a21b4611f245640a63c56dcf5",
+      "reviewed_head": "189eeea02372839e8cf27f02853b990ed0625652",
+      "merged_at_utc": "2026-10-29T07:26:31Z",
+      "ci_runs": [
+        40834892241,
+        40834892230,
+        40834892231
+      ]
     }
   ],
-  "active_change": {
-    "id": "H8-BYTE-DIVIDE-2026-10-29",
-    "branch": "feat/h8-unsigned-byte-divide",
-    "status": "in_progress",
-    "summary": "Original unsigned byte divide with zero-divisor/quotient/CCR controls",
-    "validation": "59 local CTest/86 Python PASS;independent aliases/CCR/splits,200000 original-reference slices zero differences;quotient+1 detected;remote CI pending"
-  },
+  "active_change": null,
   "pending_changes": []
 }

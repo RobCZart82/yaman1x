@@ -113,4 +113,4 @@ Merged unsigned byte multiply: [scope, checks and word promotion risk](h8-byte-m
 
 Merged signed multiply: [scope,original helpers and evidence](h8-signed-multiply.md).
 
-Unsigned byte divide candidate: [scope and evidence](h8-byte-divide.md).
+Merged unsigned byte divide: [scope and evidence](h8-byte-divide.md).

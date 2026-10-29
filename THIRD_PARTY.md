@@ -105,4 +105,4 @@ not a claim of unchanged bodies; [exact scope/provenance](docs/h8-word-multiply.
 
 Merged signed multiply: [scope,original helpers and evidence](docs/h8-signed-multiply.md).
 
-Unsigned byte divide candidate: unchanged original handlers; [scope and source-derived flags](docs/h8-byte-divide.md).
+Merged unsigned byte divide: unchanged original handlers; [scope and source-derived flags](docs/h8-byte-divide.md).

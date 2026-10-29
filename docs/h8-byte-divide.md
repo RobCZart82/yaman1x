@@ -39,3 +39,6 @@ source and notice checks pass. This is synthetic/source-reference evidence;
 physical timing,firmware boot,MIDI,audio and plugin acceptance remain open.
 
 See [plan](FIRST_REAPER_SOUND_PLAN.md) and [status](STATUS.md).
+
+Closure: merged [PR86](https://github.com/RobCZart82/yaman1x/pull/86), engine `4dd788dadae4b09a21b4611f245640a63c56dcf5`, final head `189eeea02372839e8cf27f02853b990ed0625652`. All five jobs PASS, including Linux UBSan byte-divide/prior-multiply tests and original unsigned-overflow control; [run links](STATUS.md). Preparation-time candidate/pending notes above are historical.
+Final source inventory:473 files,201 locked upstream identities,one reviewed manifest edit; two prior generated-body adaptations remain separately recorded in CPU provenance. Source and notice checks PASS.
