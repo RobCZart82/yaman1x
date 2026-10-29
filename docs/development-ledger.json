@@ -3,7 +3,7 @@
   "recorded_date": "2026-10-29",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "3172c55e9a1cea766e5326bfd56a98f68d6420f3",
+  "baseline_commit": "7fe1d4bcb602ce96d40f34ec4ccd888430bf70e0",
   "entries": [
     {
       "pr": 6,
@@ -1434,13 +1434,24 @@
         40960596227
       ],
       "automated_review_at_merge": "no_recorded_result_at_inspection"
+    },
+    {
+      "pr": 116,
+      "title": "Route bounded AN1x ROM and RAM with isolated ownership and CPU tests",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/116",
+      "kind": "development",
+      "status": "merged",
+      "merge_commit": "7fe1d4bcb602ce96d40f34ec4ccd888430bf70e0",
+      "reviewed_head": "1982509b2c4632b7e9198d3ae23656f59e2c2a55",
+      "merged_at_utc": "2026-10-29T22:25:39Z",
+      "ci_runs": [
+        40963649310,
+        40963649254,
+        40963649115
+      ],
+      "automated_review_at_merge": "no_recorded_result_at_inspection"
     }
   ],
-  "active_change": {
-    "branch": "feat/an1x-memory-map",
-    "scope": "Project-owned AN1x bounded ROM/NVRAM/internal RAM routing;MMIO fail-closed",
-    "status": "local_validation_passed",
-    "ci": "not_run"
-  },
+  "active_change": null,
   "pending_changes": []
 }
