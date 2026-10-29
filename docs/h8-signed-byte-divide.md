@@ -1,5 +1,7 @@
 # H8H signed byte divide
 
+Current resolution: the historical signed-word source/profile investigation below was closed by merged [PR94](https://github.com/RobCZart82/yaman1x/pull/94);[extreme-case evidence](h8-signed-word-divide.md). Hardware behavior remains unverified.
+
 Candidate based on merged PR91,engine baseline PR90. Selects unchanged01d0
 prefix dispatch and DIVXS.B full/partial bodies. Guarded continuation0xf0000
 accepts5100/ff00 only; signed-word division and all other continuations fail-stop.

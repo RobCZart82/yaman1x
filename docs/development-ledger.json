@@ -3,7 +3,7 @@
   "recorded_date": "2026-10-29",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "1adeb1030871083bb510f4e691da4467cd96a816",
+  "baseline_commit": "442949856a92392986f3bbc5927f36b7884a505b",
   "entries": [
     {
       "pr": 6,
@@ -1080,14 +1080,38 @@
         40847532267,
         40847532335
       ]
+    },
+    {
+      "pr": 93,
+      "title": "Close signed byte divide evidence and update development baseline",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/93",
+      "kind": "documentation",
+      "status": "merged",
+      "merge_commit": "997e0fbff20d9e84c49f7a014ecc13d456cedbbf",
+      "reviewed_head": "3d019cd68df6e0d644a9eb34f7b8dfb62c0c2725",
+      "merged_at_utc": "2026-10-29T09:26:06Z",
+      "ci_runs": [
+        40848860600,
+        40848860889
+      ]
+    },
+    {
+      "pr": 94,
+      "title": "Execute H8H signed word divide with extreme quotient compatibility controls",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/94",
+      "kind": "development",
+      "status": "merged",
+      "merge_commit": "442949856a92392986f3bbc5927f36b7884a505b",
+      "reviewed_head": "9f3cda7fcbe545ee2b0da9cebc23d8dd5ab6b42a",
+      "merged_at_utc": "2026-10-29T09:48:25Z",
+      "ci_runs": [
+        40850898827,
+        40850898826,
+        40850898831
+      ],
+      "automated_review_at_merge": "running"
     }
   ],
-  "active_change": {
-    "id": "H8-SIGNED-WORD-DIVIDE-2026-10-29",
-    "branch": "feat/h8-signed-word-divide",
-    "status": "in_progress",
-    "summary": "Original DIVXS.W with32-bit-int guard and explicit extreme-quotient source compatibility",
-    "validation": "63 local CTest/86 Python PASS;524288 sweeps,21504 aliases/CCR,1024 extremes,321 splits,200000 reference slices zero differences;reversed N detected;remote CI pending"
-  },
+  "active_change": null,
   "pending_changes": []
 }

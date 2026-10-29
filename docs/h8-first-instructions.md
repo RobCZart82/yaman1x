@@ -122,4 +122,4 @@ Merged DAA/DAS: [decimal oracle and evidence limits](h8-decimal-adjust.md).
 
 Merged signed byte divide: [scope and remaining word extreme case](h8-signed-byte-divide.md).
 
-Signed word divide candidate: [32-bit-int profile and extreme flags](h8-signed-word-divide.md).
+Merged signed word divide: [32-bit-int profile and extreme flags](h8-signed-word-divide.md).
