@@ -3,7 +3,7 @@
   "recorded_date": "2026-10-29",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "3d0ce825bb341402f40dab92c0f1ec2f409b5ee7",
+  "baseline_commit": "b14cd16e8d4d149cdb622371ac29928904bbc295",
   "entries": [
     {
       "pr": 6,
@@ -1372,13 +1372,24 @@
         40949073711
       ],
       "automated_review_at_merge": "no_recorded_result_at_inspection"
+    },
+    {
+      "pr": 112,
+      "title": "Execute H8H EEPMOV byte blocks with original resumable continuations",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/112",
+      "kind": "development",
+      "status": "merged",
+      "merge_commit": "b14cd16e8d4d149cdb622371ac29928904bbc295",
+      "reviewed_head": "41c5c34be49913dea5dc025f589cfde068a27736",
+      "merged_at_utc": "2026-10-29T21:05:04Z",
+      "ci_runs": [
+        40952371785,
+        40952371726,
+        40952371748
+      ],
+      "automated_review_at_merge": "no_recorded_result_at_inspection"
     }
   ],
-  "active_change": {
-    "branch": "feat/h8-eepmov-block",
-    "scope": "Advanced H8H EEPMOV byte copies with8/16-bit counters and original continuations",
-    "status": "local_validation_passed",
-    "ci": "not_run"
-  },
+  "active_change": null,
   "pending_changes": []
 }
