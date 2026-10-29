@@ -5,6 +5,19 @@ Ez végrehajtási terv; az alábbi, még nyitott mérföldkövek nem kész funkc
 Állapotellenőrzés: 2026-10-29, motoralap: #96 (`8b1c37eb569202e394ff1caeb3f64618bae78a69`).
 A működő H8H-részhalmaz nem teljes CPU- vagy firmware-elfogadás.
 
+## Aktív fejlesztési lépés — közvetett CCR-memória, 2026-10-29
+
+Az eredeti LDC.W @ERn,CCR és STC.W CCR,@ERn két műveletcsoportja, valamint
+az eredeti0140 prefixkezelés bekötve. Jelölt:66 CTest/87 Python,518 kezelő
+(514 változatlan,4 korábbi adaptáció),247 kiválasztott/17 hiányzó/135 kizárt sor.
+Ez nem teljes CPU-elfogadás. A beolvadt bizonyíték alább még #96.
+524288 memóriaszó,24576 cím/CCR-eset,65536 prefixfolytatás,201 szétvágás,
+512 IRQ/NMI-maszk és322 megszakításos szétvágás PASS. Helyi65 futtatható CTest/86 Python PASS; az ismert Windows-symlink eset
+kizárva. Végső head CI lezárása külön következik. Eredeti referencia200000 szelet,
+nulla eltérés; hibás alsóbájt-kiválasztás kontroll seed5/slice7 felismerve.
+A kezdeti referencia azonos bájtokat használt; eltérő bájtokra erősítve.
+[Pontos hatókör és korlátok](h8-ccr-indirect-memory.md). Hardver/firmware/hang nem igazolt.
+
 ## Aktuális lezárás — #96, 2026-10-29
 
 Ellenőrzött motoralap: [#96](https://github.com/RobCZart82/yaman1x/pull/96),
