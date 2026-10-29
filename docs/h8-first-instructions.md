@@ -118,4 +118,4 @@ Merged unsigned byte divide: [scope and evidence](h8-byte-divide.md).
 
 Merged unsigned word divide: [source flags and full-range evidence](h8-word-divide.md).
 
-DAA/DAS candidate: [decimal oracle and evidence limits](h8-decimal-adjust.md).
+Merged DAA/DAS: [decimal oracle and evidence limits](h8-decimal-adjust.md).

@@ -1,9 +1,30 @@
 # YamAN1x fejlesztési napló
 
 Frissítve: 2026-10-29. Időzóna: Europe/Budapest.
-Ellenőrzött motoralap: `3c5f7dddfdf54532670d9cdddd0ade0aab7c92bd` (#88).
+Ellenőrzött motoralap: `a4f52f600d2cfd85f14a5e8822eb5e025d28825d` (#90).
 
-## Aktuális lezárás — #88, 2026-10-29
+## Aktuális lezárás — #90, 2026-10-29
+
+Ellenőrzött motoralap: [#90](https://github.com/RobCZart82/yaman1x/pull/90),
+merge `a4f52f600d2cfd85f14a5e8822eb5e025d28825d`, végső tesztelt head `f24ca47f3511764dfec4971e84c3c1487aaed443`.
+Beolvadt: 2026-10-29 09:38:37 Europe/Budapest (08:38:37 UTC).
+[Linux/macOS/Windows PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40842792043),
+[MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40842792142),
+[MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40842792129).
+Linux UBSan: DAA/DAS és korábbi számtan PASS; eredeti unsigned-túlcsordulási kontroll
+PASS. Automatikus kódellenőrzés a végső headen lezárult, megállapítás nélkül.
+
+Beolvadt: **62 CTest-csoport /87 Python-eset;496 upstreamből származó kezelő
+(492 változatlan,4 korábbi adaptáció);239 kiválasztott /25 hiányzó /135 kizárt sor**.
+Ez nem CPU-százalék. Decimális oracle:40000 érvényes számpár/CCR-eset,2048 regiszter-
+határeset,241 szétvágás PASS;200000 eredeti referenciaszelet nulla eltéréssel.
+DAA korrekció+1 kontroll seed7/slice0 felismerve. Helyi61 futtatható CTest/86 Python
+PASS, ismert Windows-symlink eset kizárva. Érvénytelen BCD/flag kombinációkra nincs
+állított teljes független helyességbizonyítás. [Hatókör](h8-decimal-adjust.md).
+Nincs aktív motorjelölt. Ez M0-részlépés; M0 továbbra is részleges, teljes gép,
+firmware/MIDI/hang/plugin elfogadás nyitott. Az alábbi jelölt/pending bejegyzések történetiek.
+
+## Történeti lezárás — #88, 2026-10-29
 
 Ellenőrzött motoralap: [#88](https://github.com/RobCZart82/yaman1x/pull/88),
 merge `3c5f7dddfdf54532670d9cdddd0ade0aab7c92bd`, végső tesztelt head `fc0db2778270a5ffdc612ab46ccd7be0b0d9b4fe`.
