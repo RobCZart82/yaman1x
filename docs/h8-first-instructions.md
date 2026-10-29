@@ -141,4 +141,4 @@ Merged #110: [peripheral byte moves](h8-peripheral-byte-moves.md);original timin
 
 Merged #112: [EEPMOV block copies](h8-eepmov-block.md);all five final-head CI jobs passed. No recorded automated review result at inspection.
 
-Current candidate: [fixed-profile SLEEP/wake](h8-sleep-wake.md);standby excluded;own final CI/review and merge pending. All264 eligible rows select handlers,not full CPU acceptance.
+Merged #114: [fixed-profile SLEEP/wake](h8-sleep-wake.md);standby excluded;all five final-head CI jobs passed. No recorded automated review result. All264 eligible rows select handlers,not full CPU acceptance.

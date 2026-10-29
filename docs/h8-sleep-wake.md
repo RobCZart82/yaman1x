@@ -1,6 +1,6 @@
 # Fixed-profile H8H SLEEP and wake
 
-Recorded:2026-10-29. Merged engine baseline:#112;current increment is a candidate.
+Recorded:2026-10-29. Merged #114 as `3172c55e9a1cea766e5326bfd56a98f68d6420f3`;tested head `532c5937cfc2b0b3f142e935cebba8dfa4912000`.
 
 ## Scope and explicit exclusions
 
@@ -52,6 +52,8 @@ IRQ sample to zero mismatches at seed13/slice7 (expected exit1);original referen
 unchanged,tracked candidate correct.
 
 Local Release74/74 CTest and87 Python PASS;targeted ASan/UBSan PASS.
-Final-head CI recorded in log/PR before merge. Linux CI includes the target under UBSan. Own final CI/review pending.
+Final-head CI recorded in log/PR before merge. Linux CI includes the target under UBSan. [Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40958229492), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40958229514), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40958229555).
+All five jobs passed;merged. No recorded automated review result at inspection;
+no successful automated review claimed.
 M0 remains partial:complete AN1x memory/MMIO/scheduler integration,isolation,
 firmware/MIDI/PKS,physical timing,DSP/audio and plugin/REAPER acceptance remain open.
