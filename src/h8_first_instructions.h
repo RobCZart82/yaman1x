@@ -91,11 +91,21 @@ private:
             else if((m_inst_state&0xff8f)==0x6d80) {if(partial)stc_w_ccr_pr32h_partial();else stc_w_ccr_pr32h_full();}
             else if((m_inst_state&0xff8f)==0x6f00) {if(partial)ldc_w_r32d16h_ccr_partial();else ldc_w_r32d16h_ccr_full();}
             else if((m_inst_state&0xff8f)==0x6f80) {if(partial)stc_w_ccr_r32d16h_partial();else stc_w_ccr_r32d16h_full();}
+            else if((m_inst_state&0xff8f)==0x7800) {if(partial)dispatch_01407800_partial();else dispatch_01407800_full();}
+            else if((m_inst_state&0xff8f)==0x7880) {if(partial)dispatch_01407880_partial();else dispatch_01407880_full();}
             else if(m_inst_state==0x76b00) {if(partial)ldc_w_abs16_ccr_partial();else ldc_w_abs16_ccr_full();}
             else if(m_inst_state==0x76b20) {if(partial)ldc_w_abs32_ccr_partial();else ldc_w_abs32_ccr_full();}
             else if(m_inst_state==0x76b80) {if(partial)stc_w_ccr_abs16_partial();else stc_w_ccr_abs16_full();}
             else if(m_inst_state==0x76ba0) {if(partial)stc_w_ccr_abs32_partial();else stc_w_ccr_abs32_full();}
             else throw std::runtime_error("Unsupported H8 CCR-memory extension");return;
+        }
+        if((m_inst_state&0xffff0000)==0x80000) {
+            if(m_inst_state!=0x86b20)throw std::runtime_error("Unsupported H8 CCR displacement32 load extension");
+            if(partial)ldc_w_r32d32hh_ccr_partial();else ldc_w_r32d32hh_ccr_full();return;
+        }
+        if((m_inst_state&0xffff0000)==0x90000) {
+            if(m_inst_state!=0x96ba0)throw std::runtime_error("Unsupported H8 CCR displacement32 store extension");
+            if(partial)stc_w_ccr_r32d32hh_partial();else stc_w_ccr_r32d32hh_full();return;
         }
         if((m_inst_state&0xffffff8fu)==0x7800) {if(partial)dispatch_7800_partial();else dispatch_7800_full();return;}
         if((m_inst_state&0xffff0000)==0x160000) {

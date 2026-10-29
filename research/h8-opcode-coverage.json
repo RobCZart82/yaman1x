@@ -4,8 +4,8 @@
   "profile": "advanced H8H, fixed reset-SYSCR research host",
   "counts": {
     "excluded_profile": 135,
-    "missing_handler": 7,
-    "selected_handler": 257
+    "missing_handler": 5,
+    "selected_handler": 259
   },
   "instructions": [
     {
@@ -426,7 +426,7 @@
       ],
       "method": "ldc_w_r32d32hh_ccr",
       "profile": "h",
-      "status": "missing_handler"
+      "status": "selected_handler"
     },
     {
       "line": 603,
@@ -440,7 +440,7 @@
       ],
       "method": "stc_w_ccr_r32d32hh",
       "profile": "h",
-      "status": "missing_handler"
+      "status": "selected_handler"
     },
     {
       "line": 609,

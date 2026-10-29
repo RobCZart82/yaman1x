@@ -1295,8 +1295,28 @@
         40928577221
       ],
       "automated_review_at_merge": "no_recorded_result_at_inspection"
+    },
+    {
+      "pr": 107,
+      "title": "Close signed16 CCR evidence and record merged baseline",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/107",
+      "kind": "documentation",
+      "status": "merged",
+      "merge_commit": "3a0dfb7615196a688a37083961a2f9eb3b5a2eff",
+      "reviewed_head": "3a5d9cd54f9fef460001e85c3ba82cf0c2a34504",
+      "merged_at_utc": "2026-10-29T19:01:43Z",
+      "ci_runs": [
+        40934002965,
+        40934003181
+      ],
+      "automated_review_at_merge": "not_claimed"
     }
   ],
-  "active_change": null,
+  "active_change": {
+    "branch": "feat/h8-ccr-displacement32",
+    "scope": "LDC/STC displacement32 CCR memory with original distinct prefixes",
+    "status": "local_validation_passed",
+    "ci": "not_run"
+  },
   "pending_changes": []
 }

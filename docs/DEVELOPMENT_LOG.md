@@ -3,6 +3,22 @@
 Frissítve: 2026-10-29. Időzóna: Europe/Budapest.
 Ellenőrzött motoralap: `aee769ef224e2686ccd4a98bbd9d3851f8cc6399` (#106).
 
+## Aktív fejlesztési lépés — CCR32 bites eltolás, 2026-10-29
+
+Két LDC/STC művelet és két eredeti prefixfolytatás:nyolc változatlan kezelő.
+Jelölt:71 CTest/87 Python,548 kezelő (544 változatlan,4 korábbi adaptáció),
+259 kiválasztott/5 hiányzó/135 kizárt sor. Beolvadt motoralap még #106.
+524288 memóriaszó,524288 eltolásfél-söprés,147456 határeset,261 szétvágás,
+131072 harmadikszó-őr,512 IRQ/NMI-maszk,322 megszakításos szétvágás és16 memóriahiba PASS.
+Eredeti referencia200000 szelet,nulla eltérés;célzott ASan/UBSan PASS.
+Felső eltolásszó elhagyásának hibás kontrollja seed0/slice1-nél felismerve.
+A régi elsőprefix-teszt16 új prefixhez nulla harmadik szót adott;helyes folytatással javítva.
+Teljes helyi Release71/71 CTest és87 Python PASS. Végső CI/review és beolvasztás még nyitott.
+[Hatókör és bizonyíték](h8-ccr-displacement32-memory.md).
+A #107 dokumentációs lezárás beolvadt `3a0dfb7615196a688a37083961a2f9eb3b5a2eff`:
+2026-10-29 20:01:43 Europe/Budapest (19:01:43 UTC),négy sikeres CI-feladat.
+Soros fejlesztés:új lépcső csak az aktuális PR beolvadása után.
+
 ## Aktuális lezárás — #106, 2026-10-29
 
 A [#106 PR](https://github.com/RobCZart82/yaman1x/pull/106) beolvadt:

@@ -2,6 +2,234 @@
 // copyright-holders:Olivier Galibert
 // Selected pinned generated h8h.hxx methods; class qualifiers removed; MULXU.W widening and DIVXU.W unsigned locals reviewed.
 // Included inside H8FirstInstructions. See research/h8-first-instructions-provenance.json.
+void ldc_w_r32d32hh_ccr_full()
+{
+	m_IR[3] = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 1;
+		} else
+			m_inst_substate = 2;
+		return;
+	}
+	m_PC += 2;
+	m_IR[4] = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 3;
+		} else
+			m_inst_substate = 4;
+		return;
+	}
+	m_PC += 2;
+	m_NPC = m_PC & 0xffffff;
+	m_PIR = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 5;
+		} else
+			m_inst_substate = 6;
+		return;
+	}
+	m_PC += 2;
+	m_TMP1 = r32_r(m_IR[1] >> 4) + (m_IR[3] << 16) + m_IR[4];
+	m_CCR = read16(m_TMP1) >> 8;
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 7;
+		} else
+			m_inst_substate = 8;
+		return;
+	}
+	update_irq_filter();
+	prefetch_done_noirq();
+}
+
+void ldc_w_r32d32hh_ccr_partial()
+{
+switch(m_inst_substate) {
+case 0:
+	[[fallthrough]];
+case 1:;
+	m_IR[3] = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 1;
+		} else
+			m_inst_substate = 2;
+		return;
+	}
+	[[fallthrough]];
+case 2:;
+	m_PC += 2;
+	[[fallthrough]];
+case 3:;
+	m_IR[4] = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 3;
+		} else
+			m_inst_substate = 4;
+		return;
+	}
+	[[fallthrough]];
+case 4:;
+	m_PC += 2;
+	m_NPC = m_PC & 0xffffff;
+	[[fallthrough]];
+case 5:;
+	m_PIR = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 5;
+		} else
+			m_inst_substate = 6;
+		return;
+	}
+	[[fallthrough]];
+case 6:;
+	m_PC += 2;
+	m_TMP1 = r32_r(m_IR[1] >> 4) + (m_IR[3] << 16) + m_IR[4];
+	[[fallthrough]];
+case 7:;
+	m_CCR = read16(m_TMP1) >> 8;
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 7;
+		} else
+			m_inst_substate = 8;
+		return;
+	}
+	[[fallthrough]];
+case 8:;
+	update_irq_filter();
+	prefetch_done_noirq();
+	break;
+}
+	m_inst_substate = 0;
+}
+
+void stc_w_ccr_r32d32hh_full()
+{
+	m_IR[3] = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 1;
+		} else
+			m_inst_substate = 2;
+		return;
+	}
+	m_PC += 2;
+	m_IR[4] = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 3;
+		} else
+			m_inst_substate = 4;
+		return;
+	}
+	m_PC += 2;
+	m_NPC = m_PC & 0xffffff;
+	m_PIR = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 5;
+		} else
+			m_inst_substate = 6;
+		return;
+	}
+	m_PC += 2;
+	m_TMP1 = r32_r(m_IR[1] >> 4) + (m_IR[3] << 16) + m_IR[4];
+	write16(m_TMP1, (m_CCR << 8) | m_CCR);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 7;
+		} else
+			m_inst_substate = 8;
+		return;
+	}
+	prefetch_done();
+}
+
+void stc_w_ccr_r32d32hh_partial()
+{
+switch(m_inst_substate) {
+case 0:
+	[[fallthrough]];
+case 1:;
+	m_IR[3] = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 1;
+		} else
+			m_inst_substate = 2;
+		return;
+	}
+	[[fallthrough]];
+case 2:;
+	m_PC += 2;
+	[[fallthrough]];
+case 3:;
+	m_IR[4] = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 3;
+		} else
+			m_inst_substate = 4;
+		return;
+	}
+	[[fallthrough]];
+case 4:;
+	m_PC += 2;
+	m_NPC = m_PC & 0xffffff;
+	[[fallthrough]];
+case 5:;
+	m_PIR = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 5;
+		} else
+			m_inst_substate = 6;
+		return;
+	}
+	[[fallthrough]];
+case 6:;
+	m_PC += 2;
+	m_TMP1 = r32_r(m_IR[1] >> 4) + (m_IR[3] << 16) + m_IR[4];
+	[[fallthrough]];
+case 7:;
+	write16(m_TMP1, (m_CCR << 8) | m_CCR);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 7;
+		} else
+			m_inst_substate = 8;
+		return;
+	}
+	[[fallthrough]];
+case 8:;
+	prefetch_done();
+	break;
+}
+	m_inst_substate = 0;
+}
+
 void ldc_w_r32d16h_ccr_full()
 {
 	m_IR[2] = read16i(m_PC);
