@@ -879,6 +879,12 @@
       ]
     }
   ],
-  "active_change": null,
+  "active_change": {
+    "id": "H8-BYTE-MULTIPLY-2026-10-29",
+    "branch": "feat/h8-unsigned-byte-multiply",
+    "status": "in_progress",
+    "summary": "Original unsigned byte multiply; word multiply deferred for overflow review",
+    "validation": "56 local CTest/86 Python PASS;200000 reference slices zero differences;product+1 control detected;remote CI pending"
+  },
   "pending_changes": []
 }

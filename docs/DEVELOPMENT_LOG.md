@@ -451,3 +451,16 @@ Mind a hat új forma és a korábbi referencia-családok elérésellenőrzése m
 56 CTest / 87 Python; firmware/audio-elfogadás továbbra sincs. Végső PR-CI külön bizonyíték.
 
 Az eltolásos memóriautasítások PR-je: [#78](https://github.com/RobCZart82/yaman1x/pull/78). A készítéskori jelöltállapot és a végső CI-/merge-bizonyíték külön kezelendő.
+
+## 2026-10-29 — Előjel nélküli bájtszorzás jelölt
+
+Az eredeti MULXU.B full/partial kezelők kiválasztva; fix H8H MAC nélküli időzítés.
+65536 operanduspár,19200 alias/CCR-határeset és161 szétvágott futás PASS;
+200000 eredeti referencia-szelet nulla eltéréssel; szándékos product+1 hiba felismerve.
+Helyi56 CTest/86 Python PASS, ismert Windows-symlink eset kizárva; távoli CI függőben.
+Jelölt:57 CTest/87 Python,480 eredeti módszer,232 kiválasztott/32 hiányzó/135 kizárt sor.
+A szó-szorzás külön nyitott: az eredeti u16 operandusok int-promóciója nagy szorzatnál
+C++-túlcsordulási kockázatot jelent. Bekötés előtt független nagyértékű teszt,
+UBSan és dokumentált unsigned-szélesítés felülvizsgálata szükséges.
+Ez lehetőség és igazolandó javítási feladat; nem hardveres hibamegállapítás.
+Részletek: [szerződés és bizonyíték](h8-byte-multiply.md). Yamaha-adat nem került be.

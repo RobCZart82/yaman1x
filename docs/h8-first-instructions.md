@@ -4,7 +4,7 @@ Initial increment: #47 based on #46, 2026-10-28. Current memory/branch extension
 is based on merged #47; see [the extension contract](h8-memory-branches.md). M0 remains partial.
 
 `H8FirstInstructions<Host>` is an intentionally limited advanced-H8H execution
-profile. The initial eight methods have expanded to 478 full/partial methods:
+profile. The initial eight methods have expanded to 480 full/partial methods:
 reset, NOP, immediate byte/word/long moves, all rel8 conditions, prefix dispatch
 indirect byte/word/long loads/stores, selected ADD/SUB/CMP and carry-input forms,
 logic, LDC immediate CCR and single-bit shifts/rotates. The selection now includes base-H8 and H8H operations. Their bodies are unchanged; only class
@@ -108,3 +108,5 @@ The [absolute memory bit extension](h8-absolute-bit-operations.md) adds original
 The [stack/control extension](h8-stack-control-flow.md) adds the normal H8H stack and control instruction families and synthetic RTE frame restore. internal(cycles) charges cycles+1 for the fixed no-EXR H8H profile. IRQ/TRAPA entry, full CPU coverage and CPU/SCI integration remain open.
 
 Signed16 displacement candidate: six original groups; see [contract](h8-displacement16-memory.md). Fixed-profile IRQ/TRAPA and synthetic CPU/SCI integration are implemented; full machine/firmware/audio acceptance remains open.
+
+Unsigned byte multiply candidate: [scope, checks and word promotion risk](h8-byte-multiply.md).
