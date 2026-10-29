@@ -1326,8 +1326,28 @@
         40937469419
       ],
       "automated_review_at_merge": "no_recorded_result_at_inspection"
+    },
+    {
+      "pr": 109,
+      "title": "Close displacement32 CCR evidence and record merged baseline",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/109",
+      "kind": "documentation",
+      "status": "merged",
+      "merge_commit": "90bb8a6f24c89929224bbfae13b6fc4208c674af",
+      "reviewed_head": "43b35d0ec66f944edcacd4d55a778f80e26e8348",
+      "merged_at_utc": "2026-10-29T19:38:07Z",
+      "ci_runs": [
+        40940105090,
+        40940105098
+      ],
+      "automated_review_at_merge": "not_claimed"
     }
   ],
-  "active_change": null,
+  "active_change": {
+    "branch": "feat/h8-peripheral-byte-moves",
+    "scope": "MOVFPE/MOVTPE semantic source contracts;original timing TODO retained",
+    "status": "local_validation_passed",
+    "ci": "not_run"
+  },
   "pending_changes": []
 }

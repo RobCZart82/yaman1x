@@ -83,6 +83,8 @@ private:
             else if((m_inst_state&0xfff8)==0x6ba0) {if(partial)mov_l_r32l_r32d32hh_partial();else mov_l_r32l_r32d32hh_full();}
             else throw std::runtime_error("Unsupported H8 long displacement32 extension");return;
         }
+        if((m_inst_state&0xfffffff0u)==0x6a40) {if(partial)movfpe_abs16_r8l_partial();else movfpe_abs16_r8l_full();return;}
+        if((m_inst_state&0xfffffff0u)==0x6ac0) {if(partial)movtpe_r8l_abs16_partial();else movtpe_r8l_abs16_full();return;}
         if(m_inst_state==0x0140) {if(partial)dispatch_0140_partial();else dispatch_0140_full();return;}
         if((m_inst_state&0xffff0000)==0x70000) {
             if((m_inst_state&0xff8f)==0x6900) {if(partial)ldc_w_r32ih_ccr_partial();else ldc_w_r32ih_ccr_full();}

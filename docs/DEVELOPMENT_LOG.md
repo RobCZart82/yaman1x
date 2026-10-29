@@ -3,6 +3,23 @@
 Frissítve: 2026-10-29. Időzóna: Europe/Budapest.
 Ellenőrzött motoralap: `3c7005a3a26da4149668f6ab9f4695e1672bdc6e` (#108).
 
+## Aktív fejlesztési lépés — perifériás bájtmozgatások, 2026-10-29
+
+MOVFPE/MOVTPE:két művelet,négy változatlan eredeti kezelő.
+Jelölt:72 CTest/87 Python,552 kezelő (548 változatlan,4 korábbi adaptáció),
+261 kiválasztott/3 hiányzó/135 kizárt sor. Beolvadt motoralap még #108.
+24576 bájtsáv/érték/flag-eset,131072 cím,2560 CCR-határeset,201 szétvágás,
+32 memóriahiba és szomszédos módőrök célzott tesztje PASS. A host-visszahívás
+külön ellenőrzi a betöltés/tárolás előtti flagmódosítás sorrendjét.
+Eredeti referencia200000 szelet,nulla eltérés;célzott ASan/UBSan PASS. A hibás cím-előjelkiterjesztési kontroll seed15/slice1-nél felismerve. Teljes helyi Release72/72 CTest és87 Python PASS;végső CI/review még nyitott.
+Az első teljes regresszió kilenc tesztcsoportban túl tág elsőutasítás-maszkot talált;teljes állapotmaszkra szűkítve,a belső prefixállapotok kizárva. Javítás után teljes újrafordítás megtörtént;az elsőutasítás-leltár32 új érvényes kódját is frissítettük. Végső teljes regresszió72/72 PASS.
+Az eredeti MAME `TODO: timing` megmarad:periféria/E-clock kézfogás és hardveridőzítés
+nincs igazolva;csak az eredeti műveleti szerződést portoltuk.
+[Hatókör és bizonyíték](h8-peripheral-byte-moves.md).
+A #109 dokumentációs lezárás beolvadt `90bb8a6f24c89929224bbfae13b6fc4208c674af`:
+2026-10-29 20:38:07 Europe/Budapest (19:38:07 UTC),négy sikeres CI-feladat.
+Soros fejlesztés:új lépcső csak az aktuális PR beolvadása után.
+
 ## Aktuális lezárás — #108, 2026-10-29
 
 A [#108 PR](https://github.com/RobCZart82/yaman1x/pull/108) beolvadt:
