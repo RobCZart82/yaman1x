@@ -70,6 +70,9 @@ private:
             } else if((m_inst_state&0xfff8)==0x6b80) {if(partial)mov_l_r32l_abs16_partial();else mov_l_r32l_abs16_full();
             } else if((m_inst_state&0xfff8)==0x6b20) {if(partial)mov_l_abs32_r32l_partial();else mov_l_abs32_r32l_full();
             } else if((m_inst_state&0xfff8)==0x6ba0) {if(partial)mov_l_r32l_abs32_partial();else mov_l_r32l_abs32_full();
+            } else if((m_inst_state&0xff08)==0x6f00) {
+                if(m_inst_state&0x80) {if(partial)mov_l_r32l_r32d16h_partial();else mov_l_r32l_r32d16h_full();}
+                else {if(partial)mov_l_r32d16h_r32l_partial();else mov_l_r32d16h_r32l_full();}
             } else throw std::runtime_error("Unsupported H8 long-memory extension"); return;
         }
         if((m_inst_state&0xffff0000)==0x110000) {
@@ -131,6 +134,10 @@ private:
         }
         if(m_inst_state>0xffff) {throw std::runtime_error("Unsupported H8 internal instruction state"); return;
         }
+        if((m_inst_state&0xff80)==0x6e00) {if(partial)mov_b_r32d16h_r8l_partial();else mov_b_r32d16h_r8l_full();return;}
+        if((m_inst_state&0xff80)==0x6e80) {if(partial)mov_b_r8l_r32d16h_partial();else mov_b_r8l_r32d16h_full();return;}
+        if((m_inst_state&0xff80)==0x6f00) {if(partial)mov_w_r32d16h_r16l_partial();else mov_w_r32d16h_r16l_full();return;}
+        if((m_inst_state&0xff80)==0x6f80) {if(partial)mov_w_r16l_r32d16h_partial();else mov_w_r16l_r32d16h_full();return;}
         if((m_inst_state&0xf000)==0x2000) {if(partial)mov_b_abs8_r8u_partial();else mov_b_abs8_r8u_full();return;}
         if((m_inst_state&0xf000)==0x3000) {if(partial)mov_b_r8u_abs8_partial();else mov_b_r8u_abs8_full();return;}
         if((m_inst_state&0xfff0)==0x6a00) {if(partial)mov_b_abs16_r8l_partial();else mov_b_abs16_r8l_full();return;}
