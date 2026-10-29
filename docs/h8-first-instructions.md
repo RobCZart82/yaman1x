@@ -1,7 +1,8 @@
 # First generated H8 instructions on the standalone bus/runner
 
-Initial increment: #47 based on #46, 2026-10-28. Current memory/branch extension
-is based on merged #47; see [the extension contract](h8-memory-branches.md). M0 remains partial.
+Historical starting point: #47 based on #46,2026-10-28. The first memory/branch
+extension has its own [contract](h8-memory-branches.md); see [current status](STATUS.md)
+for the latest merged engine evidence. M0 remains partial.
 
 `H8FirstInstructions<Host>` is an intentionally limited advanced-H8H execution
 profile. The initial eight methods have expanded to 512 upstream-derived full/partial methods:
@@ -124,4 +125,4 @@ Merged signed byte divide: [scope and remaining word extreme case](h8-signed-byt
 
 Merged signed word divide: [32-bit-int profile and extreme flags](h8-signed-word-divide.md).
 
-Displacement32 byte/word candidate: [address wrap,alias and prefix controls](h8-displacement32-memory.md).
+Merged displacement32 byte/word: [address wrap,alias and prefix controls](h8-displacement32-memory.md).

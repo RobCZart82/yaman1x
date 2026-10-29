@@ -1,9 +1,32 @@
 # YamAN1x fejlesztési napló
 
 Frissítve: 2026-10-29. Időzóna: Europe/Budapest.
-Ellenőrzött motoralap: `442949856a92392986f3bbc5927f36b7884a505b` (#94).
+Ellenőrzött motoralap: `8b1c37eb569202e394ff1caeb3f64618bae78a69` (#96).
 
-## Aktuális lezárás — #94, 2026-10-29
+## Aktuális lezárás — #96, 2026-10-29
+
+Ellenőrzött motoralap: [#96](https://github.com/RobCZart82/yaman1x/pull/96),
+merge `8b1c37eb569202e394ff1caeb3f64618bae78a69`, végső tesztelt head `fd5d1293a21cf63c4b39293b30ca7e650702efe4`.
+Beolvadt: 2026-10-29 11:49:02 Europe/Budapest (10:49:02 UTC).
+[Linux/macOS/Windows PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40859583149),
+[MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40859583161),
+[MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40859583141).
+Linux UBSan:32 bites eltolásos bájt/szó-mozgatás és korábbi számtan PASS; eredeti
+unsigned-túlcsordulási kontroll PASS. Automatikus kódellenőrzés kvótakorlát miatt
+nem fejeződött be; sikeres review-t nem állítunk. Minden CI sikeres volt.
+
+Beolvadt: **65 CTest-csoport /87 Python-eset;512 upstreamből származó kezelő
+(508 változatlan,4 korábbi adaptáció);245 kiválasztott /19 hiányzó /135 kizárt sor**.
+Ez nem CPU-százalék. Négy MOV-csoport:1048576 eltolásfél-söprés (nem teljes2^32
+keresztszorzat),55296 cím/regiszter/CCR-határeset,241 szétvágás,65536 prefixfolytatás,
+memóriahibás fail-stop és újraindítás-tiltás PASS. Eredeti referencia:200000 szelet,
+nulla eltérés; felső eltolásszó elhagyása kontroll seed6/slice5 felismerve. Helyi64
+futtatható CTest/86 Python PASS, ismert Windows-symlink eset kizárva.
+[Pontos hatókör és bizonyíték](h8-displacement32-memory.md). Hosszúszavas32 bites
+eltolás külön nyitott. Nincs aktív motorjelölt. M0 részleges; teljes gép/firmware/MIDI/
+hang/plugin elfogadás nyitott. Az alábbi jelölt/pending bejegyzések történetiek.
+
+## Történeti lezárás — #94, 2026-10-29
 
 Ellenőrzött motoralap: [#94](https://github.com/RobCZart82/yaman1x/pull/94),
 merge `442949856a92392986f3bbc5927f36b7884a505b`, végső tesztelt head `9f3cda7fcbe545ee2b0da9cebc23d8dd5ab6b42a`.

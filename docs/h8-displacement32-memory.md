@@ -44,3 +44,6 @@ excluded. Remote platform/UBSan/MSan/MAME pending. Linux
 UBSan includes this target and previous arithmetic/original-overflow controls.
 Source/notice checks pass separately from physical timing,firmware/MIDI/audio or
 plugin acceptance. M0 remains partial. See [plan](FIRST_REAPER_SOUND_PLAN.md).
+
+Closure: merged [PR96](https://github.com/RobCZart82/yaman1x/pull/96),engine `8b1c37eb569202e394ff1caeb3f64618bae78a69`,final head `fd5d1293a21cf63c4b39293b30ca7e650702efe4`. All five jobs PASS including Linux UBSan displacement32/prior arithmetic controls;[run links](STATUS.md). Automated code review could not complete due to service usage limits;no successful review claimed. Preparation-time candidate/pending notes above are historical.
+Final source inventory:483 files,201 locked upstream identities,one reviewed manifest edit;four prior generated-body adaptations separately recorded. Source/notice checks PASS. Physical timing/firmware/MIDI/audio/plugin acceptance remains open.
