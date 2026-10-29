@@ -5,20 +5,17 @@ Recorded: 2026-10-29. Product: YamAN1x. Repository: `yaman1x`. First public rese
 The repository contains a ROM-free C++/Python development foundation.
 No VST3, AU, GUI or AN1x audio output is available yet.
 
-Active candidate: [displacement32 CCR memory](h8-ccr-displacement32-memory.md),71 CTest/548 methods
-(544 unchanged/four prior adaptations),259 selected/5 missing/135 excluded rows.
-Final-head CI/review pending;merged evidence below remains #106.
+Verified engine baseline: [#108](https://github.com/RobCZart82/yaman1x/pull/108),
+`3c7005a3a26da4149668f6ab9f4695e1672bdc6e`;tested head `ffef22c9d5794ec78028a0f2d07cb9659ff9d5bb`.
+71 CTest groups/87 Python cases;548 upstream-derived methods (544 unchanged,
+four prior arithmetic adaptations);259 selected/5 missing/135 excluded encoding rows.
+[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40937469453), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40937469399), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40937469419):all five jobs passed.
+No recorded automated review result at inspection;no successful automated review claimed.
+No active engine candidate. [Displacement32 CCR evidence](h8-ccr-displacement32-memory.md).
+Remaining:SLEEP,MOVFPE/MOVTPE,EEPMOV. Full CPU,machine/MMIO,physical timing,
+firmware/MIDI/audio and REAPER acceptance remain open.
 
-Verified engine baseline: [#106](https://github.com/RobCZart82/yaman1x/pull/106),
-`aee769ef224e2686ccd4a98bbd9d3851f8cc6399`; tested head `e3af0b4453d19194da8d32b24e6d409d4ab8809f`.
-70 CTest groups/87 Python cases;540 upstream-derived methods (536 unchanged,
-four prior arithmetic adaptations);257 selected/7 missing/135 excluded encoding rows.
-[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40928577461), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40928577203), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40928577221): all five jobs passed.
-No recorded automated review result at inspection; no successful automated review claimed.
-The prior series is closed;the new candidate is above. [Signed16 CCR evidence](h8-ccr-displacement16-memory.md).
-Full CPU,machine/MMIO,physical timing,firmware/MIDI/audio and REAPER acceptance remain open.
-
-M0 partial;M1 prepared but unaccepted. Next:CCR displacement32. One PR at a time.
+M0 partial;M1 prepared but unaccepted. Next:MOVFPE/MOVTPE. One PR at a time.
 
 ## Historical component evidence — current state is above
 

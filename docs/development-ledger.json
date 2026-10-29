@@ -3,7 +3,7 @@
   "recorded_date": "2026-10-29",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "aee769ef224e2686ccd4a98bbd9d3851f8cc6399",
+  "baseline_commit": "3c7005a3a26da4149668f6ab9f4695e1672bdc6e",
   "entries": [
     {
       "pr": 6,
@@ -1310,13 +1310,24 @@
         40934003181
       ],
       "automated_review_at_merge": "not_claimed"
+    },
+    {
+      "pr": 108,
+      "title": "Execute H8H displacement32 CCR memory with distinct prefix guards",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/108",
+      "kind": "development",
+      "status": "merged",
+      "merge_commit": "3c7005a3a26da4149668f6ab9f4695e1672bdc6e",
+      "reviewed_head": "ffef22c9d5794ec78028a0f2d07cb9659ff9d5bb",
+      "merged_at_utc": "2026-10-29T19:25:40Z",
+      "ci_runs": [
+        40937469453,
+        40937469399,
+        40937469419
+      ],
+      "automated_review_at_merge": "no_recorded_result_at_inspection"
     }
   ],
-  "active_change": {
-    "branch": "feat/h8-ccr-displacement32",
-    "scope": "LDC/STC displacement32 CCR memory with original distinct prefixes",
-    "status": "local_validation_passed",
-    "ci": "not_run"
-  },
+  "active_change": null,
   "pending_changes": []
 }

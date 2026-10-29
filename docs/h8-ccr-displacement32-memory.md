@@ -1,6 +1,6 @@
 # H8H displacement32 CCR word memory
 
-Recorded:2026-10-29. Merged engine baseline:#106;current increment is a candidate.
+Recorded:2026-10-29. Merged #108 as `3c7005a3a26da4149668f6ab9f4695e1672bdc6e`;tested head `ffef22c9d5794ec78028a0f2d07cb9659ff9d5bb`.
 
 ## Scope and source
 
@@ -52,6 +52,8 @@ so it incorrectly rejected16 newly valid prefix entries. Supplying their require
 third word fixes the fixture;the separate exhaustive third-word tests retain
 invalid-extension rejection. No engine workaround was introduced.
 
-Local Release71/71 CTest and87 Python PASS;targeted ASan/UBSan PASS. Linux CI includes the new target under UBSan. Final-head CI/review pending.
+Local Release71/71 CTest and87 Python PASS;targeted ASan/UBSan PASS. Linux CI includes the new target under UBSan. [Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40937469453), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40937469399), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40937469419).
+All five jobs passed;merged. No recorded automated review result at inspection;
+no successful automated review claimed.
 Remaining SLEEP,MOVFPE/MOVTPE,EEPMOV and complete machine/MMIO integration,
 physical timing,firmware/MIDI/audio and plugin/REAPER acceptance remain open.

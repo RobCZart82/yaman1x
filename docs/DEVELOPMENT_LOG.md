@@ -1,25 +1,30 @@
 # YamAN1x fejlesztési napló
 
 Frissítve: 2026-10-29. Időzóna: Europe/Budapest.
-Ellenőrzött motoralap: `aee769ef224e2686ccd4a98bbd9d3851f8cc6399` (#106).
+Ellenőrzött motoralap: `3c7005a3a26da4149668f6ab9f4695e1672bdc6e` (#108).
 
-## Aktív fejlesztési lépés — CCR32 bites eltolás, 2026-10-29
+## Aktuális lezárás — #108, 2026-10-29
 
-Két LDC/STC művelet és két eredeti prefixfolytatás:nyolc változatlan kezelő.
-Jelölt:71 CTest/87 Python,548 kezelő (544 változatlan,4 korábbi adaptáció),
-259 kiválasztott/5 hiányzó/135 kizárt sor. Beolvadt motoralap még #106.
-524288 memóriaszó,524288 eltolásfél-söprés,147456 határeset,261 szétvágás,
-131072 harmadikszó-őr,512 IRQ/NMI-maszk,322 megszakításos szétvágás és16 memóriahiba PASS.
-Eredeti referencia200000 szelet,nulla eltérés;célzott ASan/UBSan PASS.
-Felső eltolásszó elhagyásának hibás kontrollja seed0/slice1-nél felismerve.
-A régi elsőprefix-teszt16 új prefixhez nulla harmadik szót adott;helyes folytatással javítva.
-Teljes helyi Release71/71 CTest és87 Python PASS. Végső CI/review és beolvasztás még nyitott.
-[Hatókör és bizonyíték](h8-ccr-displacement32-memory.md).
-A #107 dokumentációs lezárás beolvadt `3a0dfb7615196a688a37083961a2f9eb3b5a2eff`:
-2026-10-29 20:01:43 Europe/Budapest (19:01:43 UTC),négy sikeres CI-feladat.
+A [#108 PR](https://github.com/RobCZart82/yaman1x/pull/108) beolvadt:
+merge `3c7005a3a26da4149668f6ab9f4695e1672bdc6e`,tesztelt head `ffef22c9d5794ec78028a0f2d07cb9659ff9d5bb`.
+Időpont:2026-10-29 20:25:40 Europe/Budapest (19:25:40 UTC).
+[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40937469453), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40937469399), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40937469419):mind az öt feladat sikeres.
+Nincs rögzített automatikus review-eredmény vagy nyitott review-szál;
+sikeres automatikus review-t nem állítunk.
+
+Beolvadt: **71 CTest-csoport /87 Python-eset;548 upstreamből származó kezelő
+(544 változatlan,4 korábbi adaptáció);259 kiválasztott /5 hiányzó /135 kizárt sor**.
+CCR displacement32:két művelet,két eredeti prefixfolytatás,nyolc változatlan kezelő.
+Helyi Release71/71 CTest,87 Python és célzott ASan/UBSan PASS.
+Eredeti referencia200000 szelet,nulla eltérés;felső eltolásszó elhagyásának
+kontrollja seed0/slice1-nél felismerve. [Bizonyíték](h8-ccr-displacement32-memory.md).
+Nincs aktív motorjelölt. Következő lépés:MOVFPE/MOVTPE perifériás bájtmozgatások,
+majd EEPMOV és SLEEP a szükséges host/ütemező-szerződések tisztázásával.
+M0 részleges;teljes gép/MMIO,hardveridőzítés,firmware/MIDI/hang/plugin elfogadás nyitott.
 Soros fejlesztés:új lépcső csak az aktuális PR beolvadása után.
+Az alábbi korábbi jelölt/pending állapotok történetiek.
 
-## Aktuális lezárás — #106, 2026-10-29
+## Történeti lezárás — #106, 2026-10-29
 
 A [#106 PR](https://github.com/RobCZart82/yaman1x/pull/106) beolvadt:
 merge `aee769ef224e2686ccd4a98bbd9d3851f8cc6399`, tesztelt head `e3af0b4453d19194da8d32b24e6d409d4ab8809f`.
