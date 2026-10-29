@@ -77,6 +77,14 @@ private:
                 else {if(partial)mov_l_r32d16h_r32l_partial();else mov_l_r32d16h_r32l_full();}
             } else throw std::runtime_error("Unsupported H8 long-memory extension"); return;
         }
+        if((m_inst_state&0xffffff8fu)==0x7800) {if(partial)dispatch_7800_partial();else dispatch_7800_full();return;}
+        if((m_inst_state&0xffff0000)==0x160000) {
+            if((m_inst_state&0xfff0)==0x6a20) {if(partial)mov_b_r32d32hh_r8l_partial();else mov_b_r32d32hh_r8l_full();}
+            else if((m_inst_state&0xfff0)==0x6aa0) {if(partial)mov_b_r8l_r32d32hh_partial();else mov_b_r8l_r32d32hh_full();}
+            else if((m_inst_state&0xfff0)==0x6b20) {if(partial)mov_w_r32d32hh_r16l_partial();else mov_w_r32d32hh_r16l_full();}
+            else if((m_inst_state&0xfff0)==0x6ba0) {if(partial)mov_w_r16l_r32d32hh_partial();else mov_w_r16l_r32d32hh_full();}
+            else throw std::runtime_error("Unsupported H8 displacement32 extension");return;
+        }
         if(m_inst_state==0x01d0) {if(partial)dispatch_01d0_partial();else dispatch_01d0_full();return;}
         if((m_inst_state&0xffff0000)==0xf0000) {
             if((m_inst_state&0xff00)==0x5100) {if(partial)divxs_b_r8h_r16l_partial();else divxs_b_r8h_r16l_full();}

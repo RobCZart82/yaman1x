@@ -1112,6 +1112,12 @@
       "automated_review_at_merge": "running"
     }
   ],
-  "active_change": null,
+  "active_change": {
+    "id": "H8-DISPLACEMENT32-BYTE-WORD-2026-10-29",
+    "branch": "feat/h8-displacement32-byte-word",
+    "status": "in_progress",
+    "summary": "Four original byte/word displacement32 move groups and guarded prefix continuation",
+    "validation": "64 local CTest/86 Python PASS;1048576 offset sweeps,55296 boundaries,241 splits,65536 extensions,faults,200000 reference slices zero differences;high-offset mutation detected;remote CI pending"
+  },
   "pending_changes": []
 }

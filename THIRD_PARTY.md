@@ -94,13 +94,13 @@ The H8 execution-budget arithmetic retains the same MAME BSD notices; exact `h8.
 
 The H8 execution-order runner retains the same MAME BSD notices; scope and source identity: `research/h8-execution-runner-provenance.json`. Original reference method bodies remain outside tracked sources.
 
-The first-instruction research subset retains Olivier Galibert BSD-3-Clause notices for 502 selected upstream-derived H8/H8H full/partial handlers and adapted host helpers. `research/h8-first-instructions-provenance.json` records source/generated identities and adaptations; `tools/check_h8_first_instructions.py` checks the selection against the locked full generated output. No additional Yamaha data or new upstream revision is imported.
+The first-instruction research subset retains Olivier Galibert BSD-3-Clause notices for 512 selected upstream-derived H8/H8H full/partial handlers and adapted host helpers. `research/h8-first-instructions-provenance.json` records source/generated identities and adaptations; `tools/check_h8_first_instructions.py` checks the selection against the locked full generated output. No additional Yamaha data or new upstream revision is imported.
 
 Merged signed16 displacement: six original groups; see [contract](docs/h8-displacement16-memory.md). Fixed-profile IRQ/TRAPA and synthetic CPU/SCI integration are implemented; full machine/firmware/audio acceptance remains open.
 
 Merged unsigned byte multiply: [scope, checks and word promotion risk](docs/h8-byte-multiply.md).
 
-Merged MULXU.W: two of492 methods have a reviewed unsigned-widening adaptation,
+Merged MULXU.W: two selected methods have a reviewed unsigned-widening adaptation,
 not a claim of unchanged bodies; [exact scope/provenance](docs/h8-word-multiply.md).
 
 Merged signed multiply: [scope,original helpers and evidence](docs/h8-signed-multiply.md).
@@ -115,3 +115,5 @@ Merged DAA/DAS: four unchanged original handlers; [scope and evidence](docs/h8-d
 Merged signed byte divide: four unchanged prefix/instruction methods; [scope](docs/h8-signed-byte-divide.md).
 
 Merged signed word divide: two unchanged handlers; [extreme quotient/source limits](docs/h8-signed-word-divide.md).
+
+Displacement32 byte/word candidate: ten unchanged prefix/instruction methods; [scope](docs/h8-displacement32-memory.md).
