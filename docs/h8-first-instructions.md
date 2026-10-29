@@ -4,10 +4,10 @@ Initial increment: #47 based on #46, 2026-10-28. Current memory/branch extension
 is based on merged #47; see [the extension contract](h8-memory-branches.md). M0 remains partial.
 
 `H8FirstInstructions<Host>` is an intentionally limited advanced-H8H execution
-profile. The initial eight methods have expanded to 482 upstream-derived full/partial methods:
+profile. The initial eight methods have expanded to 488 upstream-derived full/partial methods:
 reset, NOP, immediate byte/word/long moves, all rel8 conditions, prefix dispatch
 indirect byte/word/long loads/stores, selected ADD/SUB/CMP and carry-input forms,
-logic, LDC immediate CCR and single-bit shifts/rotates. The selection now includes base-H8 and H8H operations. 480 bodies are unchanged except class qualifiers. The two new MULXU.W bodies
+logic, LDC immediate CCR and single-bit shifts/rotates. The selection now includes base-H8 and H8H operations. 486 bodies are unchanged except class qualifiers. The two prior MULXU.W bodies
 include a reviewed unsigned-widening adaptation; see [contract](h8-word-multiply.md).
 
 The profile owns its 16 register halves, CCR/EXR, PC/PPC/NPC, IR/PIR, temporary
@@ -110,3 +110,5 @@ The [stack/control extension](h8-stack-control-flow.md) adds the normal H8H stac
 Signed16 displacement candidate: six original groups; see [contract](h8-displacement16-memory.md). Fixed-profile IRQ/TRAPA and synthetic CPU/SCI integration are implemented; full machine/firmware/audio acceptance remains open.
 
 Merged unsigned byte multiply: [scope, checks and word promotion risk](h8-byte-multiply.md).
+
+Signed multiply candidate: [scope,original helpers and evidence](h8-signed-multiply.md).
