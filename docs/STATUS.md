@@ -26,6 +26,12 @@ address modes, full AN1x memory/MMIO integration, physical timing verification,
 firmware/MIDI/audio and REAPER acceptance remain open. See the
 [first-sound plan](FIRST_REAPER_SOUND_PLAN.md) and [development log](DEVELOPMENT_LOG.md).
 
+## Active candidate — CCR indirect memory
+
+Two encoding rows/six unchanged methods added; candidate66 CTest/87 Python,
+518 methods (514 unchanged/four earlier adaptations),247 selected/17 missing/135 excluded.
+Final-head CI/merge not yet claimed. See [scope and tests](h8-ccr-indirect-memory.md).
+
 ## Historical component evidence — current state is above
 
 The following dated increments retain their preparation-time counts, open tasks

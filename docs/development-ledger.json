@@ -1140,8 +1140,28 @@
         40859583141
       ],
       "automated_review_at_merge": "unavailable_code_review_usage_limit"
+    },
+    {
+      "pr": 97,
+      "title": "Close displacement32 byte and word evidence and update development baseline",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/97",
+      "kind": "documentation",
+      "status": "merged",
+      "merge_commit": "a5fac4adb5b403b998b388fbec140375ebf0dde2",
+      "reviewed_head": "4a6ae88ddc150ba0ffb57f61377b6f0e6313a4db",
+      "merged_at_utc": "2026-10-29T10:58:45Z",
+      "ci_runs": [
+        40861049537,
+        40861049596
+      ],
+      "automated_review_at_merge": "unavailable_code_review_usage_limit"
     }
   ],
-  "active_change": null,
+  "active_change": {
+    "branch": "feat/h8-ccr-indirect",
+    "scope": "LDC/STC CCR indirect word memory",
+    "status": "local_validation_passed",
+    "ci": "not_run"
+  },
   "pending_changes": []
 }

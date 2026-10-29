@@ -19,7 +19,7 @@ ctest --test-dir build -C Release --output-on-failure
 python3 tools/repository_audit.py
 ```
 
-The source-only build runs **65 CTest groups and 87 Python cases**. Tests generate synthetic
+The source-only build runs **66 CTest groups and 87 Python cases**. Tests generate synthetic
 programs/banks in temporary directories. The two upstream tests that require
 Yamaha images are not part of this suite. ROM-free GitHub Actions currently
 builds and passes this suite on Linux x64, macOS Apple Silicon and Windows x64.
@@ -29,6 +29,10 @@ See [engine architecture decision](docs/ADR-0001-engine-boundary.md) and
 [build baseline](docs/BUILD_BASELINE.md) for the M0 decisions and remaining gates.
 
 ## Current state
+
+Active candidate: [CCR indirect memory](docs/h8-ccr-indirect-memory.md), two additional
+encoding rows and six unchanged generated methods. Candidate:66 CTest/518 methods;
+merged evidence below remains #96 until final-head CI and merge.
 
 Verified engine baseline: [#96](https://github.com/RobCZart82/yaman1x/pull/96).
 65 CTest groups, 87 Python cases; 512 upstream-derived full/partial handlers
