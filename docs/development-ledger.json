@@ -3,7 +3,7 @@
   "recorded_date": "2026-10-29",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "b14cd16e8d4d149cdb622371ac29928904bbc295",
+  "baseline_commit": "3172c55e9a1cea766e5326bfd56a98f68d6420f3",
   "entries": [
     {
       "pr": 6,
@@ -1403,13 +1403,24 @@
         40954884997
       ],
       "automated_review_at_merge": "no_recorded_result_at_inspection"
+    },
+    {
+      "pr": 114,
+      "title": "Execute fixed-profile H8H sleep with qualified IRQ wake and peripheral progress",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/114",
+      "kind": "development",
+      "status": "merged",
+      "merge_commit": "3172c55e9a1cea766e5326bfd56a98f68d6420f3",
+      "reviewed_head": "532c5937cfc2b0b3f142e935cebba8dfa4912000",
+      "merged_at_utc": "2026-10-29T21:45:44Z",
+      "ci_runs": [
+        40958229492,
+        40958229514,
+        40958229555
+      ],
+      "automated_review_at_merge": "no_recorded_result_at_inspection"
     }
   ],
-  "active_change": {
-    "branch": "feat/h8-sleep-wake",
-    "scope": "Fixed-profile original SLEEP,qualified IRQ wake and peripheral deadline progression;standby excluded",
-    "status": "local_validation_passed",
-    "ci": "not_run"
-  },
+  "active_change": null,
   "pending_changes": []
 }

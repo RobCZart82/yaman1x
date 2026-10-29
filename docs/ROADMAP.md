@@ -6,25 +6,22 @@ audible firmware-driven VST3 voice in REAPER:
 
 Changes/fixes are recorded in the [development ledger](DEVELOPMENT_LOG.md).
 The [repository audit](REPOSITORY_AUDIT_2026-10-27.md) identifies current gaps.
-Active candidate: [fixed-profile SLEEP/wake](h8-sleep-wake.md),74 CTest/562 methods
-(558 unchanged/four prior adaptations),264 selected/0 missing/135 excluded rows.
-Encoding selection is not full CPU acceptance;clock-stopping standby unsupported.
-Final-head CI/review pending;merged evidence below remains #112.
-
-Verified engine baseline: [#112](https://github.com/RobCZart82/yaman1x/pull/112),
-`b14cd16e8d4d149cdb622371ac29928904bbc295`;tested head `41c5c34be49913dea5dc025f589cfde068a27736`.
-73 CTest groups/87 Python cases;560 upstream-derived methods (556 unchanged,
-four prior arithmetic adaptations);263 selected/1 missing/135 excluded encoding rows.
-[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40952371785), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40952371726), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40952371748):all five jobs passed.
+Verified engine baseline: [#114](https://github.com/RobCZart82/yaman1x/pull/114),
+`3172c55e9a1cea766e5326bfd56a98f68d6420f3`;tested head `532c5937cfc2b0b3f142e935cebba8dfa4912000`.
+74 CTest groups/87 Python cases;562 upstream-derived methods (558 unchanged,
+four prior arithmetic adaptations);264 selected/0 missing/135 excluded encoding rows.
+[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40958229492), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40958229514), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40958229555):all five jobs passed.
 No recorded automated review result at inspection;no successful automated review claimed.
-The prior series is closed;the new candidate is above. [EEPMOV evidence](h8-eepmov-block.md).
-Original peripheral timing TODO retained;no E-clock/handshake timing validation.
-Remaining:SLEEP. Full CPU,machine/MMIO,physical timing,firmware/MIDI/audio
-and REAPER acceptance remain open;selected rows are not CPU completeness.
+No active engine candidate. [Fixed-profile SLEEP/wake evidence](h8-sleep-wake.md).
+All eligible rows select handlers;this is not full CPU/machine acceptance.
+Next:AN1x address map/MMIO and common CPU/peripheral scheduler,reset/isolation,
+then local firmware/MIDI/PKS evidence. Dynamic SYSCR,standby,DMA/DTC,trace/retry,
+physical timing,firmware/audio and REAPER acceptance remain open.
+Original peripheral timing TODO remains;no E-clock/handshake validation.
 
 Next M0 work, in order:
 
-1. Close remaining H8H opcodes/addressing (1 encoding row remains after EEPMOV; next: SLEEP/wake host scheduling);
+1. Retain full eligible H8H handler selection (264 rows),fixed-profile SLEEP/wake and original reference controls;
    retain the reviewed [word-multiply widening and UBSan control](h8-word-multiply.md);
    retain fixed-profile IRQ/TRAPA limitations and pinned reference comparisons.
 2. Connect CPU, address map/MMIO and existing peripherals to a common scheduler;
