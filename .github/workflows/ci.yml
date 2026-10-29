@@ -50,6 +50,6 @@ jobs:
         if: matrix.os == 'ubuntu-24.04'
         run: |
           cmake -S . -B build-ubsan -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-fsanitize=undefined -fno-sanitize-recover=all"
-          cmake --build build-ubsan --target yamanix_h8_word_multiply_check yamanix_h8_signed_multiply_check yamanix_h8_byte_divide_check yamanix_h8_word_divide_check yamanix_h8_decimal_adjust_check yamanix_h8_signed_byte_divide_check yamanix_h8_signed_word_divide_check yamanix_h8_displacement32_check yamanix_h8_ccr_memory_check yamanix_h8_long_displacement32_check --parallel 2
-          ctest --test-dir build-ubsan --output-on-failure -R '^yamanix_h8_((word|signed)_multiply|(byte|word)_divide|signed_(byte|word)_divide|decimal_adjust|displacement32|long_displacement32|ccr_memory)$'
+          cmake --build build-ubsan --target yamanix_h8_word_multiply_check yamanix_h8_signed_multiply_check yamanix_h8_byte_divide_check yamanix_h8_word_divide_check yamanix_h8_decimal_adjust_check yamanix_h8_signed_byte_divide_check yamanix_h8_signed_word_divide_check yamanix_h8_displacement32_check yamanix_h8_ccr_memory_check yamanix_h8_long_displacement32_check yamanix_h8_ccr_absolute_check --parallel 2
+          ctest --test-dir build-ubsan --output-on-failure -R '^yamanix_h8_((word|signed)_multiply|(byte|word)_divide|signed_(byte|word)_divide|decimal_adjust|displacement32|long_displacement32|ccr_memory|ccr_absolute)$'
           python tools/check_h8_word_multiply_ubsan.py build-ubsan/yamanix_h8_word_multiply_check

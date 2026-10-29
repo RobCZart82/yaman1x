@@ -1202,8 +1202,28 @@
         40906424743
       ],
       "automated_review_at_merge": "completed_no_findings"
+    },
+    {
+      "pr": 101,
+      "title": "Close long displacement32 evidence and advance merged engine baseline",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/101",
+      "kind": "documentation",
+      "status": "merged",
+      "merge_commit": "0902960db57af3f0ece732c6dc9d11d9dc5ba792",
+      "reviewed_head": "5ec027cdf5dc82f1a1f1a5bec49a88531dc2b96a",
+      "merged_at_utc": "2026-10-29T16:30:19Z",
+      "ci_runs": [
+        40909101555,
+        40909101558
+      ],
+      "automated_review_at_merge": "completed_no_findings"
     }
   ],
-  "active_change": null,
+  "active_change": {
+    "branch": "feat/h8-ccr-absolute-memory",
+    "scope": "LDC/STC abs16/abs32 CCR word memory",
+    "status": "local_validation_passed",
+    "ci": "not_run"
+  },
   "pending_changes": []
 }
