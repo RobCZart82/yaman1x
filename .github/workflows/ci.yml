@@ -46,10 +46,10 @@ jobs:
       - name: Run ROM-free checks
         run: ctest --test-dir build --build-config Release --output-on-failure
 
-      - name: Check multiply/divide under UBSan and verify original overflow control
+      - name: Check arithmetic under UBSan and verify original overflow control
         if: matrix.os == 'ubuntu-24.04'
         run: |
           cmake -S . -B build-ubsan -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-fsanitize=undefined -fno-sanitize-recover=all"
-          cmake --build build-ubsan --target yamanix_h8_word_multiply_check yamanix_h8_signed_multiply_check yamanix_h8_byte_divide_check yamanix_h8_word_divide_check --parallel 2
-          ctest --test-dir build-ubsan --output-on-failure -R '^yamanix_h8_((word|signed)_multiply|(byte|word)_divide)$'
+          cmake --build build-ubsan --target yamanix_h8_word_multiply_check yamanix_h8_signed_multiply_check yamanix_h8_byte_divide_check yamanix_h8_word_divide_check yamanix_h8_decimal_adjust_check --parallel 2
+          ctest --test-dir build-ubsan --output-on-failure -R '^yamanix_h8_((word|signed)_multiply|(byte|word)_divide|decimal_adjust)$'
           python tools/check_h8_word_multiply_ubsan.py build-ubsan/yamanix_h8_word_multiply_check

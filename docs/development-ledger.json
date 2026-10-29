@@ -1024,6 +1024,12 @@
       ]
     }
   ],
-  "active_change": null,
+  "active_change": {
+    "id": "H8-DECIMAL-ADJUST-2026-10-29",
+    "branch": "feat/h8-decimal-adjust",
+    "status": "in_progress",
+    "summary": "Original DAA/DAS with independent valid-decimal arithmetic and split controls",
+    "validation": "61 local CTest/86 Python PASS;40000 valid decimal cases,2048 register boundaries,241 splits,200000 original-reference slices zero differences;correction+1 detected;remote CI pending"
+  },
   "pending_changes": []
 }

@@ -859,3 +859,16 @@ Jelölt:61 CTest/87 Python,492 upstreamből származó kezelő (488 változatlan
 237 kiválasztott/27 hiányzó/135 kizárt sor. Linux UBSan kiterjesztve szó-osztásra;
 távoli CI függőben, M0 továbbra is részleges. [Szerződés](h8-word-divide.md).
 Yamaha-adat nem került be; firmware/MIDI/hang/plugin elfogadás nincs.
+
+## 2026-10-29 — M0 decimális korrekciós részlépés: DAA/DAS jelölt
+
+Négy változatlan eredeti full/partial kezelő, külön0f00/fff0 és1f00/fff0 dekóderág.
+Független tízes számrendszerű számítás: minden0–99 operanduspár összeadás/kivonás,
+két CCR-minta (40000 eset);2048 regiszterhatáreset és241 szétvágott futás PASS.
+Érvénytelen BCD/flag kombinációkra nem állítunk teljes független helyességbizonyítást.
+200000 eredeti referenciaszelet nulla eltéréssel, mindkét új forma és korábbi családok
+elérése kötelező; DAA korrekció+1 kontroll seed7/slice0 felismerve. Jelölt:62 CTest/87 Python,
+496 upstreamből származó kezelő (492 változatlan,4 korábbi adaptáció);239 kiválasztott/
+25 hiányzó/135 kizárt sor. Linux UBSan kiterjesztve. M0 továbbra is részleges;
+teljes gép/firmware/MIDI/hang/plugin elfogadás nyitott. [Szerződés](h8-decimal-adjust.md).
+Yamaha-adat nem került be.
