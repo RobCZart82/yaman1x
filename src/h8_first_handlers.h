@@ -2,6 +2,166 @@
 // copyright-holders:Olivier Galibert
 // Selected pinned generated h8.hxx methods; only class qualifiers removed.
 // Included inside H8FirstInstructions. See research/h8-first-instructions-provenance.json.
+void daa_b_r8l_full()
+{
+	m_TMP1 = r8_r(m_IR[0]);
+	m_TMP2 = 0;
+	if(m_CCR & F_C) {
+		if(m_has_hc && (m_CCR & F_H)) {
+			if((m_TMP1 & 0xf0) <= 0x30 && (m_TMP1 & 0x0f) <= 3)
+				m_TMP2 = 0x66;
+		} else {
+			if((m_TMP1 & 0xf0) <= 0x20)
+				m_TMP2 = (m_TMP1 & 0x0f) <= 9 ? 0x60 : 0x66;
+		}
+	} else {
+		if(m_has_hc && (m_CCR & F_H)) {
+			if((m_TMP1 & 0x0f) <= 3)
+				m_TMP2 = (m_TMP1 & 0xf0) <= 0x90 ? 0x06 : 0x66;
+		} else {
+			if((m_TMP1 & 0x0f) <= 9)
+				m_TMP2 = (m_TMP1 & 0xf0) <= 0x90 ? 0x00 : 0x60;
+			else
+				m_TMP2 = (m_TMP1 & 0xf0) <= 0x80 ? 0x06 : 0x66;
+		}
+	}
+	r8_w(m_IR[0], do_add8(m_TMP1, m_TMP2));
+	m_NPC = m_PC & 0xffffff;
+	m_PIR = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 1;
+		} else
+			m_inst_substate = 2;
+		return;
+	}
+	m_PC += 2;
+	prefetch_done();
+}
+
+void daa_b_r8l_partial()
+{
+switch(m_inst_substate) {
+case 0:
+	m_TMP1 = r8_r(m_IR[0]);
+	m_TMP2 = 0;
+	if(m_CCR & F_C) {
+		if(m_has_hc && (m_CCR & F_H)) {
+			if((m_TMP1 & 0xf0) <= 0x30 && (m_TMP1 & 0x0f) <= 3)
+				m_TMP2 = 0x66;
+		} else {
+			if((m_TMP1 & 0xf0) <= 0x20)
+				m_TMP2 = (m_TMP1 & 0x0f) <= 9 ? 0x60 : 0x66;
+		}
+	} else {
+		if(m_has_hc && (m_CCR & F_H)) {
+			if((m_TMP1 & 0x0f) <= 3)
+				m_TMP2 = (m_TMP1 & 0xf0) <= 0x90 ? 0x06 : 0x66;
+		} else {
+			if((m_TMP1 & 0x0f) <= 9)
+				m_TMP2 = (m_TMP1 & 0xf0) <= 0x90 ? 0x00 : 0x60;
+			else
+				m_TMP2 = (m_TMP1 & 0xf0) <= 0x80 ? 0x06 : 0x66;
+		}
+	}
+	r8_w(m_IR[0], do_add8(m_TMP1, m_TMP2));
+	m_NPC = m_PC & 0xffffff;
+	[[fallthrough]];
+case 1:;
+	m_PIR = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 1;
+		} else
+			m_inst_substate = 2;
+		return;
+	}
+	[[fallthrough]];
+case 2:;
+	m_PC += 2;
+	prefetch_done();
+	break;
+}
+	m_inst_substate = 0;
+}
+
+void das_b_r8l_full()
+{
+	m_TMP1 = r8_r(m_IR[0]);
+	m_TMP2 = 0;
+	if(m_CCR & F_C) {
+		if(m_has_hc && (m_CCR & F_H)) {
+			if((m_TMP1 & 0xf0) >= 0x60 && (m_TMP1 & 0x0f) >= 6)
+				m_TMP2 = 0x9a;
+		} else {
+			if((m_TMP1 & 0xf0) >= 0x70 && (m_TMP1 & 0x0f) <= 9)
+				m_TMP2 = 0xa0;
+		}
+	} else {
+		if(m_has_hc && (m_CCR & F_H)) {
+			if((m_TMP1 & 0xf0) <= 0x80 && (m_TMP1 & 0x0f) >= 6)
+				m_TMP2 = 0xfa;
+		}
+	}
+	r8_w(m_IR[0], do_add8(m_TMP1, m_TMP2));
+	m_NPC = m_PC & 0xffffff;
+	m_PIR = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 1;
+		} else
+			m_inst_substate = 2;
+		return;
+	}
+	m_PC += 2;
+	prefetch_done();
+}
+
+void das_b_r8l_partial()
+{
+switch(m_inst_substate) {
+case 0:
+	m_TMP1 = r8_r(m_IR[0]);
+	m_TMP2 = 0;
+	if(m_CCR & F_C) {
+		if(m_has_hc && (m_CCR & F_H)) {
+			if((m_TMP1 & 0xf0) >= 0x60 && (m_TMP1 & 0x0f) >= 6)
+				m_TMP2 = 0x9a;
+		} else {
+			if((m_TMP1 & 0xf0) >= 0x70 && (m_TMP1 & 0x0f) <= 9)
+				m_TMP2 = 0xa0;
+		}
+	} else {
+		if(m_has_hc && (m_CCR & F_H)) {
+			if((m_TMP1 & 0xf0) <= 0x80 && (m_TMP1 & 0x0f) >= 6)
+				m_TMP2 = 0xfa;
+		}
+	}
+	r8_w(m_IR[0], do_add8(m_TMP1, m_TMP2));
+	m_NPC = m_PC & 0xffffff;
+	[[fallthrough]];
+case 1:;
+	m_PIR = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 1;
+		} else
+			m_inst_substate = 2;
+		return;
+	}
+	[[fallthrough]];
+case 2:;
+	m_PC += 2;
+	prefetch_done();
+	break;
+}
+	m_inst_substate = 0;
+}
+
 void divxu_b_r8h_r16l_full()
 {
 	m_NPC = m_PC & 0xffffff;

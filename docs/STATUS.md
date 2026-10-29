@@ -17,7 +17,7 @@ Merged suite: **61 CTest groups /87 Python cases;492 upstream-derived methods
 long absolute/signed16 displacement moves, signed/unsigned byte/word multiply and
 unsigned byte/word divide are merged. Word-divide q/r locals are explicitly unsigned;
 original divisor-bit7 N behavior is preserved pending hardware evidence.
-[Scope and evidence](h8-word-divide.md). No active engine candidate.
+[Scope and evidence](h8-word-divide.md). DAA/DAS is a separate M0 candidate:62 CTest/87 Python,496 methods (492 unchanged,4 prior adaptations),239 selected/25 missing rows;CI pending. See [scope](h8-decimal-adjust.md).
 Local Windows:60 runnable CTest/86 Python PASS; one known symlink privilege case excluded.
 
 M0 remains partial; M1 is prepared but unaccepted. Missing instructions and
