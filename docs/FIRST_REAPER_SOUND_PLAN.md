@@ -928,3 +928,17 @@ Jelölt:63 CTest/87 Python,500 upstream-kezelő (496 változatlan,4 korábbi ada
 240 kiválasztott/24 hiányzó/135 kizárt sor. Linux UBSan kiterjesztve; CI függőben.
 Szó-osztás INT32_MIN/-1 és csomagolás külön nyitott vizsgálat. [Szerződés](h8-signed-byte-divide.md).
 M0 részleges; teljes gép/firmware/MIDI/hang/plugin elfogadás nyitott. Yamaha-adat nem került be.
+
+## 2026-10-29 — M0 előjeles szó-osztás és szélső hányados jelölt
+
+Két változatlan eredeti DIVXS.W kezelő, őrzött meglévő01d0 folytatás;32 bites int
+fordítási feltétel. Az eredeti unsigned32 segédértékek elkerülik a közvetlen signed
+INT_MIN/-1 osztást. A matematikai +2147483648 hányadost az eredeti int32-re szűkíti;
+N=1,csomagolt eredmény0,Z=0. Ez forráskompatibilitás,nem hardveres hibajavítás vagy mérés.
+524288 osztó-söprés,21504 alias/CCR,20000 véletlen pár,1024 szélső/CCR-eset,321
+szétvágás és128 tiltott ER-szomszéd PASS. Független64 bites számítás és külön
+szűkítési flagmodell.200000 eredeti referenciaszelet nulla eltéréssel; fordított
+N kontroll seed7/slice7 felismerve. Jelölt:64 CTest/87 Python,502 upstream-kezelő
+(498 változatlan,4 korábbi adaptáció),241 kiválasztott/23 hiányzó/135 kizárt sor.
+Linux UBSan kiterjesztve; CI függőben. [Hatókör és szélső eredmény](h8-signed-word-divide.md).
+M0 részleges; teljes gép/firmware/MIDI/hang/plugin elfogadás nyitott. Yamaha-adat nincs.

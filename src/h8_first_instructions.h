@@ -7,6 +7,7 @@
 #include "h8h_bus_access.h"
 #include "h8h_irq_controller.h"
 #include <array>
+#include <limits>
 
 namespace yamanix {
 // Host: read_instruction_word, read/write_byte, read/write_word, update(cycle).
@@ -14,6 +15,7 @@ namespace yamanix {
 // Bus accesses complete synchronously; the host owns address mapping.
 // Both host and immutable code memory must outlive the instance; no reentry.
 template<class Host> class H8FirstInstructions {
+    static_assert(std::numeric_limits<int>::digits==31,"Pinned H8 divide semantics require 32-bit int");
 public:
     struct Snapshot {
         std::array<uint16_t,16> registers;
@@ -78,6 +80,7 @@ private:
         if(m_inst_state==0x01d0) {if(partial)dispatch_01d0_partial();else dispatch_01d0_full();return;}
         if((m_inst_state&0xffff0000)==0xf0000) {
             if((m_inst_state&0xff00)==0x5100) {if(partial)divxs_b_r8h_r16l_partial();else divxs_b_r8h_r16l_full();}
+            else if((m_inst_state&0xff08)==0x5300) {if(partial)divxs_w_r16h_r32l_partial();else divxs_w_r16h_r32l_full();}
             else throw std::runtime_error("Unsupported H8 signed divide extension");return;
         }
         if(m_inst_state==0x01c0) {if(partial)dispatch_01c0_partial();else dispatch_01c0_full();return;}

@@ -2,6 +2,121 @@
 // copyright-holders:Olivier Galibert
 // Selected pinned generated h8h.hxx methods; class qualifiers removed; MULXU.W widening and DIVXU.W unsigned locals reviewed.
 // Included inside H8FirstInstructions. See research/h8-first-instructions-provenance.json.
+void divxs_w_r16h_r32l_full()
+{
+	m_NPC = m_PC & 0xffffff;
+	m_PIR = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 1;
+		} else
+			m_inst_substate = 2;
+		return;
+	}
+	m_PC += 2;
+	internal(19);
+	m_TMP1 = r32_r(m_IR[1]);
+	m_TMP2 = s16(r16_r(m_IR[1] >> 4));
+	m_CCR &= ~(F_Z|F_N);
+	if(!m_TMP2) {
+		m_CCR |= F_Z;
+	} else {
+		// Conditions:
+		//    p = q*d + r
+		//    abs(r) < abs(d)
+		//    p and r are same sign or r=0
+		// p = +20, d = +3 -> q =  6, r =  2
+		// p = +20, d = -3 -> q = -7, r =  1
+		// p = -20, d = +3 -> q = -6, r = -2
+		// p = -20, d = -3 -> q =  7, r = -1
+		int q, r;
+		if(m_TMP2 & 0x80000000) {
+			if(m_TMP1 & 0x80000000) { // - -
+				q = (-m_TMP1) / (-m_TMP2);
+				r = -((-m_TMP1) % (-m_TMP2));
+			} else {       // + -
+				q = -(m_TMP1 / (-m_TMP2));
+				r = m_TMP1 % (-m_TMP2);
+			}
+		} else {
+			if(m_TMP1 & 0x80000000) { // - +
+				q = -((-m_TMP1) / m_TMP2);
+				r = -((-m_TMP1) % m_TMP2);
+			} else {       // + +
+				q = m_TMP1 / m_TMP2;
+				r = m_TMP1 % m_TMP2;
+			}
+		}
+		if(q < 0)
+			m_CCR |= F_N;
+		r32_w(m_IR[1], (q & 0xffff) | ((r & 0xffff) << 16));
+	}
+	prefetch_done();
+}
+
+void divxs_w_r16h_r32l_partial()
+{
+switch(m_inst_substate) {
+case 0:
+	m_NPC = m_PC & 0xffffff;
+	[[fallthrough]];
+case 1:;
+	m_PIR = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 1;
+		} else
+			m_inst_substate = 2;
+		return;
+	}
+	[[fallthrough]];
+case 2:;
+	m_PC += 2;
+	internal(19);
+	m_TMP1 = r32_r(m_IR[1]);
+	m_TMP2 = s16(r16_r(m_IR[1] >> 4));
+	m_CCR &= ~(F_Z|F_N);
+	if(!m_TMP2) {
+		m_CCR |= F_Z;
+	} else {
+		// Conditions:
+		//    p = q*d + r
+		//    abs(r) < abs(d)
+		//    p and r are same sign or r=0
+		// p = +20, d = +3 -> q =  6, r =  2
+		// p = +20, d = -3 -> q = -7, r =  1
+		// p = -20, d = +3 -> q = -6, r = -2
+		// p = -20, d = -3 -> q =  7, r = -1
+		int q, r;
+		if(m_TMP2 & 0x80000000) {
+			if(m_TMP1 & 0x80000000) { // - -
+				q = (-m_TMP1) / (-m_TMP2);
+				r = -((-m_TMP1) % (-m_TMP2));
+			} else {       // + -
+				q = -(m_TMP1 / (-m_TMP2));
+				r = m_TMP1 % (-m_TMP2);
+			}
+		} else {
+			if(m_TMP1 & 0x80000000) { // - +
+				q = -((-m_TMP1) / m_TMP2);
+				r = -((-m_TMP1) % m_TMP2);
+			} else {       // + +
+				q = m_TMP1 / m_TMP2;
+				r = m_TMP1 % m_TMP2;
+			}
+		}
+		if(q < 0)
+			m_CCR |= F_N;
+		r32_w(m_IR[1], (q & 0xffff) | ((r & 0xffff) << 16));
+	}
+	prefetch_done();
+	break;
+}
+	m_inst_substate = 0;
+}
+
 void divxs_b_r8h_r16l_full()
 {
 	m_NPC = m_PC & 0xffffff;
