@@ -588,3 +588,16 @@ seed9/slice18 felismerve. Jelölt:60 CTest/87 Python,490 upstreamből származó
 (488 változatlan,2 korábbi adaptáció);236 kiválasztott/28 hiányzó/135 kizárt sor.
 Linux UBSan kiterjesztve osztásra is; távoli CI függőben. M0 továbbra is részleges.
 [Szerződés és ellenőrzési hatókör](h8-byte-divide.md). Yamaha-adat nem került be.
+
+## 2026-10-29 — Előjel nélküli szó-osztás jelölt
+
+DIVXU.W, külön5300/ff08 dekóderág. A hányados/maradék u32 típusa explicit;
+csomagolás unsigned32 marad. Két dokumentált típusadaptáció, nem C++20 UB-mérés.
+Az eredeti N az osztó7. bitjét követi, nem a15.-et; hardvermérés nélkül ezt megőrizzük.
+524288 osztó-söprés,30720 alias/CCR-eset,20000 véletlen pár,241 szétvágás PASS;
+200000 biztonságosan korlátozott referenciaszelet nulla eltéréssel. Nagy értékek
+független64 bites számítással ellenőrizve; hányados+1 kontroll seed9/slice26.
+Jelölt:61 CTest/87 Python,492 upstreamből származó kezelő (488 változatlan,4 adaptált);
+237 kiválasztott/27 hiányzó/135 kizárt sor. Linux UBSan kiterjesztve szó-osztásra;
+távoli CI függőben, M0 továbbra is részleges. [Szerződés](h8-word-divide.md).
+Yamaha-adat nem került be; firmware/MIDI/hang/plugin elfogadás nincs.

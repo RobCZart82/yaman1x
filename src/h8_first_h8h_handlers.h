@@ -1,7 +1,74 @@
 // license:BSD-3-Clause
 // copyright-holders:Olivier Galibert
-// Selected pinned generated h8h.hxx methods; class qualifiers removed; MULXU.W unsigned widening reviewed.
+// Selected pinned generated h8h.hxx methods; class qualifiers removed; MULXU.W widening and DIVXU.W unsigned locals reviewed.
 // Included inside H8FirstInstructions. See research/h8-first-instructions-provenance.json.
+void divxu_w_r16h_r32l_full()
+{
+	m_NPC = m_PC & 0xffffff;
+	m_PIR = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 1;
+		} else
+			m_inst_substate = 2;
+		return;
+	}
+	m_PC += 2;
+	internal(11);
+	m_TMP1 = r32_r(m_IR[0]);
+	m_TMP2 = r16_r(m_IR[0] >> 4);
+	m_CCR &= ~(F_Z|F_N);
+	if(m_TMP2 & 0x80)
+		m_CCR |= F_N;
+	if(!m_TMP2) {
+		m_CCR |= F_Z;
+	} else {
+		u32 q = m_TMP1 / m_TMP2;
+		u32 r = m_TMP1 % m_TMP2;
+		r32_w(m_IR[0], (q & 0xffff) | ((r & 0xffff) << 16));
+	}
+	prefetch_done();
+}
+
+void divxu_w_r16h_r32l_partial()
+{
+switch(m_inst_substate) {
+case 0:
+	m_NPC = m_PC & 0xffffff;
+	[[fallthrough]];
+case 1:;
+	m_PIR = read16i(m_PC);
+	if(m_icount <= m_bcount) {
+		if(access_to_be_redone()) {
+			m_icount++;
+			m_inst_substate = 1;
+		} else
+			m_inst_substate = 2;
+		return;
+	}
+	[[fallthrough]];
+case 2:;
+	m_PC += 2;
+	internal(11);
+	m_TMP1 = r32_r(m_IR[0]);
+	m_TMP2 = r16_r(m_IR[0] >> 4);
+	m_CCR &= ~(F_Z|F_N);
+	if(m_TMP2 & 0x80)
+		m_CCR |= F_N;
+	if(!m_TMP2) {
+		m_CCR |= F_Z;
+	} else {
+		u32 q = m_TMP1 / m_TMP2;
+		u32 r = m_TMP1 % m_TMP2;
+		r32_w(m_IR[0], (q & 0xffff) | ((r & 0xffff) << 16));
+	}
+	prefetch_done();
+	break;
+}
+	m_inst_substate = 0;
+}
+
 void mulxs_b_r8h_r16l_full()
 {
 	m_NPC = m_PC & 0xffffff;

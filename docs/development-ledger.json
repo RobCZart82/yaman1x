@@ -995,6 +995,12 @@
       ]
     }
   ],
-  "active_change": null,
+  "active_change": {
+    "id": "H8-WORD-DIVIDE-2026-10-29",
+    "branch": "feat/h8-unsigned-word-divide",
+    "status": "in_progress",
+    "summary": "Unsigned word divide with explicit unsigned quotient/remainder and preserved source flags",
+    "validation": "60 local CTest/86 Python PASS;independent full-range aliases/CCR/splits,200000 bounded original-reference slices zero differences;quotient+1 detected;remote CI pending"
+  },
   "pending_changes": []
 }
