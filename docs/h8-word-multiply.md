@@ -46,3 +46,6 @@ local Windows did not run UBSan. Source/notice inventories pass separately.
 Synthetic/source-reference evidence does not establish physical timing,
 firmware/MIDI/audio or plugin acceptance. M0 remains partial. See
 [plan](FIRST_REAPER_SOUND_PLAN.md) and [status](STATUS.md).
+
+Closure: merged [PR82](https://github.com/RobCZart82/yaman1x/pull/82), engine `80b237ee7a9ad6b286a13c9253d076aa42bb0214`, final head `4f2cffc88c843cc9d431f5c0a6ec20ee2869d85b`. All five jobs PASS, including actual Linux UBSan oracle and original-overflow negative control; [run links](STATUS.md). Preparation-time candidate/pending notes above are historical. This resolves the recorded C++ promotion risk for the fixed H8H word-multiply subset.
+Final source inventory:469 files,201 locked upstream identities,one reviewed manifest edit; the two generated-body widening adaptations are recorded separately in CPU provenance. Source and notice checks PASS.

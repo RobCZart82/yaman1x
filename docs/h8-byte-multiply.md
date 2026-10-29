@@ -1,5 +1,7 @@
 # H8H unsigned byte multiply
 
+Current resolution: the historical word-multiply risk below was closed in merged [PR82](https://github.com/RobCZart82/yaman1x/pull/82) with reviewed unsigned widening and Linux UBSan/original-overflow controls. See [current contract](h8-word-multiply.md).
+
 Candidate based on merged PR79, engine baseline PR78. Pinned original
 `mulxu_b_r8h_r16l` full/partial bodies are unchanged except class qualifiers.
 Flat decoder accepts all 256 words5000..50ff. Destination is a 16-bit register;

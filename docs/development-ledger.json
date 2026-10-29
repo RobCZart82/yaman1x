@@ -3,7 +3,7 @@
   "recorded_date": "2026-10-29",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "bddffa8743eac2e2af8e7fc1a3145046a45e6fa5",
+  "baseline_commit": "80b237ee7a9ad6b286a13c9253d076aa42bb0214",
   "entries": [
     {
       "pr": 6,
@@ -906,14 +906,37 @@
         40824422322,
         40824422266
       ]
+    },
+    {
+      "pr": 81,
+      "title": "Close merged byte multiply evidence and update development baseline",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/81",
+      "kind": "documentation",
+      "status": "merged",
+      "merge_commit": "7eb2c33b965d310a0fa8447b454b8a41fc511eac",
+      "reviewed_head": "16c77c13550d9bef87b6495ca6b658eeb406823a",
+      "merged_at_utc": "2026-10-29T05:47:04Z",
+      "ci_runs": [
+        40825012539,
+        40825012574
+      ]
+    },
+    {
+      "pr": 82,
+      "title": "Execute H8H word multiply with reviewed unsigned widening and UBSan controls",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/82",
+      "kind": "development",
+      "status": "merged",
+      "merge_commit": "80b237ee7a9ad6b286a13c9253d076aa42bb0214",
+      "reviewed_head": "4f2cffc88c843cc9d431f5c0a6ec20ee2869d85b",
+      "merged_at_utc": "2026-10-29T06:20:23Z",
+      "ci_runs": [
+        40827962559,
+        40827962568,
+        40827962569
+      ]
     }
   ],
-  "active_change": {
-    "id": "H8-WORD-MULTIPLY-2026-10-29",
-    "branch": "feat/h8-unsigned-word-multiply",
-    "status": "in_progress",
-    "summary": "MULXU.W with reviewed unsigned widening and independent UBSan control",
-    "validation": "57 local CTest/86 Python PASS;200000 bounded original-reference slices zero differences;product+1 detected;remote UBSan/platform/MSan/MAME pending"
-  },
+  "active_change": null,
   "pending_changes": []
 }
