@@ -1,24 +1,36 @@
 # YamAN1x fejlesztési napló
 
 Frissítve: 2026-10-29. Időzóna: Europe/Budapest.
-Ellenőrzött motoralap: `1de8971b8fdd7694a8c3051ae86611a9ff6cd3cd` (#100).
+Ellenőrzött motoralap: `2dab39c1598533fc0a84da9017b3f2975854ff96` (#102).
 
-## Aktív fejlesztési lépés — abszolút CCR-memória, 2026-10-29
+## Aktuális lezárás — #102, 2026-10-29
 
-Négy LDC/STC abs16/abs32 művelet,nyolc változatlan eredeti kezelő.
-Jelölt:68 CTest/87 Python,532 kezelő (528 változatlan,4 korábbi adaptáció),
-253 kiválasztott/11 hiányzó/135 kizárt sor. Beolvadt motoralap még #100.
+A [#102 PR](https://github.com/RobCZart82/yaman1x/pull/102) beolvadt:
+merge `2dab39c1598533fc0a84da9017b3f2975854ff96`, végső tesztelt head `3c0f7947efc5cc170877fa99479f181d527bd195`.
+Időpont:2026-10-29 17:50:13 Europe/Budapest (16:50:13 UTC).
+[Linux/macOS/Windows és Linux UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40912848068),
+[MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40912848027),
+[MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40912848153): mind az öt feladat sikeres.
+Automatikus review a végső commiton hibamegállapítás nélkül befejeződött;
+nyitott review-szál nincs.
+
+Beolvadt: **68 CTest-csoport /87 Python-eset;532 upstreamből származó kezelő
+(528 változatlan,4 korábbi adaptáció);253 kiválasztott /11 hiányzó /135 kizárt sor**.
+Négy CCR abs16/abs32 betöltési/tárolási művelet,nyolc változatlan eredeti kezelő.
 131072 memóriaszó,131072 abs16 cím,524288 abs32 címfél-söprés,9216 CCR-határeset,
-241 szétvágás,1024 IRQ/NMI-maszk és644 megszakításos szétvágás célzott tesztje PASS.
-Eredeti referencia200000 szelet,nulla eltérés. A hibás alsóbájt-kiválasztási kontroll seed3/slice5-nél felismerve. Célzott ASan/UBSan PASS.
-Teljes helyi Release68/68 CTest és87 Python PASS. Végső CI/review és beolvasztás még nyitott.
-[Hatókör és bizonyíték](h8-ccr-absolute-memory.md).
-A #101 dokumentációs lezárás beolvadt `0902960db57af3f0ece732c6dc9d11d9dc5ba792`:
-2026-10-29 17:30:19 Europe/Budapest (16:30:19 UTC),négy sikeres CI-feladat,
-automatikus review a tesztelt5ec027c commiton hibamegállapítás nélkül befejeződött.
-Soros fejlesztés;új lépcső csak az aktuális PR beolvadása után.
+241 szétvágás,1024 IRQ/NMI-maszk és644 megszakításos szétvágás PASS.
+Helyi Release68/68 CTest és87 Python,célzott ASan/UBSan PASS.
+Eredeti referencia200000 szelet,nulla eltérés;hibás alsóbájt-kiválasztás
+kontrollja seed3/slice5-nél felismerve. [Hatókör és bizonyíték](h8-ccr-absolute-memory.md).
 
-## Aktuális lezárás — #100, 2026-10-29
+Nincs aktív motorjelölt. Következő lépés:CCR postincrement/predecrement,
+majd eltolásos címzések és a fennmaradó H8H-műveletek. M0 részleges;
+teljes gép/MMIO,firmware/MIDI/hang/plugin elfogadás nyitott.
+Soros fejlesztés;egyszerre egy PR,új lépcső csak beolvadás után.
+A #101 dokumentációs PR lezárását a strukturált nyilvántartás már tartalmazza.
+Az alábbi régebbi jelölt/pending állapotok történetiek.
+
+## Történeti lezárás — #100, 2026-10-29
 
 A [#100 PR](https://github.com/RobCZart82/yaman1x/pull/100) beolvadt:
 merge `1de8971b8fdd7694a8c3051ae86611a9ff6cd3cd`, végső tesztelt head `ba6db1c61a3ba9d696f8affee1410e5969c0aa9d`.

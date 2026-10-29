@@ -3,7 +3,7 @@
   "recorded_date": "2026-10-29",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "1de8971b8fdd7694a8c3051ae86611a9ff6cd3cd",
+  "baseline_commit": "2dab39c1598533fc0a84da9017b3f2975854ff96",
   "entries": [
     {
       "pr": 6,
@@ -1217,13 +1217,24 @@
         40909101558
       ],
       "automated_review_at_merge": "completed_no_findings"
+    },
+    {
+      "pr": 102,
+      "title": "Execute H8H absolute CCR word memory with IRQ boundary controls",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/102",
+      "kind": "development",
+      "status": "merged",
+      "merge_commit": "2dab39c1598533fc0a84da9017b3f2975854ff96",
+      "reviewed_head": "3c0f7947efc5cc170877fa99479f181d527bd195",
+      "merged_at_utc": "2026-10-29T16:50:13Z",
+      "ci_runs": [
+        40912848068,
+        40912848027,
+        40912848153
+      ],
+      "automated_review_at_merge": "completed_no_findings"
     }
   ],
-  "active_change": {
-    "branch": "feat/h8-ccr-absolute-memory",
-    "scope": "LDC/STC abs16/abs32 CCR word memory",
-    "status": "local_validation_passed",
-    "ci": "not_run"
-  },
+  "active_change": null,
   "pending_changes": []
 }
