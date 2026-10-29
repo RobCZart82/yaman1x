@@ -721,3 +721,17 @@ C++-túlcsordulási kockázatot jelent. Bekötés előtt független nagyérték�
 UBSan és dokumentált unsigned-szélesítés felülvizsgálata szükséges.
 Ez lehetőség és igazolandó javítási feladat; nem hardveres hibamegállapítás.
 Részletek: [szerződés és bizonyíték](h8-byte-multiply.md). Yamaha-adat nem került be.
+
+## 2026-10-29 — Előjel nélküli szó-szorzás jelölt
+
+MULXU.W: két eredeti eredetű full/partial kezelő minimális, dokumentált javítással:
+szorzás előtt u32-szélesítés, hogy a u16 operandusok int-promóciója ne csorduljon túl.
+A korábbi480 kezelő változatlan;482 eredeti eredetű kezelőből2 adaptált.
+327680 operandus-söprés,9600 alias/CCR-határeset,20000 véletlen pár,241 szétvágás PASS.
+200000 eredeti referenciaszelet nulla eltéréssel, csak biztonságos szorzatokkal;
+a nagy szorzatokat független64 bites oracle ellenőrzi. Product+1 kontroll:seed9/slice9.
+Helyi57 CTest/86 Python PASS, ismert Windows-symlink eset kizárva. Jelölt:58 CTest/87 Python,
+233 kiválasztott/31 hiányzó/135 kizárt kódolássor. Linux UBSan és külön eredeti-hibakontroll
+bekötve; tényleges távoli eredmény még függőben. A szó-szorzás nyitott kockázata
+csak ezek sikeres lezárása után tekinthető rendezettnek; ez nem hardverelfogadás.
+[Szerződés, pontos adaptáció és bizonyítékok](h8-word-multiply.md). Yamaha-adat nem került be.

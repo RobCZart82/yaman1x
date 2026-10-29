@@ -908,6 +908,12 @@
       ]
     }
   ],
-  "active_change": null,
+  "active_change": {
+    "id": "H8-WORD-MULTIPLY-2026-10-29",
+    "branch": "feat/h8-unsigned-word-multiply",
+    "status": "in_progress",
+    "summary": "MULXU.W with reviewed unsigned widening and independent UBSan control",
+    "validation": "57 local CTest/86 Python PASS;200000 bounded original-reference slices zero differences;product+1 detected;remote UBSan/platform/MSan/MAME pending"
+  },
   "pending_changes": []
 }

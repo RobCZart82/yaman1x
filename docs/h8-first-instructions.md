@@ -4,15 +4,15 @@ Initial increment: #47 based on #46, 2026-10-28. Current memory/branch extension
 is based on merged #47; see [the extension contract](h8-memory-branches.md). M0 remains partial.
 
 `H8FirstInstructions<Host>` is an intentionally limited advanced-H8H execution
-profile. The initial eight methods have expanded to 480 full/partial methods:
+profile. The initial eight methods have expanded to 482 upstream-derived full/partial methods:
 reset, NOP, immediate byte/word/long moves, all rel8 conditions, prefix dispatch
 indirect byte/word/long loads/stores, selected ADD/SUB/CMP and carry-input forms,
-logic, LDC immediate CCR and single-bit shifts/rotates. The selection now includes base-H8 and H8H operations. Their bodies are unchanged; only class
-qualifiers are removed so they can be included inside the standalone template.
+logic, LDC immediate CCR and single-bit shifts/rotates. The selection now includes base-H8 and H8H operations. 480 bodies are unchanged except class qualifiers. The two new MULXU.W bodies
+include a reviewed unsigned-widening adaptation; see [contract](h8-word-multiply.md).
 
 The profile owns its 16 register halves, CCR/EXR, PC/PPC/NPC, IR/PIR, temporary
-registers, instruction/substate and cycle debt per instance. IR has three words
-for immediate32; the diagnostic snapshot is not a persistence format. `H8hBusAccess`
+registers, instruction/substate and cycle debt per instance. IR has four words
+for immediate32 and long absolute decoding; the diagnostic snapshot is not a persistence format. `H8hBusAccess`
 charges before completed instruction and byte/word data accesses; `H8ExecutionRunner` preserves
 peripheral-boundary and partial-handler ordering. The reduced decoder rejects
 all other opcodes explicitly and poisons execution through the runner.

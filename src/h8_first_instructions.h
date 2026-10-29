@@ -38,7 +38,7 @@ public:
                 m_IR,m_PIR,m_CCR,m_EXR,m_icount,runner_.debt(),m_taken_irq_vector,m_taken_irq_level};
     }
 private:
-    using u8=uint8_t; using u16=uint16_t; using s8=int8_t; using s16=int16_t; using s32=int32_t;
+    using u8=uint8_t; using u16=uint16_t; using u32=uint32_t; using s8=int8_t; using s16=int16_t; using s32=int32_t;
     static constexpr u8 F_I=0x80,F_UI=0x40,F_H=0x20,F_N=0x08,F_Z=0x04,F_V=0x02,F_C=0x01;
     static constexpr u8 EXR_I=0x07,EXR_NC=0x78;
     static constexpr bool m_has_hc=true,m_mode_advanced=true,m_has_mac=false;
@@ -134,6 +134,7 @@ private:
         }
         if(m_inst_state>0xffff) {throw std::runtime_error("Unsupported H8 internal instruction state"); return;
         }
+        if((m_inst_state&0xff08)==0x5200) {if(partial)mulxu_w_r16h_r32l_partial();else mulxu_w_r16h_r32l_full();return;}
         if((m_inst_state&0xff00)==0x5000) {if(partial)mulxu_b_r8h_r16l_partial();else mulxu_b_r8h_r16l_full();return;}
         if((m_inst_state&0xff80)==0x6e00) {if(partial)mov_b_r32d16h_r8l_partial();else mov_b_r32d16h_r8l_full();return;}
         if((m_inst_state&0xff80)==0x6e80) {if(partial)mov_b_r8l_r32d16h_partial();else mov_b_r8l_r32d16h_full();return;}
