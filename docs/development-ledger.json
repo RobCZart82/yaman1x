@@ -3,7 +3,7 @@
   "recorded_date": "2026-10-29",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "8993a6024b0cedfe0d3f5c48a2819009c98643f1",
+  "baseline_commit": "d4ef0e45bc416f06216d43559e1f73df1d39caa8",
   "entries": [
     {
       "pr": 6,
@@ -862,16 +862,23 @@
         40788595788,
         40788595917
       ]
+    },
+    {
+      "pr": 78,
+      "title": "Execute H8H signed16 displacement memory moves",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/78",
+      "kind": "development",
+      "status": "merged",
+      "merge_commit": "d4ef0e45bc416f06216d43559e1f73df1d39caa8",
+      "reviewed_head": "ef6adefadb5b390f6822ae34c4db41edab5b1348",
+      "merged_at_utc": "2026-10-29T05:26:01Z",
+      "ci_runs": [
+        40822703637,
+        40822703598,
+        40822703615
+      ]
     }
   ],
-  "active_change": {
-    "id": "H8-DISPLACEMENT16-2026-10-29",
-    "branch": "feat/h8-displacement16-memory",
-    "status": "in_progress",
-    "summary": "Six original byte/word/long signed16 displacement memory groups",
-    "validation": "55 runnable CTest groups; independent offset/alias/wrap controls; 200000 original-reference slices zero differences. Candidate CI pending.",
-    "pr": 78,
-    "url": "https://github.com/RobCZart82/yaman1x/pull/78"
-  },
+  "active_change": null,
   "pending_changes": []
 }

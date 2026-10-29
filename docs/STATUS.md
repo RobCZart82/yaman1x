@@ -1,21 +1,21 @@
 # Development status
 
-Recorded: 2026-10-28. Product: YamAN1x. Repository: `yaman1x`. First public research snapshot: 2026-10-26.
+Recorded: 2026-10-29. Product: YamAN1x. Repository: `yaman1x`. First public research snapshot: 2026-10-26.
 
 The repository contains a ROM-free C++/Python development foundation.
 No VST3, AU, GUI or AN1x audio output is available yet.
 
-Verified engine baseline: merged [PR #77](https://github.com/RobCZart82/yaman1x/pull/77),
-`8993a6024b0cedfe0d3f5c48a2819009c98643f1`; final head `fb2bc0935aad976706b0652d21275e5a55d0efd8`.
-[Platform CI](https://github.com/RobCZart82/yaman1x/actions/runs/40788596091),
-[MSan](https://github.com/RobCZart82/yaman1x/actions/runs/40788595788),
-[MAME](https://github.com/RobCZart82/yaman1x/actions/runs/40788595917): all successful.
-Merged suite: **55 CTest groups / 87 Python cases; 466 original methods;
-225 selected / 39 missing / 135 excluded encoding rows** (not a CPU percentage).
+Verified engine baseline: merged [PR #78](https://github.com/RobCZart82/yaman1x/pull/78),
+`d4ef0e45bc416f06216d43559e1f73df1d39caa8`; final head `ef6adefadb5b390f6822ae34c4db41edab5b1348`.
+[Platform CI](https://github.com/RobCZart82/yaman1x/actions/runs/40822703637),
+[MSan](https://github.com/RobCZart82/yaman1x/actions/runs/40822703598),
+[MAME](https://github.com/RobCZart82/yaman1x/actions/runs/40822703615): all five jobs successful.
+Merged suite: **56 CTest groups / 87 Python cases; 478 original methods;
+231 selected / 33 missing / 135 excluded encoding rows** (not a CPU percentage).
 Fixed-profile IRQ/NMI/TRAPA and synthetic CPU/SCI RX/TX/error handling are merged.
-Long absolute memory uses a four-word IR buffer. The new signed16 displacement
-candidate is separate: 56 groups / 87 Python cases, 478 methods, 231 selected /
-33 missing rows; see [contract](h8-displacement16-memory.md). Final candidate CI pending.
+Long absolute memory uses a four-word IR buffer. Six signed16 displacement groups
+are now merged; see [contract](h8-displacement16-memory.md). No active engine candidate.
+Local Windows:55 runnable CTest/86 Python PASS; one known symlink privilege case excluded.
 
 M0 remains partial; M1 is prepared but unaccepted. Missing instructions and
 address modes, full AN1x memory/MMIO integration, physical timing verification,

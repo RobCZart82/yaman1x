@@ -35,3 +35,5 @@ Final control: treating long-load signed16 as unsigned in both ignored candidate
 bodies is detected at seed9/slice6. Local55 CTest and86 Python cases PASS; the
 one known symlink case is excluded. Source audit464 files/201 upstream/one reviewed
 edit PASS; notices229 files/five texts PASS. No Yamaha data introduced.
+
+Closure: merged [#78](https://github.com/RobCZart82/yaman1x/pull/78), engine `d4ef0e45bc416f06216d43559e1f73df1d39caa8`, final head `ef6adefadb5b390f6822ae34c4db41edab5b1348`. All three platform jobs, MSan and full MAME passed; see [current status](STATUS.md) for run links. Preparation-time candidate wording above is historical.
