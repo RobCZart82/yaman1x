@@ -5,18 +5,19 @@ Recorded: 2026-10-29. Product: YamAN1x. Repository: `yaman1x`. First public rese
 The repository contains a ROM-free C++/Python development foundation.
 No VST3, AU, GUI or AN1x audio output is available yet.
 
-Verified engine baseline: merged [PR #80](https://github.com/RobCZart82/yaman1x/pull/80),
-`bddffa8743eac2e2af8e7fc1a3145046a45e6fa5`; final head `5bf4e97e64fc3ebbe00a42f8215a740fbca72d86`.
-[Platform CI](https://github.com/RobCZart82/yaman1x/actions/runs/40824422195),
-[MSan](https://github.com/RobCZart82/yaman1x/actions/runs/40824422322),
-[MAME](https://github.com/RobCZart82/yaman1x/actions/runs/40824422266): all five jobs successful.
-Merged suite: **57 CTest groups /87 Python cases;480 original methods;
-232 selected /32 missing /135 excluded encoding rows** (not a CPU percentage).
-Fixed-profile IRQ/NMI/TRAPA, synthetic CPU/SCI exchange/error handling, long absolute
-and signed16 displacement moves, unsigned byte multiply are merged. Word multiply is a separate candidate:58 CTest/87 Python,482 upstream-derived methods (480 unchanged,2 adapted),233 selected/31 missing rows.
-Local Windows:56 runnable CTest/86 Python PASS; one known symlink privilege case excluded.
-The word-multiply adaptation and its Linux UBSan control await final CI;
-see [contract and acceptance gates](h8-word-multiply.md).
+Verified engine baseline: merged [PR #82](https://github.com/RobCZart82/yaman1x/pull/82),
+`80b237ee7a9ad6b286a13c9253d076aa42bb0214`; final head `4f2cffc88c843cc9d431f5c0a6ec20ee2869d85b`.
+[Platform CI](https://github.com/RobCZart82/yaman1x/actions/runs/40827962559),
+[MSan](https://github.com/RobCZart82/yaman1x/actions/runs/40827962568),
+[MAME](https://github.com/RobCZart82/yaman1x/actions/runs/40827962569): all five jobs successful.
+Linux additionally passed the UBSan word-multiply oracle and required original-overflow control.
+Merged suite: **58 CTest groups /87 Python cases;482 upstream-derived methods
+(480 unchanged,2 adapted);233 selected /31 missing /135 excluded encoding rows**
+(not a CPU percentage). Fixed-profile IRQ/NMI/TRAPA, synthetic CPU/SCI exchange/errors,
+long absolute/signed16 displacement moves and unsigned byte/word multiply are merged.
+The word-multiply signed-int promotion risk is resolved by reviewed unsigned widening;
+[scope and evidence](h8-word-multiply.md). No active engine candidate.
+Local Windows:57 runnable CTest/86 Python PASS; one known symlink privilege case excluded.
 
 M0 remains partial; M1 is prepared but unaccepted. Missing instructions and
 address modes, full AN1x memory/MMIO integration, physical timing verification,

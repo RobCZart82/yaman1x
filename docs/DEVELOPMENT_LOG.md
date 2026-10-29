@@ -1,9 +1,32 @@
 # YamAN1x fejlesztési napló
 
 Frissítve: 2026-10-29. Időzóna: Europe/Budapest.
-Ellenőrzött motoralap: `bddffa8743eac2e2af8e7fc1a3145046a45e6fa5` (#80).
+Ellenőrzött motoralap: `80b237ee7a9ad6b286a13c9253d076aa42bb0214` (#82).
 
-## Aktuális lezárás — #80, 2026-10-29
+## Aktuális lezárás — #82, 2026-10-29
+
+Ellenőrzött motoralap: [#82](https://github.com/RobCZart82/yaman1x/pull/82),
+merge `80b237ee7a9ad6b286a13c9253d076aa42bb0214`, végső tesztelt head `4f2cffc88c843cc9d431f5c0a6ec20ee2869d85b`.
+Beolvadt: 2026-10-29 07:20:23 Europe/Budapest (06:20:23 UTC).
+[Linux/macOS/Windows PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40827962559),
+[MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40827962568),
+[MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40827962569).
+A Linux-lépésben a nagy szorzatok UBSan-tesztje és az eredeti kifejezés
+előjeles túlcsordulását megkövetelő külön negatív kontroll is PASS.
+
+Beolvadt: **58 CTest-csoport /87 Python-eset;482 upstreamből származó kezelő
+(480 változatlan,2 dokumentáltan adaptált);233 kiválasztott /31 hiányzó /135 kizárt
+profilú kódolássor**. Ez nem CPU-százalék. MULXU.W:327680 operandus-söprés,
+9600 alias/CCR-határeset,20000 véletlen pár,241 szétvágás PASS;200000 biztonságos
+szorzatokkal végzett eredeti referenciaszelet nulla eltéréssel. A nagy szorzatokat
+független64 bites számítás ellenőrzi; product+1 kontroll seed9/slice9 felismerve.
+Helyi57 futtatható CTest és86 Python PASS, egy ismert Windows-symlink eset kizárva.
+A szó-szorzás C++-promóciós kockázata rendezett a dokumentált unsigned-szélesítéssel;
+[pontos hatókör és bizonyíték](h8-word-multiply.md). Nincs aktív motorjelölt.
+M0 részleges; teljes gép/firmware/MIDI/hang/plugin elfogadás nyitott.
+Az alábbi jelölt/CI-pending/kockázati bejegyzések történetiek.
+
+## Történeti lezárás — #80, 2026-10-29
 
 Ellenőrzött motoralap: [#80](https://github.com/RobCZart82/yaman1x/pull/80),
 merge `bddffa8743eac2e2af8e7fc1a3145046a45e6fa5`, végső tesztelt head `5bf4e97e64fc3ebbe00a42f8215a740fbca72d86`.
