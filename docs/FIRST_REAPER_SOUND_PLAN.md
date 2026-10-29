@@ -5,6 +5,22 @@ Ez végrehajtási terv; az alábbi, még nyitott mérföldkövek nem kész funkc
 Állapotellenőrzés: 2026-10-29, motoralap: #98 (`1c7ba628aceb29fd4c057db73fe31b2be4841558`).
 A működő H8H-részhalmaz nem teljes CPU- vagy firmware-elfogadás.
 
+## Aktív fejlesztési lépés — hosszúszavas32 bites eltolás, 2026-10-29
+
+Két MOV.L művelet és eredeti kettős prefixfolytatás: hat változatlan kezelő;
+öt szóra bővített utasításpuffer. Jelölt:67 CTest/87 Python,524 kezelő
+(520 változatlan,4 korábbi adaptáció),249 kiválasztott/15 hiányzó/135 kizárt sor.
+524288 eltolásfél-söprés,55296 határeset,241 szétvágás,65536 prefixfolytatás,
+regiszteraliasok és első/második memóriaátviteli hibák célzott ellenőrzése PASS.
+Eredeti referencia200000 szelet,nulla eltérés; a felső eltolásszó elhagyásának
+hibás kontrollját seed4/slice4 felismerte. Célzott ASan/UBSan PASS.
+Teljes helyi Release:67/67 CTest és87 Python PASS. Végső CI és beolvasztás még nyitott.
+[Hatókör és bizonyíték](h8-long-displacement32-memory.md). A beolvadt motoralap
+még #98. A #99 dokumentációs lezárás beolvadt `b5d0f36ecf0c25861e5b1ad9182b6b2b555ac3e5`:
+2026-10-29 16:50:24 Europe/Budapest (15:50:24 UTC), négy sikeres CI-feladat,
+automatikus review a tesztelt57b6bfb commiton befejeződött, hibamegállapítás nélkül.
+Egyszerre továbbra is csak egy PR; teljes gép/firmware/hang nem igazolt.
+
 ## Aktuális lezárás — #98, 2026-10-29
 
 A [#98 PR](https://github.com/RobCZart82/yaman1x/pull/98) beolvadt:

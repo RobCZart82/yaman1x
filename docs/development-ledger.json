@@ -1171,8 +1171,28 @@
         40870229586
       ],
       "automated_review_at_merge": "unavailable_code_review_usage_limit"
+    },
+    {
+      "pr": 99,
+      "title": "Close CCR indirect evidence and document serial development policy",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/99",
+      "kind": "documentation",
+      "status": "merged",
+      "merge_commit": "b5d0f36ecf0c25861e5b1ad9182b6b2b555ac3e5",
+      "reviewed_head": "57b6bfb7c611025438c7274956a31852aebc11c8",
+      "merged_at_utc": "2026-10-29T15:50:24Z",
+      "ci_runs": [
+        40892254338,
+        40892254428
+      ],
+      "automated_review_at_merge": "completed_no_findings"
     }
   ],
-  "active_change": null,
+  "active_change": {
+    "branch": "feat/h8-long-displacement32",
+    "scope": "MOV.L displacement32 and original five-word prefix continuation",
+    "status": "local_validation_passed",
+    "ci": "not_run"
+  },
   "pending_changes": []
 }

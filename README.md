@@ -30,12 +30,16 @@ See [engine architecture decision](docs/ADR-0001-engine-boundary.md) and
 
 ## Current state
 
+Active candidate: [long displacement32 MOV.L](docs/h8-long-displacement32-memory.md),67 CTest/524 methods
+(520 unchanged/four prior adaptations),249 selected/15 missing/135 excluded rows.
+Final-head CI and merge pending; merged evidence below remains #98.
+
 Verified engine baseline: [#98](https://github.com/RobCZart82/yaman1x/pull/98).
 66 CTest groups, 87 Python cases; 518 upstream-derived full/partial handlers
 (514 unchanged, 4 with reviewed unsigned arithmetic adaptations) and
 247 selected / 17 missing / 135 excluded encoding rows. All five final-head
 checks passed. [CCR indirect memory evidence](docs/h8-ccr-indirect-memory.md).
-No open engine candidate; full CPU, firmware boot and audio remain unaccepted.
+Merged baseline below excludes the candidate; full CPU, firmware boot and audio remain unaccepted.
 See [current status](docs/STATUS.md).
 
 See the [development plan through the first sound in REAPER (Hungarian)](docs/FIRST_REAPER_SOUND_PLAN.md)

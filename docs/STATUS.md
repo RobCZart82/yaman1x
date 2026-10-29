@@ -5,6 +5,10 @@ Recorded: 2026-10-29. Product: YamAN1x. Repository: `yaman1x`. First public rese
 The repository contains a ROM-free C++/Python development foundation.
 No VST3, AU, GUI or AN1x audio output is available yet.
 
+Active candidate: [long displacement32 MOV.L](h8-long-displacement32-memory.md),67 CTest/524 methods
+(520 unchanged/four prior adaptations),249 selected/15 missing/135 excluded rows.
+Final-head CI and merge pending; merged evidence below remains #98.
+
 Verified engine baseline: merged [PR #98](https://github.com/RobCZart82/yaman1x/pull/98),
 `1c7ba628aceb29fd4c057db73fe31b2be4841558`; final head `a3c033256ec247555b44b0d820bb228dcaf9bc39`.
 [Platform CI and Linux UBSan](https://github.com/RobCZart82/yaman1x/actions/runs/40870231488),
@@ -15,7 +19,7 @@ no successful automated review is claimed.
 Merged suite: **66 CTest groups /87 Python cases;518 upstream-derived methods
 (514 unchanged,4 prior adaptations);247 selected /17 missing /135 excluded encoding rows**
 (not a CPU percentage). [CCR indirect scope and tests](h8-ccr-indirect-memory.md).
-No active engine candidate. Previous local Windows evidence:65 runnable CTest/86 Python;
+The prior series is closed; the new candidate is above. Previous local Windows evidence:65 runnable CTest/86 Python;
 one known symlink privilege case excluded, not counted as passed.
 
 M0 remains partial; M1 is prepared but unaccepted. Long displacement32, remaining
