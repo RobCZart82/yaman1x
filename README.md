@@ -30,19 +30,15 @@ See [engine architecture decision](docs/ADR-0001-engine-boundary.md) and
 
 ## Current state
 
-Active candidate: [peripheral byte moves](docs/h8-peripheral-byte-moves.md),72 CTest/552 methods
-(548 unchanged/four prior adaptations),261 selected/3 missing/135 excluded rows.
-Original timing TODO retained;no hardware handshake/timing claim.
-Final-head CI/review pending;merged evidence below remains #108.
-
-Verified engine baseline: [#108](https://github.com/RobCZart82/yaman1x/pull/108),
-`3c7005a3a26da4149668f6ab9f4695e1672bdc6e`;tested head `ffef22c9d5794ec78028a0f2d07cb9659ff9d5bb`.
-71 CTest groups/87 Python cases;548 upstream-derived methods (544 unchanged,
-four prior arithmetic adaptations);259 selected/5 missing/135 excluded encoding rows.
-[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40937469453), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40937469399), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40937469419):all five jobs passed.
+Verified engine baseline: [#110](https://github.com/RobCZart82/yaman1x/pull/110),
+`3d0ce825bb341402f40dab92c0f1ec2f409b5ee7`;tested head `903844cdb2a0466a93b2a61b056191afd0b37146`.
+72 CTest groups/87 Python cases;552 upstream-derived methods (548 unchanged,
+four prior arithmetic adaptations);261 selected/3 missing/135 excluded encoding rows.
+[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40943842276), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40943842076), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40943841959):all five jobs passed.
 No recorded automated review result at inspection;no successful automated review claimed.
-The prior series is closed;the new candidate is above. [Displacement32 CCR evidence](docs/h8-ccr-displacement32-memory.md).
-Remaining:SLEEP,MOVFPE/MOVTPE,EEPMOV. Full CPU,machine/MMIO,physical timing,
+No active engine candidate. [Peripheral move evidence](docs/h8-peripheral-byte-moves.md).
+Original peripheral timing TODO retained;no E-clock/handshake timing validation.
+Remaining:SLEEP and EEPMOV. Full CPU,machine/MMIO,physical timing,
 firmware/MIDI/audio and REAPER acceptance remain open.
 
 See the [development plan through the first sound in REAPER (Hungarian)](docs/FIRST_REAPER_SOUND_PLAN.md)

@@ -3,7 +3,7 @@
   "recorded_date": "2026-10-29",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "3c7005a3a26da4149668f6ab9f4695e1672bdc6e",
+  "baseline_commit": "3d0ce825bb341402f40dab92c0f1ec2f409b5ee7",
   "entries": [
     {
       "pr": 6,
@@ -1341,13 +1341,24 @@
         40940105098
       ],
       "automated_review_at_merge": "not_claimed"
+    },
+    {
+      "pr": 110,
+      "title": "Execute pinned peripheral byte moves with guarded instruction states",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/110",
+      "kind": "development",
+      "status": "merged",
+      "merge_commit": "3d0ce825bb341402f40dab92c0f1ec2f409b5ee7",
+      "reviewed_head": "903844cdb2a0466a93b2a61b056191afd0b37146",
+      "merged_at_utc": "2026-10-29T20:25:50Z",
+      "ci_runs": [
+        40943842276,
+        40943842076,
+        40943841959
+      ],
+      "automated_review_at_merge": "no_recorded_result_at_inspection"
     }
   ],
-  "active_change": {
-    "branch": "feat/h8-peripheral-byte-moves",
-    "scope": "MOVFPE/MOVTPE semantic source contracts;original timing TODO retained",
-    "status": "local_validation_passed",
-    "ci": "not_run"
-  },
+  "active_change": null,
   "pending_changes": []
 }

@@ -137,4 +137,4 @@ Merged #106: [signed16 displacement CCR memory](h8-ccr-displacement16-memory.md)
 
 Merged #108: [displacement32 CCR memory](h8-ccr-displacement32-memory.md);all five final-head CI jobs passed. No recorded automated review result at inspection.
 
-Current candidate: [peripheral byte moves](h8-peripheral-byte-moves.md);original timing TODO retained;own final CI/review and merge pending.
+Merged #110: [peripheral byte moves](h8-peripheral-byte-moves.md);original timing TODO retained;all five final-head CI jobs passed. No recorded automated review result at inspection.
