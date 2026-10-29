@@ -85,6 +85,16 @@ private:
         }
         if((m_inst_state&0xfffffff0u)==0x6a40) {if(partial)movfpe_abs16_r8l_partial();else movfpe_abs16_r8l_full();return;}
         if((m_inst_state&0xfffffff0u)==0x6ac0) {if(partial)movtpe_r8l_abs16_partial();else movtpe_r8l_abs16_full();return;}
+        if(m_inst_state==0x7b5c) {if(partial)dispatch_7b5c_partial();else dispatch_7b5c_full();return;}
+        if(m_inst_state==0x7bd4) {if(partial)dispatch_7bd4_partial();else dispatch_7bd4_full();return;}
+        if((m_inst_state&0xffff0000)==0x170000) {
+            if(m_inst_state!=0x17598f)throw std::runtime_error("Unsupported H8 EEPMOV.B extension");
+            if(partial)eepmov_b_partial();else eepmov_b_full();return;
+        }
+        if((m_inst_state&0xffff0000)==0x180000) {
+            if(m_inst_state!=0x18598f)throw std::runtime_error("Unsupported H8 EEPMOV.W extension");
+            if(partial)eepmov_w_partial();else eepmov_w_full();return;
+        }
         if(m_inst_state==0x0140) {if(partial)dispatch_0140_partial();else dispatch_0140_full();return;}
         if((m_inst_state&0xffff0000)==0x70000) {
             if((m_inst_state&0xff8f)==0x6900) {if(partial)ldc_w_r32ih_ccr_partial();else ldc_w_r32ih_ccr_full();}

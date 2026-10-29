@@ -3,6 +3,20 @@
 Frissítve: 2026-10-29. Időzóna: Europe/Budapest.
 Ellenőrzött motoralap: `3d0ce825bb341402f40dab92c0f1ec2f409b5ee7` (#110).
 
+## Aktív fejlesztési lépés — EEPMOV blokkmozgatás, 2026-10-29
+
+EEPMOV.B/W:két művelet,két eredeti prefix,nyolc változatlan kezelő.
+Mindkettő bájtokat másol,a számláló8/16 bites. Jelölt:73 CTest/87 Python,
+560 kezelő (556 változatlan,4 korábbi adaptáció),263 kiválasztott/1 hiányzó/135 kizárt sor.
+768 bájtszámláló-eset,10 szószámláló-határ (max65535),336 átfedés/címkörbefordulás,
+362 szétvágás,131072 prefixőr és12 memóriahiba célzott tesztje PASS.
+Eredeti referencia200000 szelet,nulla eltérés;hibás kétbájtos forrásléptetés
+kontrollja seed15/slice4-nél felismerve. Teljes helyi Release73/73 CTest és87 Python,célzott ASan/UBSan PASS;végső CI/review még nyitott.
+[Hatókör és bizonyíték](h8-eepmov-block.md). Beolvadt motoralap még #110.
+A #111 dokumentációs lezárás beolvadt `5c19c62d9a3db542a3d42ff15cf959c647121c59`:
+2026-10-29 21:45:36 Europe/Budapest (20:45:36 UTC),négy sikeres CI-feladat.
+Soros fejlesztés:új lépcső csak az aktuális PR beolvadása után.
+
 ## Aktuális lezárás — #110, 2026-10-29
 
 A [#110 PR](https://github.com/RobCZart82/yaman1x/pull/110) beolvadt:

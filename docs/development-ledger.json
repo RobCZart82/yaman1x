@@ -1357,8 +1357,28 @@
         40943841959
       ],
       "automated_review_at_merge": "no_recorded_result_at_inspection"
+    },
+    {
+      "pr": 111,
+      "title": "Close peripheral move evidence and record timing limits",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/111",
+      "kind": "documentation",
+      "status": "merged",
+      "merge_commit": "5c19c62d9a3db542a3d42ff15cf959c647121c59",
+      "reviewed_head": "a4a98b889628d40fc1b4775aab533ac8c876577a",
+      "merged_at_utc": "2026-10-29T20:45:36Z",
+      "ci_runs": [
+        40949073716,
+        40949073711
+      ],
+      "automated_review_at_merge": "no_recorded_result_at_inspection"
     }
   ],
-  "active_change": null,
+  "active_change": {
+    "branch": "feat/h8-eepmov-block",
+    "scope": "Advanced H8H EEPMOV byte copies with8/16-bit counters and original continuations",
+    "status": "local_validation_passed",
+    "ci": "not_run"
+  },
   "pending_changes": []
 }
