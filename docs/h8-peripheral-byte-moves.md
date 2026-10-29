@@ -1,6 +1,6 @@
 # H8H peripheral byte moves
 
-Recorded:2026-10-29. Merged engine baseline:#108;current increment is a candidate.
+Recorded:2026-10-29. Merged #110 as `3d0ce825bb341402f40dab92c0f1ec2f409b5ee7`;tested head `903844cdb2a0466a93b2a61b056191afd0b37146`.
 
 ## Scope and timing boundary
 
@@ -45,7 +45,9 @@ Candidate-only ignored mutation removing address sign expansion mismatches
 the unchanged original reference at seed15/slice1 (expected exit1);tracked source remains correct.
 
 Targeted native and ASan/UBSan checks PASS. Local Release72/72 CTest,87 Python and targeted ASan/UBSan PASS. Linux CI includes the target under UBSan.
-Own final-head CI/review and merge pending. SLEEP and EEPMOV remain missing;
+[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40943842276), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40943842076), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40943841959).
+All five jobs passed;merged. No recorded automated review result at inspection;
+no successful automated review claimed. SLEEP and EEPMOV remain missing;
 full machine/MMIO,physical timing,firmware/MIDI/audio and REAPER acceptance open.
 
 The first full regression found nine failing groups because low-word-only masks
