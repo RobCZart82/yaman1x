@@ -75,6 +75,11 @@ private:
                 else {if(partial)mov_l_r32d16h_r32l_partial();else mov_l_r32d16h_r32l_full();}
             } else throw std::runtime_error("Unsupported H8 long-memory extension"); return;
         }
+        if(m_inst_state==0x01d0) {if(partial)dispatch_01d0_partial();else dispatch_01d0_full();return;}
+        if((m_inst_state&0xffff0000)==0xf0000) {
+            if((m_inst_state&0xff00)==0x5100) {if(partial)divxs_b_r8h_r16l_partial();else divxs_b_r8h_r16l_full();}
+            else throw std::runtime_error("Unsupported H8 signed divide extension");return;
+        }
         if(m_inst_state==0x01c0) {if(partial)dispatch_01c0_partial();else dispatch_01c0_full();return;}
         if((m_inst_state&0xffff0000)==0xe0000) {
             if((m_inst_state&0xff00)==0x5000) {if(partial)mulxs_b_r8h_r16l_partial();else mulxs_b_r8h_r16l_full();}
