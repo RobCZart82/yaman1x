@@ -6,13 +6,17 @@ audible firmware-driven VST3 voice in REAPER:
 
 Changes/fixes are recorded in the [development ledger](DEVELOPMENT_LOG.md).
 The [repository audit](REPOSITORY_AUDIT_2026-10-27.md) identifies current gaps.
+Active candidate: [AN1x bounded ROM/RAM map](an1x-memory-map.md),75 CTest/87 Python.
+CPU handlers/inventory unchanged. MMIO holes fail closed;synthetic CPU reset/transfers only.
+Final-head CI/review pending;merged evidence below remains #114.
+
 Verified engine baseline: [#114](https://github.com/RobCZart82/yaman1x/pull/114),
 `3172c55e9a1cea766e5326bfd56a98f68d6420f3`;tested head `532c5937cfc2b0b3f142e935cebba8dfa4912000`.
 74 CTest groups/87 Python cases;562 upstream-derived methods (558 unchanged,
 four prior arithmetic adaptations);264 selected/0 missing/135 excluded encoding rows.
 [Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40958229492), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40958229514), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40958229555):all five jobs passed.
 No recorded automated review result at inspection;no successful automated review claimed.
-No active engine candidate. [Fixed-profile SLEEP/wake evidence](h8-sleep-wake.md).
+The prior CPU series is closed;the map candidate is above. [Fixed-profile SLEEP/wake evidence](h8-sleep-wake.md).
 All eligible rows select handlers;this is not full CPU/machine acceptance.
 Next:AN1x address map/MMIO and common CPU/peripheral scheduler,reset/isolation,
 then local firmware/MIDI/PKS evidence. Dynamic SYSCR,standby,DMA/DTC,trace/retry,
