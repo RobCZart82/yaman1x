@@ -19,7 +19,7 @@ ctest --test-dir build -C Release --output-on-failure
 python3 tools/repository_audit.py
 ```
 
-The source-only build runs **58 CTest groups and 87 Python cases**. Tests generate synthetic
+The source-only build runs **59 CTest groups and 87 Python cases**. Tests generate synthetic
 programs/banks in temporary directories. The two upstream tests that require
 Yamaha images are not part of this suite. ROM-free GitHub Actions currently
 builds and passes this suite on Linux x64, macOS Apple Silicon and Windows x64.
@@ -30,10 +30,10 @@ See [engine architecture decision](docs/ADR-0001-engine-boundary.md) and
 
 ## Current state
 
-Verified engine baseline: [#82](https://github.com/RobCZart82/yaman1x/pull/82).
-58 CTest groups, 87 Python cases; 482 upstream-derived full/partial handlers
-(480 unchanged, 2 with reviewed unsigned widening) and
-233 selected / 31 missing / 135 excluded encoding rows. All five final-head
+Verified engine baseline: [#84](https://github.com/RobCZart82/yaman1x/pull/84).
+59 CTest groups, 87 Python cases; 488 upstream-derived full/partial handlers
+(486 unchanged, 2 with reviewed unsigned widening) and
+235 selected / 29 missing / 135 excluded encoding rows. All five final-head
 checks passed. No open engine candidate from the completed series; full CPU,
 firmware boot and audio remain unaccepted. See [current status](docs/STATUS.md).
 

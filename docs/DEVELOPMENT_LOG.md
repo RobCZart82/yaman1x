@@ -1,9 +1,31 @@
 # YamAN1x fejlesztési napló
 
 Frissítve: 2026-10-29. Időzóna: Europe/Budapest.
-Ellenőrzött motoralap: `80b237ee7a9ad6b286a13c9253d076aa42bb0214` (#82).
+Ellenőrzött motoralap: `2540601aa985513a39d293ffa14fd8e0b76689da` (#84).
 
-## Aktuális lezárás — #82, 2026-10-29
+## Aktuális lezárás — #84, 2026-10-29
+
+Ellenőrzött motoralap: [#84](https://github.com/RobCZart82/yaman1x/pull/84),
+merge `2540601aa985513a39d293ffa14fd8e0b76689da`, végső tesztelt head `7aee43a86ea21711254fd3e840728534e01b6a96`.
+Beolvadt: 2026-10-29 07:45:33 Europe/Budapest (06:45:33 UTC).
+[Linux/macOS/Windows PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40830383282),
+[MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40830383154),
+[MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40830383285).
+Linux UBSan: előjeles bájt/szó és unsigned szó-szorzás PASS; az eredeti unsigned
+int-promóciós hibát megkövetelő negatív kontroll is PASS.
+
+Beolvadt: **59 CTest-csoport /87 Python-eset;488 upstreamből származó kezelő
+(486 változatlan,2 korábbi adaptáció);235 kiválasztott /29 hiányzó /135 kizárt
+profilú kódolássor**. Ez nem CPU-százalék. Előjeles szorzás:65536 bájtpár,
+327680 szó-söprés,28800 alias/CCR-határeset,20000 véletlen pár,241 szétvágás és
+65536 prefixfolytatás PASS. Eredeti referencia:200000 szelet,nulla eltérés;
+product+1 kontroll seed9/slice14 felismerve. Helyi58 futtatható CTest/86 Python PASS;
+egy ismert Windows-symlink eset kizárva. Nincs aktív motorjelölt.
+[Szerződés és pontos bizonyítékok](h8-signed-multiply.md). M0 részleges;
+teljes gép/firmware/MIDI/hang/plugin elfogadás nyitott. Az alábbi jelölt/pending
+bejegyzések történetiek, nem a jelenlegi állapotot jelzik.
+
+## Történeti lezárás — #82, 2026-10-29
 
 Ellenőrzött motoralap: [#82](https://github.com/RobCZart82/yaman1x/pull/82),
 merge `80b237ee7a9ad6b286a13c9253d076aa42bb0214`, végső tesztelt head `4f2cffc88c843cc9d431f5c0a6ec20ee2869d85b`.

@@ -111,4 +111,4 @@ Signed16 displacement candidate: six original groups; see [contract](h8-displace
 
 Merged unsigned byte multiply: [scope, checks and word promotion risk](h8-byte-multiply.md).
 
-Signed multiply candidate: [scope,original helpers and evidence](h8-signed-multiply.md).
+Merged signed multiply: [scope,original helpers and evidence](h8-signed-multiply.md).

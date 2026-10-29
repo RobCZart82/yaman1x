@@ -5,19 +5,19 @@ Recorded: 2026-10-29. Product: YamAN1x. Repository: `yaman1x`. First public rese
 The repository contains a ROM-free C++/Python development foundation.
 No VST3, AU, GUI or AN1x audio output is available yet.
 
-Verified engine baseline: merged [PR #82](https://github.com/RobCZart82/yaman1x/pull/82),
-`80b237ee7a9ad6b286a13c9253d076aa42bb0214`; final head `4f2cffc88c843cc9d431f5c0a6ec20ee2869d85b`.
-[Platform CI](https://github.com/RobCZart82/yaman1x/actions/runs/40827962559),
-[MSan](https://github.com/RobCZart82/yaman1x/actions/runs/40827962568),
-[MAME](https://github.com/RobCZart82/yaman1x/actions/runs/40827962569): all five jobs successful.
-Linux additionally passed the UBSan word-multiply oracle and required original-overflow control.
-Merged suite: **58 CTest groups /87 Python cases;482 upstream-derived methods
-(480 unchanged,2 adapted);233 selected /31 missing /135 excluded encoding rows**
+Verified engine baseline: merged [PR #84](https://github.com/RobCZart82/yaman1x/pull/84),
+`2540601aa985513a39d293ffa14fd8e0b76689da`; final head `7aee43a86ea21711254fd3e840728534e01b6a96`.
+[Platform CI](https://github.com/RobCZart82/yaman1x/actions/runs/40830383282),
+[MSan](https://github.com/RobCZart82/yaman1x/actions/runs/40830383154),
+[MAME](https://github.com/RobCZart82/yaman1x/actions/runs/40830383285): all five jobs successful.
+Linux UBSan passed signed byte/word and unsigned-word arithmetic tests plus the
+required original unsigned-overflow control.
+Merged suite: **59 CTest groups /87 Python cases;488 upstream-derived methods
+(486 unchanged,2 prior adaptations);235 selected /29 missing /135 excluded encoding rows**
 (not a CPU percentage). Fixed-profile IRQ/NMI/TRAPA, synthetic CPU/SCI exchange/errors,
-long absolute/signed16 displacement moves and unsigned byte/word multiply are merged.
-The word-multiply signed-int promotion risk is resolved by reviewed unsigned widening;
-[scope and evidence](h8-word-multiply.md). Signed byte/word multiply is a separate candidate:59 CTest/87 Python,488 methods (486 unchanged,2 prior adaptations),235 selected/29 missing rows; remote CI pending. See [contract](h8-signed-multiply.md).
-Local Windows:57 runnable CTest/86 Python PASS; one known symlink privilege case excluded.
+long absolute/signed16 displacement moves, signed and unsigned byte/word multiply are merged.
+No active engine candidate; [signed-multiply evidence](h8-signed-multiply.md).
+Local Windows:58 runnable CTest/86 Python PASS; one known symlink privilege case excluded.
 
 M0 remains partial; M1 is prepared but unaccepted. Missing instructions and
 address modes, full AN1x memory/MMIO integration, physical timing verification,

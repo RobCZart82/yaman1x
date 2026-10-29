@@ -3,7 +3,7 @@
   "recorded_date": "2026-10-29",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "80b237ee7a9ad6b286a13c9253d076aa42bb0214",
+  "baseline_commit": "2540601aa985513a39d293ffa14fd8e0b76689da",
   "entries": [
     {
       "pr": 6,
@@ -935,14 +935,37 @@
         40827962568,
         40827962569
       ]
+    },
+    {
+      "pr": 83,
+      "title": "Close word multiply UBSan evidence and update development baseline",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/83",
+      "kind": "documentation",
+      "status": "merged",
+      "merge_commit": "ef5dee9756954b572f329112fc829a286b8c8c0b",
+      "reviewed_head": "83aff073e3cdb9162a3668bf4268b1ae6d945fa1",
+      "merged_at_utc": "2026-10-29T06:26:23Z",
+      "ci_runs": [
+        40828769920,
+        40828769869
+      ]
+    },
+    {
+      "pr": 84,
+      "title": "Execute original H8H signed byte and word multiply with guarded prefix",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/84",
+      "kind": "development",
+      "status": "merged",
+      "merge_commit": "2540601aa985513a39d293ffa14fd8e0b76689da",
+      "reviewed_head": "7aee43a86ea21711254fd3e840728534e01b6a96",
+      "merged_at_utc": "2026-10-29T06:45:33Z",
+      "ci_runs": [
+        40830383282,
+        40830383154,
+        40830383285
+      ]
     }
   ],
-  "active_change": {
-    "id": "H8-SIGNED-MULTIPLY-2026-10-29",
-    "branch": "feat/h8-signed-multiply",
-    "status": "in_progress",
-    "summary": "Original signed byte/word multiply and guarded prefix continuation",
-    "validation": "58 local CTest/86 Python PASS;all-prefix guards/aliases/CCR/splits,200000 original-reference slices zero differences;product+1 detected;remote CI pending"
-  },
+  "active_change": null,
   "pending_changes": []
 }
