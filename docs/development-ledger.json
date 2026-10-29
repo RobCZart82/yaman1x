@@ -869,7 +869,9 @@
     "branch": "feat/h8-displacement16-memory",
     "status": "in_progress",
     "summary": "Six original byte/word/long signed16 displacement memory groups",
-    "validation": "55 runnable CTest groups; independent offset/alias/wrap controls; 200000 original-reference slices zero differences. Candidate CI pending."
+    "validation": "55 runnable CTest groups; independent offset/alias/wrap controls; 200000 original-reference slices zero differences. Candidate CI pending.",
+    "pr": 78,
+    "url": "https://github.com/RobCZart82/yaman1x/pull/78"
   },
   "pending_changes": []
 }

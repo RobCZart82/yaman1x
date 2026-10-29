@@ -669,3 +669,5 @@ regiszterátfedések, teljes ER-címkörbefordulás, CCR és szóigazítás tesz
 Mind a hat új forma és a korábbi referencia-családok elérésellenőrzése megmarad.
 [Részletes bizonyíték és korlátok](h8-displacement16-memory.md). A jelölt teljes csomagja
 56 CTest / 87 Python; firmware/audio-elfogadás továbbra sincs. Végső PR-CI külön bizonyíték.
+
+Az eltolásos memóriautasítások PR-je: [#78](https://github.com/RobCZart82/yaman1x/pull/78). A készítéskori jelöltállapot és a végső CI-/merge-bizonyíték külön kezelendő.
