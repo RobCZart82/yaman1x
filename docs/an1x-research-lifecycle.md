@@ -1,6 +1,9 @@
-# Cold research machine lifecycle candidate
+# Cold research machine lifecycle
 
-Recorded:2026-10-30;engine baseline #141. `An1xResearchMachine<Sink>` owns immutable
+Recorded:2026-10-30. Merged #143 as `301eec75c72028b8f377ee4e099fce0b1df4de5e`;tested head `d2da27c15c8ebf8c083f35bb4a2cef18eba4d8c4`.
+All five final-head CI checks PASS:41127313949/41127314006/41127313987.
+No recorded automated review result;none claimed.
+ `An1xResearchMachine<Sink>` owns immutable
 copied logical ROM and one stable heap epoch:bus first,CPU second,CPU bound to the
 same bus IRQ owner. No internal reference escapes;objects are noncopyable/nonmovable.
 Sink must outlive the machine. No threads or mutating callback reentry.
@@ -56,6 +59,6 @@ Ignoring preserved-NVRAM reload in an ignored mutant causes410 expected failures
 Tracked code unchanged. No MAME whole-machine reset differential/hardware trace.
 
 Full88 CTest/87 Python and targeted ASan/UBSan PASS. Linux UBSan includes the new
-target. Final-head CI/review pending.
+target. Final-head CI PASS;review status recorded above.
 Source notices are not legal/binary release clearance. Warm hardware reset and
 firmware/MIDI/PKS/DSP/audio/plugin/REAPER acceptance remain open.
