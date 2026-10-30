@@ -925,8 +925,8 @@ AU, Windows, teljes polifónia, bankböngésző és MEG-effektek későbbi felad
 
 ## Jelenlegi helyzet és kutatási előzmények
 
-A ROM-mentes motoralap mai állapota a fenti M0-táblában és a #36 lezárásában
-szerepel. Az alábbi firmware-/DSP-megfigyelések a hivatkozott kutatási
+A ROM-mentes motoralap aktuális állapota a dokumentum eleji #136 motorlezárásban
+és az alábbi M0-szakaszban szerepel. A korábbi táblázat és a #36 lezárása történeti adat. Az alábbi firmware-/DSP-megfigyelések a hivatkozott kutatási
 jegyzőkönyvek korábbi felvételei; a dokumentáció egységesítésekor nem futtattunk
 új firmware-t vagy hardvermérést. Nem tekinthetők a közös SCI-adapter friss
 firmware-integrációs bizonyítékának.
@@ -1009,8 +1009,8 @@ szervezési/hibakezelési tesztjei sikeresek; nem friss firmware-es elfogadások
 **Teljesült előfeltétel:** a [rögzített forrású teljes kutatási build](source-identity-recovery.md)
 #20 óta sikeres, és a #36 külön macOS buildje/regisztrációs próbája is PASS.
 A build sikere önmagában nem bizonyít tényleges SCI-bájtvételt.
-Az önálló közös SCI-modell komponensbizonyítéka az M0 része; a fő CPU-hoz még
-nincs bekötve.
+A közös SCI-modell szintetikus CPU-/buszintegrációja már az M0 része. Ez nem
+bizonyítja a valódi firmware MIDI-bájtfogadását; az M1 elfogadása továbbra is nyitott.
 
 **Következő elfogadási lépés:** a Mac M1 átadási útmutató szerint friss helyi
 firmware-futást és párosított megfigyelést készíteni, majd a tényleges SCI0
