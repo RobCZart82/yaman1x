@@ -5,34 +5,21 @@ Recorded: 2026-10-30. Product: YamAN1x. Repository: `yaman1x`. First public rese
 The repository contains a ROM-free C++/Python development foundation.
 No VST3, AU, GUI or AN1x audio output is available yet.
 
-Documentation reconciled against main `7ee6db8bc418f696e67f0ea17fcc8dade073e47d`
-([#137](https://github.com/RobCZart82/yaman1x/pull/137), merged 2026-10-30 09:26:30 UTC).
-Its tested head was `e7b5c345b2ed9dc0e38b1fa0ecc615b106602575`:
-[platform/UBSan](https://github.com/RobCZart82/yaman1x/actions/runs/41031322824) and
-[MSan](https://github.com/RobCZart82/yaman1x/actions/runs/41031322822) passed all four jobs.
-That documentation PR's automated review failed due to usage limits; no completed
-review is claimed. MAME did not run for that docs-only change. Engine evidence below
-remains attached to #136. The documentation closure is merged; the next engine step
-may start. This reconciliation changes documentation only; its own CI is tracked on its PR.
-
-Active candidate:[cold research machine lifecycle](an1x-research-lifecycle.md).
-401 restart cut points,NVRAM retain/clear and failure recovery controls PASS.
-Not hardware warm reset;local88 CTest/87 Python and targeted ASan/UBSan PASS.
-Final-head CI/review pending.
-
-Verified engine baseline:[#141](https://github.com/RobCZart82/yaman1x/pull/141),
-`eba55a2367f9cc5e319b4f3f26049fe4da55af16`;tested head `d50532a812abd23a65a2aafaf24f28ea815c0217`.
-87 CTest/87 Python;[platform/UBSan](https://github.com/RobCZart82/yaman1x/actions/runs/41085891561),
-[MSan](https://github.com/RobCZart82/yaman1x/actions/runs/41085891536),
-[MAME](https://github.com/RobCZart82/yaman1x/actions/runs/41085891444):all five jobs PASS.
+Verified engine baseline:[#143](https://github.com/RobCZart82/yaman1x/pull/143),
+`301eec75c72028b8f377ee4e099fce0b1df4de5e`;tested head `d2da27c15c8ebf8c083f35bb4a2cef18eba4d8c4`.
+88 CTest/87 Python;[platform/UBSan](https://github.com/RobCZart82/yaman1x/actions/runs/41127313949),
+[MSan](https://github.com/RobCZart82/yaman1x/actions/runs/41127314006),
+[MAME](https://github.com/RobCZart82/yaman1x/actions/runs/41127313987):all five jobs PASS.
+Actual macOS runner15;historical required check name macos-14 retained for ruleset compatibility.
 No recorded automated review result at inspection;none claimed.
-[Shared SYSCR01/09](an1x-syscr.md) connects FFFFF2 byte MMIO to CPU IRQ/TRAPA modes and
-immediate priority filtering.7712 IRQ/NMI partitions,512 TRAPA CCR cases and241
-pending-IRQ/SLEEP mode-switch partitions PASS;targeted ASan/UBSan PASS.
-Other254 SYSCR values and F2/F3 words remain unsupported;no standby claim.
+[Cold research lifecycle](an1x-research-lifecycle.md) owns stable CPU/bus epochs,immutable ROM and
+explicit NVRAM preserve/clear.401 cut-point restarts match fresh CPU/TX histories;
+full256KiB NVRAM retains across8 epochs;invalid replacement preserves old epoch.
+Failed/reentrant recovery and epoch-relative copied RX schedules tested;targeted ASan/UBSan PASS.
+Not hardware warm reset. No active engine candidate. Next:verify pinned warm-reset
+retention/publication matrix and reset ordering/time/input semantics before adding
+an in-place reset API;test active SCI,IRQ pins,GPIO latches,RAM and pending events.
 Generated CPU bodies unchanged:562 methods,264 selected/0 missing/135 excluded rows.
-Cold lifecycle candidate above;physical warm reset remains open. Next:per-owner state,
-NVRAM retention,time/input policy and repeated-reset/failed-owner acceptance tests.
 Complete machine,LCD/DSP/MEG,physical timing,firmware/MIDI/PKS/audio/REAPER remain open.
 
 M0 partial;M1 prepared but unaccepted. One PR at a time.

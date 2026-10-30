@@ -1,23 +1,29 @@
 # YamAN1x fejlesztési napló
 
 Frissítve: 2026-10-30. Időzóna: Europe/Budapest.
-Ellenőrzött motoralap: `eba55a2367f9cc5e319b4f3f26049fe4da55af16` (#141).
+Ellenőrzött motoralap: `301eec75c72028b8f377ee4e099fce0b1df4de5e` (#143).
 
-## Aktív motorlépés — hideg kutatási gépéletciklus, 2026-10-30
+## Aktuális lezárás — #143 hideg kutatási életciklus, 2026-10-30
 
-Új owner összefogja az immutable ROM-ot,CPU/busz/periféria epochot.401 futási pontból
-újraindítás friss CPU/TX-referenciával egyezik;teljes256KiB NVRAM8 ismétlésen megmarad,
-explicit clear nulláz. Hibás bemeneti csere nem pusztítja a régi epochot;hibás CPU/reentry
-csak új példánnyal folytatható. Másolt új RX-sor relatív idő0-val indul,a régi elvész.
+Beolvadt `301eec75c72028b8f377ee4e099fce0b1df4de5e`,tesztelt head `d2da27c15c8ebf8c083f35bb4a2cef18eba4d8c4`.
+Időpont:2026-10-30 22:27:12 Europe/Budapest (21:27:12 UTC).
+[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/41127313949),
+[MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/41127314006),
+[MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/41127313987):mind az öt feladat sikeres.
+Tényleges macOS15,a required check történeti macos-14 neve kompatibilitási okból marad.
+Nincs rögzített automatikus review-eredmény;nincs sikeres review-állítás.
+88 CTest/87 Python,célzott ASan/UBSan és szigorú fordítói ellenőrzés PASS.
+401 újraindítási pont friss CPU/TX-példánnyal egyezik;teljes256KiB NVRAM8 epochon
+megmarad,explicit clear nulláz. Érvénytelen bemeneti csere megtartja a régi epochot.
+Hibás/reentráns futás csak rekonstrukcióval áll helyre;ROM/owner/RX-sor izoláció PASS.
 NVRAM-visszatöltést kihagyó próbahiba410 elvárt kudarc.
-[Hatókör](an1x-research-lifecycle.md):ez hideg kutatási rekonstrukció,nem fizikai meleg reset.
-A MAME portreset regisztereket megőriz,a SCI reset kimeneti szinteket publikál;
-ezeket nem állítjuk hardverhűen késznek. Külső sink-állapot külön generációkezelést igényel.
-Teljes88 CTest/87 Python és célzott ASan/UBSan PASS.533 fájl forrásauditja és229
-licencjelölés PASS (nem jogi engedély).Végső CI/review függő;firmware/hangelfogadás nincs kész.
-A #142 beolvadt8e855431cd0dd7fb2ca214705f5db1d859dc1f24,2026-10-30T20:18:35Z.
-A macOS15 migráció utolsó headjén mind az öt CI sikeres (41119202872/41119202659/41119202639).
-Történeti required checknév macos-14 marad,de tényleges runner macos-15.
+[Hatókör](an1x-research-lifecycle.md):hideg kutatási rekonstrukció,nem hardveres meleg reset.
+533 fájl forrásauditja és229 licencjelölés PASS (nem jogi engedély).
+Nincs aktív motorjelölt. Következő:a rögzített forrás melegreset-megőrzési/kimenetközlési
+mátrixa,globális reset-sorrend és idő/bemeneti szabályok;csak utána in-place API.
+Aktív SCI,IRQ-pin,GPIO-latch,RAM és függő esemény független tesztje szükséges.
+Teljes gépreset,firmware/MIDI/PKS/DSP/hang/REAPER még nyitott.
+Új motorlépés a lezáró dokumentáció beolvadása után indulhat.
 
 ## CI-javítás — macOS14 kivezetése, 2026-10-30
 
@@ -31,7 +37,7 @@ A MAME-kutató build Xcode16.2 rögzítése marad:a macOS15 hivatalos képe tart
 Forrás:https://github.com/actions/runner-images/issues/13518
 Kép:https://github.com/actions/runner-images/blob/main/images/macos/macos-15-Readme.md
 
-## Aktuális lezárás — #141 közös SYSCR, 2026-10-30
+## Történeti lezárás — #141 közös SYSCR, 2026-10-30
 
 A #141 beolvadt `eba55a2367f9cc5e319b4f3f26049fe4da55af16`,tesztelt head `d50532a812abd23a65a2aafaf24f28ea815c0217`.
 Időpont:2026-10-30 17:23:15 Europe/Budapest (16:23:15 UTC).
