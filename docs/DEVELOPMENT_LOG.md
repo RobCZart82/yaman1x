@@ -1,25 +1,29 @@
 # YamAN1x fejlesztési napló
 
 Frissítve: 2026-10-30. Időzóna: Europe/Budapest.
-Ellenőrzött motoralap: `a8b0ca4c87478aa188b902ef997b7c88c284bbf8` (#126).
+Ellenőrzött motoralap: `efbf68fad922e7270fc60105a1e6947f972cee6a` (#128).
 
-## Aktív fejlesztési lépés — port9 hatbites GPIO, 2026-10-30
+## Aktuális lezárás — #128, 2026-10-30
 
-Jelölt:81 CTest/87 Python. FFFFD0 DDR-írás/FF-olvasás,FFFFD2 pin/adat;
-alap-DDR00,fenntartott maszk C0,saját változatlan portmodell.
+A [#128 PR](https://github.com/RobCZart82/yaman1x/pull/128) beolvadt:
+merge `efbf68fad922e7270fc60105a1e6947f972cee6a`,tesztelt head `00bff586f85f7a2b6d70c7648c57c91486eeddec`.
+Időpont:2026-10-30 04:05:45 Europe/Budapest (03:05:45 UTC).
+[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40993876811), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40993876814), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40993877026):mind az öt feladat sikeres.
+Nyitott review-szál és rögzített automatikus review-eredmény nincs;
+sikeres automatikus review-t nem állítunk. A két macOS notice kapacitási tájékoztatás.
+
+Beolvadt:**81 CTest/87 Python**. Port9 FFFFD0/FFFFD2,alap00/maszk C0;
 262144 bit-orákulumos eset,256 alapállapot-bemenet,241 CPU-partíció PASS.
-CPU:0F/5A/15 =>DA NVRAM,CCR89. Portazonosító/időpont/elnyomás,izoláció,
-szóhatárok,hiányzó callback és reentry ellenőrizve.
-Rögzített eredeti MAME-port:200000 művelet,0 eltérés;próbahibák:hiányos maszk199031,
-hibás alap-DDR130 elvárt kudarc. [Forrásazonosság és korlátok](an1x-gpio9.md).
-Teljes81 CTest/87 Python és GPIO4/6/7/8/9/SCI ASan/UBSan PASS.
-517 fájl forrásauditja és229 licencjelölés PASS (nem jogi engedély);végső CI/review függő. GPIO-szóhozzáférés még nem támogatott.
-A #127 dokumentáció beolvadt `d7918c45e5d8178abacc533bfbd3da4a93db0388`:
-2026-10-30 03:46:04 Europe/Budapest (02:46:04 UTC),négy sikeres ellenőrzés;
-automatikus review-eredmény nem volt rögzítve,nem állítunk sikeres review-t.
-Egyszerre egy PR;a következő motorlépés csak beolvadás után indul.
+CPU:0F/5A/15 =>DA NVRAM,CCR89. Eredeti MAME:200000 művelet,0 eltérés.
+Próbahibák:hiányos maszk199031,hibás alap-DDR130 elvárt kudarc.
+GPIO4/6/7/8/9/SCI ASan/UBSan PASS;517 fájl forrásauditja és229 licencjelölés PASS
+(nem jogi engedély). [Forrásazonosság és korlátok](an1x-gpio9.md).
+Nincs aktív motorjelölt. Következő:portA DDR/adat,alap00/maszk00;utána portB,
+majd a GPIO-szóhozzáférés pontos meghatározása és tesztelése.
+IRQ/SYSCR,teljes gépreset,firmware/MIDI/PKS/DSP/hang/REAPER nyitott.
+Soros munka:új motorlépés csak a lezáró dokumentáció beolvadása után indul.
 
-## Aktuális lezárás — #126, 2026-10-30
+## Történeti lezárás — #126, 2026-10-30
 
 A [#126 PR](https://github.com/RobCZart82/yaman1x/pull/126) beolvadt:
 merge `a8b0ca4c87478aa188b902ef997b7c88c284bbf8`,tesztelt head `32dcba307e72f2acfcffd494c890afbc2894c57f`.
