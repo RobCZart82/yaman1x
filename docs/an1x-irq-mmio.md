@@ -62,7 +62,7 @@ full board reset,timers/ADC/DMA,LCD/DSP/MEG remain separate work.
  controller publication and mapped register images. This synthetic pin schedule
  is a fixture,not a production event API or measured hardware timing.
 
-Candidate85 CTest/87 Python;Release build and84 locally runnable CTest groups/86
+Merged suite:85 CTest/87 Python;Release build and84 locally runnable CTest groups/86
 Python cases PASS;one established Windows symlink privilege case excluded. All five final-head CI jobs and Linux UBSan PASS;
 runs41028141599/41028141600/41028141620. Automated code review completed with no findings on the tested head;no security-review success claimed. CPU inventory
 unchanged:562 methods,264 selected/0 missing/135 excluded encoding rows,not full CPU acceptance.

@@ -1884,8 +1884,43 @@
         "linux_ubsan": "pass"
       },
       "automated_review_at_merge": "completed_no_findings"
+    },
+    {
+      "pr": 137,
+      "title": "Close IRQ MMIO evidence and plan the CPU host SYSCR contract",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/137",
+      "kind": "documentation",
+      "status": "merged",
+      "merge_commit": "7ee6db8bc418f696e67f0ea17fcc8dade073e47d",
+      "reviewed_head": "e7b5c345b2ed9dc0e38b1fa0ecc615b106602575",
+      "merged_at_utc": "2026-10-30T09:26:30Z",
+      "ci_runs": [
+        41031322824,
+        41031322822
+      ],
+      "automated_review_at_merge": "failed_usage_limit",
+      "validation": {
+        "platform_jobs": "pass",
+        "linux_ubsan": "pass",
+        "msan": "pass",
+        "mame": "not_run_docs_only"
+      }
     }
   ],
-  "active_change": null,
+  "active_change": {
+    "branch": "docs/reconcile-development-records-137",
+    "scope": "Documentation reconciliation after #137; current M0 ordering and historical scope",
+    "status": "documentation_only",
+    "ci": "pending",
+    "validation": {
+      "engine_changes": false,
+      "document_links_utf8": "pass",
+      "ledger_ancestry": "pass",
+      "ctest_python_inventory": "85/87",
+      "repository_audit": "pass",
+      "source_notice_coverage": "pass",
+      "runtime_tests": "not_rerun_documentation_only"
+    }
+  },
   "pending_changes": []
 }

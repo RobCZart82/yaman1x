@@ -3,7 +3,34 @@
 Frissítve: 2026-10-30. Időzóna: Europe/Budapest.
 Ellenőrzött motoralap: `7aaa8d0178e06b8161c8508cda1cebdb20e2c072` (#136).
 
-## Aktuális lezárás — #136, 2026-10-30
+## Dokumentáció-egyeztetés — 2026-10-30, #137 után
+
+Ellenőrzött main: `7ee6db8bc418f696e67f0ea17fcc8dade073e47d`.
+A [#137 dokumentációs lezárás](https://github.com/RobCZart82/yaman1x/pull/137)
+2026-10-30 10:26:30 Europe/Budapest időpontban beolvadt (09:26:30 UTC).
+Tesztelt head: `e7b5c345b2ed9dc0e38b1fa0ecc615b106602575`.
+[Linux/macOS/Windows és Linux UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/41031322824),
+[MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/41031322822): mind a négy feladat sikeres.
+MAME ezen a dokumentációs változáson nem futott; a motor MAME-bizonyítéka a #136-hoz tartozik.
+A #137 automatikus kódellenőrzése kvótalimit miatt nem fejeződött be; ez nem
+sikeres review, és nem konkrét kódhiba. A #136 sikeres review-ja külön bizonyíték.
+
+A motoralap továbbra is #136; nincs új motorfunkció vagy új firmware-/hangelfogadás.
+A lezáró dokumentáció már beolvadt, a következő motorlépés megkezdhető:
+közös CPU/host SYSCR-állapot, szűrés és IRQ/TRAPA-belépés módtesztjei, majd teljes gépreset.
+Az alábbi korábbi lezárások és jelöltbejegyzések dátumhoz kötött történeti adatok;
+régi „függőben” vagy „következő” megjegyzésük nem az aktuális feladatsor.
+
+A mostani dokumentációjavítás rögzíti a #137 lezárását a strukturált naplóban,
+frissíti az M0 elavult 31 hiányzó kódolássoros feladatát (jelenleg 264 kiválasztott,
+0 hiányzó sor), és pontosítja a README korábbi komponensleírásainak hatókörét.
+Helyi ellenőrzés: UTF-8 és belső linkek, JSON/egyedi PR-azonosítók/merge-ősök,
+85 CTest/87 Python leltár, forrásaudit és licencértesítés-lefedettség PASS.
+A futásidejű teszteket ehhez a kizárólag dokumentációs javításhoz nem futtattuk újra.
+A javítás saját PR-ellenőrzései a PR-en követhetők; az itt hivatkozott korábbi CI
+nem ennek az új dokumentációs változatnak az eredménye.
+
+## Legutóbbi motorlezárás — #136, 2026-10-30
 
 A [#136 PR](https://github.com/RobCZart82/yaman1x/pull/136) beolvadt:
 merge `7aaa8d0178e06b8161c8508cda1cebdb20e2c072`,tesztelt head `6d58a3df9307b4513b61ea01d9eed3d70bd6e87a`.
@@ -29,7 +56,7 @@ A SYSCR bit08 a CPU szűrését és IRQ/TRAPA-belépését együtt érinti. Fix0
 marad,F2 olvasás/írás elutasítva,nincs elhallgatott vagy kitalált működés.
 Nincs aktív motorjelölt. Következő:külön CPU/host SYSCR-szerződés és módtesztek,
 majd teljes gépreset. Firmware/MIDI/PKS/DSP/hang/REAPER elfogadás nyitott.
-Új motorlépés csak a lezáró dokumentáció beolvadása után indul.
+A lezáró dokumentáció #137-ben beolvadt; ez a sorrendi feltétel teljesült.
 
 ## Történeti lezárás — #134, 2026-10-30
 
