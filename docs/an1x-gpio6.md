@@ -1,6 +1,6 @@
 # AN1x bounded port6 MMIO
 
-Recorded:2026-10-30. Engine baseline:#120;this increment is a candidate.
+Recorded:2026-10-30. Merged #122 as `804c8a5100ac281945f643c4c9f8f969f263da14`;tested head `32b36079e0a37f420193b410320f7705d728e29e`.
 
 ## Pinned facts and composition
 
@@ -59,6 +59,8 @@ Removing reserved mask80 in an ignored mutant causes197637 expected failures;
 tracked code is unchanged.
 
 Full78 CTest/87 Python PASS;GPIO4/GPIO6/SCI integration ASan/UBSan PASS.
-Final candidate-head CI/review pending. Source notices remain those of the
+Final-head CI:all five checks PASS,runs40982044271/40982044353/40982044283.
+[Automated code review](https://github.com/RobCZart82/yaman1x/pull/122#issuecomment-6512135987) completed with no findings on this head.
+No security review result recorded. Source notices remain those of the
 unchanged port extraction;source checks alone are not legal release clearance.
 Firmware/MIDI/PKS/audio/plugin/REAPER acceptance remains open.

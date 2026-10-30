@@ -76,4 +76,4 @@ Linux CI includes the new target under UBSan. Final tested-head CI:all five chec
 No recorded automated review result at inspection;none claimed.
 No firmware MIDI acceptance,AN1x audio or REAPER plugin claim.
 
-Candidate follow-up:[port6 masked byte MMIO](an1x-gpio6.md). Earlier map omissions above describe #120.
+Merged #122 follow-up:[port6 masked byte MMIO](an1x-gpio6.md). Earlier map omissions above describe #120.
