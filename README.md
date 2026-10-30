@@ -40,6 +40,10 @@ review is claimed. MAME did not run for that docs-only change. Engine evidence b
 remains attached to #136. The documentation closure is merged; the next engine step
 may start. This reconciliation changes documentation only; its own CI is tracked on its PR.
 
+Active preparation candidate:[standalone SYSCR mode contract](docs/h83002-syscr-modes.md).
+65536 independent mode/CCR cases and pinned original-method comparison PASS.
+No CPU/MMIO binding yet;engine evidence below remains #136. Final CI/review pending.
+
 Verified engine baseline: [#136](https://github.com/RobCZart82/yaman1x/pull/136),
 `7aaa8d0178e06b8161c8508cda1cebdb20e2c072`;tested head `6d58a3df9307b4513b61ea01d9eed3d70bd6e87a`.
 85 CTest groups/87 Python cases;CPU inventory unchanged:562 upstream-derived methods
@@ -48,7 +52,7 @@ Verified engine baseline: [#136](https://github.com/RobCZart82/yaman1x/pull/136)
 [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/41028141600),
 [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/41028141620):all five jobs passed.
 Automated code review completed with no findings on the tested head;no security-review success claimed.
-No active engine candidate. [Mapped IRQ registers](docs/an1x-irq-mmio.md) connect
+No integrated engine change in this preparation candidate. [Mapped IRQ registers](docs/an1x-irq-mmio.md) connect
 ISCR/IER/ISR/ICR0/1 and bounded F4/F8 words to the CPU's existing IRQ owner.
 CPU-configured edge interrupts wake SLEEP and execute the ISR;I masks them.
 Original ICR mask/publication retained. SYSCR F2 stays unsupported while the CPU
