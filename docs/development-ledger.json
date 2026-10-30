@@ -1989,6 +1989,17 @@
       "automated_review_at_merge": "no_recorded_result_at_inspection"
     }
   ],
-  "active_change": null,
+  "active_change": {
+    "pr": 142,
+    "branch": "docs/close-shared-syscr",
+    "scope": "Close shared SYSCR evidence and migrate cancelled macOS14 workflows to15",
+    "status": "candidate_ci_pending",
+    "validation": {
+      "previous_head_macos": "cancelled_scheduled_brownout_twice",
+      "required_check_name": "build-and-test (macos-14)",
+      "actual_macos_runner": "macos-15",
+      "research_xcode": "16.2 retained"
+    }
+  },
   "pending_changes": []
 }

@@ -5,6 +5,18 @@ Ez végrehajtási terv; az alábbi, még nyitott mérföldkövek nem kész funkc
 Állapotellenőrzés: 2026-10-30, motoralap: #136 (`7aaa8d0178e06b8161c8508cda1cebdb20e2c072`).
 A működő H8H-részhalmaz nem teljes CPU- vagy firmware-elfogadás.
 
+## CI-javítás — macOS14 kivezetése, 2026-10-30
+
+A #142 macOS-feladata és célzott újrafuttatása a GitHub tervezett brownoutja miatt
+megszakadt,nem fordítási/teszthiba miatt. A futtató2026-11-02 dátummal megszűnik.
+Mindkét aktív workflow macos-15-re vált. A kötelező check történeti neve
+`build-and-test (macos-14)` marad a ruleset25910947 kompatibilitása miatt;
+a tényleges runner macos-15,a teljes tesztlépések változatlanok. Nincs szabálymegkerülés.
+A MAME-kutató build Xcode16.2 rögzítése marad:a macOS15 hivatalos képe tartalmazza.
+Új CI/review az új headen szükséges;korábbi zöldek nem igazolják az új workflowt.
+Forrás:https://github.com/actions/runner-images/issues/13518
+Kép:https://github.com/actions/runner-images/blob/main/images/macos/macos-15-Readme.md
+
 ## Aktuális lezárás — #141 közös SYSCR, 2026-10-30
 
 A #141 beolvadt `eba55a2367f9cc5e319b4f3f26049fe4da55af16`,tesztelt head `d50532a812abd23a65a2aafaf24f28ea815c0217`.
