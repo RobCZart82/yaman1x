@@ -1,25 +1,37 @@
 # YamAN1x fejlesztési napló
 
 Frissítve: 2026-10-30. Időzóna: Europe/Budapest.
-Ellenőrzött motoralap: `7c46a56495a166ed9e6abbe4bea11915e08bbedd` (#134).
+Ellenőrzött motoralap: `7aaa8d0178e06b8161c8508cda1cebdb20e2c072` (#136).
 
-## Aktív fejlesztés — IRQ-regiszterek gépi címtérben, 2026-10-30
+## Aktuális lezárás — #136, 2026-10-30
 
-Alap:beolvadt #135;motoralap még #134. ISCR/IER/ISR/ICR0/1:FFFFF4/F5/F6/F8/F9;
-az eredeti,meglévő IRQ-tulajdonoshoz kötve. Szó:F4 ésF8;hiányos/odd pár előzetesen
-elutasítva. ICR nem komplementált maszkja és késleltetett publikációja megőrizve.
-65536 engedélyezés/szint,65536 törlés,131072 szó,2048 él/szint és3856 CPU-partíció PASS.
-CPU-ból beállított IRQ =>SLEEP-ébresztés,ISR A5 NVRAM,RTE SP-helyreállítás;I maszkol.
-Eredeti18 IRQ-művelet/table200000 lépésben nulla eltérés. Téves ICR-offset150185,
-IER=>ISCR útvonal199554 hibával felismerve. Jelölt85 CTest/87 Python;helyi84 futtatható CTest/86 Python PASS,ismert
-Windows-symlink eset kizárva. Végső head CI még függőben. [Pontos hatókör és források](an1x-irq-mmio.md).
+A [#136 PR](https://github.com/RobCZart82/yaman1x/pull/136) beolvadt:
+merge `7aaa8d0178e06b8161c8508cda1cebdb20e2c072`,tesztelt head `6d58a3df9307b4513b61ea01d9eed3d70bd6e87a`.
+Időpont:2026-10-30 10:04:38 Europe/Budapest (2026-10-30T09:04:38Z).
+[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/41028141599),
+[MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/41028141600),
+[MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/41028141620):mind az öt feladat sikeres.
+Review:`completed_no_findings`;CI és review külön bizonyíték.
 
-SYSCR-feltárás:bit08 a szűrést és IRQ/TRAPA-belépést együtt változtatja. A CPU még
-fix0B profilt használ,ezért F2 olvasása/írása elutasítva marad;nem adunk látszólagos
-működő regisztert. Következő:külön CPU/host SYSCR-szerződés és tesztek,majd teljes
-reset. Firmware/MIDI/PKS/DSP/hang/REAPER nyitott. Új motorlépés csak lezárás után.
+Beolvadt:**85 CTest/87 Python**;CPU562 kezelője és264 kiválasztott sora változatlan.
+IRQ-MMIO:ISCR F4,IER F5,ISR F6,ICR0/1 F8/F9;szóalak F4/F8,24 bites címalias.
+Odd/hiányos szó előzetesen elutasítva. ICR nem komplementált maszk és késleltetett
+publikáció megőrizve (nem igazolt fizikai helyesség).65536 engedélyezés/szint,
+65536 törlés,131072 szó,2048 él/szint és3856 CPU-partíció PASS. CPU-ból beállított
+IRQ SLEEP-et ébreszt,ISR A5-öt ír NVRAM-ba,RTE SP-t helyreállít;I maszkol.
+Eredeti18 IRQ-művelet/table200000 lépésben nulla eltérés. Fordított ICR-offset150185,
+téves IER=>ISCR199554 hibával felismerve. Helyi84 futtatható CTest/86 Python PASS;
+ismert Windows-symlink eset kizárva. Linux CI UBSan PASS;helyi ASan/UBSan nem futott.
+525 fájl forrásauditja/229 fájl licencnyilvántartása PASS (nem jogi engedély).
+[Pontos források,hatókör és SYSCR-feltárás](an1x-irq-mmio.md).
 
-## Aktuális lezárás — #134, 2026-10-30
+A SYSCR bit08 a CPU szűrését és IRQ/TRAPA-belépését együtt érinti. Fix0B profil
+marad,F2 olvasás/írás elutasítva,nincs elhallgatott vagy kitalált működés.
+Nincs aktív motorjelölt. Következő:külön CPU/host SYSCR-szerződés és módtesztek,
+majd teljes gépreset. Firmware/MIDI/PKS/DSP/hang/REAPER elfogadás nyitott.
+Új motorlépés csak a lezáró dokumentáció beolvadása után indul.
+
+## Történeti lezárás — #134, 2026-10-30
 
 A [#134 PR](https://github.com/RobCZart82/yaman1x/pull/134) beolvadt:
 merge `7c46a56495a166ed9e6abbe4bea11915e08bbedd`,tesztelt head `963fc91ca7512a80e5830dc8a784c8c186c9e5e9`.

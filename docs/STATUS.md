@@ -5,20 +5,21 @@ Recorded: 2026-10-30. Product: YamAN1x. Repository: `yaman1x`. First public rese
 The repository contains a ROM-free C++/Python development foundation.
 No VST3, AU, GUI or AN1x audio output is available yet.
 
-Verified engine baseline: [#134](https://github.com/RobCZart82/yaman1x/pull/134),
-`7c46a56495a166ed9e6abbe4bea11915e08bbedd`;tested head `963fc91ca7512a80e5830dc8a784c8c186c9e5e9`.
-84 CTest groups/87 Python cases;CPU inventory unchanged:562 upstream-derived methods
+Verified engine baseline: [#136](https://github.com/RobCZart82/yaman1x/pull/136),
+`7aaa8d0178e06b8161c8508cda1cebdb20e2c072`;tested head `6d58a3df9307b4513b61ea01d9eed3d70bd6e87a`.
+85 CTest groups/87 Python cases;CPU inventory unchanged:562 upstream-derived methods
 (558 unchanged,four prior adaptations);264 selected/0 missing/135 excluded encoding rows.
-[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/41020299804),
-[MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/41020299832),
-[MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/41020299487):all five jobs passed.
-No recorded automated review result at inspection;none claimed.
-Active candidate:[IRQ register MMIO](an1x-irq-mmio.md),85 CTest/87 Python;final-head CI pending. Merged evidence above remains #134. [Bounded GPIO words](an1x-gpio-words.md) add
-fully mapped CE/D0/D2 reads and D0/D2 writes. Preflight rejects holes/odd/read-only
-writes;high-before-low same-timestamp ordering is an explicit software policy.
-Lane callback failures/reentry stop later effects and poison the bus;no rollback.
-Local83 runnable CTest/86 Python PASS;one Windows symlink privilege case excluded.
-Next:bounded IRQ/SYSCR investigation,integration and full machine reset.
+[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/41028141599),
+[MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/41028141600),
+[MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/41028141620):all five jobs passed.
+Automated code review completed with no findings on the tested head;no security-review success claimed.
+No active engine candidate. [Mapped IRQ registers](an1x-irq-mmio.md) connect
+ISCR/IER/ISR/ICR0/1 and bounded F4/F8 words to the CPU's existing IRQ owner.
+CPU-configured edge interrupts wake SLEEP and execute the ISR;I masks them.
+Original ICR mask/publication retained. SYSCR F2 stays unsupported while the CPU
+uses fixed0B;dynamic filter/entry state must change together in a later increment.
+Local84 runnable CTest/86 Python PASS;one Windows symlink privilege case excluded.
+Next:CPU/host SYSCR contract and mode tests,then complete machine reset.
 Full machine,LCD/DSP/MEG,physical timing,firmware/MIDI/PKS/audio and REAPER acceptance
 remain open. Full handler selection is not full CPU/machine acceptance.
 
