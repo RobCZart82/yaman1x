@@ -30,6 +30,10 @@ See [engine architecture decision](docs/ADR-0001-engine-boundary.md) and
 
 ## Current state
 
+Active research candidate:[pinned warm-reset method contract](docs/h83002-warm-reset-contract.md).
+Five files/six methods verified;91 Python tests PASS. No engine reset API change.
+Final CI/review pending;engine evidence below remains #143.
+
 Verified engine baseline:[#143](https://github.com/RobCZart82/yaman1x/pull/143),
 `301eec75c72028b8f377ee4e099fce0b1df4de5e`;tested head `d2da27c15c8ebf8c083f35bb4a2cef18eba4d8c4`.
 88 CTest/87 Python;[platform/UBSan](https://github.com/RobCZart82/yaman1x/actions/runs/41127313949),
@@ -41,7 +45,7 @@ No recorded automated review result at inspection;none claimed.
 explicit NVRAM preserve/clear.401 cut-point restarts match fresh CPU/TX histories;
 full256KiB NVRAM retains across8 epochs;invalid replacement preserves old epoch.
 Failed/reentrant recovery and epoch-relative copied RX schedules tested;targeted ASan/UBSan PASS.
-Not hardware warm reset. No active engine candidate. Next:verify pinned warm-reset
+Not hardware warm reset. Research candidate above verifies method identities only. Next:verify warm-reset
 retention/publication matrix and reset ordering/time/input semantics before adding
 an in-place reset API;test active SCI,IRQ pins,GPIO latches,RAM and pending events.
 Generated CPU bodies unchanged:562 methods,264 selected/0 missing/135 excluded rows.
