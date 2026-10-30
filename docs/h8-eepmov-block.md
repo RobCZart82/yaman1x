@@ -57,6 +57,6 @@ Local Release73/73 CTest and87 Python PASS;targeted ASan/UBSan PASS.
 Linux CI includes this target under UBSan. [Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40952371785), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40952371726), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40952371748).
 All five jobs passed;merged. No recorded automated review result at inspection;
 no successful automated review claimed.
-SLEEP remains unimplemented. Mid-block interrupt injection is not separately
+At #112 SLEEP remained unimplemented; [#114 implemented fixed-profile sleep/wake](h8-sleep-wake.md). Mid-block interrupt injection is not separately
 hardware validated;original completion/IRQ policy is retained. Full machine/MMIO,
 physical timing,firmware/MIDI/audio and plugin/REAPER acceptance remain open.

@@ -1749,8 +1749,39 @@
         "asan_ubsan": "gpio4_gpio6_gpio7_gpio8_gpio9_gpioa_sci_pass"
       },
       "automated_review_at_merge": "no_recorded_result_at_inspection"
+    },
+    {
+      "pr": 131,
+      "title": "Close portA CI evidence and plan portB wiring",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/131",
+      "kind": "documentation",
+      "status": "merged",
+      "merge_commit": "44b71479d79073799820ef2502fe078b192a2da6",
+      "reviewed_head": "50b057531b44fec9c3b4337c216e3be47ffcf783",
+      "merged_at_utc": "2026-10-30T05:19:35Z",
+      "ci_runs": [
+        40999273207,
+        40999273292
+      ]
     }
   ],
-  "active_change": null,
+  "active_change": {
+    "branch": "feat/an1x-portb-mmio",
+    "scope": "PortB byte MMIO and audit documentation corrections",
+    "status": "local_validation_passed",
+    "ci": "not_run",
+    "validation": {
+      "ctest_groups_target": 83,
+      "python_tests_target": 87,
+      "ctest_groups_local_passed": 82,
+      "python_tests_local_passed": 86,
+      "local_exclusion": "Windows symlink privilege case",
+      "original_port_operations": 200000,
+      "original_port_mismatches": 0,
+      "invented_mask_failed_checks": 225082,
+      "wrong_input_port_failed_checks": 244961,
+      "local_sanitizers": "not_run"
+    }
+  },
   "pending_changes": []
 }

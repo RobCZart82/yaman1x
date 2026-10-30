@@ -12,12 +12,14 @@ Verified engine baseline: [#130](https://github.com/RobCZart82/yaman1x/pull/130)
 (558 unchanged,four prior adaptations);264 selected/0 missing/135 excluded encoding rows.
 [Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40997653002), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40997653007), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40997653087):all five jobs passed.
 No recorded automated review result at inspection;none claimed. No open review threads.
-No active engine candidate. [Unmasked portA](an1x-gpioa.md) adds DDR/data byte MMIO,
+Merged baseline: [Unmasked portA](an1x-gpioa.md) adds DDR/data byte MMIO,
 default00/mask00,with separate owner,callback ID10 and independent8-bit/CPU tests.
 Next:portB DDR/data with pinned default00/mask00,then explicit GPIO-word semantics.
 IRQ-control/SYSCR modes and full machine reset remain open.
 Full machine,LCD/DSP/MEG,physical timing,firmware/MIDI/PKS/audio and REAPER acceptance
 remain open. Full handler selection is not full CPU/machine acceptance.
+
+Active candidate: [portB byte MMIO](an1x-gpiob.md);after merge,explicit GPIO-word semantics.
 
 Next M0 work, in order:
 

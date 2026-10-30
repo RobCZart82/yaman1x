@@ -51,12 +51,12 @@ private:
             else {auto value=std::forward<F>(f)();if(failed_)throw std::logic_error("Reentered AN1x SCI bus");busy_=false;return value;}
         }catch(...){failed_=true;busy_=false;throw;}
     }
-    static bool gpio_mapped(uint32_t a){return a==0xffffc5||a==0xffffc7||a==0xffffda||a==0xffffc9||a==0xffffcb||a==0xffffcd||a==0xffffcf||a==0xffffce||a==0xffffd0||a==0xffffd2||a==0xffffd1||a==0xffffd3;}
+    static bool gpio_mapped(uint32_t a){return a==0xffffc5||a==0xffffc7||a==0xffffda||a==0xffffc9||a==0xffffcb||a==0xffffcd||a==0xffffcf||a==0xffffce||a==0xffffd0||a==0xffffd2||a==0xffffd1||a==0xffffd3||a==0xffffd4||a==0xffffd6;}
     uint8_t read_gpio(uint32_t a){
-        if(a==0xffffc5||a==0xffffc9||a==0xffffcd||a==0xffffd0||a==0xffffd1)return 0xff; // H83002 DDR map uses ff_r.
+        if(a==0xffffc5||a==0xffffc9||a==0xffffcd||a==0xffffd0||a==0xffffd1||a==0xffffd4)return 0xff; // H83002 DDR map uses ff_r.
         if(a==0xffffda)return port4_.pcr();
-        const unsigned id=a==0xffffd3?10u:a==0xffffd2?9u:a==0xffffce?7u:a==0xffffcf?8u:a==0xffffcb?6u:4u;
-        auto& port=id==10?porta_:id==9?port9_:id==7?port7_:id==8?port8_:id==6?port6_:port4_;
+        const unsigned id=a==0xffffd6?11u:a==0xffffd3?10u:a==0xffffd2?9u:a==0xffffce?7u:a==0xffffcf?8u:a==0xffffcb?6u:4u;
+        auto& port=id==11?portb_:id==10?porta_:id==9?port9_:id==7?port7_:id==8?port8_:id==6?port6_:port4_;
         return port.read_pins([&]() -> uint8_t {
             if constexpr(requires{sink_.gpio_read(id,now_);})return sink_.gpio_read(id,now_);
             else throw std::logic_error("GPIO input sink unavailable");
@@ -65,13 +65,13 @@ private:
     void write_gpio(uint32_t a,uint8_t value){
         if(a==0xffffce)throw std::logic_error("Read-only AN1x port7");
         if(a==0xffffda){port4_.write_pcr(value);return;}
-        const unsigned id=(a==0xffffd1||a==0xffffd3)?10u:(a==0xffffd0||a==0xffffd2)?9u:(a==0xffffcd||a==0xffffcf)?8u:(a==0xffffc9||a==0xffffcb)?6u:4u;
-        auto& port=id==10?porta_:id==9?port9_:id==8?port8_:id==6?port6_:port4_;
+        const unsigned id=(a==0xffffd4||a==0xffffd6)?11u:(a==0xffffd1||a==0xffffd3)?10u:(a==0xffffd0||a==0xffffd2)?9u:(a==0xffffcd||a==0xffffcf)?8u:(a==0xffffc9||a==0xffffcb)?6u:4u;
+        auto& port=id==11?portb_:id==10?porta_:id==9?port9_:id==8?port8_:id==6?port6_:port4_;
         auto output=[&](uint8_t data,uint8_t direction){
             if constexpr(requires{sink_.gpio_write(id,now_,data,direction);})sink_.gpio_write(id,now_,data,direction);
             else throw std::logic_error("GPIO output sink unavailable");
         };
-        if(a==0xffffc5||a==0xffffc9||a==0xffffcd||a==0xffffd0||a==0xffffd1)port.write_ddr(value,output);else port.write_data(value,output);
+        if(a==0xffffc5||a==0xffffc9||a==0xffffcd||a==0xffffd0||a==0xffffd1||a==0xffffd4)port.write_ddr(value,output);else port.write_data(value,output);
     }
     uint64_t deadline()const{
         auto next=sci_.next_event();const auto i=timeline_.consumed_input();
@@ -93,6 +93,7 @@ private:
     H8DigitalPort port7_;
     H8DigitalPort port9_{0x00,0xc0};
     H8DigitalPort porta_;
+    H8DigitalPort portb_;
     H8hIrqController irq_;
     H83002SciMmio sci_;
     const std::vector<RxEvent> input_;

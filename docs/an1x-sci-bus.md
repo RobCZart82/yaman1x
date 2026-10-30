@@ -67,4 +67,7 @@ Full76 CTest and87 Python PASS;targeted ASan/UBSan PASS. Linux CI includes this 
 No recorded automated review result at inspection;none claimed. GPIO/IRQ-control/LCD/DSP/MEG wiring,complete reset/isolation,
 physical timing,firmware/MIDI/PKS,audio and plugin/REAPER acceptance remain open.
 
-Merged #120 follow-up:[bounded port4 MMIO](an1x-gpio4.md). Other GPIO/IRQ/SYSCR remains unmapped.
+Merged follow-ups now map byte GPIO for [port4](an1x-gpio4.md), [port6](an1x-gpio6.md),
+[port7](an1x-gpio7.md), [port8](an1x-gpio8.md), [port9](an1x-gpio9.md) and [portA](an1x-gpioa.md).
+The [portB candidate](an1x-gpiob.md) extends this map. Earlier omissions above describe #118.
+GPIO word semantics, IRQ/SYSCR and other peripheral wiring remain open.
