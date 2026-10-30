@@ -9,7 +9,7 @@ namespace yamanix {
 // Project-owned bounded composition;docs/an1x-sci-bus.md.
 // Sink must outlive this nonmovable host;callbacks must not reenter or mutate it.
 // Sink:tx(channel,cycle,level),clock(channel,cycle,level),dma_request(vector,cycle).
-// GPIO4 access requires gpio_read(4,cycle)/gpio_write(4,cycle,data,direction).
+// GPIO access requires gpio_read(port,cycle)/gpio_write(port,cycle,data,direction).
 // Optional exception_hook(vector). No real-time threading/reentry support.
 template<class Sink>class An1xSciBus {
 public:
@@ -30,8 +30,8 @@ public:
     void bus_cycle(uint64_t cycle){access([&]{advance(cycle);now_=timeline_.cycle();});}
     uint64_t next_bus_event()const{return deadline();}
     uint16_t read_instruction_word(uint32_t a){return access([&]{return memory_.read_instruction_word(a);});}
-    uint8_t read_byte(uint32_t raw){return access([&]{const auto a=raw&0xffffff;return H83002SciMmio::mapped(a)?sci_.read8(a):gpio4_mapped(a)?read_gpio4(a):memory_.read_byte(a);});}
-    void write_byte(uint32_t raw,uint8_t v){access([&]{const auto a=raw&0xffffff;if(H83002SciMmio::mapped(a))sci_.write8(a,v,now_,*this);else if(gpio4_mapped(a))write_gpio4(a,v);else memory_.write_byte(a,v);});}
+    uint8_t read_byte(uint32_t raw){return access([&]{const auto a=raw&0xffffff;return H83002SciMmio::mapped(a)?sci_.read8(a):gpio_mapped(a)?read_gpio(a):memory_.read_byte(a);});}
+    void write_byte(uint32_t raw,uint8_t v){access([&]{const auto a=raw&0xffffff;if(H83002SciMmio::mapped(a))sci_.write8(a,v,now_,*this);else if(gpio_mapped(a))write_gpio(a,v);else memory_.write_byte(a,v);});}
     uint16_t read_word(uint32_t raw){return access([&]{const auto a=raw&0xffffff;return H83002SciMmio::mapped(a)?sci_.read16(a):memory_.read_word(a);});}
     void write_word(uint32_t raw,uint16_t v){access([&]{const auto a=raw&0xffffff;if(H83002SciMmio::mapped(a))sci_.write16(a,v,0xffff,now_,*this);else memory_.write_word(a,v);});}
     void exception_hook(int v){access([&]{if constexpr(requires{sink_.exception_hook(v);})sink_.exception_hook(v);});}
@@ -51,22 +51,26 @@ private:
             else {auto value=std::forward<F>(f)();if(failed_)throw std::logic_error("Reentered AN1x SCI bus");busy_=false;return value;}
         }catch(...){failed_=true;busy_=false;throw;}
     }
-    static bool gpio4_mapped(uint32_t a){return a==0xffffc5||a==0xffffc7||a==0xffffda;}
-    uint8_t read_gpio4(uint32_t a){
-        if(a==0xffffc5)return 0xff; // H83002 DDR map uses ff_r,not ddr_r.
+    static bool gpio_mapped(uint32_t a){return a==0xffffc5||a==0xffffc7||a==0xffffda||a==0xffffc9||a==0xffffcb;}
+    uint8_t read_gpio(uint32_t a){
+        if(a==0xffffc5||a==0xffffc9)return 0xff; // H83002 DDR map uses ff_r.
         if(a==0xffffda)return port4_.pcr();
-        return port4_.read_pins([&]() -> uint8_t {
-            if constexpr(requires{sink_.gpio_read(4u,now_);})return sink_.gpio_read(4u,now_);
+        const bool six=a==0xffffcb;auto& port=six?port6_:port4_;
+        const unsigned id=six?6u:4u;
+        return port.read_pins([&]() -> uint8_t {
+            if constexpr(requires{sink_.gpio_read(id,now_);})return sink_.gpio_read(id,now_);
             else throw std::logic_error("GPIO input sink unavailable");
         });
     }
-    void write_gpio4(uint32_t a,uint8_t value){
+    void write_gpio(uint32_t a,uint8_t value){
         if(a==0xffffda){port4_.write_pcr(value);return;}
+        const bool six=a==0xffffc9||a==0xffffcb;auto& port=six?port6_:port4_;
+        const unsigned id=six?6u:4u;
         auto output=[&](uint8_t data,uint8_t direction){
-            if constexpr(requires{sink_.gpio_write(4u,now_,data,direction);})sink_.gpio_write(4u,now_,data,direction);
+            if constexpr(requires{sink_.gpio_write(id,now_,data,direction);})sink_.gpio_write(id,now_,data,direction);
             else throw std::logic_error("GPIO output sink unavailable");
         };
-        if(a==0xffffc5)port4_.write_ddr(value,output);else port4_.write_data(value,output);
+        if(a==0xffffc5||a==0xffffc9)port.write_ddr(value,output);else port.write_data(value,output);
     }
     uint64_t deadline()const{
         auto next=sci_.next_event();const auto i=timeline_.consumed_input();
@@ -83,6 +87,7 @@ private:
     }
     An1xMemoryMap memory_;
     H8DigitalPort port4_;
+    H8DigitalPort port6_{0x80,0x80};
     H8hIrqController irq_;
     H83002SciMmio sci_;
     const std::vector<RxEvent> input_;
