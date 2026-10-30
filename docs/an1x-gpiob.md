@@ -71,4 +71,4 @@ Linux CI includes the new target under UBSan. Local ASan/UBSan not run in this
 increment;current evidence must not be confused with prior recorded sanitizer runs.
 Firmware/MIDI/PKS,audio and plugin/REAPER acceptance remain open. M0 partial;M1 unaccepted.
 
-Follow-up candidate:[bounded GPIO word accesses](an1x-gpio-words.md);earlier word exclusions describe the merged byte-only increments.
+Merged #134 follow-up:[bounded GPIO word accesses](an1x-gpio-words.md);earlier word exclusions describe the merged byte-only increments.

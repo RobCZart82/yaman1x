@@ -3,7 +3,7 @@
   "recorded_date": "2026-10-30",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "5ac2585e9b84497764f1fe0e2bbf426bbbab84a6",
+  "baseline_commit": "7c46a56495a166ed9e6abbe4bea11915e08bbedd",
   "entries": [
     {
       "pr": 6,
@@ -1808,25 +1808,39 @@
         41011684276,
         41011684288
       ]
+    },
+    {
+      "pr": 134,
+      "title": "Add bounded paired GPIO word accesses with lane failure guards",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/134",
+      "kind": "engine-integration",
+      "status": "merged",
+      "merge_commit": "7c46a56495a166ed9e6abbe4bea11915e08bbedd",
+      "reviewed_head": "963fc91ca7512a80e5830dc8a784c8c186c9e5e9",
+      "merged_at_utc": "2026-10-30T07:46:00Z",
+      "ci_runs": [
+        41020299804,
+        41020299832,
+        41020299487
+      ],
+      "validation": {
+        "ctest_groups_target": 84,
+        "python_tests_target": 87,
+        "local_ctest_passed": 83,
+        "local_python_passed": 86,
+        "local_exclusion": "Windows symlink privilege case",
+        "original_sequential_port_operations": 200000,
+        "original_mismatches": 0,
+        "swapped_read_failed_checks": 262198,
+        "wrong_low_write_failed_checks": 455493,
+        "local_sanitizers": "not_run",
+        "ctest_groups": 84,
+        "python_tests": 87,
+        "linux_ubsan": "pass"
+      },
+      "automated_review_at_merge": "no_recorded_result_at_inspection"
     }
   ],
-  "active_change": {
-    "branch": "feat/an1x-gpio-word-mmio",
-    "scope": "Fully mapped GPIO words with preflight and lane failure boundaries",
-    "status": "local_validation_passed",
-    "ci": "not_run",
-    "validation": {
-      "ctest_groups_target": 84,
-      "python_tests_target": 87,
-      "local_ctest_passed": 83,
-      "local_python_passed": 86,
-      "local_exclusion": "Windows symlink privilege case",
-      "original_sequential_port_operations": 200000,
-      "original_mismatches": 0,
-      "swapped_read_failed_checks": 262198,
-      "wrong_low_write_failed_checks": 455493,
-      "local_sanitizers": "not_run"
-    }
-  },
+  "active_change": null,
   "pending_changes": []
 }
