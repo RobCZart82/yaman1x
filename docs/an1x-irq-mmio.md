@@ -1,7 +1,7 @@
 # Bounded H83002 IRQ register MMIO
 
-Recorded:2026-10-30. Candidate based on merged #135 (`c8cc8c0707a919d86b24d544fe818acd89227d42`),
-engine baseline #134. Final-head CI/review and merge pending.
+Recorded:2026-10-30. Merged #136 as `7aaa8d0178e06b8161c8508cda1cebdb20e2c072`;
+tested head `6d58a3df9307b4513b61ea01d9eed3d70bd6e87a`.
 
 ## Source facts and scope
 
@@ -63,7 +63,8 @@ full board reset,timers/ADC/DMA,LCD/DSP/MEG remain separate work.
  is a fixture,not a production event API or measured hardware timing.
 
 Candidate85 CTest/87 Python;Release build and84 locally runnable CTest groups/86
-Python cases PASS;one established Windows symlink privilege case excluded. Final-head CI pending. CPU inventory
+Python cases PASS;one established Windows symlink privilege case excluded. All five final-head CI jobs and Linux UBSan PASS;
+runs41028141599/41028141600/41028141620. Automated code review completed with no findings on the tested head;no security-review success claimed. CPU inventory
 unchanged:562 methods,264 selected/0 missing/135 excluded encoding rows,not full CPU acceptance.
 Prior GPIO guard tests move old unmappedF4 to still-unmappedF3.
 

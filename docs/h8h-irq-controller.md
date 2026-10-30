@@ -75,4 +75,4 @@ ROM would not establish that protocol or validate boot. No assumed reply,
 dummy-ROM success path or firmware patch is introduced from that note.
 PKS HLE still requires evidence for response bytes, state and timing.
 
-Follow-up candidate:[AN1x mapped IRQ registers](an1x-irq-mmio.md). Earlier IRQ-MMIO omissions describe the original component/integration increment. SYSCR and full reset remain open.
+Merged #136 follow-up:[AN1x mapped IRQ registers](an1x-irq-mmio.md). Earlier IRQ-MMIO omissions describe the original component/integration increment. SYSCR and full reset remain open.

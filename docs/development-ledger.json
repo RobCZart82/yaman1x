@@ -3,7 +3,7 @@
   "recorded_date": "2026-10-30",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "7c46a56495a166ed9e6abbe4bea11915e08bbedd",
+  "baseline_commit": "7aaa8d0178e06b8161c8508cda1cebdb20e2c072",
   "entries": [
     {
       "pr": 6,
@@ -1853,25 +1853,39 @@
         41022302584,
         41022302611
       ]
+    },
+    {
+      "pr": 136,
+      "title": "Map H83002 IRQ registers with CPU wake and fixed-profile controls",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/136",
+      "kind": "engine-integration",
+      "status": "merged",
+      "merge_commit": "7aaa8d0178e06b8161c8508cda1cebdb20e2c072",
+      "reviewed_head": "6d58a3df9307b4513b61ea01d9eed3d70bd6e87a",
+      "merged_at_utc": "2026-10-30T09:04:38Z",
+      "ci_runs": [
+        41028141599,
+        41028141600,
+        41028141620
+      ],
+      "validation": {
+        "ctest_groups_target": 85,
+        "python_tests_target": 87,
+        "local_ctest_passed": 84,
+        "local_python_passed": 86,
+        "local_exclusion": "Windows symlink privilege case",
+        "original_irq_mapped_operations": 200000,
+        "original_mismatches": 0,
+        "reversed_icr_offset_mismatches": 150185,
+        "wrong_ier_route_mismatches": 199554,
+        "local_sanitizers": "not_run",
+        "ctest_groups": 85,
+        "python_tests": 87,
+        "linux_ubsan": "pass"
+      },
+      "automated_review_at_merge": "completed_no_findings"
     }
   ],
-  "active_change": {
-    "branch": "feat/an1x-irq-register-mmio",
-    "scope": "Mapped H83002 IRQ registers,word preflight,fixed SYSCR profile retained",
-    "status": "local_validation_passed",
-    "ci": "not_run",
-    "validation": {
-      "ctest_groups_target": 85,
-      "python_tests_target": 87,
-      "local_ctest_passed": 84,
-      "local_python_passed": 86,
-      "local_exclusion": "Windows symlink privilege case",
-      "original_irq_mapped_operations": 200000,
-      "original_mismatches": 0,
-      "reversed_icr_offset_mismatches": 150185,
-      "wrong_ier_route_mismatches": 199554,
-      "local_sanitizers": "not_run"
-    }
-  },
+  "active_change": null,
   "pending_changes": []
 }
