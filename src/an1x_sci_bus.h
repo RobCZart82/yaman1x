@@ -32,8 +32,17 @@ public:
     uint16_t read_instruction_word(uint32_t a){return access([&]{return memory_.read_instruction_word(a);});}
     uint8_t read_byte(uint32_t raw){return access([&]{const auto a=raw&0xffffff;return H83002SciMmio::mapped(a)?sci_.read8(a):gpio_mapped(a)?read_gpio(a):memory_.read_byte(a);});}
     void write_byte(uint32_t raw,uint8_t v){access([&]{const auto a=raw&0xffffff;if(H83002SciMmio::mapped(a))sci_.write8(a,v,now_,*this);else if(gpio_mapped(a))write_gpio(a,v);else memory_.write_byte(a,v);});}
-    uint16_t read_word(uint32_t raw){return access([&]{const auto a=raw&0xffffff;return H83002SciMmio::mapped(a)?sci_.read16(a):memory_.read_word(a);});}
-    void write_word(uint32_t raw,uint16_t v){access([&]{const auto a=raw&0xffffff;if(H83002SciMmio::mapped(a))sci_.write16(a,v,0xffff,now_,*this);else memory_.write_word(a,v);});}
+    uint16_t read_word(uint32_t raw){return access([&]{const auto a=raw&0xffffff;if(H83002SciMmio::mapped(a))return sci_.read16(a);
+        if(gpio_mapped(a)||gpio_mapped((a+1)&0xffffff)){
+            require_gpio_word(a,false);const auto high=read_gpio(a);
+            if(failed_)throw std::logic_error("Reentered GPIO word read");
+            const auto low=read_gpio(a+1);return uint16_t((uint16_t(high)<<8)|low);
+        }return memory_.read_word(a);});}
+    void write_word(uint32_t raw,uint16_t v){access([&]{const auto a=raw&0xffffff;if(H83002SciMmio::mapped(a))sci_.write16(a,v,0xffff,now_,*this);else if(gpio_mapped(a)||gpio_mapped((a+1)&0xffffff)){
+            require_gpio_word(a,true);write_gpio(a,uint8_t(v>>8));
+            if(failed_)throw std::logic_error("Reentered GPIO word write");
+            write_gpio(a+1,uint8_t(v));
+        }else memory_.write_word(a,v);});}
     void exception_hook(int v){access([&]{if constexpr(requires{sink_.exception_hook(v);})sink_.exception_hook(v);});}
     // Timed timeline sink and untimed MMIO sink,sharing one outward clock.
     void tx(unsigned c,uint64_t at,bool v){sink_.tx(c,at,v);}
@@ -52,6 +61,11 @@ private:
         }catch(...){failed_=true;busy_=false;throw;}
     }
     static bool gpio_mapped(uint32_t a){return a==0xffffc5||a==0xffffc7||a==0xffffda||a==0xffffc9||a==0xffffcb||a==0xffffcd||a==0xffffcf||a==0xffffce||a==0xffffd0||a==0xffffd2||a==0xffffd1||a==0xffffd3||a==0xffffd4||a==0xffffd6;}
+    static void require_gpio_word(uint32_t a,bool write){
+        if(a&1)throw std::invalid_argument("Unaligned GPIO word");
+        if(!gpio_mapped(a)||!gpio_mapped(a+1))throw std::out_of_range("Incomplete GPIO word");
+        if(write&&(a==0xffffce||a+1==0xffffce))throw std::logic_error("Read-only GPIO word lane");
+    }
     uint8_t read_gpio(uint32_t a){
         if(a==0xffffc5||a==0xffffc9||a==0xffffcd||a==0xffffd0||a==0xffffd1||a==0xffffd4)return 0xff; // H83002 DDR map uses ff_r.
         if(a==0xffffda)return port4_.pcr();

@@ -1794,8 +1794,39 @@
         "linux_ubsan": "pass"
       },
       "automated_review_at_merge": "no_recorded_result_at_inspection"
+    },
+    {
+      "pr": 133,
+      "title": "Close portB CI evidence and advance plan to GPIO word semantics",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/133",
+      "kind": "documentation",
+      "status": "merged",
+      "merge_commit": "12e923edb2fbccb791fa5d8d9383c493c7c4c1cc",
+      "reviewed_head": "64876f42da5a916bc7e8b57e0ee9ce02e656318c",
+      "merged_at_utc": "2026-10-30T06:18:37Z",
+      "ci_runs": [
+        41011684276,
+        41011684288
+      ]
     }
   ],
-  "active_change": null,
+  "active_change": {
+    "branch": "feat/an1x-gpio-word-mmio",
+    "scope": "Fully mapped GPIO words with preflight and lane failure boundaries",
+    "status": "local_validation_passed",
+    "ci": "not_run",
+    "validation": {
+      "ctest_groups_target": 84,
+      "python_tests_target": 87,
+      "local_ctest_passed": 83,
+      "local_python_passed": 86,
+      "local_exclusion": "Windows symlink privilege case",
+      "original_sequential_port_operations": 200000,
+      "original_mismatches": 0,
+      "swapped_read_failed_checks": 262198,
+      "wrong_low_write_failed_checks": 455493,
+      "local_sanitizers": "not_run"
+    }
+  },
   "pending_changes": []
 }

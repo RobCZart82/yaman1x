@@ -19,7 +19,7 @@ ctest --test-dir build -C Release --output-on-failure
 python3 tools/repository_audit.py
 ```
 
-The source-only build defines **83 CTest groups and 87 Python cases**. Tests generate synthetic
+The source-only build defines **84 CTest groups and 87 Python cases**. Tests generate synthetic
 programs/banks in temporary directories. The two upstream tests that require
 Yamaha images are not part of this suite. ROM-free GitHub Actions checks this suite on Linux x64, macOS Apple Silicon and
 Windows x64; see the current status below for tested revisions.
@@ -38,7 +38,7 @@ Verified engine baseline: [#132](https://github.com/RobCZart82/yaman1x/pull/132)
 [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/41009924918),
 [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/41009924833):all five jobs passed.
 No recorded automated review result at inspection;none claimed.
-No active engine candidate. [PortB byte MMIO](docs/an1x-gpiob.md) adds FFFFD4/FFFFD6,
+Active candidate:[bounded GPIO words](docs/an1x-gpio-words.md),84 CTest/87 Python;final-head CI pending. Merged evidence above remains #132. [PortB byte MMIO](docs/an1x-gpiob.md) adds FFFFD4/FFFFD6,
 default00/mask00,independent state and GPIO ID11. Ports4/6/7/8/9/A remain isolated.
 Audit descriptions for five-word IR,SLEEP,GPIO and README build count corrected.
 Next:explicit GPIO word semantics,then IRQ/SYSCR modes and full machine reset.
