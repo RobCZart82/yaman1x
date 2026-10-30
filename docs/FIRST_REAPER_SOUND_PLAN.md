@@ -5,6 +5,22 @@ Ez végrehajtási terv; az alábbi, még nyitott mérföldkövek nem kész funkc
 Állapotellenőrzés: 2026-10-30, motoralap: #122 (`804c8a5100ac281945f643c4c9f8f969f263da14`).
 A működő H8H-részhalmaz nem teljes CPU- vagy firmware-elfogadás.
 
+## Aktív fejlesztési lépés — port8 ötbites GPIO, 2026-10-30
+
+Jelölt:79 CTest/87 Python. Port8 FFFFCD DDR-írás/FF-olvasás és FFFFCF pin/adat;
+alap-DDR F0,fenntartott maszk E0,a port4/6-tól külön változatlan portmodell.
+262144 bittábla-eset,256 alapállapot-bemenet és241 CPU-partíció PASS.
+CPU:0F/5A/15 =>FA NVRAM,CCR89. Callback azonosító/időpont/elnyomás,izoláció,
+hozzáférési határok,hiányzó callback és reentry ellenőrizve.
+Eredeti rögzített MAME-port:200000 vegyes művelet,0 eltérés.
+Próbahibák:hiányos maszk268791,hibás alap-DDR130 elvárt kudarc.
+[Forrásazonosság és korlátok](an1x-gpio8.md). Teljes79 CTest/87 Python és GPIO4/6/8/SCI ASan/UBSan PASS.
+513 fájl forrásauditja és229 licencjelölés PASS (nem jogi engedély);végső CI/review függő.
+A #123 dokumentáció beolvadt `7f08cd5ff73db6de1421834f3ab14a7b29372d87`:
+2026-10-30 02:25:36 Europe/Budapest (01:25:36 UTC),négy sikeres ellenőrzés;
+az ellenőrzött head automatizált kódreview-ja completed,nincs finding.
+Egyszerre egy PR;a következő motorlépés csak beolvadás után indul.
+
 ## Aktuális lezárás — #122, 2026-10-30
 
 A [#122 PR](https://github.com/RobCZart82/yaman1x/pull/122) beolvadt:
