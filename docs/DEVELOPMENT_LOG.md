@@ -3,22 +3,24 @@
 Frissítve: 2026-10-30. Időzóna: Europe/Budapest.
 Ellenőrzött motoralap: `7aaa8d0178e06b8161c8508cda1cebdb20e2c072` (#136).
 
-## Aktív előkészítő lépés — SYSCR módlogika, 2026-10-30
+## Lezárt előkészítő lépés — #139 SYSCR módlogika, 2026-10-30
 
-Önálló H83002SyscrModes szerződés:bit3/I/UI szerinti IRQ-küszöb és IRQ/TRAPA
-CCR-belépés. 65536 kombináció független táblával/bitorákulummal PASS;célzott
-ASan/UBSan PASS. Három eredeti MAME-módszerrel65536 összevetés:0 eltérés.
-UI/mód figyelmen kívül hagyása8192 elvárt teszthibát ad.
-[Forrás és integrációs kapuk](h83002-syscr-modes.md).
-Ez előkészítés:FFFFF2 nem lett bekötve,a CPU rögzített profilja nem változott.
-Eredeti reset09 és kutatási CPU fix0B különböző byte,de azonos bit3 mód.
-Teljes86 CTest/87 Python PASS;célzott ASan/UBSan és szigorú fordítói figyelmeztetések PASS.
-528 fájl forrásauditja és229 licencjelölés PASS (nem jogi engedély).Végső CI/review függő.
-Új firmware/hangelfogadás nincs.
-A #138 dokumentáció beolvadt d547555c4c4f2df5271f18afd8d0041240776049,
-2026-10-30T12:11:48Z időpontban;négy CI-feladata sikeres.
-Egyszerre egy PR;következő:közös SYSCR-owner,azonnali filter/entry módváltás,
-NMI/függőIRQ/SLEEP/RTE/partíció tesztek,majd teljes gépreset.
+Beolvadt `b84d3b20bbef1f51a14af64da1a57df9f5cf2a88`,tesztelt head
+`4d5ca9ba548cd4b3c3547ba191c2660daeebfce4`,2026-10-30 16:12:00 Europe/Budapest
+(15:12:00 UTC). Mind az öt CI sikeres:
+[platform/UBSan](https://github.com/RobCZart82/yaman1x/actions/runs/41072881939),
+[MSan](https://github.com/RobCZart82/yaman1x/actions/runs/41072881943),
+[MAME](https://github.com/RobCZart82/yaman1x/actions/runs/41072882034).
+Nincs nyitott review-szál vagy rögzített automatikus review-eredmény;utóbbit nem állítjuk.
+
+86 CTest/87 Python és célzott ASan/UBSan PASS.65536 mód/CCR eset és három eredeti
+MAME-módszer összevetése:0 eltérés;hibás módszűrés8192 elvárt kudarc.
+[Hatókör és következő integrációs kapuk](h83002-syscr-modes.md).
+Ez önálló előkészítés:FFFFF2 továbbra is unmapped,a CPU rögzített profilja változatlan.
+Az integrált gépalap #136 marad;nincs új firmware-/hangelfogadás.
+Következő:közös SYSCR-owner,azonnali IRQ-filter és IRQ/TRAPA-belépés módváltás,
+NMI/függőIRQ/SLEEP/RTE és partíciótesztek;utána teljes gépreset.
+Nincs aktív motorjelölt;a lezáró dokumentáció beolvadása után indulhat új lépés.
 
 ## Dokumentáció-egyeztetés — 2026-10-30, #137 után
 
