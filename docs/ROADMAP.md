@@ -17,6 +17,11 @@ review is claimed. MAME did not run for that docs-only change. Engine evidence b
 remains attached to #136. The documentation closure is merged; the next engine step
 may start. This reconciliation changes documentation only; its own CI is tracked on its PR.
 
+Active candidate:[cold research machine lifecycle](an1x-research-lifecycle.md).
+401 restart cut points,NVRAM retain/clear and failure recovery controls PASS.
+Not hardware warm reset;local88 CTest/87 Python and targeted ASan/UBSan PASS.
+Final-head CI/review pending.
+
 Verified engine baseline:[#141](https://github.com/RobCZart82/yaman1x/pull/141),
 `eba55a2367f9cc5e319b4f3f26049fe4da55af16`;tested head `d50532a812abd23a65a2aafaf24f28ea815c0217`.
 87 CTest/87 Python;[platform/UBSan](https://github.com/RobCZart82/yaman1x/actions/runs/41085891561),
@@ -28,7 +33,7 @@ immediate priority filtering.7712 IRQ/NMI partitions,512 TRAPA CCR cases and241
 pending-IRQ/SLEEP mode-switch partitions PASS;targeted ASan/UBSan PASS.
 Other254 SYSCR values and F2/F3 words remain unsupported;no standby claim.
 Generated CPU bodies unchanged:562 methods,264 selected/0 missing/135 excluded rows.
-No active engine candidate. Next:explicit machine reset lifecycle,per-owner state,
+Cold lifecycle candidate above;physical warm reset remains open. Next:per-owner state,
 NVRAM retention,time/input policy and repeated-reset/failed-owner acceptance tests.
 Complete machine,LCD/DSP/MEG,physical timing,firmware/MIDI/PKS/audio/REAPER remain open.
 

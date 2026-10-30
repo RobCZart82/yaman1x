@@ -3,6 +3,22 @@
 Frissítve: 2026-10-30. Időzóna: Europe/Budapest.
 Ellenőrzött motoralap: `eba55a2367f9cc5e319b4f3f26049fe4da55af16` (#141).
 
+## Aktív motorlépés — hideg kutatási gépéletciklus, 2026-10-30
+
+Új owner összefogja az immutable ROM-ot,CPU/busz/periféria epochot.401 futási pontból
+újraindítás friss CPU/TX-referenciával egyezik;teljes256KiB NVRAM8 ismétlésen megmarad,
+explicit clear nulláz. Hibás bemeneti csere nem pusztítja a régi epochot;hibás CPU/reentry
+csak új példánnyal folytatható. Másolt új RX-sor relatív idő0-val indul,a régi elvész.
+NVRAM-visszatöltést kihagyó próbahiba410 elvárt kudarc.
+[Hatókör](an1x-research-lifecycle.md):ez hideg kutatási rekonstrukció,nem fizikai meleg reset.
+A MAME portreset regisztereket megőriz,a SCI reset kimeneti szinteket publikál;
+ezeket nem állítjuk hardverhűen késznek. Külső sink-állapot külön generációkezelést igényel.
+Teljes88 CTest/87 Python és célzott ASan/UBSan PASS.533 fájl forrásauditja és229
+licencjelölés PASS (nem jogi engedély).Végső CI/review függő;firmware/hangelfogadás nincs kész.
+A #142 beolvadt8e855431cd0dd7fb2ca214705f5db1d859dc1f24,2026-10-30T20:18:35Z.
+A macOS15 migráció utolsó headjén mind az öt CI sikeres (41119202872/41119202659/41119202639).
+Történeti required checknév macos-14 marad,de tényleges runner macos-15.
+
 ## CI-javítás — macOS14 kivezetése, 2026-10-30
 
 A #142 macOS-feladata és célzott újrafuttatása a GitHub tervezett brownoutja miatt
