@@ -30,13 +30,16 @@ See [engine architecture decision](docs/ADR-0001-engine-boundary.md) and
 
 ## Current state
 
+Active candidate:[bounded GPIO4 MMIO](docs/an1x-gpio4.md),77 CTest/87 Python locally PASS;
+final-head CI/review pending. Merged evidence below remains #118.
+
 Verified engine baseline: [#118](https://github.com/RobCZart82/yaman1x/pull/118),
 `6f9e8b8f66d962e968af8d6f9cd4135d2c4d1ab3`;tested head `85baf0a93896468e35f019845d9f9116763ecb29`.
 76 CTest groups/87 Python cases;CPU handlers unchanged:562 upstream-derived methods
 (558 unchanged,four prior adaptations);264 selected/0 missing/135 excluded encoding rows.
 [Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40973239180), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40973239137), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40973239160):all five jobs passed.
 No recorded automated review result at inspection;no successful automated review claimed.
-No active engine candidate. [Timed SCI on the common map](docs/an1x-sci-bus.md) connects owned ROM/RAM,
+The prior SCI series is closed;GPIO4 candidate above. [Timed SCI on the common map](docs/an1x-sci-bus.md) connects owned ROM/RAM,
 IRQ and RX-event timeline. Synthetic CPU-configured TX/RX,SLEEP/IRQ/NVRAM composition,
 512+512 frames,3204 partitions,instance isolation and fail-stop controls verified.
 Next:check pinned GPIO/IRQ-control MMIO and fixed-profile gaps,then integrate one

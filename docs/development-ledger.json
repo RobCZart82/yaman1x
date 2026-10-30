@@ -1487,8 +1487,38 @@
         "deadline_mutation_failures": 2738
       },
       "automated_review_at_merge": "no_recorded_result_at_inspection"
+    },
+    {
+      "pr": 119,
+      "title": "Close timed AN1x SCI composition evidence and plan GPIO wiring",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/119",
+      "kind": "documentation",
+      "status": "merged",
+      "merge_commit": "265ea298fbdebb5fabf15ec08e741e31f0c2fde4",
+      "reviewed_head": "7e5ec6db536a6ced88cd5d6b1db4a0a3b18ad245",
+      "merged_at_utc": "2026-10-30T00:05:36Z",
+      "ci_runs": [
+        40975522403,
+        40975522386
+      ],
+      "automated_review_at_merge": "no_recorded_result_at_inspection"
     }
   ],
-  "active_change": null,
+  "active_change": {
+    "branch": "feat/an1x-gpio-bus",
+    "scope": "Bounded port4 DDR/pins/PCR byte MMIO on owned timed SCI/memory bus",
+    "status": "local_validation_passed_ci_pending",
+    "validation": {
+      "ctest_groups": 77,
+      "python_tests": 87,
+      "asan_ubsan": "gpio4_and_sci_pass",
+      "original_port_operations": 200000,
+      "original_port_mismatches": 0,
+      "negative_controls": {
+        "ddr_readback_failures": 65281,
+        "latch_instead_of_pins_failures": 497267
+      }
+    }
+  },
   "pending_changes": []
 }
