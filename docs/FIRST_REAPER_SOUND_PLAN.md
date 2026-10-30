@@ -2,27 +2,32 @@
 
 Rögzítve: 2026-10-27. Kiindulópont: a #14 PR-ig beolvadt kutatási eredmények.
 Ez végrehajtási terv; az alábbi, még nyitott mérföldkövek nem kész funkciók.
-Állapotellenőrzés: 2026-10-30, motoralap: #118 (`6f9e8b8f66d962e968af8d6f9cd4135d2c4d1ab3`).
+Állapotellenőrzés: 2026-10-30, motoralap: #120 (`41f8b6db0d55743495b4953c0ba746dfc4114446`).
 A működő H8H-részhalmaz nem teljes CPU- vagy firmware-elfogadás.
 
-## Aktív fejlesztési lépés — port4 regiszterek a közös buszon, 2026-10-30
+## Aktuális lezárás — #120, 2026-10-30
 
-Jelölt:77 CTest/87 Python. Változatlan H8DigitalPort saját példányának bekötése:
-FFFFC5 DDR-írás/FF-olvasás,FFFFC7 pinolvasás/adattároló-írás,FFFFDA PCR.
-Időbélyeges4-es port callback,hiányzó callback fail-closed,reentry-védelem és izoláció.
-262144 független bit-orákulumos eset,256 PCR-érték,241 CPU-időszelet PASS.
-Szintetikus CPU:F0 DDR,A5 kimenet,3C külső szint =>AC NVRAM-bájt,CCR89.
-A teszt kezdeti elvárt N-bitje hibás volt:AC negatív;CPU-kód nem változott.
+A [#120 PR](https://github.com/RobCZart82/yaman1x/pull/120) beolvadt:
+merge `41f8b6db0d55743495b4953c0ba746dfc4114446`,tesztelt head `a96bfc40bc518f1315aa3c828c0da1548abbd6aa`.
+Időpont:2026-10-30 01:25:51 Europe/Budapest (00:25:51 UTC).
+[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40977946004), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40977945988), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40977945935):mind az öt feladat sikeres.
+Nyitott review-szál és rögzített automatikus review-eredmény nincs;
+sikeres automatikus review-t nem állítunk. A két macOS notice csak kapacitási tájékoztatás.
+
+Beolvadt:**77 CTest/87 Python**. Port4 DDR/pins/PCR,buszidőbélyeges callbackek,
+262144 bit-orákulumos eset,256 PCR-érték és241 CPU-partíció PASS.
+CPU:F0 DDR,A5 latch,3C külső szint =>AC NVRAM-bájt,CCR89.
+A kezdeti flag-orákulum N-bitjét javítottuk;CPU-kód nem változott.
 Eredeti rögzített MAME-portmódszerek:200000 vegyes művelet,0 eltérés.
 Próbahibák:DDR-visszaolvasás65281,pin helyett latch497267 elvárt kudarc.
-Teljes77 CTest/87 Python és GPIO4+SCI ASan/UBSan PASS;végső CI/review függő.
-[Forrásazonosság,hatókör és korlátok](an1x-gpio4.md).
-Többi port,IRQ/SYSCR-regiszter,alternatív pinfunkció és teljes reset még nyitott.
-A #119 lezáró dokumentáció beolvadt `265ea298fbdebb5fabf15ec08e741e31f0c2fde4`:
-2026-10-30 01:05:36 Europe/Budapest (00:05:36 UTC),négy sikeres ellenőrzés.
-Egyszerre egy PR;a következő motorlépés csak beolvadás után indul.
+GPIO4+SCI ASan/UBSan PASS;509 fájl forrásauditja és229 licencjelölés PASS (nem jogi engedély).
+[Forrásazonosság és korlátok](an1x-gpio4.md). Nincs aktív motorjelölt.
+Következő:port6 DDR/adat regiszterek rögzített alapértékkel/fenntartott bitekkel,
+majd a többi portcsoport önálló tesztelt lépcsőkben. IRQ/SYSCR és alternatív pinfunkció nyitott.
+Teljes gépreset,LCD/DSP/MEG,firmware/MIDI/PKS/hang/REAPER-elfogadás továbbra is nyitott.
+Soros munka:a lezáró dokumentáció beolvadása után indulhat új motorfejlesztés.
 
-## Aktuális lezárás — #118, 2026-10-30
+## Történeti lezárás — #118, 2026-10-30
 
 A [#118 PR](https://github.com/RobCZart82/yaman1x/pull/118) beolvadt:
 merge `6f9e8b8f66d962e968af8d6f9cd4135d2c4d1ab3`,tesztelt head `85baf0a93896468e35f019845d9f9116763ecb29`.

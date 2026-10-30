@@ -30,21 +30,18 @@ See [engine architecture decision](docs/ADR-0001-engine-boundary.md) and
 
 ## Current state
 
-Active candidate:[bounded GPIO4 MMIO](docs/an1x-gpio4.md),77 CTest/87 Python locally PASS;
-final-head CI/review pending. Merged evidence below remains #118.
-
-Verified engine baseline: [#118](https://github.com/RobCZart82/yaman1x/pull/118),
-`6f9e8b8f66d962e968af8d6f9cd4135d2c4d1ab3`;tested head `85baf0a93896468e35f019845d9f9116763ecb29`.
-76 CTest groups/87 Python cases;CPU handlers unchanged:562 upstream-derived methods
+Verified engine baseline: [#120](https://github.com/RobCZart82/yaman1x/pull/120),
+`41f8b6db0d55743495b4953c0ba746dfc4114446`;tested head `a96bfc40bc518f1315aa3c828c0da1548abbd6aa`.
+77 CTest groups/87 Python cases;CPU handlers unchanged:562 upstream-derived methods
 (558 unchanged,four prior adaptations);264 selected/0 missing/135 excluded encoding rows.
-[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40973239180), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40973239137), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40973239160):all five jobs passed.
+[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40977946004), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40977945988), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40977945935):all five jobs passed.
 No recorded automated review result at inspection;no successful automated review claimed.
-The prior SCI series is closed;GPIO4 candidate above. [Timed SCI on the common map](docs/an1x-sci-bus.md) connects owned ROM/RAM,
-IRQ and RX-event timeline. Synthetic CPU-configured TX/RX,SLEEP/IRQ/NVRAM composition,
-512+512 frames,3204 partitions,instance isolation and fail-stop controls verified.
-Next:check pinned GPIO/IRQ-control MMIO and fixed-profile gaps,then integrate one
-bounded register group with independent CPU/access/ordering tests. Complete machine reset
-still needs every owner;fresh-instance NVRAM persistence alone is not hardware reset.
+No active engine candidate. [Bounded GPIO4 MMIO](docs/an1x-gpio4.md) adds DDR/pins/PCR to the
+owned memory/SCI/IRQ bus. Independent pin/FF-read/flag/word/alias/timestamp/partition
+controls and200000 original-port register comparisons pass. No physical timing claim.
+Next:port6 DDR/data with pinned default/reserved masks,then remaining GPIO groups,
+each with independent map/callback/isolation/CPU tests. IRQ-control/SYSCR profile
+changes need their own semantic tests. Complete machine reset remains open.
 Full machine,LCD/DSP/MEG,physical timing,firmware/MIDI/PKS/audio and REAPER acceptance
 remain open. Full handler selection is not full CPU/machine acceptance.
 
