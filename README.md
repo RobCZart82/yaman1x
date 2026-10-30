@@ -30,13 +30,16 @@ See [engine architecture decision](docs/ADR-0001-engine-boundary.md) and
 
 ## Current state
 
+Active candidate:[bounded GPIO9](docs/an1x-gpio9.md),81 CTest/87 Python locally PASS.
+GPIO4/6/7/8/9/SCI ASan/UBSan PASS;final-head CI/review pending;merged evidence below remains #126.
+
 Verified engine baseline: [#126](https://github.com/RobCZart82/yaman1x/pull/126),
 `a8b0ca4c87478aa188b902ef997b7c88c284bbf8`;tested head `32dcba307e72f2acfcffd494c890afbc2894c57f`.
 80 CTest groups/87 Python cases;CPU handlers unchanged:562 upstream-derived methods
 (558 unchanged,four prior adaptations);264 selected/0 missing/135 excluded encoding rows.
 [Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40990014063), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40990014152), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40990013951):all five jobs passed.
 No recorded automated review result at inspection;none claimed. No open review threads.
-No active engine candidate. [Read-only port7](docs/an1x-gpio7.md) adds byte input at FFFFCE,
+The port7 series is closed;port9 candidate above. [Read-only port7](docs/an1x-gpio7.md) adds byte input at FFFFCE,
 with separate owner,input identity/timestamps and all256 CPU value/flag cases tested.
 Input-only write guards and unsupported GPIO words remain explicit fail-closed boundaries.
 Next:port9 DDR/data with pinned default00/mask C0,then remaining GPIO groups.

@@ -49,3 +49,5 @@ tracked source is unchanged. CPU/generated-handler inventory is unchanged.
 Full80 CTest/87 Python PASS;GPIO4/6/7/8/SCI ASan/UBSan PASS;final-head CI:all five checks PASS,
 runs40990014063/40990014152/40990013951. No recorded automated review result at inspection;none claimed. Source-notice checks are not legal/binary release clearance.
 Firmware/MIDI/PKS/DSP/audio/plugin/REAPER acceptance remains open.
+
+Candidate follow-up:[port9 masked MMIO](an1x-gpio9.md);earlier other-port omissions describe #126.

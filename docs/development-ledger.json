@@ -1665,8 +1665,38 @@
         "asan_ubsan": "gpio4_gpio6_gpio7_gpio8_sci_pass"
       },
       "automated_review_at_merge": "no_recorded_result_at_inspection"
+    },
+    {
+      "pr": 127,
+      "title": "Close read-only port7 evidence and plan port9 wiring",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/127",
+      "kind": "documentation",
+      "status": "merged",
+      "merge_commit": "d7918c45e5d8178abacc533bfbd3da4a93db0388",
+      "reviewed_head": "47ab28670d7c2444327c919d7b3834cf96c7ba43",
+      "merged_at_utc": "2026-10-30T02:46:04Z",
+      "ci_runs": [
+        40991740045,
+        40991740016
+      ],
+      "automated_review_at_merge": "no_recorded_result_at_inspection"
     }
   ],
-  "active_change": null,
+  "active_change": {
+    "branch": "feat/an1x-gpio9-bus",
+    "scope": "Port9 masked6-bit DDR/pins byte MMIO with independent owner",
+    "status": "local_validation_passed_ci_pending",
+    "validation": {
+      "ctest_groups_target": 81,
+      "python_tests_target": 87,
+      "original_port_operations": 200000,
+      "original_port_mismatches": 0,
+      "mask_mutation_failures": 199031,
+      "default_ddr_mutation_failures": 130,
+      "ctest_groups": 81,
+      "python_tests": 87,
+      "asan_ubsan": "gpio4_gpio6_gpio7_gpio8_gpio9_sci_pass"
+    }
+  },
   "pending_changes": []
 }
