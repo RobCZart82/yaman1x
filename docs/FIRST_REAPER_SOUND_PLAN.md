@@ -5,6 +5,23 @@ Ez végrehajtási terv; az alábbi, még nyitott mérföldkövek nem kész funkc
 Állapotellenőrzés: 2026-10-30, motoralap: #118 (`6f9e8b8f66d962e968af8d6f9cd4135d2c4d1ab3`).
 A működő H8H-részhalmaz nem teljes CPU- vagy firmware-elfogadás.
 
+## Aktív fejlesztési lépés — port4 regiszterek a közös buszon, 2026-10-30
+
+Jelölt:77 CTest/87 Python. Változatlan H8DigitalPort saját példányának bekötése:
+FFFFC5 DDR-írás/FF-olvasás,FFFFC7 pinolvasás/adattároló-írás,FFFFDA PCR.
+Időbélyeges4-es port callback,hiányzó callback fail-closed,reentry-védelem és izoláció.
+262144 független bit-orákulumos eset,256 PCR-érték,241 CPU-időszelet PASS.
+Szintetikus CPU:F0 DDR,A5 kimenet,3C külső szint =>AC NVRAM-bájt,CCR89.
+A teszt kezdeti elvárt N-bitje hibás volt:AC negatív;CPU-kód nem változott.
+Eredeti rögzített MAME-portmódszerek:200000 vegyes művelet,0 eltérés.
+Próbahibák:DDR-visszaolvasás65281,pin helyett latch497267 elvárt kudarc.
+Teljes77 CTest/87 Python és GPIO4+SCI ASan/UBSan PASS;végső CI/review függő.
+[Forrásazonosság,hatókör és korlátok](an1x-gpio4.md).
+Többi port,IRQ/SYSCR-regiszter,alternatív pinfunkció és teljes reset még nyitott.
+A #119 lezáró dokumentáció beolvadt `265ea298fbdebb5fabf15ec08e741e31f0c2fde4`:
+2026-10-30 01:05:36 Europe/Budapest (00:05:36 UTC),négy sikeres ellenőrzés.
+Egyszerre egy PR;a következő motorlépés csak beolvadás után indul.
+
 ## Aktuális lezárás — #118, 2026-10-30
 
 A [#118 PR](https://github.com/RobCZart82/yaman1x/pull/118) beolvadt:

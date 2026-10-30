@@ -16,7 +16,7 @@ and [memory-map facts and source hashes](an1x-memory-map.md).
 
 All bus addresses normalize to24 bits. SCI byte/word registers route to the
 existing adapter;ROM/RAM use the common map. Instruction fetch remains memory
-only. Unknown MMIO,including DSP/MEG/GPIO/LCD/IRQ-control registers,still fails
+only. Historical #118 scope:unknown MMIO,including DSP/MEG/GPIO/LCD/IRQ-control registers,failed
 closed. No whole-machine boot or firmware MIDI acceptance claim.
 
 CPU `bus_cycle` advances pending RX edges and SCI events through the charged
@@ -66,3 +66,5 @@ is a new synthetic composition check,not full-machine MAME equivalence.
 Full76 CTest and87 Python PASS;targeted ASan/UBSan PASS. Linux CI includes this target under UBSan. Own final-head CI:all five checks PASS (runs40973239180,40973239137,40973239160).
 No recorded automated review result at inspection;none claimed. GPIO/IRQ-control/LCD/DSP/MEG wiring,complete reset/isolation,
 physical timing,firmware/MIDI/PKS,audio and plugin/REAPER acceptance remain open.
+
+Candidate follow-up:[bounded port4 MMIO](an1x-gpio4.md). Other GPIO/IRQ/SYSCR remains unmapped.

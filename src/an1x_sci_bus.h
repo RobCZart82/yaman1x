@@ -1,5 +1,6 @@
 #pragma once
 #include "an1x_memory_map.h"
+#include "h8_digital_port.h"
 #include "sci_cycle_timeline.h"
 #include <utility>
 #include <type_traits>
@@ -8,6 +9,7 @@ namespace yamanix {
 // Project-owned bounded composition;docs/an1x-sci-bus.md.
 // Sink must outlive this nonmovable host;callbacks must not reenter or mutate it.
 // Sink:tx(channel,cycle,level),clock(channel,cycle,level),dma_request(vector,cycle).
+// GPIO4 access requires gpio_read(4,cycle)/gpio_write(4,cycle,data,direction).
 // Optional exception_hook(vector). No real-time threading/reentry support.
 template<class Sink>class An1xSciBus {
 public:
@@ -28,8 +30,8 @@ public:
     void bus_cycle(uint64_t cycle){access([&]{advance(cycle);now_=timeline_.cycle();});}
     uint64_t next_bus_event()const{return deadline();}
     uint16_t read_instruction_word(uint32_t a){return access([&]{return memory_.read_instruction_word(a);});}
-    uint8_t read_byte(uint32_t raw){return access([&]{const auto a=raw&0xffffff;return H83002SciMmio::mapped(a)?sci_.read8(a):memory_.read_byte(a);});}
-    void write_byte(uint32_t raw,uint8_t v){access([&]{const auto a=raw&0xffffff;if(H83002SciMmio::mapped(a))sci_.write8(a,v,now_,*this);else memory_.write_byte(a,v);});}
+    uint8_t read_byte(uint32_t raw){return access([&]{const auto a=raw&0xffffff;return H83002SciMmio::mapped(a)?sci_.read8(a):gpio4_mapped(a)?read_gpio4(a):memory_.read_byte(a);});}
+    void write_byte(uint32_t raw,uint8_t v){access([&]{const auto a=raw&0xffffff;if(H83002SciMmio::mapped(a))sci_.write8(a,v,now_,*this);else if(gpio4_mapped(a))write_gpio4(a,v);else memory_.write_byte(a,v);});}
     uint16_t read_word(uint32_t raw){return access([&]{const auto a=raw&0xffffff;return H83002SciMmio::mapped(a)?sci_.read16(a):memory_.read_word(a);});}
     void write_word(uint32_t raw,uint16_t v){access([&]{const auto a=raw&0xffffff;if(H83002SciMmio::mapped(a))sci_.write16(a,v,0xffff,now_,*this);else memory_.write_word(a,v);});}
     void exception_hook(int v){access([&]{if constexpr(requires{sink_.exception_hook(v);})sink_.exception_hook(v);});}
@@ -49,6 +51,23 @@ private:
             else {auto value=std::forward<F>(f)();if(failed_)throw std::logic_error("Reentered AN1x SCI bus");busy_=false;return value;}
         }catch(...){failed_=true;busy_=false;throw;}
     }
+    static bool gpio4_mapped(uint32_t a){return a==0xffffc5||a==0xffffc7||a==0xffffda;}
+    uint8_t read_gpio4(uint32_t a){
+        if(a==0xffffc5)return 0xff; // H83002 DDR map uses ff_r,not ddr_r.
+        if(a==0xffffda)return port4_.pcr();
+        return port4_.read_pins([&]() -> uint8_t {
+            if constexpr(requires{sink_.gpio_read(4u,now_);})return sink_.gpio_read(4u,now_);
+            else throw std::logic_error("GPIO input sink unavailable");
+        });
+    }
+    void write_gpio4(uint32_t a,uint8_t value){
+        if(a==0xffffda){port4_.write_pcr(value);return;}
+        auto output=[&](uint8_t data,uint8_t direction){
+            if constexpr(requires{sink_.gpio_write(4u,now_,data,direction);})sink_.gpio_write(4u,now_,data,direction);
+            else throw std::logic_error("GPIO output sink unavailable");
+        };
+        if(a==0xffffc5)port4_.write_ddr(value,output);else port4_.write_data(value,output);
+    }
     uint64_t deadline()const{
         auto next=sci_.next_event();const auto i=timeline_.consumed_input();
         if(i<input_.size()&&(!next||input_[i].cycle<next))next=input_[i].cycle;
@@ -63,6 +82,7 @@ private:
         now_=timeline_.cycle();
     }
     An1xMemoryMap memory_;
+    H8DigitalPort port4_;
     H8hIrqController irq_;
     H83002SciMmio sci_;
     const std::vector<RxEvent> input_;
