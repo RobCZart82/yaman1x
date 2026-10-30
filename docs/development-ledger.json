@@ -3,7 +3,7 @@
   "recorded_date": "2026-10-30",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "efbf68fad922e7270fc60105a1e6947f972cee6a",
+  "baseline_commit": "fc9b483dcdd6c33385c1225303a0c0f2f0d7477c",
   "entries": [
     {
       "pr": 6,
@@ -1722,23 +1722,35 @@
         40995522155
       ],
       "automated_review_at_merge": "no_recorded_result_at_inspection"
+    },
+    {
+      "pr": 130,
+      "title": "Wire unmasked H83002 portA into the timed AN1x bus",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/130",
+      "kind": "engine-integration",
+      "status": "merged",
+      "merge_commit": "fc9b483dcdd6c33385c1225303a0c0f2f0d7477c",
+      "reviewed_head": "e6f276dcf20e48d014a71f13dd73ac74b33da029",
+      "merged_at_utc": "2026-10-30T03:45:46Z",
+      "ci_runs": [
+        40997653002,
+        40997653007,
+        40997653087
+      ],
+      "validation": {
+        "ctest_groups_target": 82,
+        "python_tests_target": 87,
+        "original_port_operations": 200000,
+        "original_port_mismatches": 0,
+        "invented_mask_mutation_failures": 198248,
+        "wrong_port_mutation_failures": 252184,
+        "ctest_groups": 82,
+        "python_tests": 87,
+        "asan_ubsan": "gpio4_gpio6_gpio7_gpio8_gpio9_gpioa_sci_pass"
+      },
+      "automated_review_at_merge": "no_recorded_result_at_inspection"
     }
   ],
-  "active_change": {
-    "branch": "feat/an1x-gpioa-bus",
-    "scope": "PortA unmasked8-bit DDR/pins byte MMIO with independent owner",
-    "status": "local_validation_passed_ci_pending",
-    "validation": {
-      "ctest_groups_target": 82,
-      "python_tests_target": 87,
-      "original_port_operations": 200000,
-      "original_port_mismatches": 0,
-      "invented_mask_mutation_failures": 198248,
-      "wrong_port_mutation_failures": 252184,
-      "ctest_groups": 82,
-      "python_tests": 87,
-      "asan_ubsan": "gpio4_gpio6_gpio7_gpio8_gpio9_gpioa_sci_pass"
-    }
-  },
+  "active_change": null,
   "pending_changes": []
 }

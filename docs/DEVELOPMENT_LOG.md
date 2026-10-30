@@ -1,25 +1,29 @@
 # YamAN1x fejlesztési napló
 
 Frissítve: 2026-10-30. Időzóna: Europe/Budapest.
-Ellenőrzött motoralap: `efbf68fad922e7270fc60105a1e6947f972cee6a` (#128).
+Ellenőrzött motoralap: `fc9b483dcdd6c33385c1225303a0c0f2f0d7477c` (#130).
 
-## Aktív fejlesztési lépés — portA nyolcbites GPIO, 2026-10-30
+## Aktuális lezárás — #130, 2026-10-30
 
-Jelölt:82 CTest/87 Python. FFFFD1 DDR-írás/FF-olvasás,FFFFD3 pin/adat;
-alap00/maszk00,saját változatlan portmodell,callback portazonosító10 (A).
-262144 bittábla-eset,256 alapállapot-bemenet és241 CPU-partíció PASS.
-CPU:0F/5A/15 =>1A NVRAM,CCR81. Port9/szomszéd- és gépizoláció,időbélyeg,
-callback-elnyomás,szóhatár,hiányzó callback és reentry ellenőrizve.
-Eredeti MAME:200000 művelet,0 eltérés;próbahibák:téves maszk198248,rossz port252184
-elvárt kudarc. [Forrásazonosság és korlátok](an1x-gpioa.md).
-Teljes82 CTest/87 Python és GPIO4/6/7/8/9/A/SCI ASan/UBSan PASS.
-519 fájl forrásauditja és229 licencjelölés PASS (nem jogi engedély);végső CI/review függő. GPIO-szóhozzáférés továbbra sem támogatott.
-A #129 dokumentáció beolvadt `efd1a9a1439e330b026a8ae6f4a53de6b7b5f641`:
-2026-10-30 04:25:42 Europe/Budapest (03:25:42 UTC),négy sikeres ellenőrzés;
-automatikus review-eredmény nem volt rögzítve,nem állítunk sikeres review-t.
-Egyszerre egy PR;a következő motorlépés csak beolvadás után indul.
+A [#130 PR](https://github.com/RobCZart82/yaman1x/pull/130) beolvadt:
+merge `fc9b483dcdd6c33385c1225303a0c0f2f0d7477c`,tesztelt head `e6f276dcf20e48d014a71f13dd73ac74b33da029`.
+Időpont:2026-10-30 04:45:46 Europe/Budapest (03:45:46 UTC).
+[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40997653002), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40997653007), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40997653087):mind az öt feladat sikeres.
+Nyitott review-szál és rögzített automatikus review-eredmény nincs;
+sikeres automatikus review-t nem állítunk. A két macOS notice kapacitási tájékoztatás.
 
-## Aktuális lezárás — #128, 2026-10-30
+Beolvadt:**82 CTest/87 Python**. PortA FFFFD1/FFFFD3,alap00/maszk00,callback ID10;
+262144 nyolcbites eset,256 alapállapot-bemenet,241 CPU-partíció PASS.
+CPU:0F/5A/15 =>1A NVRAM,CCR81. Eredeti MAME:200000 művelet,0 eltérés.
+Próbahibák:téves maszk198248,rossz port252184 elvárt kudarc.
+GPIO4/6/7/8/9/A/SCI ASan/UBSan PASS;519 fájl forrásauditja és229 licencjelölés PASS
+(nem jogi engedély). [Forrásazonosság és korlátok](an1x-gpioa.md).
+Nincs aktív motorjelölt. Következő:portB DDR/adat,alap00/maszk00;utána a GPIO
+szóhozzáféréseinek pontos meghatározása és tesztelése.
+IRQ/SYSCR,teljes gépreset,firmware/MIDI/PKS/DSP/hang/REAPER nyitott.
+Soros munka:új motorlépés csak a lezáró dokumentáció beolvadása után indul.
+
+## Történeti lezárás — #128, 2026-10-30
 
 A [#128 PR](https://github.com/RobCZart82/yaman1x/pull/128) beolvadt:
 merge `efbf68fad922e7270fc60105a1e6947f972cee6a`,tesztelt head `00bff586f85f7a2b6d70c7648c57c91486eeddec`.

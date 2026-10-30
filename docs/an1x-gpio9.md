@@ -50,4 +50,4 @@ Full81 CTest/87 Python PASS;GPIO4/6/7/8/9/SCI ASan/UBSan PASS;final-head CI:all 
 runs40993876811/40993876814/40993877026. No recorded automated review result at inspection;none claimed. Source notices alone are not legal/binary distribution clearance.
 Firmware/MIDI/PKS/DSP/audio/plugin/REAPER acceptance remains open.
 
-Candidate follow-up:[portA byte MMIO](an1x-gpioa.md);earlier omissions describe #128.
+Merged #130 follow-up:[portA byte MMIO](an1x-gpioa.md);earlier omissions describe #128.
