@@ -1,6 +1,6 @@
 # AN1x bounded port8 MMIO
 
-Recorded:2026-10-30. Engine baseline:#122;this increment is a candidate.
+Recorded:2026-10-30. Merged #124 as `73a5b5cac78617216901f9db19736902ccd1d0a1`;tested head `33a7a85fc92252d949a7f3867e2d80bbe5b165a8`.
 
 ## Source facts and scope
 
@@ -52,6 +52,7 @@ or physical-timing equivalence.
 Ignored mutations:mask E0 reduced to80 =>268791 expected failures;default DDR F0
 changed to00 =>130 expected failures. Tracked code unchanged.
 
-Full79 CTest/87 Python PASS;GPIO4/GPIO6/GPIO8/SCI ASan/UBSan PASS. Final-head CI/review
-pending. Source notices alone are not legal/binary release clearance.
+Full79 CTest/87 Python PASS;GPIO4/GPIO6/GPIO8/SCI ASan/UBSan PASS. Final-head CI:all five checks PASS,runs40986127930/40986127955/40986127919.
+[Automated code review](https://github.com/RobCZart82/yaman1x/pull/124#issuecomment-6512683713) completed with no findings on this head.
+No security review result recorded. Source notices alone are not legal/binary release clearance.
 Firmware/MIDI/PKS/DSP/audio/plugin/REAPER acceptance remains open.

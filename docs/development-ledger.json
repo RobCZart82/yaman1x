@@ -3,7 +3,7 @@
   "recorded_date": "2026-10-30",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "804c8a5100ac281945f643c4c9f8f969f263da14",
+  "baseline_commit": "73a5b5cac78617216901f9db19736902ccd1d0a1",
   "entries": [
     {
       "pr": 6,
@@ -1591,23 +1591,38 @@
       "automated_review_url": "https://github.com/RobCZart82/yaman1x/pull/123#issuecomment-6512375545",
       "automated_review_completed_at": "2026-10-30T01:07:55.951827Z",
       "security_review_at_merge": "no_recorded_result"
+    },
+    {
+      "pr": 124,
+      "title": "Wire masked H83002 port8 with cold default and isolation controls",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/124",
+      "kind": "engine-integration",
+      "status": "merged",
+      "merge_commit": "73a5b5cac78617216901f9db19736902ccd1d0a1",
+      "reviewed_head": "33a7a85fc92252d949a7f3867e2d80bbe5b165a8",
+      "merged_at_utc": "2026-10-30T01:45:43Z",
+      "ci_runs": [
+        40986127930,
+        40986127955,
+        40986127919
+      ],
+      "validation": {
+        "ctest_groups_target": 79,
+        "python_tests_target": 87,
+        "original_port_operations": 200000,
+        "original_port_mismatches": 0,
+        "mask_mutation_failures": 268791,
+        "default_ddr_mutation_failures": 130,
+        "ctest_groups": 79,
+        "python_tests": 87,
+        "asan_ubsan": "gpio4_gpio6_gpio8_sci_pass"
+      },
+      "automated_review_at_merge": "completed_no_findings_on_tested_head",
+      "automated_review_url": "https://github.com/RobCZart82/yaman1x/pull/124#issuecomment-6512683713",
+      "automated_review_completed_at": "2026-10-30T01:31:01.357600Z",
+      "security_review_at_merge": "no_recorded_result"
     }
   ],
-  "active_change": {
-    "branch": "feat/an1x-gpio8-bus",
-    "scope": "Port8 masked5-bit DDR/pins byte MMIO with independent owner and cold default tests",
-    "status": "local_validation_passed_ci_pending",
-    "validation": {
-      "ctest_groups_target": 79,
-      "python_tests_target": 87,
-      "original_port_operations": 200000,
-      "original_port_mismatches": 0,
-      "mask_mutation_failures": 268791,
-      "default_ddr_mutation_failures": 130,
-      "ctest_groups": 79,
-      "python_tests": 87,
-      "asan_ubsan": "gpio4_gpio6_gpio8_sci_pass"
-    }
-  },
+  "active_change": null,
   "pending_changes": []
 }

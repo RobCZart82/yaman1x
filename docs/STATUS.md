@@ -5,21 +5,18 @@ Recorded: 2026-10-30. Product: YamAN1x. Repository: `yaman1x`. First public rese
 The repository contains a ROM-free C++/Python development foundation.
 No VST3, AU, GUI or AN1x audio output is available yet.
 
-Active candidate:[bounded GPIO8](an1x-gpio8.md),79 CTest/87 Python locally PASS.
-GPIO4/GPIO6/GPIO8/SCI ASan/UBSan PASS;final-head CI/review pending;merged evidence below remains #122.
-
-Verified engine baseline: [#122](https://github.com/RobCZart82/yaman1x/pull/122),
-`804c8a5100ac281945f643c4c9f8f969f263da14`;tested head `32b36079e0a37f420193b410320f7705d728e29e`.
-78 CTest groups/87 Python cases;CPU handlers unchanged:562 upstream-derived methods
+Verified engine baseline: [#124](https://github.com/RobCZart82/yaman1x/pull/124),
+`73a5b5cac78617216901f9db19736902ccd1d0a1`;tested head `33a7a85fc92252d949a7f3867e2d80bbe5b165a8`.
+79 CTest groups/87 Python cases;CPU handlers unchanged:562 upstream-derived methods
 (558 unchanged,four prior adaptations);264 selected/0 missing/135 excluded encoding rows.
-[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40982044271), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40982044353), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40982044283):all five jobs passed.
-[Automated code review](https://github.com/RobCZart82/yaman1x/pull/122#issuecomment-6512135987) completed on the exact tested head with no findings.
-This is code-review evidence;no security review result is recorded.
-The port6 series is closed;port8 candidate above. [Bounded masked port6](an1x-gpio6.md) adds DDR/pins byte MMIO
-with default DDR80/mask80 and separate owner alongside port4. Independent pin,
-reserved-bit suppression,callback identity/time,CPU flags and partitions pass.
-Next:port8 DDR/data with pinned default F0/mask E0,then remaining GPIO groups.
-IRQ-control/SYSCR modes need semantic tests;full machine reset remains open.
+[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40986127930), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40986127955), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40986127919):all five jobs passed.
+[Automated code review](https://github.com/RobCZart82/yaman1x/pull/124#issuecomment-6512683713) completed on the exact tested head with no findings.
+No security review result recorded.
+No active engine candidate. [Bounded masked port8](an1x-gpio8.md) adds DDR/pins byte MMIO
+with default F0/mask E0 and separate owner alongside port4/port6. Pin truth tables,
+cold bit4 output,callback identity/time/suppression,isolation and CPU partitions pass.
+Next:read-only port7 at FFFFCE,with independent input/ownership/CPU tests;then
+remaining GPIO groups. IRQ-control/SYSCR modes and full machine reset remain open.
 Full machine,LCD/DSP/MEG,physical timing,firmware/MIDI/PKS/audio and REAPER acceptance
 remain open. Full handler selection is not full CPU/machine acceptance.
 
