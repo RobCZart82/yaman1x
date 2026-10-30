@@ -1621,8 +1621,40 @@
       "automated_review_url": "https://github.com/RobCZart82/yaman1x/pull/124#issuecomment-6512683713",
       "automated_review_completed_at": "2026-10-30T01:31:01.357600Z",
       "security_review_at_merge": "no_recorded_result"
+    },
+    {
+      "pr": 125,
+      "title": "Close port8 CI and review evidence and plan read-only port7",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/125",
+      "kind": "documentation",
+      "status": "merged",
+      "merge_commit": "099e53d5207222caa1445ab84670c8904c22727a",
+      "reviewed_head": "7dd898b96e7b0e4618465af80403025283527bfe",
+      "merged_at_utc": "2026-10-30T02:05:39Z",
+      "ci_runs": [
+        40987853482,
+        40987853533
+      ],
+      "automated_review_at_merge": "completed_no_findings_on_tested_head",
+      "automated_review_url": "https://github.com/RobCZart82/yaman1x/pull/125#issuecomment-6512923768",
+      "automated_review_completed_at": "2026-10-30T01:48:11.232193Z",
+      "security_review_at_merge": "no_recorded_result"
     }
   ],
-  "active_change": null,
+  "active_change": {
+    "branch": "feat/an1x-gpio7-bus",
+    "scope": "Read-only port7 byte input MMIO with separate owner on timed bus",
+    "status": "local_validation_passed_ci_pending",
+    "validation": {
+      "ctest_groups_target": 80,
+      "python_tests_target": 87,
+      "original_port_reads": 200000,
+      "original_port_mismatches": 0,
+      "wrong_port_mutation_failures": 769,
+      "ctest_groups": 80,
+      "python_tests": 87,
+      "asan_ubsan": "gpio4_gpio6_gpio7_gpio8_sci_pass"
+    }
+  },
   "pending_changes": []
 }
