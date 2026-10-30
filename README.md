@@ -40,34 +40,20 @@ review is claimed. MAME did not run for that docs-only change. Engine evidence b
 remains attached to #136. The documentation closure is merged; the next engine step
 may start. This reconciliation changes documentation only; its own CI is tracked on its PR.
 
-Active engine candidate:[shared bounded SYSCR01/09](docs/an1x-syscr.md).
-CPU/host integration,7712 IRQ/NMI partitions,512 TRAPA CCR cases and241 mode-switch partitions PASS.
-Local87 CTest/87 Python and targeted ASan/UBSan PASS;final CI/review pending;merged historical evidence below remains #136/#139.
-
-Merged preparation #139:[standalone SYSCR mode contract](docs/h83002-syscr-modes.md).
-65536 independent mode/CCR cases and pinned original-method comparison PASS.
-No CPU/MMIO binding yet;integrated engine evidence below remains #136.
-Tested head `4d5ca9ba548cd4b3c3547ba191c2660daeebfce4`,merge `b84d3b20bbef1f51a14af64da1a57df9f5cf2a88`.
-All five CI checks PASS (platform/UBSan41072881939,MSan41072881943,MAME41072882034).
-No recorded automated review result at inspection;none claimed. Shared-SYSCR candidate above supersedes the preparation-only scope.
-
-Verified engine baseline: [#136](https://github.com/RobCZart82/yaman1x/pull/136),
-`7aaa8d0178e06b8161c8508cda1cebdb20e2c072`;tested head `6d58a3df9307b4513b61ea01d9eed3d70bd6e87a`.
-85 CTest groups/87 Python cases;CPU inventory unchanged:562 upstream-derived methods
-(558 unchanged,four prior adaptations);264 selected/0 missing/135 excluded encoding rows.
-[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/41028141599),
-[MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/41028141600),
-[MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/41028141620):all five jobs passed.
-Automated code review completed with no findings on the tested head;no security-review success claimed.
-No integrated engine change in this preparation candidate. [Mapped IRQ registers](docs/an1x-irq-mmio.md) connect
-ISCR/IER/ISR/ICR0/1 and bounded F4/F8 words to the CPU's existing IRQ owner.
-CPU-configured edge interrupts wake SLEEP and execute the ISR;I masks them.
-Original ICR mask/publication retained. SYSCR F2 stays unsupported while the CPU
-uses fixed0B;dynamic filter/entry state must change together in a later increment.
-Local84 runnable CTest/86 Python PASS;one Windows symlink privilege case excluded.
-Next:CPU/host SYSCR contract and mode tests,then complete machine reset.
-Full machine,LCD/DSP/MEG,physical timing,firmware/MIDI/PKS/audio and REAPER acceptance
-remain open. Full handler selection is not full CPU/machine acceptance.
+Verified engine baseline:[#141](https://github.com/RobCZart82/yaman1x/pull/141),
+`eba55a2367f9cc5e319b4f3f26049fe4da55af16`;tested head `d50532a812abd23a65a2aafaf24f28ea815c0217`.
+87 CTest/87 Python;[platform/UBSan](https://github.com/RobCZart82/yaman1x/actions/runs/41085891561),
+[MSan](https://github.com/RobCZart82/yaman1x/actions/runs/41085891536),
+[MAME](https://github.com/RobCZart82/yaman1x/actions/runs/41085891444):all five jobs PASS.
+No recorded automated review result at inspection;none claimed.
+[Shared SYSCR01/09](docs/an1x-syscr.md) connects FFFFF2 byte MMIO to CPU IRQ/TRAPA modes and
+immediate priority filtering.7712 IRQ/NMI partitions,512 TRAPA CCR cases and241
+pending-IRQ/SLEEP mode-switch partitions PASS;targeted ASan/UBSan PASS.
+Other254 SYSCR values and F2/F3 words remain unsupported;no standby claim.
+Generated CPU bodies unchanged:562 methods,264 selected/0 missing/135 excluded rows.
+No active engine candidate. Next:explicit machine reset lifecycle,per-owner state,
+NVRAM retention,time/input policy and repeated-reset/failed-owner acceptance tests.
+Complete machine,LCD/DSP/MEG,physical timing,firmware/MIDI/PKS/audio/REAPER remain open.
 
 See the [development plan through the first sound in REAPER (Hungarian)](docs/FIRST_REAPER_SOUND_PLAN.md)
 for the planned firmware, audio-engine and VST3 milestones and acceptance criteria.

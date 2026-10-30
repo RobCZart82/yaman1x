@@ -1,6 +1,9 @@
-# Bounded shared CPU/host SYSCR candidate
+# Bounded shared CPU/host SYSCR
 
-Recorded:2026-10-30. FFFFF2 byte read/write now uses the bus-owned SYSCR09 cold
+Recorded:2026-10-30. Merged #141 as `eba55a2367f9cc5e319b4f3f26049fe4da55af16`;tested head `d50532a812abd23a65a2aafaf24f28ea815c0217`.
+All five final-head CI checks PASS:41085891561/41085891536/41085891444.
+No recorded automated review result;none claimed.
+ FFFFF2 byte read/write now uses the bus-owned SYSCR09 cold
 value. Only09 and01 are accepted. Other254 values throw before byte mutation,
 poisoning the host. F2/F3 words stay unsupported. This is deliberately narrower
 than original MAME's unrestricted byte store;no standby/extra-mode acceptance.
