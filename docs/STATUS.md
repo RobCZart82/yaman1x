@@ -5,6 +5,16 @@ Recorded: 2026-10-30. Product: YamAN1x. Repository: `yaman1x`. First public rese
 The repository contains a ROM-free C++/Python development foundation.
 No VST3, AU, GUI or AN1x audio output is available yet.
 
+Documentation reconciled against main `7ee6db8bc418f696e67f0ea17fcc8dade073e47d`
+([#137](https://github.com/RobCZart82/yaman1x/pull/137), merged 2026-10-30 09:26:30 UTC).
+Its tested head was `e7b5c345b2ed9dc0e38b1fa0ecc615b106602575`:
+[platform/UBSan](https://github.com/RobCZart82/yaman1x/actions/runs/41031322824) and
+[MSan](https://github.com/RobCZart82/yaman1x/actions/runs/41031322822) passed all four jobs.
+That documentation PR's automated review failed due to usage limits; no completed
+review is claimed. MAME did not run for that docs-only change. Engine evidence below
+remains attached to #136. The documentation closure is merged; the next engine step
+may start. This reconciliation changes documentation only; its own CI is tracked on its PR.
+
 Verified engine baseline: [#136](https://github.com/RobCZart82/yaman1x/pull/136),
 `7aaa8d0178e06b8161c8508cda1cebdb20e2c072`;tested head `6d58a3df9307b4513b61ea01d9eed3d70bd6e87a`.
 85 CTest groups/87 Python cases;CPU inventory unchanged:562 upstream-derived methods
@@ -265,4 +275,4 @@ Audit baseline #58 (`863d21abcde448d746b3b44c39a1eb61be455a15`): fresh local mac
 
 ## Long absolute memory candidate — 2026-10-29
 
-[Abs16/abs32 MOV.L](h8-long-absolute-memory.md) adds four original groups and a four-word instruction buffer. Candidate counts:466 methods,225 selected/39 missing/135 excluded encoding rows. The verified merged baseline above remains #75 until this candidate passes its own CI and merges.
+[Abs16/abs32 MOV.L](h8-long-absolute-memory.md) adds four original groups and a four-word instruction buffer. Candidate counts:466 methods,225 selected/39 missing/135 excluded encoding rows. At this historical preparation point the baseline was #75; the current merged baseline is recorded at the top of this document.

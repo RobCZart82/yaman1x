@@ -5,7 +5,34 @@ Ez végrehajtási terv; az alábbi, még nyitott mérföldkövek nem kész funkc
 Állapotellenőrzés: 2026-10-30, motoralap: #136 (`7aaa8d0178e06b8161c8508cda1cebdb20e2c072`).
 A működő H8H-részhalmaz nem teljes CPU- vagy firmware-elfogadás.
 
-## Aktuális lezárás — #136, 2026-10-30
+## Dokumentáció-egyeztetés — 2026-10-30, #137 után
+
+Ellenőrzött main: `7ee6db8bc418f696e67f0ea17fcc8dade073e47d`.
+A [#137 dokumentációs lezárás](https://github.com/RobCZart82/yaman1x/pull/137)
+2026-10-30 10:26:30 Europe/Budapest időpontban beolvadt (09:26:30 UTC).
+Tesztelt head: `e7b5c345b2ed9dc0e38b1fa0ecc615b106602575`.
+[Linux/macOS/Windows és Linux UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/41031322824),
+[MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/41031322822): mind a négy feladat sikeres.
+MAME ezen a dokumentációs változáson nem futott; a motor MAME-bizonyítéka a #136-hoz tartozik.
+A #137 automatikus kódellenőrzése kvótalimit miatt nem fejeződött be; ez nem
+sikeres review, és nem konkrét kódhiba. A #136 sikeres review-ja külön bizonyíték.
+
+A motoralap továbbra is #136; nincs új motorfunkció vagy új firmware-/hangelfogadás.
+A lezáró dokumentáció már beolvadt, a következő motorlépés megkezdhető:
+közös CPU/host SYSCR-állapot, szűrés és IRQ/TRAPA-belépés módtesztjei, majd teljes gépreset.
+Az alábbi korábbi lezárások és jelöltbejegyzések dátumhoz kötött történeti adatok;
+régi „függőben” vagy „következő” megjegyzésük nem az aktuális feladatsor.
+
+A mostani dokumentációjavítás rögzíti a #137 lezárását a strukturált naplóban,
+frissíti az M0 elavult 31 hiányzó kódolássoros feladatát (jelenleg 264 kiválasztott,
+0 hiányzó sor), és pontosítja a README korábbi komponensleírásainak hatókörét.
+Helyi ellenőrzés: UTF-8 és belső linkek, JSON/egyedi PR-azonosítók/merge-ősök,
+85 CTest/87 Python leltár, forrásaudit és licencértesítés-lefedettség PASS.
+A futásidejű teszteket ehhez a kizárólag dokumentációs javításhoz nem futtattuk újra.
+A javítás saját [#138 PR-ellenőrzései](https://github.com/RobCZart82/yaman1x/pull/138) ott követhetők; az itt hivatkozott korábbi CI
+nem ennek az új dokumentációs változatnak az eredménye.
+
+## Legutóbbi motorlezárás — #136, 2026-10-30
 
 A [#136 PR](https://github.com/RobCZart82/yaman1x/pull/136) beolvadt:
 merge `7aaa8d0178e06b8161c8508cda1cebdb20e2c072`,tesztelt head `6d58a3df9307b4513b61ea01d9eed3d70bd6e87a`.
@@ -31,7 +58,7 @@ A SYSCR bit08 a CPU szűrését és IRQ/TRAPA-belépését együtt érinti. Fix0
 marad,F2 olvasás/írás elutasítva,nincs elhallgatott vagy kitalált működés.
 Nincs aktív motorjelölt. Következő:külön CPU/host SYSCR-szerződés és módtesztek,
 majd teljes gépreset. Firmware/MIDI/PKS/DSP/hang/REAPER elfogadás nyitott.
-Új motorlépés csak a lezáró dokumentáció beolvadása után indul.
+A lezáró dokumentáció #137-ben beolvadt; ez a sorrendi feltétel teljesült.
 
 ## Történeti lezárás — #134, 2026-10-30
 
@@ -898,8 +925,8 @@ AU, Windows, teljes polifónia, bankböngésző és MEG-effektek későbbi felad
 
 ## Jelenlegi helyzet és kutatási előzmények
 
-A ROM-mentes motoralap mai állapota a fenti M0-táblában és a #36 lezárásában
-szerepel. Az alábbi firmware-/DSP-megfigyelések a hivatkozott kutatási
+A ROM-mentes motoralap aktuális állapota a dokumentum eleji #136 motorlezárásban
+és az alábbi M0-szakaszban szerepel. A korábbi táblázat és a #36 lezárása történeti adat. Az alábbi firmware-/DSP-megfigyelések a hivatkozott kutatási
 jegyzőkönyvek korábbi felvételei; a dokumentáció egységesítésekor nem futtattunk
 új firmware-t vagy hardvermérést. Nem tekinthetők a közös SCI-adapter friss
 firmware-integrációs bizonyítékának.
@@ -920,11 +947,12 @@ Részletek: [STATUS](STATUS.md), [SCI-megfigyelések](sci-state-milestone.md),
 
 ### M0 — Rögzített fejlesztési alap és motorarchitektúra
 
-2026-10-27: **részben teljesült**. A következő alapok elkészültek:
+2026-10-30: **részben teljesült**. A következő alapok elkészültek:
 
 - Az [ADR-0001](ADR-0001-engine-boundary.md) kiválasztotta a motorhatárt, a
   külön MAME kutatási utat és a tervezett VST3 SDK-t. Az architekturális választás
-  rögzített; a CPU/periféria-port végrehajtása és elfogadása még hátravan.
+  rögzített; a CPU és több periféria szintetikus integrációja elkészült,
+  a teljes gép és a firmware-es indulás elfogadása még hátravan.
 - A [függőségazonosítók](engine-dependencies.json), a forráslockok, a H8-leltár
   és a generátor bemenetei/kimenetei rögzítettek. A teljes fordítói/licenc-
   függőségzár ezzel még nincs lezárva.
@@ -952,11 +980,13 @@ nem teljes CPU. A korábbi bővítések és mérések az előrehaladási naplób
 
 Nyitott feladatok, végrehajtási sorrendben:
 
-1. Lezárni a leltárban rögzített 31 hiányzó H8H-kódolássort. A rögzített
-   SYSCR-es IRQ/TRAPA-belépés és CPU-szűrés már tesztelt; a további SYSCR-módok nyitottak. Az önálló
-   részhalmaz már fordul és fut; a teljes CPU lefedettsége még nem igazolt.
-   Ezután a közös CPU/periféria-ütemező és a teljes címtér/MMIO-gép összekötése,
-   az azonos idejű külső események sorrendjének külön igazolásával.
+1. A 264 kiválasztott H8H-kódolássor kezelői már bekerültek, a kiválasztott
+   leltárban 0 hiányzó sor van (135 kizárt sor külön hatókör). Ez nem teljes
+   CPU- vagy hardverelfogadás. A közös ROM/RAM/SCI/GPIO/IRQ-busz szintetikus
+   integrációja elkészült. Következő: közös CPU/host SYSCR-állapot és a dinamikus
+   szűrés, IRQ/TRAPA-belépés módtesztjei; a jelenlegi fix 0B profil megőrzése
+   addig szükséges. Utána teljes gépreset, a további perifériák és a teljes
+   címtér/időzítés integrációja, az azonos idejű események sorrendjének igazolásával.
 2. A teljes gép CPU-/RAM-/periféria-/DSP-/MIDI-állapotának példányizolációját,
    resetjét és blokkfelosztástól független időléptetését igazolni.
 3. Az újonnan ténylegesen beépített függőségek licenceit lezárni; a saját kód
@@ -979,8 +1009,8 @@ szervezési/hibakezelési tesztjei sikeresek; nem friss firmware-es elfogadások
 **Teljesült előfeltétel:** a [rögzített forrású teljes kutatási build](source-identity-recovery.md)
 #20 óta sikeres, és a #36 külön macOS buildje/regisztrációs próbája is PASS.
 A build sikere önmagában nem bizonyít tényleges SCI-bájtvételt.
-Az önálló közös SCI-modell komponensbizonyítéka az M0 része; a fő CPU-hoz még
-nincs bekötve.
+A közös SCI-modell szintetikus CPU-/buszintegrációja már az M0 része. Ez nem
+bizonyítja a valódi firmware MIDI-bájtfogadását; az M1 elfogadása továbbra is nyitott.
 
 **Következő elfogadási lépés:** a Mac M1 átadási útmutató szerint friss helyi
 firmware-futást és párosított megfigyelést készíteni, majd a tényleges SCI0

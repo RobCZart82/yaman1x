@@ -30,6 +30,16 @@ See [engine architecture decision](docs/ADR-0001-engine-boundary.md) and
 
 ## Current state
 
+Documentation reconciled against main `7ee6db8bc418f696e67f0ea17fcc8dade073e47d`
+([#137](https://github.com/RobCZart82/yaman1x/pull/137), merged 2026-10-30 09:26:30 UTC).
+Its tested head was `e7b5c345b2ed9dc0e38b1fa0ecc615b106602575`:
+[platform/UBSan](https://github.com/RobCZart82/yaman1x/actions/runs/41031322824) and
+[MSan](https://github.com/RobCZart82/yaman1x/actions/runs/41031322822) passed all four jobs.
+That documentation PR's automated review failed due to usage limits; no completed
+review is claimed. MAME did not run for that docs-only change. Engine evidence below
+remains attached to #136. The documentation closure is merged; the next engine step
+may start. This reconciliation changes documentation only; its own CI is tracked on its PR.
+
 Verified engine baseline: [#136](https://github.com/RobCZart82/yaman1x/pull/136),
 `7aaa8d0178e06b8161c8508cda1cebdb20e2c072`;tested head `6d58a3df9307b4513b61ea01d9eed3d70bd6e87a`.
 85 CTest groups/87 Python cases;CPU inventory unchanged:562 upstream-derived methods
@@ -63,7 +73,8 @@ for the planned firmware, audio-engine and VST3 milestones and acceptance criter
   results under different call partitions.
 - Standalone H8 GPIO, internal/external IRQ helpers and a shared asynchronous
   SCI TX/RX channel, with synthetic timing, status and isolation checks. The
-  complete embedded H8 CPU and machine scheduler remain unimplemented.
+  bounded CPU/SCI/GPIO/IRQ integration is implemented; complete machine
+  coverage, reset and firmware acceptance remain open.
 
 The local firmware research run loads both complete DSP programs under the
 experimental status profile. Its audited upload fields match Python
@@ -116,6 +127,12 @@ use the previous working name YamANIx; historical context is explained in
 [research history](docs/HISTORY.md).
 
 The default branch uses an [active PR-based protection ruleset](docs/BRANCH_PROTECTION.md).
+
+## Historical component increments
+
+The following notes describe each increment at its original scope. Their old
+coverage and pending-task statements are historical; current integration, counts
+and remaining work are recorded above.
 
 The bounded [integer-cycle dispatcher](docs/cycle-dispatcher.md) is a tested scheduling primitive; CPU/peripheral integration remains pending.
 
