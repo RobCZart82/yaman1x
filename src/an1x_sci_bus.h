@@ -51,18 +51,19 @@ private:
             else {auto value=std::forward<F>(f)();if(failed_)throw std::logic_error("Reentered AN1x SCI bus");busy_=false;return value;}
         }catch(...){failed_=true;busy_=false;throw;}
     }
-    static bool gpio_mapped(uint32_t a){return a==0xffffc5||a==0xffffc7||a==0xffffda||a==0xffffc9||a==0xffffcb||a==0xffffcd||a==0xffffcf;}
+    static bool gpio_mapped(uint32_t a){return a==0xffffc5||a==0xffffc7||a==0xffffda||a==0xffffc9||a==0xffffcb||a==0xffffcd||a==0xffffcf||a==0xffffce;}
     uint8_t read_gpio(uint32_t a){
         if(a==0xffffc5||a==0xffffc9||a==0xffffcd)return 0xff; // H83002 DDR map uses ff_r.
         if(a==0xffffda)return port4_.pcr();
-        const unsigned id=a==0xffffcf?8u:a==0xffffcb?6u:4u;
-        auto& port=id==8?port8_:id==6?port6_:port4_;
+        const unsigned id=a==0xffffce?7u:a==0xffffcf?8u:a==0xffffcb?6u:4u;
+        auto& port=id==7?port7_:id==8?port8_:id==6?port6_:port4_;
         return port.read_pins([&]() -> uint8_t {
             if constexpr(requires{sink_.gpio_read(id,now_);})return sink_.gpio_read(id,now_);
             else throw std::logic_error("GPIO input sink unavailable");
         });
     }
     void write_gpio(uint32_t a,uint8_t value){
+        if(a==0xffffce)throw std::logic_error("Read-only AN1x port7");
         if(a==0xffffda){port4_.write_pcr(value);return;}
         const unsigned id=(a==0xffffcd||a==0xffffcf)?8u:(a==0xffffc9||a==0xffffcb)?6u:4u;
         auto& port=id==8?port8_:id==6?port6_:port4_;
@@ -89,6 +90,7 @@ private:
     H8DigitalPort port4_;
     H8DigitalPort port6_{0x80,0x80};
     H8DigitalPort port8_{0xf0,0xe0};
+    H8DigitalPort port7_;
     H8hIrqController irq_;
     H83002SciMmio sci_;
     const std::vector<RxEvent> input_;

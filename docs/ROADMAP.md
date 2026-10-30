@@ -6,6 +6,9 @@ audible firmware-driven VST3 voice in REAPER:
 
 Changes/fixes are recorded in the [development ledger](DEVELOPMENT_LOG.md).
 The [repository audit](REPOSITORY_AUDIT_2026-10-27.md) identifies current gaps.
+Active candidate:[read-only GPIO7](an1x-gpio7.md),80 CTest/87 Python locally PASS.
+GPIO4/GPIO6/GPIO7/GPIO8/SCI ASan/UBSan PASS;final-head CI/review pending;merged evidence below remains #124.
+
 Verified engine baseline: [#124](https://github.com/RobCZart82/yaman1x/pull/124),
 `73a5b5cac78617216901f9db19736902ccd1d0a1`;tested head `33a7a85fc92252d949a7f3867e2d80bbe5b165a8`.
 79 CTest groups/87 Python cases;CPU handlers unchanged:562 upstream-derived methods
@@ -13,7 +16,7 @@ Verified engine baseline: [#124](https://github.com/RobCZart82/yaman1x/pull/124)
 [Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40986127930), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40986127955), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40986127919):all five jobs passed.
 [Automated code review](https://github.com/RobCZart82/yaman1x/pull/124#issuecomment-6512683713) completed on the exact tested head with no findings.
 No security review result recorded.
-No active engine candidate. [Bounded masked port8](an1x-gpio8.md) adds DDR/pins byte MMIO
+The port8 series is closed;port7 candidate above. [Bounded masked port8](an1x-gpio8.md) adds DDR/pins byte MMIO
 with default F0/mask E0 and separate owner alongside port4/port6. Pin truth tables,
 cold bit4 output,callback identity/time/suppression,isolation and CPU partitions pass.
 Next:read-only port7 at FFFFCE,with independent input/ownership/CPU tests;then

@@ -5,6 +5,21 @@ Ez végrehajtási terv; az alábbi, még nyitott mérföldkövek nem kész funkc
 Állapotellenőrzés: 2026-10-30, motoralap: #124 (`73a5b5cac78617216901f9db19736902ccd1d0a1`).
 A működő H8H-részhalmaz nem teljes CPU- vagy firmware-elfogadás.
 
+## Aktív fejlesztési lépés — csak olvasható port7, 2026-10-30
+
+Jelölt:80 CTest/87 Python. FFFFCE pinolvasás,saját változatlan portmodell DDR00/maszk00.
+256 közvetlen bemenet,256 CPU-érték/flag eset és161 időbeli szétvágás PASS.
+Portazonosító/időbélyeg,port4/6/8 és géppéldány-izoláció,bemeneti jelleg,
+readonly írás/szóhozzáférés elutasítása,hiányzó callback és reentry tesztelve.
+Eredeti rögzített MAME-port:200000 olvasás,0 eltérés;rossz porthoz irányító próbahiba769
+elvárt kudarc. [Forrásazonosság és korlátok](an1x-gpio7.md).
+Teljes80 CTest/87 Python és GPIO4/6/7/8/SCI ASan/UBSan PASS.
+515 fájl forrásauditja és229 licencjelölés PASS (nem jogi engedély);végső CI/review függő. Port7+8 szóolvasás még nem támogatott.
+A #125 dokumentáció beolvadt `099e53d5207222caa1445ab84670c8904c22727a`:
+2026-10-30 03:05:39 Europe/Budapest (02:05:39 UTC),négy sikeres ellenőrzés;
+az ellenőrzött head kódreview-ja completed,nincs finding.
+Egyszerre egy PR;a következő motorlépés csak beolvadás után indul.
+
 ## Aktuális lezárás — #124, 2026-10-30
 
 A [#124 PR](https://github.com/RobCZart82/yaman1x/pull/124) beolvadt:
