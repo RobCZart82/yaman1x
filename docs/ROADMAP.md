@@ -6,20 +6,20 @@ audible firmware-driven VST3 voice in REAPER:
 
 Changes/fixes are recorded in the [development ledger](DEVELOPMENT_LOG.md).
 The [repository audit](REPOSITORY_AUDIT_2026-10-27.md) identifies current gaps.
-Verified engine baseline: [#130](https://github.com/RobCZart82/yaman1x/pull/130),
-`fc9b483dcdd6c33385c1225303a0c0f2f0d7477c`;tested head `e6f276dcf20e48d014a71f13dd73ac74b33da029`.
-82 CTest groups/87 Python cases;CPU handlers unchanged:562 upstream-derived methods
+Verified engine baseline: [#132](https://github.com/RobCZart82/yaman1x/pull/132),
+`5ac2585e9b84497764f1fe0e2bbf426bbbab84a6`;tested head `66f480ea43b73551e934ec6528ca1dae4a5c5171`.
+83 CTest groups/87 Python cases;CPU inventory unchanged:562 upstream-derived methods
 (558 unchanged,four prior adaptations);264 selected/0 missing/135 excluded encoding rows.
-[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40997653002), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40997653007), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40997653087):all five jobs passed.
-No recorded automated review result at inspection;none claimed. No open review threads.
-Merged baseline: [Unmasked portA](an1x-gpioa.md) adds DDR/data byte MMIO,
-default00/mask00,with separate owner,callback ID10 and independent8-bit/CPU tests.
-Next:portB DDR/data with pinned default00/mask00,then explicit GPIO-word semantics.
-IRQ-control/SYSCR modes and full machine reset remain open.
+[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/41009924793),
+[MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/41009924918),
+[MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/41009924833):all five jobs passed.
+No recorded automated review result at inspection;none claimed.
+No active engine candidate. [PortB byte MMIO](an1x-gpiob.md) adds FFFFD4/FFFFD6,
+default00/mask00,independent state and GPIO ID11. Ports4/6/7/8/9/A remain isolated.
+Audit descriptions for five-word IR,SLEEP,GPIO and README build count corrected.
+Next:explicit GPIO word semantics,then IRQ/SYSCR modes and full machine reset.
 Full machine,LCD/DSP/MEG,physical timing,firmware/MIDI/PKS/audio and REAPER acceptance
 remain open. Full handler selection is not full CPU/machine acceptance.
-
-Active candidate: [portB byte MMIO](an1x-gpiob.md);after merge,explicit GPIO-word semantics.
 
 Next M0 work, in order:
 
@@ -72,4 +72,4 @@ status and the ledger in step with each PR. Cross-platform ROM-free CI already
 exists; retain it alongside MSan and the separately filtered MAME build. Plugin,
 hardware and host support require their own evidence.
 
-Current candidate: [signed16 displacement memory](h8-displacement16-memory.md), six original groups.
+Historical #78 increment (merged): [signed16 displacement memory](h8-displacement16-memory.md), six original groups. See [STATUS](STATUS.md) for the current baseline.

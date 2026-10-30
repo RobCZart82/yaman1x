@@ -5,29 +5,22 @@ Recorded: 2026-10-30. Product: YamAN1x. Repository: `yaman1x`. First public rese
 The repository contains a ROM-free C++/Python development foundation.
 No VST3, AU, GUI or AN1x audio output is available yet.
 
-Verified engine baseline: [#130](https://github.com/RobCZart82/yaman1x/pull/130),
-`fc9b483dcdd6c33385c1225303a0c0f2f0d7477c`;tested head `e6f276dcf20e48d014a71f13dd73ac74b33da029`.
-82 CTest groups/87 Python cases;CPU handlers unchanged:562 upstream-derived methods
+Verified engine baseline: [#132](https://github.com/RobCZart82/yaman1x/pull/132),
+`5ac2585e9b84497764f1fe0e2bbf426bbbab84a6`;tested head `66f480ea43b73551e934ec6528ca1dae4a5c5171`.
+83 CTest groups/87 Python cases;CPU inventory unchanged:562 upstream-derived methods
 (558 unchanged,four prior adaptations);264 selected/0 missing/135 excluded encoding rows.
-[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40997653002), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40997653007), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40997653087):all five jobs passed.
-No recorded automated review result at inspection;none claimed. No open review threads.
-Merged baseline: [Unmasked portA](an1x-gpioa.md) adds DDR/data byte MMIO,
-default00/mask00,with separate owner,callback ID10 and independent8-bit/CPU tests.
-Next:portB DDR/data with pinned default00/mask00,then explicit GPIO-word semantics.
-IRQ-control/SYSCR modes and full machine reset remain open.
+[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/41009924793),
+[MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/41009924918),
+[MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/41009924833):all five jobs passed.
+No recorded automated review result at inspection;none claimed.
+No active engine candidate. [PortB byte MMIO](an1x-gpiob.md) adds FFFFD4/FFFFD6,
+default00/mask00,independent state and GPIO ID11. Ports4/6/7/8/9/A remain isolated.
+Audit descriptions for five-word IR,SLEEP,GPIO and README build count corrected.
+Next:explicit GPIO word semantics,then IRQ/SYSCR modes and full machine reset.
 Full machine,LCD/DSP/MEG,physical timing,firmware/MIDI/PKS/audio and REAPER acceptance
 remain open. Full handler selection is not full CPU/machine acceptance.
 
 M0 partial;M1 prepared but unaccepted. One PR at a time.
-
-## Active candidate — portB and audit documentation
-
-PortB FFFFD4/FFFFD6,default00/mask00,independent owner,callback ID11.
-Candidate83 CTest/87 Python;CPU handler selection unchanged. New target and
-original mapped differential PASS. Local82 runnable CTest/86 Python PASS;
-one known Windows symlink case excluded. Final-head CI pending.
-[Scope and evidence](an1x-gpiob.md). Stale IR/SLEEP/GPIO descriptions and README build-suite count corrected.
-Merged engine evidence remains #130 until final-head closure.
 
 ## Historical component evidence — current state is above
 
