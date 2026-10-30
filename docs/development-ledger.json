@@ -1707,8 +1707,38 @@
         "asan_ubsan": "gpio4_gpio6_gpio7_gpio8_gpio9_sci_pass"
       },
       "automated_review_at_merge": "no_recorded_result_at_inspection"
+    },
+    {
+      "pr": 129,
+      "title": "Close port9 CI evidence and plan portA wiring",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/129",
+      "kind": "documentation",
+      "status": "merged",
+      "merge_commit": "efd1a9a1439e330b026a8ae6f4a53de6b7b5f641",
+      "reviewed_head": "cffda20e985eef8d44d577107c9b3c295b05778b",
+      "merged_at_utc": "2026-10-30T03:25:42Z",
+      "ci_runs": [
+        40995522181,
+        40995522155
+      ],
+      "automated_review_at_merge": "no_recorded_result_at_inspection"
     }
   ],
-  "active_change": null,
+  "active_change": {
+    "branch": "feat/an1x-gpioa-bus",
+    "scope": "PortA unmasked8-bit DDR/pins byte MMIO with independent owner",
+    "status": "local_validation_passed_ci_pending",
+    "validation": {
+      "ctest_groups_target": 82,
+      "python_tests_target": 87,
+      "original_port_operations": 200000,
+      "original_port_mismatches": 0,
+      "invented_mask_mutation_failures": 198248,
+      "wrong_port_mutation_failures": 252184,
+      "ctest_groups": 82,
+      "python_tests": 87,
+      "asan_ubsan": "gpio4_gpio6_gpio7_gpio8_gpio9_gpioa_sci_pass"
+    }
+  },
   "pending_changes": []
 }

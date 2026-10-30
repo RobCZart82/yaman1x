@@ -6,13 +6,16 @@ audible firmware-driven VST3 voice in REAPER:
 
 Changes/fixes are recorded in the [development ledger](DEVELOPMENT_LOG.md).
 The [repository audit](REPOSITORY_AUDIT_2026-10-27.md) identifies current gaps.
+Active candidate:[bounded GPIOA](an1x-gpioa.md),82 CTest/87 Python locally PASS.
+GPIO4/6/7/8/9/A/SCI ASan/UBSan PASS;final-head CI/review pending;merged evidence below remains #128.
+
 Verified engine baseline: [#128](https://github.com/RobCZart82/yaman1x/pull/128),
 `efbf68fad922e7270fc60105a1e6947f972cee6a`;tested head `00bff586f85f7a2b6d70c7648c57c91486eeddec`.
 81 CTest groups/87 Python cases;CPU handlers unchanged:562 upstream-derived methods
 (558 unchanged,four prior adaptations);264 selected/0 missing/135 excluded encoding rows.
 [Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40993876811), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40993876814), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40993877026):all five jobs passed.
 No recorded automated review result at inspection;none claimed. No open review threads.
-No active engine candidate. [Bounded port9](an1x-gpio9.md) adds DDR/data byte MMIO,
+The port9 series is closed;portA candidate above. [Bounded port9](an1x-gpio9.md) adds DDR/data byte MMIO,
 default00/mask C0,with separate owner and independent pin/cold-state/CPU tests.
 Next:portA DDR/data with pinned default00/mask00,then portB and explicit GPIO-word
 semantics. IRQ-control/SYSCR modes and full machine reset remain open.
