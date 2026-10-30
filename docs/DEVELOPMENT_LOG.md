@@ -1,24 +1,31 @@
 # YamAN1x fejlesztési napló
 
 Frissítve: 2026-10-30. Időzóna: Europe/Budapest.
-Ellenőrzött motoralap: `41f8b6db0d55743495b4953c0ba746dfc4114446` (#120).
+Ellenőrzött motoralap: `804c8a5100ac281945f643c4c9f8f969f263da14` (#122).
 
-## Aktív fejlesztési lépés — port6 fenntartott bitekkel, 2026-10-30
+## Aktuális lezárás — #122, 2026-10-30
 
-Jelölt:78 CTest/87 Python. Port6 FFFFC9 DDR-írás/FF-olvasás és FFFFCB pin/adat;
-alap-DDR80,fenntartott maszk80. Saját változatlan portmodell,a port4-től külön állapot.
-262144 független maszkolt eset és241 CPU-partíció PASS;CPU:0F/5A/A5 =>AA NVRAM,CCR89.
-Bemeneti/kimeneti callback portazonosító/időbélyeg,fenntartott-bit-változás elnyomása,
-izoláció,szóhozzáférési határok,hiányzó callback és reentry ellenőrizve.
-Rögzített eredeti MAME-portmódszerek:200000 vegyes művelet,0 eltérés.
+A [#122 PR](https://github.com/RobCZart82/yaman1x/pull/122) beolvadt:
+merge `804c8a5100ac281945f643c4c9f8f969f263da14`,tesztelt head `32b36079e0a37f420193b410320f7705d728e29e`.
+Időpont:2026-10-30 02:05:46 Europe/Budapest (01:05:46 UTC).
+[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40982044271), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40982044353), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40982044283):mind az öt feladat sikeres.
+[Automatizált kódreview](https://github.com/RobCZart82/yaman1x/pull/122#issuecomment-6512135987):az ellenőrzött headen completed,
+nincs jelzett vagy nyitott finding (2026-10-30T00:50:58.978944Z).
+Nyitott review-szál nincs;security review-eredmény nem érkezett.
+A két macOS notice csak futtatókapacitási tájékoztatás.
+
+Beolvadt:**78 CTest/87 Python**. Port6 DDR80/maszk80,FFFFC9/FFFFCB,
+262144 független maszkolt eset,241 CPU-partíció és kimenetváltozás-elnyomás PASS.
+CPU:0F/5A/A5 =>AA NVRAM,CCR89. Eredeti MAME:200000 művelet,0 eltérés.
 Maszkot eltávolító próbahiba:197637 elvárt kudarc;követett kód változatlan.
-[Forrásazonosság és korlátok](an1x-gpio6.md). Teljes78 CTest/87 Python és GPIO4/GPIO6/SCI ASan/UBSan PASS.
-511 fájl forrásauditja és229 licencjelölés PASS (nem jogi engedély).Végső CI/review függő.
-A #121 lezáró dokumentáció beolvadt `34390d073b819325e1beafae8973d0caa5274518`:
-2026-10-30 01:45:40 Europe/Budapest (00:45:40 UTC),négy sikeres ellenőrzés.
-Egyszerre egy PR;a következő motorlépés csak beolvadás után indul.
+GPIO4/GPIO6/SCI ASan/UBSan PASS;511 fájl forrásauditja és229 licencjelölés PASS
+(nem jogi engedély). [Forrásazonosság és korlátok](an1x-gpio6.md).
+Nincs aktív motorjelölt. Következő:port8 alap-DDR F0/maszk E0,majd többi GPIO;
+IRQ/SYSCR,alternatív pinfunkció és teljes gépreset továbbra is nyitott.
+Firmware/MIDI/PKS/DSP/hang/REAPER-elfogadás nincs kész.
+Soros munka:új motorlépés csak a lezáró dokumentáció beolvadása után indul.
 
-## Aktuális lezárás — #120, 2026-10-30
+## Történeti lezárás — #120, 2026-10-30
 
 A [#120 PR](https://github.com/RobCZart82/yaman1x/pull/120) beolvadt:
 merge `41f8b6db0d55743495b4953c0ba746dfc4114446`,tesztelt head `a96bfc40bc518f1315aa3c828c0da1548abbd6aa`.
