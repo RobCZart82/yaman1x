@@ -19,10 +19,10 @@ ctest --test-dir build -C Release --output-on-failure
 python3 tools/repository_audit.py
 ```
 
-The source-only build runs **66 CTest groups and 87 Python cases**. Tests generate synthetic
+The source-only build defines **83 CTest groups and 87 Python cases**. Tests generate synthetic
 programs/banks in temporary directories. The two upstream tests that require
-Yamaha images are not part of this suite. ROM-free GitHub Actions currently
-builds and passes this suite on Linux x64, macOS Apple Silicon and Windows x64.
+Yamaha images are not part of this suite. ROM-free GitHub Actions checks this suite on Linux x64, macOS Apple Silicon and
+Windows x64; see the current status below for tested revisions.
 This checks the source build, not AN1x hardware fidelity or plugin-host support.
 
 See [engine architecture decision](docs/ADR-0001-engine-boundary.md) and
@@ -30,13 +30,16 @@ See [engine architecture decision](docs/ADR-0001-engine-boundary.md) and
 
 ## Current state
 
+Active candidate:[portB byte MMIO](docs/an1x-gpiob.md),83 CTest/87 Python;
+final-head CI and merge pending. Engine baseline below remains #130.
+
 Verified engine baseline: [#130](https://github.com/RobCZart82/yaman1x/pull/130),
 `fc9b483dcdd6c33385c1225303a0c0f2f0d7477c`;tested head `e6f276dcf20e48d014a71f13dd73ac74b33da029`.
 82 CTest groups/87 Python cases;CPU handlers unchanged:562 upstream-derived methods
 (558 unchanged,four prior adaptations);264 selected/0 missing/135 excluded encoding rows.
 [Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40997653002), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40997653007), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40997653087):all five jobs passed.
 No recorded automated review result at inspection;none claimed. No open review threads.
-No active engine candidate. [Unmasked portA](docs/an1x-gpioa.md) adds DDR/data byte MMIO,
+Merged baseline: [Unmasked portA](docs/an1x-gpioa.md) adds DDR/data byte MMIO,
 default00/mask00,with separate owner,callback ID10 and independent8-bit/CPU tests.
 Next:portB DDR/data with pinned default00/mask00,then explicit GPIO-word semantics.
 IRQ-control/SYSCR modes and full machine reset remain open.

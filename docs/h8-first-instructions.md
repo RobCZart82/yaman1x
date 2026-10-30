@@ -13,8 +13,8 @@ use explicitly unsigned quotient/remainder locals. See [multiply](h8-word-multip
 and [divide](h8-word-divide.md) contracts;558 bodies remain unchanged.
 
 The profile owns its 16 register halves, CCR/EXR, PC/PPC/NPC, IR/PIR, temporary
-registers, instruction/substate and cycle debt per instance. IR has four words
-for immediate32 and long absolute decoding; the diagnostic snapshot is not a persistence format. `H8hBusAccess`
+registers, instruction/substate and cycle debt per instance. IR has five words
+for immediate32, long absolute and long displacement32 decoding; the diagnostic snapshot is not a persistence format. `H8hBusAccess`
 charges before completed instruction and byte/word data accesses; `H8ExecutionRunner` preserves
 peripheral-boundary and partial-handler ordering. The reduced decoder rejects
 all other opcodes explicitly and poisons execution through the runner.

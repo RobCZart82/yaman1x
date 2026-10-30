@@ -11,7 +11,7 @@ Verified engine baseline: [#130](https://github.com/RobCZart82/yaman1x/pull/130)
 (558 unchanged,four prior adaptations);264 selected/0 missing/135 excluded encoding rows.
 [Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40997653002), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40997653007), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40997653087):all five jobs passed.
 No recorded automated review result at inspection;none claimed. No open review threads.
-No active engine candidate. [Unmasked portA](an1x-gpioa.md) adds DDR/data byte MMIO,
+Merged baseline: [Unmasked portA](an1x-gpioa.md) adds DDR/data byte MMIO,
 default00/mask00,with separate owner,callback ID10 and independent8-bit/CPU tests.
 Next:portB DDR/data with pinned default00/mask00,then explicit GPIO-word semantics.
 IRQ-control/SYSCR modes and full machine reset remain open.
@@ -19,6 +19,15 @@ Full machine,LCD/DSP/MEG,physical timing,firmware/MIDI/PKS/audio and REAPER acce
 remain open. Full handler selection is not full CPU/machine acceptance.
 
 M0 partial;M1 prepared but unaccepted. One PR at a time.
+
+## Active candidate — portB and audit documentation
+
+PortB FFFFD4/FFFFD6,default00/mask00,independent owner,callback ID11.
+Candidate83 CTest/87 Python;CPU handler selection unchanged. New target and
+original mapped differential PASS. Local82 runnable CTest/86 Python PASS;
+one known Windows symlink case excluded. Final-head CI pending.
+[Scope and evidence](an1x-gpiob.md). Stale IR/SLEEP/GPIO descriptions and README build-suite count corrected.
+Merged engine evidence remains #130 until final-head closure.
 
 ## Historical component evidence — current state is above
 

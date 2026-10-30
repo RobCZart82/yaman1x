@@ -5,6 +5,21 @@ Ez végrehajtási terv; az alábbi, még nyitott mérföldkövek nem kész funkc
 Állapotellenőrzés: 2026-10-30, motoralap: #130 (`fc9b483dcdd6c33385c1225303a0c0f2f0d7477c`).
 A működő H8H-részhalmaz nem teljes CPU- vagy firmware-elfogadás.
 
+## Aktív fejlesztés — portB és auditjavítások, 2026-10-30
+
+Kiindulópont:beolvadt #131 (`44b71479d79073799820ef2502fe078b192a2da6`);
+a lent rögzített motoralap még #130. PortB DDR/adat FFFFD4/FFFFD6,alap00/maszk00,
+külön portállapot,callback ID11. Jelölt:83 CTest/87 Python;CPU-kezelők és264 soros
+utasításleltár változatlan.262144 független bit-eset,256 hideg bemenet és241 CPU-
+partíció PASS;eredeti portműveletek200000 lépésben nulla eltérés. Téves maszk225082,
+téves bemeneti port244961 hibás ellenőrzéssel felismerve. Helyi82 futtatható CTest/86 Python PASS;az egy ismert
+Windows-symlink eset kizárva. Végső head CI/review még lezárandó;beolvasztási sikert nem állítunk.
+
+Auditjavítások:központi IR-leírás öt szóra frissítve;régi EEPMOV/SLEEP és SCI/GPIO
+mondatok történeti hatóköre tisztázva;README régi66-os build-tesztszáma83-ra javítva. [Pontos források/tesztek](an1x-gpiob.md).
+Következő a beolvasztás után:GPIO-szóhozzáférések pontos meghatározása és tesztjei,
+majd IRQ/SYSCR/teljes gépreset. Firmware/MIDI/PKS/DSP/hang/REAPER nyitott.
+
 ## Aktuális lezárás — #130, 2026-10-30
 
 A [#130 PR](https://github.com/RobCZart82/yaman1x/pull/130) beolvadt:
