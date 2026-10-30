@@ -64,3 +64,5 @@ Final-head CI:all five checks PASS,runs40982044271/40982044353/40982044283.
 No security review result recorded. Source notices remain those of the
 unchanged port extraction;source checks alone are not legal release clearance.
 Firmware/MIDI/PKS/audio/plugin/REAPER acceptance remains open.
+
+Candidate follow-up:[port8 byte MMIO](an1x-gpio8.md);earlier omissions describe #122.
