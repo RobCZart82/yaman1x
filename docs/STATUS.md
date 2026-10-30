@@ -5,13 +5,16 @@ Recorded: 2026-10-30. Product: YamAN1x. Repository: `yaman1x`. First public rese
 The repository contains a ROM-free C++/Python development foundation.
 No VST3, AU, GUI or AN1x audio output is available yet.
 
+Active candidate:[bounded masked GPIO6](an1x-gpio6.md),78 CTest/87 Python locally PASS.
+GPIO4/GPIO6/SCI ASan/UBSan PASS;final-head CI/review pending;merged evidence below remains #120.
+
 Verified engine baseline: [#120](https://github.com/RobCZart82/yaman1x/pull/120),
 `41f8b6db0d55743495b4953c0ba746dfc4114446`;tested head `a96bfc40bc518f1315aa3c828c0da1548abbd6aa`.
 77 CTest groups/87 Python cases;CPU handlers unchanged:562 upstream-derived methods
 (558 unchanged,four prior adaptations);264 selected/0 missing/135 excluded encoding rows.
 [Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40977946004), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40977945988), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40977945935):all five jobs passed.
 No recorded automated review result at inspection;no successful automated review claimed.
-No active engine candidate. [Bounded GPIO4 MMIO](an1x-gpio4.md) adds DDR/pins/PCR to the
+The port4 series is closed;port6 candidate above. [Bounded GPIO4 MMIO](an1x-gpio4.md) adds DDR/pins/PCR to the
 owned memory/SCI/IRQ bus. Independent pin/FF-read/flag/word/alias/timestamp/partition
 controls and200000 original-port register comparisons pass. No physical timing claim.
 Next:port6 DDR/data with pinned default/reserved masks,then remaining GPIO groups,

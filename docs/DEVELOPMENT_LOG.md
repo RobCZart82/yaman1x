@@ -3,6 +3,21 @@
 Frissítve: 2026-10-30. Időzóna: Europe/Budapest.
 Ellenőrzött motoralap: `41f8b6db0d55743495b4953c0ba746dfc4114446` (#120).
 
+## Aktív fejlesztési lépés — port6 fenntartott bitekkel, 2026-10-30
+
+Jelölt:78 CTest/87 Python. Port6 FFFFC9 DDR-írás/FF-olvasás és FFFFCB pin/adat;
+alap-DDR80,fenntartott maszk80. Saját változatlan portmodell,a port4-től külön állapot.
+262144 független maszkolt eset és241 CPU-partíció PASS;CPU:0F/5A/A5 =>AA NVRAM,CCR89.
+Bemeneti/kimeneti callback portazonosító/időbélyeg,fenntartott-bit-változás elnyomása,
+izoláció,szóhozzáférési határok,hiányzó callback és reentry ellenőrizve.
+Rögzített eredeti MAME-portmódszerek:200000 vegyes művelet,0 eltérés.
+Maszkot eltávolító próbahiba:197637 elvárt kudarc;követett kód változatlan.
+[Forrásazonosság és korlátok](an1x-gpio6.md). Teljes78 CTest/87 Python és GPIO4/GPIO6/SCI ASan/UBSan PASS.
+511 fájl forrásauditja és229 licencjelölés PASS (nem jogi engedély).Végső CI/review függő.
+A #121 lezáró dokumentáció beolvadt `34390d073b819325e1beafae8973d0caa5274518`:
+2026-10-30 01:45:40 Europe/Budapest (00:45:40 UTC),négy sikeres ellenőrzés.
+Egyszerre egy PR;a következő motorlépés csak beolvadás után indul.
+
 ## Aktuális lezárás — #120, 2026-10-30
 
 A [#120 PR](https://github.com/RobCZart82/yaman1x/pull/120) beolvadt:

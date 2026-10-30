@@ -1529,8 +1529,37 @@
         }
       },
       "automated_review_at_merge": "no_recorded_result_at_inspection"
+    },
+    {
+      "pr": 121,
+      "title": "Close GPIO4 integration evidence and plan masked port6 wiring",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/121",
+      "kind": "documentation",
+      "status": "merged",
+      "merge_commit": "34390d073b819325e1beafae8973d0caa5274518",
+      "reviewed_head": "2bc8285ecd5fc6328101a2d4469f38ff0a8a82c3",
+      "merged_at_utc": "2026-10-30T00:45:40Z",
+      "ci_runs": [
+        40979744947,
+        40979744963
+      ],
+      "automated_review_at_merge": "no_recorded_result_at_inspection"
     }
   ],
-  "active_change": null,
+  "active_change": {
+    "branch": "feat/an1x-gpio6-bus",
+    "scope": "Port6 DDR/pins masked byte MMIO with independent owner on timed machine bus",
+    "status": "local_validation_passed_ci_pending",
+    "validation": {
+      "ctest_groups_target": 78,
+      "python_tests_target": 87,
+      "original_port_operations": 200000,
+      "original_port_mismatches": 0,
+      "reserved_mask_mutation_failures": 197637,
+      "ctest_groups": 78,
+      "python_tests": 87,
+      "asan_ubsan": "gpio4_gpio6_sci_pass"
+    }
+  },
   "pending_changes": []
 }
