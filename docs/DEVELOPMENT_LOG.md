@@ -3,6 +3,23 @@
 Frissítve: 2026-10-30. Időzóna: Europe/Budapest.
 Ellenőrzött motoralap: `7aaa8d0178e06b8161c8508cda1cebdb20e2c072` (#136).
 
+## Aktív előkészítő lépés — SYSCR módlogika, 2026-10-30
+
+Önálló H83002SyscrModes szerződés:bit3/I/UI szerinti IRQ-küszöb és IRQ/TRAPA
+CCR-belépés. 65536 kombináció független táblával/bitorákulummal PASS;célzott
+ASan/UBSan PASS. Három eredeti MAME-módszerrel65536 összevetés:0 eltérés.
+UI/mód figyelmen kívül hagyása8192 elvárt teszthibát ad.
+[Forrás és integrációs kapuk](h83002-syscr-modes.md).
+Ez előkészítés:FFFFF2 nem lett bekötve,a CPU rögzített profilja nem változott.
+Eredeti reset09 és kutatási CPU fix0B különböző byte,de azonos bit3 mód.
+Teljes86 CTest/87 Python PASS;célzott ASan/UBSan és szigorú fordítói figyelmeztetések PASS.
+528 fájl forrásauditja és229 licencjelölés PASS (nem jogi engedély).Végső CI/review függő.
+Új firmware/hangelfogadás nincs.
+A #138 dokumentáció beolvadt d547555c4c4f2df5271f18afd8d0041240776049,
+2026-10-30T12:11:48Z időpontban;négy CI-feladata sikeres.
+Egyszerre egy PR;következő:közös SYSCR-owner,azonnali filter/entry módváltás,
+NMI/függőIRQ/SLEEP/RTE/partíció tesztek,majd teljes gépreset.
+
 ## Dokumentáció-egyeztetés — 2026-10-30, #137 után
 
 Ellenőrzött main: `7ee6db8bc418f696e67f0ea17fcc8dade073e47d`.

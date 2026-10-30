@@ -1905,24 +1905,37 @@
         "msan": "pass",
         "mame": "not_run_docs_only"
       }
+    },
+    {
+      "pr": 138,
+      "title": "Reconcile development log and current M0 tasks after PR 137",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/138",
+      "kind": "documentation",
+      "status": "merged",
+      "merge_commit": "d547555c4c4f2df5271f18afd8d0041240776049",
+      "reviewed_head": "470e2f63c80f3f0402cc113ebe50161907b80c79",
+      "merged_at_utc": "2026-10-30T12:11:48Z",
+      "ci_runs": [
+        41049836718,
+        41049836677
+      ],
+      "automated_review_at_merge": "not_rechecked_in_this_increment"
     }
   ],
   "active_change": {
-    "branch": "docs/reconcile-development-records-137",
-    "scope": "Documentation reconciliation after #137; current M0 ordering and historical scope",
-    "status": "documentation_only",
-    "ci": "pending",
+    "branch": "feat/syscr-mode-contract",
+    "scope": "Standalone pure SYSCR mode contract;no CPU/MMIO integration",
+    "status": "local_validation_passed_ci_pending",
     "validation": {
-      "engine_changes": false,
-      "document_links_utf8": "pass",
-      "ledger_ancestry": "pass",
-      "ctest_python_inventory": "85/87",
-      "repository_audit": "pass",
-      "source_notice_coverage": "pass",
-      "runtime_tests": "not_rerun_documentation_only"
-    },
-    "pr": 138,
-    "url": "https://github.com/RobCZart82/yaman1x/pull/138"
+      "mode_ccr_cases": 65536,
+      "original_comparison_mismatches": 0,
+      "negative_control_failures": 8192,
+      "targeted_asan_ubsan": "pass",
+      "ctest_groups": 86,
+      "python_tests": 87,
+      "source_audit_files": 528,
+      "source_notice_files": 229
+    }
   },
   "pending_changes": []
 }
