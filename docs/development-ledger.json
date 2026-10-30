@@ -3,7 +3,7 @@
   "recorded_date": "2026-10-30",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "a8b0ca4c87478aa188b902ef997b7c88c284bbf8",
+  "baseline_commit": "efbf68fad922e7270fc60105a1e6947f972cee6a",
   "entries": [
     {
       "pr": 6,
@@ -1680,23 +1680,35 @@
         40991740016
       ],
       "automated_review_at_merge": "no_recorded_result_at_inspection"
+    },
+    {
+      "pr": 128,
+      "title": "Wire masked H83002 port9 into the timed AN1x bus",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/128",
+      "kind": "engine-integration",
+      "status": "merged",
+      "merge_commit": "efbf68fad922e7270fc60105a1e6947f972cee6a",
+      "reviewed_head": "00bff586f85f7a2b6d70c7648c57c91486eeddec",
+      "merged_at_utc": "2026-10-30T03:05:45Z",
+      "ci_runs": [
+        40993876811,
+        40993876814,
+        40993877026
+      ],
+      "validation": {
+        "ctest_groups_target": 81,
+        "python_tests_target": 87,
+        "original_port_operations": 200000,
+        "original_port_mismatches": 0,
+        "mask_mutation_failures": 199031,
+        "default_ddr_mutation_failures": 130,
+        "ctest_groups": 81,
+        "python_tests": 87,
+        "asan_ubsan": "gpio4_gpio6_gpio7_gpio8_gpio9_sci_pass"
+      },
+      "automated_review_at_merge": "no_recorded_result_at_inspection"
     }
   ],
-  "active_change": {
-    "branch": "feat/an1x-gpio9-bus",
-    "scope": "Port9 masked6-bit DDR/pins byte MMIO with independent owner",
-    "status": "local_validation_passed_ci_pending",
-    "validation": {
-      "ctest_groups_target": 81,
-      "python_tests_target": 87,
-      "original_port_operations": 200000,
-      "original_port_mismatches": 0,
-      "mask_mutation_failures": 199031,
-      "default_ddr_mutation_failures": 130,
-      "ctest_groups": 81,
-      "python_tests": 87,
-      "asan_ubsan": "gpio4_gpio6_gpio7_gpio8_gpio9_sci_pass"
-    }
-  },
+  "active_change": null,
   "pending_changes": []
 }

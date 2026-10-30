@@ -30,20 +30,16 @@ See [engine architecture decision](docs/ADR-0001-engine-boundary.md) and
 
 ## Current state
 
-Active candidate:[bounded GPIO9](docs/an1x-gpio9.md),81 CTest/87 Python locally PASS.
-GPIO4/6/7/8/9/SCI ASan/UBSan PASS;final-head CI/review pending;merged evidence below remains #126.
-
-Verified engine baseline: [#126](https://github.com/RobCZart82/yaman1x/pull/126),
-`a8b0ca4c87478aa188b902ef997b7c88c284bbf8`;tested head `32dcba307e72f2acfcffd494c890afbc2894c57f`.
-80 CTest groups/87 Python cases;CPU handlers unchanged:562 upstream-derived methods
+Verified engine baseline: [#128](https://github.com/RobCZart82/yaman1x/pull/128),
+`efbf68fad922e7270fc60105a1e6947f972cee6a`;tested head `00bff586f85f7a2b6d70c7648c57c91486eeddec`.
+81 CTest groups/87 Python cases;CPU handlers unchanged:562 upstream-derived methods
 (558 unchanged,four prior adaptations);264 selected/0 missing/135 excluded encoding rows.
-[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40990014063), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40990014152), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40990013951):all five jobs passed.
+[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40993876811), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40993876814), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40993877026):all five jobs passed.
 No recorded automated review result at inspection;none claimed. No open review threads.
-The port7 series is closed;port9 candidate above. [Read-only port7](docs/an1x-gpio7.md) adds byte input at FFFFCE,
-with separate owner,input identity/timestamps and all256 CPU value/flag cases tested.
-Input-only write guards and unsupported GPIO words remain explicit fail-closed boundaries.
-Next:port9 DDR/data with pinned default00/mask C0,then remaining GPIO groups.
-IRQ-control/SYSCR modes and full machine reset remain open.
+No active engine candidate. [Bounded port9](docs/an1x-gpio9.md) adds DDR/data byte MMIO,
+default00/mask C0,with separate owner and independent pin/cold-state/CPU tests.
+Next:portA DDR/data with pinned default00/mask00,then portB and explicit GPIO-word
+semantics. IRQ-control/SYSCR modes and full machine reset remain open.
 Full machine,LCD/DSP/MEG,physical timing,firmware/MIDI/PKS/audio and REAPER acceptance
 remain open. Full handler selection is not full CPU/machine acceptance.
 
