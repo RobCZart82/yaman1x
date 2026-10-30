@@ -1946,8 +1946,37 @@
         "source_notice_files": 229
       },
       "automated_review_at_merge": "no_recorded_result_at_inspection"
+    },
+    {
+      "pr": 140,
+      "title": "Close standalone SYSCR mode evidence and retain integration gates",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/140",
+      "kind": "documentation",
+      "status": "merged",
+      "merge_commit": "8c4ff354bfae8431b86ce39d6777e5e4876a6887",
+      "reviewed_head": "e0be2b4436e528043c72df554ac193c063cc5277",
+      "merged_at_utc": "2026-10-30T15:32:22Z",
+      "ci_runs": [
+        41078624382,
+        41078624426
+      ],
+      "automated_review_at_merge": "no_recorded_result_at_inspection"
     }
   ],
-  "active_change": null,
+  "active_change": {
+    "branch": "feat/shared-syscr",
+    "scope": "Shared CPU/host SYSCR01/09 with immediate IRQ filter and mode-dependent IRQ/TRAPA entry",
+    "status": "local_validation_passed_ci_pending",
+    "validation": {
+      "irq_nmi_partitions": 7712,
+      "trapa_ccr_cases": 512,
+      "sleep_mode_change_partitions": 241,
+      "generated_h8_h8h_selection": "locked_regenerated_match",
+      "ctest_groups": 87,
+      "python_tests": 87,
+      "targeted_asan_ubsan": "pass",
+      "fixed_mode_mutation_failures": 2056
+    }
+  },
   "pending_changes": []
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include "an1x_memory_map.h"
+#include "h83002_syscr_modes.h"
 #include "h8_digital_port.h"
 #include "sci_cycle_timeline.h"
 #include <utility>
@@ -20,6 +21,8 @@ public:
     An1xSciBus(const An1xSciBus&)=delete;
     An1xSciBus& operator=(const An1xSciBus&)=delete;
     H8hIrqController& irq(){return irq_;}
+    uint8_t syscr_value()const{return syscr_;}
+    void sync_cpu_ccr(uint8_t ccr){cpu_ccr_=ccr;irq_.set_filter(H83002SyscrModes::irq_filter(syscr_,ccr),-1);}
     bool failed()const{return failed_;}
     uint64_t cycle()const{return timeline_.cycle();}
     std::size_t consumed_input()const{return timeline_.consumed_input();}
@@ -30,8 +33,8 @@ public:
     void bus_cycle(uint64_t cycle){access([&]{advance(cycle);now_=timeline_.cycle();});}
     uint64_t next_bus_event()const{return deadline();}
     uint16_t read_instruction_word(uint32_t a){return access([&]{return memory_.read_instruction_word(a);});}
-    uint8_t read_byte(uint32_t raw){return access([&]{const auto a=raw&0xffffff;return H83002SciMmio::mapped(a)?sci_.read8(a):irq_mapped(a)?read_irq(a):gpio_mapped(a)?read_gpio(a):memory_.read_byte(a);});}
-    void write_byte(uint32_t raw,uint8_t v){access([&]{const auto a=raw&0xffffff;if(H83002SciMmio::mapped(a))sci_.write8(a,v,now_,*this);else if(irq_mapped(a))write_irq(a,v);else if(gpio_mapped(a))write_gpio(a,v);else memory_.write_byte(a,v);});}
+    uint8_t read_byte(uint32_t raw){return access([&]{const auto a=raw&0xffffff;return a==0xfffff2?syscr_:H83002SciMmio::mapped(a)?sci_.read8(a):irq_mapped(a)?read_irq(a):gpio_mapped(a)?read_gpio(a):memory_.read_byte(a);});}
+    void write_byte(uint32_t raw,uint8_t v){access([&]{const auto a=raw&0xffffff;if(a==0xfffff2){if(v!=1&&v!=9)throw std::logic_error("Unsupported SYSCR mode bits");syscr_=v;sync_cpu_ccr(cpu_ccr_);}else if(H83002SciMmio::mapped(a))sci_.write8(a,v,now_,*this);else if(irq_mapped(a))write_irq(a,v);else if(gpio_mapped(a))write_gpio(a,v);else memory_.write_byte(a,v);});}
     uint16_t read_word(uint32_t raw){return access([&]{const auto a=raw&0xffffff;if(H83002SciMmio::mapped(a))return sci_.read16(a);
         if(irq_mapped(a)||irq_mapped((a+1)&0xffffff)){
             require_irq_word(a);const auto high=read_irq(a);const auto low=read_irq(a+1);
@@ -123,6 +126,7 @@ private:
             throw std::runtime_error("AN1x SCI event budget exhausted");
         now_=timeline_.cycle();
     }
+    uint8_t syscr_=H83002SyscrModes::cold_value,cpu_ccr_=0x80;
     An1xMemoryMap memory_;
     H8DigitalPort port4_;
     H8DigitalPort port6_{0x80,0x80};
