@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "upstream_commit": "706dbb73281320c54d7c2f16262c1c3786f2be01",
+  "files": [
+    {
+      "path": "src/devices/cpu/h8/h8.cpp",
+      "bytes": 31776,
+      "sha256": "89826ddcf2ab4116942a83ce3138206091a635ed8994f61787e10c8cb9870e48",
+      "methods": [
+        {
+          "name": "h8_device::device_reset",
+          "bytes": 404,
+          "sha256": "ad1425bb6dd72079d40f9a2bf6bb339ce46ccb3c4a71d4f3466054ac78b15f80"
+        }
+      ]
+    },
+    {
+      "path": "src/devices/cpu/h8/h83002.cpp",
+      "bytes": 16657,
+      "sha256": "2b422dc4081700cccc27d3a6f62307ae5f138f4f601181015ff1d6605ecf1e92",
+      "methods": [
+        {
+          "name": "h83002_device::device_reset",
+          "bytes": 84,
+          "sha256": "9905c8d421d1008e4fae125669df89da4a6ec20dc12f521ee18129aaa5d6d5b0"
+        }
+      ]
+    },
+    {
+      "path": "src/devices/cpu/h8/h8_intc.cpp",
+      "bytes": 11802,
+      "sha256": "60d55cf124ed5ece134ca952c2c26fe4f71821a0f0fcac7afb9cdb9ed01d7111",
+      "methods": [
+        {
+          "name": "h8_intc_device::device_reset",
+          "bytes": 240,
+          "sha256": "c051572709425f98b24980b3973a580a0333dc988c9c174417445dcf693473dc"
+        },
+        {
+          "name": "h8h_intc_device::device_reset",
+          "bytes": 92,
+          "sha256": "67f70fc11298660be2ed2572d25588df7c2d013b95866166877225213dfe4ca3"
+        }
+      ]
+    },
+    {
+      "path": "src/devices/cpu/h8/h8_sci.cpp",
+      "bytes": 21413,
+      "sha256": "5e5bd1e0e268919d98a8983ce141bdbbbd8831dbb3c2446e46b728ee66bcb7ad",
+      "methods": [
+        {
+          "name": "h8_sci_device::device_reset",
+          "bytes": 457,
+          "sha256": "cd90144962e9deaac388a8aecb9b5114c74f2086eeec4931a8e8c6ac2c0071fd"
+        }
+      ]
+    },
+    {
+      "path": "src/devices/cpu/h8/h8_port.cpp",
+      "bytes": 3002,
+      "sha256": "c767e444bebcfb849d0cf225bb8a94e8eec481d62a75c1b554d36a8eda5114ca",
+      "methods": [
+        {
+          "name": "h8_port_device::device_reset",
+          "bytes": 57,
+          "sha256": "00a9185a608298de5acba4ae707727e6ad42551e422ce0520316572796209042"
+        }
+      ]
+    }
+  ],
+  "scope": "Six original device_reset method identities only;not execution,global ordering,generated CPU reset,hardware fidelity or RAM retention proof."
+}

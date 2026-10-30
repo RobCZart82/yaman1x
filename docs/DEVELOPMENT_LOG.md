@@ -3,6 +3,20 @@
 Frissítve: 2026-10-30. Időzóna: Europe/Budapest.
 Ellenőrzött motoralap: `301eec75c72028b8f377ee4e099fce0b1df4de5e` (#143).
 
+## Aktív kutatási lépés — rögzített melegreset-szerződés, 2026-10-30
+
+Öt eredeti forrásfájl/hat device_reset módszer SHA256-azonossága reprodukálható
+archívumellenőrzővel rögzítve. GPIO csak kimenetet frissít,SCI magas clock/TX-et
+publikál,IRQ törlés után szintbemenetet újraértékel;nem általános nullázás.
+[Mátrix és nyitott implementációs kapuk](h83002-warm-reset-contract.md).
+Ez forráskutatás,nem melegreset-API vagy teljesgép/hardveregyezés.
+Négy új független Python kontroll;teljes91 Python PASS. Motorkód nem változott;
+a korábbi88 CTest/87 Python bizonyíték #143-hoz tartozik,nem újrafuttatott eredmény.
+A #144 beolvadt9ddf040ec03ffe298dfdfcc259330c99ff1e570a,2026-10-30T21:52:30Z;
+négy CI sikeres,automatikus review-eredmény nem volt rögzítve.
+Következő:generált CPU-reset/runner és eszköz-reset-sorrend/időszabály ellenőrzése,
+majd aktív SCI/IRQ/GPIO megőrzési és eseményközlési tesztek;teljes reset még nyitott.
+
 ## Aktuális lezárás — #143 hideg kutatási életciklus, 2026-10-30
 
 Beolvadt `301eec75c72028b8f377ee4e099fce0b1df4de5e`,tesztelt head `d2da27c15c8ebf8c083f35bb4a2cef18eba4d8c4`.

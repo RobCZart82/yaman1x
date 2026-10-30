@@ -2028,8 +2028,34 @@
         "targeted_asan_ubsan": "pass"
       },
       "automated_review_at_merge": "no_recorded_result_at_inspection"
+    },
+    {
+      "pr": 144,
+      "title": "Close cold lifecycle evidence and separate warm reset acceptance",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/144",
+      "kind": "documentation",
+      "status": "merged",
+      "merge_commit": "9ddf040ec03ffe298dfdfcc259330c99ff1e570a",
+      "reviewed_head": "7e14c19938db9b854c9b1b35a6a1fffc2ea5e714",
+      "merged_at_utc": "2026-10-30T21:52:30Z",
+      "ci_runs": [
+        41132053325,
+        41132053268
+      ],
+      "automated_review_at_merge": "no_recorded_result_at_inspection"
     }
   ],
-  "active_change": null,
+  "active_change": {
+    "branch": "research/warm-reset-contract",
+    "scope": "Pinned reset method identities and method-local retention/publication matrix;no engine API change",
+    "status": "local_validation_passed_ci_pending",
+    "validation": {
+      "pinned_source_files": 5,
+      "reset_methods": 6,
+      "python_tests": 91,
+      "runtime_tests": "not_rerun_research_only",
+      "engine_baseline": "#143"
+    }
+  },
   "pending_changes": []
 }
