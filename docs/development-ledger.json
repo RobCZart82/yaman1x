@@ -3,7 +3,7 @@
   "recorded_date": "2026-10-30",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "7fe1d4bcb602ce96d40f34ec4ccd888430bf70e0",
+  "baseline_commit": "6f9e8b8f66d962e968af8d6f9cd4135d2c4d1ab3",
   "entries": [
     {
       "pr": 6,
@@ -1465,21 +1465,30 @@
         40965878872
       ],
       "automated_review_at_merge": "no_recorded_result_at_inspection"
+    },
+    {
+      "pr": 118,
+      "title": "Compose timed SCI and IRQ with the AN1x ROM and RAM bus",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/118",
+      "kind": "engine-integration",
+      "status": "merged",
+      "merge_commit": "6f9e8b8f66d962e968af8d6f9cd4135d2c4d1ab3",
+      "reviewed_head": "85baf0a93896468e35f019845d9f9116763ecb29",
+      "merged_at_utc": "2026-10-29T23:46:23Z",
+      "ci_runs": [
+        40973239180,
+        40973239137,
+        40973239160
+      ],
+      "validation": {
+        "ctest_groups": 76,
+        "python_tests": 87,
+        "asan_ubsan": "targeted_pass",
+        "deadline_mutation_failures": 2738
+      },
+      "automated_review_at_merge": "no_recorded_result_at_inspection"
     }
   ],
-  "active_change": {
-    "branch": "feat/an1x-sci-bus",
-    "scope": "Owned ROM/RAM+SCI/IRQ timed host composition with copied RX schedule and fail-stop callbacks",
-    "status": "local_validation_passed_ci_pending",
-    "ci": "not_run",
-    "validation": {
-      "ctest_groups": 76,
-      "python_tests": 87,
-      "asan_ubsan": "targeted_pass",
-      "deadline_mutation_failures": 2738,
-      "source_audit_files": 507,
-      "source_notice_files": 229
-    }
-  },
+  "active_change": null,
   "pending_changes": []
 }

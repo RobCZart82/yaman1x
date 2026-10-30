@@ -1,6 +1,6 @@
 # Timed SCI composition on the AN1x memory map
 
-Recorded:2026-10-30. Merged baseline:#116;current increment is a candidate.
+Recorded:2026-10-30. Merged #118 as `6f9e8b8f66d962e968af8d6f9cd4135d2c4d1ab3`;tested head `85baf0a93896468e35f019845d9f9116763ecb29`.
 
 ## Ownership and scheduling contract
 
@@ -63,6 +63,6 @@ tracked code unchanged.
 Existing source-level original MAME comparisons remain component evidence;this
 is a new synthetic composition check,not full-machine MAME equivalence.
 
-Full76 CTest and87 Python PASS;targeted ASan/UBSan PASS. Linux CI includes this target under UBSan. Own final-head
-CI/review pending. GPIO/IRQ-control/LCD/DSP/MEG wiring,complete reset/isolation,
+Full76 CTest and87 Python PASS;targeted ASan/UBSan PASS. Linux CI includes this target under UBSan. Own final-head CI:all five checks PASS (runs40973239180,40973239137,40973239160).
+No recorded automated review result at inspection;none claimed. GPIO/IRQ-control/LCD/DSP/MEG wiring,complete reset/isolation,
 physical timing,firmware/MIDI/PKS,audio and plugin/REAPER acceptance remain open.
