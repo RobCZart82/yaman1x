@@ -3,7 +3,7 @@
   "recorded_date": "2026-10-30",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "7aaa8d0178e06b8161c8508cda1cebdb20e2c072",
+  "baseline_commit": "eba55a2367f9cc5e319b4f3f26049fe4da55af16",
   "entries": [
     {
       "pr": 6,
@@ -1961,21 +1961,44 @@
         41078624426
       ],
       "automated_review_at_merge": "no_recorded_result_at_inspection"
+    },
+    {
+      "pr": 141,
+      "title": "Share bounded SYSCR modes between AN1x MMIO and CPU IRQ entry",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/141",
+      "kind": "engine-integration",
+      "status": "merged",
+      "merge_commit": "eba55a2367f9cc5e319b4f3f26049fe4da55af16",
+      "reviewed_head": "d50532a812abd23a65a2aafaf24f28ea815c0217",
+      "merged_at_utc": "2026-10-30T16:23:15Z",
+      "ci_runs": [
+        41085891561,
+        41085891536,
+        41085891444
+      ],
+      "validation": {
+        "irq_nmi_partitions": 7712,
+        "trapa_ccr_cases": 512,
+        "sleep_mode_change_partitions": 241,
+        "generated_h8_h8h_selection": "locked_regenerated_match",
+        "ctest_groups": 87,
+        "python_tests": 87,
+        "targeted_asan_ubsan": "pass",
+        "fixed_mode_mutation_failures": 2056
+      },
+      "automated_review_at_merge": "no_recorded_result_at_inspection"
     }
   ],
   "active_change": {
-    "branch": "feat/shared-syscr",
-    "scope": "Shared CPU/host SYSCR01/09 with immediate IRQ filter and mode-dependent IRQ/TRAPA entry",
-    "status": "local_validation_passed_ci_pending",
+    "pr": 142,
+    "branch": "docs/close-shared-syscr",
+    "scope": "Close shared SYSCR evidence and migrate cancelled macOS14 workflows to15",
+    "status": "candidate_ci_pending",
     "validation": {
-      "irq_nmi_partitions": 7712,
-      "trapa_ccr_cases": 512,
-      "sleep_mode_change_partitions": 241,
-      "generated_h8_h8h_selection": "locked_regenerated_match",
-      "ctest_groups": 87,
-      "python_tests": 87,
-      "targeted_asan_ubsan": "pass",
-      "fixed_mode_mutation_failures": 2056
+      "previous_head_macos": "cancelled_scheduled_brownout_twice",
+      "required_check_name": "build-and-test (macos-14)",
+      "actual_macos_runner": "macos-15",
+      "research_xcode": "16.2 retained"
     }
   },
   "pending_changes": []

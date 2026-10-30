@@ -26,7 +26,7 @@ concurrency:
 
 jobs:
   research-macos:
-    runs-on: macos-14
+    runs-on: macos-15
     timeout-minutes: 60
     env:
       DEVELOPER_DIR: /Applications/Xcode_16.2.app/Contents/Developer

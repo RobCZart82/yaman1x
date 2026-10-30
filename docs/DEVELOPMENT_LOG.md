@@ -1,23 +1,37 @@
 # YamAN1x fejlesztési napló
 
 Frissítve: 2026-10-30. Időzóna: Europe/Budapest.
-Ellenőrzött motoralap: `7aaa8d0178e06b8161c8508cda1cebdb20e2c072` (#136).
+Ellenőrzött motoralap: `eba55a2367f9cc5e319b4f3f26049fe4da55af16` (#141).
 
-## Aktív motorlépés — közös SYSCR01/09, 2026-10-30
+## CI-javítás — macOS14 kivezetése, 2026-10-30
 
-FFFFF2 saját buszállapot,CPU közös módolvasás és CCR-szinkron az IRQ-ownerhez.
-Csak01/09 engedélyezett;egyéb254 byte és F2/F3 szó fail-closed. Legacy host fix0B marad.
-7712 IRQ/NMI/mód/prioritás-partíció,512 TRAPA CCR-eset és241 SLEEP közbeni módváltás PASS.
-Az előző köztes beszámoló15424 darabszáma téves volt:a tényleges mátrix7712.
-IRQ RTE/CCR/SP,azonnali függőIRQ-filterváltás és NMI ellenőrizve.
-A TRAPA-fixture eredeti visszatérési cím miatti ismétlődését ISR-beli megállással
-javítottuk;CPU-utasítást nem változtattunk emiatt.
-[Hatókör és források](an1x-syscr.md). Generált H8/H8H-törzsek újragenerált lockkal egyeznek.
-Teljes87 CTest/87 Python és célzott ASan/UBSan PASS.530 fájl forrásauditja és229
-licencjelölés PASS (nem jogi engedély). Fix CPU-módra visszaállított próbahiba2056
-elvárt kudarc. Végső CI/review függő;teljes reset és firmware/hangelfogadás nincs kész.
-A #140 dokumentáció beolvadt8c4ff354bfae8431b86ce39d6777e5e4876a6887,
-2026-10-30T15:32:22Z;négy CI sikeres,automatikus review-eredmény nem volt rögzítve.
+A #142 macOS-feladata és célzott újrafuttatása a GitHub tervezett brownoutja miatt
+megszakadt,nem fordítási/teszthiba miatt. A futtató2026-11-02 dátummal megszűnik.
+Mindkét aktív workflow macos-15-re vált. A kötelező check történeti neve
+`build-and-test (macos-14)` marad a ruleset25910947 kompatibilitása miatt;
+a tényleges runner macos-15,a teljes tesztlépések változatlanok. Nincs szabálymegkerülés.
+A MAME-kutató build Xcode16.2 rögzítése marad:a macOS15 hivatalos képe tartalmazza.
+Új CI/review az új headen szükséges;korábbi zöldek nem igazolják az új workflowt.
+Forrás:https://github.com/actions/runner-images/issues/13518
+Kép:https://github.com/actions/runner-images/blob/main/images/macos/macos-15-Readme.md
+
+## Aktuális lezárás — #141 közös SYSCR, 2026-10-30
+
+A #141 beolvadt `eba55a2367f9cc5e319b4f3f26049fe4da55af16`,tesztelt head `d50532a812abd23a65a2aafaf24f28ea815c0217`.
+Időpont:2026-10-30 17:23:15 Europe/Budapest (16:23:15 UTC).
+[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/41085891561),
+[MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/41085891536),
+[MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/41085891444):mind az öt feladat sikeres.
+Automatikus review-eredmény nem volt rögzítve;nincs sikeres review-állítás.
+87 CTest/87 Python és célzott ASan/UBSan PASS;7712 IRQ/NMI-partíció,512 TRAPA CCR-eset,
+241 SLEEP közbeni módváltás PASS. Fix módra visszaállított próbahiba2056 elvárt kudarc.
+[Hatókör](an1x-syscr.md):csak01/09,közös owner,azonnali filter,helyes IRQ/TRAPA-belépés.
+Generált H8/H8H-törzsek újragenerált lockkal egyeznek;562 módszer/264 kiválasztott sor változatlan.
+A korábbi15424-es köztes darabszámot7712-re javítottuk;az integrációs teszt ezt igazolja.
+Nincs aktív motorjelölt. Következő:explicit reset-életciklus,owner-állapotok,NVRAM-megőrzés,
+idő/bemeneti sor kezelése,ismételt reset és hibás owner kezelése független tesztekkel.
+Teljes gépreset,firmware/MIDI/PKS/DSP/hang/REAPER továbbra is nyitott.
+Új motorlépés a lezáró dokumentáció beolvadása után indulhat.
 
 ## Lezárt előkészítő lépés — #139 SYSCR módlogika, 2026-10-30
 
