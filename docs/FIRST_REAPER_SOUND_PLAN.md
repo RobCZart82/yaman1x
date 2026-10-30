@@ -29,7 +29,7 @@ frissíti az M0 elavult 31 hiányzó kódolássoros feladatát (jelenleg 264 kiv
 Helyi ellenőrzés: UTF-8 és belső linkek, JSON/egyedi PR-azonosítók/merge-ősök,
 85 CTest/87 Python leltár, forrásaudit és licencértesítés-lefedettség PASS.
 A futásidejű teszteket ehhez a kizárólag dokumentációs javításhoz nem futtattuk újra.
-A javítás saját PR-ellenőrzései a PR-en követhetők; az itt hivatkozott korábbi CI
+A javítás saját [#138 PR-ellenőrzései](https://github.com/RobCZart82/yaman1x/pull/138) ott követhetők; az itt hivatkozott korábbi CI
 nem ennek az új dokumentációs változatnak az eredménye.
 
 ## Legutóbbi motorlezárás — #136, 2026-10-30
