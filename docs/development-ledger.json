@@ -3,7 +3,7 @@
   "recorded_date": "2026-10-30",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "73a5b5cac78617216901f9db19736902ccd1d0a1",
+  "baseline_commit": "a8b0ca4c87478aa188b902ef997b7c88c284bbf8",
   "entries": [
     {
       "pr": 6,
@@ -1639,22 +1639,34 @@
       "automated_review_url": "https://github.com/RobCZart82/yaman1x/pull/125#issuecomment-6512923768",
       "automated_review_completed_at": "2026-10-30T01:48:11.232193Z",
       "security_review_at_merge": "no_recorded_result"
+    },
+    {
+      "pr": 126,
+      "title": "Wire read-only H83002 port7 into the timed AN1x bus",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/126",
+      "kind": "engine-integration",
+      "status": "merged",
+      "merge_commit": "a8b0ca4c87478aa188b902ef997b7c88c284bbf8",
+      "reviewed_head": "32dcba307e72f2acfcffd494c890afbc2894c57f",
+      "merged_at_utc": "2026-10-30T02:25:44Z",
+      "ci_runs": [
+        40990014063,
+        40990014152,
+        40990013951
+      ],
+      "validation": {
+        "ctest_groups_target": 80,
+        "python_tests_target": 87,
+        "original_port_reads": 200000,
+        "original_port_mismatches": 0,
+        "wrong_port_mutation_failures": 769,
+        "ctest_groups": 80,
+        "python_tests": 87,
+        "asan_ubsan": "gpio4_gpio6_gpio7_gpio8_sci_pass"
+      },
+      "automated_review_at_merge": "no_recorded_result_at_inspection"
     }
   ],
-  "active_change": {
-    "branch": "feat/an1x-gpio7-bus",
-    "scope": "Read-only port7 byte input MMIO with separate owner on timed bus",
-    "status": "local_validation_passed_ci_pending",
-    "validation": {
-      "ctest_groups_target": 80,
-      "python_tests_target": 87,
-      "original_port_reads": 200000,
-      "original_port_mismatches": 0,
-      "wrong_port_mutation_failures": 769,
-      "ctest_groups": 80,
-      "python_tests": 87,
-      "asan_ubsan": "gpio4_gpio6_gpio7_gpio8_sci_pass"
-    }
-  },
+  "active_change": null,
   "pending_changes": []
 }

@@ -1,24 +1,29 @@
 # YamAN1x fejlesztési napló
 
 Frissítve: 2026-10-30. Időzóna: Europe/Budapest.
-Ellenőrzött motoralap: `73a5b5cac78617216901f9db19736902ccd1d0a1` (#124).
+Ellenőrzött motoralap: `a8b0ca4c87478aa188b902ef997b7c88c284bbf8` (#126).
 
-## Aktív fejlesztési lépés — csak olvasható port7, 2026-10-30
+## Aktuális lezárás — #126, 2026-10-30
 
-Jelölt:80 CTest/87 Python. FFFFCE pinolvasás,saját változatlan portmodell DDR00/maszk00.
-256 közvetlen bemenet,256 CPU-érték/flag eset és161 időbeli szétvágás PASS.
-Portazonosító/időbélyeg,port4/6/8 és géppéldány-izoláció,bemeneti jelleg,
-readonly írás/szóhozzáférés elutasítása,hiányzó callback és reentry tesztelve.
-Eredeti rögzített MAME-port:200000 olvasás,0 eltérés;rossz porthoz irányító próbahiba769
-elvárt kudarc. [Forrásazonosság és korlátok](an1x-gpio7.md).
-Teljes80 CTest/87 Python és GPIO4/6/7/8/SCI ASan/UBSan PASS.
-515 fájl forrásauditja és229 licencjelölés PASS (nem jogi engedély);végső CI/review függő. Port7+8 szóolvasás még nem támogatott.
-A #125 dokumentáció beolvadt `099e53d5207222caa1445ab84670c8904c22727a`:
-2026-10-30 03:05:39 Europe/Budapest (02:05:39 UTC),négy sikeres ellenőrzés;
-az ellenőrzött head kódreview-ja completed,nincs finding.
-Egyszerre egy PR;a következő motorlépés csak beolvadás után indul.
+A [#126 PR](https://github.com/RobCZart82/yaman1x/pull/126) beolvadt:
+merge `a8b0ca4c87478aa188b902ef997b7c88c284bbf8`,tesztelt head `32dcba307e72f2acfcffd494c890afbc2894c57f`.
+Időpont:2026-10-30 03:25:44 Europe/Budapest (02:25:44 UTC).
+[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40990014063), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40990014152), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40990013951):mind az öt feladat sikeres.
+Nyitott review-szál és rögzített automatikus review-eredmény nincs;
+sikeres automatikus review-t nem állítunk. A két macOS notice kapacitási tájékoztatás.
 
-## Aktuális lezárás — #124, 2026-10-30
+Beolvadt:**80 CTest/87 Python**. Port7 FFFFCE csak bemenet,DDR00/maszk00;
+256 közvetlen érték,256 CPU-érték/flag és161 időbeli szétvágás PASS.
+Port4/6/8/machine izoláció,portazonosító/időbélyeg,readonly írás,szóhozzáférési határ,
+hiányzó callback és reentry ellenőrizve. Eredeti MAME:200000 olvasás,0 eltérés.
+Rossz porthoz irányító próbahiba769 elvárt kudarc. GPIO4/6/7/8/SCI ASan/UBSan PASS.
+515 fájl forrásauditja és229 licencjelölés PASS (nem jogi engedély).
+[Forrásazonosság és korlátok](an1x-gpio7.md). Nincs aktív motorjelölt.
+Következő:port9 DDR/adat,alap00/maszk C0;majd a többi GPIO-csoport.
+Port7+8 szóolvasás,IRQ/SYSCR,teljes gépreset,firmware/MIDI/PKS/DSP/hang/REAPER nyitott.
+Soros munka:új motorlépés csak a lezáró dokumentáció beolvadása után indul.
+
+## Történeti lezárás — #124, 2026-10-30
 
 A [#124 PR](https://github.com/RobCZart82/yaman1x/pull/124) beolvadt:
 merge `73a5b5cac78617216901f9db19736902ccd1d0a1`,tesztelt head `33a7a85fc92252d949a7f3867e2d80bbe5b165a8`.

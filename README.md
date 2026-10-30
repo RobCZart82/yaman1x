@@ -30,21 +30,17 @@ See [engine architecture decision](docs/ADR-0001-engine-boundary.md) and
 
 ## Current state
 
-Active candidate:[read-only GPIO7](docs/an1x-gpio7.md),80 CTest/87 Python locally PASS.
-GPIO4/GPIO6/GPIO7/GPIO8/SCI ASan/UBSan PASS;final-head CI/review pending;merged evidence below remains #124.
-
-Verified engine baseline: [#124](https://github.com/RobCZart82/yaman1x/pull/124),
-`73a5b5cac78617216901f9db19736902ccd1d0a1`;tested head `33a7a85fc92252d949a7f3867e2d80bbe5b165a8`.
-79 CTest groups/87 Python cases;CPU handlers unchanged:562 upstream-derived methods
+Verified engine baseline: [#126](https://github.com/RobCZart82/yaman1x/pull/126),
+`a8b0ca4c87478aa188b902ef997b7c88c284bbf8`;tested head `32dcba307e72f2acfcffd494c890afbc2894c57f`.
+80 CTest groups/87 Python cases;CPU handlers unchanged:562 upstream-derived methods
 (558 unchanged,four prior adaptations);264 selected/0 missing/135 excluded encoding rows.
-[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40986127930), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40986127955), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40986127919):all five jobs passed.
-[Automated code review](https://github.com/RobCZart82/yaman1x/pull/124#issuecomment-6512683713) completed on the exact tested head with no findings.
-No security review result recorded.
-The port8 series is closed;port7 candidate above. [Bounded masked port8](docs/an1x-gpio8.md) adds DDR/pins byte MMIO
-with default F0/mask E0 and separate owner alongside port4/port6. Pin truth tables,
-cold bit4 output,callback identity/time/suppression,isolation and CPU partitions pass.
-Next:read-only port7 at FFFFCE,with independent input/ownership/CPU tests;then
-remaining GPIO groups. IRQ-control/SYSCR modes and full machine reset remain open.
+[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40990014063), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40990014152), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40990013951):all five jobs passed.
+No recorded automated review result at inspection;none claimed. No open review threads.
+No active engine candidate. [Read-only port7](docs/an1x-gpio7.md) adds byte input at FFFFCE,
+with separate owner,input identity/timestamps and all256 CPU value/flag cases tested.
+Input-only write guards and unsupported GPIO words remain explicit fail-closed boundaries.
+Next:port9 DDR/data with pinned default00/mask C0,then remaining GPIO groups.
+IRQ-control/SYSCR modes and full machine reset remain open.
 Full machine,LCD/DSP/MEG,physical timing,firmware/MIDI/PKS/audio and REAPER acceptance
 remain open. Full handler selection is not full CPU/machine acceptance.
 
