@@ -1987,18 +1987,36 @@
         "fixed_mode_mutation_failures": 2056
       },
       "automated_review_at_merge": "no_recorded_result_at_inspection"
+    },
+    {
+      "pr": 142,
+      "title": "Migrate macOS CI to15 and close shared SYSCR evidence",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/142",
+      "kind": "infrastructure-and-documentation",
+      "status": "merged",
+      "merge_commit": "8e855431cd0dd7fb2ca214705f5db1d859dc1f24",
+      "reviewed_head": "09a321a57baf55a86e47c6ec193cee78af7acd48",
+      "merged_at_utc": "2026-10-30T20:18:35Z",
+      "ci_runs": [
+        41119202872,
+        41119202659,
+        41119202639
+      ],
+      "automated_review_at_merge": "no_recorded_result_at_inspection"
     }
   ],
   "active_change": {
-    "pr": 142,
-    "branch": "docs/close-shared-syscr",
-    "scope": "Close shared SYSCR evidence and migrate cancelled macOS14 workflows to15",
-    "status": "candidate_ci_pending",
+    "branch": "feat/research-machine-lifecycle",
+    "scope": "Owned cold epoch reconstruction with explicit NVRAM/time/RX policy,not hardware warm reset",
+    "status": "local_validation_passed_ci_pending",
     "validation": {
-      "previous_head_macos": "cancelled_scheduled_brownout_twice",
-      "required_check_name": "build-and-test (macos-14)",
-      "actual_macos_runner": "macos-15",
-      "research_xcode": "16.2 retained"
+      "restart_cut_points": 401,
+      "nvram_pattern_bytes": 262144,
+      "repeat_preserve_epochs": 8,
+      "missing_nvram_reload_mutation_failures": 410,
+      "ctest_groups": 88,
+      "python_tests": 87,
+      "targeted_asan_ubsan": "pass"
     }
   },
   "pending_changes": []
