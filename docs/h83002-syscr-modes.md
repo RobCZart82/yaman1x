@@ -1,6 +1,7 @@
-# H83002 SYSCR mode contract — standalone candidate
+# H83002 SYSCR mode contract — standalone merged preparation
 
-Recorded:2026-10-30;engine baseline #136,documentation baseline #138.
+Recorded:2026-10-30;integrated engine baseline #136. Merged #139 as `b84d3b20bbef1f51a14af64da1a57df9f5cf2a88`;tested head `4d5ca9ba548cd4b3c3547ba191c2660daeebfce4`.
+All five CI jobs PASS:41072881939/41072881943/41072882034. No recorded automated review result;none claimed.
 `H83002SyscrModes` is a project-owned pure contract,not CPU/host integration.
 FFFFF2 remains unmapped;the CPU still uses its fixed profile. No reset,standby,
 MMIO storage,firmware or audio acceptance is added.

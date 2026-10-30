@@ -1920,22 +1920,34 @@
         41049836677
       ],
       "automated_review_at_merge": "not_rechecked_in_this_increment"
+    },
+    {
+      "pr": 139,
+      "title": "Define independently tested H83002 SYSCR mode contract",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/139",
+      "kind": "engine-preparation",
+      "status": "merged",
+      "merge_commit": "b84d3b20bbef1f51a14af64da1a57df9f5cf2a88",
+      "reviewed_head": "4d5ca9ba548cd4b3c3547ba191c2660daeebfce4",
+      "merged_at_utc": "2026-10-30T15:12:00Z",
+      "ci_runs": [
+        41072881939,
+        41072881943,
+        41072882034
+      ],
+      "validation": {
+        "mode_ccr_cases": 65536,
+        "original_comparison_mismatches": 0,
+        "negative_control_failures": 8192,
+        "targeted_asan_ubsan": "pass",
+        "ctest_groups": 86,
+        "python_tests": 87,
+        "source_audit_files": 528,
+        "source_notice_files": 229
+      },
+      "automated_review_at_merge": "no_recorded_result_at_inspection"
     }
   ],
-  "active_change": {
-    "branch": "feat/syscr-mode-contract",
-    "scope": "Standalone pure SYSCR mode contract;no CPU/MMIO integration",
-    "status": "local_validation_passed_ci_pending",
-    "validation": {
-      "mode_ccr_cases": 65536,
-      "original_comparison_mismatches": 0,
-      "negative_control_failures": 8192,
-      "targeted_asan_ubsan": "pass",
-      "ctest_groups": 86,
-      "python_tests": 87,
-      "source_audit_files": 528,
-      "source_notice_files": 229
-    }
-  },
+  "active_change": null,
   "pending_changes": []
 }
