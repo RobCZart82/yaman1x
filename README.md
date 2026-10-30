@@ -19,7 +19,7 @@ ctest --test-dir build -C Release --output-on-failure
 python3 tools/repository_audit.py
 ```
 
-The source-only build defines **84 CTest groups and 87 Python cases**. Tests generate synthetic
+The source-only build defines **85 CTest groups and 87 Python cases**. Tests generate synthetic
 programs/banks in temporary directories. The two upstream tests that require
 Yamaha images are not part of this suite. ROM-free GitHub Actions checks this suite on Linux x64, macOS Apple Silicon and
 Windows x64; see the current status below for tested revisions.
@@ -38,7 +38,7 @@ Verified engine baseline: [#134](https://github.com/RobCZart82/yaman1x/pull/134)
 [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/41020299832),
 [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/41020299487):all five jobs passed.
 No recorded automated review result at inspection;none claimed.
-No active engine candidate. [Bounded GPIO words](docs/an1x-gpio-words.md) add
+Active candidate:[IRQ register MMIO](docs/an1x-irq-mmio.md),85 CTest/87 Python;final-head CI pending. Merged evidence above remains #134. [Bounded GPIO words](docs/an1x-gpio-words.md) add
 fully mapped CE/D0/D2 reads and D0/D2 writes. Preflight rejects holes/odd/read-only
 writes;high-before-low same-timestamp ordering is an explicit software policy.
 Lane callback failures/reentry stop later effects and poison the bus;no rollback.

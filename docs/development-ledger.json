@@ -1839,8 +1839,39 @@
         "linux_ubsan": "pass"
       },
       "automated_review_at_merge": "no_recorded_result_at_inspection"
+    },
+    {
+      "pr": 135,
+      "title": "Close GPIO word CI evidence and advance plan to IRQ and SYSCR",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/135",
+      "kind": "documentation",
+      "status": "merged",
+      "merge_commit": "c8cc8c0707a919d86b24d544fe818acd89227d42",
+      "reviewed_head": "7b7b010b8e50c8b4ea685dee47e2fb5381cd052f",
+      "merged_at_utc": "2026-10-30T08:04:55Z",
+      "ci_runs": [
+        41022302584,
+        41022302611
+      ]
     }
   ],
-  "active_change": null,
+  "active_change": {
+    "branch": "feat/an1x-irq-register-mmio",
+    "scope": "Mapped H83002 IRQ registers,word preflight,fixed SYSCR profile retained",
+    "status": "local_validation_passed",
+    "ci": "not_run",
+    "validation": {
+      "ctest_groups_target": 85,
+      "python_tests_target": 87,
+      "local_ctest_passed": 84,
+      "local_python_passed": 86,
+      "local_exclusion": "Windows symlink privilege case",
+      "original_irq_mapped_operations": 200000,
+      "original_mismatches": 0,
+      "reversed_icr_offset_mismatches": 150185,
+      "wrong_ier_route_mismatches": 199554,
+      "local_sanitizers": "not_run"
+    }
+  },
   "pending_changes": []
 }

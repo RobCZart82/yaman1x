@@ -73,3 +73,5 @@ Merged #132 [portB byte MMIO](an1x-gpiob.md) extends this map. Earlier omissions
 GPIO word semantics, IRQ/SYSCR and other peripheral wiring remain open.
 
 Merged #134 follow-up:[bounded GPIO word accesses](an1x-gpio-words.md);earlier word exclusions describe the merged byte-only increments.
+
+Follow-up candidate:[AN1x mapped IRQ registers](an1x-irq-mmio.md). Earlier IRQ-MMIO omissions describe the original component/integration increment. SYSCR and full reset remain open.
