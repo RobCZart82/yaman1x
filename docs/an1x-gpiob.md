@@ -1,7 +1,7 @@
 # AN1x bounded portB byte MMIO
 
-Recorded:2026-10-30. Candidate based on merged #131 (`44b71479d79073799820ef2502fe078b192a2da6`),
-engine baseline #130. Final-head CI/review and merge pending.
+Recorded:2026-10-30. Merged #132 as `5ac2585e9b84497764f1fe0e2bbf426bbbab84a6`;
+tested head `66f480ea43b73551e934ec6528ca1dae4a5c5171`.
 
 ## Pinned facts and scope
 
@@ -45,7 +45,8 @@ CPU/generated inventory unchanged:562 methods (558 unchanged/four prior adaptati
 264 selected/0 missing/135 excluded encoding rows;not full CPU/machine acceptance.
 Full candidate suite83 CTest/87 Python cases. Release build and82 locally runnable
 CTest groups/86 Python cases PASS;one established Windows symlink privilege case
-excluded. Full platform CI remains pending. Four documentation corrections also
+excluded. All five final-head CI jobs and Linux UBSan PASS. Runs41009924793/41009924918/41009924833.
+No recorded automated review result at inspection;none claimed. Four documentation corrections also
 update the central IR size,historical SLEEP/GPIO limits and README build count.
 
 ## Original comparison and mutation controls

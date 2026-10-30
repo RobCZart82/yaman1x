@@ -3,7 +3,7 @@
   "recorded_date": "2026-10-30",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "fc9b483dcdd6c33385c1225303a0c0f2f0d7477c",
+  "baseline_commit": "5ac2585e9b84497764f1fe0e2bbf426bbbab84a6",
   "entries": [
     {
       "pr": 6,
@@ -1763,25 +1763,39 @@
         40999273207,
         40999273292
       ]
+    },
+    {
+      "pr": 132,
+      "title": "Wire portB byte MMIO and refresh audited development documentation",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/132",
+      "kind": "engine-integration",
+      "status": "merged",
+      "merge_commit": "5ac2585e9b84497764f1fe0e2bbf426bbbab84a6",
+      "reviewed_head": "66f480ea43b73551e934ec6528ca1dae4a5c5171",
+      "merged_at_utc": "2026-10-30T05:59:33Z",
+      "ci_runs": [
+        41009924793,
+        41009924918,
+        41009924833
+      ],
+      "validation": {
+        "ctest_groups_target": 83,
+        "python_tests_target": 87,
+        "ctest_groups_local_passed": 82,
+        "python_tests_local_passed": 86,
+        "local_exclusion": "Windows symlink privilege case",
+        "original_port_operations": 200000,
+        "original_port_mismatches": 0,
+        "invented_mask_failed_checks": 225082,
+        "wrong_input_port_failed_checks": 244961,
+        "local_sanitizers": "not_run",
+        "ctest_groups": 83,
+        "python_tests": 87,
+        "linux_ubsan": "pass"
+      },
+      "automated_review_at_merge": "no_recorded_result_at_inspection"
     }
   ],
-  "active_change": {
-    "branch": "feat/an1x-portb-mmio",
-    "scope": "PortB byte MMIO and audit documentation corrections",
-    "status": "local_validation_passed",
-    "ci": "not_run",
-    "validation": {
-      "ctest_groups_target": 83,
-      "python_tests_target": 87,
-      "ctest_groups_local_passed": 82,
-      "python_tests_local_passed": 86,
-      "local_exclusion": "Windows symlink privilege case",
-      "original_port_operations": 200000,
-      "original_port_mismatches": 0,
-      "invented_mask_failed_checks": 225082,
-      "wrong_input_port_failed_checks": 244961,
-      "local_sanitizers": "not_run"
-    }
-  },
+  "active_change": null,
   "pending_changes": []
 }

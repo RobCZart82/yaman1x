@@ -2,25 +2,38 @@
 
 Rögzítve: 2026-10-27. Kiindulópont: a #14 PR-ig beolvadt kutatási eredmények.
 Ez végrehajtási terv; az alábbi, még nyitott mérföldkövek nem kész funkciók.
-Állapotellenőrzés: 2026-10-30, motoralap: #130 (`fc9b483dcdd6c33385c1225303a0c0f2f0d7477c`).
+Állapotellenőrzés: 2026-10-30, motoralap: #132 (`5ac2585e9b84497764f1fe0e2bbf426bbbab84a6`).
 A működő H8H-részhalmaz nem teljes CPU- vagy firmware-elfogadás.
 
-## Aktív fejlesztés — portB és auditjavítások, 2026-10-30
+## Aktuális lezárás — #132, 2026-10-30
 
-Kiindulópont:beolvadt #131 (`44b71479d79073799820ef2502fe078b192a2da6`);
-a lent rögzített motoralap még #130. PortB DDR/adat FFFFD4/FFFFD6,alap00/maszk00,
-külön portállapot,callback ID11. Jelölt:83 CTest/87 Python;CPU-kezelők és264 soros
-utasításleltár változatlan.262144 független bit-eset,256 hideg bemenet és241 CPU-
-partíció PASS;eredeti portműveletek200000 lépésben nulla eltérés. Téves maszk225082,
-téves bemeneti port244961 hibás ellenőrzéssel felismerve. Helyi82 futtatható CTest/86 Python PASS;az egy ismert
-Windows-symlink eset kizárva. Végső head CI/review még lezárandó;beolvasztási sikert nem állítunk.
+A [#132 PR](https://github.com/RobCZart82/yaman1x/pull/132) beolvadt:
+merge `5ac2585e9b84497764f1fe0e2bbf426bbbab84a6`,tesztelt head `66f480ea43b73551e934ec6528ca1dae4a5c5171`.
+Időpont:2026-10-30 06:59:33 Europe/Budapest (2026-10-30T05:59:33Z).
+[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/41009924793),
+[MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/41009924918),
+[MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/41009924833):mind az öt feladat sikeres.
+Review állapot:`no_recorded_result_at_inspection`;CI- és review-bizonyíték külön kezelve.
 
-Auditjavítások:központi IR-leírás öt szóra frissítve;régi EEPMOV/SLEEP és SCI/GPIO
-mondatok történeti hatóköre tisztázva;README régi66-os build-tesztszáma83-ra javítva. [Pontos források/tesztek](an1x-gpiob.md).
-Következő a beolvasztás után:GPIO-szóhozzáférések pontos meghatározása és tesztjei,
-majd IRQ/SYSCR/teljes gépreset. Firmware/MIDI/PKS/DSP/hang/REAPER nyitott.
+Beolvadt:**83 CTest/87 Python**;CPU562 kezelője és264 kiválasztott sora változatlan.
+PortB FFFFD4/FFFFD6,alap00/maszk00,külön állapot,callback ID11.262144 bit-orákulumos
+eset,256 hideg bemenet,241 CPU-partíció PASS.0F/5A/15 =>1A NVRAM,CCR81.
+Eredeti portműveletek200000 lépésben nulla eltérés. A referencia11 cpp-törzset
+és inline FF-olvasást ellenőriz (összesen12 eredeti törzs). Téves maszk225082,
+téves bemeneti port244961 hibás ellenőrzéssel felismerve;iterációnként két
+ellenőrzési hely miatt a szám meghaladhatja a műveletszámot.
+Helyi82 futtatható CTest/86 Python PASS;ismert Windows-symlink eset kizárva.
+Linux CI UBSan PASS;helyi ASan/UBSan ebben a lépésben nem futott.
+521 fájl forrásauditja és229 fájl licencnyilvántartása PASS (nem jogi engedély).
 
-## Aktuális lezárás — #130, 2026-10-30
+Auditjavítások:IR öt szóra frissítve,régi SLEEP/GPIO-korlátok történeti hatóköre
+jelölve,README build-tesztszám66-ról83-ra javítva. A README eltérése az előző
+áttekintésből kimaradt;most javítva. A ROADMAP régi #78-jelöltfelirata is történeti jelölést kapott. [Pontos források és korlátok](an1x-gpiob.md).
+Nincs aktív motorjelölt. Következő:GPIO-szóhozzáférések pontos meghatározása és
+tesztjei,majd IRQ/SYSCR/teljes gépreset. Firmware/MIDI/PKS/DSP/hang/REAPER nyitott.
+Új motorlépés csak a lezáró dokumentáció beolvadása után indul.
+
+## Történeti lezárás — #130, 2026-10-30
 
 A [#130 PR](https://github.com/RobCZart82/yaman1x/pull/130) beolvadt:
 merge `fc9b483dcdd6c33385c1225303a0c0f2f0d7477c`,tesztelt head `e6f276dcf20e48d014a71f13dd73ac74b33da029`.

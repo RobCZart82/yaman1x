@@ -69,5 +69,5 @@ physical timing,firmware/MIDI/PKS,audio and plugin/REAPER acceptance remain open
 
 Merged follow-ups now map byte GPIO for [port4](an1x-gpio4.md), [port6](an1x-gpio6.md),
 [port7](an1x-gpio7.md), [port8](an1x-gpio8.md), [port9](an1x-gpio9.md) and [portA](an1x-gpioa.md).
-The [portB candidate](an1x-gpiob.md) extends this map. Earlier omissions above describe #118.
+Merged #132 [portB byte MMIO](an1x-gpiob.md) extends this map. Earlier omissions above describe #118.
 GPIO word semantics, IRQ/SYSCR and other peripheral wiring remain open.
