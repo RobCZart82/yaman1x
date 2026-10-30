@@ -65,4 +65,4 @@ No security review result recorded. Source notices remain those of the
 unchanged port extraction;source checks alone are not legal release clearance.
 Firmware/MIDI/PKS/audio/plugin/REAPER acceptance remains open.
 
-Candidate follow-up:[port8 byte MMIO](an1x-gpio8.md);earlier omissions describe #122.
+Merged #124 follow-up:[port8 byte MMIO](an1x-gpio8.md);earlier omissions describe #122.
