@@ -3,7 +3,7 @@
   "recorded_date": "2026-10-30",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "6f9e8b8f66d962e968af8d6f9cd4135d2c4d1ab3",
+  "baseline_commit": "41f8b6db0d55743495b4953c0ba746dfc4114446",
   "entries": [
     {
       "pr": 6,
@@ -1502,23 +1502,35 @@
         40975522386
       ],
       "automated_review_at_merge": "no_recorded_result_at_inspection"
+    },
+    {
+      "pr": 120,
+      "title": "Wire bounded H83002 port4 MMIO into the timed AN1x bus",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/120",
+      "kind": "engine-integration",
+      "status": "merged",
+      "merge_commit": "41f8b6db0d55743495b4953c0ba746dfc4114446",
+      "reviewed_head": "a96bfc40bc518f1315aa3c828c0da1548abbd6aa",
+      "merged_at_utc": "2026-10-30T00:25:51Z",
+      "ci_runs": [
+        40977946004,
+        40977945988,
+        40977945935
+      ],
+      "validation": {
+        "ctest_groups": 77,
+        "python_tests": 87,
+        "asan_ubsan": "gpio4_and_sci_pass",
+        "original_port_operations": 200000,
+        "original_port_mismatches": 0,
+        "negative_controls": {
+          "ddr_readback_failures": 65281,
+          "latch_instead_of_pins_failures": 497267
+        }
+      },
+      "automated_review_at_merge": "no_recorded_result_at_inspection"
     }
   ],
-  "active_change": {
-    "branch": "feat/an1x-gpio-bus",
-    "scope": "Bounded port4 DDR/pins/PCR byte MMIO on owned timed SCI/memory bus",
-    "status": "local_validation_passed_ci_pending",
-    "validation": {
-      "ctest_groups": 77,
-      "python_tests": 87,
-      "asan_ubsan": "gpio4_and_sci_pass",
-      "original_port_operations": 200000,
-      "original_port_mismatches": 0,
-      "negative_controls": {
-        "ddr_readback_failures": 65281,
-        "latch_instead_of_pins_failures": 497267
-      }
-    }
-  },
+  "active_change": null,
   "pending_changes": []
 }

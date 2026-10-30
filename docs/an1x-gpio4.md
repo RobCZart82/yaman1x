@@ -1,6 +1,6 @@
 # AN1x bounded GPIO4 MMIO composition
 
-Recorded:2026-10-30. Engine baseline:#118;current increment is a candidate.
+Recorded:2026-10-30. Merged #120 as `41f8b6db0d55743495b4953c0ba746dfc4114446`;tested head `a96bfc40bc518f1315aa3c828c0da1548abbd6aa`.
 
 ## Pinned facts and ownership
 
@@ -72,5 +72,6 @@ or hardware timing equivalence. The independent map oracle checks DDR FF reads.
 Ignored mutation controls:DDR readback instead ofFF =>65281 expected failures;
 raw data-latch reads instead of pins =>497267 expected failures. Tracked code
 remains unchanged. Full77 CTest/87 Python PASS;GPIO4+SCI integration ASan/UBSan PASS.
-Linux CI includes the new target under UBSan. Final candidate-head CI/review pending.
+Linux CI includes the new target under UBSan. Final tested-head CI:all five checks PASS,runs40977946004/40977945988/40977945935.
+No recorded automated review result at inspection;none claimed.
 No firmware MIDI acceptance,AN1x audio or REAPER plugin claim.

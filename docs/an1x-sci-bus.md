@@ -67,4 +67,4 @@ Full76 CTest and87 Python PASS;targeted ASan/UBSan PASS. Linux CI includes this 
 No recorded automated review result at inspection;none claimed. GPIO/IRQ-control/LCD/DSP/MEG wiring,complete reset/isolation,
 physical timing,firmware/MIDI/PKS,audio and plugin/REAPER acceptance remain open.
 
-Candidate follow-up:[bounded port4 MMIO](an1x-gpio4.md). Other GPIO/IRQ/SYSCR remains unmapped.
+Merged #120 follow-up:[bounded port4 MMIO](an1x-gpio4.md). Other GPIO/IRQ/SYSCR remains unmapped.
