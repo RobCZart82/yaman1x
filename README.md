@@ -40,12 +40,16 @@ review is claimed. MAME did not run for that docs-only change. Engine evidence b
 remains attached to #136. The documentation closure is merged; the next engine step
 may start. This reconciliation changes documentation only; its own CI is tracked on its PR.
 
+Active engine candidate:[shared bounded SYSCR01/09](docs/an1x-syscr.md).
+CPU/host integration,7712 IRQ/NMI partitions,512 TRAPA CCR cases and241 mode-switch partitions PASS.
+Local87 CTest/87 Python and targeted ASan/UBSan PASS;final CI/review pending;merged historical evidence below remains #136/#139.
+
 Merged preparation #139:[standalone SYSCR mode contract](docs/h83002-syscr-modes.md).
 65536 independent mode/CCR cases and pinned original-method comparison PASS.
 No CPU/MMIO binding yet;integrated engine evidence below remains #136.
 Tested head `4d5ca9ba548cd4b3c3547ba191c2660daeebfce4`,merge `b84d3b20bbef1f51a14af64da1a57df9f5cf2a88`.
 All five CI checks PASS (platform/UBSan41072881939,MSan41072881943,MAME41072882034).
-No recorded automated review result at inspection;none claimed. No active candidate.
+No recorded automated review result at inspection;none claimed. Shared-SYSCR candidate above supersedes the preparation-only scope.
 
 Verified engine baseline: [#136](https://github.com/RobCZart82/yaman1x/pull/136),
 `7aaa8d0178e06b8161c8508cda1cebdb20e2c072`;tested head `6d58a3df9307b4513b61ea01d9eed3d70bd6e87a`.

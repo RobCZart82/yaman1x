@@ -6,12 +6,13 @@
 #include "h8_execution_runner.h"
 #include "h8h_bus_access.h"
 #include "h8h_irq_controller.h"
+#include "h83002_syscr_modes.h"
 #include <array>
 #include <limits>
 
 namespace yamanix {
 // Host: read_instruction_word, read/write_byte, read/write_word, update(cycle).
-// Fixed profile: advanced H8H, reset-SYSCR TRAPA; optional external IRQ/NMI controller; no DMA/DTC/trace/retry/standby support.
+// Advanced H8H: optional host SYSCR policy,otherwise fixed0B TRAPA; optional external IRQ/NMI controller; no DMA/DTC/trace/retry/standby support.
 // Bus accesses complete synchronously; the host owns address mapping.
 // Both host and immutable code memory must outlive the instance; no reentry.
 template<class Host> class H8FirstInstructions {
@@ -564,7 +565,8 @@ private:
     uint16_t read16(uint32_t address){auto v=bus_.read16(address);refresh_bus_deadline();return v;}
     void write16(uint32_t address,uint16_t data){bus_.write16(address,data);refresh_bus_deadline();}
     bool access_to_be_redone()const{return false;}
-    void update_irq_filter(){if(irq_)irq_->set_filter((m_CCR&F_I)?2:0,-1);}
+    uint8_t syscr_value()const{if constexpr(requires{host_.syscr_value();})return host_.syscr_value();else return 0x0b;}
+    void update_irq_filter(){if constexpr(requires{host_.sync_cpu_ccr(m_CCR);})host_.sync_cpu_ccr(m_CCR);else if(irq_)irq_->set_filter(H83002SyscrModes::irq_filter(syscr_value(),m_CCR),-1);}
     void prefetch_done(){
         if(irq_){const auto selected=irq_->current();if(selected.vector>0 && selected.level>=0){
             m_taken_irq_vector=selected.vector;m_taken_irq_level=selected.level;m_inst_state=0x10001;return;
@@ -573,9 +575,9 @@ private:
     }
     void prefetch_done_noirq(){m_inst_state=m_IR[0]=m_PIR;}
     void prefetch_done_notrace(){prefetch_done();}
-    // Fixed reset SYSCR=0x0b: H83002 trapa_setup sets I, vector base 8.
-    int trapa_setup(){m_CCR|=F_I;return 8;}
-    void irq_setup(){m_CCR|=F_I;}
+    // Shared host mode or legacy fixed0B;original H83002 entry equations.
+    int trapa_setup(){m_CCR=H83002SyscrModes::entry_ccr(syscr_value(),m_CCR);update_irq_filter();return 8;}
+    void irq_setup(){m_CCR=H83002SyscrModes::entry_ccr(syscr_value(),m_CCR);update_irq_filter();}
     void interrupt_taken(){if(!irq_)throw std::logic_error("Missing IRQ owner");irq_->taken(m_taken_irq_vector);}
     void debugger_exception_hook(int vector){if constexpr(requires{host_.exception_hook(vector);})host_.exception_hook(vector);}
     bool exr_in_stack()const{return false;}

@@ -3,6 +3,22 @@
 Frissítve: 2026-10-30. Időzóna: Europe/Budapest.
 Ellenőrzött motoralap: `7aaa8d0178e06b8161c8508cda1cebdb20e2c072` (#136).
 
+## Aktív motorlépés — közös SYSCR01/09, 2026-10-30
+
+FFFFF2 saját buszállapot,CPU közös módolvasás és CCR-szinkron az IRQ-ownerhez.
+Csak01/09 engedélyezett;egyéb254 byte és F2/F3 szó fail-closed. Legacy host fix0B marad.
+7712 IRQ/NMI/mód/prioritás-partíció,512 TRAPA CCR-eset és241 SLEEP közbeni módváltás PASS.
+Az előző köztes beszámoló15424 darabszáma téves volt:a tényleges mátrix7712.
+IRQ RTE/CCR/SP,azonnali függőIRQ-filterváltás és NMI ellenőrizve.
+A TRAPA-fixture eredeti visszatérési cím miatti ismétlődését ISR-beli megállással
+javítottuk;CPU-utasítást nem változtattunk emiatt.
+[Hatókör és források](an1x-syscr.md). Generált H8/H8H-törzsek újragenerált lockkal egyeznek.
+Teljes87 CTest/87 Python és célzott ASan/UBSan PASS.530 fájl forrásauditja és229
+licencjelölés PASS (nem jogi engedély). Fix CPU-módra visszaállított próbahiba2056
+elvárt kudarc. Végső CI/review függő;teljes reset és firmware/hangelfogadás nincs kész.
+A #140 dokumentáció beolvadt8c4ff354bfae8431b86ce39d6777e5e4876a6887,
+2026-10-30T15:32:22Z;négy CI sikeres,automatikus review-eredmény nem volt rögzítve.
+
 ## Lezárt előkészítő lépés — #139 SYSCR módlogika, 2026-10-30
 
 Beolvadt `b84d3b20bbef1f51a14af64da1a57df9f5cf2a88`,tesztelt head
