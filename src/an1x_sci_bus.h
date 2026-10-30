@@ -30,15 +30,21 @@ public:
     void bus_cycle(uint64_t cycle){access([&]{advance(cycle);now_=timeline_.cycle();});}
     uint64_t next_bus_event()const{return deadline();}
     uint16_t read_instruction_word(uint32_t a){return access([&]{return memory_.read_instruction_word(a);});}
-    uint8_t read_byte(uint32_t raw){return access([&]{const auto a=raw&0xffffff;return H83002SciMmio::mapped(a)?sci_.read8(a):gpio_mapped(a)?read_gpio(a):memory_.read_byte(a);});}
-    void write_byte(uint32_t raw,uint8_t v){access([&]{const auto a=raw&0xffffff;if(H83002SciMmio::mapped(a))sci_.write8(a,v,now_,*this);else if(gpio_mapped(a))write_gpio(a,v);else memory_.write_byte(a,v);});}
+    uint8_t read_byte(uint32_t raw){return access([&]{const auto a=raw&0xffffff;return H83002SciMmio::mapped(a)?sci_.read8(a):irq_mapped(a)?read_irq(a):gpio_mapped(a)?read_gpio(a):memory_.read_byte(a);});}
+    void write_byte(uint32_t raw,uint8_t v){access([&]{const auto a=raw&0xffffff;if(H83002SciMmio::mapped(a))sci_.write8(a,v,now_,*this);else if(irq_mapped(a))write_irq(a,v);else if(gpio_mapped(a))write_gpio(a,v);else memory_.write_byte(a,v);});}
     uint16_t read_word(uint32_t raw){return access([&]{const auto a=raw&0xffffff;if(H83002SciMmio::mapped(a))return sci_.read16(a);
+        if(irq_mapped(a)||irq_mapped((a+1)&0xffffff)){
+            require_irq_word(a);const auto high=read_irq(a);const auto low=read_irq(a+1);
+            return uint16_t((uint16_t(high)<<8)|low);
+        }
         if(gpio_mapped(a)||gpio_mapped((a+1)&0xffffff)){
             require_gpio_word(a,false);const auto high=read_gpio(a);
             if(failed_)throw std::logic_error("Reentered GPIO word read");
             const auto low=read_gpio(a+1);return uint16_t((uint16_t(high)<<8)|low);
         }return memory_.read_word(a);});}
-    void write_word(uint32_t raw,uint16_t v){access([&]{const auto a=raw&0xffffff;if(H83002SciMmio::mapped(a))sci_.write16(a,v,0xffff,now_,*this);else if(gpio_mapped(a)||gpio_mapped((a+1)&0xffffff)){
+    void write_word(uint32_t raw,uint16_t v){access([&]{const auto a=raw&0xffffff;if(H83002SciMmio::mapped(a))sci_.write16(a,v,0xffff,now_,*this);else if(irq_mapped(a)||irq_mapped((a+1)&0xffffff)){
+            require_irq_word(a);write_irq(a,uint8_t(v>>8));write_irq(a+1,uint8_t(v));
+        }else if(gpio_mapped(a)||gpio_mapped((a+1)&0xffffff)){
             require_gpio_word(a,true);write_gpio(a,uint8_t(v>>8));
             if(failed_)throw std::logic_error("Reentered GPIO word write");
             write_gpio(a+1,uint8_t(v));
@@ -59,6 +65,23 @@ private:
             if constexpr(std::is_void_v<std::invoke_result_t<F>>){std::forward<F>(f)();if(failed_)throw std::logic_error("Reentered AN1x SCI bus");busy_=false;return;}
             else {auto value=std::forward<F>(f)();if(failed_)throw std::logic_error("Reentered AN1x SCI bus");busy_=false;return value;}
         }catch(...){failed_=true;busy_=false;throw;}
+    }
+    static bool irq_mapped(uint32_t a){return a==0xfffff4||a==0xfffff5||a==0xfffff6||a==0xfffff8||a==0xfffff9;}
+    static void require_irq_word(uint32_t a){
+        if(a&1)throw std::invalid_argument("Unaligned IRQ word");
+        if(!irq_mapped(a)||!irq_mapped(a+1))throw std::out_of_range("Incomplete IRQ word");
+    }
+    uint8_t read_irq(uint32_t a)const{
+        if(a==0xfffff4)return irq_.iscr();
+        if(a==0xfffff5)return irq_.ier();
+        if(a==0xfffff6)return irq_.isr();
+        return irq_.icr(unsigned(a-0xfffff8));
+    }
+    void write_irq(uint32_t a,uint8_t value){
+        if(a==0xfffff4)irq_.write_iscr(value);
+        else if(a==0xfffff5)irq_.write_ier(value);
+        else if(a==0xfffff6)irq_.write_isr(value);
+        else irq_.write_icr(unsigned(a-0xfffff8),value);
     }
     static bool gpio_mapped(uint32_t a){return a==0xffffc5||a==0xffffc7||a==0xffffda||a==0xffffc9||a==0xffffcb||a==0xffffcd||a==0xffffcf||a==0xffffce||a==0xffffd0||a==0xffffd2||a==0xffffd1||a==0xffffd3||a==0xffffd4||a==0xffffd6;}
     static void require_gpio_word(uint32_t a,bool write){

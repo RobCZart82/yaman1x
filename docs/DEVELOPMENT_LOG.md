@@ -3,6 +3,22 @@
 Frissítve: 2026-10-30. Időzóna: Europe/Budapest.
 Ellenőrzött motoralap: `7c46a56495a166ed9e6abbe4bea11915e08bbedd` (#134).
 
+## Aktív fejlesztés — IRQ-regiszterek gépi címtérben, 2026-10-30
+
+Alap:beolvadt #135;motoralap még #134. ISCR/IER/ISR/ICR0/1:FFFFF4/F5/F6/F8/F9;
+az eredeti,meglévő IRQ-tulajdonoshoz kötve. Szó:F4 ésF8;hiányos/odd pár előzetesen
+elutasítva. ICR nem komplementált maszkja és késleltetett publikációja megőrizve.
+65536 engedélyezés/szint,65536 törlés,131072 szó,2048 él/szint és3856 CPU-partíció PASS.
+CPU-ból beállított IRQ =>SLEEP-ébresztés,ISR A5 NVRAM,RTE SP-helyreállítás;I maszkol.
+Eredeti18 IRQ-művelet/table200000 lépésben nulla eltérés. Téves ICR-offset150185,
+IER=>ISCR útvonal199554 hibával felismerve. Jelölt85 CTest/87 Python;helyi84 futtatható CTest/86 Python PASS,ismert
+Windows-symlink eset kizárva. Végső head CI még függőben. [Pontos hatókör és források](an1x-irq-mmio.md).
+
+SYSCR-feltárás:bit08 a szűrést és IRQ/TRAPA-belépést együtt változtatja. A CPU még
+fix0B profilt használ,ezért F2 olvasása/írása elutasítva marad;nem adunk látszólagos
+működő regisztert. Következő:külön CPU/host SYSCR-szerződés és tesztek,majd teljes
+reset. Firmware/MIDI/PKS/DSP/hang/REAPER nyitott. Új motorlépés csak lezárás után.
+
 ## Aktuális lezárás — #134, 2026-10-30
 
 A [#134 PR](https://github.com/RobCZart82/yaman1x/pull/134) beolvadt:
