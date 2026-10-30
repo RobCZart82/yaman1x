@@ -5,18 +5,20 @@ Recorded: 2026-10-30. Product: YamAN1x. Repository: `yaman1x`. First public rese
 The repository contains a ROM-free C++/Python development foundation.
 No VST3, AU, GUI or AN1x audio output is available yet.
 
-Verified engine baseline: [#132](https://github.com/RobCZart82/yaman1x/pull/132),
-`5ac2585e9b84497764f1fe0e2bbf426bbbab84a6`;tested head `66f480ea43b73551e934ec6528ca1dae4a5c5171`.
-83 CTest groups/87 Python cases;CPU inventory unchanged:562 upstream-derived methods
+Verified engine baseline: [#134](https://github.com/RobCZart82/yaman1x/pull/134),
+`7c46a56495a166ed9e6abbe4bea11915e08bbedd`;tested head `963fc91ca7512a80e5830dc8a784c8c186c9e5e9`.
+84 CTest groups/87 Python cases;CPU inventory unchanged:562 upstream-derived methods
 (558 unchanged,four prior adaptations);264 selected/0 missing/135 excluded encoding rows.
-[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/41009924793),
-[MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/41009924918),
-[MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/41009924833):all five jobs passed.
+[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/41020299804),
+[MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/41020299832),
+[MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/41020299487):all five jobs passed.
 No recorded automated review result at inspection;none claimed.
-Active candidate:[bounded GPIO words](an1x-gpio-words.md),84 CTest/87 Python;final-head CI pending. Merged evidence above remains #132. [PortB byte MMIO](an1x-gpiob.md) adds FFFFD4/FFFFD6,
-default00/mask00,independent state and GPIO ID11. Ports4/6/7/8/9/A remain isolated.
-Audit descriptions for five-word IR,SLEEP,GPIO and README build count corrected.
-Next:explicit GPIO word semantics,then IRQ/SYSCR modes and full machine reset.
+No active engine candidate. [Bounded GPIO words](an1x-gpio-words.md) add
+fully mapped CE/D0/D2 reads and D0/D2 writes. Preflight rejects holes/odd/read-only
+writes;high-before-low same-timestamp ordering is an explicit software policy.
+Lane callback failures/reentry stop later effects and poison the bus;no rollback.
+Local83 runnable CTest/86 Python PASS;one Windows symlink privilege case excluded.
+Next:bounded IRQ/SYSCR investigation,integration and full machine reset.
 Full machine,LCD/DSP/MEG,physical timing,firmware/MIDI/PKS/audio and REAPER acceptance
 remain open. Full handler selection is not full CPU/machine acceptance.
 

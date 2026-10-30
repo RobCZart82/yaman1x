@@ -1,7 +1,7 @@
 # Bounded GPIO word accesses
 
-Recorded:2026-10-30. Candidate based on #133 (`12e923edb2fbccb791fa5d8d9383c493c7c4c1cc`),
-merged engine #132. Final-head CI/review and merge pending.
+Recorded:2026-10-30. Merged #134 as `7c46a56495a166ed9e6abbe4bea11915e08bbedd`;
+tested head `963fc91ca7512a80e5830dc8a784c8c186c9e5e9`.
 
 ## Source facts and project policy
 
@@ -53,7 +53,8 @@ mutate retained peripheral references or execute concurrently.
 Prior byte-port guard tests retain only unsupported word cases;newly valid word
 paths have dedicated positive tests. Candidate suite84 CTest/87 Python;Release build,83 locally runnable CTest groups
 and86 Python cases PASS;one established Windows symlink privilege case excluded.
-The final target rebuild also passes the missing-sink cases. Final-head CI pending. No CPU/generated-handler body changed:562 methods,264 selected rows.
+The final target rebuild also passes the missing-sink cases. All five final-head CI jobs and Linux UBSan PASS;
+runs41020299804/41020299832/41020299487. No recorded automated review result at inspection;none claimed. No CPU/generated-handler body changed:562 methods,264 selected rows.
 
 ## Original component comparison and controls
 
