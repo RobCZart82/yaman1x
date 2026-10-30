@@ -57,4 +57,4 @@ Full79 CTest/87 Python PASS;GPIO4/GPIO6/GPIO8/SCI ASan/UBSan PASS. Final-head CI
 No security review result recorded. Source notices alone are not legal/binary release clearance.
 Firmware/MIDI/PKS/DSP/audio/plugin/REAPER acceptance remains open.
 
-Candidate follow-up:[read-only port7](an1x-gpio7.md);earlier FFFFCE omission describes #124.
+Merged #126 follow-up:[read-only port7](an1x-gpio7.md);earlier FFFFCE omission describes #124.
