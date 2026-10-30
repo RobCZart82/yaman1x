@@ -1,6 +1,6 @@
 # AN1x bounded portA byte MMIO
 
-Recorded:2026-10-30. Engine baseline:#128;this increment is a candidate.
+Recorded:2026-10-30. Merged #130 as `fc9b483dcdd6c33385c1225303a0c0f2f0d7477c`;tested head `e6f276dcf20e48d014a71f13dd73ac74b33da029`.
 
 ## Pinned facts and scope
 
@@ -47,6 +47,6 @@ not whole-machine MAME or physical-timing equivalence.
 Ignored mutants:invented mask80 =>198248 expected failures;input routed to port9
 =>252184 expected failures. Tracked source unchanged.
 
-Full82 CTest/87 Python PASS;GPIO4/6/7/8/9/A/SCI ASan/UBSan PASS;final-head CI/review
-pending. Source notices are not legal/binary distribution clearance.
+Full82 CTest/87 Python PASS;GPIO4/6/7/8/9/A/SCI ASan/UBSan PASS;final-head CI:all five checks PASS,
+runs40997653002/40997653007/40997653087. No recorded automated review result at inspection;none claimed. Source notices are not legal/binary distribution clearance.
 Firmware/MIDI/PKS/DSP/audio/plugin/REAPER acceptance remains open.

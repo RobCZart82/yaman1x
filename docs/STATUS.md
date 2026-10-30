@@ -5,19 +5,16 @@ Recorded: 2026-10-30. Product: YamAN1x. Repository: `yaman1x`. First public rese
 The repository contains a ROM-free C++/Python development foundation.
 No VST3, AU, GUI or AN1x audio output is available yet.
 
-Active candidate:[bounded GPIOA](an1x-gpioa.md),82 CTest/87 Python locally PASS.
-GPIO4/6/7/8/9/A/SCI ASan/UBSan PASS;final-head CI/review pending;merged evidence below remains #128.
-
-Verified engine baseline: [#128](https://github.com/RobCZart82/yaman1x/pull/128),
-`efbf68fad922e7270fc60105a1e6947f972cee6a`;tested head `00bff586f85f7a2b6d70c7648c57c91486eeddec`.
-81 CTest groups/87 Python cases;CPU handlers unchanged:562 upstream-derived methods
+Verified engine baseline: [#130](https://github.com/RobCZart82/yaman1x/pull/130),
+`fc9b483dcdd6c33385c1225303a0c0f2f0d7477c`;tested head `e6f276dcf20e48d014a71f13dd73ac74b33da029`.
+82 CTest groups/87 Python cases;CPU handlers unchanged:562 upstream-derived methods
 (558 unchanged,four prior adaptations);264 selected/0 missing/135 excluded encoding rows.
-[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40993876811), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40993876814), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40993877026):all five jobs passed.
+[Platform/UBSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40997653002), [MSan PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40997653007), [MAME PASS](https://github.com/RobCZart82/yaman1x/actions/runs/40997653087):all five jobs passed.
 No recorded automated review result at inspection;none claimed. No open review threads.
-The port9 series is closed;portA candidate above. [Bounded port9](an1x-gpio9.md) adds DDR/data byte MMIO,
-default00/mask C0,with separate owner and independent pin/cold-state/CPU tests.
-Next:portA DDR/data with pinned default00/mask00,then portB and explicit GPIO-word
-semantics. IRQ-control/SYSCR modes and full machine reset remain open.
+No active engine candidate. [Unmasked portA](an1x-gpioa.md) adds DDR/data byte MMIO,
+default00/mask00,with separate owner,callback ID10 and independent8-bit/CPU tests.
+Next:portB DDR/data with pinned default00/mask00,then explicit GPIO-word semantics.
+IRQ-control/SYSCR modes and full machine reset remain open.
 Full machine,LCD/DSP/MEG,physical timing,firmware/MIDI/PKS/audio and REAPER acceptance
 remain open. Full handler selection is not full CPU/machine acceptance.
 
