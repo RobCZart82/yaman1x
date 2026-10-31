@@ -3,6 +3,20 @@
 Frissítve: 2026-10-31. Időzóna: Europe/Budapest.
 Ellenőrzött motoralap: `301eec75c72028b8f377ee4e099fce0b1df4de5e` (#143).
 
+## CPU-reset végrehajtási teszt — jelölt, 2026-10-31
+
+A #146 beolvadt `41a1c1cea0b777653ede9e470ec5e6e7797b2ff2`,
+2026-10-31T08:59:10Z;négy CI sikeres,review-eredmény nem volt rögzítve.
+Az új független CPU-indulási teszt256 CCR×3 kezdőidő×7 szeletelés=5376
+folytatási esetet ellenőriz:vektorolvasások,prefetch,filterközlés sorrendje,
+megőrzött bitek,EXR,részállapot és időadósság. A filternek nincs időargumentuma;
+a teszt az előző buszművelet idejét és a sorrendet rögzíti.
+Strict fordítás és célzott ASan/UBSan sikeres;az eredeti generált MAME H8H
+összehasonlítás200000 szeleten nulla eltérést mutat. Teljes91 Python sikeres.
+Ez hideg CPU-indulás,nem új melegreset-API vagy teljesgép-reset bizonyíték.
+Teljes build és89 CTest sikeres;CCR-törlési negatív kontroll6858 hibát jelez.
+Végső CI/review függőben;a jelölt még nincs beolvadva.
+
 ## #145 lezárása és CPU-reset határvizsgálat — 2026-10-31
 
 A #145 beolvadt: `e470f406c2d65eccda70e0c6381db1f826b2810b`,

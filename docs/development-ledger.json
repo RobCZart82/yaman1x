@@ -2059,18 +2059,36 @@
         41134649966
       ],
       "automated_review_at_merge": "no_recorded_result_at_inspection"
+    },
+    {
+      "pr": 146,
+      "title": "Close reset research evidence and document CPU time boundary gates",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/146",
+      "kind": "documentation",
+      "status": "merged",
+      "merge_commit": "41a1c1cea0b777653ede9e470ec5e6e7797b2ff2",
+      "reviewed_head": "48850771feb5ab669ca54301547fd3927c8865bc",
+      "merged_at_utc": "2026-10-31T08:59:10Z",
+      "ci_runs": [
+        41185583958,
+        41185583977
+      ],
+      "automated_review_at_merge": "no_recorded_result_at_inspection"
     }
   ],
   "active_change": {
-    "branch": "research/cpu-reset-boundary",
-    "scope": "Close PR145 evidence and review local generated CPU reset / runner boundary constraints;no runtime API change",
-    "status": "documentation_candidate_ci_pending",
+    "branch": "test/cpu-reset-execution",
+    "status": "local_validation_passed_ci_pending",
+    "scope": "Independent cold CPU reset bus/CCR/partial/debt execution tests;no warm reset API",
     "validation": {
+      "ccr_seeds": 256,
+      "time_origins": 3,
+      "cut_points": 7,
       "python_tests": 91,
-      "pinned_reset_identity": "pass",
-      "source_audit_files": 537,
-      "notice_covered_files": 229,
-      "runtime_tests": "not_rerun_documentation_only"
+      "original_reference_slices": 200000,
+      "targeted_asan_ubsan": "pass",
+      "ccr_clobber_mutation_failures": 6858,
+      "ctest_groups": 89
     }
   },
   "pending_changes": []

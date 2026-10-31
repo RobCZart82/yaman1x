@@ -11,7 +11,10 @@ Merged research evidence:[#145](https://github.com/RobCZart82/yaman1x/pull/145),
 `e470f406c2d65eccda70e0c6381db1f826b2810b`;five CI jobs PASS on head
 `90f8aea04fdddce17de60fe706b690b3b5f62c3b`. No recorded automated review result.
 [Pinned method contract](h83002-warm-reset-contract.md):five files/six methods;91 Python tests.
-Current documentation candidate reviews CPU reset/runner boundaries;no reset API added.
+Current candidate adds independent cold CPU reset execution tests:256 CCR seeds,
+three absolute time origins and seven cuts;89 CTest/91 Python PASS locally.
+Targeted ASan/UBSan PASS;final CI/review pending;no warm reset API added.
+#146 documentation merged at41a1c1cea0b777653ede9e470ec5e6e7797b2ff2;all four CI jobs PASS.
 Engine implementation baseline remains #143.
 
 Verified engine baseline:[#143](https://github.com/RobCZart82/yaman1x/pull/143),
