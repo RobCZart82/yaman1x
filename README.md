@@ -3,6 +3,12 @@
 Firmware-based Yamaha AN1x emulator research, preparing a future **VST3/AU**
 plugin. Repository name: **yaman1x**.
 
+![Original Yamaha AN1x hardware photographed for the YamAN1x project](docs/images/an1x-hardware.png)
+
+*Original Yamaha AN1x hardware — illustrative photograph supplied by the project
+owner. This is a photograph of the physical synthesizer, not a VST3/AU plugin
+or a screenshot of YamAN1x.*
+
 First public research snapshot: **2026-10-26** — [v0.1.0-research](https://github.com/RobCZart82/yaman1x/releases/tag/v0.1.0-research). This is a development foundation. It does not yet produce AN1x audio,
 complete a validated hardware-equivalent boot, or provide a plugin or GUI.
 

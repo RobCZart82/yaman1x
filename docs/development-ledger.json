@@ -2173,7 +2173,12 @@
   "active_change": {
     "branch": "docs/current-first-sound-status",
     "status": "documentation_candidate",
-    "scope": "Close PR152 metadata and summarize remaining M0-M6 first-sound work"
+    "scope": "Close PR152 metadata and summarize remaining M0-M6 first-sound work;original user-supplied hardware photo with explicit non-plugin caption and exact-hash upload exception",
+    "validation": {
+      "python_tests": 92,
+      "source_audit_files": 540,
+      "notice_covered_files": 229
+    }
   },
   "pending_changes": []
 }

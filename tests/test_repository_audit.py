@@ -44,6 +44,19 @@ class RepositoryAuditTests(unittest.TestCase):
         manifest.write_text(json.dumps(data))
         self.assertFalse(audit(self.root)['upload_check_passed'])
 
+    def test_exact_illustration_exception_rejects_changes_and_other_images(self):
+        from unittest.mock import patch
+        raw=b'\x89PNG\r\n\x1a\nsynthetic\0image'
+        target=self.root/'docs/images/an1x-hardware.png'
+        target.parent.mkdir(parents=True);target.write_bytes(raw)
+        with patch('repository_audit.APPROVED_IMAGES', {target.relative_to(self.root).as_posix():hashlib.sha256(raw).hexdigest()}):
+            self.assertTrue(audit(self.root)['upload_check_passed'])
+            target.write_bytes(raw+b'changed')
+            self.assertFalse(audit(self.root)['upload_check_passed'])
+            target.write_bytes(raw)
+            (target.parent/'other.png').write_bytes(raw)
+            self.assertFalse(audit(self.root)['upload_check_passed'])
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)

@@ -3,6 +3,14 @@
 Frissítve: 2026-10-31. Időzóna: Europe/Budapest.
 Ellenőrzött motoralap: `301eec75c72028b8f377ee4e099fce0b1df4de5e` (#143).
 
+## README hardverfotó — jelölt, 2026-10-31
+
+A projektgazda saját AN1x-fotója a README projektleírása alá került.
+Angol képaláírás külön jelzi,hogy eredeti fizikai hardver,nem plugin vagy GUI.
+Az eredeti képfájl változatlan;az upload-ellenőrző csak ezt az egy pontos
+SHA256-azonosságú képet engedi át. Más bináris fájlok tiltása megmarad.
+Külön képeredet/engedély leírás készült;új képlicencet nem feltételezünk.
+
 ## Aktuális összefoglaló az első REAPER-hangig — 2026-10-31
 
 A #152 beolvadt `8b2930234de7b0b512f8ecdb9f04414782f14a53`,
