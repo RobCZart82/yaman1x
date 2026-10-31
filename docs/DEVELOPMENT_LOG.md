@@ -3,6 +3,58 @@
 Frissítve: 2026-10-31. Időzóna: Europe/Budapest.
 Ellenőrzött motoralap: `301eec75c72028b8f377ee4e099fce0b1df4de5e` (#143).
 
+## README hardverfotó — jelölt, 2026-10-31
+
+A projektgazda saját AN1x-fotója a README projektleírása alá került.
+Angol képaláírás külön jelzi,hogy eredeti fizikai hardver,nem plugin vagy GUI.
+Az eredeti képfájl változatlan;az upload-ellenőrző csak ezt az egy pontos
+SHA256-azonosságú képet engedi át. Más bináris fájlok tiltása megmarad.
+Külön képeredet/engedély leírás készült;új képlicencet nem feltételezünk.
+
+## Aktuális összefoglaló az első REAPER-hangig — 2026-10-31
+
+A #152 beolvadt `8b2930234de7b0b512f8ecdb9f04414782f14a53`,
+2026-10-31T17:02:44Z (Budapest18:02:44). A pontos head
+`cfca0c785364cb44f8d478735a2b8d82b84d16e7` négy CI-feladata sikeres:
+41210850333 és41210850351. Az automatikus review kvótakorlát miatt nem készült el;
+ez nem kódhibát bizonyító review,és nem sikeres review. Bizonyíték:
+https://github.com/RobCZart82/yaman1x/pull/152#issuecomment-6544784804
+A beolvadást élő GitHub-adat igazolja;az asszisztens korábban visszatartotta.
+A húszperces automatika leállítva marad;ez a dokumentációfrissítés nem indítja újra.
+
+Hátralévő fő lépések,függőségi sorrendben:
+
+1. **Teljes gépintegráció:** CPU,busz,szükséges perifériák és DSP közös idővonala;
+   indulási/reset-sorrend és megőrzött állapotok igazolása. A komponens-resettesztek
+   beolvadtak,de gépszintű melegreset még nincs. Csak a firmware által ténylegesen
+   igényelt hiányzó CPU/periféria-funkciókat kell célzottan pótolni.
+2. **Firmware-indulás és MIDI:** a helyi eredeti firmware stabil indulása,
+   PKS-kommunikáció szükséges viselkedésének tisztázása,SCI0 valódi byte-vétel,
+   note-on/note-off firmware-szintű feldolgozás. A PKS ROM hiánya nincs megoldva;
+   szükséges protokollhelyettesítés vagy további hardveres adat még vizsgálandó.
+3. **Egy voice DSP-jének elfogadása:** táblarom-címzés,órajel,EG és visszaolvasások,
+   CPU–DSP sorrend és chipközi jelút. A programfeltöltés önmagában nem hangbizonyíték.
+4. **Első offline hang:** dokumentált száraz kimenet és PCM-skálázás;WAV note-on,
+   tartás,note-off és lecsengés eseményekkel. Nemnulla,véges és reprodukálható jel.
+   MEG csak akkor halasztható,ha a kiválasztott száraz hangút valóban működik nélküle.
+5. **Valós idejű beágyazott motor:** időbélyeges MIDI,audioblokkok,mintavételi
+   illesztés,előre foglalt memória,határidőmérés és beragadt hangok kezelése.
+6. **Minimális VST3:** MIDI/audio adapter,példányonkénti állapot,helyi ROM-betöltés,
+   csomagolás és validálás. GUI-fejlesztés továbbra sincs engedélyezve;az első próbához
+   hosztparaméter/konfiguráció használható. AU és kidolgozott felület későbbi lépés.
+7. **REAPER-elfogadás:** plugin felismerése,MIDI-hang indítása/elengedése,lehallgatás,
+   WAV-mentés,offline összehasonlítás és projekt újranyitása rögzített környezetben.
+
+Jelenleg nincs igazolt AN1x-hang,VST3 vagy AU. A sok sikeres CPU/perifériateszt
+nem jelenti a firmware/DSP/hangút elfogadását. Az első hang legnagyobb nyitott
+kockázata az indulási/MIDI–PKS út és az egy voice-hoz szükséges DSP-viselkedés.
+A teljes hardver minden funkciójának emulálása nem előfeltétele az első hangnak.
+
+## Korábbi előkészítési bejegyzések — történeti állapot
+
+Az alábbi jelölt/függőben megjelölések a készítéskori állapotot őrzik.
+A jelenlegi állapotot a fenti összefoglaló és a strukturált beolvadási napló adja.
+
 ## SCI reset utáni vétel — jelölt, 2026-10-31
 
 A #151 beolvadt e4e79d4e0244a05784b7da705e9496f601446e99,

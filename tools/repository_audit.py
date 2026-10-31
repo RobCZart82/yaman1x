@@ -14,6 +14,8 @@ import subprocess
 
 ALLOWED = {'.cpp', '.h', '.hpp', '.inc', '.py', '.md', '.txt', '.json', '.patch',
            '.cmake', '.yaml', '.yml', '.natvis'}
+# User-supplied original hardware photograph; exact asset exception only.
+APPROVED_IMAGES = {'docs/images/an1x-hardware.png': '7029e1998c09b6d6a4993242eb14a712b70a043da3cc6e7e55901a770779db07'}
 NAMES = {'CMakeLists.txt', 'LICENSE', '.gitignore', '.gitattributes', '.gitkeep'}
 EXCLUDED_DIRS = {'work', 'private_runs', 'roms', 'vendor', '__pycache__'}
 PATTERNS = [
@@ -49,6 +51,10 @@ def audit(root):
             report(relative, 'symlink or path outside repository'); continue
         if any(part in EXCLUDED_DIRS or part.startswith('build') for part in relative.parts[:-1]):
             report(relative, 'local data/build directory'); continue
+        if relative.as_posix() in APPROVED_IMAGES:
+            if not p.is_file() or hashlib.sha256(p.read_bytes()).hexdigest() != APPROVED_IMAGES[relative.as_posix()]:
+                report(relative, 'approved illustration identity differs')
+            continue
         if relative.name not in NAMES and relative.suffix.lower() not in ALLOWED:
             report(relative, 'unapproved file type'); continue
         if not p.is_file():

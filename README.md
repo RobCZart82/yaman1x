@@ -3,6 +3,12 @@
 Firmware-based Yamaha AN1x emulator research, preparing a future **VST3/AU**
 plugin. Repository name: **yaman1x**.
 
+![Original Yamaha AN1x hardware photographed for the YamAN1x project](docs/images/an1x-hardware.png)
+
+*Original Yamaha AN1x hardware — illustrative photograph supplied by the project
+owner. This is a photograph of the physical synthesizer, not a VST3/AU plugin
+or a screenshot of YamAN1x.*
+
 First public research snapshot: **2026-10-26** — [v0.1.0-research](https://github.com/RobCZart82/yaman1x/releases/tag/v0.1.0-research). This is a development foundation. It does not yet produce AN1x audio,
 complete a validated hardware-equivalent boot, or provide a plugin or GUI.
 
@@ -35,7 +41,9 @@ Merged #148 GPIO retention tests;four exact-head CI jobs PASS.
 Merged #149 SCI reset tests:four CI jobs and exact-head code review PASS.
 Merged #150 IRQ reset tests:four CI jobs and exact-head code review PASS.
 Merged #151 post-reset TX tests:four CI jobs and exact-head code review PASS.
-Current candidate:all256 post-reset RX bytes and held-low edge suppression.
+Merged #152 post-reset RX tests at8b2930234de7b0b512f8ecdb9f04414782f14a53.
+All four exact-head CI jobs PASS;automated review failed due to usage limit,not completed.
+Current candidate:documentation reconciliation and first-sound remaining milestones.
 Pinned method research #145 and boundary documentation #146 are merged.
 No warm reset API added;final candidate CI/review pending.
 

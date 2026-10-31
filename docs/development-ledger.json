@@ -2152,19 +2152,32 @@
       ],
       "automated_review_at_merge": "completed_no_findings_exact_head",
       "review_evidence": "https://github.com/RobCZart82/yaman1x/pull/151#issuecomment-6544283995"
+    },
+    {
+      "pr": 152,
+      "title": "Test post-reset SCI receive recovery and held input edges",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/152",
+      "kind": "tests",
+      "status": "merged",
+      "merge_commit": "8b2930234de7b0b512f8ecdb9f04414782f14a53",
+      "reviewed_head": "cfca0c785364cb44f8d478735a2b8d82b84d16e7",
+      "merged_at_utc": "2026-10-31T17:02:44Z",
+      "ci_runs": [
+        41210850333,
+        41210850351
+      ],
+      "automated_review_at_merge": "failed_usage_limit_not_completed",
+      "review_evidence": "https://github.com/RobCZart82/yaman1x/pull/152#issuecomment-6544784804"
     }
   ],
   "active_change": {
-    "branch": "test/sci-reset-receive",
-    "status": "local_validation_passed_ci_pending",
-    "scope": "256 post-reset RX bytes and held-low re-enable edge suppression",
+    "branch": "docs/current-first-sound-status",
+    "status": "documentation_candidate",
+    "scope": "Close PR152 metadata and summarize remaining M0-M6 first-sound work;original user-supplied hardware photo with explicit non-plugin caption and exact-hash upload exception",
     "validation": {
-      "rx_bytes": 256,
-      "targeted_ctest": "pass",
-      "targeted_asan_ubsan": "pass",
-      "python_tests": 91,
-      "pinned_reset_identity": "pass",
-      "full_runtime_suite": "not_rerun_test_only"
+      "python_tests": 92,
+      "source_audit_files": 540,
+      "notice_covered_files": 229
     }
   },
   "pending_changes": []
