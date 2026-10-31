@@ -1,7 +1,21 @@
 # YamAN1x fejlesztési napló
 
-Frissítve: 2026-10-30. Időzóna: Europe/Budapest.
+Frissítve: 2026-10-31. Időzóna: Europe/Budapest.
 Ellenőrzött motoralap: `301eec75c72028b8f377ee4e099fce0b1df4de5e` (#143).
+
+## #145 lezárása és CPU-reset határvizsgálat — 2026-10-31
+
+A #145 beolvadt: `e470f406c2d65eccda70e0c6381db1f826b2810b`,
+2026-10-30T22:25:47Z;ellenőrzött head `90f8aea04fdddce17de60fe706b690b3b5f62c3b`.
+Öt CI-feladat sikeres (41134650020,41134651634,41134649966).
+Automatikus review-eredmény nem volt rögzítve;nem állítunk sikeres review-t.
+A [resetdokumentum](h83002-warm-reset-contract.md) új helyi kódvizsgálata külön
+rögzíti a CCR megőrzését,vektorolvasási/prefetch sorrendet,részállapotokat és
+az időadósság/folytonos idővonal nyitott döntéseit. Ez dokumentációs jelölt,
+nem végrehajtott upstream reset-differenciál és nem új melegreset-API.
+Motorkód nem változott;runtime tesztet e dokumentáció miatt nem futtattunk újra.
+Következő:a felsorolt resetmegfigyelések független végrehajtási tesztjei,
+majd eszközsorrend és nem nulla időpont megtartása.
 
 ## Aktív kutatási lépés — rögzített melegreset-szerződés, 2026-10-30
 

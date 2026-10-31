@@ -1,4 +1,4 @@
-# Pinned reset-method contract — research candidate
+# Pinned reset-method contract — merged research evidence
 
 Recorded:2026-10-30. Integrated engine baseline #143;no warm reset API added.
 This preparation establishes local source identities and method-local effects,
@@ -63,3 +63,34 @@ original indentation,missing/duplicate methods,non-reset substitution and reject
 of wrong archive hash before ZIP parsing. Real locked archive report matches all
 six methods. Full Python suite91 tests PASS;engine evidence stays #143 (88 CTest/87 Python),
 not rerun for this research-only increment. Final-head CI/review pending.
+
+## CPU reset and runner boundary review — 2026-10-31 candidate
+
+This is a review of the current local implementation, not an executed upstream
+warm-reset comparison. PR #145 merged at 2026-10-30T22:25:47Z with all five CI
+jobs passing. The engine implementation baseline remains #143.
+
+`src/h8_first_handlers.h` contains full and partial generated reset handlers.
+For the selected advanced H8H profile the full handler ORs I into CCR (it does
+not clear the other CCR bits), sets EXR to I|NC, reads vector words at 0 and 2,
+then publishes the IRQ filter, prefetches at the vector PC, advances PC by two
+and completes prefetch without IRQ selection. These are local source observations;
+physical reset register values and global reset ordering remain unverified.
+The partial handler has distinct continuation states for completed versus retried
+accesses. Setting only the CPU state number would leave old partial state and
+runner bookkeeping unless an explicit transition handles them.
+
+`H8ExecutionBudget` requires contiguous slices after its first invocation.
+A slice can end with debt from an already-completed synchronous bus access;
+that debt is carried into the next slice. `H8ExecutionRunner` updates the host
+at the slice start before applying debt and resuming a partial instruction.
+Neither class currently exposes an in-place reset operation. Reconstructing the
+runner would discard its continuity/debt checks; retaining it while changing CPU
+state would require a documented policy for pre-reset completed work.
+
+Before implementing reset, tests must independently observe vector-read order,
+CCR preservation, filter publication, first prefetch, every partial cut, debt and
+nonzero absolute time. Peripheral reset order, retained RX/IRQ levels and pending
+events must be specified separately. No instruction-boundary or arbitrary-cycle
+reset API is accepted by this review. Existing cold epoch reconstruction remains
+the supported recovery operation and explicitly starts a new time epoch.
