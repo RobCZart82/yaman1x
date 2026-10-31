@@ -148,6 +148,21 @@ int main() {
         check(sink.events.size()==4 && sink.events[2].second=='h' && sink.events[3].second=='1',
               "Repeated SCI reset republishes high unlike GPIO suppression");
     }
+    // Restart TX at a nonzero absolute time after aborting an unrelated old frame.
+    for(unsigned byte=0;byte<256;++byte) {
+        Channel c;Sink sink;prepare(c,sink);
+        c.write_tdr(0x55,true,0,sink);before(c,sink,73);sink.now=73;c.reset(sink);
+        c.write_smr(0);c.write_brr(0);c.write_scr(0xa4,sink);
+        sink.events.clear();sink.data.clear();sink.tx_count=sink.end_count=0;
+        c.write_tdr(uint8_t(byte),true,1000,sink);drain(c,sink);
+        std::vector<std::pair<uint64_t,bool>> expected={{1002,false}};
+        for(unsigned bit=0;bit<8;++bit)expected.emplace_back(1034+32*bit,((byte>>bit)&1)!=0);
+        expected.emplace_back(1290,true);expected.emplace_back(1322,true);
+        check(sink.data==expected,"Post-reset TX literal frame/timestamps independent of aborted frame");
+        check(c.next_event()==0 && c.tx_state()==Channel::TxState::idle && c.read_ssr(false)==0x84,
+              "Post-reset TX completes with no old deadline");
+        check(sink.tx_count==1 && sink.end_count==1,"Post-reset TX emits exactly one ready/end IRQ");
+    }
     std::printf("4096 full-duplex byte/formats plus shared clock/status/order/isolation sequences: %u failures\n",failures);
     return failures?1:0;
 }

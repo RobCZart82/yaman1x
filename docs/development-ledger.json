@@ -2120,14 +2120,30 @@
       ],
       "automated_review_at_merge": "completed_no_findings_exact_head",
       "review_evidence": "https://github.com/RobCZart82/yaman1x/pull/149#issuecomment-6543431784"
+    },
+    {
+      "pr": 150,
+      "title": "Test held IRQ and NMI input retention across reset",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/150",
+      "kind": "tests",
+      "status": "merged",
+      "merge_commit": "1ef73ef6fe3f198c2a82d9e962a282860218dd79",
+      "reviewed_head": "69d41d6cb61d98368d81a91718d106114d75f634",
+      "merged_at_utc": "2026-10-31T13:34:33Z",
+      "ci_runs": [
+        41204758884,
+        41204758862
+      ],
+      "automated_review_at_merge": "completed_no_findings_exact_head",
+      "review_evidence": "https://github.com/RobCZart82/yaman1x/pull/150#issuecomment-6543843939"
     }
   ],
   "active_change": {
-    "branch": "test/irq-reset-held-inputs",
+    "branch": "test/sci-reset-restart",
     "status": "local_validation_passed_ci_pending",
-    "scope": "65536 held IRQ/enable masks,reset relatching and NMI physical edge retention",
+    "scope": "All256 post-reset TX bytes at absolute time1000 after aborted prior frame",
     "validation": {
-      "mask_pairs": 65536,
+      "tx_bytes": 256,
       "targeted_ctest": "pass",
       "targeted_asan_ubsan": "pass",
       "python_tests": 91,
