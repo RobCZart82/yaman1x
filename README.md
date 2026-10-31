@@ -31,7 +31,8 @@ See [engine architecture decision](docs/ADR-0001-engine-boundary.md) and
 ## Current state
 
 Merged #147 cold CPU reset tests:89 CTest/91 Python PASS locally and four CI jobs PASS.
-Current candidate:GPIO reset retention across196608 configurations,three resets each.
+Merged #148 GPIO retention tests;four exact-head CI jobs PASS.
+Current candidate:SCI reset abortion at401 TX/RX cycle cuts.
 Pinned method research #145 and boundary documentation #146 are merged.
 No warm reset API added;final candidate CI/review pending.
 

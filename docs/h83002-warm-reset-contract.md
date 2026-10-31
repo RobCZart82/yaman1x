@@ -128,3 +128,13 @@ and a per-bit pin-read oracle with forced input40 and external pins96.
 The locked original device_reset identity still matches:it calls update_output
 only. This test validates the local component contract,not framework traversal,
 physical hardware retention or global reset timing. Engine code is unchanged.
+
+## Active SCI reset extension — candidate 2026-10-31
+
+For every cycle cut0..400,the shared channel test starts TX A5 and held-low RX,
+services deadlines strictly before the cut,then resets at the cut. Independent
+assertions require clock-high followed by TX-high,SSR84,SMR/SCR/RDR/phases0,
+BRR/TDR FF,idle engines,no deadline and retained low physical RX. Draining must
+produce no stale completion or extra IRQ. A second reset republishes both high
+outputs. This includes cuts exactly on unserviced deadlines. It does not prove
+reset traversal order,full receive-frame restart or global absolute-time policy.

@@ -3,6 +3,18 @@
 Frissítve: 2026-10-31. Időzóna: Europe/Budapest.
 Ellenőrzött motoralap: `301eec75c72028b8f377ee4e099fce0b1df4de5e` (#143).
 
+## Aktív SCI reset teszt — jelölt, 2026-10-31
+
+A #148 beolvadt1ec8ff3b657816e736930fe8029427409777f555,
+2026-10-31T11:09:52Z;négy CI sikeres,automatikus review-eredmény nem volt rögzítve.
+Az új komponensvizsgálat401 ciklusponton szakítja meg az egyidejű TX/RX-et:
+clock magas majd TX magas,regiszteralapértékek,üres határidő,megőrzött alacsony
+RX és régi befejezési/IRQ események hiánya. Ismételt reset mindkét magas
+kimenetet újra publikálja. Ez nem teljesgép-reset sorrend vagy hardverbizonyíték.
+Célzott CTest és ASan/UBSan,91 Python,eredeti resetazonosság sikeres.
+Motorkód nem változott;teljes runtime készletet nem futtattunk újra.
+A jelölt CI/review függőben.
+
 ## GPIO-reset megőrzési teszt — jelölt, 2026-10-31
 
 A #147 beolvadt:b39643f330314f21e16a946c0e7e00e5a5eb41d0,
