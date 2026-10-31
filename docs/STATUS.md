@@ -12,7 +12,8 @@ Merged research evidence:[#145](https://github.com/RobCZart82/yaman1x/pull/145),
 Merged #147 CPU reset tests:89 CTest/91 Python PASS locally,four CI jobs PASS.
 Merged #148 GPIO retention tests;four exact-head CI jobs PASS.
 Merged #149 SCI reset tests:four CI jobs and exact-head code review PASS.
-Current candidate:65536 IRQ held-input/enable mask reset cases.
+Merged #150 IRQ reset tests:four CI jobs and exact-head code review PASS.
+Current candidate:all256 post-reset TX bytes at absolute time1000.
 Targeted ASan/UBSan PASS;final CI/review pending;no warm reset API added.
 #146 documentation merged at41a1c1cea0b777653ede9e470ec5e6e7797b2ff2;all four CI jobs PASS.
 Engine implementation baseline remains #143.

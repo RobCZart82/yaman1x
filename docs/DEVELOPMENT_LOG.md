@@ -3,6 +3,19 @@
 Frissítve: 2026-10-31. Időzóna: Europe/Budapest.
 Ellenőrzött motoralap: `301eec75c72028b8f377ee4e099fce0b1df4de5e` (#143).
 
+## SCI reset utáni adás — jelölt, 2026-10-31
+
+A #150 beolvadt1ef73ef6fe3f198c2a82d9e962a282860218dd79,
+2026-10-31T13:34:33Z;négy CI sikeres,aktuális head review észrevétel nélkül
+lezárult (issuecomment-6543843939).
+Az új teszt mind256 bájtot újraküldi reset után,1000 abszolút kezdőidővel.
+Előtte73 ciklusnál megszakít egy másik keretet. Független,bitenként és időponttal
+megadott elvárás ellenőrzi a keretet,az egyszeri kész/befejezés IRQ-t és az
+üres eseménysort. Ez komponenshelyreállítás,nem gépszintű melegreset.
+Célzott CTest,strict ASan/UBSan,91 Python és eredeti resetazonosság sikeres.
+Motorkód változatlan;teljes runtime készletet nem futtattunk újra.
+A jelölt CI/review függőben.
+
 ## IRQ-reset bemenetmegőrzés — jelölt, 2026-10-31
 
 A #149 beolvadt1cb2f4a229fac079d5b318f5187ed2a340161838,

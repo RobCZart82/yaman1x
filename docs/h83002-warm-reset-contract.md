@@ -148,3 +148,11 @@ retain the old publication until owner filter refresh,and preserve the NMI input
 without inventing an edge. Re-enabling IRQs selects the lowest eligible line;
 a genuinely new NMI edge still selects vector7. The locked original reset
 identity remains the source reference. Whole-machine traversal is still open.
+
+## Post-reset transmission — candidate 2026-10-31
+
+Each byte0..255 starts at absolute cycle1000 after an unrelated55 frame is
+aborted at73. A literal start/data/stop/idle waveform requires first edge1002,
+data bits1034+32*bit,stop1290 and idle1322. Exactly one ready and end IRQ,
+SSR84,idle state and no pending event are required. This validates local channel
+reconfiguration after reset,not global machine time continuity or RX recovery.
