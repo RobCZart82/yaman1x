@@ -2104,18 +2104,34 @@
         41194415954
       ],
       "automated_review_at_merge": "no_recorded_result_at_inspection"
+    },
+    {
+      "pr": 149,
+      "title": "Test active SCI reset cancellation and output publication",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/149",
+      "kind": "tests",
+      "status": "merged",
+      "merge_commit": "1cb2f4a229fac079d5b318f5187ed2a340161838",
+      "reviewed_head": "1da328675fba549e8953e2fc371321868b592d16",
+      "merged_at_utc": "2026-10-31T12:54:35Z",
+      "ci_runs": [
+        41201801997,
+        41201801898
+      ],
+      "automated_review_at_merge": "completed_no_findings_exact_head",
+      "review_evidence": "https://github.com/RobCZart82/yaman1x/pull/149#issuecomment-6543431784"
     }
   ],
   "active_change": {
-    "branch": "test/sci-reset-abort",
+    "branch": "test/irq-reset-held-inputs",
     "status": "local_validation_passed_ci_pending",
-    "scope": "401 active TX/RX reset cut points;defaults,held RX,publication order and cancelled deadlines",
+    "scope": "65536 held IRQ/enable masks,reset relatching and NMI physical edge retention",
     "validation": {
-      "reset_cut_points": 401,
+      "mask_pairs": 65536,
       "targeted_ctest": "pass",
       "targeted_asan_ubsan": "pass",
       "python_tests": 91,
-      "pinned_original_reset_identity": "pass",
+      "pinned_reset_identity": "pass",
       "full_runtime_suite": "not_rerun_test_only"
     }
   },

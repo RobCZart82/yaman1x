@@ -3,6 +3,19 @@
 Frissítve: 2026-10-31. Időzóna: Europe/Budapest.
 Ellenőrzött motoralap: `301eec75c72028b8f377ee4e099fce0b1df4de5e` (#143).
 
+## IRQ-reset bemenetmegőrzés — jelölt, 2026-10-31
+
+A #149 beolvadt1cb2f4a229fac079d5b318f5187ed2a340161838,
+2026-10-31T12:54:35Z;négy CI sikeres,az aktuális head automatikus review-ja
+észrevétel nélkül lezárult (issuecomment-6543431784).
+Az új teszt65536 tartott IRQ/engedélyezési maszkot ellenőriz:reset után
+újralatchelt szintek,törölt regiszterek,owner-frissítésig megtartott publikáció,
+legalacsonyabb engedélyezett vektor,megtartott NMI-bemenet és új él elfogadása.
+Ez komponensszerződés,nem teljesgép-reset sorrend vagy hardverbizonyíték.
+Célzott CTest,strict ASan/UBSan,91 Python és eredeti resetazonosság sikeres.
+Motorkód nem változott;teljes runtime készletet nem futtattunk újra.
+A jelölt végső CI/review függőben.
+
 ## Aktív SCI reset teszt — jelölt, 2026-10-31
 
 A #148 beolvadt1ec8ff3b657816e736930fe8029427409777f555,
