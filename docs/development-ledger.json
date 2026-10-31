@@ -2136,14 +2136,30 @@
       ],
       "automated_review_at_merge": "completed_no_findings_exact_head",
       "review_evidence": "https://github.com/RobCZart82/yaman1x/pull/150#issuecomment-6543843939"
+    },
+    {
+      "pr": 151,
+      "title": "Test all post-reset SCI transmit bytes at nonzero time",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/151",
+      "kind": "tests",
+      "status": "merged",
+      "merge_commit": "e4e79d4e0244a05784b7da705e9496f601446e99",
+      "reviewed_head": "28f4e706552fc7bbcb7e5281856bed00f9789949",
+      "merged_at_utc": "2026-10-31T14:14:36Z",
+      "ci_runs": [
+        41207754443,
+        41207754346
+      ],
+      "automated_review_at_merge": "completed_no_findings_exact_head",
+      "review_evidence": "https://github.com/RobCZart82/yaman1x/pull/151#issuecomment-6544283995"
     }
   ],
   "active_change": {
-    "branch": "test/sci-reset-restart",
+    "branch": "test/sci-reset-receive",
     "status": "local_validation_passed_ci_pending",
-    "scope": "All256 post-reset TX bytes at absolute time1000 after aborted prior frame",
+    "scope": "256 post-reset RX bytes and held-low re-enable edge suppression",
     "validation": {
-      "tx_bytes": 256,
+      "rx_bytes": 256,
       "targeted_ctest": "pass",
       "targeted_asan_ubsan": "pass",
       "python_tests": 91,

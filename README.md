@@ -34,7 +34,8 @@ Merged #147 cold CPU reset tests:89 CTest/91 Python PASS locally and four CI job
 Merged #148 GPIO retention tests;four exact-head CI jobs PASS.
 Merged #149 SCI reset tests:four CI jobs and exact-head code review PASS.
 Merged #150 IRQ reset tests:four CI jobs and exact-head code review PASS.
-Current candidate:all256 post-reset TX bytes at absolute time1000.
+Merged #151 post-reset TX tests:four CI jobs and exact-head code review PASS.
+Current candidate:all256 post-reset RX bytes and held-low edge suppression.
 Pinned method research #145 and boundary documentation #146 are merged.
 No warm reset API added;final candidate CI/review pending.
 
