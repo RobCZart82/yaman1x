@@ -3,6 +3,19 @@
 Frissítve: 2026-10-31. Időzóna: Europe/Budapest.
 Ellenőrzött motoralap: `301eec75c72028b8f377ee4e099fce0b1df4de5e` (#143).
 
+## GPIO-reset megőrzési teszt — jelölt, 2026-10-31
+
+A #147 beolvadt:b39643f330314f21e16a946c0e7e00e5a5eb41d0,
+2026-10-31T09:59:11Z;négy CI sikeres,pontos head618667b31cd2ca7e6c80c063face8d844ed19aeb.
+Automatikus review-eredmény nem volt rögzítve.
+Az új teszt196608 maszk/irány/adat kombináción három ismételt resetet
+ellenőriz. Független elvárás a DDR/DR/PCR/ODR megőrzése,a változatlan
+kimenetértesítés elnyomása és a lábolvasás bitenként számolt eredménye.
+Ez komponensvizsgálat,nem teljesgép-reset sorrend vagy hardverbizonyíték.
+Célzott CTest,ASan/UBSan és91 Python sikeres;eredeti resetazonosság egyezik.
+Motorkód nem változott;teljes runtime készletet nem futtattunk újra.
+A jelölt végső CI/review még függőben.
+
 ## CPU-reset végrehajtási teszt — jelölt, 2026-10-31
 
 A #146 beolvadt `41a1c1cea0b777653ede9e470ec5e6e7797b2ff2`,

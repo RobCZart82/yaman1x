@@ -2074,21 +2074,35 @@
         41185583977
       ],
       "automated_review_at_merge": "no_recorded_result_at_inspection"
+    },
+    {
+      "pr": 147,
+      "title": "Test CPU reset vector flags timing and every partial cut",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/147",
+      "kind": "tests",
+      "status": "merged",
+      "merge_commit": "b39643f330314f21e16a946c0e7e00e5a5eb41d0",
+      "reviewed_head": "618667b31cd2ca7e6c80c063face8d844ed19aeb",
+      "merged_at_utc": "2026-10-31T09:59:11Z",
+      "ci_runs": [
+        41188413419,
+        41188413402
+      ],
+      "automated_review_at_merge": "no_recorded_result_at_inspection"
     }
   ],
   "active_change": {
-    "branch": "test/cpu-reset-execution",
+    "branch": "test/gpio-reset-retention",
     "status": "local_validation_passed_ci_pending",
-    "scope": "Independent cold CPU reset bus/CCR/partial/debt execution tests;no warm reset API",
+    "scope": "GPIO retained DDR/DR/PCR/ODR and output suppression across repeated reset",
     "validation": {
-      "ccr_seeds": 256,
-      "time_origins": 3,
-      "cut_points": 7,
-      "python_tests": 91,
-      "original_reference_slices": 200000,
+      "configurations": 196608,
+      "resets_per_configuration": 3,
+      "targeted_ctest": "pass",
       "targeted_asan_ubsan": "pass",
-      "ccr_clobber_mutation_failures": 6858,
-      "ctest_groups": 89
+      "python_tests": 91,
+      "pinned_reset_identity": "pass",
+      "full_runtime_suite": "not_rerun_test_only_extension"
     }
   },
   "pending_changes": []
