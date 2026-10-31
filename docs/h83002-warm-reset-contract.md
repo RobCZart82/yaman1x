@@ -156,3 +156,12 @@ aborted at73. A literal start/data/stop/idle waveform requires first edge1002,
 data bits1034+32*bit,stop1290 and idle1322. Exactly one ready and end IRQ,
 SSR84,idle state and no pending event are required. This validates local channel
 reconfiguration after reset,not global machine time continuity or RX recovery.
+
+## Post-reset reception — candidate 2026-10-31
+
+Each byte0..255 is received at start1000 after an old low-input reception is
+aborted at73. Re-enabling RE with held-low RX and writing the same low at900
+must leave the engine idle with no event. A high at950 followed by a real frame
+must yield the literal byte,SSR C4,exactly one RX IRQ,no error and no deadline.
+DMA read then restores SSR84. The existing synthetic wire supplies independent
+start/data/stop bits. This does not prove whole-machine time/input reset ordering.

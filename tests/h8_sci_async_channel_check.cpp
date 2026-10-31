@@ -163,6 +163,22 @@ int main() {
               "Post-reset TX completes with no old deadline");
         check(sink.tx_count==1 && sink.end_count==1,"Post-reset TX emits exactly one ready/end IRQ");
     }
+    for(unsigned byte=0;byte<256;++byte) {
+        Channel c;Sink sink;prepare(c,sink);
+        c.write_rx(false,0);before(c,sink,73);sink.now=73;c.reset(sink);
+        c.write_smr(0);c.write_brr(0);c.write_scr(0x50,sink);
+        sink.events.clear();sink.rx_count=sink.error_count=0;
+        c.write_rx(false,900);
+        check(c.next_event()==0 && c.rx_state()==Channel::RxState::idle,
+              "Re-enable while RX held low cannot synthesize start edge");
+        c.write_rx(true,950);wire(c,sink,byte,1000);
+        check(c.read_rdr()==byte && c.read_ssr(false)==0xc4,
+              "Every post-reset received byte has independent value/status oracle");
+        check(sink.rx_count==1 && sink.error_count==0 && c.next_event()==0 &&
+              c.rx_state()==Channel::RxState::idle,"Exactly one fresh receive completion without stale error/event");
+        c.read_rdr(true);
+        check(c.read_ssr(false)==0x84,"Post-reset DMA acknowledgement clears fresh receive-ready only");
+    }
     std::printf("4096 full-duplex byte/formats plus shared clock/status/order/isolation sequences: %u failures\n",failures);
     return failures?1:0;
 }
