@@ -7,9 +7,12 @@ audible firmware-driven VST3 voice in REAPER:
 Changes/fixes are recorded in the [development ledger](DEVELOPMENT_LOG.md).
 The [dated repository audit](REPOSITORY_AUDIT_2026-10-28.md) preserves that snapshot;
 the current status below and the development ledger supersede its old open-task counts.
-Active research candidate:[pinned warm-reset method contract](h83002-warm-reset-contract.md).
-Five files/six methods verified;91 Python tests PASS. No engine reset API change.
-Final CI/review pending;engine evidence below remains #143.
+Merged research evidence:[#145](https://github.com/RobCZart82/yaman1x/pull/145),
+`e470f406c2d65eccda70e0c6381db1f826b2810b`;five CI jobs PASS on head
+`90f8aea04fdddce17de60fe706b690b3b5f62c3b`. No recorded automated review result.
+[Pinned method contract](h83002-warm-reset-contract.md):five files/six methods;91 Python tests.
+Current documentation candidate reviews CPU reset/runner boundaries;no reset API added.
+Engine implementation baseline remains #143.
 
 Verified engine baseline:[#143](https://github.com/RobCZart82/yaman1x/pull/143),
 `301eec75c72028b8f377ee4e099fce0b1df4de5e`;tested head `d2da27c15c8ebf8c083f35bb4a2cef18eba4d8c4`.
