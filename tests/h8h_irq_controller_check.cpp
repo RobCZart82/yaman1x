@@ -32,6 +32,29 @@ int main() {
         edge.taken(12+line);
         check(edge.isr() == 0,"Edge take clears ISR");
     }
+    for(unsigned held=0;held<256;++held)
+    for(unsigned enabled=0;enabled<256;++enabled) {
+        Irq irq;irq.set_filter(0,-1);irq.write_iscr(0xff);irq.write_ier(0xff);
+        for(unsigned line=0;line<8;++line)irq.irq_input(line,(held&(1u<<line))!=0);
+        irq.internal_irq(52);irq.nmi_input(true,true);
+        check(irq.current().nmi,"Pre-reset pending NMI selected");
+        irq.reset();
+        check(irq.isr()==held && irq.ier()==0 && irq.iscr()==0 &&
+              irq.icr(0)==0 && irq.icr(1)==0 && irq.icr(2)==0,"Reset re-latches all held levels with cleared registers");
+        check(irq.current().nmi,"Reset retains stale publication until owner refresh");
+        irq.set_filter(0,-1);
+        check(irq.current().level==-1,"Owner refresh clears stale NMI/internal publication");
+        irq.nmi_input(true,true);
+        check(irq.current().level==-1,"Held NMI does not synthesize a new edge after reset");
+        irq.write_ier(uint8_t(enabled));
+        int first=-1;
+        for(unsigned line=0;line<8;++line)if((held&enabled)&(1u<<line)){first=int(line);break;}
+        check(first<0?irq.current().level==-1:
+              irq.current().vector==12+first && irq.current().level==0,
+              "Independent lowest enabled held-line selection after reset");
+        irq.nmi_input(false,true);irq.nmi_input(true,true);
+        check(irq.current().nmi && irq.current().vector==7,"New physical NMI edge remains accepted");
+    }
     Irq a,b;
     a.set_filter(0,-1); a.write_ier(1); a.internal_irq(52); a.irq_input(0,true);
     check(a.current().vector == 12,"External lower vector wins equal priority");

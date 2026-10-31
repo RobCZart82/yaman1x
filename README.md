@@ -32,7 +32,8 @@ See [engine architecture decision](docs/ADR-0001-engine-boundary.md) and
 
 Merged #147 cold CPU reset tests:89 CTest/91 Python PASS locally and four CI jobs PASS.
 Merged #148 GPIO retention tests;four exact-head CI jobs PASS.
-Current candidate:SCI reset abortion at401 TX/RX cycle cuts.
+Merged #149 SCI reset tests:four CI jobs and exact-head code review PASS.
+Current candidate:65536 IRQ held-input/enable mask reset cases.
 Pinned method research #145 and boundary documentation #146 are merged.
 No warm reset API added;final candidate CI/review pending.
 

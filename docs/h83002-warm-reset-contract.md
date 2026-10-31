@@ -138,3 +138,13 @@ BRR/TDR FF,idle engines,no deadline and retained low physical RX. Draining must
 produce no stale completion or extra IRQ. A second reset republishes both high
 outputs. This includes cuts exactly on unserviced deadlines. It does not prove
 reset traversal order,full receive-frame restart or global absolute-time policy.
+
+## IRQ physical retention extension — candidate 2026-10-31
+
+All256 held IRQ masks times all256 post-reset enable masks are checked against
+an independent lowest-set-line oracle. Before reset,edge mode and pending
+internal IRQ/NMI are active. Reset must clear registers but re-latch held levels,
+retain the old publication until owner filter refresh,and preserve the NMI input
+without inventing an edge. Re-enabling IRQs selects the lowest eligible line;
+a genuinely new NMI edge still selects vector7. The locked original reset
+identity remains the source reference. Whole-machine traversal is still open.
