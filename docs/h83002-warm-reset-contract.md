@@ -94,3 +94,27 @@ nonzero absolute time. Peripheral reset order, retained RX/IRQ levels and pendin
 events must be specified separately. No instruction-boundary or arbitrary-cycle
 reset API is accepted by this review. Existing cold epoch reconstruction remains
 the supported recovery operation and explicitly starts a new time epoch.
+
+## Independent cold CPU execution tests — candidate 2026-10-31
+
+`tests/h8_reset_execution_check.cpp` checks all 256 initial CCR bytes at absolute
+origins 0,1000 and 2^40,each cut from zero through six cycles (5376 split runs).
+A literal expected trace requires vector word reads at origin+2 and origin+4,
+filter publication after the second vector read and before the first prefetch,
+and the prefetch at origin+6. The filter callback has no timestamp argument:
+its recorded coordinate is the preceding bus completion,not an independently
+measured filter event time. Zero continuations must not duplicate effects.
+
+Independent assertions require CCR=input|0x80,EXR=0x7F,the vector PC and partial
+state8 after six cycles,one cycle of debt at odd cuts,and exactly one next NOP
+fetch at origin+8 after continuation. Snapshot/trace partition equality provides
+an additional check;it is not the sole expected-value oracle.
+
+Strict warnings and targeted ASan/UBSan pass. The pinned original generated
+H8H decoder/handlers plus execute_run differential also passes 200000 slices
+with zero differences. This broader existing reference comparison is distinct
+from a new original whole-machine warm-reset trace;the test starts newly
+constructed CPU owners. Original ROMs and generated engine bodies are unchanged.
+
+A temporary negative-control build replacing reset CCR OR with assignment produces
+6858 assertion failures;the test therefore rejects clobbering preserved flags.

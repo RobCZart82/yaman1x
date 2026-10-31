@@ -30,9 +30,10 @@ See [engine architecture decision](docs/ADR-0001-engine-boundary.md) and
 
 ## Current state
 
-Active research candidate:[pinned warm-reset method contract](docs/h83002-warm-reset-contract.md).
-Five files/six methods verified;91 Python tests PASS. No engine reset API change.
-Final CI/review pending;engine evidence below remains #143.
+Current candidate:independent cold CPU reset execution tests,256 CCR seeds,
+three absolute time origins and seven cuts;89 CTest/91 Python PASS locally.
+Pinned method research #145 and boundary documentation #146 are merged.
+No warm reset API added;final candidate CI/review pending.
 
 Verified engine baseline:[#143](https://github.com/RobCZart82/yaman1x/pull/143),
 `301eec75c72028b8f377ee4e099fce0b1df4de5e`;tested head `d2da27c15c8ebf8c083f35bb4a2cef18eba4d8c4`.

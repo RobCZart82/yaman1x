@@ -290,3 +290,7 @@ add_test(NAME yaman1x_repository_audit COMMAND ${Python3_EXECUTABLE} ${CMAKE_CUR
 # Exercise the ABI checks with assertions disabled as well.
 add_test(NAME yamanix_vop3_timing_optimized COMMAND ${Python3_EXECUTABLE} -O ${CMAKE_CURRENT_SOURCE_DIR}/tests/check_vop3_timing.py $<TARGET_FILE:yamanix_vop3_bridge>)
 add_test(NAME yamanix_live_bridge_optimized COMMAND ${Python3_EXECUTABLE} -O ${CMAKE_CURRENT_SOURCE_DIR}/tests/check_vop3_bridge.py $<TARGET_FILE:yamanix_vop3_bridge>)
+
+add_executable(yamanix_h8_reset_check tests/h8_reset_execution_check.cpp)
+target_include_directories(yamanix_h8_reset_check PRIVATE src)
+add_test(NAME yamanix_h8_reset_execution COMMAND yamanix_h8_reset_check)
