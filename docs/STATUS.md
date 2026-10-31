@@ -1,6 +1,6 @@
 # Development status
 
-Recorded: 2026-10-30. Product: YamAN1x. Repository: `yaman1x`. First public research snapshot: 2026-10-26.
+Recorded: 2026-10-31. Product: YamAN1x. Repository: `yaman1x`. First public research snapshot: 2026-10-26.
 
 The repository contains a ROM-free C++/Python development foundation.
 No VST3, AU, GUI or AN1x audio output is available yet.
@@ -14,8 +14,10 @@ Merged #148 GPIO retention tests;four exact-head CI jobs PASS.
 Merged #149 SCI reset tests:four CI jobs and exact-head code review PASS.
 Merged #150 IRQ reset tests:four CI jobs and exact-head code review PASS.
 Merged #151 post-reset TX tests:four CI jobs and exact-head code review PASS.
-Current candidate:all256 post-reset RX bytes and held-low edge suppression.
-Targeted ASan/UBSan PASS;final CI/review pending;no warm reset API added.
+Merged #152 post-reset RX tests at8b2930234de7b0b512f8ecdb9f04414782f14a53.
+All four exact-head CI jobs PASS;automated review failed due to usage limit,not completed.
+Current candidate:documentation reconciliation and first-sound remaining milestones.
+Targeted ASan/UBSan PASS;no whole-machine warm reset API added.
 #146 documentation merged at41a1c1cea0b777653ede9e470ec5e6e7797b2ff2;all four CI jobs PASS.
 Engine implementation baseline remains #143.
 
