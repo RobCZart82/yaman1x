@@ -125,6 +125,29 @@ int main() {
         wire(b,sb,0x6d,17);
         check(sb.events==isolated() && b.read_rdr()==0x6d && !a.next_event(),"Interleaved channel/reset isolation");
     }
+    // Abort both sides at every cycle of a frame,including equal-time deadlines.
+    for(uint64_t cut=0;cut<=400;++cut) {
+        Channel c;Sink sink;prepare(c,sink);
+        c.write_tdr(0xa5,true,0,sink);c.write_rx(false,0);
+        before(c,sink,cut);sink.now=cut;
+        sink.events.clear();sink.data.clear();
+        const auto tx=sink.tx_count,end=sink.end_count,rx=sink.rx_count,error=sink.error_count;
+        c.reset(sink);
+        check(sink.events==std::vector<std::pair<uint64_t,char>>{{cut,'h'},{cut,'1'}},
+              "Reset publishes clock high then TX high without IRQ");
+        check(c.next_event()==0 && c.tx_state()==Channel::TxState::idle && c.rx_state()==Channel::RxState::idle,
+              "Reset cancels both active engines and old deadline");
+        check(c.smr()==0 && c.scr()==0 && c.brr()==255 && c.tdr()==255 &&
+              c.read_rdr()==0 && c.read_ssr(false)==0x84 && c.tx_phase()==0 && c.rx_phase()==0,
+              "Independent reset register and phase defaults");
+        check(!c.input(),"Physical held-low RX survives reset");
+        drain(c,sink);
+        check(sink.events.size()==2 && sink.tx_count==tx && sink.end_count==end &&
+              sink.rx_count==rx && sink.error_count==error,"No stale completion or IRQ after reset");
+        c.reset(sink);
+        check(sink.events.size()==4 && sink.events[2].second=='h' && sink.events[3].second=='1',
+              "Repeated SCI reset republishes high unlike GPIO suppression");
+    }
     std::printf("4096 full-duplex byte/formats plus shared clock/status/order/isolation sequences: %u failures\n",failures);
     return failures?1:0;
 }

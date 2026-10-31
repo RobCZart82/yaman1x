@@ -2089,20 +2089,34 @@
         41188413402
       ],
       "automated_review_at_merge": "no_recorded_result_at_inspection"
+    },
+    {
+      "pr": 148,
+      "title": "Test GPIO register retention and suppression across repeated reset",
+      "url": "https://github.com/RobCZart82/yaman1x/pull/148",
+      "kind": "tests",
+      "status": "merged",
+      "merge_commit": "1ec8ff3b657816e736930fe8029427409777f555",
+      "reviewed_head": "9f8b4d687eb90c3cdec9d6b36a17f31f261902ca",
+      "merged_at_utc": "2026-10-31T11:09:52Z",
+      "ci_runs": [
+        41194415912,
+        41194415954
+      ],
+      "automated_review_at_merge": "no_recorded_result_at_inspection"
     }
   ],
   "active_change": {
-    "branch": "test/gpio-reset-retention",
+    "branch": "test/sci-reset-abort",
     "status": "local_validation_passed_ci_pending",
-    "scope": "GPIO retained DDR/DR/PCR/ODR and output suppression across repeated reset",
+    "scope": "401 active TX/RX reset cut points;defaults,held RX,publication order and cancelled deadlines",
     "validation": {
-      "configurations": 196608,
-      "resets_per_configuration": 3,
+      "reset_cut_points": 401,
       "targeted_ctest": "pass",
       "targeted_asan_ubsan": "pass",
       "python_tests": 91,
-      "pinned_reset_identity": "pass",
-      "full_runtime_suite": "not_rerun_test_only_extension"
+      "pinned_original_reset_identity": "pass",
+      "full_runtime_suite": "not_rerun_test_only"
     }
   },
   "pending_changes": []

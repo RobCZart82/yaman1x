@@ -12,7 +12,8 @@ Merged research evidence:[#145](https://github.com/RobCZart82/yaman1x/pull/145),
 `90f8aea04fdddce17de60fe706b690b3b5f62c3b`. No recorded automated review result.
 [Pinned method contract](h83002-warm-reset-contract.md):five files/six methods;91 Python tests.
 Merged #147 CPU reset tests:89 CTest/91 Python PASS locally,four CI jobs PASS.
-Current candidate:GPIO retention196608 configurations,three resets each.
+Merged #148 GPIO retention tests;four exact-head CI jobs PASS.
+Current candidate:SCI reset abortion at401 TX/RX cycle cuts.
 Targeted ASan/UBSan PASS;final CI/review pending;no warm reset API added.
 #146 documentation merged at41a1c1cea0b777653ede9e470ec5e6e7797b2ff2;all four CI jobs PASS.
 Engine implementation baseline remains #143.
