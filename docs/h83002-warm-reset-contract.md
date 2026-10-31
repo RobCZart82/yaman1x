@@ -118,3 +118,13 @@ constructed CPU owners. Original ROMs and generated engine bodies are unchanged.
 
 A temporary negative-control build replacing reset CCR OR with assignment produces
 6858 assertion failures;the test therefore rejects clobbering preserved flags.
+
+## GPIO retention extension — candidate 2026-10-31
+
+The digital-port test covers three masks (00,A5,FF),all256 DDR values and
+all256 data values:196608 configurations,each reset three times. It requires
+unchanged DDR and masked DR/PCR/ODR readback,zero additional output callbacks,
+and a per-bit pin-read oracle with forced input40 and external pins96.
+The locked original device_reset identity still matches:it calls update_output
+only. This test validates the local component contract,not framework traversal,
+physical hardware retention or global reset timing. Engine code is unchanged.

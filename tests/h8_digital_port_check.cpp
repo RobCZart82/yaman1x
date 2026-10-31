@@ -30,6 +30,33 @@ int main() {
             }
         }
     }
+    // Reset is an output refresh,not device_start: independent retained-state oracle.
+    for(unsigned mask : {0u,0xa5u,0xffu})
+    for(unsigned direction=0;direction<256;++direction)
+    for(unsigned data=0;data<256;++data) {
+        Port port{uint8_t(direction),uint8_t(mask),0x40};
+        unsigned calls=0;
+        auto publish=[&](uint8_t,uint8_t){++calls;};
+        port.write_data(uint8_t(data),publish);
+        port.write_pcr(uint8_t(data^0x5a));
+        port.write_odr(uint8_t(data^0xa5));
+        const auto before=calls;
+        for(unsigned repeat=0;repeat<3;++repeat) {
+            port.reset(publish);
+            check(calls==before);
+            check(port.ddr()==direction && port.data()==(data|mask));
+            check(port.pcr()==((data^0x5a)|mask));
+            check(port.odr()==((data^0xa5)|(~mask&255)));
+            unsigned expected=0;
+            for(unsigned bit=1;bit<256;bit<<=1) {
+                const bool high=(mask&bit) ||
+                    ((direction&bit) && !(0x40&bit) && (data&bit)) ||
+                    (((0x40&bit) || !(direction&bit)) && (0x96&bit));
+                if(high)expected|=bit;
+            }
+            check(port.read_pins([]{return uint8_t{0x96};})==expected);
+        }
+    }
     Port a, b;
     unsigned calls = 0;
     auto write = [&](uint8_t, uint8_t) { ++calls; };

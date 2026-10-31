@@ -30,8 +30,8 @@ See [engine architecture decision](docs/ADR-0001-engine-boundary.md) and
 
 ## Current state
 
-Current candidate:independent cold CPU reset execution tests,256 CCR seeds,
-three absolute time origins and seven cuts;89 CTest/91 Python PASS locally.
+Merged #147 cold CPU reset tests:89 CTest/91 Python PASS locally and four CI jobs PASS.
+Current candidate:GPIO reset retention across196608 configurations,three resets each.
 Pinned method research #145 and boundary documentation #146 are merged.
 No warm reset API added;final candidate CI/review pending.
 
