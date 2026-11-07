@@ -7,14 +7,14 @@
 
 namespace yamanix {
 
-// Standalone H8_ADC_3337 subset for ADCSR 0x33. The caller supplies
+// Standalone H8_ADC_3337 subset for ADCSR 0x33/0x37. The caller supplies
 // a sample at each scheduled edge and owns the event budget.
 class H8AdcSlowScan {
 public:
     std::optional<uint64_t> deadline() const { return deadline_; }
-    unsigned next_channel() const { return (channel_ + 1) % results_.size(); }
+    unsigned next_channel() const { return first_channel_ + (channel_ + 1) % results_.size(); }
     uint16_t result_word(unsigned channel) const { return uint16_t(results_.at(channel) << 6); }
-    uint8_t control() const { return uint8_t((deadline_ ? (start_bit_ ? 0x33 : 0x13) : 0) | (finished_ ? 0x80 : 0)); }
+    uint8_t control() const { return uint8_t((deadline_ ? (start_bit_ ? (0x33 | first_channel_) : (0x13 | first_channel_)) : 0) | (finished_ ? 0x80 : 0)); }
 
     void start(uint64_t cycle, uint16_t an0, uint16_t previous_an3 = 0, bool previous_adf = false) {
         if (deadline_)
@@ -27,13 +27,27 @@ public:
         finished_ = previous_adf;
     }
 
+    void restart(uint64_t cycle, unsigned first_channel, uint16_t sample, bool keep_adf) {
+        if (!deadline_ || start_bit_)
+            throw std::logic_error("ADC restart requires cleared ADST");
+        if (first_channel != 0 && first_channel != 4)
+            throw std::invalid_argument("Unsupported ADC scan bank");
+        const auto next = sample_deadline(cycle, 266, sample);
+        first_channel_ = first_channel;
+        channel_ = 0;
+        start_bit_ = true;
+        write_adf(keep_adf);
+        pending_sample_ = sample;
+        deadline_ = next;
+    }
+
     void service(uint64_t cycle, uint16_t next_sample) {
         if (!deadline_ || cycle != *deadline_)
             throw std::invalid_argument("ADC scan completion outside deadline");
         const auto next = sample_deadline(cycle, 256, next_sample);
         results_[channel_] = pending_sample_;
         finished_ |= channel_ == 3;
-        channel_ = next_channel();
+        channel_ = (channel_ + 1) % results_.size();
         pending_sample_ = next_sample;
         deadline_ = next;
     }
@@ -59,6 +73,7 @@ private:
     std::optional<uint64_t> deadline_;
     uint16_t pending_sample_ = 0;
     unsigned channel_ = 0;
+    unsigned first_channel_ = 0;
     bool finished_ = false;
     bool start_bit_ = true;
 };

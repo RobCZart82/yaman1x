@@ -36,7 +36,7 @@ See [engine architecture decision](docs/ADR-0001-engine-boundary.md) and
 ## Current firmware diagnostic — 2026-11-06
 
 Extended probes pass ADCSR=0x13 and reach the upper-channel scan request
-0x37. See the [current status](docs/STATUS.md).
+0x37. Its standalone model is tested. See the [current status](docs/STATUS.md).
 
 ## Current verified status — 2026-11-05
 

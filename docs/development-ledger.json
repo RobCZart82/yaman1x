@@ -4047,29 +4047,50 @@
       "automatic_review": "completed on exact head; no findings",
       "review_evidence": "https://github.com/RobCZart82/yaman1x/pull/239#issuecomment-6705892779",
       "main_ci": "all_five_success"
+    },
+    {
+      "branch": "research/an1x-adc-upper-scan-boundary",
+      "status": "merged",
+      "base_commit": "c013f563a459d6681b8394e31672bce3e172cd15",
+      "scope": "Record the firmware upper ADC scan request",
+      "original_mame_commit": "706dbb73281320c54d7c2f16262c1c3786f2be01",
+      "slice_cycles": [
+        4096,
+        1000000
+      ],
+      "synthetic_values": [
+        0,
+        1023
+      ],
+      "cycles": [
+        127793965,
+        127794154
+      ],
+      "pc": "0x1B38",
+      "address": "0xFFFFE8",
+      "value": "0x37",
+      "boot_accepted": false,
+      "audio_accepted": false,
+      "pr": 240,
+      "merge_commit": "52d963fe5cd72af911793311eb493ae3e48ab5cd",
+      "reviewed_head": "ac315e667a60c39ab1544639035f2ec35d6633e0",
+      "remote_ci": "all_four_success",
+      "ci_runs": [
+        42371618035,
+        42371618057
+      ],
+      "automatic_review": "completed on exact head; no findings",
+      "review_evidence": "https://github.com/RobCZart82/yaman1x/pull/240#issuecomment-6706807740",
+      "main_ci": "all_four_success"
     }
   ],
   "active_change": {
-    "branch": "research/an1x-adc-upper-scan-boundary",
+    "branch": "feat/h8-adc-upper-scan",
     "status": "candidate",
-    "base_commit": "c013f563a459d6681b8394e31672bce3e172cd15",
-    "scope": "Record the firmware upper ADC scan request",
+    "base_commit": "52d963fe5cd72af911793311eb493ae3e48ab5cd",
+    "scope": "Standalone upper ADC bank restart after ADST clear",
     "original_mame_commit": "706dbb73281320c54d7c2f16262c1c3786f2be01",
-    "slice_cycles": [
-      4096,
-      1000000
-    ],
-    "synthetic_values": [
-      0,
-      1023
-    ],
-    "cycles": [
-      127793965,
-      127794154
-    ],
-    "pc": "0x1B38",
-    "address": "0xFFFFE8",
-    "value": "0x37",
+    "time_partitions": 1035,
     "boot_accepted": false,
     "audio_accepted": false
   },

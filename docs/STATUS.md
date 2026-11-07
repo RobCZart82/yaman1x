@@ -1,6 +1,22 @@
 # Development status
 
-## Upper ADC scan request after ADST clear — candidate, 2026-11-07
+## Standalone upper ADC scan restart — candidate, 2026-11-07
+
+The slow scan model can restart on AN4 after ADST has been cleared.
+The new rising edge replaces the pending sample and deadline with the
+original first-conversion delay of 266 cycles. AN4–AN7 commit to ADDRA–ADDRD,
+preserving previous register values until each new conversion completes.
+Subsequent deadlines remain 256 cycles apart. The model retains or clears
+ADF according to the written bit. The reference is locked H8_ADC_3337
+at MAME 706dbb73281320c54d7c2f16262c1c3786f2be01.
+
+Independent tests check upper scan callbacks, register indices, control
+bits and four exact deadlines across 1,035 time partitions, followed by
+a restart into the lower bank. The existing lower scan and bus tests
+also pass. Next, connect the 0x37 request to the bus callback and repeat
+the local firmware diagnostics. Hardware, boot and audio acceptance remain open.
+
+## Upper ADC scan request after ADST clear — merged in #240, 2026-11-07
 
 Four read-only 1.04 probes on main c013f56 passed ADCSR=0x13 and reached
 ADCSR=0x37 at PC 0x1B38. The synthetic zero-input runs stopped at cycle
