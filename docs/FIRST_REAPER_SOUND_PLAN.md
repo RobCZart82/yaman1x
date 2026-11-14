@@ -2,25 +2,25 @@
 
 For a Hungarian milestone summary, see [FIRST_REAPER_SOUND_PLAN_HUN.md](FIRST_REAPER_SOUND_PLAN_HUN.md). Historical Hungarian passages moved from this file are preserved in the [Hungarian notes archive](HUNGARIAN_NOTES_HUN.md).
 
-## Current verified main — PR #292 — 2026-11-14
+## Current verified main — PR #293 — 2026-11-14
 
-PR [#292](https://github.com/RobCZart82/YamAN1x/pull/292) merged by squash at
-`2026-11-14T14:52:58Z` from exact head
-`7ae2fccee343257a67acb7541d30f191d2f925fe` to main
-`6039cc3833c35a278517e4541ed3d84fb527bb2b`. PR-head Linux, macOS and Windows
-checks passed in ROM-free CI run `43603781411`; initial-decode MSan passed in
-`43603781407`. On exact main, Linux, macOS and Windows passed in ROM-free CI
-run `43607171460`, and initial-decode MSan passed in `43607171485`. The main
+PR [#293](https://github.com/RobCZart82/YamAN1x/pull/293) merged by squash at
+`2026-11-14T16:13:11Z` from exact head
+`7ac1bca94c653b26b60754982779ee2f7e68b73b` to main
+`503c75b5b9bccb74168247bacb4c9be24a63ba62`. PR-head Linux, macOS and Windows
+checks passed in ROM-free CI run `43611079865`; initial-decode MSan passed in
+`43611079823`. On exact main, Linux, macOS and Windows passed in ROM-free CI
+run `43614402134`, and initial-decode MSan passed in `43614402029`. The main
 Ubuntu job completed its extended UBSan/ASan checks successfully. MAME research
 was path-filtered for this documentation-only change.
 
 Codex's exact-head review completed without findings (summary comment
-`6878585874`; receipt `6878605101`). GitHub review submissions, inline review
+`6879860925`; receipt `6879884413`). GitHub review submissions, inline review
 comments and review threads were zero. Ruleset `25910947` required zero
 approvals and resolved review threads; no quota error was reported and no
-merge bypass was used. PR #292 reconciles PR #291's merge evidence and the
-current main baseline. It adds no runtime behavior or hardware, boot, MIDI,
-DSP, audio or REAPER acceptance.
+merge bypass was used. PR #293 reconciles PR #292's merge evidence and current
+main baseline. It adds no runtime behavior or hardware, boot, MIDI, DSP, audio
+or REAPER acceptance.
 
 ## Fresh local bounded firmware observation — 2026-11-14
 
