@@ -3,7 +3,7 @@
   "recorded_date": "2026-11-14",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "503c75b5b9bccb74168247bacb4c9be24a63ba62",
+  "baseline_commit": "1fc79543043a5b0fcce51a640e094879c2554849",
   "entries": [
     {
       "pr": 6,
@@ -6223,6 +6223,33 @@
       "review": "Codex exact-head review completed without findings (summary comment 6879860925; receipt 6879884413). GitHub review submissions, inline review comments and review threads were zero. Active ruleset 25910947 required zero approvals and resolved threads; no quota error and no bypass.",
       "scope": "Documentation-only reconciliation of PR #292 merge evidence and current main baseline; no runtime behavior.",
       "acceptance": "No firmware, hardware, boot, MIDI, DSP, audio or REAPER acceptance."
+    },
+    {
+      "pr": 294,
+      "pr_url": "https://github.com/RobCZart82/YamAN1x/pull/294",
+      "title": "docs: reconcile PR 293 current main",
+      "branch": "docs/reconcile-pr293-current-main",
+      "kind": "documentation",
+      "status": "merged",
+      "base_commit": "503c75b5b9bccb74168247bacb4c9be24a63ba62",
+      "head_commit": "4d4d21f254e339652c18f1f4bcd4f7d44edbaa46",
+      "merge_commit": "1fc79543043a5b0fcce51a640e094879c2554849",
+      "merged_at_utc": "2026-11-14T19:54:57Z",
+      "merge_method": "squash",
+      "bypass_used": false,
+      "pr_head_checks": {
+        "rom_free_ci_run": 43631172552,
+        "initial_decode_msan_run": 43631172629,
+        "mame_research": "path_filtered"
+      },
+      "main_checks": {
+        "rom_free_ci_run": 43634657685,
+        "initial_decode_msan_run": 43634657687,
+        "mame_research": "path_filtered"
+      },
+      "review": "Codex exact-head review completed without findings (summary comment 6882850078; receipt 6882868957). GitHub review submissions, inline review comments and review threads were zero. Active ruleset 25910947 required zero approvals and resolved threads; no quota error and no bypass.",
+      "scope": "Documentation-only reconciliation of PR #293 merge evidence and current main baseline; no runtime behavior.",
+      "acceptance": "No firmware, hardware, boot, MIDI, DSP, audio or REAPER acceptance."
     }
   ],
   "pending_changes": [],
@@ -6333,12 +6360,12 @@
     "prepared_date": "2026-11-12"
   },
   "documentation_post_merge_reconciliation": {
-    "pr": 293,
+    "pr": 294,
     "status": "merged",
-    "head_commit": "7ac1bca94c653b26b60754982779ee2f7e68b73b",
-    "merge_commit": "503c75b5b9bccb74168247bacb4c9be24a63ba62",
-    "merged_at_utc": "2026-11-14T16:13:11Z",
+    "head_commit": "4d4d21f254e339652c18f1f4bcd4f7d44edbaa46",
+    "merge_commit": "1fc79543043a5b0fcce51a640e094879c2554849",
+    "merged_at_utc": "2026-11-14T19:54:57Z",
     "open_prs_at_reconciliation": 0,
-    "documentation_reconciliation": "PR #293 reconciled as merged after exact-main ROM-free CI and initial-decode MSan passed, including the extended Ubuntu UBSan/ASan checks. Documentation only; no runtime behavior or acceptance changed."
+    "documentation_reconciliation": "PR #294 reconciled as merged after exact-main ROM-free CI and initial-decode MSan passed, including the extended Ubuntu UBSan/ASan checks. Documentation only; no runtime behavior or acceptance changed."
   }
 }
