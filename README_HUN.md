@@ -4,24 +4,24 @@ A YamAN1x a Yamaha AN1x hangszer firmware-alapú emulációját kutató projekt.
 
 Az adattár dokumentációja nyelvenként külön fájlban található: az angol dokumentumok nem tartalmaznak magyar prózát, a magyar összefoglalók pedig külön `_HUN.md` fájlokban találhatók. Az angol dokumentáció a kanonikus műszaki leírás. A gyökérben lévő `README.md` angolul tartalmazza a projekt bemutatását és állapotát. A részletes MAME-kutatási útmutató a [külön magyar fájlban](research/README_HUN.md) található. A korábbi magyar nyelvű dokumentumrészeket a [külön magyar archívum](docs/HUNGARIAN_NOTES_HUN.md) őrzi.
 
-## Ellenőrzött főági alap — #293 — 2026-11-14
+## Ellenőrzött főági alap — #294 — 2026-11-14
 
-A [#293 PR](https://github.com/RobCZart82/YamAN1x/pull/293)
-2026-11-14 16:13:11 UTC-kor, squash módszerrel olvadt be. A pontos PR-fej
-`7ac1bca94c653b26b60754982779ee2f7e68b73b`, az új főági commit
-`503c75b5b9bccb74168247bacb4c9be24a63ba62`. A PR-fejen a Linux, macOS és
-Windows ROM-mentes ellenőrzések sikeresek voltak (`43611079865`), az
-initial-decode MSan is sikerült (`43611079823`). A pontos főági commiton a
-Linux, macOS és Windows ellenőrzések (`43614402134`), valamint az
-initial-decode MSan (`43614402029`) is sikeresek. Az Ubuntu-feladat kiterjesztett
+A [#294 PR](https://github.com/RobCZart82/YamAN1x/pull/294)
+2026-11-14 19:54:57 UTC-kor, squash módszerrel olvadt be. A pontos PR-fej
+`4d4d21f254e339652c18f1f4bcd4f7d44edbaa46`, az új főági commit
+`1fc79543043a5b0fcce51a640e094879c2554849`. A PR-fejen a Linux, macOS és
+Windows ROM-mentes ellenőrzések sikeresek voltak (`43631172552`), az
+initial-decode MSan is sikerült (`43631172629`). A pontos főági commiton a
+Linux, macOS és Windows ellenőrzések (`43634657685`), valamint az
+initial-decode MSan (`43634657687`) is sikeresek. Az Ubuntu-feladat kiterjesztett
 UBSan/ASan ellenőrzései is sikeresek. A MAME-kutatási munkafolyamat útvonal
 alapján nem futott, mert ez csak dokumentációs módosítás volt.
 
 A Codex pontos PR-fejre szóló áttekintése nem talált hibát (összefoglaló:
-`6879860925`, nyugta: `6879884413`). GitHub review-beküldés, beágyazott review-
+`6882850078`, nyugta: `6882868957`). GitHub review-beküldés, beágyazott review-
 megjegyzés és review-szál nem volt. A `25910947` szabályzat nulla jóváhagyást
-és lezárt szálakat követelt; nem volt kvótahiba vagy megkerülés. A #293
-kizárólag a #292 beolvadási adatait és az aktuális főági alapot egyeztette; nem
+és lezárt szálakat követelt; nem volt kvótahiba vagy megkerülés. A #294
+kizárólag a #293 beolvadási adatait és az aktuális főági alapot egyeztette; nem
 változtatott a működésen és nem igazol hardver-, boot-, MIDI-, DSP-, hang- vagy
 REAPER-elfogadást.
 
