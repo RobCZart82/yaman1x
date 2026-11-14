@@ -2,26 +2,25 @@
 
 A műszaki státusz kanonikus dokumentuma az angol [STATUS.md](STATUS.md). Ez a magyar oldal a fő eredményeket és nyitott elfogadási pontokat foglalja össze.
 
-## Ellenőrzött főági alap — #291 — 2026-11-14
+## Ellenőrzött főági alap — #292 — 2026-11-14
 
-A [#291 PR](https://github.com/RobCZart82/YamAN1x/pull/291)
-2026-11-14 13:41:50 UTC-kor, squash módszerrel olvadt be. A pontos PR-fej
-`58d3ed1851ff56cdb98aa0996cc73e5efeeba57d`, az új főági commit
-`c89ff8829903ce98ec401ecf99ee677298a41b45`. A PR-fejen a Linux, macOS és
-Windows ROM-mentes ellenőrzések sikeresek voltak (`43598744476`), az
-initial-decode MSan is sikerült (`43598744479`). A pontos főági commiton a
-Linux, macOS és Windows ellenőrzések (`43601058839`), valamint az
-initial-decode MSan (`43601058793`) is sikeresek. Mindhárom főági platform-job
-sikeres, beleértve az Ubuntu hosszabb UBSan/ASan vizsgálatait. A MAME-kutatási
-munkafolyamat útvonal alapján nem futott, mert ez csak dokumentációs módosítás
-volt.
+A [#292 PR](https://github.com/RobCZart82/YamAN1x/pull/292)
+2026-11-14 14:52:58 UTC-kor, squash módszerrel olvadt be. A pontos PR-fej
+`7ae2fccee343257a67acb7541d30f191d2f925fe`, az új főági commit
+`6039cc3833c35a278517e4541ed3d84fb527bb2b`. A PR-fejen a Linux, macOS és
+Windows ROM-mentes ellenőrzések sikeresek voltak (`43603781411`), az
+initial-decode MSan is sikerült (`43603781407`). A pontos főági commiton a
+Linux, macOS és Windows ellenőrzések (`43607171460`), valamint az
+initial-decode MSan (`43607171485`) is sikeresek. Az Ubuntu-feladat kiterjesztett
+UBSan/ASan ellenőrzései is sikeresek. A MAME-kutatási munkafolyamat útvonal
+alapján nem futott, mert ez csak dokumentációs módosítás volt.
 
 A Codex pontos PR-fejre szóló áttekintése nem talált hibát (összefoglaló:
-`6877817999`, nyugta: `6877830886`). GitHub review-beküldés és review-szál
-nem volt. A `25910947` szabályzat nulla jóváhagyást és lezárt szálakat
-követelt; nem volt kvótahiba vagy megkerülés. A #291 kizárólag a #290
-beolvadási adatait és az aktuális főági alapot egyeztette; nem változtatott a
-működésen és nem igazol hardver-, boot-, MIDI-, DSP-, hang- vagy
+`6878585874`, nyugta: `6878605101`). GitHub review-beküldés, beágyazott review-
+megjegyzés és review-szál nem volt. A `25910947` szabályzat nulla jóváhagyást
+és lezárt szálakat követelt; nem volt kvótahiba vagy megkerülés. A #292
+kizárólag a #291 beolvadási adatait és az aktuális főági alapot egyeztette; nem
+változtatott a működésen és nem igazol hardver-, boot-, MIDI-, DSP-, hang- vagy
 REAPER-elfogadást.
 
 ## Friss, korlátozott helyi firmware-megfigyelés — 2026-11-14

@@ -2,24 +2,25 @@
 
 For a Hungarian summary, see [STATUS_HUN.md](STATUS_HUN.md). The original Hungarian notes are available in the [separate archive](HUNGARIAN_NOTES_HUN.md).
 
-## Current verified main — PR #291 — 2026-11-14
+## Current verified main — PR #292 — 2026-11-14
 
-PR [#291](https://github.com/RobCZart82/YamAN1x/pull/291) merged by squash at
-`2026-11-14T13:41:50Z` from exact head
-`58d3ed1851ff56cdb98aa0996cc73e5efeeba57d` to main
-`c89ff8829903ce98ec401ecf99ee677298a41b45`. PR-head Linux, macOS and Windows
-checks passed in ROM-free CI run `43598744476`; initial-decode MSan passed in
-`43598744479`. On the exact main commit, Linux, macOS and Windows passed in
-ROM-free CI run `43601058839`; initial-decode MSan passed in `43601058793`.
-All three main platform jobs, including the extended Ubuntu UBSan/ASan checks,
-passed. MAME research was path-filtered for this documentation-only change.
+PR [#292](https://github.com/RobCZart82/YamAN1x/pull/292) merged by squash at
+`2026-11-14T14:52:58Z` from exact head
+`7ae2fccee343257a67acb7541d30f191d2f925fe` to main
+`6039cc3833c35a278517e4541ed3d84fb527bb2b`. PR-head Linux, macOS and Windows
+checks passed in ROM-free CI run `43603781411`; initial-decode MSan passed in
+`43603781407`. On exact main, Linux, macOS and Windows passed in ROM-free CI
+run `43607171460`, and initial-decode MSan passed in `43607171485`. The main
+Ubuntu job completed its extended UBSan/ASan checks successfully. MAME research
+was path-filtered for this documentation-only change.
 
 Codex's exact-head review completed without findings (summary comment
-`6877817999`; receipt `6877830886`). GitHub review submissions and review
-threads were zero. Ruleset `25910947` required zero approvals and resolved
-threads; no quota error was reported and no merge bypass was used. PR #291 only
-reconciles PR #290's merge evidence and the current main baseline; it adds no
-runtime behavior or hardware, boot, MIDI, DSP, audio or REAPER acceptance.
+`6878585874`; receipt `6878605101`). GitHub review submissions, inline review
+comments and review threads were zero. Ruleset `25910947` required zero
+approvals and resolved review threads; no quota error was reported and no
+merge bypass was used. PR #292 reconciles PR #291's merge evidence and the
+current main baseline. It adds no runtime behavior or hardware, boot, MIDI,
+DSP, audio or REAPER acceptance.
 
 ## Fresh local bounded firmware observation — 2026-11-14
 

@@ -3,7 +3,7 @@
   "recorded_date": "2026-11-14",
   "display_timezone": "Europe/Budapest",
   "source": "GitHub merged pull-request metadata, verified against main Git history",
-  "baseline_commit": "c89ff8829903ce98ec401ecf99ee677298a41b45",
+  "baseline_commit": "6039cc3833c35a278517e4541ed3d84fb527bb2b",
   "entries": [
     {
       "pr": 6,
@@ -6168,6 +6168,34 @@
       "scope": "Documentation-only reconciliation of PR #290 merge evidence and current main baseline; no runtime behavior.",
       "acceptance": "No firmware, hardware, boot, MIDI, DSP, audio or REAPER acceptance.",
       "documentation_validation": "Repository audit passed (695 files, 201 upstream identities, one reviewed local edit; no problems); seven changed Markdown documents parsed as UTF-8 and all local Markdown targets exist; ledger has 283 unique merged PRs, zero pending changes, and exact baseline c89ff8829903ce98ec401ecf99ee677298a41b45 is an ancestor of origin/main; git diff --check passed. English and Hungarian prose remain in separate files."
+    },
+    {
+      "pr": 292,
+      "pr_url": "https://github.com/RobCZart82/YamAN1x/pull/292",
+      "title": "docs: reconcile PR 291 current main",
+      "branch": "docs/reconcile-pr291-current-main",
+      "kind": "documentation",
+      "status": "merged",
+      "base_commit": "c89ff8829903ce98ec401ecf99ee677298a41b45",
+      "head_commit": "7ae2fccee343257a67acb7541d30f191d2f925fe",
+      "merge_commit": "6039cc3833c35a278517e4541ed3d84fb527bb2b",
+      "merged_at_utc": "2026-11-14T14:52:58Z",
+      "merge_method": "squash",
+      "bypass_used": false,
+      "pr_head_checks": {
+        "rom_free_ci_run": 43603781411,
+        "initial_decode_msan_run": 43603781407,
+        "mame_research": "path_filtered"
+      },
+      "main_checks": {
+        "rom_free_ci_run": 43607171460,
+        "initial_decode_msan_run": 43607171485,
+        "mame_research": "path_filtered"
+      },
+      "review": "Codex exact-head review completed without findings (summary comment 6878585874; receipt 6878605101). GitHub review submissions, inline comments and review threads were zero. Active ruleset 25910947 required zero approvals and resolved threads; no quota error and no bypass.",
+      "scope": "Documentation-only reconciliation of PR #291 merge evidence and current main baseline; no runtime behavior.",
+      "acceptance": "No firmware, hardware, boot, MIDI, DSP, audio or REAPER acceptance.",
+      "documentation_validation": "Repository audit passed (695 files, 201 upstream identities, one reviewed local edit; no problems); seven changed Markdown documents parsed as UTF-8 and all local Markdown targets exist; ledger has 284 unique merged PRs, zero pending changes, and exact baseline 6039cc3833c35a278517e4541ed3d84fb527bb2b is an ancestor of origin/main; git diff --check passed. English and Hungarian prose remain in separate files."
     }
   ],
   "pending_changes": [],
@@ -6278,12 +6306,12 @@
     "prepared_date": "2026-11-12"
   },
   "documentation_post_merge_reconciliation": {
-    "pr": 291,
+    "pr": 292,
     "status": "merged",
-    "head_commit": "58d3ed1851ff56cdb98aa0996cc73e5efeeba57d",
-    "merge_commit": "c89ff8829903ce98ec401ecf99ee677298a41b45",
-    "merged_at_utc": "2026-11-14T13:41:50Z",
+    "head_commit": "7ae2fccee343257a67acb7541d30f191d2f925fe",
+    "merge_commit": "6039cc3833c35a278517e4541ed3d84fb527bb2b",
+    "merged_at_utc": "2026-11-14T14:52:58Z",
     "open_prs_at_reconciliation": 0,
-    "documentation_reconciliation": "PR #291 is reconciled as merged after exact-main ROM-free CI and initial-decode MSan passed, including the extended Ubuntu UBSan/ASan checks. Documentation only; no runtime behavior or acceptance changed."
+    "documentation_reconciliation": "PR #292 reconciled as merged after exact-main ROM-free CI and initial-decode MSan passed, including the extended Ubuntu UBSan/ASan checks. Documentation only; no runtime behavior or acceptance changed."
   }
 }
